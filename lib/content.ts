@@ -13,10 +13,10 @@ export type Content = {
 };
 
 export const defaultHeroImages = [
-  "/images/hero-khor-virap.jpg",
-  "/images/tatev.jpg",
-  "/images/sevan.jpg",
-  "/images/noravank.jpg",
+  "/images/hero-mountain-road.jpg",
+  "/images/hero-highland-lake.jpg",
+  "/images/hero-valley-road.jpg",
+  "/images/hero-travellers.jpg",
 ];
 
 const defaults: Content = {

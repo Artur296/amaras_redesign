@@ -21,7 +21,7 @@ const ru = {
       "Тур-пакеты, индивидуальные и групповые экскурсии по самым красивым уголкам Армении с местными гидами",
     ctaTours: "Смотреть туры",
     ctaWrite: "Написать нам",
-    imageAlt: "Монастырь Хор Вирап на фоне горы Арарат",
+    imageAlt: "Горная дорога среди заснеженных вершин",
   },
   stats: [
     { value: "9", label: "маршрутов по Армении" },
@@ -150,7 +150,7 @@ const hy: Dict = {
       "Տուր փաթեթներ, անհատական և խմբային էքսկուրսիաներ Հայաստանի ամենագեղեցիկ վայրերով՝ տեղացի գիդերի հետ",
     ctaTours: "Դիտել տուրերը",
     ctaWrite: "Գրել մեզ",
-    imageAlt: "Խոր Վիրապ վանքը Արարատ լեռան ֆոնին",
+    imageAlt: "Լեռնային ճանապարհ ձյունածածկ գագաթների միջով",
   },
   stats: [
     { value: "9", label: "երթուղի Հայաստանով" },
@@ -275,7 +275,7 @@ const en: Dict = {
       "Tour packages, private and group excursions to the most beautiful corners of Armenia with local guides",
     ctaTours: "Browse tours",
     ctaWrite: "Message us",
-    imageAlt: "Khor Virap monastery with Mount Ararat in the background",
+    imageAlt: "A mountain road winding between snow-capped peaks",
   },
   stats: [
     { value: "9", label: "routes across Armenia" },

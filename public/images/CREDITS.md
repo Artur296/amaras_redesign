@@ -1,8 +1,24 @@
 # Image credits
 
-All photos from Wikimedia Commons. CC licenses require attribution — keep this
-file and add a credits note to the site before launch, or replace the photos
-with your own.
+The hero slideshow and the tour-category tiles use Unsplash photos. The Unsplash
+licence allows commercial use and does not require attribution, so these need no
+credit note on the site — the entries below are kept for provenance only.
+
+The remaining photos come from Wikimedia Commons. Their CC licenses do require
+attribution — keep this file and add a credits note to the site before launch, or
+replace those photos with your own.
+
+## Unsplash (no attribution required)
+
+- `hero-mountain-road.jpg` — Perminder Klair — https://unsplash.com/photos/gray-concrete-road-near-brown-rocky-mountain-under-blue-sky-during-daytime-R-lq14hx85I
+- `hero-highland-lake.jpg` — khizer hayat — https://unsplash.com/photos/a-lake-in-a-valley-MOBqj9gYw-0
+- `hero-valley-road.jpg` — Matthew — https://unsplash.com/photos/green-mountains-beside-river-under-blue-sky-during-daytime-Di-ZrD2qD3o
+- `hero-travellers.jpg` — Matt Heaton — https://unsplash.com/photos/four-person-standing-while-looking-on-mountain-view-with-body-of-water-at-daytime-AWu2De0kt_s
+- `category-packages.jpg` — Andrew Svk — https://unsplash.com/photos/a-long-road-with-a-mountain-in-the-background-7IBuoQQlCKY
+- `category-individual.jpg` — Mats Hagwall — https://unsplash.com/photos/man-walking-between-grass-field-mountain-during-daytime-DY-xrG3RG_w
+- `category-group.jpg` — nika tchokhonelidze — https://unsplash.com/photos/people-hiking-on-green-grass-field-during-daytime-Ms_p0I5DQSM
+
+## Wikimedia Commons (attribution required)
 
 - `hero-khor-virap.jpg` — "Monasterio Khor Virap, Armenia, 2016-10-01, DD 25" by Diego Delso, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Monasterio_Khor_Virap,_Armenia,_2016-10-01,_DD_25.jpg
 - `garni.jpg` — "Templo de Garni, Armenia, 2016-10-02, DD 03" by Diego Delso, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Templo_de_Garni,_Armenia,_2016-10-02,_DD_03.jpg

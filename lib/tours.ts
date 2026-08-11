@@ -12,7 +12,7 @@ export type Category = {
 export const defaultCategories: Category[] = [
   {
     id: "packages",
-    image: "/images/hero-khor-virap.jpg",
+    image: "/images/category-packages.jpg",
     imagePosition: "object-center",
     title: { ru: "Тур-пакеты", hy: "Տուր փաթեթներ", en: "Tour Packages" },
     desc: {
@@ -23,8 +23,8 @@ export const defaultCategories: Category[] = [
   },
   {
     id: "individual",
-    image: "/images/individual-tour.jpg",
-    imagePosition: "object-[center_70%]",
+    image: "/images/category-individual.jpg",
+    imagePosition: "object-center",
     title: {
       ru: "Индивидуальные туры",
       hy: "Անհատական տուրեր",
@@ -38,8 +38,8 @@ export const defaultCategories: Category[] = [
   },
   {
     id: "group",
-    image: "/images/group.jpg",
-    imagePosition: "object-center",
+    image: "/images/category-group.jpg",
+    imagePosition: "object-[center_60%]",
     title: { ru: "Групповые туры", hy: "Խմբային տուրեր", en: "Group Tours" },
     desc: {
       ru: "Небольшие дружные группы, насыщенная программа и выгодные цены.",
