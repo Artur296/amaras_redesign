@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { getAdminUser } from "@/lib/admin-auth";
 
-const MAX_BYTES = 3 * 1024 * 1024;
+const MAX_BYTES = 20 * 1024 * 1024;
 
 // Stores the image in the database (base64) and returns a public URL
 // served by /api/img/[name]. Keeps everything in the one free DB.
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Not an image" }, { status: 400 });
   }
   if (file.size > MAX_BYTES) {
-    return NextResponse.json({ error: "Image too large (max 3 MB)" }, { status: 400 });
+    return NextResponse.json({ error: "Image too large (max 20 MB)" }, { status: 400 });
   }
 
   const clean = file.name.toLowerCase().replace(/[^a-z0-9.-]+/g, "-");

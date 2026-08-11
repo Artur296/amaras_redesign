@@ -275,7 +275,7 @@ function DeleteButton({ onDelete, label }: { onDelete: () => void; label: string
 }
 
 // Camera and stock photos run to many megabytes, far more than the site ever
-// displays, and the upload endpoint rejects anything over 3 MB. Shrink those in
+// displays, and the upload endpoint rejects anything over 20 MB. Shrink those in
 // the browser first; smaller files are sent untouched so PNG transparency and
 // already-optimised images survive.
 const MAX_EDGE = 1600;
