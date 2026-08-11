@@ -4,7 +4,7 @@ import BookButton from "@/components/BookButton";
 import { packageIncludes } from "@/components/PackageIncludes";
 import { BedIcon, CalendarIcon, RouteIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
-import { formatPrice, type Tour } from "@/lib/tours";
+import { discountPercent, formatPrice, type Tour } from "@/lib/tours";
 
 // Card for multi-day packages. It deliberately looks different from the
 // day-tour card: a package header strip, days/nights instead of a price tag on
@@ -23,6 +23,7 @@ export default function PackageCard({
   const includes = packageIncludes(dict);
   const days = tour.itinerary?.map((entry) => entry.day) ?? [];
   const stars = tour.priceTiers?.map((tier) => `${tier.stars}★`) ?? [];
+  const discount = discountPercent(tour);
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-deep/15 bg-surface shadow-[0_1px_3px_rgba(16,24,40,.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(16,24,40,.16)]">
@@ -45,6 +46,11 @@ export default function PackageCard({
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <span className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent" />
+        {discount !== null && (
+          <span className="absolute right-3 top-3 rounded-full bg-deep px-3 py-1.5 text-sm font-extrabold text-accent">
+            −{discount}%
+          </span>
+        )}
         <span className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-sm font-extrabold text-deep">
           <CalendarIcon className="h-4 w-4 text-primary" />
           {tour.days} {dict.tours.days}

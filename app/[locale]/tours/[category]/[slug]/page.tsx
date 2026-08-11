@@ -8,7 +8,7 @@ import PackageIncludes from "@/components/PackageIncludes";
 import { CalendarIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
-import { tours as defaultTours, formatPrice } from "@/lib/tours";
+import { tours as defaultTours, discountPercent, formatPrice } from "@/lib/tours";
 import { getContent } from "@/lib/content";
 
 type Props = { params: Promise<{ locale: Locale; category: string; slug: string }> };
@@ -44,6 +44,7 @@ export default async function TourPage({ params }: Props) {
   const catTitle = (id: string) =>
     categories.find((c) => c.id === id)?.title[locale] ?? id;
   const isPackage = Boolean(tour.days);
+  const discount = discountPercent(tour);
 
   return (
     <div className="mx-auto max-w-[1200px] px-6 py-12 md:py-16">
@@ -97,6 +98,11 @@ export default async function TourPage({ params }: Props) {
               {dict.tours.from} {formatPrice(tour.priceFromAmd)}
             </span>
           </span>
+          {discount !== null && (
+            <span className="rounded-full bg-deep px-3 py-1 font-extrabold text-accent">
+              −{discount}%
+            </span>
+          )}
         </div>
       </FadeIn>
 

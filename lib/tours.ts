@@ -682,6 +682,14 @@ export const tours: Tour[] = [
   },
 ];
 
+// A tour is on sale when an old price above the current one is set. Returns the
+// rounded saving, or null — an old price at or below the current one is treated
+// as no sale rather than rendering a struck-through price that reads as nonsense.
+export function discountPercent(tour: Tour): number | null {
+  if (!tour.priceOldAmd || tour.priceOldAmd <= tour.priceFromAmd) return null;
+  return Math.round((1 - tour.priceFromAmd / tour.priceOldAmd) * 100);
+}
+
 // Shortest and longest package in a list, used to label a listing as
 // multi-day ("3–7 days"). Null when the list holds no multi-day packages.
 export function packageDayRange(list: Tour[]): { min: number; max: number } | null {

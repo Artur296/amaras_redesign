@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { locales, type Dict, type Locale } from "@/lib/i18n";
-import type { Category, Tour } from "@/lib/tours";
+import { discountPercent, type Category, type Tour } from "@/lib/tours";
 import type { SiteInfo } from "@/lib/site";
 import type { Content } from "@/lib/content";
 
@@ -190,6 +190,22 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       <span className="font-semibold text-ink">{label}</span>
       {children}
     </label>
+  );
+}
+
+// Shows what the old price will actually produce on the site, so a value that
+// is not above the current price does not silently render nothing.
+function SaleHint({ tour }: { tour: Tour }) {
+  if (!tour.priceOldAmd) return null;
+  const discount = discountPercent(tour);
+  return discount === null ? (
+    <span className="mt-1 block text-xs font-semibold text-amber-700">
+      Must be higher than the current price — no sale is shown.
+    </span>
+  ) : (
+    <span className="mt-1 block text-xs font-semibold text-green-700">
+      Shows −{discount}% on the card and tour page.
+    </span>
   );
 }
 
@@ -518,7 +534,7 @@ function ToursTab({
                         onChange={(v) => update(i, { priceFromAmd: Number(v) || 0 })}
                       />
                     </Field>
-                    <Field label="Old price (optional)">
+                    <Field label="Sale — old price (optional)">
                       <TextInput
                         type="number"
                         value={tour.priceOldAmd ? String(tour.priceOldAmd) : ""}
@@ -526,6 +542,7 @@ function ToursTab({
                           update(i, { priceOldAmd: Number(v) > 0 ? Number(v) : undefined })
                         }
                       />
+                      <SaleHint tour={tour} />
                     </Field>
                     {isPkg ? (
                       <>
