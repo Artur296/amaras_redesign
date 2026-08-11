@@ -274,21 +274,61 @@ function DeleteButton({ onDelete, label }: { onDelete: () => void; label: string
   );
 }
 
+// Camera and stock photos run to many megabytes, far more than the site ever
+// displays, and the upload endpoint rejects anything over 3 MB. Shrink those in
+// the browser first; smaller files are sent untouched so PNG transparency and
+// already-optimised images survive.
+const MAX_EDGE = 1600;
+const RESIZE_ABOVE_BYTES = 1_500_000;
+
+async function shrinkIfLarge(file: File): Promise<File> {
+  if (file.size <= RESIZE_ABOVE_BYTES) return file;
+  // imageOrientation keeps phone photos the right way up.
+  const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
+  const scale = Math.min(1, MAX_EDGE / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return file;
+  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+  const blob = await new Promise<Blob | null>((resolve) =>
+    canvas.toBlob(resolve, "image/jpeg", 0.85)
+  );
+  if (!blob) return file;
+  return new File([blob], `${file.name.replace(/\.[^.]+$/, "")}.jpg`, {
+    type: "image/jpeg",
+  });
+}
+
 function ImagePicker({ value, onChange }: { value: string; onChange: (url: string) => void }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function upload(file: File) {
     setBusy(true);
-    const form = new FormData();
-    form.append("file", file);
-    const res = await fetch("/api/admin/upload", { method: "POST", body: form });
-    setBusy(false);
-    if (res.ok) onChange((await res.json()).url);
+    setError(null);
+    try {
+      const form = new FormData();
+      form.append("file", await shrinkIfLarge(file));
+      const res = await fetch("/api/admin/upload", { method: "POST", body: form });
+      if (res.ok) {
+        onChange((await res.json()).url);
+      } else {
+        const body = await res.json().catch(() => null);
+        setError(body?.error ?? `Upload failed (${res.status})`);
+      }
+    } catch {
+      setError("Upload failed — check your connection and try again.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
-    <div className="mt-1 flex items-center gap-3">
+    <div className="mt-1 flex flex-wrap items-center gap-3">
       {value ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={value} alt="" className="h-14 w-20 rounded-lg border border-black/10 object-cover" />
@@ -320,6 +360,11 @@ function ImagePicker({ value, onChange }: { value: string; onChange: (url: strin
         className="hidden"
         onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])}
       />
+      {error && (
+        <p role="alert" className="w-full text-xs font-semibold text-red-600">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
