@@ -18,3 +18,4 @@ export const config = {
   // Skip static files (contain a dot), _next internals, API routes and /admin.
   matcher: ["/((?!_next|api|admin|.*\\..*).*)"],
 };
+
