@@ -20,7 +20,15 @@ export default async function HomePage({ params }: Props) {
   const { dicts, tours, categories, site, hero } = await getContent();
   const dict = dicts[locale];
   const links = buildLinks(site);
-  const featured = tours.filter((t) => t.featured ?? true).slice(0, 6);
+  // Day tours and multi-day packages are shown in separate rows: their cards
+  // carry different amounts of content, so mixing them in one grid stretches
+  // the shorter card to the taller one's height.
+  const featured = tours.filter((t) => t.featured ?? true);
+  const featuredTours = featured.filter((t) => !t.days).slice(0, 3);
+  const featuredPackages = featured.filter((t) => t.days).slice(0, 3);
+  const packageCategory = categories.find((c) =>
+    tours.some((t) => t.days && t.categories.includes(c.id))
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -64,7 +72,7 @@ export default async function HomePage({ params }: Props) {
           </div>
         </FadeIn>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((tour, i) => (
+          {featuredTours.map((tour, i) => (
             <FadeIn key={tour.slug} delay={i * 0.06} className="h-full">
               <TourCard
                 tour={tour}
@@ -76,6 +84,37 @@ export default async function HomePage({ params }: Props) {
           ))}
         </div>
       </section>
+
+      {/* Tour packages — their own row, see featuredPackages above */}
+      {featuredPackages.length > 0 && packageCategory && (
+        <section className="mx-auto max-w-[1200px] px-6 pb-16 md:pb-20">
+          <FadeIn>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-3xl font-extrabold md:text-4xl">
+                {packageCategory.title[locale]}
+              </h2>
+              <Link
+                href={`/${locale}/tours/${packageCategory.id}`}
+                className="font-bold text-primary hover:underline"
+              >
+                {dict.tours.viewAll} →
+              </Link>
+            </div>
+          </FadeIn>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredPackages.map((tour, i) => (
+              <FadeIn key={tour.slug} delay={i * 0.06} className="h-full">
+                <TourCard
+                  tour={tour}
+                  locale={locale}
+                  dict={dict}
+                  categories={categories}
+                />
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Categories */}
       <section className="bg-deep py-16 text-white md:py-20">

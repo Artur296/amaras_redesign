@@ -9,6 +9,8 @@ export const site = {
   telegram: "amaras_tour_armenia",
   instagram: "amarastourarmenia",
   email: "amarastour.am@gmail.com",
+  // Photo beside the text on the About page; editable in /admin.
+  aboutImage: "/images/noravank.jpg",
 };
 
 export type SiteInfo = typeof site;

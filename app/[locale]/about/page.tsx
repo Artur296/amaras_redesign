@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
-  const { dicts } = await getContent();
+  const { dicts, site } = await getContent();
   const dict = dicts[locale];
 
   return (
@@ -44,8 +44,8 @@ export default async function AboutPage({ params }: Props) {
         <FadeIn delay={0.1}>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image
-              src="/images/noravank.jpg"
-              alt="Noravank"
+              src={site.aboutImage}
+              alt={dict.about.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"

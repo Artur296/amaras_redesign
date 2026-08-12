@@ -19,7 +19,7 @@ const localeNames: Record<Locale, string> = {
 const PACKAGE_CATEGORY = "packages";
 const isPackageTour = (t: Tour) => t.categories.includes(PACKAGE_CATEGORY);
 
-const TABS = ["Tours", "Packages", "Homepage", "Categories", "Texts", "Contacts", "Password"] as const;
+const TABS = ["Tours", "Packages", "Images", "Categories", "Texts", "Contacts", "Password"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function AdminPanel() {
@@ -134,11 +134,18 @@ export default function AdminPanel() {
             onSave={() => save("tours", content.tours)}
           />
         )}
-        {tab === "Homepage" && (
-          <HomepageTab
+        {tab === "Images" && (
+          <ImagesTab
             images={content.hero.images}
+            aboutImage={content.site.aboutImage}
             onChange={(images) => setContent({ ...content, hero: { images } })}
-            onSave={() => save("hero", content.hero)}
+            onChangeAbout={(aboutImage) =>
+              setContent({ ...content, site: { ...content.site, aboutImage } })
+            }
+            onSave={async () => {
+              await save("hero", content.hero);
+              await save("site", content.site);
+            }}
           />
         )}
         {tab === "Categories" && (
@@ -816,13 +823,17 @@ function ToursTab({
 
 /* ---------- Homepage (hero slideshow) ---------- */
 
-function HomepageTab({
+function ImagesTab({
   images,
+  aboutImage,
   onChange,
+  onChangeAbout,
   onSave,
 }: {
   images: string[];
+  aboutImage: string;
   onChange: (images: string[]) => void;
+  onChangeAbout: (url: string) => void;
   onSave: () => void;
 }) {
   function move(i: number, dir: -1 | 1) {
@@ -895,7 +906,17 @@ function HomepageTab({
         + Add photo
       </button>
 
-      <SaveBar onSave={onSave} label="Save slideshow" />
+      <h2 className="mt-10 border-t border-black/5 pt-8 text-xl font-extrabold">
+        About page photo
+      </h2>
+      <p className="mt-2 text-sm text-muted">
+        The photo shown next to the text on the “About us” page.
+      </p>
+      <div className="mt-4 max-w-xl">
+        <ImagePicker value={aboutImage} onChange={onChangeAbout} />
+      </div>
+
+      <SaveBar onSave={onSave} label="Save images" />
     </section>
   );
 }
