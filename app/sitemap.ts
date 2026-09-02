@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { publicCategories, tourPath } from "@/lib/tours";
 import { getContent } from "@/lib/content";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -10,8 +11,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/about",
     "/tours",
     "/contacts",
-    ...categories.map((c) => `/tours/${c.id}`),
-    ...tours.map((t) => `/tours/${t.categories[0]}/${t.slug}`),
+    "/tour-packages",
+    ...publicCategories(categories).map((c) => `/tours/${c.id}`),
+    ...tours.map((t) => tourPath(t)),
   ];
   return paths.flatMap((path) =>
     locales.map((locale) => ({

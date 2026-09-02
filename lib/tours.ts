@@ -701,3 +701,36 @@ export function packageDayRange(list: Tour[]): { min: number; max: number } | nu
 export function formatPrice(amd: number): string {
   return `${amd.toLocaleString("ru-RU")} ֏`;
 }
+
+// Tour packages are no longer one category among others: they have their own
+// top-level section at /<locale>/tour-packages. The category object stays in
+// the data because it still carries the section heading, description and
+// photo — it is just hidden from every public category listing and edited in
+// its own admin tab instead of the Categories one.
+export const PACKAGES_CATEGORY_ID = "packages";
+
+export function isPackageTour(tour: Tour): boolean {
+  return tour.categories.includes(PACKAGES_CATEGORY_ID);
+}
+
+// Categories shown to visitors as browsable tiles. Packages are excluded
+// because they are reached from the header instead.
+export function publicCategories(list: Category[]): Category[] {
+  return list.filter((c) => c.id !== PACKAGES_CATEGORY_ID);
+}
+
+export function findPackagesCategory(list: Category[]): Category | undefined {
+  return list.find((c) => c.id === PACKAGES_CATEGORY_ID);
+}
+
+// The canonical path of a tour, without a locale. Packages live outside
+// /tours entirely, so every link goes through here rather than assuming
+// categories[0].
+export function tourPath(tour: Tour): string {
+  if (isPackageTour(tour)) return `/tour-packages/${tour.slug}`;
+  return `/tours/${tour.categories[0]}/${tour.slug}`;
+}
+
+export function tourHref(locale: string, tour: Tour): string {
+  return `/${locale}${tourPath(tour)}`;
+}

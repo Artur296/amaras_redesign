@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 import TourCard from "@/components/TourCard";
 import { CalendarIcon, WhatsAppIcon, TelegramIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
-import { packageDayRange } from "@/lib/tours";
+import { findPackagesCategory, packageDayRange, publicCategories } from "@/lib/tours";
 import { buildLinks } from "@/lib/site";
 import { getContent } from "@/lib/content";
 
@@ -17,7 +17,10 @@ export const revalidate = 300;
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   if (!locales.includes(locale as Locale)) notFound();
-  const { dicts, tours, categories, site, hero } = await getContent();
+  const { dicts, tours, categories: allCategories, site, hero } = await getContent();
+  // Tour packages are a separate section reached from the header, so they
+  // are not one of the category tiles.
+  const categories = publicCategories(allCategories);
   const dict = dicts[locale];
   const links = buildLinks(site);
   // Day tours and multi-day packages are shown in separate rows: their cards
@@ -26,9 +29,7 @@ export default async function HomePage({ params }: Props) {
   const featured = tours.filter((t) => t.featured ?? true);
   const featuredTours = featured.filter((t) => !t.days).slice(0, 3);
   const featuredPackages = featured.filter((t) => t.days).slice(0, 3);
-  const packageCategory = categories.find((c) =>
-    tours.some((t) => t.days && t.categories.includes(c.id))
-  );
+  const packageCategory = findPackagesCategory(allCategories);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -94,7 +95,7 @@ export default async function HomePage({ params }: Props) {
                 {packageCategory.title[locale]}
               </h2>
               <Link
-                href={`/${locale}/tours/${packageCategory.id}`}
+                href={`/${locale}/tour-packages`}
                 className="font-bold text-primary hover:underline"
               >
                 {dict.tours.viewAll} →

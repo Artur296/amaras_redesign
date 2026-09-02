@@ -3,7 +3,7 @@ import Link from "next/link";
 import BookButton from "@/components/BookButton";
 import PackageCard from "@/components/PackageCard";
 import type { Dict, Locale } from "@/lib/i18n";
-import { formatPrice, type Category, type Tour } from "@/lib/tours";
+import { formatPrice, tourHref, type Category, type Tour } from "@/lib/tours";
 
 export default function TourCard({
   tour,
@@ -24,7 +24,7 @@ export default function TourCard({
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-surface shadow-[0_1px_3px_rgba(16,24,40,.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(16,24,40,.16)]">
       <Link
-        href={`/${locale}/tours/${tour.categories[0]}/${tour.slug}`}
+        href={tourHref(locale, tour)}
         className="relative block aspect-[4/3] overflow-hidden"
       >
         <Image
@@ -58,7 +58,7 @@ export default function TourCard({
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-xl font-bold">
           <Link
-            href={`/${locale}/tours/${tour.categories[0]}/${tour.slug}`}
+            href={tourHref(locale, tour)}
             className="transition-colors hover:text-primary"
           >
             {tour.title[locale]}

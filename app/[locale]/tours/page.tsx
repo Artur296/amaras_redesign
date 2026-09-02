@@ -5,7 +5,7 @@ import FadeIn from "@/components/FadeIn";
 import { CalendarIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
-import { packageDayRange } from "@/lib/tours";
+import { packageDayRange, publicCategories } from "@/lib/tours";
 import { getContent } from "@/lib/content";
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -26,7 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ToursPage({ params }: Props) {
   const { locale } = await params;
-  const { dicts, tours, categories } = await getContent();
+  const { dicts, tours, categories: allCategories } = await getContent();
+  // Tour packages are a separate section reached from the header, not a tile.
+  const categories = publicCategories(allCategories);
   const dict = dicts[locale];
 
   return (

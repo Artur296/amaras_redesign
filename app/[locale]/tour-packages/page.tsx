@@ -1,56 +1,47 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import PackageIncludes from "@/components/PackageIncludes";
 import TourCard from "@/components/TourCard";
 import { CalendarIcon, RouteIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
-import { defaultCategories, packageDayRange, PACKAGES_CATEGORY_ID } from "@/lib/tours";
+import { findPackagesCategory, isPackageTour, packageDayRange } from "@/lib/tours";
 import { getContent } from "@/lib/content";
 
-type Props = { params: Promise<{ locale: Locale; category: string }> };
+type Props = { params: Promise<{ locale: Locale }> };
 
 export const revalidate = 300;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale, category } = await params;
-  const { categories } = await getContent();
-  const found = categories.find((c) => c.id === category);
-  if (!found) return {};
+  const { locale } = await params;
+  const { dicts } = await getContent();
+  const dict = dicts[locale];
   return pageMetadata(
     locale,
-    `tours/${category}`,
-    found.title[locale],
-    found.desc[locale]
+    "tour-packages",
+    dict.meta.packages.title,
+    dict.meta.packages.description
   );
 }
 
-export default async function CategoryPage({ params }: Props) {
-  const { locale, category } = await params;
+export default async function TourPackagesPage({ params }: Props) {
+  const { locale } = await params;
   const { dicts, tours, categories } = await getContent();
-  const found = categories.find((c) => c.id === category);
-  // Packages moved to their own top-level section; next.config redirects
-  // this path, and this guard keeps it from ever rendering twice.
-  if (!found || category === PACKAGES_CATEGORY_ID) notFound();
   const dict = dicts[locale];
-  const list = tours.filter((t) => t.categories.includes(category));
-  // A listing of multi-day packages needs to say so up front, otherwise it
-  // looks like just another list of excursions.
+  const section = findPackagesCategory(categories);
+  const list = tours.filter(isPackageTour);
+  // A listing of multi-day packages has to say so up front, otherwise it reads
+  // as just another list of excursions.
   const range = packageDayRange(list);
+
+  const title = section?.title[locale] ?? dict.nav.packages;
+  const desc = section?.desc[locale] ?? dict.meta.packages.description;
 
   return (
     <div className="mx-auto max-w-[1200px] px-6 py-12 md:py-16">
       <FadeIn>
-        <Link
-          href={`/${locale}/tours`}
-          className="text-sm font-semibold text-primary hover:underline"
-        >
-          ← {dict.tour.back}
-        </Link>
         {range && (
-          <div className="mt-4 flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="flex items-center gap-2 rounded-full bg-deep px-3 py-1 text-xs font-extrabold uppercase tracking-wide text-white">
               <RouteIcon className="h-4 w-4 text-accent" />
               {dict.pkg.badge}
@@ -66,12 +57,8 @@ export default async function CategoryPage({ params }: Props) {
             </span>
           </div>
         )}
-        <h1 className="mt-4 text-4xl font-extrabold md:text-5xl">
-          {found.title[locale]}
-        </h1>
-        <p className="mt-3 max-w-2xl text-lg text-muted">
-          {found.desc[locale]}
-        </p>
+        <h1 className="mt-4 text-4xl font-extrabold md:text-5xl">{title}</h1>
+        <p className="mt-3 max-w-2xl text-lg text-muted">{desc}</p>
       </FadeIn>
 
       {range && (
@@ -108,9 +95,5 @@ export default async function CategoryPage({ params }: Props) {
 }
 
 export function generateStaticParams() {
-  return locales.flatMap((locale) =>
-    defaultCategories
-      .filter((category) => category.id !== PACKAGES_CATEGORY_ID)
-      .map((category) => ({ locale, category: category.id }))
-  );
+  return locales.map((locale) => ({ locale }));
 }

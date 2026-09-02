@@ -4,7 +4,7 @@ import BookButton from "@/components/BookButton";
 import { packageIncludes } from "@/components/PackageIncludes";
 import { BedIcon, CalendarIcon, RouteIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
-import { discountPercent, formatPrice, type Tour } from "@/lib/tours";
+import { discountPercent, formatPrice, tourHref, type Tour } from "@/lib/tours";
 
 // Card for multi-day packages. It deliberately looks different from the
 // day-tour card: a package header strip, days/nights instead of a price tag on
@@ -19,7 +19,7 @@ export default function PackageCard({
   locale: Locale;
   dict: Dict;
 }) {
-  const href = `/${locale}/tours/${tour.categories[0]}/${tour.slug}`;
+  const href = tourHref(locale, tour);
   const includes = packageIncludes(dict);
   const days = tour.itinerary?.map((entry) => entry.day) ?? [];
   const stars = tour.priceTiers?.map((tier) => `${tier.stars}★`) ?? [];

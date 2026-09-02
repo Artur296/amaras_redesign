@@ -19,6 +19,18 @@ const nextConfig: NextConfig = {
         destination: `/:locale/tours/${category}/${slug}`,
         permanent: true,
       })),
+      // Tour packages became their own top-level section, so everything that
+      // used to live under /tours/packages now points at /tour-packages.
+      {
+        source: "/:locale/tours/packages/:slug",
+        destination: "/:locale/tour-packages/:slug",
+        permanent: true,
+      },
+      {
+        source: "/:locale/tours/packages",
+        destination: "/:locale/tour-packages",
+        permanent: true,
+      },
       // Retired with the jeep category.
       {
         source: "/:locale/tours/echmiadzin-zvartnots-masterclass",

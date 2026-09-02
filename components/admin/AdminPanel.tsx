@@ -3,7 +3,13 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { locales, type Dict, type Locale } from "@/lib/i18n";
-import { discountPercent, type Category, type Tour } from "@/lib/tours";
+import {
+  discountPercent,
+  isPackageTour,
+  PACKAGES_CATEGORY_ID,
+  type Category,
+  type Tour,
+} from "@/lib/tours";
 import type { SiteInfo } from "@/lib/site";
 import type { Content } from "@/lib/content";
 
@@ -13,11 +19,11 @@ const localeNames: Record<Locale, string> = {
   en: "English",
 };
 
-// Multi-day packages live in this fixed category and are edited in their own
-// tab, because they carry days/nights, per-hotel pricing and a daily programme
-// that ordinary day tours don't have.
-const PACKAGE_CATEGORY = "packages";
-const isPackageTour = (t: Tour) => t.categories.includes(PACKAGE_CATEGORY);
+// Multi-day packages are their own section of the site, not one category
+// among others, so both the section itself and the packages in it are
+// edited in the Packages tab. isPackageTour and the id are shared with the
+// public pages so the two can never disagree.
+const PACKAGE_CATEGORY = PACKAGES_CATEGORY_ID;
 
 const TABS = ["Tours", "Packages", "Images", "Categories", "Texts", "Contacts", "Password"] as const;
 type Tab = (typeof TABS)[number];
@@ -126,12 +132,11 @@ export default function AdminPanel() {
           />
         )}
         {tab === "Packages" && (
-          <ToursTab
-            mode="package"
-            tours={content.tours}
-            categories={content.categories}
-            onChange={(tours) => setContent({ ...content, tours })}
-            onSave={() => save("tours", content.tours)}
+          <PackagesTab
+            content={content}
+            setContent={setContent}
+            onSaveTours={() => save("tours", content.tours)}
+            onSaveCategories={() => save("categories", content.categories)}
           />
         )}
         {tab === "Images" && (
@@ -933,6 +938,12 @@ function CategoriesTab({
   onSave: () => void;
 }) {
   const [loc, setLoc] = useState<Locale>("ru");
+  // Tour packages are edited in their own tab, so that category is not
+  // listed here. Rows keep their real index so editing and deleting stay
+  // correct while only part of the list shows.
+  const rows = categories
+    .map((cat, i) => ({ cat, i }))
+    .filter(({ cat }) => cat.id !== PACKAGES_CATEGORY_ID);
 
   function update(i: number, patch: Partial<Category>) {
     onChange(categories.map((c, j) => (j === i ? { ...c, ...patch } : c)));
@@ -965,7 +976,7 @@ function CategoriesTab({
       </div>
 
       <div className="mt-4 space-y-3">
-        {categories.map((cat, i) => (
+        {rows.map(({ cat, i }) => (
           <div key={i} className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label={`Name (${localeNames[loc]})`}>
@@ -1006,6 +1017,92 @@ function CategoriesTab({
         ))}
       </div>
       <SaveBar onSave={onSave} label="Save categories" />
+    </section>
+  );
+}
+
+/* ---------- Tour packages (its own section, not a category) ---------- */
+
+// Packages are a separate part of the site rather than one category among
+// others, so the section itself (heading, description, photo) and the
+// packages inside it are both edited here instead of in the Categories tab.
+function PackagesTab({
+  content,
+  setContent,
+  onSaveTours,
+  onSaveCategories,
+}: {
+  content: Content;
+  setContent: (c: Content) => void;
+  onSaveTours: () => void;
+  onSaveCategories: () => void;
+}) {
+  const [loc, setLoc] = useState<Locale>("ru");
+  const index = content.categories.findIndex(
+    (c) => c.id === PACKAGES_CATEGORY_ID
+  );
+  const section = index >= 0 ? content.categories[index] : null;
+
+  function updateSection(patch: Partial<Category>) {
+    if (index < 0) return;
+    setContent({
+      ...content,
+      categories: content.categories.map((c, j) =>
+        j === index ? { ...c, ...patch } : c
+      ),
+    });
+  }
+
+  return (
+    <section className="space-y-8">
+      {section && (
+        <div>
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-extrabold">Tour packages section</h2>
+            <LocaleTabs active={loc} onChange={setLoc} />
+          </div>
+          <p className="mt-1 text-sm text-muted">
+            Shown at the top of the Tour packages page and in the site menu.
+          </p>
+          <div className="mt-4 rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+            <Field label={`Heading (${localeNames[loc]})`}>
+              <TextInput
+                value={section.title[loc]}
+                onChange={(v) =>
+                  updateSection({ title: { ...section.title, [loc]: v } })
+                }
+              />
+            </Field>
+            <div className="mt-3">
+              <Field label={`Description (${localeNames[loc]})`}>
+                <AutoTextarea
+                  value={section.desc[loc]}
+                  onChange={(v) =>
+                    updateSection({ desc: { ...section.desc, [loc]: v } })
+                  }
+                />
+              </Field>
+            </div>
+            <div className="mt-3">
+              <Field label="Photo">
+                <ImagePicker
+                  value={section.image}
+                  onChange={(image) => updateSection({ image })}
+                />
+              </Field>
+            </div>
+            <SaveBar onSave={onSaveCategories} label="Save section" />
+          </div>
+        </div>
+      )}
+
+      <ToursTab
+        mode="package"
+        tours={content.tours}
+        categories={content.categories}
+        onChange={(tours) => setContent({ ...content, tours })}
+        onSave={onSaveTours}
+      />
     </section>
   );
 }

@@ -13,6 +13,7 @@ const ru = {
     home: "Главная",
     about: "О нас",
     tours: "Туры",
+    packages: "Тур-пакеты",
     contacts: "Контакты",
   },
   hero: {
@@ -122,6 +123,11 @@ const ru = {
       description:
         "Amaras Tour — команда местных гидов и водителей. Организуем туры по всей Армении.",
     },
+    packages: {
+      title: "Тур-пакеты по Армении",
+      description:
+        "Готовые многодневные тур-пакеты по Армении: отель, трансферы, гид и экскурсии — всё включено в стоимость.",
+    },
     tours: {
       title: "Туры по Армении",
       description:
@@ -142,6 +148,7 @@ const hy: Dict = {
     home: "Գլխավոր",
     about: "Մեր մասին",
     tours: "Տուրեր",
+    packages: "Տուր փաթեթներ",
     contacts: "Կապ",
   },
   hero: {
@@ -249,6 +256,11 @@ const hy: Dict = {
       description:
         "Amaras Tour-ը տեղացի գիդերի և վարորդների թիմ է։ Կազմակերպում ենք տուրեր ամբողջ Հայաստանով։",
     },
+    packages: {
+      title: "Տուր փաթեթներ Հայաստանում",
+      description:
+        "Պատրաստի բազմօրյա տուր փաթեթներ Հայաստանում՝ հյուրանոց, տրանսֆերներ, գիդ և էքսկուրսիաներ՝ ամեն ինչ ներառված է։",
+    },
     tours: {
       title: "Տուրեր Հայաստանով",
       description:
@@ -267,6 +279,7 @@ const en: Dict = {
     home: "Home",
     about: "About Us",
     tours: "Tours",
+    packages: "Tour Packages",
     contacts: "Contacts",
   },
   hero: {
@@ -373,6 +386,11 @@ const en: Dict = {
       title: "About Us",
       description:
         "Amaras Tour is a team of local guides and drivers running tours across all of Armenia.",
+    },
+    packages: {
+      title: "Tour Packages in Armenia",
+      description:
+        "Ready-made multi-day tour packages across Armenia: hotel, transfers, guide and excursions, all included.",
     },
     tours: {
       title: "Tours in Armenia",
