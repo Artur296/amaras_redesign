@@ -26,16 +26,25 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-deep text-white">
-      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-4 px-6">
-        <Link href={`/${locale}`} className="flex shrink-0 items-center gap-2.5 text-lg font-extrabold tracking-tight">
+      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6">
+        {/* min-w-0 + truncate: the wordmark is the one part allowed to give way,
+            so the row can never push the document wider than the viewport. */}
+        <Link
+          href={`/${locale}`}
+          className="flex min-w-0 items-center gap-2 text-base font-extrabold tracking-tight sm:gap-2.5 sm:text-lg"
+        >
           <Image
             src="/images/logo.png"
             alt=""
             width={36}
             height={36}
-            className="h-9 w-9 rounded-full"
+            className="h-8 w-8 shrink-0 rounded-full sm:h-9 sm:w-9"
           />
-          Amaras<span className="text-accent"> Tour</span>
+          {/* Under 360px the row can't hold the wordmark too; show the logo mark
+              alone rather than an ellipsised brand name. */}
+          <span className="hidden truncate min-[360px]:block">
+            Amaras<span className="text-accent"> Tour</span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
@@ -52,13 +61,13 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <a
             href={links.instagram}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="text-white/85 transition-colors hover:text-accent"
+            className="hidden text-white/85 transition-colors hover:text-accent min-[380px]:block"
           >
             <InstagramIcon className="h-5 w-5" />
           </a>
@@ -69,7 +78,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
                 key={l}
                 href={`/${l}${restPath}`}
                 aria-current={l === locale ? "true" : undefined}
-                className={`rounded-full px-2.5 py-1 text-xs font-semibold transition-colors ${
+                className={`rounded-full px-2 py-1 text-xs font-semibold transition-colors sm:px-2.5 ${
                   l === locale
                     ? "bg-accent text-deep"
                     : "text-white/70 hover:text-accent"
@@ -120,24 +129,34 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
                   </li>
                 ))}
               </ul>
-              <div className="flex gap-3 border-t border-white/10 px-6 py-4">
+              <div className="flex gap-2 border-t border-white/10 px-4 py-4 sm:gap-3 sm:px-6">
                 <a
                   href={links.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-bold text-white"
+                  className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] px-3 py-2.5 text-sm font-bold text-white sm:px-4"
                 >
-                  <WhatsAppIcon className="h-5 w-5" />
-                  WhatsApp
+                  <WhatsAppIcon className="h-5 w-5 shrink-0" />
+                  <span className="truncate">WhatsApp</span>
                 </a>
                 <a
                   href={links.telegram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#229ED9] px-4 py-2.5 text-sm font-bold text-white"
+                  className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full bg-[#229ED9] px-3 py-2.5 text-sm font-bold text-white sm:px-4"
                 >
-                  <TelegramIcon className="h-5 w-5" />
-                  Telegram
+                  <TelegramIcon className="h-5 w-5 shrink-0" />
+                  <span className="truncate">Telegram</span>
+                </a>
+                {/* The header icon is hidden under 380px, so keep Instagram reachable here. */}
+                <a
+                  href={links.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/20 text-white min-[380px]:hidden"
+                >
+                  <InstagramIcon className="h-5 w-5" />
                 </a>
               </div>
             </motion.nav>

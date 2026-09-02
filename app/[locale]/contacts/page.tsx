@@ -84,9 +84,11 @@ export default async function ContactsPage({ params }: Props) {
         </p>
       </FadeIn>
 
+      {/* min-w-0 on the items: grid items default to min-width:auto, so without
+          it a card's min-content width widens the whole track on small phones. */}
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item, i) => (
-          <FadeIn key={item.href} delay={i * 0.06}>
+          <FadeIn key={item.href} delay={i * 0.06} className="min-w-0">
             <a
               href={item.href}
               {...(item.external
@@ -97,9 +99,11 @@ export default async function ContactsPage({ params }: Props) {
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <item.icon className="h-5 w-5" />
               </span>
-              <span>
+              {/* min-w-0 + break-words: the email is one long unbreakable token
+                  and would otherwise push the card past a narrow viewport. */}
+              <span className="min-w-0">
                 <span className="block text-sm text-muted">{item.label}</span>
-                <span className="block font-bold transition-colors group-hover:text-primary">
+                <span className="block break-words font-bold transition-colors group-hover:text-primary">
                   {item.value}
                 </span>
               </span>

@@ -62,18 +62,18 @@ export default function Footer({
 
         <div className="text-sm text-white/70">
           <p className="flex items-center gap-2">
-            <PinIcon className="h-4 w-4" />
+            <PinIcon className="h-4 w-4 shrink-0" />
             {dict.contacts.address}
           </p>
           <p className="mt-2">
             <a href={links.phone} className="flex items-center gap-2 transition-colors hover:text-accent">
-              <PhoneIcon className="h-4 w-4" />
+              <PhoneIcon className="h-4 w-4 shrink-0" />
               {site.phone}
             </a>
           </p>
           <p className="mt-2">
-            <a href={links.email} className="flex items-center gap-2 transition-colors hover:text-accent">
-              <MailIcon className="h-4 w-4" />
+            <a href={links.email} className="flex items-center gap-2 break-all transition-colors hover:text-accent">
+              <MailIcon className="h-4 w-4 shrink-0" />
               {site.email}
             </a>
           </p>

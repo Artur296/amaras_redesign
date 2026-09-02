@@ -27,6 +27,10 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* Safety net against sideways scrolling on phones. `clip` rather than
+     `hidden`: `hidden` would turn <html> into a scroll container and break
+     `position: sticky` on the header. */
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
