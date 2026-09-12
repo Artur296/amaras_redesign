@@ -78,6 +78,11 @@ export type Tour = {
   description: Record<Locale, string>;
   about: Record<Locale, string>; // paragraphs separated by \n\n
   destinations: Record<Locale, string[]>;
+  // The two parts of the "useful information" panel that differ per tour. The
+  // rest of that panel is shared text living in the dictionary, so a tour that
+  // leaves these empty simply shows the panel without them.
+  meetTime?: string; // gathering time at the meeting point, e.g. "09:50"
+  tickets?: Record<Locale, string[]>; // entrance fees paid on site
 };
 
 // Real tours from amarastour.tilda.ws (prices, times, routes and category

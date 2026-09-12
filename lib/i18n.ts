@@ -8,6 +8,344 @@ export const ogLocales: Record<Locale, string> = {
   en: "en_US",
 };
 
+// One block of the "useful information" panel shown on day-tour pages.
+// `id` lets the renderer drop live values into the right block: the contact
+// line into "booking", the times into "meeting", the tour's own ticket prices
+// into "tickets". An unrecognised or blank id just renders the text as written,
+// so editing these in /admin can never break the panel.
+export type InfoSection = {
+  id: string;
+  heading: string;
+  paragraphs: string[];
+  items: string[];
+  note: string;
+};
+
+export type InfoPanel = {
+  title: string;
+  meetLabel: string;
+  contactLabel: string;
+  sections: InfoSection[];
+};
+
+const ruInfo: InfoPanel = {
+  title: "Полезная информация",
+  meetLabel: "Время сбора",
+  contactLabel: "WhatsApp / Telegram",
+  sections: [
+    {
+      id: "booking",
+      heading: "Бронирование обязательно",
+      paragraphs: [
+        "Участие в экскурсии возможно только по предварительному бронированию. Пожалуйста, не приходите к месту сбора без подтверждённой записи: наличие свободных мест в день экскурсии не гарантируется.",
+        "Для бронирования заранее свяжитесь с Amaras Tour и сообщите выбранный тур, дату поездки и количество участников. После подтверждения наличия мест мы отправим вам всю необходимую информацию для оформления бронирования.",
+      ],
+      items: [],
+      note: "После подтверждения бронирования ваше место в группе будет закреплено за вами.",
+    },
+    {
+      id: "meeting",
+      heading: "Место и время сбора",
+      paragraphs: [
+        "Место встречи: Ереван, проспект Месропа Маштоца, 51 — нижняя часть Матенадарана, рядом с остановкой Bus Voyage, на пересечении улицы Корюна и проспекта Маштоца.",
+        "Рекомендуем подойти за 10–15 минут до отправления, чтобы спокойно найти транспорт и занять место. Экскурсия отправляется по расписанию.",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "transport",
+      heading: "Как найти наш транспорт",
+      paragraphs: [
+        "В месте сбора будет находиться транспорт Amaras Tour. На лобовом стекле автомобиля будет табличка AMARAS TOUR — по ней вы легко узнаете наш транспорт.",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "included",
+      heading: "Что входит в стоимость",
+      paragraphs: [],
+      items: [
+        "Комфортабельный транспорт на протяжении всего маршрута",
+        "Услуги профессионального гида",
+        "Экскурсионное сопровождение на армянском, русском или английском языке",
+        "Бутилированная вода",
+        "Армянское угощение от Amaras Tour",
+      ],
+      note: "",
+    },
+    {
+      id: "excluded",
+      heading: "Что не входит в стоимость",
+      paragraphs: [],
+      items: ["Входные билеты", "Обед и питание", "Личные расходы"],
+      note: "",
+    },
+    {
+      id: "tickets",
+      heading: "Входные билеты",
+      paragraphs: [],
+      items: [],
+      note: "Входные билеты приобретаются и оплачиваются отдельно на месте.",
+    },
+    {
+      id: "meals",
+      heading: "Питание",
+      paragraphs: [
+        "Обед не входит в стоимость экскурсии. Во время тура предусмотрено время для питания: гид подскажет подходящее место в соответствии с программой и временем поездки.",
+        "При желании можно взять с собой небольшой перекус.",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "temples",
+      heading: "Посещение храмов и монастырей",
+      paragraphs: [
+        "Во время экскурсии мы посещаем действующие религиозные объекты, поэтому просим соблюдать уважительный стиль одежды и правила поведения.",
+        "Рекомендуем одежду, закрывающую плечи и колени. Внутри храмов следует соблюдать тишину и учитывать, что во время посещения могут проходить богослужения, венчания и другие религиозные церемонии.",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "bring",
+      heading: "Что взять с собой",
+      paragraphs: ["Рекомендуем взять:"],
+      items: [
+        "удобную обувь",
+        "головной убор в жаркую погоду",
+        "лёгкую кофту или ветровку в прохладное время года",
+        "небольшой перекус при необходимости",
+      ],
+      note: "Бутилированная вода предоставляется компанией во время экскурсии.",
+    },
+    {
+      id: "duration",
+      heading: "Продолжительность и программа",
+      paragraphs: [
+        "Ориентировочная продолжительность экскурсии указана в описании тура. Фактическое время возвращения может немного меняться в зависимости от дорожной ситуации, погодных условий и времени пребывания группы на объектах.",
+        "Порядок посещения достопримечательностей может быть изменён по организационным причинам, при этом основные точки заявленного маршрута сохраняются.",
+      ],
+      items: [],
+      note: "",
+    },
+  ],
+};
+
+const hyInfo: InfoPanel = {
+  title: "Օգտակար տեղեկություններ",
+  meetLabel: "Հավաքի ժամ",
+  contactLabel: "WhatsApp / Telegram",
+  sections: [
+    {
+      id: "booking",
+      heading: "Ամրագրումը պարտադիր է",
+      paragraphs: [
+        "Էքսկուրսիային մասնակցությունը հնարավոր է միայն նախնական ամրագրմամբ։ Խնդրում ենք չգալ հավաքի վայր առանց հաստատված գրանցման․ էքսկուրսիայի օրը ազատ տեղերի առկայությունը երաշխավորված չէ։",
+        "Ամրագրման համար նախապես կապվեք Amaras Tour-ի հետ և հաղորդեք ընտրված տուրը, ճամփորդության ամսաթիվը և մասնակիցների թիվը։ Տեղերի առկայությունը հաստատելուց հետո մենք կուղարկենք ամրագրման ձևակերպման համար անհրաժեշտ ողջ տեղեկատվությունը։",
+      ],
+      items: [],
+      note: "Ամրագրումը հաստատվելուց հետո ձեր տեղը խմբում կամրագրվի ձեր անունով։",
+    },
+    {
+      id: "meeting",
+      heading: "Հավաքի վայրը և ժամը",
+      paragraphs: [
+        "Հանդիպման վայրը՝ Երևան, Մեսրոպ Մաշտոցի պողոտա 51, Մատենադարանի ստորին հատված, Bus Voyage կանգառի մոտ, Կորյունի փողոցի և Մաշտոցի պողոտայի հատման մասում։",
+        "Խորհուրդ ենք տալիս ներկայանալ մեկնումից 10–15 րոպե առաջ, որպեսզի հանգիստ գտնեք տրանսպորտը և զբաղեցնեք ձեր տեղը։ Էքսկուրսիան մեկնում է ըստ ժամանակացույցի։",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "transport",
+      heading: "Ինչպես գտնել մեր տրանսպորտը",
+      paragraphs: [
+        "Հավաքի վայրում կլինի Amaras Tour-ի տրանսպորտը։ Ավտոմեքենայի առջևի ապակու վրա կլինի AMARAS TOUR ցուցանակը, որով հեշտությամբ կճանաչեք մեր տրանսպորտը։",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "included",
+      heading: "Ինչ է ներառված արժեքի մեջ",
+      paragraphs: [],
+      items: [
+        "Հարմարավետ տրանսպորտ ամբողջ երթուղու ընթացքում",
+        "Մասնագիտական գիդի ծառայություններ",
+        "Էքսկուրսիայի ուղեկցում հայերեն, ռուսերեն կամ անգլերեն լեզվով",
+        "Շշալցված ջուր",
+        "Հայկական հյուրասիրություն Amaras Tour-ից",
+      ],
+      note: "",
+    },
+    {
+      id: "excluded",
+      heading: "Ինչ ներառված չէ արժեքի մեջ",
+      paragraphs: [],
+      items: ["Մուտքի տոմսեր", "Ճաշ և սնունդ", "Անձնական ծախսեր"],
+      note: "",
+    },
+    {
+      id: "tickets",
+      heading: "Մուտքի տոմսեր",
+      paragraphs: [],
+      items: [],
+      note: "Մուտքի տոմսերը ձեռք են բերվում և վճարվում են առանձին՝ տեղում։",
+    },
+    {
+      id: "meals",
+      heading: "Սնունդ",
+      paragraphs: [
+        "Ճաշը ներառված չէ էքսկուրսիայի արժեքի մեջ։ Տուրի ընթացքում նախատեսված է ժամանակ սնվելու համար․ գիդը կառաջարկի հարմար վայր՝ ըստ ծրագրի և ճամփորդության ժամանակի։",
+        "Ցանկության դեպքում կարող եք ձեզ հետ վերցնել թեթև խորտիկ։",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "temples",
+      heading: "Եկեղեցիների և վանքերի այցելություն",
+      paragraphs: [
+        "Էքսկուրսիայի ընթացքում այցելում ենք գործող կրոնական վայրեր, ուստի խնդրում ենք պահպանել հարգալից հագուստի ոճը և վարքի կանոնները։",
+        "Խորհուրդ ենք տալիս հագուստ, որը ծածկում է ուսերը և ծնկները։ Տաճարների ներսում հետևեք լռությանը և հաշվի առեք, որ այցելության ընթացքում կարող են տեղի ունենալ պատարագներ, պսակադրություններ և այլ կրոնական արարողություններ։",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "bring",
+      heading: "Ինչ վերցնել ձեզ հետ",
+      paragraphs: ["Խորհուրդ ենք տալիս վերցնել՝"],
+      items: [
+        "հարմարավետ կոշիկներ",
+        "գլխարկ տաք եղանակին",
+        "թեթև բաճկոն կամ հողմակայուն զգեստ զով եղանակին",
+        "թեթև խորտիկ՝ անհրաժեշտության դեպքում",
+      ],
+      note: "Շշալցված ջուրը տրամադրվում է ընկերության կողմից էքսկուրսիայի ընթացքում։",
+    },
+    {
+      id: "duration",
+      heading: "Տևողությունը և ծրագիրը",
+      paragraphs: [
+        "Էքսկուրսիայի մոտավոր տևողությունը նշված է տուրի նկարագրության մեջ։ Վերադարձի փաստացի ժամը կարող է փոքր-ինչ փոփոխվել՝ կախված ճանապարհային իրավիճակից, եղանակային պայմաններից և խմբի օբյեկտներում գտնվելու ժամանակից։",
+        "Տեսարժան վայրերի այցելության հերթականությունը կարող է փոփոխվել կազմակերպչական պատճառներով, սակայն հայտարարված երթուղու հիմնական կետերը պահպանվում են։",
+      ],
+      items: [],
+      note: "",
+    },
+  ],
+};
+
+const enInfo: InfoPanel = {
+  title: "Useful information",
+  meetLabel: "Meeting time",
+  contactLabel: "WhatsApp / Telegram",
+  sections: [
+    {
+      id: "booking",
+      heading: "Booking is required",
+      paragraphs: [
+        "You can only join the excursion with a booking made in advance. Please do not come to the meeting point without a confirmed reservation, as seats cannot be guaranteed on the day.",
+        "To book, contact Amaras Tour ahead of time with the tour you have chosen, your travel date and the number of people. Once we confirm availability we will send you everything you need to complete the booking.",
+      ],
+      items: [],
+      note: "After your booking is confirmed your seat in the group is held for you.",
+    },
+    {
+      id: "meeting",
+      heading: "Meeting point and time",
+      paragraphs: [
+        "Meeting point: 51 Mesrop Mashtots Avenue, Yerevan, at the lower side of the Matenadaran, next to the Bus Voyage stop, where Koryun Street meets Mashtots Avenue.",
+        "Please arrive 10 to 15 minutes before departure so you have time to find the vehicle and take your seat. The excursion leaves on schedule.",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "transport",
+      heading: "Finding our vehicle",
+      paragraphs: [
+        "The Amaras Tour vehicle will be waiting at the meeting point. It carries an AMARAS TOUR sign in the windscreen, so it is easy to spot.",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "included",
+      heading: "What the price includes",
+      paragraphs: [],
+      items: [
+        "Comfortable transport for the whole route",
+        "A professional guide",
+        "Commentary in Armenian, Russian or English",
+        "Bottled water",
+        "An Armenian treat from Amaras Tour",
+      ],
+      note: "",
+    },
+    {
+      id: "excluded",
+      heading: "What the price does not include",
+      paragraphs: [],
+      items: ["Entrance tickets", "Lunch and other meals", "Personal expenses"],
+      note: "",
+    },
+    {
+      id: "tickets",
+      heading: "Entrance tickets",
+      paragraphs: [],
+      items: [],
+      note: "Entrance tickets are bought and paid for separately on site.",
+    },
+    {
+      id: "meals",
+      heading: "Meals",
+      paragraphs: [
+        "Lunch is not included in the price. Time is set aside for a meal during the tour, and your guide will suggest a suitable place to fit the programme and the timing.",
+        "You are welcome to bring a snack of your own.",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "temples",
+      heading: "Visiting churches and monasteries",
+      paragraphs: [
+        "The excursion visits working religious sites, so we ask you to dress respectfully and to follow the rules of conduct.",
+        "Clothing that covers the shoulders and knees is recommended. Please keep quiet inside the churches and bear in mind that services, weddings and other ceremonies may be taking place during your visit.",
+      ],
+      items: [],
+      note: "",
+    },
+    {
+      id: "bring",
+      heading: "What to bring",
+      paragraphs: ["We recommend bringing:"],
+      items: [
+        "comfortable shoes",
+        "a hat in hot weather",
+        "a light jumper or windbreaker in cooler months",
+        "a snack if you would like one",
+      ],
+      note: "Bottled water is provided by the company during the excursion.",
+    },
+    {
+      id: "duration",
+      heading: "Duration and programme",
+      paragraphs: [
+        "The approximate duration of the excursion is given in the tour description. The actual time of return may shift slightly depending on traffic, the weather and how long the group spends at each site.",
+        "The order in which the sights are visited may change for practical reasons, but the main points of the published route are always kept.",
+      ],
+      items: [],
+      note: "",
+    },
+  ],
+};
+
 const ru = {
   nav: {
     home: "Главная",
@@ -92,6 +430,7 @@ const ru = {
     },
     viewProgram: "Смотреть программу",
   },
+  info: ruInfo,
   about: {
     title: "О нас",
     paragraphs: [
@@ -225,6 +564,7 @@ const hy: Dict = {
     },
     viewProgram: "Դիտել ծրագիրը",
   },
+  info: hyInfo,
   about: {
     title: "Մեր մասին",
     paragraphs: [
@@ -356,6 +696,7 @@ const en: Dict = {
     },
     viewProgram: "See the programme",
   },
+  info: enInfo,
   about: {
     title: "About Us",
     paragraphs: [

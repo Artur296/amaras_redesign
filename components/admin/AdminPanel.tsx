@@ -584,6 +584,12 @@ function ToursTab({
                             onChange={(v) => update(i, { durationHours: v })}
                           />
                         </Field>
+                        <Field label="Meeting time (shown in Useful information)">
+                          <TextInput
+                            value={tour.meetTime ?? ""}
+                            onChange={(v) => update(i, { meetTime: v || undefined })}
+                          />
+                        </Field>
                       </>
                     )}
                   </div>
@@ -709,6 +715,28 @@ function ToursTab({
                         }
                       />
                     </Field>
+                    {/* The rest of the Useful information panel is shared text,
+                        edited once in the Texts tab. */}
+                    {!isPkg && (
+                      <Field label="Entrance tickets, paid on site (one per line)">
+                        <AutoTextarea
+                          value={(tour.tickets?.[loc] ?? []).join("\n")}
+                          onChange={(v) => {
+                            const lines = v.split("\n").filter((s) => s.trim());
+                            const tickets = {
+                              ...{ ru: [], hy: [], en: [] },
+                              ...tour.tickets,
+                              [loc]: lines,
+                            };
+                            update(i, {
+                              tickets: locales.some((l) => tickets[l].length)
+                                ? tickets
+                                : undefined,
+                            });
+                          }}
+                        />
+                      </Field>
+                    )}
                   </div>
 
                   {isPkg && (

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TourPackagePage({ params }: Props) {
   const { locale, slug } = await params;
-  const { dicts, tours, categories } = await getContent();
+  const { dicts, tours, categories, site } = await getContent();
   const tour = tours.find((t) => t.slug === slug);
   // Only packages are served here, so a tour is never reachable from both this
   // section and /tours/<category>/<slug>.
@@ -51,6 +51,7 @@ export default async function TourPackagePage({ params }: Props) {
       categories={categories}
       backHref={`/${locale}/tour-packages`}
       backLabel={backLabel}
+      phone={site.phone}
     />
   );
 }

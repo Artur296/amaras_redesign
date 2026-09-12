@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TourPage({ params }: Props) {
   const { locale, category, slug } = await params;
-  const { dicts, tours, categories } = await getContent();
+  const { dicts, tours, categories, site } = await getContent();
   const tour = tours.find((t) => t.slug === slug);
   // Each tour lives under its own categories only, so the same tour is never
   // served from two different URLs. Packages have their own section, so they
@@ -53,6 +53,7 @@ export default async function TourPage({ params }: Props) {
       categories={categories}
       backHref={`/${locale}/tours/${category}`}
       backLabel={catTitle}
+      phone={site.phone}
     />
   );
 }

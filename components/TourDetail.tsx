@@ -3,6 +3,7 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import BookButton from "@/components/BookButton";
 import PackageIncludes from "@/components/PackageIncludes";
+import TourInfo from "@/components/TourInfo";
 import { CalendarIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
 import { discountPercent, formatPrice, type Category, type Tour } from "@/lib/tours";
@@ -17,6 +18,7 @@ export default function TourDetail({
   categories,
   backHref,
   backLabel,
+  phone,
 }: {
   tour: Tour;
   locale: Locale;
@@ -24,6 +26,7 @@ export default function TourDetail({
   categories: Category[];
   backHref: string;
   backLabel: string;
+  phone: string;
 }) {
   const catTitle = (id: string) =>
     categories.find((c) => c.id === id)?.title[locale] ?? id;
@@ -149,6 +152,14 @@ export default function TourDetail({
               </section>
             </FadeIn>
           ) : null}
+
+          {/* Packages start with an airport pickup, so the meeting point and
+              group rules in this panel do not apply to them. */}
+          {!isPackage && (
+            <FadeIn delay={0.2}>
+              <TourInfo tour={tour} locale={locale} dict={dict} phone={phone} />
+            </FadeIn>
+          )}
         </div>
 
         <FadeIn delay={0.15} className="md:col-span-2">
