@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { locales, type Dict, type Locale } from "@/lib/i18n";
+import { locales, type Dict, type InfoSection, type Locale } from "@/lib/i18n";
 import {
   discountPercent,
   isPackageTour,
@@ -715,8 +715,6 @@ function ToursTab({
                         }
                       />
                     </Field>
-                    {/* The rest of the Useful information panel is shared text,
-                        edited once in the Texts tab. */}
                     {!isPkg && (
                       <Field label="Entrance tickets, paid on site (one per line)">
                         <AutoTextarea
@@ -738,6 +736,25 @@ function ToursTab({
                       </Field>
                     )}
                   </div>
+
+                  {!isPkg && (
+                    <InfoSectionsEditor
+                      sections={tour.infoSections?.[loc] ?? []}
+                      locale={loc}
+                      onChange={(sections) => {
+                        const all = {
+                          ...{ ru: [], hy: [], en: [] },
+                          ...tour.infoSections,
+                          [loc]: sections,
+                        };
+                        update(i, {
+                          infoSections: locales.some((l) => all[l].length)
+                            ? all
+                            : undefined,
+                        });
+                      }}
+                    />
+                  )}
 
                   {isPkg && (
                     <div className="mt-6">
@@ -1140,6 +1157,109 @@ function PackagesTab({
 function prettyKey(key: string): string {
   const words = key.replace(/([A-Z])/g, " $1").toLowerCase();
   return words.charAt(0).toUpperCase() + words.slice(1);
+}
+
+/* ---------- Useful information panel, per tour ---------- */
+
+// Most tours carry their own version of this panel because the inclusions,
+// weather notes and packing list differ per route. A tour with no sections here
+// falls back to the shared text in the Texts tab.
+function InfoSectionsEditor({
+  sections,
+  locale,
+  onChange,
+}: {
+  sections: InfoSection[];
+  locale: Locale;
+  onChange: (sections: InfoSection[]) => void;
+}) {
+  function update(i: number, patch: Partial<InfoSection>) {
+    onChange(sections.map((s, j) => (j === i ? { ...s, ...patch } : s)));
+  }
+
+  return (
+    <div className="mt-6">
+      <div className="flex items-center justify-between">
+        <span className="text-sm font-semibold">
+          Useful information ({localeNames[locale]})
+        </span>
+        <button
+          type="button"
+          onClick={() =>
+            onChange([
+              ...sections,
+              { id: "", heading: "", paragraphs: [], items: [], note: "" },
+            ])
+          }
+          className="rounded-full border border-black/15 px-3 py-1 text-xs font-bold hover:border-primary hover:text-primary"
+        >
+          + Add section
+        </button>
+      </div>
+      <p className="mt-1 text-xs text-muted">
+        Leave empty to use the shared text from the Texts tab. The phone number
+        and the departure times are added automatically, so do not type them.
+      </p>
+
+      <div className="mt-3 space-y-4">
+        {sections.map((section, i) => (
+          <div
+            key={i}
+            className="rounded-xl border border-black/5 bg-black/[.02] p-4"
+          >
+            <div className="flex items-start gap-2">
+              <div className="flex-1 space-y-3">
+                <Field label="Heading">
+                  <TextInput
+                    value={section.heading}
+                    onChange={(v) => update(i, { heading: v })}
+                  />
+                </Field>
+                <Field label="Text (empty line = new paragraph)">
+                  <AutoTextarea
+                    value={section.paragraphs.join("\n\n")}
+                    onChange={(v) =>
+                      update(i, {
+                        paragraphs: v.split("\n\n").filter((s) => s.trim()),
+                      })
+                    }
+                  />
+                </Field>
+                <Field label="Bullet list (one per line)">
+                  <AutoTextarea
+                    value={section.items.join("\n")}
+                    onChange={(v) =>
+                      update(i, { items: v.split("\n").filter((s) => s.trim()) })
+                    }
+                  />
+                </Field>
+                <Field label="Closing note (bold line under the list)">
+                  <TextInput
+                    value={section.note}
+                    onChange={(v) => update(i, { note: v })}
+                  />
+                </Field>
+                <Field label="Auto-fill (booking, meeting or tickets — leave empty otherwise)">
+                  <TextInput
+                    value={section.id}
+                    onChange={(v) => update(i, { id: v.trim() })}
+                  />
+                </Field>
+              </div>
+              <button
+                type="button"
+                aria-label="Remove section"
+                onClick={() => onChange(sections.filter((_, j) => j !== i))}
+                className="rounded-full border border-red-200 px-2.5 py-1 text-xs font-bold text-red-600 hover:bg-red-50"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function blankLike(value: unknown): unknown {

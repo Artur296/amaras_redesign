@@ -109,8 +109,8 @@ export default function TourDetail({
           </FadeIn>
           <FadeIn delay={0.1}>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted">
-              {tour.about[locale].split("\n\n").map((paragraph) => (
-                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+              {tour.about[locale].split("\n\n").map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
               ))}
             </div>
           </FadeIn>
@@ -136,9 +136,9 @@ export default function TourDetail({
                         </h3>
                       </div>
                       <ul className="mt-3 space-y-2">
-                        {entry.items[locale].map((item) => (
+                        {entry.items[locale].map((item, k) => (
                           <li
-                            key={item}
+                            key={k}
                             className="flex items-start gap-2.5 text-sm leading-relaxed text-muted"
                           >
                             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
@@ -167,7 +167,7 @@ export default function TourDetail({
             <h2 className="text-xl font-extrabold">{dict.tour.route}</h2>
             <ol className="mt-4 space-y-3">
               {tour.destinations[locale].map((stop, i) => (
-                <li key={stop} className="flex items-start gap-3">
+                <li key={i} className="flex items-start gap-3">
                   <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/15 text-xs font-extrabold text-accent-dark">
                     {i + 1}
                   </span>

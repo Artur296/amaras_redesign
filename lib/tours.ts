@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/i18n";
+import type { InfoSection, Locale } from "@/lib/i18n";
 
 // Categories are dynamic (editable in /admin); these are the defaults.
 export type Category = {
@@ -83,6 +83,10 @@ export type Tour = {
   // leaves these empty simply shows the panel without them.
   meetTime?: string; // gathering time at the meeting point, e.g. "09:50"
   tickets?: Record<Locale, string[]>; // entrance fees paid on site
+  // A tour that needs more than the shared text — its own inclusions, weather
+  // caveats, packing list — carries the whole panel here instead, and the
+  // shared sections are not used for it.
+  infoSections?: Record<Locale, InfoSection[]>;
 };
 
 // Real tours from amarastour.tilda.ws (prices, times, routes and category
