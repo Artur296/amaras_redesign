@@ -11,12 +11,30 @@ const legacyTourUrls: Record<string, string> = {
   "gutanasar-sevan-dilijan": "individual",
 };
 
+// The off-road tours were briefly published as group tours before the jeep
+// category existed, so their old paths still need somewhere to land.
+const jeepTourSlugs = [
+  "dimats-jeep-dilijan-sevan",
+  "mermaid-hair-jermuk-heart-geyser",
+  "azhdahak-volcano-jeep",
+  "khustup-sunrise-jeep",
+  "armaghan-volcano-jeep",
+  "trchkan-waterfall-jeep",
+  "smbataberd-jeep",
+  "gegharot-waterfall-aragats-jeep",
+];
+
 const nextConfig: NextConfig = {
   async redirects() {
     return [
       ...Object.entries(legacyTourUrls).map(([slug, category]) => ({
         source: `/:locale/tours/${slug}`,
         destination: `/:locale/tours/${category}/${slug}`,
+        permanent: true,
+      })),
+      ...jeepTourSlugs.map((slug) => ({
+        source: `/:locale/tours/group/${slug}`,
+        destination: `/:locale/tours/jeep/${slug}`,
         permanent: true,
       })),
       // Tour packages became their own top-level section, so everything that
