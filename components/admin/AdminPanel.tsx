@@ -420,6 +420,17 @@ function ToursTab({
   const rows = tours
     .map((tour, i) => ({ tour, i }))
     .filter(({ tour }) => isPackageTour(tour) === isPkg);
+  // Search matches the title in any of the three languages, so the owner can
+  // type in whichever script they remember the tour by.
+  const [query, setQuery] = useState("");
+  const needle = query.trim().toLocaleLowerCase();
+  const visible = needle
+    ? rows.filter(({ tour }) =>
+        (["ru", "hy", "en"] as const).some((l) =>
+          (tour.title[l] ?? "").toLocaleLowerCase().includes(needle)
+        )
+      )
+    : rows;
 
   function update(i: number, patch: Partial<Tour>) {
     onChange(tours.map((t, j) => (j === i ? { ...t, ...patch } : t)));
@@ -488,8 +499,29 @@ function ToursTab({
         </button>
       </div>
 
+      <div className="mt-4 flex items-center gap-3">
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search by title — Русский, Հայերեն or English"
+          className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary"
+        />
+        {needle && (
+          <span className="shrink-0 text-sm text-muted">
+            {visible.length} of {rows.length}
+          </span>
+        )}
+      </div>
+      {needle && visible.length === 0 && (
+        <p className="mt-4 text-sm text-muted">No tours match “{query.trim()}”.</p>
+      )}
+
       <div className="mt-4 space-y-3">
-        {rows.map(({ tour, i }, pos) => {
+        {visible.map(({ tour, i }) => {
+          // Reordering swaps with the neighbour in the full list, which would be
+          // confusing while that neighbour is filtered out, so it is paused.
+          const pos = rows.findIndex((r) => r.i === i);
           const open = openSlug === tour.slug;
           return (
             <div key={i} className="rounded-2xl border border-black/5 bg-white shadow-sm">
@@ -499,7 +531,7 @@ function ToursTab({
                     type="button"
                     aria-label="Move up"
                     onClick={() => move(i, -1)}
-                    disabled={pos === 0}
+                    disabled={Boolean(needle) || pos === 0}
                     className="px-1.5 text-xs text-muted hover:text-primary disabled:opacity-30"
                   >
                     ▲
@@ -508,7 +540,7 @@ function ToursTab({
                     type="button"
                     aria-label="Move down"
                     onClick={() => move(i, 1)}
-                    disabled={pos === rows.length - 1}
+                    disabled={Boolean(needle) || pos === rows.length - 1}
                     className="px-1.5 text-xs text-muted hover:text-primary disabled:opacity-30"
                   >
                     ▼
