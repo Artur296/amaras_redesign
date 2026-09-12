@@ -83,7 +83,7 @@ export type Tour = {
   nights?: number;
   priceTiers?: PriceTier[];
   itinerary?: ItineraryDay[];
-  priceFromAmd: number;
+  priceFromAmd: number; // 0 means the price is quoted on request
   priceOldAmd?: number; // pre-discount price, shown struck through
   title: Record<Locale, string>;
   description: Record<Locale, string>;
@@ -706,14 +706,26 @@ export const tours: Tour[] = [
 // rounded saving, or null — an old price at or below the current one is treated
 // as no sale rather than rendering a struck-through price that reads as nonsense.
 export function discountPercent(tour: Tour): number | null {
+  if (!hasPrice(tour)) return null;
   if (!tour.priceOldAmd || tour.priceOldAmd <= tour.priceFromAmd) return null;
   return Math.round((1 - tour.priceFromAmd / tour.priceOldAmd) * 100);
 }
 
+// Private tours are priced per request (car class, group size, guide or
+// driver), so they carry no number and show "price on request" instead.
+export function hasPrice(tour: Tour): boolean {
+  return tour.priceFromAmd > 0;
+}
+
 // Shortest and longest package in a list, used to label a listing as
 // multi-day ("3–7 days"). Null when the list holds no multi-day packages.
+// Only packages count: a two-day jeep trip is still a jeep tour and must not
+// label its category as an all-inclusive package listing.
 export function packageDayRange(list: Tour[]): { min: number; max: number } | null {
-  const days = list.map((t) => t.days).filter((d): d is number => Boolean(d));
+  const days = list
+    .filter(isPackageTour)
+    .map((t) => t.days)
+    .filter((d): d is number => Boolean(d));
   if (!days.length) return null;
   return { min: Math.min(...days), max: Math.max(...days) };
 }

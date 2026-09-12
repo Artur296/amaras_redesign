@@ -522,7 +522,9 @@ function ToursTab({
                   <span className="font-bold">
                     {tour.title.ru || tour.title.en || tour.slug}
                     <span className="ml-2 text-xs font-semibold text-muted">
-                      {tour.priceFromAmd.toLocaleString("ru-RU")} ֏
+                      {tour.priceFromAmd > 0
+                        ? `${tour.priceFromAmd.toLocaleString("ru-RU")} ֏`
+                        : "по запросу"}
                     </span>
                   </span>
                   <span className="flex items-center gap-3">
@@ -539,7 +541,7 @@ function ToursTab({
               {open && (
                 <div className="border-t border-black/5 px-5 py-5">
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    <Field label="Price from (AMD)">
+                    <Field label="Price from (AMD, 0 = on request)">
                       <TextInput
                         type="number"
                         value={String(tour.priceFromAmd)}

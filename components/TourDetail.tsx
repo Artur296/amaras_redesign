@@ -6,7 +6,14 @@ import PackageIncludes from "@/components/PackageIncludes";
 import TourInfo from "@/components/TourInfo";
 import { CalendarIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
-import { discountPercent, formatPrice, type Category, type Tour } from "@/lib/tours";
+import {
+  discountPercent,
+  formatPrice,
+  hasPrice,
+  isPackageTour,
+  type Category,
+  type Tour,
+} from "@/lib/tours";
 
 // The tour page body, shared by /tours/<category>/<slug> and the separate
 // /tour-packages/<slug> section so the two can never drift apart. Only the
@@ -30,8 +37,13 @@ export default function TourDetail({
 }) {
   const catTitle = (id: string) =>
     categories.find((c) => c.id === id)?.title[locale] ?? id;
-  const isPackage = Boolean(tour.days);
+  const isPackage = isPackageTour(tour);
   const discount = discountPercent(tour);
+  // A day tour normally runs for hours; a two-day jeep trip is still a day-tour
+  // page (meeting point, info panel) but states its length in days and nights.
+  const duration = tour.days
+    ? `${tour.days} ${dict.tours.days}${tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}`
+    : `${tour.durationHours} ${dict.tours.hours}`;
 
   return (
     <div className="mx-auto max-w-[1200px] px-6 py-12 md:py-16">
@@ -71,19 +83,25 @@ export default function TourDetail({
                 {dict.tour.departure}: {tour.departure}
               </span>
               <span className="text-muted">
-                {dict.tour.duration}: {tour.durationHours} {dict.tours.hours}
+                {dict.tour.duration}: {duration}
               </span>
             </>
           )}
           <span className="flex items-baseline gap-1.5 rounded-full bg-accent px-3 py-1 text-deep">
-            {tour.priceOldAmd && (
-              <s className="text-xs font-semibold text-deep/60">
-                {formatPrice(tour.priceOldAmd)}
-              </s>
+            {hasPrice(tour) ? (
+              <>
+                {tour.priceOldAmd && (
+                  <s className="text-xs font-semibold text-deep/60">
+                    {formatPrice(tour.priceOldAmd)}
+                  </s>
+                )}
+                <span className="font-extrabold">
+                  {dict.tours.from} {formatPrice(tour.priceFromAmd)}
+                </span>
+              </>
+            ) : (
+              <span className="font-extrabold">{dict.tours.onRequest}</span>
             )}
-            <span className="font-extrabold">
-              {dict.tours.from} {formatPrice(tour.priceFromAmd)}
-            </span>
           </span>
           {discount !== null && (
             <span className="rounded-full bg-deep px-3 py-1 font-extrabold text-accent">
@@ -230,25 +248,27 @@ export default function TourDetail({
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-muted">{dict.tour.duration}</span>
-                    <span className="font-semibold">
-                      {tour.durationHours} {dict.tours.hours}
-                    </span>
+                    <span className="font-semibold">{duration}</span>
                   </div>
                 </>
               )}
-              <div className="flex items-center justify-between">
-                <span className="text-muted">{dict.tours.from}</span>
-                <span className="flex items-baseline gap-2">
-                  {tour.priceOldAmd && (
-                    <s className="text-xs font-semibold text-muted">
-                      {formatPrice(tour.priceOldAmd)}
-                    </s>
-                  )}
-                  <span className="font-extrabold">
-                    {formatPrice(tour.priceFromAmd)}
+              {hasPrice(tour) ? (
+                <div className="flex items-center justify-between">
+                  <span className="text-muted">{dict.tours.from}</span>
+                  <span className="flex items-baseline gap-2">
+                    {tour.priceOldAmd && (
+                      <s className="text-xs font-semibold text-muted">
+                        {formatPrice(tour.priceOldAmd)}
+                      </s>
+                    )}
+                    <span className="font-extrabold">
+                      {formatPrice(tour.priceFromAmd)}
+                    </span>
                   </span>
-                </span>
-              </div>
+                </div>
+              ) : (
+                <div className="font-extrabold">{dict.tours.onRequest}</div>
+              )}
             </div>
             <div className="mt-4">
               <BookButton

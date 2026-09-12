@@ -3,7 +3,14 @@ import Link from "next/link";
 import BookButton from "@/components/BookButton";
 import PackageCard from "@/components/PackageCard";
 import type { Dict, Locale } from "@/lib/i18n";
-import { formatPrice, tourHref, type Category, type Tour } from "@/lib/tours";
+import {
+  formatPrice,
+  hasPrice,
+  isPackageTour,
+  tourHref,
+  type Category,
+  type Tour,
+} from "@/lib/tours";
 
 export default function TourCard({
   tour,
@@ -17,7 +24,7 @@ export default function TourCard({
   categories: Category[];
 }) {
   // Multi-day packages get their own card so they never read as a day tour.
-  if (tour.days) return <PackageCard tour={tour} locale={locale} dict={dict} />;
+  if (isPackageTour(tour)) return <PackageCard tour={tour} locale={locale} dict={dict} />;
 
   const catTitle = (id: string) =>
     categories.find((c) => c.id === id)?.title[locale] ?? id;
@@ -45,14 +52,20 @@ export default function TourCard({
           ))}
         </span>
         <span className="absolute bottom-3 right-3 flex items-baseline gap-1.5 rounded-full bg-accent px-3 py-1 text-deep">
-          {tour.priceOldAmd && (
-            <s className="text-xs font-semibold text-deep/60">
-              {formatPrice(tour.priceOldAmd)}
-            </s>
+          {hasPrice(tour) ? (
+            <>
+              {tour.priceOldAmd && (
+                <s className="text-xs font-semibold text-deep/60">
+                  {formatPrice(tour.priceOldAmd)}
+                </s>
+              )}
+              <span className="text-sm font-extrabold">
+                {dict.tours.from} {formatPrice(tour.priceFromAmd)}
+              </span>
+            </>
+          ) : (
+            <span className="text-sm font-extrabold">{dict.tours.onRequest}</span>
           )}
-          <span className="text-sm font-extrabold">
-            {dict.tours.from} {formatPrice(tour.priceFromAmd)}
-          </span>
         </span>
       </Link>
       <div className="flex flex-1 flex-col p-5">
@@ -70,7 +83,7 @@ export default function TourCard({
         <div className="mt-4 flex items-center justify-between gap-3">
           <span className="text-sm font-semibold text-muted">
             {tour.days
-              ? `${tour.days} ${dict.tours.days}`
+              ? `${tour.days} ${dict.tours.days}${tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}`
               : `${tour.durationHours} ${dict.tours.hours}`}
           </span>
           <BookButton

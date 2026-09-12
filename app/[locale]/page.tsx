@@ -6,7 +6,12 @@ import Hero from "@/components/Hero";
 import TourCard from "@/components/TourCard";
 import { CalendarIcon, WhatsAppIcon, TelegramIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
-import { findPackagesCategory, packageDayRange, publicCategories } from "@/lib/tours";
+import {
+  findPackagesCategory,
+  isPackageTour,
+  packageDayRange,
+  publicCategories,
+} from "@/lib/tours";
 import { buildLinks } from "@/lib/site";
 import { getContent } from "@/lib/content";
 
@@ -27,8 +32,8 @@ export default async function HomePage({ params }: Props) {
   // carry different amounts of content, so mixing them in one grid stretches
   // the shorter card to the taller one's height.
   const featured = tours.filter((t) => t.featured ?? true);
-  const featuredTours = featured.filter((t) => !t.days).slice(0, 3);
-  const featuredPackages = featured.filter((t) => t.days).slice(0, 3);
+  const featuredTours = featured.filter((t) => !isPackageTour(t)).slice(0, 3);
+  const featuredPackages = featured.filter(isPackageTour).slice(0, 3);
   const packageCategory = findPackagesCategory(allCategories);
 
   const jsonLd = {

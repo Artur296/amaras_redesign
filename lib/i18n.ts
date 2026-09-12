@@ -395,6 +395,7 @@ const ru = {
   tours: {
     title: "Наши туры",
     from: "от",
+    onRequest: "Цена по запросу",
     hours: "ч",
     days: "дн.",
     nights: "ноч.",
@@ -531,6 +532,7 @@ const hy: Dict = {
   tours: {
     title: "Մեր տուրերը",
     from: "սկսած",
+    onRequest: "Գինը՝ ըստ հարցման",
     hours: "ժ",
     days: "օր",
     nights: "գիշեր",
@@ -663,6 +665,7 @@ const en: Dict = {
   tours: {
     title: "Our tours",
     from: "from",
+    onRequest: "Price on request",
     hours: "h",
     days: "days",
     nights: "nights",
