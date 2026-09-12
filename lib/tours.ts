@@ -47,6 +47,17 @@ export const defaultCategories: Category[] = [
       en: "Small friendly groups, a rich programme and great prices.",
     },
   },
+  {
+    id: "jeep",
+    image: "/images/jeep-tour.jpg",
+    imagePosition: "object-center",
+    title: { ru: "Джип-туры", hy: "Ջիպ-տուրեր", en: "Jeep Tours" },
+    desc: {
+      ru: "Внедорожные маршруты к вулканам, водопадам и горным крепостям, куда не доедет обычный транспорт.",
+      hy: "Ճանապարհից դուրս երթուղիներ դեպի հրաբուխներ, ջրվեժներ և լեռնային ամրոցներ, ուր սովորական տրանսպորտը չի հասնում։",
+      en: "Off-road routes to volcanoes, waterfalls and mountain fortresses that ordinary transport cannot reach.",
+    },
+  },
 ];
 
 // Multi-day packages are priced per person by hotel class.

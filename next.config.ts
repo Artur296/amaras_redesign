@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
-// Tour pages moved from /tours/<slug> to /tours/<category>/<slug> and the jeep
-// category was retired. These are the historical URLs that were already public,
-// kept alive so nothing 404s while the site is being indexed. Tours added later
-// never had an old URL, so this list is fixed.
+// Tour pages moved from /tours/<slug> to /tours/<category>/<slug>. These are
+// the historical URLs that were already public, kept alive so nothing 404s
+// while the site is being indexed. Tours added later never had an old URL, so
+// this list is fixed.
 const legacyTourUrls: Record<string, string> = {
   "tsaghkadzor-sevan-sevanavank": "group",
   "garni-geghard-symphony": "individual",
@@ -31,15 +31,11 @@ const nextConfig: NextConfig = {
         destination: "/:locale/tour-packages",
         permanent: true,
       },
-      // Retired with the jeep category.
+      // This tour once sat at the flat URL; it is a group tour now, so send
+      // the old link to the tour itself rather than to the index.
       {
         source: "/:locale/tours/echmiadzin-zvartnots-masterclass",
-        destination: "/:locale/tours",
-        permanent: true,
-      },
-      {
-        source: "/:locale/tours/jeep",
-        destination: "/:locale/tours",
+        destination: "/:locale/tours/group/echmiadzin-zvartnots-masterclass",
         permanent: true,
       },
     ];
