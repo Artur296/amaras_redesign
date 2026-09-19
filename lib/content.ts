@@ -1,8 +1,16 @@
-import { unstable_cache } from "next/cache";
 import { dictionaries, type Dict, type Locale } from "@/lib/i18n";
 import { tours, defaultCategories, type Tour, type Category } from "@/lib/tours";
 import { site, type SiteInfo } from "@/lib/site";
-import { db, hasDb } from "@/lib/db";
+
+// Admin edits live in content/*.json, committed to the repository by the
+// admin panel. They are imported statically so every page stays fully
+// static: no database, no runtime fetch, no per-request cost. A file holds
+// `null` when nothing has been overridden yet.
+import i18nOverride from "@/content/i18n.json";
+import toursOverride from "@/content/tours.json";
+import categoriesOverride from "@/content/categories.json";
+import siteOverride from "@/content/site.json";
+import heroOverride from "@/content/hero.json";
 
 export type Content = {
   dicts: Record<Locale, Dict>;
@@ -11,6 +19,9 @@ export type Content = {
   site: SiteInfo;
   hero: { images: string[] };
 };
+
+export const CONTENT_KEYS = ["i18n", "tours", "categories", "site", "hero"] as const;
+export type ContentKey = (typeof CONTENT_KEYS)[number];
 
 export const defaultHeroImages = [
   "/images/hero-mountain-road.jpg",
@@ -28,7 +39,7 @@ const defaults: Content = {
 };
 
 // Overlay stored values on defaults so keys added in future code versions
-// still render even if the DB document predates them. Arrays are replaced.
+// still render even if the JSON file predates them. Arrays are replaced.
 function deepMerge<T>(base: T, override: unknown): T {
   if (
     base !== null &&
@@ -44,47 +55,38 @@ function deepMerge<T>(base: T, override: unknown): T {
     }
     return out as T;
   }
-  return (override === undefined ? base : override) as T;
+  return (override === undefined || override === null ? base : override) as T;
 }
 
-// The site must keep working from the built-in defaults if the DB is
-// missing or unreachable — only admin edits stop applying.
-export async function fetchContent(): Promise<Content> {
-  if (!hasDb()) return defaults;
-  try {
-    const rows = (await db()`select key, value from site_content`) as {
-      key: string;
-      value: unknown;
-    }[];
-    const stored = Object.fromEntries(rows.map((r) => [r.key, r.value]));
-    const heroImages = (
-      stored.hero as Content["hero"] | undefined
-    )?.images?.filter(Boolean);
-    return {
-      dicts: deepMerge(defaults.dicts, stored.i18n),
-      tours: (stored.tours as Tour[]) ?? defaults.tours,
-      categories: (stored.categories as Category[]) ?? defaults.categories,
-      site: deepMerge(defaults.site, stored.site),
-      hero: heroImages?.length ? { images: heroImages } : defaults.hero,
-    };
-  } catch {
-    return defaults;
-  }
-}
-
-const cachedContent = unstable_cache(fetchContent, ["site-content"], {
-  tags: ["content"],
-  revalidate: 300,
-});
-
-// A cached document can also predate keys added in a newer code version, so
-// overlay it on the defaults again on read — otherwise a page using a brand
-// new text key crashes until the cache expires.
-export async function getContent(): Promise<Content> {
-  const content = await cachedContent();
+function build(): Content {
+  const heroImages = (heroOverride as Content["hero"] | null)?.images?.filter(
+    Boolean
+  );
   return {
-    ...content,
-    dicts: deepMerge(defaults.dicts, content.dicts),
-    site: deepMerge(defaults.site, content.site),
+    dicts: deepMerge(defaults.dicts, i18nOverride),
+    tours: (toursOverride as Tour[] | null) ?? defaults.tours,
+    categories: (categoriesOverride as Category[] | null) ?? defaults.categories,
+    site: deepMerge(defaults.site, siteOverride),
+    hero: heroImages?.length ? { images: heroImages } : defaults.hero,
+  };
+}
+
+// Kept async so every call site (pages, route handlers) stays unchanged.
+export async function getContent(): Promise<Content> {
+  return build();
+}
+
+// What the admin panel loads and edits — identical to what the site renders.
+export const fetchContent = getContent;
+
+// The raw override for one key, as the admin panel last saved it. Used when
+// publishing so untouched keys are re-committed byte-identical.
+export function currentOverrides(): Record<ContentKey, unknown> {
+  return {
+    i18n: i18nOverride,
+    tours: toursOverride,
+    categories: categoriesOverride,
+    site: siteOverride,
+    hero: heroOverride,
   };
 }

@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
 import {
   ADMIN_COOKIE,
+  adminUsername,
   createSession,
+  hasAdminPassword,
   sessionCookieOptions,
-  verifyPassword,
+  verifyAdminPassword,
 } from "@/lib/admin-auth";
 
 export async function POST(request: NextRequest) {
@@ -13,11 +14,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing credentials" }, { status: 400 });
   }
 
-  const rows = (await db()`
-    select password_hash from admin_users where username = ${username}
-  `) as { password_hash: string }[];
+  if (!hasAdminPassword()) {
+    return NextResponse.json(
+      { error: "Admin password is not configured on the server" },
+      { status: 503 }
+    );
+  }
 
-  if (!rows.length || !verifyPassword(password, rows[0].password_hash)) {
+  // Check the password even when the username is wrong, so a wrong username
+  // and a wrong password take the same time to answer.
+  const passwordOk = verifyAdminPassword(password);
+  if (username !== adminUsername() || !passwordOk) {
     return NextResponse.json({ error: "Invalid login" }, { status: 401 });
   }
 

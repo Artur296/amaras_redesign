@@ -11,7 +11,7 @@ import {
   type Tour,
 } from "@/lib/tours";
 import type { SiteInfo } from "@/lib/site";
-import type { Content } from "@/lib/content";
+import type { Content, ContentKey } from "@/lib/content";
 
 const localeNames: Record<Locale, string> = {
   ru: "Русский",
@@ -43,18 +43,29 @@ export default function AdminPanel() {
     });
   }, []);
 
-  async function save(
-    key: "i18n" | "tours" | "categories" | "site" | "hero",
-    value: unknown
-  ) {
-    setStatus("Saving…");
-    const res = await fetch("/api/admin/content", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key, value }),
-    });
-    setStatus(res.ok ? "Saved ✓ — the site updates within a few seconds" : "Save failed");
-    setTimeout(() => setStatus(""), 4000);
+  // Publishing commits the edit to the repository, which is what makes
+  // Vercel rebuild. Every key in one call becomes one commit, so a save
+  // costs one deploy however many fields it touched.
+  async function publish(values: Partial<Record<ContentKey, unknown>>) {
+    setStatus("Publishing…");
+    try {
+      const res = await fetch("/api/admin/content", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ values }),
+      });
+      const body = await res.json().catch(() => null);
+      if (!res.ok) {
+        setStatus(body?.error ?? `Publish failed (${res.status})`);
+      } else if (body?.changed === false) {
+        setStatus("Nothing to publish — this is already live");
+      } else {
+        setStatus("Published ✓ — the site updates in about a minute");
+      }
+    } catch {
+      setStatus("Publish failed — check your connection and try again.");
+    }
+    setTimeout(() => setStatus(""), 8000);
   }
 
   async function logout() {
@@ -128,15 +139,15 @@ export default function AdminPanel() {
             tours={content.tours}
             categories={content.categories}
             onChange={(tours) => setContent({ ...content, tours })}
-            onSave={() => save("tours", content.tours)}
+            onSave={() => publish({ tours: content.tours })}
           />
         )}
         {tab === "Packages" && (
           <PackagesTab
             content={content}
             setContent={setContent}
-            onSaveTours={() => save("tours", content.tours)}
-            onSaveCategories={() => save("categories", content.categories)}
+            onSaveTours={() => publish({ tours: content.tours })}
+            onSaveCategories={() => publish({ categories: content.categories })}
           />
         )}
         {tab === "Images" && (
@@ -147,31 +158,28 @@ export default function AdminPanel() {
             onChangeAbout={(aboutImage) =>
               setContent({ ...content, site: { ...content.site, aboutImage } })
             }
-            onSave={async () => {
-              await save("hero", content.hero);
-              await save("site", content.site);
-            }}
+            onSave={() => publish({ hero: content.hero, site: content.site })}
           />
         )}
         {tab === "Categories" && (
           <CategoriesTab
             categories={content.categories}
             onChange={(categories) => setContent({ ...content, categories })}
-            onSave={() => save("categories", content.categories)}
+            onSave={() => publish({ categories: content.categories })}
           />
         )}
         {tab === "Texts" && (
           <TextsTab
             dicts={content.dicts}
             onChange={(dicts) => setContent({ ...content, dicts })}
-            onSave={() => save("i18n", content.dicts)}
+            onSave={() => publish({ i18n: content.dicts })}
           />
         )}
         {tab === "Contacts" && (
           <ContactsTab
             site={content.site}
             onChange={(site) => setContent({ ...content, site })}
-            onSave={() => save("site", content.site)}
+            onSave={() => publish({ site: content.site })}
           />
         )}
         {tab === "Password" && <PasswordTab />}
@@ -182,7 +190,7 @@ export default function AdminPanel() {
 
 /* ---------- shared bits ---------- */
 
-function SaveBar({ onSave, label = "Save changes" }: { onSave: () => void; label?: string }) {
+function SaveBar({ onSave, label = "Publish changes" }: { onSave: () => void; label?: string }) {
   return (
     <div className="mt-6">
       <button
@@ -334,16 +342,30 @@ function ImagePicker({ value, onChange }: { value: string; onChange: (url: strin
   const fileRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // A just-uploaded image is committed but not deployed yet, so its real
+  // path 404s for another minute. Preview the local file instead.
+  const [pending, setPending] = useState<{ url: string; preview: string } | null>(
+    null
+  );
+
+  useEffect(() => {
+    return () => {
+      if (pending) URL.revokeObjectURL(pending.preview);
+    };
+  }, [pending]);
 
   async function upload(file: File) {
     setBusy(true);
     setError(null);
     try {
       const form = new FormData();
-      form.append("file", await shrinkIfLarge(file));
+      const shrunk = await shrinkIfLarge(file);
+      form.append("file", shrunk);
       const res = await fetch("/api/admin/upload", { method: "POST", body: form });
       if (res.ok) {
-        onChange((await res.json()).url);
+        const { url } = await res.json();
+        setPending({ url, preview: URL.createObjectURL(shrunk) });
+        onChange(url);
       } else {
         const body = await res.json().catch(() => null);
         setError(body?.error ?? `Upload failed (${res.status})`);
@@ -359,7 +381,11 @@ function ImagePicker({ value, onChange }: { value: string; onChange: (url: strin
     <div className="mt-1 flex flex-wrap items-center gap-3">
       {value ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={value} alt="" className="h-14 w-20 rounded-lg border border-black/10 object-cover" />
+        <img
+          src={pending?.url === value ? pending.preview : value}
+          alt=""
+          className="h-14 w-20 rounded-lg border border-black/10 object-cover"
+        />
       ) : (
         <span className="flex h-14 w-20 items-center justify-center rounded-lg border border-dashed border-black/20 text-xs text-muted">
           no image
@@ -391,6 +417,11 @@ function ImagePicker({ value, onChange }: { value: string; onChange: (url: strin
       {error && (
         <p role="alert" className="w-full text-xs font-semibold text-red-600">
           {error}
+        </p>
+      )}
+      {pending?.url === value && !error && (
+        <p className="w-full text-xs font-semibold text-muted">
+          Uploaded — it goes live with your next publish.
         </p>
       )}
     </div>
@@ -900,7 +931,7 @@ function ToursTab({
           );
         })}
       </div>
-      <SaveBar onSave={onSave} label="Save tours" />
+      <SaveBar onSave={onSave} label="Publish tours" />
     </section>
   );
 }
@@ -1000,7 +1031,7 @@ function ImagesTab({
         <ImagePicker value={aboutImage} onChange={onChangeAbout} />
       </div>
 
-      <SaveBar onSave={onSave} label="Save images" />
+      <SaveBar onSave={onSave} label="Publish images" />
     </section>
   );
 }
@@ -1095,7 +1126,7 @@ function CategoriesTab({
           </div>
         ))}
       </div>
-      <SaveBar onSave={onSave} label="Save categories" />
+      <SaveBar onSave={onSave} label="Publish categories" />
     </section>
   );
 }
@@ -1170,7 +1201,7 @@ function PackagesTab({
                 />
               </Field>
             </div>
-            <SaveBar onSave={onSaveCategories} label="Save section" />
+            <SaveBar onSave={onSaveCategories} label="Publish section" />
           </div>
         </div>
       )}
@@ -1414,7 +1445,7 @@ function TextsTab({
           onChange={(v) => onChange({ ...dicts, [loc]: v as Dict })}
         />
       </div>
-      <SaveBar onSave={onSave} label="Save texts" />
+      <SaveBar onSave={onSave} label="Publish texts" />
     </section>
   );
 }
@@ -1451,7 +1482,7 @@ function ContactsTab({
           </Field>
         ))}
       </div>
-      <SaveBar onSave={onSave} label="Save contacts" />
+      <SaveBar onSave={onSave} label="Publish contacts" />
     </section>
   );
 }
@@ -1459,53 +1490,116 @@ function ContactsTab({
 /* ---------- Password ---------- */
 
 function PasswordTab() {
-  const [current, setCurrent] = useState("");
   const [next, setNext] = useState("");
   const [confirm, setConfirm] = useState("");
   const [msg, setMsg] = useState("");
+  const [hash, setHash] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [info, setInfo] = useState<{ username: string; mode: string } | null>(null);
+
+  useEffect(() => {
+    fetch("/api/admin/password")
+      .then((res) => (res.ok ? res.json() : null))
+      .then(setInfo)
+      .catch(() => setInfo(null));
+  }, []);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    setCopied(false);
     if (next !== confirm) {
       setMsg("New passwords do not match");
+      setHash("");
       return;
     }
     const res = await fetch("/api/admin/password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ current, next }),
+      body: JSON.stringify({ next }),
     });
     const data = await res.json().catch(() => ({}));
-    setMsg(res.ok ? "Password changed ✓" : data.error || "Failed");
     if (res.ok) {
-      setCurrent("");
+      setHash(data.hash);
+      setMsg("");
       setNext("");
       setConfirm("");
+    } else {
+      setHash("");
+      setMsg(data.error || "Failed");
+    }
+  }
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(hash);
+      setCopied(true);
+    } catch {
+      setCopied(false);
     }
   }
 
   return (
-    <form onSubmit={submit} className="max-w-sm">
+    <div className="max-w-xl">
       <h2 className="text-xl font-extrabold">Change admin password</h2>
-      <div className="mt-4 space-y-4">
-        <Field label="Current password">
-          <TextInput type="password" value={current} onChange={setCurrent} />
-        </Field>
+      <p className="mt-2 text-sm text-muted">
+        The password is a Vercel environment variable, and the site cannot
+        rewrite its own environment. So this generates the new value and you
+        paste it into Vercel — from a phone if you like.
+      </p>
+      {info && (
+        <p className="mt-2 text-sm text-muted">
+          Username <b className="text-ink">{info.username}</b>
+          {info.mode === "plain" && " · currently set as plain text (ADMIN_PASSWORD)"}
+          {info.mode === "hash" && " · currently set as a hash (ADMIN_PASSWORD_HASH)"}
+          {info.mode === "unset" && " · no password configured"}
+        </p>
+      )}
+
+      <form onSubmit={submit} className="mt-5 max-w-sm space-y-4">
         <Field label="New password (min 8 characters)">
           <TextInput type="password" value={next} onChange={setNext} />
         </Field>
         <Field label="Repeat new password">
           <TextInput type="password" value={confirm} onChange={setConfirm} />
         </Field>
-      </div>
-      {msg && <p className="mt-3 text-sm font-semibold">{msg}</p>}
-      <button
-        type="submit"
-        disabled={!current || next.length < 8}
-        className="mt-5 rounded-full bg-primary px-6 py-2.5 font-bold text-white hover:bg-primary-dark disabled:opacity-50"
-      >
-        Change password
-      </button>
-    </form>
+        {msg && <p className="text-sm font-semibold text-red-600">{msg}</p>}
+        <button
+          type="submit"
+          disabled={next.length < 8}
+          className="rounded-full bg-primary px-6 py-2.5 font-bold text-white hover:bg-primary-dark disabled:opacity-50"
+        >
+          Generate new value
+        </button>
+      </form>
+
+      {hash && (
+        <div className="mt-6 rounded-2xl border border-black/10 bg-white p-5">
+          <p className="text-sm font-bold">
+            In Vercel → Settings → Environment Variables, set{" "}
+            <code className="rounded bg-black/5 px-1">ADMIN_PASSWORD_HASH</code> to:
+          </p>
+          <code className="mt-3 block break-all rounded-lg bg-black/5 p-3 text-xs">
+            {hash}
+          </code>
+          <div className="mt-3 flex items-center gap-3">
+            <button
+              type="button"
+              onClick={copy}
+              className="rounded-full border border-black/15 px-4 py-2 text-xs font-bold hover:border-primary hover:text-primary"
+            >
+              {copied ? "Copied ✓" : "Copy"}
+            </button>
+            <span className="text-xs text-muted">
+              Then redeploy. The hash wins over ADMIN_PASSWORD, so you can
+              delete that variable afterwards.
+            </span>
+          </div>
+          <p className="mt-3 text-xs font-semibold text-muted">
+            The new password only works after the redeploy finishes, and it
+            signs you out of this session.
+          </p>
+        </div>
+      )}
+    </div>
   );
 }
