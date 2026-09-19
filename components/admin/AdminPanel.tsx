@@ -33,7 +33,7 @@ const sectionNames: Record<ContentKey, string> = {
   hero: "Images",
 };
 
-const TABS = ["Tours", "Packages", "Images", "Categories", "Texts", "Contacts", "Import", "Password"] as const;
+const TABS = ["Tours", "Packages", "Images", "Categories", "Texts", "Contacts", "Password"] as const;
 type Tab = (typeof TABS)[number];
 
 // The five stored keys, read off the editing state. Tabs edit different
@@ -266,7 +266,6 @@ export default function AdminPanel() {
             onSave={publish}
           />
         )}
-        {tab === "Import" && <ImportTab />}
         {tab === "Password" && <PasswordTab />}
       </div>
     </main>
@@ -1569,143 +1568,6 @@ function ContactsTab({
       </div>
       <SaveBar onSave={onSave} label="Publish all changes" />
     </section>
-  );
-}
-
-/* ---------- Import ---------- */
-
-type ImportPlan = {
-  available: boolean;
-  reason?: string;
-  error?: string;
-  keys?: string[];
-  images?: string[];
-  alreadyImported?: boolean;
-  counts?: { tours: number; categories: number };
-};
-
-// Images are copied a few at a time: one request carrying every image of a
-// photo-heavy site would outlast the serverless function.
-const IMAGE_BATCH = 3;
-
-function ImportTab() {
-  const [plan, setPlan] = useState<ImportPlan | null>(null);
-  const [running, setRunning] = useState(false);
-  const [progress, setProgress] = useState("");
-  const [done, setDone] = useState(false);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    fetch("/api/admin/import")
-      .then((res) => res.json())
-      .then(setPlan)
-      .catch(() => setPlan({ available: false, reason: "unreachable" }));
-  }, []);
-
-  async function run() {
-    if (!plan?.images) return;
-    setRunning(true);
-    setError("");
-    const copied: string[] = [];
-
-    try {
-      for (let i = 0; i < plan.images.length; i += IMAGE_BATCH) {
-        const names = plan.images.slice(i, i + IMAGE_BATCH);
-        setProgress(
-          `Copying images ${i + 1}–${Math.min(i + IMAGE_BATCH, plan.images.length)} of ${plan.images.length}…`
-        );
-        const res = await fetch("/api/admin/import", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ step: "images", names }),
-        });
-        const body = await res.json();
-        if (!res.ok) throw new Error(body.error || "Copying images failed");
-        copied.push(...body.copied);
-      }
-
-      setProgress("Publishing the content…");
-      const res = await fetch("/api/admin/import", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ step: "content", copied }),
-      });
-      const body = await res.json();
-      if (!res.ok) throw new Error(body.error || "Publishing failed");
-
-      setProgress("");
-      setDone(true);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Import failed");
-      setProgress("");
-    } finally {
-      setRunning(false);
-    }
-  }
-
-  if (!plan) return <p className="text-muted">Checking the old database…</p>;
-
-  if (!plan.available) {
-    return (
-      <div className="max-w-xl">
-        <h2 className="text-xl font-extrabold">Import from the old database</h2>
-        <p className="mt-3 text-sm text-muted">
-          {plan.reason === "no-database"
-            ? "No old database is configured — there is nothing to import. You can remove DATABASE_URL from Vercel."
-            : `The old database could not be read${plan.error ? `: ${plan.error}` : ""}. If its free-plan limit is reached, this works again once the limit resets.`}
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="max-w-xl">
-      <h2 className="text-xl font-extrabold">Import from the old database</h2>
-      <p className="mt-3 text-sm text-muted">
-        Copies everything saved before the site moved to storing content in
-        GitHub. Run it once; it is safe to run again if it stops partway.
-      </p>
-
-      <ul className="mt-4 space-y-1 text-sm">
-        <li>
-          <b>{plan.counts?.tours ?? 0}</b> tours
-        </li>
-        <li>
-          <b>{plan.counts?.categories ?? 0}</b> categories
-        </li>
-        <li>
-          <b>{plan.images?.length ?? 0}</b> images
-        </li>
-      </ul>
-
-      {done ? (
-        <p className="mt-5 rounded-2xl border border-black/10 bg-white p-4 text-sm font-bold">
-          Imported ✓ — the site rebuilds with everything in about a minute.
-          Afterwards you can delete the old database and its DATABASE_URL.
-        </p>
-      ) : (
-        <button
-          type="button"
-          onClick={run}
-          disabled={running}
-          className="mt-5 rounded-full bg-primary px-6 py-2.5 font-bold text-white hover:bg-primary-dark disabled:opacity-50"
-        >
-          {running ? "Importing…" : "Import everything"}
-        </button>
-      )}
-
-      {progress && <p className="mt-3 text-sm font-semibold">{progress}</p>}
-      {running && (
-        <p className="mt-1 text-xs text-muted">
-          Keep this tab open until it finishes.
-        </p>
-      )}
-      {error && (
-        <p role="alert" className="mt-3 text-sm font-semibold text-red-600">
-          {error}
-        </p>
-      )}
-    </div>
   );
 }
 

@@ -363,7 +363,7 @@ const ru = {
     imageAlt: "Горная дорога среди заснеженных вершин",
   },
   stats: [
-    { value: "9", label: "маршрутов по Армении" },
+    { value: "50+", label: "маршрутов по Армении" },
     { value: "10+", label: "лет опыта" },
     { value: "24/7", label: "на связи с вами" },
   ],
@@ -500,7 +500,7 @@ const hy: Dict = {
     imageAlt: "Լեռնային ճանապարհ ձյունածածկ գագաթների միջով",
   },
   stats: [
-    { value: "9", label: "երթուղի Հայաստանով" },
+    { value: "50+", label: "երթուղի Հայաստանով" },
     { value: "10+", label: "տարվա փորձ" },
     { value: "24/7", label: "կապի մեջ ենք" },
   ],
@@ -633,7 +633,7 @@ const en: Dict = {
     imageAlt: "A mountain road winding between snow-capped peaks",
   },
   stats: [
-    { value: "9", label: "routes across Armenia" },
+    { value: "50+", label: "routes across Armenia" },
     { value: "10+", label: "years of experience" },
     { value: "24/7", label: "always in touch" },
   ],
