@@ -80,32 +80,26 @@ npm run migrate-db                 # one-off: old database -> files
 
 ## Migrating off the old database
 
-Content saved before the move is still in the database. Two things bridge
-that gap, and both disappear once the import has been run.
+The tours have been migrated. Texts, contacts, categories and hero images
+saved before the move are still only in the database, and one bridge remains
+for them.
 
-**The site keeps rendering it.** For any key whose `content/*.json` is still
+**The site keeps rendering them.** For any key whose `content/*.json` is still
 `null`, `getContent()` falls back to the old database. That read happens while
 the pages are being built, so it costs one query per deploy, not one per
 visitor. If the database is unreachable or over its quota the site quietly
 falls back to the defaults in `lib/` rather than failing the build.
 
-**The Import tab does the migration.** It runs on Vercel, which can reach the
-database, so no laptop is needed:
+`scripts/migrate-db-to-files.mjs` (`npm run migrate-db`) copies the remaining
+content across from a laptop: it writes `content/*.json`, saves every
+referenced image into `public/images/`, and rewrites the `/api/img/<name>`
+URLs. The tours have already been migrated; this is for whatever is left, and
+it needs the database to be readable again.
 
-1. Admin panel → **Import**
-2. It reports how many tours, categories and images are there
-3. **Import everything**
-
-Images are copied a few at a time — a whole photo library will not fit in one
-serverless request — each batch committed with `[skip ci]`. The content commit
-comes last and is the one that deploys, by which point every image it points
-at is already in the repository. An image referenced by the content but no
-longer in the database keeps its old `/api/img/` URL instead of becoming a
-broken path. Stopping partway is safe; running it again resumes.
-
-`scripts/migrate-db-to-files.mjs` (`npm run migrate-db`) does the same thing
-from a laptop, if you would rather review the diff before it is committed.
-
-Afterwards the database can be deleted, along with `lib/db.ts`, the fallback
-in `lib/content.ts`, `app/api/admin/import/`, `app/api/img/[name]/route.ts`
-and the `@neondatabase/serverless` dependency.
+Once nothing is left to bring across, the database can be deleted, along with
+`lib/db.ts`, the fallback in `lib/content.ts`, `app/api/img/[name]/route.ts`,
+`scripts/migrate-db-to-files.mjs` and the `@neondatabase/serverless`
+dependency. Until then, note that the fallback only sleeps while the database
+is unreadable: if its quota resets while `DATABASE_URL` is still set in
+Vercel, the next deploy will start serving those stored values again. Removing
+`DATABASE_URL` is what makes the site deterministic.
