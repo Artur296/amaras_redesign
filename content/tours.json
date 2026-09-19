@@ -56,8 +56,7 @@
     "image": "/images/tours/garni-geghard-symphony.png",
     "departure": "10:00",
     "durationHours": "6–7",
-    "priceFromAmd": 10000,
-    "priceOldAmd": 16000,
+    "priceFromAmd": 0,
     "title": {
       "ru": "Гарни — Гегард — Симфония камней",
       "hy": "Գառնի — Գեղարդ — Քարերի սիմֆոնիա",
