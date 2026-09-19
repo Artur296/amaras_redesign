@@ -9,12 +9,21 @@ import { cookies } from "next/headers";
 export const ADMIN_COOKIE = "amaras_admin";
 const SESSION_DAYS = 30;
 
-// The session-signing secret is derived from the DB connection string:
-// it's already secret, server-only and identical across deploys.
+export function adminUsername(): string {
+  return process.env.ADMIN_USERNAME || "admin";
+}
+
+// The session-signing secret is derived from whichever server-only secret is
+// configured. Deriving it from the password by default is deliberate:
+// changing the password signs every existing session out.
 function secret(): Buffer {
-  return createHmac("sha256", "amaras-admin-session-v1")
-    .update(process.env.DATABASE_URL ?? "dev")
-    .digest();
+  const material =
+    process.env.ADMIN_SESSION_SECRET ||
+    process.env.ADMIN_PASSWORD_HASH ||
+    process.env.ADMIN_PASSWORD ||
+    process.env.GITHUB_TOKEN ||
+    "dev";
+  return createHmac("sha256", "amaras-admin-session-v1").update(material).digest();
 }
 
 export function hashPassword(password: string): string {
@@ -31,6 +40,32 @@ export function verifyPassword(password: string, stored: string): boolean {
   return (
     candidate.length === expected.length && timingSafeEqual(candidate, expected)
   );
+}
+
+function constantTimeEquals(a: string, b: string): boolean {
+  const left = Buffer.from(a);
+  const right = Buffer.from(b);
+  return left.length === right.length && timingSafeEqual(left, right);
+}
+
+/**
+ * Checks a login against the configured admin password.
+ *
+ * ADMIN_PASSWORD_HASH (salt:hash, from `npm run hash-password`) is preferred.
+ * ADMIN_PASSWORD holds the password in plain text instead — less good, but it
+ * means a forgotten password is fixed by editing one Vercel variable from a
+ * phone, with no laptop and no database.
+ */
+export function verifyAdminPassword(password: string): boolean {
+  const stored = process.env.ADMIN_PASSWORD_HASH;
+  if (stored) return verifyPassword(password, stored);
+  const plain = process.env.ADMIN_PASSWORD;
+  if (plain) return constantTimeEquals(password, plain);
+  return false;
+}
+
+export function hasAdminPassword(): boolean {
+  return Boolean(process.env.ADMIN_PASSWORD_HASH || process.env.ADMIN_PASSWORD);
 }
 
 function sign(payload: string): string {
