@@ -18,7 +18,13 @@ sees the push and redeploys, so an edit is live in about a minute. Pages are
 fully static: the site does no per-request reads and costs nothing to serve.
 
 A `content/*.json` file holding `null` means "nothing overridden" — the site
-falls back to the defaults in `lib/tours.ts`, `lib/i18n.ts` and `lib/site.ts`.
+falls back to the old database if one is still configured (see *Migrating off
+the old database*), and otherwise to the defaults in `lib/tours.ts`,
+`lib/i18n.ts` and `lib/site.ts`.
+
+A tour with no `categories` array, or a category with no `id`, is dropped
+rather than rendered: one malformed entry should cost that entry, not fail the
+build and leave the site with no deploy at all.
 
 ## Environment variables
 
@@ -74,18 +80,32 @@ npm run migrate-db                 # one-off: old database -> files
 
 ## Migrating off the old database
 
-Only needed once, and only if content was saved before the move. Run it on a
-machine with `DATABASE_URL` in `.env.local`:
+Content saved before the move is still in the database. Two things bridge
+that gap, and both disappear once the import has been run.
 
-```bash
-npm run migrate-db
-git diff            # review
-git add -A && git commit -m "content: migrate from database" && git push
-```
+**The site keeps rendering it.** For any key whose `content/*.json` is still
+`null`, `getContent()` falls back to the old database. That read happens while
+the pages are being built, so it costs one query per deploy, not one per
+visitor. If the database is unreachable or over its quota the site quietly
+falls back to the defaults in `lib/` rather than failing the build.
 
-It writes `content/*.json`, saves every referenced image into
-`public/images/`, and rewrites `/api/img/<name>` URLs to `/images/<name>`.
+**The Import tab does the migration.** It runs on Vercel, which can reach the
+database, so no laptop is needed:
 
-Afterwards the database can be deleted, along with `lib/db.ts`,
-`app/api/img/[name]/route.ts` and the `@neondatabase/serverless` dependency.
-Those are kept for now so content saved before the move keeps rendering.
+1. Admin panel → **Import**
+2. It reports how many tours, categories and images are there
+3. **Import everything**
+
+Images are copied a few at a time — a whole photo library will not fit in one
+serverless request — each batch committed with `[skip ci]`. The content commit
+comes last and is the one that deploys, by which point every image it points
+at is already in the repository. An image referenced by the content but no
+longer in the database keeps its old `/api/img/` URL instead of becoming a
+broken path. Stopping partway is safe; running it again resumes.
+
+`scripts/migrate-db-to-files.mjs` (`npm run migrate-db`) does the same thing
+from a laptop, if you would rather review the diff before it is committed.
+
+Afterwards the database can be deleted, along with `lib/db.ts`, the fallback
+in `lib/content.ts`, `app/api/admin/import/`, `app/api/img/[name]/route.ts`
+and the `@neondatabase/serverless` dependency.
