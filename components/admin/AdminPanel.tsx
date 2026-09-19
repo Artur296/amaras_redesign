@@ -25,13 +25,36 @@ const localeNames: Record<Locale, string> = {
 // public pages so the two can never disagree.
 const PACKAGE_CATEGORY = PACKAGES_CATEGORY_ID;
 
+const sectionNames: Record<ContentKey, string> = {
+  tours: "Tours",
+  categories: "Categories",
+  i18n: "Texts",
+  site: "Contacts",
+  hero: "Images",
+};
+
 const TABS = ["Tours", "Packages", "Images", "Categories", "Texts", "Contacts", "Import", "Password"] as const;
 type Tab = (typeof TABS)[number];
 
+// The five stored keys, read off the editing state. Tabs edit different
+// parts of the same object, so this is what "everything you changed" means.
+function keyValues(content: Content): Record<ContentKey, unknown> {
+  return {
+    i18n: content.dicts,
+    tours: content.tours,
+    categories: content.categories,
+    site: content.site,
+    hero: content.hero,
+  };
+}
+
 export default function AdminPanel() {
   const [content, setContent] = useState<Content | null>(null);
+  // What is currently live. Everything that differs from it is unpublished.
+  const [live, setLive] = useState<Content | null>(null);
   const [tab, setTab] = useState<Tab>("Tours");
   const [status, setStatus] = useState("");
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     fetch("/api/admin/content").then(async (res) => {
@@ -39,14 +62,41 @@ export default function AdminPanel() {
         window.location.href = "/admin/login";
         return;
       }
-      setContent(await res.json());
+      const loaded = await res.json();
+      setContent(loaded);
+      setLive(loaded);
     });
   }, []);
 
+  const dirty: ContentKey[] =
+    content && live
+      ? (Object.keys(keyValues(content)) as ContentKey[]).filter(
+          (key) =>
+            JSON.stringify(keyValues(content)[key]) !==
+            JSON.stringify(keyValues(live)[key])
+        )
+      : [];
+
+  // Editing across tabs and losing it to a stray refresh is the one way to
+  // throw away real work here, since nothing is stored until it is published.
+  useEffect(() => {
+    if (!dirty.length) return;
+    const warn = (e: BeforeUnloadEvent) => e.preventDefault();
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [dirty.length]);
+
   // Publishing commits the edit to the repository, which is what makes
-  // Vercel rebuild. Every key in one call becomes one commit, so a save
-  // costs one deploy however many fields it touched.
-  async function publish(values: Partial<Record<ContentKey, unknown>>) {
+  // Vercel rebuild. It always sends everything that changed, in any tab, as
+  // one commit: a save costs one deploy however many fields it touched, and
+  // no edit is left behind in a tab the editor happened not to end on.
+  async function publish() {
+    if (!content || !dirty.length || busy) return;
+    const snapshot = content;
+    const values = Object.fromEntries(
+      dirty.map((key) => [key, keyValues(snapshot)[key]])
+    );
+    setBusy(true);
     setStatus("Publishing…");
     try {
       const res = await fetch("/api/admin/content", {
@@ -57,13 +107,18 @@ export default function AdminPanel() {
       const body = await res.json().catch(() => null);
       if (!res.ok) {
         setStatus(body?.error ?? `Publish failed (${res.status})`);
-      } else if (body?.changed === false) {
-        setStatus("Nothing to publish — this is already live");
       } else {
-        setStatus("Published ✓ — the site updates in about a minute");
+        setLive(snapshot);
+        setStatus(
+          body?.changed === false
+            ? "Nothing to publish — this is already live"
+            : "Published ✓ — the site updates in about a minute"
+        );
       }
     } catch {
       setStatus("Publish failed — check your connection and try again.");
+    } finally {
+      setBusy(false);
     }
     setTimeout(() => setStatus(""), 8000);
   }
@@ -128,8 +183,37 @@ export default function AdminPanel() {
       </header>
 
       {status && (
-        <div className="fixed bottom-5 left-1/2 z-30 -translate-x-1/2 rounded-full bg-deep px-5 py-2.5 text-sm font-bold text-white shadow-lg">
+        <div
+          className={`fixed left-1/2 z-40 -translate-x-1/2 rounded-full bg-deep px-5 py-2.5 text-sm font-bold text-white shadow-lg ${
+            dirty.length ? "bottom-24" : "bottom-5"
+          }`}
+        >
           {status}
+        </div>
+      )}
+
+      {/* Edits live only in this page until they are published, and they
+          survive moving between tabs — so the count has to be visible from
+          every tab, not just the one the last edit happened in. */}
+      {dirty.length > 0 && (
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-black/10 bg-white/95 backdrop-blur">
+          <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-4 px-6 py-3">
+            <p className="text-sm font-semibold">
+              Unpublished changes in{" "}
+              <b>{dirty.map((k) => sectionNames[k]).join(", ")}</b>
+              <span className="ml-2 font-normal text-muted">
+                Not live until you publish.
+              </span>
+            </p>
+            <button
+              type="button"
+              onClick={publish}
+              disabled={busy}
+              className="shrink-0 rounded-full bg-primary px-6 py-2.5 font-bold text-white transition-colors hover:bg-primary-dark disabled:opacity-50"
+            >
+              {busy ? "Publishing…" : "Publish all changes"}
+            </button>
+          </div>
         </div>
       )}
 
@@ -139,15 +223,15 @@ export default function AdminPanel() {
             tours={content.tours}
             categories={content.categories}
             onChange={(tours) => setContent({ ...content, tours })}
-            onSave={() => publish({ tours: content.tours })}
+            onSave={publish}
           />
         )}
         {tab === "Packages" && (
           <PackagesTab
             content={content}
             setContent={setContent}
-            onSaveTours={() => publish({ tours: content.tours })}
-            onSaveCategories={() => publish({ categories: content.categories })}
+            onSaveTours={publish}
+            onSaveCategories={publish}
           />
         )}
         {tab === "Images" && (
@@ -158,28 +242,28 @@ export default function AdminPanel() {
             onChangeAbout={(aboutImage) =>
               setContent({ ...content, site: { ...content.site, aboutImage } })
             }
-            onSave={() => publish({ hero: content.hero, site: content.site })}
+            onSave={publish}
           />
         )}
         {tab === "Categories" && (
           <CategoriesTab
             categories={content.categories}
             onChange={(categories) => setContent({ ...content, categories })}
-            onSave={() => publish({ categories: content.categories })}
+            onSave={publish}
           />
         )}
         {tab === "Texts" && (
           <TextsTab
             dicts={content.dicts}
             onChange={(dicts) => setContent({ ...content, dicts })}
-            onSave={() => publish({ i18n: content.dicts })}
+            onSave={publish}
           />
         )}
         {tab === "Contacts" && (
           <ContactsTab
             site={content.site}
             onChange={(site) => setContent({ ...content, site })}
-            onSave={() => publish({ site: content.site })}
+            onSave={publish}
           />
         )}
         {tab === "Import" && <ImportTab />}
@@ -932,7 +1016,7 @@ function ToursTab({
           );
         })}
       </div>
-      <SaveBar onSave={onSave} label="Publish tours" />
+      <SaveBar onSave={onSave} label="Publish all changes" />
     </section>
   );
 }
@@ -1032,7 +1116,7 @@ function ImagesTab({
         <ImagePicker value={aboutImage} onChange={onChangeAbout} />
       </div>
 
-      <SaveBar onSave={onSave} label="Publish images" />
+      <SaveBar onSave={onSave} label="Publish all changes" />
     </section>
   );
 }
@@ -1127,7 +1211,7 @@ function CategoriesTab({
           </div>
         ))}
       </div>
-      <SaveBar onSave={onSave} label="Publish categories" />
+      <SaveBar onSave={onSave} label="Publish all changes" />
     </section>
   );
 }
@@ -1202,7 +1286,7 @@ function PackagesTab({
                 />
               </Field>
             </div>
-            <SaveBar onSave={onSaveCategories} label="Publish section" />
+            <SaveBar onSave={onSaveCategories} label="Publish all changes" />
           </div>
         </div>
       )}
@@ -1446,7 +1530,7 @@ function TextsTab({
           onChange={(v) => onChange({ ...dicts, [loc]: v as Dict })}
         />
       </div>
-      <SaveBar onSave={onSave} label="Publish texts" />
+      <SaveBar onSave={onSave} label="Publish all changes" />
     </section>
   );
 }
@@ -1483,7 +1567,7 @@ function ContactsTab({
           </Field>
         ))}
       </div>
-      <SaveBar onSave={onSave} label="Publish contacts" />
+      <SaveBar onSave={onSave} label="Publish all changes" />
     </section>
   );
 }
