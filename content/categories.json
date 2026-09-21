@@ -1,1 +1,76 @@
-null
+[
+  {
+    "id": "packages",
+    "image": "/images/category-packages.jpg",
+    "imagePosition": "object-center",
+    "title": {
+      "ru": "Тур-пакеты",
+      "hy": "Տուր փաթեթներ",
+      "en": "Tour Packages"
+    },
+    "desc": {
+      "ru": "Готовые многодневные путешествия по Армении: отель, трансферы, гид и экскурсии — всё продумано и организовано.",
+      "hy": "Պատրաստի բազմօրյա ճամփորդություններ Հայաստանում՝ հյուրանոց, տրանսֆերներ, գիդ և էքսկուրսիաներ՝ ամեն ինչ մտածված և կազմակերպված է։",
+      "en": "Ready-made multi-day journeys across Armenia: hotel, transfers, guide and excursions — everything planned and organised."
+    }
+  },
+  {
+    "id": "individual",
+    "image": "/images/category-individual.jpg",
+    "imagePosition": "object-center",
+    "title": {
+      "ru": "Индивидуальные туры",
+      "hy": "Անհատական տուրեր",
+      "en": "Individual Tours"
+    },
+    "desc": {
+      "ru": "Личный гид, свой темп и маршрут, собранный под ваши пожелания.",
+      "hy": "Անձնական գիդ, ձեր տեմպը և երթուղի՝ կազմված ձեր ցանկություններով։",
+      "en": "A personal guide, your own pace and an itinerary built around your wishes."
+    }
+  },
+  {
+    "id": "group",
+    "image": "/images/category-group.jpg",
+    "imagePosition": "object-[center_60%]",
+    "title": {
+      "ru": "Групповые туры",
+      "hy": "Խմբային տուրեր",
+      "en": "Group Tours"
+    },
+    "desc": {
+      "ru": "Небольшие дружные группы, насыщенная программа и выгодные цены.",
+      "hy": "Փոքր ջերմ խմբեր, հագեցած ծրագիր և շահավետ գներ։",
+      "en": "Small friendly groups, a rich programme and great prices."
+    }
+  },
+  {
+    "id": "jeep",
+    "image": "/images/jeep-tour.jpg",
+    "imagePosition": "object-center",
+    "title": {
+      "ru": "Джип-туры",
+      "hy": "Ջիպ-տուրեր",
+      "en": "Jeep Tours"
+    },
+    "desc": {
+      "ru": "Внедорожные маршруты к вулканам, водопадам и горным крепостям, куда не доедет обычный транспорт.",
+      "hy": "Ճանապարհից դուրս երթուղիներ դեպի հրաբուխներ, ջրվեժներ և լեռնային ամրոցներ, ուր սովորական տրանսպորտը չի հասնում։",
+      "en": "Off-road routes to volcanoes, waterfalls and mountain fortresses that ordinary transport cannot reach."
+    }
+  },
+  {
+    "id": "popular",
+    "image": "/images/1790000018980-68.jpg",
+    "title": {
+      "ru": "Популярные туры",
+      "hy": "",
+      "en": ""
+    },
+    "desc": {
+      "ru": "Самые популярные туры.",
+      "hy": "",
+      "en": ""
+    }
+  }
+]
