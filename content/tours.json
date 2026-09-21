@@ -46,7 +46,8 @@
         "Lake Sevan",
         "Sevanavank Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "garni-geghard-symphony",
@@ -94,7 +95,8 @@
         "Geghard Monastery",
         "Lavash-baking masterclass"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "hovhannavank-saghmosavank-alphabet",
@@ -140,7 +142,8 @@
         "Armenian Alphabet Monument",
         "Myler ski resort"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "gutanasar-sevan-dilijan",
@@ -192,7 +195,8 @@
         "Haghartsin Monastery",
         "Goshavank Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "pervoe-znakomstvo-s-armeniey",
@@ -1294,7 +1298,8 @@
         "Zvartnots, children under 11 — free",
         "Zvartnots, seniors — 750 AMD (50% discount)"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "doroga-skvoz-veka",
@@ -1372,7 +1377,8 @@
         "Symphony of Stones, children under 11 — free",
         "Symphony of Stones, seniors — 50% discount"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "ot-yazychestva-k-khristianstvu",
@@ -1449,7 +1455,8 @@
         "Symphony of Stones, children under 11 — free",
         "Symphony of Stones, seniors — 150 AMD (50% discount)"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "po-sledam-drevnego-vina",
@@ -1494,7 +1501,8 @@
         "Bird Cave (Areni-1)",
         "Noravank Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "khraniteli-armyanskoy-istorii",
@@ -1556,7 +1564,8 @@
         "Amberd Fortress, seniors — 750 AMD (50% discount)",
         "Amberd Fortress, children under 11 — free"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "gyumri-krepost-vera-i-istoriya",
@@ -1601,7 +1610,8 @@
         "Church of the Seven Wounds",
         "Arichavank Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "ot-gor-tsakhkadzora-k-staromu-dilizhanu",
@@ -1649,7 +1659,8 @@
         "Sevanavank Monastery",
         "Old Dilijan"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "po-sledam-istorii-aragatsa",
@@ -1717,7 +1728,8 @@
         "Herouni Telescope — 2,000 AMD per person",
         "Tegher Monastery — no separate ticket required"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "sem-chudes-armenii",
@@ -1797,7 +1809,8 @@
         "Symphony of Stones, seniors — 50% discount",
         "Symphony of Stones, children under 11 — free"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "vulkan-gory-i-sevan",
@@ -1848,7 +1861,8 @@
         "Sevanavank Monastery",
         "Old Dilijan"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "severnaya-zhemchuzhina-armenii",
@@ -1899,7 +1913,8 @@
         "Goshavank Monastery",
         "Lake Parz"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "sokrovischa-severnoy-armenii",
@@ -1955,7 +1970,8 @@
       "en": [
         "Mendz Er Cave — 2,000 AMD per person"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "doroga-vina-i-legend",
@@ -2000,7 +2016,8 @@
         "Wine tour and tasting",
         "Noravank Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "tropami-drevnego-lori",
@@ -2045,7 +2062,8 @@
         "Surb Nshan Church",
         "Odzun"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dorogami-velikogo-shelkovogo-puti",
@@ -2093,7 +2111,8 @@
         "Noravank Monastery",
         "Areni: wine tour and tasting"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "doroga-k-istochnikam-dzhermuka",
@@ -2144,7 +2163,8 @@
         "Arch of Dreams",
         "Jermuk: Mineral Water Gallery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "doroga-k-legendarnomu-tatevu",
@@ -2192,7 +2212,8 @@
         "Shaki Waterfall",
         "Tatev Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "doroga-k-drevnemu-khndzoresku",
@@ -2240,7 +2261,8 @@
         "Khndzoresk Cave Town",
         "Hanging Bridge"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "serdtse-drevnego-syunika",
@@ -2285,7 +2307,8 @@
         "Tatev Monastery",
         "Vahanavank Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "priklyucheniya-severnoy-armenii",
@@ -2330,7 +2353,8 @@
         "Haghartsin Monastery",
         "Lake Sevan"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "vyshe-oblakov-gora-dimats",
@@ -2372,7 +2396,8 @@
         "Old Dilijan",
         "Lake Sevan"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "k-mineralnomu-geyzeru-serdechko",
@@ -2417,7 +2442,8 @@
         "Mineral Water Gallery",
         "'Serdechko' Mineral Geyser with Swimming"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "na-vershinu-vulkana-azhdaak",
@@ -2462,7 +2488,8 @@
         "About a 2 km walk",
         "Volcanic crater and high-mountain lake"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "rassvet-na-khustupe",
@@ -2510,7 +2537,8 @@
         "Sunrise in the mountains",
         "Yerevan"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-vulkan-armagan-nad-oblakami",
@@ -2558,7 +2586,8 @@
         "Crater lake",
         "Panoramic viewpoints"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-k-vodopadu-trchkan",
@@ -2603,7 +2632,8 @@
         "Trchkan Waterfall",
         "Scenic viewpoints"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-smbataberd-krepost-nad-uschelem",
@@ -2648,7 +2678,8 @@
         "Smbataberd Fortress",
         "Panoramic viewpoints"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-gegarot-vodopad-na-sklonakh-aragatsa",
@@ -2696,7 +2727,8 @@
         "Gegharot Waterfall",
         "Panoramic Viewpoints"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-ozero-akna-serdtse-gegamskikh-gor",
@@ -2741,7 +2773,8 @@
         "Lake Akna",
         "Panoramic viewpoints"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-ukhtasar-tayny-drevnikh-petroglifov",
@@ -2789,7 +2822,8 @@
         "Ancient Petroglyphs",
         "Panoramic Viewpoints"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-tsakhats-kar-i-smbataberd-kreposti-vayots-dzora",
@@ -2837,7 +2871,8 @@
         "Smbataberd Fortress",
         "Panoramic viewpoints"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-tezhler-po-dikim-goram-lori",
@@ -2882,7 +2917,8 @@
         "Highland Panoramas",
         "Tezharuyk Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-rapi-taynoe-ozero-aragatsa",
@@ -2930,7 +2966,8 @@
         "Aragats' Northern Wall",
         "Panoramic viewpoints"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-srter-ozero-serdtsa-v-gorakh-megri",
@@ -2982,7 +3019,8 @@
       ]
     },
     "days": 2,
-    "nights": 1
+    "nights": 1,
+    "featured": false
   },
   {
     "slug": "dzhip-tur-kaputan-vysokogornoe-ozero-zangezura",
@@ -3043,7 +3081,8 @@
       ]
     },
     "days": 2,
-    "nights": 1
+    "nights": 1,
+    "featured": false
   },
   {
     "slug": "dzhip-tur-tsakhkari-skrytoe-ozero-zangezurskikh-gor",
@@ -3104,7 +3143,8 @@
       ]
     },
     "days": 2,
-    "nights": 1
+    "nights": 1,
+    "featured": false
   },
   {
     "slug": "dzhip-tur-ukhtasar-tayny-drevnikh-petroglifov-2",
@@ -3153,7 +3193,8 @@
       ]
     },
     "days": 2,
-    "nights": 1
+    "nights": 1,
+    "featured": false
   },
   {
     "slug": "dzhip-tur-dikiy-lori-uschele-arevatsag",
@@ -3211,7 +3252,8 @@
       ]
     },
     "days": 2,
-    "nights": 1
+    "nights": 1,
+    "featured": false
   },
   {
     "slug": "dzhip-tur-po-sledam-ary-prekrasnogo",
@@ -3265,7 +3307,8 @@
         "Mountain panoramas",
         "Yerevan"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-vulkan-i-kreposti-vayots-dzora",
@@ -3316,7 +3359,8 @@
         "Surb Sion Monastery",
         "Gerger Reservoir"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-s-voskhozhdeniem-aragats-vyshe-oblakov",
@@ -3370,7 +3414,8 @@
         "Descent to Lake Kari",
         "Yerevan"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "dzhip-tur-kreposti-vayots-dzora-i-geyzer-khorbatekh",
@@ -3412,7 +3457,8 @@
         "Tsakhats Kar Monastery",
         "Khorbatekh Geyser"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-ot-ararata-k-drevnemu-gegardu",
@@ -3474,7 +3520,8 @@
         "Garni Temple",
         "Symphony of Stones"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-doroga-vina-gor-i-dzhermuka",
@@ -3530,7 +3577,8 @@
         "Jermuk",
         "Mineral Water Gallery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-tayny-drevnego-lori",
@@ -3577,7 +3625,8 @@
         "Oromayr",
         "Lori Panoramas"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-vokrug-sevana-zhemchuzhina-armenii",
@@ -3633,7 +3682,8 @@
         "Southern shore of Sevan",
         "Panoramic stops"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-ot-drevnikh-bogov-k-svyatynyam-armenii",
@@ -3680,7 +3730,8 @@
         "Symphony of Stones",
         "Geghard Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-ot-kreposti-bzhni-k-vershinam-tsakhkadzora",
@@ -3739,7 +3790,8 @@
         "Lake Sevan",
         "Sevanavank"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-ot-golubogo-sevana-k-zelenym-lesam-dilizha",
@@ -3792,7 +3844,8 @@
         "Goshavank Monastery",
         "Lake Parz"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-doroga-k-tatevu-ot-ararata-cherez-vino-i-k",
@@ -3842,7 +3895,8 @@
         "Shaki Waterfall",
         "Tatev Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-ararat-kanon-angelov-i-doroga-armyanskogo",
@@ -3889,7 +3943,8 @@
         "Areni",
         "Wine Tour and Tasting"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-sokrovischa-lori-kreposti-monastyri-i-pesc",
@@ -3936,7 +3991,8 @@
         "Sanahin Monastery",
         "Mendz Er Cave"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-bolshaya-klassika-armenii-ot-ararata-do-se",
@@ -3989,7 +4045,8 @@
         "Lake Sevan",
         "Sevanavank Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-doroga-nad-bezdnoy-ot-drevnego-vina-areni",
@@ -4042,7 +4099,8 @@
         "Wings of Tatev",
         "Tatev Monastery"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-gyumri-gorod-chernogo-tufa-starykh-ulits-i",
@@ -4098,7 +4156,8 @@
         "Surb Nshan Church",
         "Free time in central Gyumri"
       ]
-    }
+    },
+    "featured": false
   },
   {
     "slug": "individualnyy-tur-vyshe-oblakov-tsakhkadzor-gory-na-kvadrots",
@@ -4151,6 +4210,7 @@
         "Lake Sevan",
         "Sevanavank Monastery"
       ]
-    }
+    },
+    "featured": false
   }
 ]
