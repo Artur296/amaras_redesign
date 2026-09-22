@@ -4691,7 +4691,7 @@
   },
   {
     "slug": "smbataberd",
-    "image": "",
+    "image": "/images/1790105008910-1001279698.webp",
     "title": {
       "ru": "Джип-тур «Смбатаберд — крепость над ущельем»",
       "hy": "",
@@ -4718,7 +4718,8 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "popular",
+      "jeep"
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
@@ -4726,7 +4727,7 @@
   },
   {
     "slug": "trchkan",
-    "image": "",
+    "image": "/images/1790105183857-1001279699.jpg",
     "title": {
       "ru": "Джип-тур к водопаду Трчкан",
       "hy": "",
@@ -4752,7 +4753,8 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "popular",
+      "jeep"
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
@@ -4760,7 +4762,7 @@
   },
   {
     "slug": "armaghan",
-    "image": "",
+    "image": "/images/1790105250091-1001279700.webp",
     "title": {
       "ru": "Джип-тур «Вулкан Армаган — над облаками»",
       "hy": "",
@@ -4787,7 +4789,8 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "popular",
+      "jeep"
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
@@ -4795,7 +4798,7 @@
   },
   {
     "slug": "xustup",
-    "image": "",
+    "image": "/images/1790105288787-1001279701.jpg",
     "title": {
       "ru": "Джип-тур «Рассвет на Хуступе»",
       "hy": "",
@@ -4821,7 +4824,8 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "popular",
+      "jeep"
     ],
     "priceFromAmd": 45000,
     "departure": "05:30",
