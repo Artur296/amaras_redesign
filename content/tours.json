@@ -4547,7 +4547,7 @@
   },
   {
     "slug": "kobayr-haghpat-odzun",
-    "image": "",
+    "image": "/images/1790104454763-1001279694.webp",
     "title": {
       "ru": "Монастыри Северной Армении",
       "hy": "",
@@ -4582,7 +4582,7 @@
   },
   {
     "slug": "gora-dimac-oblaka",
-    "image": "",
+    "image": "/images/1790104511602-1001279695.webp",
     "title": {
       "ru": "Джип-тур «Гора Димац — выше облаков»",
       "hy": "",
@@ -4609,7 +4609,8 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "popular",
+      "jeep"
     ],
     "priceFromAmd": 25000,
     "departure": "09:00",
@@ -4617,7 +4618,7 @@
   },
   {
     "slug": "vulkan-ajdahak",
-    "image": "",
+    "image": "/images/1790104555173-1001279696.jpg",
     "title": {
       "ru": "Джип-тур «Вулкан Аждаак — над кратером»",
       "hy": "",
@@ -4644,7 +4645,8 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "popular",
+      "jeep"
     ],
     "priceFromAmd": 25000,
     "departure": "08:00",
@@ -4652,7 +4654,7 @@
   },
   {
     "slug": "mineral-geyzer",
-    "image": "",
+    "image": "/images/1790104915969-1001279697.webp",
     "title": {
       "ru": "Джип-тур «Минеральный гейзер — сердце Вайоц Дзора»",
       "hy": "",
@@ -4680,7 +4682,8 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "popular",
+      "jeep"
     ],
     "priceFromAmd": 25000,
     "departure": "09:00",
