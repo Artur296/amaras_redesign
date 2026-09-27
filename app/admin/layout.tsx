@@ -10,6 +10,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Amaras Tour — Admin",
   robots: { index: false, follow: false },
+  icons: { icon: "/images/logo.png" },
 };
 
 export default function AdminLayout({

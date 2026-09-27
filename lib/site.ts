@@ -11,6 +11,8 @@ export const site = {
   email: "amarastour.am@gmail.com",
   // Photo beside the text on the About page; editable in /admin.
   aboutImage: "/images/noravank.jpg",
+  // Round mark in the site header, also the browser-tab icon; editable in /admin.
+  logo: "/images/logo.png",
 };
 
 export type SiteInfo = typeof site;

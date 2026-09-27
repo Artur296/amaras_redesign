@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { locales, type Dict, type Locale } from "@/lib/i18n";
-import { useLinks } from "@/components/SiteProvider";
+import { useLinks, useSite } from "@/components/SiteProvider";
 import { InstagramIcon, TelegramIcon, WhatsAppIcon } from "@/components/icons";
 
 const localeLabels: Record<Locale, string> = { ru: "Рус", hy: "Հայ", en: "Eng" };
@@ -15,6 +15,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const links = useLinks();
+  const { logo } = useSite();
 
   const restPath = pathname.replace(/^\/(ru|hy|en)(?=\/|$)/, "");
   const nav = [
@@ -35,11 +36,11 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
           className="flex min-w-0 items-center gap-2 text-base font-extrabold tracking-tight sm:gap-2.5 sm:text-lg"
         >
           <Image
-            src="/images/logo.png"
+            src={logo}
             alt=""
             width={36}
             height={36}
-            className="h-8 w-8 shrink-0 rounded-full sm:h-9 sm:w-9"
+            className="h-8 w-8 shrink-0 rounded-full object-cover sm:h-9 sm:w-9"
           />
           {/* Under 360px the row can't hold the wordmark too; show the logo mark
               alone rather than an ellipsised brand name. */}

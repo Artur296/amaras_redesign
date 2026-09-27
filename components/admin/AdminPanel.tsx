@@ -242,6 +242,10 @@ export default function AdminPanel() {
             onChangeAbout={(aboutImage) =>
               setContent({ ...content, site: { ...content.site, aboutImage } })
             }
+            logo={content.site.logo}
+            onChangeLogo={(logo) =>
+              setContent({ ...content, site: { ...content.site, logo } })
+            }
             onSave={publish}
           />
         )}
@@ -1027,12 +1031,16 @@ function ImagesTab({
   aboutImage,
   onChange,
   onChangeAbout,
+  logo,
+  onChangeLogo,
   onSave,
 }: {
   images: string[];
   aboutImage: string;
   onChange: (images: string[]) => void;
   onChangeAbout: (url: string) => void;
+  logo: string;
+  onChangeLogo: (url: string) => void;
   onSave: () => void;
 }) {
   function move(i: number, dir: -1 | 1) {
@@ -1113,6 +1121,19 @@ function ImagesTab({
       </p>
       <div className="mt-4 max-w-xl">
         <ImagePicker value={aboutImage} onChange={onChangeAbout} />
+      </div>
+
+      <h2 className="mt-10 border-t border-black/5 pt-8 text-xl font-extrabold">
+        Logo
+      </h2>
+      <p className="mt-2 text-sm text-muted">
+        The round mark beside “Amaras Tour” at the top of every page, also used
+        as the icon in the browser tab. It is cropped to a circle, so use a
+        square image with the mark in the centre. PNGs under 1.5 MB keep their
+        transparent background.
+      </p>
+      <div className="mt-4 max-w-xl">
+        <ImagePicker value={logo} onChange={onChangeLogo} />
       </div>
 
       <SaveBar onSave={onSave} label="Publish all changes" />

@@ -41,6 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = dicts[locale as Locale];
   return {
     metadataBase: new URL(site.url),
+    // The tab icon follows the logo set in /admin.
+    icons: { icon: site.logo, apple: site.logo },
     title: {
       default: dict.meta.home.title,
       template: `%s | ${site.name}`,
