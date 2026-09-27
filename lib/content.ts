@@ -1,7 +1,6 @@
 import { dictionaries, type Dict, type Locale } from "@/lib/i18n";
 import { tours, defaultCategories, type Tour, type Category } from "@/lib/tours";
 import { site, type SiteInfo } from "@/lib/site";
-import { db, hasDb } from "@/lib/db";
 
 // Admin edits live in content/*.json, committed to the repository by the
 // admin panel. They are imported statically so every page stays fully
@@ -61,8 +60,8 @@ function deepMerge<T>(base: T, override: unknown): T {
 
 // A tour with no categories array crashes every page that filters by
 // category, which fails the build and leaves the site with no deploy at all.
-// Content now arrives from JSON in the repository and from the old database,
-// so one malformed entry should cost that entry, not the whole site.
+// Content arrives as hand-editable JSON in the repository, so one malformed
+// entry should cost that entry, not the whole site.
 function usableTours(value: unknown): Tour[] | null {
   if (!Array.isArray(value)) return null;
   const ok = value.filter(
@@ -95,43 +94,8 @@ function build(overrides: Record<ContentKey, unknown>): Content {
   };
 }
 
-/**
- * Content saved in the old database, for keys that have not been imported
- * into content/*.json yet.
- *
- * This is a bridge, not the storage: it is read while the pages are being
- * built, not per request, so it costs one query per deploy rather than one
- * per visitor. It stops being used for a key the moment that key's JSON file
- * holds anything, and the whole function goes away with lib/db.ts once
- * everything has been imported.
- */
-async function databaseFallback(
-  missing: ContentKey[]
-): Promise<Partial<Record<ContentKey, unknown>>> {
-  if (!missing.length || !hasDb()) return {};
-  try {
-    const rows = (await db()`select key, value from site_content`) as {
-      key: string;
-      value: unknown;
-    }[];
-    const stored = Object.fromEntries(rows.map((r) => [r.key, r.value]));
-    return Object.fromEntries(
-      missing
-        .filter((key) => stored[key] !== undefined && stored[key] !== null)
-        .map((key) => [key, stored[key]])
-    );
-  } catch {
-    // The old database is allowed to be gone, over quota or unreachable; the
-    // site still renders from whatever is in the repository.
-    return {};
-  }
-}
-
 export async function getContent(): Promise<Content> {
-  const overrides = currentOverrides();
-  const missing = CONTENT_KEYS.filter((key) => overrides[key] === null);
-  const fallback = await databaseFallback(missing);
-  return build({ ...overrides, ...fallback });
+  return build(currentOverrides());
 }
 
 // What the admin panel loads and edits — identical to what the site renders.
