@@ -14,6 +14,7 @@ import { locales, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { buildLinks } from "@/lib/site";
 import { getContent } from "@/lib/content";
+import { generateTravelAgencySchema, generateBreadcrumbSchema } from "@/lib/schema";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -97,8 +98,24 @@ export default async function ContactsPage({ params }: Props) {
     },
   ];
 
+  const agencySchema = generateTravelAgencySchema(site, locale);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: dict.nav.home, url: `/${locale}` },
+    { name: dict.nav.contacts, url: `/${locale}/contacts` },
+  ]);
+
   return (
     <div className="min-h-screen bg-[#312F2F] text-[#FCFCF7]">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(agencySchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* Editorial Header */}
       <div className="border-b border-[#FCFCF7]/10 bg-[#312F2F]">
         <div className="mx-auto max-w-[1240px] px-4 py-8 sm:px-6 md:py-12">

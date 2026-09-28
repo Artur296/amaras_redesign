@@ -9,6 +9,7 @@ import { locales, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { defaultCategories, packageDayRange, PACKAGES_CATEGORY_ID } from "@/lib/tours";
 import { getContent } from "@/lib/content";
+import { generateBreadcrumbSchema, generateTourListSchema } from "@/lib/schema";
 
 type Props = { params: Promise<{ locale: Locale; category: string }> };
 
@@ -37,8 +38,29 @@ export default async function CategoryPage({ params }: Props) {
   const list = tours.filter((t) => t.categories.includes(category));
   const range = packageDayRange(list);
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: dict.nav.home, url: `/${locale}` },
+    { name: dict.nav.tours, url: `/${locale}/tours` },
+    { name: found.title[locale], url: `/${locale}/tours/${category}` },
+  ]);
+  const tourListSchema = generateTourListSchema(
+    list,
+    locale,
+    found.title[locale]
+  );
+
   return (
     <div className="mx-auto max-w-[1240px] px-6 py-12 md:py-16">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tourListSchema) }}
+      />
+
       {/* Breadcrumb & Navigation */}
       <FadeIn>
         <div className="flex items-center gap-2 text-xs font-bold text-[#6B6967]">

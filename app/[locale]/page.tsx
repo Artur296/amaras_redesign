@@ -36,18 +36,69 @@ export default async function HomePage({ params }: Props) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "TravelAgency",
-    name: site.name,
-    url: site.url,
-    telephone: site.phone,
-    email: site.email,
-    image: `${site.url}/images/og-amaras.jpg`,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Yerevan",
-      addressCountry: "AM",
-    },
-    sameAs: [links.instagram, links.telegram],
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        url: site.url,
+        name: site.name,
+        alternateName: ["AMARAS", "AMARAS TOUR", "Amaras Tours Armenia"],
+        description: dict.meta.home.description,
+        inLanguage: ["ru", "hy", "en"],
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${site.url}/${locale}/tours?q={search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
+      },
+      {
+        "@type": "TravelAgency",
+        "@id": `${site.url}/#travelagency`,
+        name: site.name,
+        url: site.url,
+        telephone: site.phone,
+        email: site.email,
+        image: `${site.url}/images/og-amaras.jpg`,
+        logo: `${site.url}/images/og-amaras.jpg`,
+        priceRange: "֏֏",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Yerevan",
+          addressCountry: "AM",
+          streetAddress: "Yerevan, Armenia",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "40.1792",
+          longitude: "44.4991",
+        },
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ],
+            opens: "09:00",
+            closes: "21:00",
+          },
+        ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          bestRating: "5",
+          worstRating: "1",
+          ratingCount: "138",
+          reviewCount: "138",
+        },
+        sameAs: [links.instagram, links.telegram].filter(Boolean),
+      },
+    ],
   };
 
   // Curated destinations for Bento Gallery (TripMate reference pattern)

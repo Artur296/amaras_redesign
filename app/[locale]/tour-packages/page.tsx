@@ -8,6 +8,7 @@ import { locales, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { findPackagesCategory, isPackageTour, packageDayRange } from "@/lib/tours";
 import { getContent } from "@/lib/content";
+import { generateBreadcrumbSchema, generateTourListSchema } from "@/lib/schema";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
@@ -36,8 +37,24 @@ export default async function TourPackagesPage({ params }: Props) {
   const title = section?.title[locale] ?? dict.nav.packages;
   const desc = section?.desc[locale] ?? dict.meta.packages.description;
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: dict.nav.home, url: `/${locale}` },
+    { name: title, url: `/${locale}/tour-packages` },
+  ]);
+  const tourListSchema = generateTourListSchema(list, locale, title);
+
   return (
     <div className="mx-auto max-w-[1240px] px-6 py-12 md:py-16">
+      {/* Schema.org Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tourListSchema) }}
+      />
+
       {/* Breadcrumb */}
       <FadeIn>
         <div className="flex items-center gap-2 text-xs font-bold text-[#6B6967]">

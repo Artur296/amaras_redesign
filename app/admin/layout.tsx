@@ -8,6 +8,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://amarastour.com"),
   title: "Amaras Tour — Admin",
   robots: { index: false, follow: false },
   icons: { icon: "/images/logo.png" },

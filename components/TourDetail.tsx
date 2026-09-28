@@ -7,11 +7,14 @@ import TourInfo from "@/components/TourInfo";
 import TourGallery from "@/components/TourGallery";
 import { CalendarIcon, PhoneIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
+import { site } from "@/lib/site";
+import { generateTourDetailSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import {
   discountPercent,
   formatPrice,
   hasPrice,
   isPackageTour,
+  tourPath,
   type Category,
   type Tour,
 } from "@/lib/tours";
@@ -41,8 +44,31 @@ export default function TourDetail({
     ? `${tour.days} ${dict.tours.days}${tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}`
     : `${tour.durationHours} ${dict.tours.hours}`;
 
+  const tourSchema = generateTourDetailSchema({
+    tour,
+    locale,
+    site,
+    categoryTitle: backLabel,
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: dict.nav.home, url: `/${locale}` },
+    { name: backLabel, url: backHref },
+    { name: tour.title[locale], url: `/${locale}${tourPath(tour)}` },
+  ]);
+
   return (
     <div className="mx-auto max-w-[1240px] px-6 py-12 md:py-16">
+      {/* Schema.org Structured Data for SEO Rich Snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tourSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* Breadcrumb Navigation */}
       <FadeIn>
         <div className="flex items-center gap-2 text-xs font-bold text-[#6B6967]">
