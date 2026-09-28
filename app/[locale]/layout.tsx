@@ -66,7 +66,10 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#c7ff32",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#c7ff32" },
+    { media: "(prefers-color-scheme: dark)", color: "#c7ff32" },
+  ],
 };
 
 type Props = { params: Promise<{ locale: string }> };
@@ -153,6 +156,14 @@ export default async function LocaleLayout({
       lang={locale}
       className={`${futura.variable} ${bebas.variable} ${bebasArmenian.variable} ${notoArmenian.variable}`}
     >
+      <head>
+        <meta name="theme-color" content="#c7ff32" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#c7ff32" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#c7ff32" />
+        <meta name="msapplication-navbutton-color" content="#c7ff32" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      </head>
       {/* suppressHydrationWarning: browser extensions (Bitdefender, Grammarly)
           inject attributes into <body> before React hydrates */}
       <body className="font-sans" suppressHydrationWarning>
