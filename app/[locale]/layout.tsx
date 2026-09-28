@@ -66,7 +66,7 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#312f2f",
+  themeColor: "#c7ff32",
 };
 
 type Props = { params: Promise<{ locale: string }> };
