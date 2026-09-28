@@ -41,7 +41,7 @@ export default async function HomePage({ params }: Props) {
     url: site.url,
     telephone: site.phone,
     email: site.email,
-    image: `${site.url}/images/hero-khor-virap.jpg`,
+    image: `${site.url}/images/og-amaras.jpg`,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Yerevan",

@@ -76,8 +76,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!locales.includes(locale as Locale)) return {};
   const { dicts, site } = await getContent();
   const dict = dicts[locale as Locale];
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : site.url);
+
   return {
-    metadataBase: new URL(site.url),
+    metadataBase: new URL(siteUrl),
     icons: {
       icon: [
         { url: "/favicon.ico", sizes: "any" },
@@ -107,13 +115,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: ogLocales[locale as Locale],
       title: dict.meta.home.title,
       description: dict.meta.home.description,
-      images: ["/images/hero-khor-virap.jpg"],
+      images: [
+        {
+          url: "/images/og-amaras.jpg",
+          width: 1024,
+          height: 682,
+          alt: "AMARAS TOUR — туры и экскурсии по Армении",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: dict.meta.home.title,
       description: dict.meta.home.description,
-      images: ["/images/hero-khor-virap.jpg"],
+      images: ["/images/og-amaras.jpg"],
     },
     verification: {
       google: [
