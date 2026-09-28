@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import { NextRequest, NextResponse } from "next/server";
 import { commitFiles, githubConfig, GitHubError } from "@/lib/github";
 import { getAdminUser } from "@/lib/admin-auth";
@@ -5,26 +7,12 @@ import { getAdminUser } from "@/lib/admin-auth";
 const MAX_BYTES = 20 * 1024 * 1024;
 
 /**
- * Commits the image into public/images/ and returns the path it will be
- * served from. Vercel serves it as a static file off the CDN, so the site
- * never pays to read it back.
- *
- * The commit is marked [skip ci] on purpose: the image is not live until
- * something references it, and that reference arrives with the next content
- * save, which is the deploy worth spending. The panel previews the local
- * file in the meantime.
+ * Saves the uploaded image to public/images/ on the filesystem, and if
+ * GitHub credentials are set, commits it to the repository.
  */
 export async function POST(request: NextRequest) {
   if (!(await getAdminUser())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const cfg = githubConfig();
-  if (!cfg) {
-    return NextResponse.json(
-      { error: "Uploading is not configured — set GITHUB_TOKEN and GITHUB_REPO" },
-      { status: 503 }
-    );
   }
 
   const form = await request.formData();
@@ -41,18 +29,27 @@ export async function POST(request: NextRequest) {
 
   const clean = file.name.toLowerCase().replace(/[^a-z0-9.-]+/g, "-");
   const name = `${Date.now()}-${clean}`;
-  const data = Buffer.from(await file.arrayBuffer()).toString("base64");
+  const buffer = Buffer.from(await file.arrayBuffer());
 
-  try {
-    await commitFiles(
-      cfg,
-      [{ path: `public/images/${name}`, content: data, encoding: "base64" }],
-      `content: add image ${name} [skip ci]`
-    );
-  } catch (error) {
-    const message = error instanceof GitHubError ? error.message : "Upload failed";
-    return NextResponse.json({ error: message }, { status: 502 });
+  // 1. Always save to local public/images/
+  const imagesDir = path.join(process.cwd(), "public", "images");
+  await fs.promises.mkdir(imagesDir, { recursive: true });
+  await fs.promises.writeFile(path.join(imagesDir, name), buffer);
+
+  // 2. If GitHub is configured, also commit to remote repo
+  const cfg = githubConfig();
+  if (cfg) {
+    try {
+      await commitFiles(
+        cfg,
+        [{ path: `public/images/${name}`, content: buffer.toString("base64"), encoding: "base64" }],
+        `content: add image ${name} [skip ci]`
+      );
+    } catch {
+      // Image is already saved on local disk
+    }
   }
 
-  return NextResponse.json({ url: `/images/${name}`, pendingDeploy: true });
+  return NextResponse.json({ url: `/images/${name}`, pendingDeploy: false });
 }
+

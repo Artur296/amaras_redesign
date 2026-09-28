@@ -74,6 +74,7 @@ export type Tour = {
   featured?: boolean; // show in "Popular tours" on the homepage (default true)
   categories: string[]; // category ids; a tour can be offered in several formats
   image: string;
+  images?: string[]; // Multiple photos for gallery / slider
   // Day tours: a departure time and a length in hours.
   departure?: string; // local departure time, e.g. "10:00"
   durationHours?: string;

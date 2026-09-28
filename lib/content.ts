@@ -101,14 +101,27 @@ export async function getContent(): Promise<Content> {
 // What the admin panel loads and edits — identical to what the site renders.
 export const fetchContent = getContent;
 
-// The raw override for one key, as the admin panel last saved it. Used when
-// publishing so untouched keys are re-committed byte-identical.
+import fs from "fs";
+import path from "path";
+
+function readJsonFile<T>(filename: string, fallback: T): T {
+  try {
+    const p = path.join(process.cwd(), "content", filename);
+    if (fs.existsSync(p)) {
+      const data = fs.readFileSync(p, "utf8");
+      return JSON.parse(data) as T;
+    }
+  } catch {}
+  return fallback;
+}
+
 export function currentOverrides(): Record<ContentKey, unknown> {
   return {
-    i18n: i18nOverride,
-    tours: toursOverride,
-    categories: categoriesOverride,
-    site: siteOverride,
-    hero: heroOverride,
+    i18n: readJsonFile("i18n.json", i18nOverride),
+    tours: readJsonFile("tours.json", toursOverride),
+    categories: readJsonFile("categories.json", categoriesOverride),
+    site: readJsonFile("site.json", siteOverride),
+    hero: readJsonFile("hero.json", heroOverride),
   };
 }
+

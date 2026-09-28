@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Noto_Sans_Armenian } from "next/font/google";
+import localFont from "next/font/local";
+import { Noto_Sans_Armenian } from "next/font/google";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactFab from "@/components/ContactFab";
+import JeepPreloader from "@/components/JeepPreloader";
 import { SiteProvider } from "@/components/SiteProvider";
 import {
   locales,
@@ -14,9 +16,44 @@ import {
 import { getContent } from "@/lib/content";
 import "../globals.css";
 
-const manrope = Manrope({
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  variable: "--font-manrope",
+const bebasArmenian = localFont({
+  src: "../../public/fonts/bebas/Arm-Bebas-Neue.ttf",
+  variable: "--font-bebas-arm",
+  display: "swap",
+});
+
+const bebas = localFont({
+  src: [
+    {
+      path: "../../public/fonts/bebas/BebasNeuePro-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/bebas/BebasNeue-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-bebas",
+  display: "swap",
+});
+
+const futura = localFont({
+  src: [
+    {
+      path: "../../public/fonts/futura/FuturaCyrillicMedium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/futura/FuturaCyrillicBold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-futura",
+  display: "swap",
 });
 
 const notoArmenian = Noto_Sans_Armenian({
@@ -29,7 +66,7 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#141c38",
+  themeColor: "#312f2f",
 };
 
 type Props = { params: Promise<{ locale: string }> };
@@ -41,8 +78,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dict = dicts[locale as Locale];
   return {
     metadataBase: new URL(site.url),
-    // The tab icon follows the logo set in /admin.
-    icons: { icon: site.logo, apple: site.logo },
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      ],
+      apple: [
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
+    },
+    manifest: "/site.webmanifest",
     title: {
       default: dict.meta.home.title,
       template: `%s | ${site.name}`,
@@ -90,11 +136,12 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${manrope.variable} ${notoArmenian.variable}`}
+      className={`${futura.variable} ${bebas.variable} ${bebasArmenian.variable} ${notoArmenian.variable}`}
     >
       {/* suppressHydrationWarning: browser extensions (Bitdefender, Grammarly)
           inject attributes into <body> before React hydrates */}
       <body className="font-sans" suppressHydrationWarning>
+        <JeepPreloader />
         <SiteProvider site={site}>
           <Header locale={locale as Locale} dict={dict} />
           <main>{children}</main>

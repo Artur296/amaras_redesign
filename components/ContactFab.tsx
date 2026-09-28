@@ -69,8 +69,12 @@ export default function ContactFab({ label }: { label: string }) {
           aria-expanded={open}
           aria-label={label}
           whileTap={{ scale: 0.92 }}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-[0_4px_16px_rgba(0,0,0,.3)] transition-colors hover:bg-primary-dark"
+          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#586EFF] text-white shadow-[0_6px_24px_rgba(88,110,255,0.45)] transition-all hover:bg-[#475be6] hover:scale-105"
         >
+          <span className="absolute -top-1 -right-1 flex h-4 w-4">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C7FF32] opacity-75" />
+            <span className="relative inline-flex h-4 w-4 rounded-full bg-[#C7FF32] border-2 border-[#312F2F]" />
+          </span>
           <motion.svg
             viewBox="0 0 24 24"
             fill="none"

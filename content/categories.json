@@ -58,19 +58,5 @@
       "hy": "Ճանապարհից դուրս երթուղիներ դեպի հրաբուխներ, ջրվեժներ և լեռնային ամրոցներ, ուր սովորական տրանսպորտը չի հասնում։",
       "en": "Off-road routes to volcanoes, waterfalls and mountain fortresses that ordinary transport cannot reach."
     }
-  },
-  {
-    "id": "popular",
-    "image": "/images/1790000018980-68.jpg",
-    "title": {
-      "ru": "Популярные туры",
-      "hy": "",
-      "en": ""
-    },
-    "desc": {
-      "ru": "Самые популярные туры.",
-      "hy": "",
-      "en": ""
-    }
   }
 ]

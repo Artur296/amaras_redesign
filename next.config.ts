@@ -25,6 +25,7 @@ const jeepTourSlugs = [
 ];
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   async redirects() {
     return [
       ...Object.entries(legacyTourUrls).map(([slug, category]) => ({

@@ -5,6 +5,11 @@
       "group"
     ],
     "image": "/images/tours/tsaghkadzor-sevan-sevanavank.png",
+    "images": [
+      "/images/tours/tsaghkadzor-sevan-sevanavank.png",
+      "/images/hero-highland-lake.jpg",
+      "/images/hero-mountain-road.jpg"
+    ],
     "departure": "10:00",
     "durationHours": "8–9",
     "priceFromAmd": 15000,
@@ -50,7 +55,7 @@
     "featured": false
   },
   {
-    "slug": "garni-geghard-symphony",
+    "slug": "garni-geghard-symphonyx",
     "categories": [
       "individual"
     ],
@@ -1243,7 +1248,7 @@
     "departure": "10:00",
     "durationHours": "6–7",
     "priceFromAmd": 10000,
-    "meetTime": "09:50",
+    "meetTime": "09:45",
     "title": {
       "ru": "Сердце духовной Армении",
       "hy": "Հոգևոր Հայաստանի սիրտը",
@@ -1310,7 +1315,7 @@
     "departure": "10:00",
     "durationHours": "6–7",
     "priceFromAmd": 10000,
-    "meetTime": "09:50",
+    "meetTime": "09:45",
     "title": {
       "ru": "Дорога сквозь века",
       "hy": "Ճանապարհ դարերի միջով",
@@ -4243,7 +4248,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 10000,
     "departure": "10:00",
@@ -4286,7 +4291,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
@@ -4323,7 +4328,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 15000,
     "departure": "10:00",
@@ -4358,7 +4363,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
@@ -4394,7 +4399,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
@@ -4431,7 +4436,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 20000,
     "departure": "09:00",
@@ -4466,7 +4471,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 20000,
     "departure": "09:00",
@@ -4504,7 +4509,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 20000,
     "departure": "09:00",
@@ -4541,7 +4546,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 25000,
     "departure": "09:00",
@@ -4576,7 +4581,7 @@
       "en": []
     },
     "categories": [
-      "popular"
+      "group"
     ],
     "priceFromAmd": 25000,
     "departure": "08:00",
@@ -4611,7 +4616,6 @@
       "en": []
     },
     "categories": [
-      "popular",
       "jeep"
     ],
     "priceFromAmd": 25000,
@@ -4647,7 +4651,6 @@
       "en": []
     },
     "categories": [
-      "popular",
       "jeep"
     ],
     "priceFromAmd": 25000,
@@ -4684,7 +4687,6 @@
       "en": []
     },
     "categories": [
-      "popular",
       "jeep"
     ],
     "priceFromAmd": 25000,
@@ -4720,7 +4722,6 @@
       "en": []
     },
     "categories": [
-      "popular",
       "jeep"
     ],
     "priceFromAmd": 30000,
@@ -4755,7 +4756,6 @@
       "en": []
     },
     "categories": [
-      "popular",
       "jeep"
     ],
     "priceFromAmd": 30000,
@@ -4790,7 +4790,6 @@
       "en": []
     },
     "categories": [
-      "popular",
       "jeep"
     ],
     "priceFromAmd": 30000,
@@ -4826,7 +4825,6 @@
       "en": []
     },
     "categories": [
-      "popular",
       "jeep"
     ],
     "priceFromAmd": 45000,

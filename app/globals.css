@@ -1,35 +1,71 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #16375f;
-  --color-primary-dark: #0f2745;
-  --color-deep: #0a1d37;
-  --color-accent: #ffbd9b;
-  --color-accent-dark: #a65c33;
-  --color-ink: #0a1d37;
-  --color-muted: #57606f;
+  /* AMARAS Mandatory Brand System */
+  --color-primary-dark: #312f2f;
+  --color-primary-light: #fcfcf7;
+  --color-accent-blue: #586eff;
+  --color-accent-lime: #c7ff32;
+
+  /* Semantic mappings */
+  --color-primary: #586eff;
+  --color-primary-hover: #475be6;
+  --color-deep: #312f2f;
+  --color-deep-dark: #242323;
+  --color-deep-surface: #3c3a3a;
+  --color-accent: #c7ff32;
+  --color-accent-hover: #b8f226;
+  --color-accent-dark: #222b04;
+  --color-blue: #586eff;
+  --color-blue-dark: #3f55e0;
+  --color-lime: #c7ff32;
+
+  --color-ink: #312f2f;
+  --color-ink-muted: #6b6967;
+  --color-muted: #6b6967;
   --color-surface: #ffffff;
-  --color-bg: #fdf6ee;
-  --font-sans: var(--font-manrope), var(--font-noto-armenian), ui-sans-serif,
-    system-ui, sans-serif;
+  --color-surface-warm: #f7f7f0;
+  --color-bg: #fcfcf7;
+  --color-border-subtle: #eae9e0;
+  --color-border-dark: #454343;
+
+  --font-sans: var(--font-futura), var(--font-noto-armenian), "Futura PT",
+    Futura, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-bebas-arm), var(--font-bebas), "Bebas Neue", sans-serif;
+  --font-heading: var(--font-bebas-arm), var(--font-bebas), "Bebas Neue", sans-serif;
+  --font-bebas: var(--font-bebas-arm), var(--font-bebas), "Bebas Neue", sans-serif;
+}
+
+h1,
+h2,
+h3,
+.font-heading,
+.font-serif,
+.font-bebas {
+  font-family: var(--font-bebas-arm), var(--font-bebas), "Bebas Neue", sans-serif;
+  letter-spacing: 0.02em;
 }
 
 body {
+  font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: #c7ff32;
+  color: #312f2f;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid #586eff;
   outline-offset: 2px;
 }
 
 html {
   scroll-behavior: smooth;
-  /* Safety net against sideways scrolling on phones. `clip` rather than
-     `hidden`: `hidden` would turn <html> into a scroll container and break
-     `position: sticky` on the header. */
   overflow-x: clip;
 }
 
@@ -38,3 +74,62 @@ html {
     scroll-behavior: auto;
   }
 }
+
+/* Hide Next.js dev indicator portal (bottom left "N" icon) */
+nextjs-portal,
+[data-nextjs-toast],
+[data-nextjs-dev-overlay],
+[data-nextjs-dev-tools-button] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* Jeep motion & off-road keyframes */
+@keyframes jeepBounce {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-2.5px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translateY(1px) rotate(0.8deg);
+  }
+  75% {
+    transform: translateY(-1.5px) rotate(-0.3deg);
+  }
+}
+
+@keyframes wheelSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mountainMove {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+.animate-jeep-bounce {
+  animation: jeepBounce 1.2s ease-in-out infinite;
+}
+
+.animate-wheel-spin {
+  animation: wheelSpin 0.7s linear infinite;
+}
+
+.animate-mountain-trail {
+  stroke-dasharray: 8 6;
+  animation: mountainMove 12s linear infinite;
+}
+

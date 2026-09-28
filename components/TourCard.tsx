@@ -4,6 +4,7 @@ import BookButton from "@/components/BookButton";
 import PackageCard from "@/components/PackageCard";
 import type { Dict, Locale } from "@/lib/i18n";
 import {
+  discountPercent,
   formatPrice,
   hasPrice,
   isPackageTour,
@@ -23,75 +24,114 @@ export default function TourCard({
   dict: Dict;
   categories: Category[];
 }) {
-  // Multi-day packages get their own card so they never read as a day tour.
-  if (isPackageTour(tour)) return <PackageCard tour={tour} locale={locale} dict={dict} />;
+  // Multi-day packages get their own card
+  if (isPackageTour(tour)) {
+    return <PackageCard tour={tour} locale={locale} dict={dict} />;
+  }
 
   const catTitle = (id: string) =>
     categories.find((c) => c.id === id)?.title[locale] ?? id;
+  const href = tourHref(locale, tour);
+  const discount = discountPercent(tour);
+  const durationText = tour.days
+    ? `${tour.days} ${dict.tours.days}${tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}`
+    : `${tour.durationHours} ${dict.tours.hours}`;
+
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-surface shadow-[0_1px_3px_rgba(16,24,40,.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(16,24,40,.16)]">
-      <Link
-        href={tourHref(locale, tour)}
-        className="relative block aspect-[4/3] overflow-hidden"
-      >
+    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#EAE9E0] bg-white shadow-[0_2px_12px_rgba(49,47,47,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#586EFF]/40 hover:shadow-[0_16px_36px_rgba(49,47,47,0.12)]">
+      {/* Tour Image with Badges */}
+      <Link href={href} className="relative block aspect-[16/11] overflow-hidden bg-black/5">
         <Image
           src={tour.image}
           alt={tour.title[locale]}
           fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
-        <span className="absolute left-3 top-3 flex flex-wrap gap-1.5">
-          {tour.categories.map((category) => (
-            <span
-              key={category}
-              className="rounded-full bg-deep/80 px-3 py-1 text-xs font-bold text-white backdrop-blur"
-            >
-              {catTitle(category)}
-            </span>
-          ))}
-        </span>
-        <span className="absolute bottom-3 right-3 flex items-baseline gap-1.5 rounded-full bg-accent px-3 py-1 text-deep">
-          {hasPrice(tour) ? (
-            <>
-              {tour.priceOldAmd && (
-                <s className="text-xs font-semibold text-deep/60">
-                  {formatPrice(tour.priceOldAmd)}
-                </s>
-              )}
-              <span className="text-sm font-extrabold">
-                {dict.tours.from} {formatPrice(tour.priceFromAmd)}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+
+        {/* Top Badges (Category & Discount) */}
+        <div className="absolute left-3 top-3 right-3 flex items-center justify-between gap-2">
+          <div className="flex flex-wrap gap-1.5">
+            {tour.categories.map((category) => (
+              <span
+                key={category}
+                className="rounded-full bg-[#312F2F]/85 px-3 py-1 text-xs font-black uppercase tracking-wider text-[#FCFCF7] backdrop-blur-md"
+              >
+                {catTitle(category)}
               </span>
-            </>
-          ) : (
-            <span className="text-sm font-extrabold">{dict.tours.onRequest}</span>
+            ))}
+          </div>
+
+          {discount !== null && (
+            <span className="rounded-full bg-[#C7FF32] px-2.5 py-1 text-xs font-black text-[#312F2F] shadow-sm">
+              −{discount}%
+            </span>
           )}
-        </span>
+        </div>
+
+        {/* Bottom Tag on image (Duration & Rating) */}
+        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-bold text-white">
+          <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1 backdrop-blur-md">
+            <span>⏱</span> {durationText}
+          </span>
+          <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[#C7FF32] backdrop-blur-md">
+            <span>★</span> 4.9
+          </span>
+        </div>
       </Link>
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="text-xl font-bold">
-          <Link
-            href={tourHref(locale, tour)}
-            className="transition-colors hover:text-primary"
-          >
+
+      {/* Content */}
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-lg font-black leading-snug text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
+          <Link href={href} className="line-clamp-2">
             {tour.title[locale]}
           </Link>
         </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+
+        <p className="mt-2.5 line-clamp-2 flex-1 text-sm leading-relaxed text-[#6B6967]">
           {tour.description[locale]}
         </p>
-        <div className="mt-4 flex items-center justify-between gap-3">
-          <span className="text-sm font-semibold text-muted">
-            {tour.days
-              ? `${tour.days} ${dict.tours.days}${tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}`
-              : `${tour.durationHours} ${dict.tours.hours}`}
+
+        {/* Key Tour Specs / Inclusions */}
+        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[#EAE9E0] pt-3 text-xs text-[#6B6967]">
+          <span className="flex items-center gap-1">
+            <span>🚐</span> {tour.departure ? `${dict.tour.departure}: ${tour.departure}` : (locale === "ru" ? "Комфортный трансфер" : "Comfort transfer")}
           </span>
-          <BookButton
-            label={dict.tours.book}
-            message={`${dict.tours.bookMessage} ${tour.title[locale]}`}
-          />
+          <span className="flex items-center gap-1">
+            <span>🗣</span> RU • HY • EN
+          </span>
+        </div>
+
+        {/* Pricing & CTA */}
+        <div className="mt-5 flex items-end justify-between gap-3 border-t border-[#EAE9E0] pt-4">
+          <div>
+            <span className="block text-[11px] font-bold uppercase tracking-wider text-[#6B6967]">
+              {dict.tours.from}
+            </span>
+            <div className="mt-0.5 flex items-baseline gap-2">
+              {tour.priceOldAmd && (
+                <s className="text-xs font-bold text-[#6B6967]/70">
+                  {formatPrice(tour.priceOldAmd)}
+                </s>
+              )}
+              <span className="text-xl font-black text-[#312F2F]">
+                {hasPrice(tour) ? formatPrice(tour.priceFromAmd) : dict.tours.onRequest}
+              </span>
+            </div>
+          </div>
+
+          <div className="shrink-0">
+            <BookButton
+              label={dict.tours.book}
+              message={`${dict.tours.bookMessage} ${tour.title[locale]}`}
+              variant="primary"
+              size="sm"
+            />
+          </div>
         </div>
       </div>
     </article>
   );
 }
+

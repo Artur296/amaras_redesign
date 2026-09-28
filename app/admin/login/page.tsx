@@ -37,17 +37,17 @@ export default function AdminLoginPage() {
       >
         <div className="flex items-center gap-3">
           <Image
-            src="/images/logo.png"
-            alt=""
-            width={40}
-            height={40}
-            className="h-10 w-10 rounded-full"
+            src="/images/amaras-logo.png"
+            alt="AMARAS"
+            width={160}
+            height={36}
+            className="h-8 w-auto object-contain"
+            priority
           />
-          <div>
-            <h1 className="text-lg font-extrabold text-ink">Amaras Tour</h1>
-            <p className="text-xs text-muted">Site administration</p>
-          </div>
         </div>
+        <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-muted">
+          Admin Control Center
+        </p>
 
         <label className="mt-6 block text-sm font-semibold text-ink">
           Username

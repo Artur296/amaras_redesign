@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { locales, type Dict, type InfoSection, type Locale } from "@/lib/i18n";
+import { locales, type Dict, type Locale } from "@/lib/i18n";
 import {
   discountPercent,
   isPackageTour,
@@ -140,16 +140,16 @@ export default function AdminPanel() {
     <main className="min-h-screen bg-bg pb-24">
       <header className="sticky top-0 z-20 border-b border-white/10 bg-deep text-white">
         <div className="mx-auto flex h-14 max-w-[1100px] items-center justify-between px-6">
-          <div className="flex items-center gap-2.5 font-extrabold">
+          <div className="flex items-center gap-3">
             <Image
-              src="/images/logo.png"
-              alt=""
-              width={30}
-              height={30}
-              className="h-8 w-8 rounded-full"
+              src="/images/amaras-logo.png"
+              alt="AMARAS"
+              width={140}
+              height={32}
+              className="h-7 w-auto object-contain brightness-0 invert"
+              priority
             />
-            Amaras<span className="text-accent"> Tour</span>
-            <span className="ml-1 rounded-full bg-white/10 px-2 py-0.5 text-xs font-semibold">
+            <span className="rounded-full bg-[#C7FF32]/20 border border-[#C7FF32]/40 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#C7FF32]">
               admin
             </span>
           </div>
@@ -241,10 +241,6 @@ export default function AdminPanel() {
             onChange={(images) => setContent({ ...content, hero: { images } })}
             onChangeAbout={(aboutImage) =>
               setContent({ ...content, site: { ...content.site, aboutImage } })
-            }
-            logo={content.site.logo}
-            onChangeLogo={(logo) =>
-              setContent({ ...content, site: { ...content.site, logo } })
             }
             onSave={publish}
           />
@@ -737,12 +733,6 @@ function ToursTab({
                             onChange={(v) => update(i, { durationHours: v })}
                           />
                         </Field>
-                        <Field label="Meeting time (shown in Useful information)">
-                          <TextInput
-                            value={tour.meetTime ?? ""}
-                            onChange={(v) => update(i, { meetTime: v || undefined })}
-                          />
-                        </Field>
                       </>
                     )}
                   </div>
@@ -784,10 +774,86 @@ function ToursTab({
                     </div>
                   )}
 
-                  <div className="mt-4">
-                    <Field label="Photo">
-                      <ImagePicker value={tour.image} onChange={(image) => update(i, { image })} />
-                    </Field>
+                  {/* Tour Photos / Slideshow */}
+                  <div className="mt-4 rounded-2xl border border-black/10 bg-[#F7F7F0]/60 p-4">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                      <div>
+                        <span className="text-sm font-bold text-ink">
+                          Фотографии тура / Слайдер ({((tour.images && tour.images.length > 0 ? tour.images : [tour.image || ""]).filter(Boolean)).length})
+                        </span>
+                        <p className="text-xs text-muted">
+                          Первое фото является главной обложкой. Добавьте остальные фото для слайдера тура.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const current = tour.images && tour.images.length > 0 ? tour.images : [tour.image || ""];
+                          const next = [...current, ""];
+                          update(i, { images: next, image: next[0] || tour.image });
+                        }}
+                        className="rounded-full bg-primary px-3.5 py-1.5 text-xs font-bold text-white hover:bg-primary-dark self-start sm:self-auto"
+                      >
+                        + Добавить фото в слайдер
+                      </button>
+                    </div>
+
+                    <div className="mt-3 space-y-3">
+                      {(tour.images && tour.images.length > 0 ? tour.images : [tour.image || ""]).map((img, imgIndex, arr) => (
+                        <div key={imgIndex} className="flex items-center gap-2.5 rounded-xl border border-black/5 bg-white p-3 shadow-xs">
+                          <div className="flex flex-col">
+                            <button
+                              type="button"
+                              aria-label="Move up"
+                              disabled={imgIndex === 0}
+                              onClick={() => {
+                                const next = [...arr];
+                                [next[imgIndex], next[imgIndex - 1]] = [next[imgIndex - 1], next[imgIndex]];
+                                update(i, { images: next, image: next[0] || "" });
+                              }}
+                              className="px-1 text-xs text-muted hover:text-primary disabled:opacity-30"
+                            >
+                              ▲
+                            </button>
+                            <button
+                              type="button"
+                              aria-label="Move down"
+                              disabled={imgIndex === arr.length - 1}
+                              onClick={() => {
+                                const next = [...arr];
+                                [next[imgIndex], next[imgIndex + 1]] = [next[imgIndex + 1], next[imgIndex]];
+                                update(i, { images: next, image: next[0] || "" });
+                              }}
+                              className="px-1 text-xs text-muted hover:text-primary disabled:opacity-30"
+                            >
+                              ▼
+                            </button>
+                          </div>
+                          <span className="w-16 shrink-0 text-xs font-bold text-muted">
+                            {imgIndex === 0 ? "Обложка" : `Слайд ${imgIndex + 1}`}
+                          </span>
+                          <div className="flex-1">
+                            <ImagePicker
+                              value={img}
+                              onChange={(url) => {
+                                const next = [...arr];
+                                next[imgIndex] = url;
+                                update(i, { images: next, image: next[0] || url });
+                              }}
+                            />
+                          </div>
+                          {arr.length > 1 && (
+                            <DeleteButton
+                              label="Удалить"
+                              onDelete={() => {
+                                const next = arr.filter((_, k) => k !== imgIndex);
+                                update(i, { images: next, image: next[0] || "" });
+                              }}
+                            />
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="mt-4">
@@ -868,46 +934,7 @@ function ToursTab({
                         }
                       />
                     </Field>
-                    {!isPkg && (
-                      <Field label="Entrance tickets, paid on site (one per line)">
-                        <AutoTextarea
-                          value={(tour.tickets?.[loc] ?? []).join("\n")}
-                          onChange={(v) => {
-                            const lines = v.split("\n").filter((s) => s.trim());
-                            const tickets = {
-                              ...{ ru: [], hy: [], en: [] },
-                              ...tour.tickets,
-                              [loc]: lines,
-                            };
-                            update(i, {
-                              tickets: locales.some((l) => tickets[l].length)
-                                ? tickets
-                                : undefined,
-                            });
-                          }}
-                        />
-                      </Field>
-                    )}
                   </div>
-
-                  {!isPkg && (
-                    <InfoSectionsEditor
-                      sections={tour.infoSections?.[loc] ?? []}
-                      locale={loc}
-                      onChange={(sections) => {
-                        const all = {
-                          ...{ ru: [], hy: [], en: [] },
-                          ...tour.infoSections,
-                          [loc]: sections,
-                        };
-                        update(i, {
-                          infoSections: locales.some((l) => all[l].length)
-                            ? all
-                            : undefined,
-                        });
-                      }}
-                    />
-                  )}
 
                   {isPkg && (
                     <div className="mt-6">
@@ -1031,16 +1058,12 @@ function ImagesTab({
   aboutImage,
   onChange,
   onChangeAbout,
-  logo,
-  onChangeLogo,
   onSave,
 }: {
   images: string[];
   aboutImage: string;
   onChange: (images: string[]) => void;
   onChangeAbout: (url: string) => void;
-  logo: string;
-  onChangeLogo: (url: string) => void;
   onSave: () => void;
 }) {
   function move(i: number, dir: -1 | 1) {
@@ -1121,19 +1144,6 @@ function ImagesTab({
       </p>
       <div className="mt-4 max-w-xl">
         <ImagePicker value={aboutImage} onChange={onChangeAbout} />
-      </div>
-
-      <h2 className="mt-10 border-t border-black/5 pt-8 text-xl font-extrabold">
-        Logo
-      </h2>
-      <p className="mt-2 text-sm text-muted">
-        The round mark beside “Amaras Tour” at the top of every page, also used
-        as the icon in the browser tab. It is cropped to a circle, so use a
-        square image with the mark in the centre. PNGs under 1.5 MB keep their
-        transparent background.
-      </p>
-      <div className="mt-4 max-w-xl">
-        <ImagePicker value={logo} onChange={onChangeLogo} />
       </div>
 
       <SaveBar onSave={onSave} label="Publish all changes" />
@@ -1329,108 +1339,7 @@ function prettyKey(key: string): string {
   return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
-/* ---------- Useful information panel, per tour ---------- */
 
-// Most tours carry their own version of this panel because the inclusions,
-// weather notes and packing list differ per route. A tour with no sections here
-// falls back to the shared text in the Texts tab.
-function InfoSectionsEditor({
-  sections,
-  locale,
-  onChange,
-}: {
-  sections: InfoSection[];
-  locale: Locale;
-  onChange: (sections: InfoSection[]) => void;
-}) {
-  function update(i: number, patch: Partial<InfoSection>) {
-    onChange(sections.map((s, j) => (j === i ? { ...s, ...patch } : s)));
-  }
-
-  return (
-    <div className="mt-6">
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-semibold">
-          Useful information ({localeNames[locale]})
-        </span>
-        <button
-          type="button"
-          onClick={() =>
-            onChange([
-              ...sections,
-              { id: "", heading: "", paragraphs: [], items: [], note: "" },
-            ])
-          }
-          className="rounded-full border border-black/15 px-3 py-1 text-xs font-bold hover:border-primary hover:text-primary"
-        >
-          + Add section
-        </button>
-      </div>
-      <p className="mt-1 text-xs text-muted">
-        Leave empty to use the shared text from the Texts tab. The phone number
-        and the departure times are added automatically, so do not type them.
-      </p>
-
-      <div className="mt-3 space-y-4">
-        {sections.map((section, i) => (
-          <div
-            key={i}
-            className="rounded-xl border border-black/5 bg-black/[.02] p-4"
-          >
-            <div className="flex items-start gap-2">
-              <div className="flex-1 space-y-3">
-                <Field label="Heading">
-                  <TextInput
-                    value={section.heading}
-                    onChange={(v) => update(i, { heading: v })}
-                  />
-                </Field>
-                <Field label="Text (empty line = new paragraph)">
-                  <AutoTextarea
-                    value={section.paragraphs.join("\n\n")}
-                    onChange={(v) =>
-                      update(i, {
-                        paragraphs: v.split("\n\n").filter((s) => s.trim()),
-                      })
-                    }
-                  />
-                </Field>
-                <Field label="Bullet list (one per line)">
-                  <AutoTextarea
-                    value={section.items.join("\n")}
-                    onChange={(v) =>
-                      update(i, { items: v.split("\n").filter((s) => s.trim()) })
-                    }
-                  />
-                </Field>
-                <Field label="Closing note (bold line under the list)">
-                  <TextInput
-                    value={section.note}
-                    onChange={(v) => update(i, { note: v })}
-                  />
-                </Field>
-                <Field label="Auto-fill (booking, meeting or tickets — leave empty otherwise)">
-                  <TextInput
-                    value={section.id}
-                    onChange={(v) => update(i, { id: v.trim() })}
-                  />
-                </Field>
-              </div>
-              <button
-                type="button"
-                aria-label="Remove section"
-                onClick={() => onChange(sections.filter((_, j) => j !== i))}
-                className="rounded-full border border-red-200 px-2.5 py-1 text-xs font-bold text-red-600 hover:bg-red-50"
-              >
-                ✕
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function blankLike(value: unknown): unknown {
   if (typeof value === "string") return "";
