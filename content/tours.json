@@ -111,8 +111,7 @@
     "image": "/images/tours/hovhannavank-saghmosavank-alphabet.png",
     "departure": "10:00",
     "durationHours": "9–10",
-    "priceFromAmd": 15000,
-    "priceOldAmd": 19000,
+    "priceFromAmd": 0,
     "title": {
       "ru": "Ованаванк — Сагмосаванк — Памятник алфавиту — Майлер",
       "hy": "Հովհաննավանք — Սաղմոսավանք — Այբուբենի հուշարձան — Մայլեր",
@@ -158,8 +157,7 @@
     "image": "/images/tours/gutanasar-sevan-dilijan.png",
     "departure": "09:00",
     "durationHours": "10–11",
-    "priceFromAmd": 20000,
-    "priceOldAmd": 24000,
+    "priceFromAmd": 0,
     "title": {
       "ru": "Гутанасар — Севан — Дилижан",
       "hy": "Գութանասար — Սևան — Դիլիջան",

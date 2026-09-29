@@ -15,18 +15,18 @@
     }
   },
   {
-    "id": "individual",
-    "image": "/images/category-individual.jpg",
+    "id": "popular",
+    "image": "/images/category-popular.jpg",
     "imagePosition": "object-center",
     "title": {
-      "ru": "Индивидуальные туры",
-      "hy": "Անհատական տուրեր",
-      "en": "Individual Tours"
+      "ru": "Популярные туры",
+      "hy": "Հանրաճանաչ տուրեր",
+      "en": "Popular Tours"
     },
     "desc": {
-      "ru": "Личный гид, свой темп и маршрут, собранный под ваши пожелания.",
-      "hy": "Անձնական գիդ, ձեր տեմպը և երթուղի՝ կազմված ձեր ցանկություններով։",
-      "en": "A personal guide, your own pace and an itinerary built around your wishes."
+      "ru": "Самые востребованные и любимые путешественниками экскурсии по Армении.",
+      "hy": "Ամենապահանջված և սիրված էքսկուրսիաները Հայաստանում:",
+      "en": "The most requested and beloved journeys and excursions across Armenia."
     }
   },
   {
@@ -42,6 +42,21 @@
       "ru": "Небольшие дружные группы, насыщенная программа и выгодные цены.",
       "hy": "Փոքր ջերմ խմբեր, հագեցած ծրագիր և շահավետ գներ։",
       "en": "Small friendly groups, a rich programme and great prices."
+    }
+  },
+  {
+    "id": "individual",
+    "image": "/images/category-individual.jpg",
+    "imagePosition": "object-center",
+    "title": {
+      "ru": "Индивидуальные туры",
+      "hy": "Անհատական տուրեր",
+      "en": "Individual Tours"
+    },
+    "desc": {
+      "ru": "Личный гид, свой темп и маршрут, собранный под ваши пожелания.",
+      "hy": "Անձնական գիդ, ձեր տեմպը և երթուղի՝ կազմված ձեր ցանկություններով։",
+      "en": "A personal guide, your own pace and an itinerary built around your wishes."
     }
   },
   {

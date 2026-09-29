@@ -58,9 +58,9 @@ export default function JeepPreloader() {
               className="mb-8"
             >
               <Image
-                src="/images/amaras-logo.png"
-                alt="AMARAS"
-                width={190}
+                src="/images/amaras-logo.svg"
+                alt="AMARAS Tour"
+                width={220}
                 height={38}
                 priority
                 className="h-9 w-auto object-contain"

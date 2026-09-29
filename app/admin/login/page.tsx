@@ -37,9 +37,9 @@ export default function AdminLoginPage() {
       >
         <div className="flex items-center gap-3">
           <Image
-            src="/images/amaras-logo.png"
-            alt="AMARAS"
-            width={160}
+            src="/images/amaras-logo-dark.svg"
+            alt="AMARAS Tour"
+            width={200}
             height={36}
             className="h-8 w-auto object-contain"
             priority

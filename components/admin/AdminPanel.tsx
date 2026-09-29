@@ -142,11 +142,11 @@ export default function AdminPanel() {
         <div className="mx-auto flex h-14 max-w-[1100px] items-center justify-between px-6">
           <div className="flex items-center gap-3">
             <Image
-              src="/images/amaras-logo.png"
-              alt="AMARAS"
-              width={140}
+              src="/images/amaras-logo.svg"
+              alt="AMARAS Tour"
+              width={180}
               height={32}
-              className="h-7 w-auto object-contain brightness-0 invert"
+              className="h-7 w-auto object-contain"
               priority
             />
             <span className="rounded-full bg-[#C7FF32]/20 border border-[#C7FF32]/40 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#C7FF32]">
@@ -669,15 +669,25 @@ function ToursTab({
                   <span className="font-bold">
                     {tour.title.ru || tour.title.en || tour.slug}
                     <span className="ml-2 text-xs font-semibold text-muted">
-                      {tour.priceFromAmd > 0
-                        ? `${tour.priceFromAmd.toLocaleString("ru-RU")} ֏`
-                        : "по запросу"}
+                      {tour.categories?.includes("individual") || tour.priceFromAmd === 0
+                        ? "по запросу"
+                        : `${tour.priceFromAmd.toLocaleString("ru-RU")} ֏`}
                     </span>
                   </span>
-                  <span className="flex items-center gap-3">
+                  <span className="flex items-center gap-2">
+                    {tour.bookingDisabled && (
+                      <span className="rounded-full bg-red-100 px-2.5 py-0.5 text-[11px] font-bold text-red-700">
+                        ⛔ Бронь закрыта
+                      </span>
+                    )}
                     {(tour.featured ?? true) && (
-                      <span className="rounded-full bg-accent/15 px-2 py-0.5 text-[11px] font-bold text-accent-dark">
-                        popular
+                      <span className="rounded-full bg-accent/20 px-2 py-0.5 text-[11px] font-bold text-accent-dark">
+                        ⭐ популярный
+                      </span>
+                    )}
+                    {tour.categories?.includes("individual") && (
+                      <span className="rounded-full bg-purple-100 px-2 py-0.5 text-[11px] font-bold text-purple-700">
+                        индивидуальный
                       </span>
                     )}
                     <span className="text-muted">{open ? "–" : "+"}</span>
@@ -694,6 +704,11 @@ function ToursTab({
                         value={String(tour.priceFromAmd)}
                         onChange={(v) => update(i, { priceFromAmd: Number(v) || 0 })}
                       />
+                      {tour.categories?.includes("individual") && (
+                        <p className="mt-1 text-[11px] font-semibold text-purple-700">
+                          🔒 Для индивидуальных туров цена на сайте не показывается (По запросу)
+                        </p>
+                      )}
                     </Field>
                     <Field label="Sale — old price (optional)">
                       <TextInput
@@ -856,45 +871,141 @@ function ToursTab({
                     </div>
                   </div>
 
-                  <div className="mt-4">
-                    <label className="flex items-center gap-2 text-sm font-semibold">
-                      <input
-                        type="checkbox"
-                        checked={tour.featured ?? true}
-                        onChange={(e) => update(i, { featured: e.target.checked })}
-                      />
-                      Show in “Popular tours” on the homepage (first 6 shown, in
-                      list order — use ▲▼ to reorder)
-                    </label>
-                  </div>
-
-                  {/* Packages always stay in the fixed "packages" category, so
-                      the picker is only shown for ordinary tours. */}
+                  {/* Categories picker */}
                   {!isPkg && (
-                    <div className="mt-4">
-                      <span className="text-sm font-semibold">Categories</span>
-                      <div className="mt-1 flex flex-wrap gap-3">
+                    <div className="mt-5 rounded-2xl border border-black/5 bg-black/[.02] p-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-bold text-ink">Категории тура</span>
+                        <span className="text-xs text-muted">Тур может входить сразу в несколько категорий</span>
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-2.5">
                         {categories
                           .filter((c) => c.id !== PACKAGE_CATEGORY)
-                          .map((c) => (
-                            <label key={c.id} className="flex items-center gap-1.5 text-sm">
-                              <input
-                                type="checkbox"
-                                checked={tour.categories.includes(c.id)}
-                                onChange={(e) =>
-                                  update(i, {
-                                    categories: e.target.checked
-                                      ? [...tour.categories, c.id]
-                                      : tour.categories.filter((x) => x !== c.id),
-                                  })
-                                }
-                              />
-                              {c.title.en || c.id}
-                            </label>
-                          ))}
+                          .map((c) => {
+                            const isSelected = tour.categories.includes(c.id);
+                            return (
+                              <label
+                                key={c.id}
+                                className={`inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-semibold cursor-pointer transition-all ${
+                                  isSelected
+                                    ? "border-primary bg-primary/10 text-primary shadow-xs"
+                                    : "border-black/10 bg-white text-ink hover:border-black/25"
+                                }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  onChange={(e) => {
+                                    const isChecked = e.target.checked;
+                                    const nextCats = isChecked
+                                      ? Array.from(new Set([...tour.categories, c.id]))
+                                      : tour.categories.filter((x) => x !== c.id);
+                                    const patch: Partial<Tour> = { categories: nextCats };
+                                    if (c.id === "popular") {
+                                      patch.featured = isChecked;
+                                    }
+                                    update(i, patch);
+                                  }}
+                                  className="h-3.5 w-3.5 rounded text-primary focus:ring-primary"
+                                />
+                                <span>{c.title.ru || c.title.en || c.id}</span>
+                                <span className="text-[10px] text-muted">({c.id})</span>
+                              </label>
+                            );
+                          })}
+                      </div>
+
+                      <div className="mt-3 space-y-1.5 pt-2 border-t border-black/5 text-xs">
+                        <label className="flex items-center gap-2 font-medium text-ink cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={tour.featured ?? true}
+                            onChange={(e) => {
+                              const isChecked = e.target.checked;
+                              const nextCats = isChecked
+                                ? Array.from(new Set([...tour.categories, "popular"]))
+                                : tour.categories.filter((x) => x !== "popular");
+                              update(i, { featured: isChecked, categories: nextCats });
+                            }}
+                            className="h-3.5 w-3.5 rounded text-primary focus:ring-primary"
+                          />
+                          <span>Отображать в блоке «Популярные туры» на главной странице</span>
+                        </label>
+
+                        {tour.categories.includes("individual") && (
+                          <p className="flex items-center gap-1.5 text-purple-700 bg-purple-50 px-2.5 py-1 rounded-lg font-medium">
+                            <span>✨</span>
+                            <span>Выбрана категория «Индивидуальный»: на сайте фиксированная цена будет скрыта и тур отобразится «По запросу».</span>
+                          </p>
+                        )}
                       </div>
                     </div>
                   )}
+
+                  {/* Приостановка / Отмена бронирования тура */}
+                  <div className="mt-4 rounded-2xl border border-red-200/80 bg-red-50/70 p-4 transition-all">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                      <label className="flex items-center gap-2.5 text-sm font-bold text-red-950 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={Boolean(tour.bookingDisabled)}
+                          onChange={(e) => {
+                            const disabled = e.target.checked;
+                            update(i, {
+                              bookingDisabled: disabled,
+                              bookingNotice: disabled
+                                ? tour.bookingNotice || {
+                                    ru: "Места временно закончились. Ближайшие доступные даты уточняйте у менеджера.",
+                                    en: "Bookings temporarily paused. Please contact us for the next available dates.",
+                                    hy: "Ամրագրումը ժամանակավորապես դադարեցված է: Հաջորդ հասանելի օրերի համար կապվեք մեզ հետ:",
+                                  }
+                                : tour.bookingNotice,
+                            });
+                          }}
+                          className="h-4 w-4 rounded border-red-300 text-red-600 focus:ring-red-500"
+                        />
+                        <span>⛔ Приостановить / отменить бронирование этого тура</span>
+                      </label>
+                      {tour.bookingDisabled && (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-red-200/80 px-2.5 py-0.5 text-xs font-bold text-red-900">
+                          Бронь закрыта на сайте
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1 text-xs text-red-800 leading-relaxed">
+                      При включении кнопка онлайн-бронирования меняется на запрос в WhatsApp, а на карточке и на странице тура выводится сообщение о доступности (например, когда освободятся места).
+                    </p>
+
+                    {tour.bookingDisabled && (
+                      <div className="mt-3.5 pt-3 border-t border-red-200/70">
+                        <Field label={`Сообщение для клиентов (${loc.toUpperCase()}): когда тур снова доступен, даты или причина`}>
+                          <TextInput
+                            placeholder={
+                              loc === "ru"
+                                ? "Например: Места на эту неделю закончились. Ближайшие свободные даты — с 15 числа."
+                                : loc === "en"
+                                ? "E.g. Fully booked this week. Next available dates start on the 15th."
+                                : "Օրինակ՝ Այս շաբաթվա տեղերը սպառված են: Հաջորդ հասանելի օրերը՝ ամսի 15-ից:"
+                            }
+                            value={tour.bookingNotice?.[loc] || ""}
+                            onChange={(v) =>
+                              update(i, {
+                                bookingNotice: {
+                                  ru: tour.bookingNotice?.ru || "",
+                                  en: tour.bookingNotice?.en || "",
+                                  hy: tour.bookingNotice?.hy || "",
+                                  [loc]: v,
+                                },
+                              })
+                            }
+                          />
+                        </Field>
+                        <p className="mt-1 text-[11px] text-red-700">
+                          Вы можете ввести текст для каждого языка, переключая вкладки RU / HY / EN ниже в разделе «Texts».
+                        </p>
+                      </div>
+                    )}
+                  </div>
 
                   <div className="mt-5 flex items-center justify-between">
                     <span className="text-sm font-semibold">Texts</span>

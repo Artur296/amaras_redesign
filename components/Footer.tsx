@@ -44,9 +44,9 @@ export default function Footer({
           <div className="space-y-4">
             <Link href={`/${locale}`} className="inline-block transition-transform hover:scale-105">
               <Image
-                src="/images/amaras-logo.png"
-                alt="AMARAS"
-                width={175}
+                src="/images/amaras-logo.svg"
+                alt="AMARAS Tour"
+                width={220}
                 height={35}
                 className="h-8 w-auto object-contain"
               />

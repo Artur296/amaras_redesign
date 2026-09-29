@@ -63,11 +63,15 @@ export default function TourCard({
             ))}
           </div>
 
-          {discount !== null && (
+          {tour.bookingDisabled ? (
+            <span className="rounded-full bg-amber-500 px-2.5 py-1 text-xs font-black text-white shadow-sm">
+              {locale === "ru" ? "Даты уточняются" : locale === "hy" ? "Ճշտել օրերը" : "Dates pending"}
+            </span>
+          ) : discount !== null ? (
             <span className="rounded-full bg-[#C7FF32] px-2.5 py-1 text-xs font-black text-[#312F2F] shadow-sm">
               −{discount}%
             </span>
-          )}
+          ) : null}
         </div>
 
         {/* Bottom Tag on image (Duration & Rating) */}
@@ -106,26 +110,51 @@ export default function TourCard({
         {/* Pricing & CTA */}
         <div className="mt-5 flex items-end justify-between gap-3 border-t border-[#EAE9E0] pt-4">
           <div>
-            <span className="block text-[11px] font-bold uppercase tracking-wider text-[#6B6967]">
-              {dict.tours.from}
-            </span>
-            <div className="mt-0.5 flex items-baseline gap-2">
-              {tour.priceOldAmd && (
-                <s className="text-xs font-bold text-[#6B6967]/70">
-                  {formatPrice(tour.priceOldAmd)}
-                </s>
-              )}
-              <span className="text-xl font-black text-[#312F2F]">
-                {hasPrice(tour) ? formatPrice(tour.priceFromAmd) : dict.tours.onRequest}
-              </span>
-            </div>
+            {hasPrice(tour) ? (
+              <>
+                <span className="block text-[11px] font-bold uppercase tracking-wider text-[#6B6967]">
+                  {dict.tours.from}
+                </span>
+                <div className="mt-0.5 flex items-baseline gap-2">
+                  {tour.priceOldAmd && (
+                    <s className="text-xs font-bold text-[#6B6967]/70">
+                      {formatPrice(tour.priceOldAmd)}
+                    </s>
+                  )}
+                  <span className="text-xl font-black text-[#312F2F]">
+                    {formatPrice(tour.priceFromAmd)}
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div>
+                <span className="block text-[11px] font-bold uppercase tracking-wider text-[#6B6967]">
+                  {locale === "ru" ? "Формат" : locale === "hy" ? "Ձևաչափ" : "Format"}
+                </span>
+                <span className="mt-0.5 block text-base font-black text-[#586EFF]">
+                  {dict.tours.onRequest}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="shrink-0">
             <BookButton
-              label={dict.tours.book}
-              message={`${dict.tours.bookMessage} ${tour.title[locale]}`}
-              variant="primary"
+              label={
+                tour.bookingDisabled
+                  ? (locale === "ru" ? "Уточнить" : locale === "hy" ? "Ճշտել" : "Inquire")
+                  : dict.tours.book
+              }
+              message={
+                tour.bookingDisabled
+                  ? (locale === "ru"
+                      ? `Здравствуйте! Подскажите, когда будут свободные даты на тур: ${tour.title[locale]}`
+                      : locale === "hy"
+                      ? `Բարև ձեզ: Կասե՞ք, երբ կլինեն ազատ օրեր տուրի համար՝ ${tour.title[locale]}`
+                      : `Hello! Could you let me know upcoming available dates for: ${tour.title[locale]}`)
+                  : `${dict.tours.bookMessage} ${tour.title[locale]}`
+              }
+              variant={tour.bookingDisabled ? "dark" : "primary"}
               size="sm"
             />
           </div>

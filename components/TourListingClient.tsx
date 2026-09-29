@@ -26,6 +26,7 @@ export default function TourListingClient({
 
   const categoryTabs = [
     { id: "all", label: locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլորը" : "All Tours" },
+    { id: "popular", label: locale === "ru" ? "⭐ Популярные" : locale === "hy" ? "⭐ Հանրաճանաչ" : "⭐ Popular" },
     { id: "group", label: locale === "ru" ? "Групповые" : locale === "hy" ? "Խմբային" : "Group Tours" },
     { id: "individual", label: locale === "ru" ? "Индивидуальные" : locale === "hy" ? "Անհատական" : "Private Tours" },
     { id: "jeep", label: locale === "ru" ? "Джип-туры 4x4" : locale === "hy" ? "Ջիպ 4x4" : "4x4 Jeep Expeditions" },
@@ -35,8 +36,13 @@ export default function TourListingClient({
     return tours
       .filter((tour) => {
         // Category filter
-        if (selectedCategory !== "all" && !tour.categories.includes(selectedCategory)) {
-          return false;
+        if (selectedCategory !== "all") {
+          if (selectedCategory === "popular") {
+            const isPop = (tour.featured ?? true) || tour.categories.includes("popular");
+            if (!isPop) return false;
+          } else if (!tour.categories.includes(selectedCategory)) {
+            return false;
+          }
         }
 
         // Search query filter (title, destinations, description)

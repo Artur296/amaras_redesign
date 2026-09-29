@@ -222,23 +222,45 @@ export default function TourDetail({
             <div className="rounded-3xl border border-[#EAE9E0] bg-white p-7 shadow-xl">
               {/* Pricing Box */}
               <div className="border-b border-[#EAE9E0] pb-6">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6967]">
-                  {dict.tours.from}
-                </span>
-                <div className="mt-1 flex items-baseline gap-3">
-                  {tour.priceOldAmd && (
-                    <s className="text-sm font-bold text-[#6B6967]/60">
-                      {formatPrice(tour.priceOldAmd)}
-                    </s>
-                  )}
-                  <span className="text-3xl font-black text-[#312F2F]">
-                    {hasPrice(tour) ? formatPrice(tour.priceFromAmd) : dict.tours.onRequest}
-                  </span>
-                </div>
-                {discount !== null && (
-                  <span className="mt-2 inline-block rounded-full bg-[#C7FF32] px-3 py-0.5 text-xs font-black text-[#312F2F]">
-                    {locale === "ru" ? `Экономия ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}` : `Save ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}`}
-                  </span>
+                {hasPrice(tour) ? (
+                  <>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6967]">
+                      {dict.tours.from}
+                    </span>
+                    <div className="mt-1 flex items-baseline gap-3">
+                      {tour.priceOldAmd && (
+                        <s className="text-sm font-bold text-[#6B6967]/60">
+                          {formatPrice(tour.priceOldAmd)}
+                        </s>
+                      )}
+                      <span className="text-3xl font-black text-[#312F2F]">
+                        {formatPrice(tour.priceFromAmd)}
+                      </span>
+                    </div>
+                    {discount !== null && (
+                      <span className="mt-2 inline-block rounded-full bg-[#C7FF32] px-3 py-0.5 text-xs font-black text-[#312F2F]">
+                        {locale === "ru" ? `Экономия ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}` : `Save ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}`}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B6967]">
+                      {locale === "ru" ? "Стоимость тура" : locale === "hy" ? "Արժեքը" : "Tour Pricing"}
+                    </span>
+                    <div className="mt-1">
+                      <span className="text-2xl font-black text-[#586EFF]">
+                        {dict.tours.onRequest}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-[#6B6967]">
+                      {locale === "ru"
+                        ? "Индивидуальный расчет под ваши даты, количество гостей и класс авто."
+                        : locale === "hy"
+                        ? "Անհատական հաշվարկ՝ ըստ ձեր ամսաթվերի, հյուրերի քանակի և ավտոմեքենայի դասի:"
+                        : "Custom quote tailored to your dates, group size, and car class."}
+                    </p>
+                  </div>
                 )}
               </div>
 
@@ -266,15 +288,61 @@ export default function TourDetail({
                 </div>
               </div>
 
-              {/* CTA Booking Button */}
-              <div className="pt-2">
-                <BookButton
-                  label={dict.tours.book}
-                  message={`${dict.tours.bookMessage} ${tour.title[locale]}`}
-                  variant="primary"
-                  size="lg"
-                />
-              </div>
+              {/* CTA Booking Button / Notice */}
+              {tour.bookingDisabled ? (
+                <div className="pt-2 space-y-3">
+                  <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-amber-900 shadow-sm">
+                    <div className="flex items-start gap-2.5">
+                      <span className="text-xl shrink-0">⚠️</span>
+                      <div>
+                        <span className="block text-xs font-black uppercase tracking-wider text-amber-950">
+                          {locale === "ru"
+                            ? "Бронирование временно приостановлено"
+                            : locale === "hy"
+                            ? "Ամրագրումը ժամանակավորապես դադարեցված է"
+                            : "Booking Temporarily Paused"}
+                        </span>
+                        <p className="mt-1 text-xs leading-relaxed text-amber-900 font-medium">
+                          {tour.bookingNotice?.[locale] ||
+                            (locale === "ru"
+                              ? "На текущие даты запись закрыта. Уточняйте ближайшие свободные места у координатора."
+                              : locale === "hy"
+                              ? "Ընթացիկ ամսաթվերին տեղերը սպառված են: Ճշտեք առաջիկա ազատ օրերը կոորդինատորից:"
+                              : "Currently fully booked. Please contact our coordinator for upcoming dates.")}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <BookButton
+                    label={
+                      locale === "ru"
+                        ? "Узнать о доступных датах"
+                        : locale === "hy"
+                        ? "Ճշտել հասանելի օրերը"
+                        : "Check Available Dates"
+                    }
+                    message={
+                      locale === "ru"
+                        ? `Здравствуйте! Хочу уточнить доступные даты для тура: ${tour.title[locale]}`
+                        : locale === "hy"
+                        ? `Բարև ձեզ: Ցանկանում եմ ճշտել հասանելի օրերը տուրի համար՝ ${tour.title[locale]}`
+                        : `Hello! I would like to check available dates for: ${tour.title[locale]}`
+                    }
+                    variant="primary"
+                    size="lg"
+                  />
+                </div>
+              ) : (
+                <div className="pt-2">
+                  <BookButton
+                    label={dict.tours.book}
+                    message={`${dict.tours.bookMessage} ${tour.title[locale]}`}
+                    variant="primary"
+                    size="lg"
+                  />
+                </div>
+              )}
 
               {/* Direct Telephone */}
               <div className="mt-4 text-center">

@@ -37,12 +37,12 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
         >
           <div className="relative h-10 flex items-center">
             <Image
-              src="/images/amaras-logo.png"
-              alt="AMARAS Tours"
-              width={185}
+              src="/images/amaras-logo.svg"
+              alt="AMARAS Tour"
+              width={260}
               height={36}
               priority
-              className="h-9 w-auto object-contain transition-all duration-300 group-hover:brightness-110"
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 group-hover:brightness-110"
             />
           </div>
         </Link>

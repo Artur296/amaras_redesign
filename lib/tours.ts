@@ -22,6 +22,17 @@ export const defaultCategories: Category[] = [
     },
   },
   {
+    id: "popular",
+    image: "/images/category-popular.jpg",
+    imagePosition: "object-center",
+    title: { ru: "Популярные туры", hy: "Հանրաճանաչ տուրեր", en: "Popular Tours" },
+    desc: {
+      ru: "Самые востребованные и любимые путешественниками экскурсии по Армении.",
+      hy: "Ամենապահանջված և սիրված էքսկուրսիաները Հայաստանում:",
+      en: "The most requested and beloved journeys and excursions across Armenia.",
+    },
+  },
+  {
     id: "individual",
     image: "/images/category-individual.jpg",
     imagePosition: "object-center",
@@ -99,6 +110,9 @@ export type Tour = {
   // caveats, packing list — carries the whole panel here instead, and the
   // shared sections are not used for it.
   infoSections?: Record<Locale, InfoSection[]>;
+  // Cancellation / booking status controls:
+  bookingDisabled?: boolean;
+  bookingNotice?: Record<Locale, string>;
 };
 
 // Real tours from amarastour.tilda.ws (prices, times, routes and category
@@ -712,9 +726,10 @@ export function discountPercent(tour: Tour): number | null {
   return Math.round((1 - tour.priceFromAmd / tour.priceOldAmd) * 100);
 }
 
-// Private tours are priced per request (car class, group size, guide or
-// driver), so they carry no number and show "price on request" instead.
+// Private / individual tours are priced per request (car class, group size,
+// guide or driver), so they carry no fixed number and show "price on request".
 export function hasPrice(tour: Tour): boolean {
+  if (tour.categories.includes("individual")) return false;
   return tour.priceFromAmd > 0;
 }
 
