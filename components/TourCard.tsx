@@ -38,9 +38,9 @@ export default function TourCard({
     : `${tour.durationHours} ${dict.tours.hours}`;
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#EAE9E0] bg-white shadow-[0_2px_12px_rgba(49,47,47,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#586EFF]/40 hover:shadow-[0_16px_36px_rgba(49,47,47,0.12)]">
+    <article className="group flex h-full flex-col rounded-3xl border border-[#EAE9E0] bg-white shadow-[0_2px_12px_rgba(49,47,47,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#586EFF]/40 hover:shadow-[0_16px_36px_rgba(49,47,47,0.12)]">
       {/* Tour Image with Badges */}
-      <Link href={href} className="relative block aspect-[16/11] overflow-hidden bg-black/5">
+      <Link href={href} className="relative block aspect-[16/11] overflow-hidden rounded-t-[23px] bg-black/5">
         <Image
           src={tour.image}
           alt={tour.title[locale]}

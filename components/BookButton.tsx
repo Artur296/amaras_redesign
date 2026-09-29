@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { useLinks } from "@/components/SiteProvider";
 import { TelegramIcon, WhatsAppIcon } from "@/components/icons";
@@ -19,7 +20,34 @@ export default function BookButton({
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const links = useLinks();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
+  // Lock background scroll when modal is active
+  useEffect(() => {
+    if (!mounted) return;
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [open, mounted]);
 
   const whatsappHref = message
     ? `${links.whatsapp}?text=${encodeURIComponent(message)}`
@@ -29,18 +57,18 @@ export default function BookButton({
     {
       href: whatsappHref,
       label: "WhatsApp",
-      subtitle: "Instant response",
+      subtitle: "Быстрый ответ • Онлайн",
       icon: WhatsAppIcon,
       badgeColor: "bg-[#25D366]",
-      textColor: "text-[#25D366]",
+      hoverBorder: "hover:border-[#25D366] hover:bg-[#25D366]/5",
     },
     {
       href: links.telegram,
       label: "Telegram",
-      subtitle: "Chat with manager",
+      subtitle: "Чат с менеджером туров",
       icon: TelegramIcon,
       badgeColor: "bg-[#229ED9]",
-      textColor: "text-[#229ED9]",
+      hoverBorder: "hover:border-[#229ED9] hover:bg-[#229ED9]/5",
     },
   ];
 
@@ -66,75 +94,118 @@ export default function BookButton({
       <div className={`relative inline-flex items-center rounded-full ${className || "w-full"}`}>
         <button
           type="button"
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen(true)}
           aria-expanded={open}
-          aria-haspopup="menu"
+          aria-haspopup="dialog"
           className={`flex w-full items-center justify-center gap-2 rounded-full font-bold transition-all duration-200 active:scale-[0.98] ${sizeClasses} ${variantClasses}`}
         >
           <span>{label}</span>
           <svg
             viewBox="0 0 20 20"
             fill="currentColor"
-            className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            className="h-3.5 w-3.5 opacity-80"
             aria-hidden="true"
           >
             <path
               fillRule="evenodd"
-              d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+              d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
               clipRule="evenodd"
             />
           </svg>
         </button>
 
-        <AnimatePresence>
-          {open && (
-            <>
-              <button
-                type="button"
-                aria-hidden="true"
-                tabIndex={-1}
-                onClick={() => setOpen(false)}
-                className="fixed inset-0 z-30 cursor-default"
-              />
-              <motion.div
-                role="menu"
-                initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                transition={{ duration: 0.16, ease: "easeOut" }}
-                className="absolute bottom-full left-0 right-0 z-40 mb-2 min-w-[220px] overflow-hidden rounded-2xl border border-black/10 bg-white p-1.5 shadow-2xl ring-1 ring-black/5"
-              >
-                <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-muted">
-                  Choose messenger
-                </div>
-                {options.map((option) => (
-                  <a
-                    key={option.label}
-                    href={option.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    role="menuitem"
+        {mounted &&
+          createPortal(
+            <AnimatePresence>
+              {open && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
+                  {/* Backdrop overlay */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.18 }}
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-[#F7F7F0]"
+                    className="fixed inset-0 bg-black/60 backdrop-blur-xs cursor-pointer"
+                  />
+
+                  {/* Modal Dialog */}
+                  <motion.div
+                    role="dialog"
+                    aria-modal="true"
+                    initial={{ opacity: 0, scale: 0.94, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.94, y: 10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="relative z-10 w-full max-w-[380px] overflow-hidden rounded-3xl border border-black/10 bg-white p-6 shadow-2xl"
                   >
-                    <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${option.badgeColor} text-white`}>
-                      <option.icon className="h-4 w-4" />
-                    </span>
-                    <div className="flex-1">
-                      <span className="block text-sm font-bold text-[#312F2F]">
-                        {option.label}
-                      </span>
-                      <span className="block text-[11px] text-muted">
-                        {option.subtitle}
+                    {/* Header */}
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
+                          Бронирование и консультация
+                        </span>
+                        <h3 className="mt-0.5 text-xl font-black text-[#312F2F]">
+                          Выберите мессенджер
+                        </h3>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setOpen(false)}
+                        aria-label="Закрыть"
+                        className="flex h-8 w-8 items-center justify-center rounded-full bg-black/5 text-[#312F2F] transition-colors hover:bg-black/10 hover:text-black"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <p className="mt-2 text-xs text-[#6B6967] leading-relaxed">
+                      Напишите нам — менеджер ответит в течение 5 минут, согласует дату и забронирует тур.
+                    </p>
+
+                    {/* Messenger Cards */}
+                    <div className="mt-5 space-y-2.5">
+                      {options.map((option) => (
+                        <a
+                          key={option.label}
+                          href={option.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setOpen(false)}
+                          className={`group flex items-center gap-3.5 rounded-2xl border border-black/10 bg-[#FCFCF7] p-3.5 transition-all duration-200 ${option.hoverBorder} hover:shadow-md active:scale-[0.99]`}
+                        >
+                          <span
+                            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${option.badgeColor} text-white shadow-md transition-transform group-hover:scale-105`}
+                          >
+                            <option.icon className="h-6 w-6" />
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <span className="block text-base font-bold text-[#312F2F]">
+                              {option.label}
+                            </span>
+                            <span className="block text-xs text-muted">
+                              {option.subtitle}
+                            </span>
+                          </div>
+                          <span className="text-lg font-bold text-[#312F2F]/40 transition-transform group-hover:translate-x-1 group-hover:text-primary">
+                            →
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+
+                    {/* Footer badge */}
+                    <div className="mt-5 pt-3.5 border-t border-black/5 text-center">
+                      <span className="text-[11px] font-semibold text-muted">
+                        ⚡ Без комиссии • Быстрый ответ 24/7
                       </span>
                     </div>
-                    <span className="text-xs font-semibold text-primary">→</span>
-                  </a>
-                ))}
-              </motion.div>
-            </>
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>,
+            document.body
           )}
-        </AnimatePresence>
       </div>
     </MotionConfig>
   );
