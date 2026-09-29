@@ -1529,6 +1529,52 @@
     "durationHours": "10–11"
   },
   {
+    "slug": "khor-virap-areni-noravank-shaki",
+    "image": "",
+    "title": {
+      "ru": "Хор Вирап — Арени — Нораванк — водопад Шаки",
+      "hy": "Խոր Վիրապ, Արենի, Նորավանք և Շաքի ջրվեժ",
+      "en": "Khor Virap, Areni, Noravank and Shaki Waterfall"
+    },
+    "description": {
+      "ru": "Большой день на юге Армении: Арарат, вино, монастырь Нораванк и водопад Шаки.",
+      "hy": "Հագեցած օր Հայաստանի հարավում՝ Արարատ, գինի, Նորավանք և Շաքի ջրվեժ։",
+      "en": "A full southern Armenia day with Ararat views, wine, Noravank and Shaki Waterfall."
+    },
+    "about": {
+      "ru": "Этот насыщенный маршрут объединяет панораму Арарата из Хор Вирапа, винный регион Арени и краснокаменный монастырь Нораванк. Завершите путешествие у мощного водопада Шаки среди каньонов и горных пейзажей Сюника.",
+      "hy": "Այս ամբողջական երթուղին միավորում է Խոր Վիրապից բացվող Արարատի համայնապատկերը, Արենիի գինու շրջանը և կարմիր քարե Նորավանքը։ Ճանապարհորդությունը կավարտեք հզոր Շաքի ջրվեժի մոտ՝ Սյունիքի կիրճերի ու լեռների միջավայրում։",
+      "en": "This full-day route combines the Ararat panorama from Khor Virap, the wine country of Areni and the red-stone Noravank Monastery. Finish at powerful Shaki Waterfall among the canyons and mountain landscapes of Syunik."
+    },
+    "destinations": {
+      "ru": [
+        "Монастырь Хор Вирап",
+        "Винный тур и дегустация в Арени",
+        "Монастырь Нораванк",
+        "Водопад Шаки"
+      ],
+      "hy": [
+        "Խոր Վիրապ",
+        "Արենիի գինու շրջայց և համտես",
+        "Նորավանք",
+        "Շաքի ջրվեժ"
+      ],
+      "en": [
+        "Khor Virap",
+        "Areni Wine Tour and Tasting",
+        "Noravank Monastery",
+        "Shaki Waterfall"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 25000,
+    "departure": "07:30",
+    "durationHours": "13–14"
+  },
+  {
     "slug": "jeep-mount-dimats",
     "image": "",
     "title": {
@@ -1568,7 +1614,8 @@
     },
     "categories": [
       "popular",
-      "jeep"
+      "jeep",
+      "group"
     ],
     "priceFromAmd": 25000,
     "departure": "08:00",
@@ -1611,7 +1658,8 @@
     },
     "categories": [
       "popular",
-      "jeep"
+      "jeep",
+      "group"
     ],
     "priceFromAmd": 25000,
     "departure": "08:00",
@@ -1660,7 +1708,8 @@
     },
     "categories": [
       "popular",
-      "jeep"
+      "jeep",
+      "group"
     ],
     "priceFromAmd": 25000,
     "departure": "09:00",
@@ -1703,7 +1752,8 @@
     },
     "categories": [
       "popular",
-      "jeep"
+      "jeep",
+      "group"
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
@@ -1743,7 +1793,8 @@
     },
     "categories": [
       "popular",
-      "jeep"
+      "jeep",
+      "group"
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
@@ -1786,7 +1837,8 @@
     },
     "categories": [
       "popular",
-      "jeep"
+      "jeep",
+      "group"
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
@@ -1832,56 +1884,11 @@
     },
     "categories": [
       "popular",
-      "jeep"
+      "jeep",
+      "group"
     ],
     "priceFromAmd": 45000,
     "departure": "05:30",
     "durationHours": "16–18"
-  },
-  {
-    "slug": "khor-virap-areni-noravank-shaki",
-    "image": "",
-    "title": {
-      "ru": "Хор Вирап — Арени — Нораванк — водопад Шаки",
-      "hy": "Խոր Վիրապ, Արենի, Նորավանք և Շաքի ջրվեժ",
-      "en": "Khor Virap, Areni, Noravank and Shaki Waterfall"
-    },
-    "description": {
-      "ru": "Большой день на юге Армении: Арарат, вино, монастырь Нораванк и водопад Шаки.",
-      "hy": "Հագեցած օր Հայաստանի հարավում՝ Արարատ, գինի, Նորավանք և Շաքի ջրվեժ։",
-      "en": "A full southern Armenia day with Ararat views, wine, Noravank and Shaki Waterfall."
-    },
-    "about": {
-      "ru": "Этот насыщенный маршрут объединяет панораму Арарата из Хор Вирапа, винный регион Арени и краснокаменный монастырь Нораванк. Завершите путешествие у мощного водопада Шаки среди каньонов и горных пейзажей Сюника.",
-      "hy": "Այս ամբողջական երթուղին միավորում է Խոր Վիրապից բացվող Արարատի համայնապատկերը, Արենիի գինու շրջանը և կարմիր քարե Նորավանքը։ Ճանապարհորդությունը կավարտեք հզոր Շաքի ջրվեժի մոտ՝ Սյունիքի կիրճերի ու լեռների միջավայրում։",
-      "en": "This full-day route combines the Ararat panorama from Khor Virap, the wine country of Areni and the red-stone Noravank Monastery. Finish at powerful Shaki Waterfall among the canyons and mountain landscapes of Syunik."
-    },
-    "destinations": {
-      "ru": [
-        "Монастырь Хор Вирап",
-        "Винный тур и дегустация в Арени",
-        "Монастырь Нораванк",
-        "Водопад Шаки"
-      ],
-      "hy": [
-        "Խոր Վիրապ",
-        "Արենիի գինու շրջայց և համտես",
-        "Նորավանք",
-        "Շաքի ջրվեժ"
-      ],
-      "en": [
-        "Khor Virap",
-        "Areni Wine Tour and Tasting",
-        "Noravank Monastery",
-        "Shaki Waterfall"
-      ]
-    },
-    "categories": [
-      "popular",
-      "group"
-    ],
-    "priceFromAmd": 25000,
-    "departure": "07:30",
-    "durationHours": "13–14"
   }
 ]
