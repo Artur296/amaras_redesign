@@ -100,7 +100,7 @@ export default function TourCard({
         {/* Key Tour Specs / Inclusions */}
         <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[#EAE9E0] pt-3 text-xs text-[#6B6967]">
           <span className="flex items-center gap-1">
-            <span>🚐</span> {tour.departure ? `${dict.tour.departure}: ${tour.departure}` : (locale === "ru" ? "Комфортный трансфер" : "Comfort transfer")}
+            <span>🚐</span> {tour.departure ? `${dict.tour.departure}: ${tour.departure}` : (locale === "ru" ? "Комфортный трансфер" : locale === "hy" ? "Հարմարավետ տրանսֆեր" : "Comfort transfer")}
           </span>
           <span className="flex items-center gap-1">
             <span>🗣</span> RU • HY • EN

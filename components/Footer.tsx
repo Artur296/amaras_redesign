@@ -32,7 +32,7 @@ export default function Footer({
   const categories = [
     { href: `/${locale}/tours/group`, label: locale === "ru" ? "Групповые туры" : locale === "hy" ? "Խմբային տուրեր" : "Group Tours" },
     { href: `/${locale}/tours/individual`, label: locale === "ru" ? "Индивидуальные туры" : locale === "hy" ? "Անհատական տուրեր" : "Private Tours" },
-    { href: `/${locale}/tours/jeep`, label: locale === "ru" ? "Джип-туры" : locale === "hy" ? "Ջիպ տուրեր" : "4x4 Jeep Tours" },
+    { href: `/${locale}/tours/jeep`, label: locale === "ru" ? "Джип-туры" : locale === "hy" ? "Ջիպ-տուրեր" : "4x4 Jeep Tours" },
     { href: `/${locale}/tour-packages`, label: locale === "ru" ? "Тур-пакеты" : locale === "hy" ? "Տուր փաթեթներ" : "Tour Packages" },
   ];
 

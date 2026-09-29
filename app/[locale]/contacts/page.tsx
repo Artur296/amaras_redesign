@@ -42,10 +42,10 @@ export default async function ContactsPage({ params }: Props) {
     {
       href: links.whatsapp,
       label: "WhatsApp",
-      subtitle: "Быстрый ответ / Fast reply",
+      subtitle: locale === "ru" ? "Быстрый ответ" : locale === "hy" ? "Արագ պատասխան" : "Fast reply",
       value: site.phone,
       icon: WhatsAppIcon,
-      badge: "Рекомендуем / Recommended",
+      badge: locale === "ru" ? "Рекомендуем" : locale === "hy" ? "Խորհուրդ ենք տալիս" : "Recommended",
       accent: "#C7FF32",
       textColor: "text-[#312F2F]",
       btnBg: "bg-[#25D366] text-white hover:bg-[#20ba59]",
@@ -54,10 +54,10 @@ export default async function ContactsPage({ params }: Props) {
     {
       href: links.telegram,
       label: "Telegram",
-      subtitle: "Консультация и бронь",
+      subtitle: locale === "ru" ? "Консультация и бронь" : locale === "hy" ? "Խորհրդատվություն և ամրագրում" : "Consultation & booking",
       value: `@${site.telegram}`,
       icon: TelegramIcon,
-      badge: "Онлайн / Online",
+      badge: locale === "ru" ? "Онлайн" : locale === "hy" ? "Օնլայն" : "Online",
       accent: "#586EFF",
       textColor: "text-white",
       btnBg: "bg-[#586EFF] text-white hover:bg-[#475ce6]",
@@ -66,7 +66,7 @@ export default async function ContactsPage({ params }: Props) {
     {
       href: links.phone,
       label: dict.contacts.phone,
-      subtitle: "Прямой звонок гиду",
+      subtitle: locale === "ru" ? "Прямой звонок гиду" : locale === "hy" ? "Ուղիղ զանգ գիդին" : "Direct call to guide",
       value: site.phone,
       icon: PhoneIcon,
       accent: "#FCFCF7",
@@ -77,7 +77,7 @@ export default async function ContactsPage({ params }: Props) {
     {
       href: links.instagram,
       label: "Instagram",
-      subtitle: "Фото и отзывы путешествий",
+      subtitle: locale === "ru" ? "Фото и отзывы путешествий" : locale === "hy" ? "Լուսանկարներ և կարծիքներ" : "Travel photos & reviews",
       value: `@${site.instagram}`,
       icon: InstagramIcon,
       accent: "#E1306C",
@@ -88,7 +88,7 @@ export default async function ContactsPage({ params }: Props) {
     {
       href: links.email,
       label: dict.contacts.email,
-      subtitle: "Для партнерств и агентств",
+      subtitle: locale === "ru" ? "Для партнерств и агентств" : locale === "hy" ? "Գործընկերների համար" : "For partners & agencies",
       value: site.email,
       icon: MailIcon,
       accent: "#FCFCF7",
@@ -130,7 +130,7 @@ export default async function ContactsPage({ params }: Props) {
 
           <FadeIn>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#C7FF32]/30 bg-[#C7FF32]/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#C7FF32]">
-              24/7 SUPPORT & BOOKING
+              {locale === "ru" ? "24/7 ПОДДЕРЖКА И БРОНИРОВАНИЕ" : locale === "hy" ? "24/7 ԱՋԱԿՑՈՒԹՅՈՒՆ ԵՎ ԱՄՐԱԳՐՈՒՄ" : "24/7 SUPPORT & BOOKING"}
             </div>
             <h1 className="mt-4 text-3xl font-black tracking-tight text-[#FCFCF7] sm:text-5xl md:text-6xl">
               {dict.contacts.title}
@@ -149,7 +149,7 @@ export default async function ContactsPage({ params }: Props) {
           <div className="space-y-4 lg:col-span-7">
             <FadeIn>
               <h2 className="mb-6 text-xl font-bold uppercase tracking-wider text-[#C7FF32]">
-                Прямая связь / Direct Channels
+                {locale === "ru" ? "Прямая связь" : locale === "hy" ? "Ուղիղ կապ" : "Direct Channels"}
               </h2>
             </FadeIn>
 
@@ -187,7 +187,7 @@ export default async function ContactsPage({ params }: Props) {
 
                     <div className="mt-5">
                       <span className={`inline-flex w-full items-center justify-center rounded-xl px-4 py-2.5 text-xs font-bold transition-all ${item.btnBg}`}>
-                        Написать / Открыть →
+                        {locale === "ru" ? "Написать / Открыть →" : locale === "hy" ? "Գրել / Բացել →" : "Contact / Open →"}
                       </span>
                     </div>
                   </a>
@@ -200,7 +200,7 @@ export default async function ContactsPage({ params }: Props) {
           <div className="space-y-6 lg:col-span-5">
             <FadeIn delay={0.1}>
               <h2 className="mb-6 text-xl font-bold uppercase tracking-wider text-[#586EFF]">
-                Локация и Сбор / Location
+                {locale === "ru" ? "Локация и сбор" : locale === "hy" ? "Տեղադրություն և հավաքատեղի" : "Location & Meeting Point"}
               </h2>
 
               {/* Yerevan Office / Address Card */}
@@ -214,34 +214,70 @@ export default async function ContactsPage({ params }: Props) {
                       {dict.contacts.address}
                     </h3>
                     <p className="mt-1 text-sm text-[#FCFCF7]/70">
-                      Главный офис и координация экскурсий
+                      {locale === "ru"
+                        ? "Главный офис и координация экскурсий"
+                        : locale === "hy"
+                        ? "Գլխավոր գրասենյակ և էքսկուրսիաների համակարգում"
+                        : "Head office & tour coordination"}
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-6 border-t border-[#FCFCF7]/10 pt-6">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-[#C7FF32]">
-                    Точка сбора групповых туров:
+                    {locale === "ru"
+                      ? "Точка сбора групповых туров:"
+                      : locale === "hy"
+                      ? "Խմբային տուրերի հավաքատեղի՝"
+                      : "Group tour meeting point:"}
                   </h4>
                   <p className="mt-2 text-sm leading-relaxed text-[#FCFCF7]/80">
-                    Ереван, пр. Месропа Маштоца 51 (нижняя площадка Матенадарана, остановка Bus Voyage, на пересечении с ул. Корюна).
+                    {locale === "ru"
+                      ? "Ереван, пр. Месропа Маштоца 51 (нижняя площадка Матенадарана, остановка Bus Voyage, на пересечении с ул. Корюна)."
+                      : locale === "hy"
+                      ? "Երևան, Մեսրոպ Մաշտոցի պող. 51 (Մատենադարանի ստորին հարթակ, Bus Voyage կանգառ, Կորյունի փողոցի խաչմերուկում):"
+                      : "Yerevan, 51 Mesrop Mashtots Ave (lower Matenadaran terrace, Bus Voyage stop, junction with Koryun St)."}
                   </p>
                   <p className="mt-2 text-xs text-[#FCFCF7]/50">
-                    Рекомендуем подходить за 10–15 минут до времени выезда.
+                    {locale === "ru"
+                      ? "Рекомендуем подходить за 10–15 минут до времени выезда."
+                      : locale === "hy"
+                      ? "Խորհուրդ ենք տալիս մոտենալ մեկնումից 10–15 րոպե առաջ:"
+                      : "We recommend arriving 10–15 minutes before departure."}
                   </p>
                 </div>
 
                 <div className="mt-6 border-t border-[#FCFCF7]/10 pt-6">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-[#586EFF]">
-                    График работы:
+                    {locale === "ru"
+                      ? "График работы:"
+                      : locale === "hy"
+                      ? "Աշխատանքային ժամեր՝"
+                      : "Working hours:"}
                   </h4>
                   <div className="mt-2 flex items-center justify-between text-sm text-[#FCFCF7]/80">
-                    <span>Поддержка и бронирование:</span>
-                    <span className="font-bold text-[#C7FF32]">24/7 онлайн</span>
+                    <span>
+                      {locale === "ru"
+                        ? "Поддержка и бронирование:"
+                        : locale === "hy"
+                        ? "Աջակցություն և ամրագրում՝"
+                        : "Support & booking:"}
+                    </span>
+                    <span className="font-bold text-[#C7FF32]">
+                      {locale === "ru" ? "24/7 онлайн" : locale === "hy" ? "24/7 օնլայն" : "24/7 online"}
+                    </span>
                   </div>
                   <div className="mt-1 flex items-center justify-between text-sm text-[#FCFCF7]/80">
-                    <span>Выезды туров:</span>
-                    <span className="font-bold text-[#FCFCF7]">Ежедневно с 05:30</span>
+                    <span>
+                      {locale === "ru"
+                        ? "Выезды туров:"
+                        : locale === "hy"
+                        ? "Տուրերի մեկնումներ՝"
+                        : "Tour departures:"}
+                    </span>
+                    <span className="font-bold text-[#FCFCF7]">
+                      {locale === "ru" ? "Ежедневно с 05:30" : locale === "hy" ? "Ամեն օր 05:30-ից" : "Daily from 05:30"}
+                    </span>
                   </div>
                 </div>
               </div>

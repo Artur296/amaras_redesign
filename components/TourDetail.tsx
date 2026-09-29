@@ -239,7 +239,11 @@ export default function TourDetail({
                     </div>
                     {discount !== null && (
                       <span className="mt-2 inline-block rounded-full bg-[#C7FF32] px-3 py-0.5 text-xs font-black text-[#312F2F]">
-                        {locale === "ru" ? `Экономия ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}` : `Save ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}`}
+                        {locale === "ru"
+                          ? `Экономия ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}`
+                          : locale === "hy"
+                          ? `Խնայողություն ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}`
+                          : `Save ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}`}
                       </span>
                     )}
                   </>
@@ -283,8 +287,14 @@ export default function TourDetail({
                   </div>
                 )}
                 <div className="flex items-center justify-between">
-                  <span>{locale === "ru" ? "Оплата" : "Payment"}</span>
-                  <span className="font-bold text-[#312F2F]">{locale === "ru" ? "На месте (без предоплаты)" : "On site (zero prepayment)"}</span>
+                  <span>{locale === "ru" ? "Оплата" : locale === "hy" ? "Վճարում" : "Payment"}</span>
+                  <span className="font-bold text-[#312F2F]">
+                    {locale === "ru"
+                      ? "На месте (без предоплаты)"
+                      : locale === "hy"
+                      ? "Տեղում (առանց կանխավճարի)"
+                      : "On site (zero prepayment)"}
+                  </span>
                 </div>
               </div>
 
@@ -351,20 +361,42 @@ export default function TourDetail({
                   className="inline-flex items-center gap-2 text-xs font-bold text-[#6B6967] hover:text-[#586EFF]"
                 >
                   <PhoneIcon className="h-3.5 w-3.5" />
-                  <span>{locale === "ru" ? "Или позвоните нам:" : "Or call directly:"} {phone}</span>
+                  <span>
+                    {locale === "ru"
+                      ? "Или позвоните нам:"
+                      : locale === "hy"
+                      ? "Կամ զանգահարեք մեզ՝"
+                      : "Or call directly:"}{" "}
+                    {phone}
+                  </span>
                 </a>
               </div>
 
               {/* Trust Badges */}
               <div className="mt-6 border-t border-[#EAE9E0] pt-4 space-y-2 text-[11px] text-[#6B6967]">
                 <p className="flex items-center gap-2">
-                  <span className="text-[#586EFF]">✓</span> {locale === "ru" ? "Моментальное подтверждение в чате" : "Instant chat confirmation"}
+                  <span className="text-[#586EFF]">✓</span>{" "}
+                  {locale === "ru"
+                    ? "Моментальное подтверждение в чате"
+                    : locale === "hy"
+                    ? "Ակնթարթային հաստատում չաթում"
+                    : "Instant chat confirmation"}
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-[#586EFF]">✓</span> {locale === "ru" ? "Современные комфортабельные авто" : "Premium modern transport"}
+                  <span className="text-[#586EFF]">✓</span>{" "}
+                  {locale === "ru"
+                    ? "Современные комфортабельные авто"
+                    : locale === "hy"
+                    ? "Ժամանակակից հարմարավետ մեքենաներ"
+                    : "Premium modern transport"}
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="text-[#586EFF]">✓</span> {locale === "ru" ? "Бесплатная отмена за 24 часа" : "Free 24h cancellation"}
+                  <span className="text-[#586EFF]">✓</span>{" "}
+                  {locale === "ru"
+                    ? "Бесплатная отмена за 24 часа"
+                    : locale === "hy"
+                    ? "Անվճար չեղարկում 24 ժամ առաջ"
+                    : "Free 24h cancellation"}
                 </p>
               </div>
             </div>

@@ -282,7 +282,7 @@ export default async function HomePage({ params }: Props) {
                   {locale === "ru"
                     ? "Бронируйте групповые и джип-туры заранее по специальным фиксированным ценам. Без предоплаты — бронируйте прямо в WhatsApp."
                     : locale === "hy"
-                    ? "Ամրագրեք խմբային և ջիպ տուրերը նախապես հատուկ շահավետ գներով: Առանց կանխավճարի:"
+                    ? "Ամրագրեք խմբային և ջիպ-տուրերը նախապես հատուկ շահավետ գներով: Առանց կանխավճարի:"
                     : "Book group & 4x4 jeep tours in advance at special promotional rates with zero prepayment."}
                 </p>
               </div>
