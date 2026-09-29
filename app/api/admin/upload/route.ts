@@ -31,10 +31,14 @@ export async function POST(request: NextRequest) {
   const name = `${Date.now()}-${clean}`;
   const buffer = Buffer.from(await file.arrayBuffer());
 
-  // 1. Always save to local public/images/
+  // 1. Try to save to local public/images/
   const imagesDir = path.join(process.cwd(), "public", "images");
-  await fs.promises.mkdir(imagesDir, { recursive: true });
-  await fs.promises.writeFile(path.join(imagesDir, name), buffer);
+  try {
+    await fs.promises.mkdir(imagesDir, { recursive: true });
+    await fs.promises.writeFile(path.join(imagesDir, name), buffer);
+  } catch {
+    // Read-only filesystem in serverless environments (e.g. Vercel)
+  }
 
   // 2. If GitHub is configured, also commit to remote repo
   const cfg = githubConfig();

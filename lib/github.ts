@@ -24,12 +24,36 @@ export type GitHubConfig = {
 };
 
 export function githubConfig(): GitHubConfig | null {
-  const token = process.env.GITHUB_TOKEN;
-  const slug = process.env.GITHUB_REPO;
-  if (!token || !slug) return null;
-  const [owner, repo] = slug.split("/");
-  if (!owner || !repo) return null;
-  return { token, owner, repo, branch: process.env.GITHUB_BRANCH || "main" };
+  const token = process.env.GITHUB_TOKEN?.trim();
+  if (!token) return null;
+
+  let owner = "";
+  let repo = "";
+  const slug = process.env.GITHUB_REPO?.trim();
+  if (slug) {
+    const parts = slug.split("/");
+    owner = parts[0] || "";
+    repo = parts[1] || "";
+  }
+
+  // Fallback to Vercel System Git variables if available
+  if (!owner || !repo) {
+    owner = process.env.VERCEL_GIT_REPO_OWNER || "";
+    repo = process.env.VERCEL_GIT_REPO_SLUG || "";
+  }
+
+  // Fallback to known default repository
+  if (!owner || !repo) {
+    owner = "Artur296";
+    repo = "amaras_redesign";
+  }
+
+  const branch =
+    process.env.GITHUB_BRANCH?.trim() ||
+    process.env.VERCEL_GIT_COMMIT_REF?.trim() ||
+    "main";
+
+  return { token, owner, repo, branch };
 }
 
 export class GitHubError extends Error {
