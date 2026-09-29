@@ -4442,7 +4442,13 @@
     "priceFromAmd": 20000,
     "departure": "09:00",
     "durationHours": "10",
-    "featured": true
+    "featured": true,
+    "bookingDisabled": true,
+    "bookingNotice": {
+      "ru": "Места временно закончились. Ближайшие доступные даты уточняйте у менеджера.",
+      "en": "Bookings temporarily paused. Please contact us for the next available dates.",
+      "hy": "Ամրագրումը ժամանակավորապես դադարեցված է: Հաջորդ հասանելի օրերի համար կապվեք մեզ հետ:"
+    }
   },
   {
     "slug": "northern-armenia-treasures",
