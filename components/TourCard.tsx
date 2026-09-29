@@ -80,7 +80,7 @@ export default function TourCard({
             <span>⏱</span> {durationText}
           </span>
           <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[#C7FF32] backdrop-blur-md">
-            <span>★</span> 4.9
+            <span>★</span> 5.0
           </span>
         </div>
       </Link>

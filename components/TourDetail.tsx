@@ -100,7 +100,7 @@ export default function TourDetail({
               </span>
             )}
             <span className="flex items-center gap-1 rounded-full bg-white border border-[#EAE9E0] px-3 py-1 text-xs font-bold text-[#312F2F]">
-              <span>★</span> 4.9 (120+ {locale === "ru" ? "отзывов" : "reviews"})
+              <span>★</span> 5.0 (120+ {locale === "ru" ? "отзывов" : "reviews"})
             </span>
           </div>
 
