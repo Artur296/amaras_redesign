@@ -1034,5 +1034,854 @@
         "Garni Temple"
       ]
     }
+  },
+  {
+    "slug": "echmiadzin-gayane-hripsime-lavash-zvartnots",
+    "image": "",
+    "title": {
+      "ru": "Эчмиадзин — Гаяне — Рипсиме — лаваш — Звартноц",
+      "hy": "Էջմիածնի մայր տաճար և Զվարթնոց",
+      "en": "Etchmiadzin Cathedral and Zvartnots"
+    },
+    "description": {
+      "ru": "Духовное путешествие в сердце Армении с мастер-классом по лавашу.",
+      "hy": "Հոգևոր ճանապարհորդություն Հայաստանի սրտում՝ լավաշի վարպետաց դասով։",
+      "en": "A spiritual journey through Armenia’s sacred heart, with a lavash master class."
+    },
+    "about": {
+      "ru": "Посетите главный духовный центр Армении — Эчмиадзинский кафедральный собор, древние церкви Гаяне и Рипсиме. Познакомьтесь с местными традициями на мастер-классе по выпечке лаваша и завершите маршрут у величественного храма Звартноц.",
+      "hy": "Կայցելեք Հայաստանի գլխավոր հոգևոր կենտրոնը՝ Էջմիածնի մայր տաճարը, Գայանե և Հռիփսիմե հնագույն եկեղեցիները։ Կծանոթանաք տեղական ավանդույթներին լավաշի վարպետաց դասի ընթացքում և կավարտեք ուղևորությունը Զվարթնոցի հիասքանչ տաճարում։",
+      "en": "Visit the Mother See of Holy Etchmiadzin and the historic churches of Gayane and Hripsime. Meet local traditions during a lavash master class, then finish at the magnificent Zvartnots Temple."
+    },
+    "destinations": {
+      "ru": [
+        "Эчмиадзинский кафедральный собор",
+        "Церковь Святой Гаяне",
+        "Церковь Святой Рипсиме",
+        "Мастер-класс по лавашу",
+        "Храм Звартноц"
+      ],
+      "hy": [
+        "Էջմիածնի մայր տաճար",
+        "Սուրբ Գայանե եկեղեցի",
+        "Սուրբ Հռիփսիմե եկեղեցի",
+        "Լավաշի վարպետաց դաս",
+        "Զվարթնոց"
+      ],
+      "en": [
+        "Etchmiadzin Cathedral",
+        "Saint Gayane Church",
+        "Saint Hripsime Church",
+        "Lavash Master Class",
+        "Zvartnots Temple"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 10000,
+    "departure": "10:00",
+    "durationHours": "6–7"
+  },
+  {
+    "slug": "garni-charents-arch-lavash-geghard",
+    "image": "",
+    "title": {
+      "ru": "Гарни — Арка Чаренца — лаваш — Гегард",
+      "hy": "Գառնի, Չարենցի կամար և Գեղարդ",
+      "en": "Garni, Charents Arch and Geghard"
+    },
+    "description": {
+      "ru": "Древние храмы, горные панорамы и вкусы Армении в одном насыщенном дне.",
+      "hy": "Հնագույն տաճարներ, լեռնային տեսարաններ և Հայաստանի համերը մեկ անմոռանալի օրում։",
+      "en": "Ancient temples, mountain views and the flavours of Armenia in one memorable day."
+    },
+    "about": {
+      "ru": "Отправьтесь от панорамной арки Чаренца к античному храму Гарни. Примите участие в мастер-классе по лавашу, увидьте базальтовую «Симфонию камней» и исследуйте монастырь Гегард из списка ЮНЕСКО.",
+      "hy": "Չարենցի կամարի համայնապատկերից կուղևորվեք դեպի անտիկ Գառնիի տաճար։ Կմասնակցեք լավաշի վարպետաց դասի, կտեսնեք բազալտե Քարերի սիմֆոնիան և կուսումնասիրեք ՅՈՒՆԵՍԿՕ-ի ցանկում ընդգրկված Գեղարդի վանքը։",
+      "en": "Travel from the panoramic Charents Arch to the classical Garni Temple. Enjoy a hands-on lavash master class before exploring the basalt Symphony of Stones and the UNESCO-listed Geghard Monastery."
+    },
+    "destinations": {
+      "ru": [
+        "Арка Чаренца",
+        "Азатское водохранилище",
+        "Храм Гарни",
+        "Симфония камней",
+        "Монастырь Гегард"
+      ],
+      "hy": [
+        "Չարենցի կամար",
+        "Ազատի ջրամբար",
+        "Գառնիի տաճար",
+        "Քարերի սիմֆոնիա",
+        "Գեղարդի վանք"
+      ],
+      "en": [
+        "Charents Arch",
+        "Azat Reservoir",
+        "Garni Temple",
+        "Symphony of Stones",
+        "Geghard Monastery"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 15000,
+    "departure": "10:00",
+    "durationHours": "6–7"
+  },
+  {
+    "slug": "khor-virap-azat-garni-geghard",
+    "image": "",
+    "title": {
+      "ru": "Хор Вирап — Азат — Гарни — Гегард",
+      "hy": "Խոր Վիրապ, Ազատ, Գառնի և Գեղարդ",
+      "en": "Khor Virap, Garni and Geghard"
+    },
+    "description": {
+      "ru": "Классический маршрут по Армении: Арарат, языческое наследие и святыни.",
+      "hy": "Հայաստանի դասական երթուղի՝ Արարատի տեսարանով, հեթանոսական ժառանգությամբ և սրբավայրերով։",
+      "en": "A classic Armenia route combining the Ararat panorama, pagan heritage and sacred architecture."
+    },
+    "about": {
+      "ru": "Начните день в монастыре Хор Вирап с его незабываемым видом на гору Арарат. Затем вас ждут Азатское водохранилище, античный храм Гарни, «Симфония камней» и высеченный в скале монастырь Гегард.",
+      "hy": "Օրը կսկսեք Խոր Վիրապից՝ Արարատ լեռան անմոռանալի տեսարանով։ Այնուհետև կայցելեք Ազատի ջրամբարը, անտիկ Գառնիի տաճարը, Քարերի սիմֆոնիան և ժայռափոր Գեղարդի վանքը։",
+      "en": "Begin at Khor Virap with its unforgettable view of Mount Ararat. Continue to Azat Reservoir, the ancient Garni Temple, the Symphony of Stones and the rock-cut Geghard Monastery."
+    },
+    "destinations": {
+      "ru": [
+        "Монастырь Хор Вирап",
+        "Азатское водохранилище",
+        "Храм Гарни",
+        "Симфония камней",
+        "Монастырь Гегард"
+      ],
+      "hy": [
+        "Խոր Վիրապ",
+        "Ազատի ջրամբար",
+        "Գառնիի տաճար",
+        "Քարերի սիմֆոնիա",
+        "Գեղարդի վանք"
+      ],
+      "en": [
+        "Khor Virap",
+        "Azat Reservoir",
+        "Garni Temple",
+        "Symphony of Stones",
+        "Geghard Monastery"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 15000,
+    "departure": "09:00",
+    "durationHours": "7–8"
+  },
+  {
+    "slug": "khor-virap-areni-noravank-birds-cave",
+    "image": "",
+    "title": {
+      "ru": "Хор Вирап — Арени — Нораванк — Пещера птиц",
+      "hy": "Խոր Վիրապ, Արենի, Նորավանք և Թռչունների քարանձավ",
+      "en": "Khor Virap, Areni Wine and Noravank"
+    },
+    "description": {
+      "ru": "Живописный маршрут по виноградникам, каньонам и краснокаменным монастырям.",
+      "hy": "Գեղատեսիլ երթուղի խաղողի այգիներով, կիրճերով և կարմիր քարե վանքերով։",
+      "en": "A scenic journey through vineyards, canyon landscapes and the red-stone Noravank Monastery."
+    },
+    "about": {
+      "ru": "Полюбуйтесь Араратом из Хор Вирапа, познакомьтесь с винодельческим регионом Арени и отправьтесь в живописный каньон Амагу. Завершение маршрута — монастырь Нораванк и загадочная Пещера птиц.",
+      "hy": "Խոր Վիրապից կհիանաք Արարատի տեսարանով, կծանոթանաք Արենիի գինեգործական շրջանին և կուղևորվեք գեղատեսիլ Ամաղուի կիրճ։ Երթուղին կավարտվի Նորավանքում և խորհրդավոր Թռչունների քարանձավում։",
+      "en": "See Mount Ararat from Khor Virap, taste the flavours of Areni wine country and explore the dramatic Amaghu Canyon. The route ends at Noravank and the atmospheric Birds’ Cave."
+    },
+    "destinations": {
+      "ru": [
+        "Монастырь Хор Вирап",
+        "Винный тур и дегустация в Арени",
+        "Монастырь Нораванк",
+        "Пещера птиц"
+      ],
+      "hy": [
+        "Խոր Վիրապ",
+        "Արենիի գինու շրջայց և համտես",
+        "Նորավանք",
+        "Թռչունների քարանձավ"
+      ],
+      "en": [
+        "Khor Virap",
+        "Areni Wine Tour and Tasting",
+        "Noravank Monastery",
+        "Birds’ Cave"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 15000,
+    "departure": "09:00",
+    "durationHours": "8–9"
+  },
+  {
+    "slug": "tsaghkadzor-sevan-dilijan",
+    "image": "",
+    "title": {
+      "ru": "Цахкадзор — Севан — Дилижан",
+      "hy": "Ծաղկաձոր, Սևան և Դիլիջան",
+      "en": "Tsaghkadzor, Sevan and Dilijan"
+    },
+    "description": {
+      "ru": "Горные панорамы, канатная дорога и тихие леса Дилижана.",
+      "hy": "Լեռնային տեսարաններ, ճոպանուղի և Դիլիջանի խաղաղ անտառները։",
+      "en": "Mountain resort views, a cable-car ride and the tranquil forests of Dilijan."
+    },
+    "about": {
+      "ru": "Поднимитесь на канатной дороге Цахкадзора, посетите монастырь Кечарис и отправьтесь к озеру Севан. Увидьте Севанаванк, а затем прогуляйтесь по старому Дилижану среди зелёных лесов и уютных улиц.",
+      "hy": "Կբարձրանաք Ծաղկաձորի ճոպանուղով, կայցելեք Կեչառիսի վանքը և կուղևորվեք դեպի Սևանա լիճ։ Կտեսնեք Սևանավանքը, ապա կզբոսնեք հին Դիլիջանում՝ կանաչ անտառների և հինավուրց փողոցների միջով։",
+      "en": "Ride the Tsaghkadzor Cable Car for sweeping mountain views, visit Kecharis Monastery and continue to Lake Sevan. Discover Sevanavank and the green resort town of Dilijan with its old streets and forests."
+    },
+    "destinations": {
+      "ru": [
+        "Канатная дорога Цахкадзора",
+        "Монастырь Кечарис",
+        "Озеро Севан",
+        "Монастырь Севанаванк",
+        "Старый Дилижан"
+      ],
+      "hy": [
+        "Ծաղկաձորի ճոպանուղի",
+        "Կեչառիսի վանք",
+        "Սևանա լիճ",
+        "Սևանավանք",
+        "Հին Դիլիջան"
+      ],
+      "en": [
+        "Tsaghkadzor Cable Car",
+        "Kecharis Monastery",
+        "Lake Sevan",
+        "Sevanavank Monastery",
+        "Old Dilijan"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 15000,
+    "departure": "09:00",
+    "durationHours": "9–10"
+  },
+  {
+    "slug": "sevan-old-dilijan-haghartsin",
+    "image": "",
+    "title": {
+      "ru": "Севан — Дилижан — Агарцин — Гошаванк",
+      "hy": "Սևան, Դիլիջան, Հաղարծին և Գոշավանք",
+      "en": "Lake Sevan, Dilijan and Haghartsin"
+    },
+    "description": {
+      "ru": "Насыщенный день у лазурного Севана, в лесах Дилижана и горных монастырях.",
+      "hy": "Ամբողջական օր Հայաստանի կապույտ լճի, անտառային վանքերի և լեռնային բնության մեջ։",
+      "en": "A refreshing day among Armenia’s blue lake, forest monasteries and mountain scenery."
+    },
+    "about": {
+      "ru": "Исследуйте берега озера Севан и его полуостров, а затем отправьтесь через Дилижанский национальный парк. В программе — Севанаванк, Старый Дилижан, монастырь Агарцин и тихий монастырь Гошаванк.",
+      "hy": "Կուսումնասիրեք Սևանա լճի ափերն ու թերակղզին, ապա կանցնեք Դիլիջանի ազգային պարկով։ Ծրագրում են Սևանավանքը, Հին Դիլիջանը, Հաղարծնի և խաղաղ Գոշավանքի վանքերը։",
+      "en": "Explore the shores of Lake Sevan and its peninsula, then travel through Dilijan National Park. Visit Sevanavank, Old Dilijan, Haghartsin Monastery and the peaceful Goshavank Monastery."
+    },
+    "destinations": {
+      "ru": [
+        "Озеро Севан",
+        "Озеро Парз",
+        "Монастырь Севанаванк",
+        "Старый Дилижан",
+        "Монастырь Агарцин",
+        "Монастырь Гошаванк"
+      ],
+      "hy": [
+        "Սևանա լիճ",
+        "Պարզ լիճ",
+        "Սևանավանք",
+        "Հին Դիլիջան",
+        "Հաղարծնի վանք",
+        "Գոշավանք"
+      ],
+      "en": [
+        "Lake Sevan",
+        "Parz Lake",
+        "Sevanavank Monastery",
+        "Old Dilijan",
+        "Haghartsin Monastery",
+        "Goshavank Monastery"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 20000,
+    "departure": "09:00",
+    "durationHours": "9–10"
+  },
+  {
+    "slug": "akhtala-haghpat-mendz-er-sanaahin",
+    "image": "",
+    "title": {
+      "ru": "Ахтала — Хагпат — Мендз Эр — Санаин",
+      "hy": "Ախթալա, Հաղպատ և Սանահին",
+      "en": "Akhtala, Haghpat and Sanahin"
+    },
+    "description": {
+      "ru": "Крепости и монастыри Северной Армении среди зелёных ландшафтов Лори.",
+      "hy": "Հյուսիսային Հայաստանի ամրոցներն ու ՅՈՒՆԵՍԿՕ-ի վանքերը Լոռու կանաչ բնության մեջ։",
+      "en": "Northern Armenia’s fortresses and UNESCO monasteries in a journey through Lori’s green landscapes."
+    },
+    "about": {
+      "ru": "Исследуйте фрески и крепостные стены Ахталы, а затем посетите монастыри Хагпат и Санаин из списка ЮНЕСКО. Маршрут проходит по долинам Лори и знакомит с богатым средневековым наследием Армении.",
+      "hy": "Կուսումնասիրեք Ախթալայի որմնանկարներն ու ամրոցի պարիսպները, ապա կայցելեք Հաղպատի և Սանահինի ՅՈՒՆԵՍԿՕ-ի վանքերը։ Երթուղին անցնում է Լոռու հովիտներով և բացահայտում Հայաստանի միջնադարյան ժառանգությունը։",
+      "en": "Discover the frescoes and fortress walls of Akhtala, then visit the UNESCO monasteries of Haghpat and Sanahin. The route follows the valleys of Lori and reveals Armenia’s rich medieval heritage."
+    },
+    "destinations": {
+      "ru": [
+        "Монастырь Ахтала",
+        "Монастырь Хагпат",
+        "Пещера Мендз Эр",
+        "Монастырь Санаин"
+      ],
+      "hy": [
+        "Ախթալայի վանք",
+        "Հաղպատի վանք",
+        "Մեծ Էրի քարանձավ",
+        "Սանահինի վանք"
+      ],
+      "en": [
+        "Akhtala Monastery",
+        "Haghpat Monastery",
+        "Mendz Er Cave",
+        "Sanahin Monastery"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 20000,
+    "departure": "09:00",
+    "durationHours": "10–11"
+  },
+  {
+    "slug": "khor-virap-sevan-garni-geghard",
+    "image": "",
+    "title": {
+      "ru": "Хор Вирап — Гарни — Гегард — Севан",
+      "hy": "Խոր Վիրապ, Գառնի, Գեղարդ և Սևան",
+      "en": "Khor Virap, Garni and Lake Sevan"
+    },
+    "description": {
+      "ru": "От вида на Арарат к античным храмам и лазурным просторам высокогорного Севана.",
+      "hy": "Արարատի տեսարաններից դեպի անտիկ տաճարներ և բարձրադիր Սևանի կապույտը։",
+      "en": "From Mount Ararat views to pagan temples and the high-altitude blue of Lake Sevan."
+    },
+    "about": {
+      "ru": "Объедините главные символы Армении в одном насыщенном дне: Хор Вирап, Азатское водохранилище, храм Гарни, «Симфонию камней», монастырь Гегард и озеро Севан с Севанаванком.",
+      "hy": "Մեկ ամբողջական օրում կհամատեղեք Հայաստանի գլխավոր խորհրդանիշները՝ Խոր Վիրապ, Ազատի ջրամբար, Գառնիի տաճար, Քարերի սիմֆոնիա, Գեղարդի վանք և Սևանա լիճ՝ Սևանավանքով։",
+      "en": "Combine Armenia’s most recognisable sights in one full day: Khor Virap, Azat Reservoir, Garni Temple, the Symphony of Stones, Geghard Monastery and Lake Sevan with Sevanavank."
+    },
+    "destinations": {
+      "ru": [
+        "Монастырь Хор Вирап",
+        "Азатское водохранилище",
+        "Храм Гарни",
+        "Симфония камней",
+        "Монастырь Гегард",
+        "Озеро Севан",
+        "Монастырь Севанаванк"
+      ],
+      "hy": [
+        "Խոր Վիրապ",
+        "Ազատի ջրամբար",
+        "Գառնիի տաճար",
+        "Քարերի սիմֆոնիա",
+        "Գեղարդի վանք",
+        "Սևանա լիճ",
+        "Սևանավանք"
+      ],
+      "en": [
+        "Khor Virap",
+        "Azat Reservoir",
+        "Garni Temple",
+        "Symphony of Stones",
+        "Geghard Monastery",
+        "Lake Sevan",
+        "Sevanavank Monastery"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 20000,
+    "departure": "09:00",
+    "durationHours": "10–11"
+  },
+  {
+    "slug": "khor-virap-areni-jermuk",
+    "image": "",
+    "title": {
+      "ru": "Хор Вирап — Арени — Нораванк — Джермук",
+      "hy": "Խոր Վիրապ, Արենի, Նորավանք և Ջերմուկ",
+      "en": "Khor Virap, Areni, Noravank and Jermuk"
+    },
+    "description": {
+      "ru": "Винный край, каньоны и целебные воды Джермука.",
+      "hy": "Գինու երկիր, կիրճեր և Ջերմուկի բուժիչ ջրերը։",
+      "en": "Wine country, canyon landscapes and the healing waters of Jermuk."
+    },
+    "about": {
+      "ru": "Начните с панорамы Арарата в Хор Вирапе, попробуйте местное вино в Арени и полюбуйтесь красными скалами Нораванка. Затем отправьтесь в Джермук к водопаду, минеральным источникам и знаменитой арке «Крылья мечты». ",
+      "hy": "Ուղևորությունը կսկսեք Խոր Վիրապում՝ Արարատի համայնապատկերով, Արենիում կհամտեսեք տեղական գինի և կհիանաք Նորավանքի կարմիր ժայռերով։ Այնուհետև կուղևորվեք Ջերմուկ՝ ջրվեժի, հանքային ջրերի և «Երազանքների կամարի» մոտ։",
+      "en": "Start with the Ararat panorama at Khor Virap, taste local wine in Areni and admire Noravank’s red cliffs. Continue to Jermuk for its waterfall, mineral waters and the peaceful atmosphere of the resort town."
+    },
+    "destinations": {
+      "ru": [
+        "Монастырь Хор Вирап",
+        "Винный тур и дегустация в Арени",
+        "Монастырь Нораванк",
+        "Минеральные воды Джермука",
+        "Водопад «Волосы русалки»",
+        "Арка «Крылья мечты»"
+      ],
+      "hy": [
+        "Խոր Վիրապ",
+        "Արենիի գինու շրջայց և համտես",
+        "Նորավանք",
+        "Ջերմուկի հանքային ջուր",
+        "Ջրահարսի վարսեր ջրվեժ",
+        "Երազանքների կամար"
+      ],
+      "en": [
+        "Khor Virap",
+        "Areni Wine Tour and Tasting",
+        "Noravank Monastery",
+        "Jermuk Mineral Water",
+        "Mermaid’s Hair Waterfall",
+        "Arch of Dreams"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 25000,
+    "departure": "09:00",
+    "durationHours": "10–11"
+  },
+  {
+    "slug": "northern-armenia-monasteries",
+    "image": "",
+    "title": {
+      "ru": "Монастыри Северной Армении",
+      "hy": "Հյուսիսային Հայաստանի վանքերը",
+      "en": "Monasteries of Northern Armenia"
+    },
+    "description": {
+      "ru": "Глубокое культурное путешествие по средневековым монастырям, пещерам и зелёным долинам Лори.",
+      "hy": "Մշակութային խոր ճանապարհորդություն Լոռու միջնադարյան վանքերով, քարանձավներով և կանաչ հովիտներով։",
+      "en": "A deep cultural journey through Lori’s medieval monasteries, caves and green valleys."
+    },
+    "about": {
+      "ru": "Отправьтесь на север к средневековым монастырям Кобайр, Хагпат и Одзун. По пути откройте для себя историческую церковь Сурб Ншан и драматичные пейзажи Лори — региона, где каждая долина хранит свою историю.",
+      "hy": "Կուղևորվեք դեպի հյուսիս՝ Կոբայրի, Հաղպատի և Օձունի միջնադարյան վանքեր։ Ճանապարհին կբացահայտեք Սուրբ Նշան պատմական եկեղեցին և Լոռու տպավորիչ բնությունը, որտեղ յուրաքանչյուր հովիտ իր պատմությունն ունի։",
+      "en": "Travel north to the medieval monasteries of Kobayr, Haghpat and Odzun. Along the way discover the historic Surb Nshan Church and the dramatic landscapes of Lori, a region where every valley carries a story."
+    },
+    "destinations": {
+      "ru": [
+        "Монастырь Кобайр",
+        "Монастырь Хагпат",
+        "Церковь Сурб Ншан",
+        "Монастырь Одзун"
+      ],
+      "hy": [
+        "Կոբայրի վանք",
+        "Հաղպատի վանք",
+        "Սուրբ Նշան եկեղեցի",
+        "Օձունի վանք"
+      ],
+      "en": [
+        "Kobayr Monastery",
+        "Haghpat Monastery",
+        "Surb Nshan Church",
+        "Odzun Monastery"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 25000,
+    "departure": "09:00",
+    "durationHours": "10–11"
+  },
+  {
+    "slug": "jeep-mount-dimats",
+    "image": "",
+    "title": {
+      "ru": "Джип-тур на гору Димац",
+      "hy": "Ջիփ տուր դեպի Դիմաց լեռ",
+      "en": "Jeep Tour to Mount Dimats"
+    },
+    "description": {
+      "ru": "Внедорожное приключение в высокогорье над Дилижаном и Севаном.",
+      "hy": "Արտաճանապարհային արկած Դիլիջանի և Սևանի վերևում գտնվող բարձրադիր լեռներում։",
+      "en": "An off-road mountain escape to the highlands above Dilijan and Lake Sevan."
+    },
+    "about": {
+      "ru": "На внедорожнике поднимитесь в высокогорье Армении и насладитесь панорамами гор. Маршрут объединяет склоны горы Димац, озеро Севан, Старый Дилижан и тихий монастырь Агарцин.",
+      "hy": "Ամենագնացով կբարձրանաք Հայաստանի բարձրադիր գոտիներ և կվայելեք լեռնային համայնապատկերները։ Երթուղին միավորում է Դիմաց լեռան լանջերը, Սևանա լիճը, Հին Դիլիջանն ու խաղաղ Հաղարծնի վանքը։",
+      "en": "Climb into Armenia’s highlands by 4x4 and enjoy wide-open mountain scenery. The route combines the slopes of Mount Dimats with Lake Sevan, Old Dilijan and the quiet Haghartsin Monastery."
+    },
+    "destinations": {
+      "ru": [
+        "Гора Димац, 2 378 м",
+        "Озеро Севан",
+        "Старый Дилижан",
+        "Монастырь Агарцин"
+      ],
+      "hy": [
+        "Դիմաց լեռ, 2 378 մ",
+        "Սևանա լիճ",
+        "Հին Դիլիջան",
+        "Հաղարծնի վանք"
+      ],
+      "en": [
+        "Mount Dimats, 2,378 m",
+        "Lake Sevan",
+        "Old Dilijan",
+        "Haghartsin Monastery"
+      ]
+    },
+    "categories": [
+      "popular",
+      "jeep"
+    ],
+    "priceFromAmd": 25000,
+    "departure": "08:00",
+    "durationHours": "10–11"
+  },
+  {
+    "slug": "jeep-volcano-aztahak",
+    "image": "",
+    "title": {
+      "ru": "Джип-тур к вулкану Аждаак",
+      "hy": "Ջիփ տուր դեպի Աժդահակ հրաբուխ",
+      "en": "Jeep Tour to Azhdahak Volcano"
+    },
+    "description": {
+      "ru": "Внедорожная экспедиция к вулканическому кратеру, горным озёрам и петроглифам.",
+      "hy": "Արտաճանապարհային արշավ դեպի հրաբխային խառնարան, լեռնային լճեր և ժայռապատկերներ։",
+      "en": "A raw highland expedition to a volcanic crater, alpine lakes and ancient petroglyphs."
+    },
+    "about": {
+      "ru": "Отправьтесь на внедорожнике в Гегамские горы к вулкану Аждаак. Увидьте кратерное озеро, суровые высокогорные пейзажи и древние петроглифы, оставленные первыми жителями Армении.",
+      "hy": "Ամենագնացով կուղևորվեք Գեղամա լեռներ՝ դեպի Աժդահակ հրաբուխ։ Կտեսնեք խառնարանային լիճը, բարձրադիր խիստ բնությունը և Հայաստանի հնագույն բնակիչների թողած ժայռապատկերները։",
+      "en": "Drive deep into the Gegham Mountains toward Mount Azhdahak. Discover the volcano’s crater lake, the remote Mount Azhdahak landscape and ancient petroglyphs left by Armenia’s early inhabitants."
+    },
+    "destinations": {
+      "ru": [
+        "Вулкан Аждаак, 3 597 м",
+        "Озеро Кармир",
+        "Древние петроглифы"
+      ],
+      "hy": [
+        "Աժդահակ հրաբուխ, 3 597 մ",
+        "Կարմիր լիճ",
+        "Ժայռապատկերներ"
+      ],
+      "en": [
+        "Mount Azhdahak, 3,597 m",
+        "Karmir Lake",
+        "Petroglyphs"
+      ]
+    },
+    "categories": [
+      "popular",
+      "jeep"
+    ],
+    "priceFromAmd": 25000,
+    "departure": "08:00",
+    "durationHours": "10–12"
+  },
+  {
+    "slug": "jeep-mineral-geyser-jermuk",
+    "image": "",
+    "title": {
+      "ru": "Джип-тур к минеральному гейзеру",
+      "hy": "Ջիփ տուր դեպի հանքային գեյզեր",
+      "en": "Jeep Tour to the Mineral Geyser"
+    },
+    "description": {
+      "ru": "Живописное путешествие по Вайоц Дзору, водопадам и минеральным источникам Джермука.",
+      "hy": "Գեղատեսիլ 4x4 ուղևորություն Վայոց ձորով, ջրվեժներով և Ջերմուկի հանքային ջրերով։",
+      "en": "A scenic 4x4 journey through Vayots Dzor, waterfalls and the mineral waters of Jermuk."
+    },
+    "about": {
+      "ru": "По горным дорогам отправьтесь к минеральному гейзеру Вайоц Дзора. Затем проедьте через винный край Арени, увидьте водопад «Волосы русалки» и посетите галерею минеральных вод Джермука.",
+      "hy": "Լեռնային ճանապարհներով կուղևորվեք դեպի Վայոց ձորի հանքային գեյզերը։ Այնուհետև կանցնեք Արենիի գինու շրջանի միջով, կայցելեք Ջրահարսի վարսեր ջրվեժը և Ջերմուկի հանքային ջրերի պատկերասրահը։",
+      "en": "Cross remote mountain roads to the mineral geyser of Vayots Dzor. Continue through Areni wine country, visit the Mermaid’s Hair Waterfall and explore the mineral-water gallery of Jermuk."
+    },
+    "destinations": {
+      "ru": [
+        "Монастырь Хор Вирап",
+        "Винный тур и дегустация в Арени",
+        "Водопад «Волосы русалки»",
+        "Арка «Крылья мечты»",
+        "Галерея минеральных вод Джермука"
+      ],
+      "hy": [
+        "Խոր Վիրապ",
+        "Արենիի գինու շրջայց և համտես",
+        "Ջրահարսի վարսեր ջրվեժ",
+        "Երազանքների կամար",
+        "Ջերմուկի հանքային ջրերի պատկերասրահ"
+      ],
+      "en": [
+        "Khor Virap",
+        "Areni Wine Tour and Tasting",
+        "Mermaid’s Hair Waterfall",
+        "Arch of Dreams",
+        "Jermuk Mineral Water Gallery"
+      ]
+    },
+    "categories": [
+      "popular",
+      "jeep"
+    ],
+    "priceFromAmd": 25000,
+    "departure": "09:00",
+    "durationHours": "10–11"
+  },
+  {
+    "slug": "jeep-smbataberd",
+    "image": "",
+    "title": {
+      "ru": "Джип-тур к крепости Смбатаберд",
+      "hy": "Ջիփ տուր դեպի Սմբատաբերդ",
+      "en": "Jeep Tour to Smbataberd Fortress"
+    },
+    "description": {
+      "ru": "Высокогорное внедорожное приключение к древним крепостям и монастырям Вайоц Дзора.",
+      "hy": "Բարձրադիր արտաճանապարհային արկած դեպի Վայոց ձորի հին ամրոցներն ու վանքերը։",
+      "en": "A highland off-road adventure to ancient fortifications and the monasteries of Vayots Dzor."
+    },
+    "about": {
+      "ru": "По сложным горным дорогам отправьтесь в Вайоц Дзор к исторической крепости Смбатаберд. Посетите Ехегис и монастырь Цахац Кар, наслаждаясь открытыми пейзажами юга Армении.",
+      "hy": "Դժվարանցանելի լեռնային ճանապարհներով կուղևորվեք Վայոց ձոր՝ դեպի պատմական Սմբատաբերդ։ Կայցելեք Եղեգիսն ու Ցախաց Քարի վանքը և կվայելեք Հայաստանի հարավի բաց բնապատկերները։",
+      "en": "Follow rugged roads through Vayots Dzor to the historic Smbataberd Fortress. Visit Yeghegis and Tsakhats Kar Monastery while taking in the open landscapes of Armenia’s south."
+    },
+    "destinations": {
+      "ru": [
+        "Ехегис",
+        "Монастырь Цахац Кар",
+        "Крепость Смбатаберд"
+      ],
+      "hy": [
+        "Եղեգիս",
+        "Ցախաց Քարի վանք",
+        "Սմբատաբերդի ամրոց"
+      ],
+      "en": [
+        "Yeghegis",
+        "Tsakhats Kar Monastery",
+        "Smbataberd Fortress"
+      ]
+    },
+    "categories": [
+      "popular",
+      "jeep"
+    ],
+    "priceFromAmd": 30000,
+    "departure": "08:00",
+    "durationHours": "12–14"
+  },
+  {
+    "slug": "jeep-trchkan-waterfall",
+    "image": "",
+    "title": {
+      "ru": "Джип-тур к водопаду Трчкан",
+      "hy": "Ջիփ տուր դեպի Թռչկան ջրվեժ",
+      "en": "Jeep Tour to Trchkan Waterfall"
+    },
+    "description": {
+      "ru": "Внедорожное путешествие к одному из самых впечатляющих водопадов Армении.",
+      "hy": "Լեռնային արկած դեպի Հայաստանի ամենատպավորիչ ջրվեժներից մեկը։",
+      "en": "A wild mountain escape to one of Armenia’s most impressive waterfalls."
+    },
+    "about": {
+      "ru": "На внедорожнике отправьтесь в зелёные долины Северной Армении к водопаду Трчкан. Вас ждут свежий горный воздух, удалённые пейзажи и пикник на природе вдали от шумных дорог.",
+      "hy": "Ամենագնացով կուղևորվեք Հյուսիսային Հայաստանի կանաչ հովիտներ՝ դեպի Թռչկան ջրվեժ։ Ձեզ սպասում են մաքուր լեռնային օդ, հեռավոր բնապատկերներ և բնության գրկում խնջույք։",
+      "en": "Take the 4x4 into the green valleys of northern Armenia and reach Trchkan Waterfall. The journey is about fresh air, remote landscapes and a picnic in nature away from the busy roads."
+    },
+    "destinations": {
+      "ru": [
+        "Водопад Трчкан",
+        "Пикник на природе"
+      ],
+      "hy": [
+        "Թռչկան ջրվեժ",
+        "Պիկնիկ բնության գրկում"
+      ],
+      "en": [
+        "Trchkan Waterfall",
+        "Picnic in nature"
+      ]
+    },
+    "categories": [
+      "popular",
+      "jeep"
+    ],
+    "priceFromAmd": 30000,
+    "departure": "08:00",
+    "durationHours": "10–12"
+  },
+  {
+    "slug": "jeep-mount-armaghan",
+    "image": "",
+    "title": {
+      "ru": "Джип-тур к горе Армаган",
+      "hy": "Ջիփ տուր դեպի Արմաղան լեռ",
+      "en": "Jeep Tour to Mount Armagan"
+    },
+    "description": {
+      "ru": "Удалённое высокогорное путешествие к кратерному озеру и монастырю Айраванк.",
+      "hy": "Հեռավոր բարձրադիր ուղևորություն դեպի խառնարանային լիճ և Հայրավանքի վանք։",
+      "en": "A remote highland drive to a volcanic crater lake and the historic Hayravank Monastery."
+    },
+    "about": {
+      "ru": "На внедорожнике поднимитесь к горе Армаган и её выразительному кратерному озеру. Соедините приключение в горах с посещением тихого монастыря Айраванк на берегу озера Севан.",
+      "hy": "Ամենագնացով կբարձրանաք Արմաղան լեռ և կտեսնեք նրա տպավորիչ խառնարանային լիճը։ Արտաճանապարհային արկածը կհամատեղեք Սևանա լճի ափին գտնվող խաղաղ Հայրավանքի այցելության հետ։",
+      "en": "Climb by 4x4 toward Mount Armagan and its striking crater lake. Combine an off-road mountain experience with the tranquil setting of Hayravank Monastery on the shores of Lake Sevan."
+    },
+    "destinations": {
+      "ru": [
+        "Гора Армаган, 2 829 м",
+        "Монастырь Айраванк",
+        "Кратерное озеро"
+      ],
+      "hy": [
+        "Արմաղան լեռ, 2 829 մ",
+        "Հայրավանքի վանք",
+        "Խառնարանային լիճ"
+      ],
+      "en": [
+        "Mount Armagan, 2,829 m",
+        "Hayravank Monastery",
+        "Crater Lake"
+      ]
+    },
+    "categories": [
+      "popular",
+      "jeep"
+    ],
+    "priceFromAmd": 30000,
+    "departure": "08:00",
+    "durationHours": "10–12"
+  },
+  {
+    "slug": "jeep-mount-khustup",
+    "image": "",
+    "title": {
+      "ru": "Джип-тур к горе Хуступ",
+      "hy": "Ջիփ տուր դեպի Խուստուփ լեռ",
+      "en": "Jeep Tour to Mount Khustup"
+    },
+    "description": {
+      "ru": "Целодневная высокогорная экспедиция к легендарной горе юга Армении.",
+      "hy": "Ամբողջօրյա բարձրադիր արշավ դեպի Հայաստանի հարավի լեգենդար Խուստուփը։",
+      "en": "A full-day highland expedition to southern Armenia’s legendary Mount Khustup."
+    },
+    "about": {
+      "ru": "Отправьтесь до рассвета в насыщенное внедорожное путешествие по горам Сюника. Посетите монастыри Татев и Ваганаванк, а затем встретьте закат у горы Хуступ в одном из самых запоминающихся уголков Армении.",
+      "hy": "Արևածագից առաջ կսկսեք 4x4 արկածային ուղևորությունը Սյունիքի լեռներով։ Կայցելեք Տաթևի և Վահանավանքի վանքերը, ապա Խուստուփ լեռան մոտ կվայելեք մայրամուտը Հայաստանի ամենատպավորիչ բնապատկերներից մեկում։",
+      "en": "Set out before sunrise for a dramatic 4x4 journey through the mountains of Syunik. Visit Tatev and Vahanavank monasteries, then watch the sun set near Mount Khustup in one of Armenia’s most memorable landscapes."
+    },
+    "destinations": {
+      "ru": [
+        "Гора Хуступ, 3 201 м",
+        "Монастырь Татев",
+        "Монастырь Ваганаванк",
+        "Закат на горе Хуступ"
+      ],
+      "hy": [
+        "Խուստուփ լեռ, 3 201 մ",
+        "Տաթևի վանք",
+        "Վահանավանքի վանք",
+        "Մայրամուտ Խուստուփի վրա"
+      ],
+      "en": [
+        "Mount Khustup, 3,201 m",
+        "Tatev Monastery",
+        "Vahanavank Monastery",
+        "Sunset on Mount Khustup"
+      ]
+    },
+    "categories": [
+      "popular",
+      "jeep"
+    ],
+    "priceFromAmd": 45000,
+    "departure": "05:30",
+    "durationHours": "16–18"
+  },
+  {
+    "slug": "khor-virap-areni-noravank-shaki",
+    "image": "",
+    "title": {
+      "ru": "Хор Вирап — Арени — Нораванк — водопад Шаки",
+      "hy": "Խոր Վիրապ, Արենի, Նորավանք և Շաքի ջրվեժ",
+      "en": "Khor Virap, Areni, Noravank and Shaki Waterfall"
+    },
+    "description": {
+      "ru": "Большой день на юге Армении: Арарат, вино, монастырь Нораванк и водопад Шаки.",
+      "hy": "Հագեցած օր Հայաստանի հարավում՝ Արարատ, գինի, Նորավանք և Շաքի ջրվեժ։",
+      "en": "A full southern Armenia day with Ararat views, wine, Noravank and Shaki Waterfall."
+    },
+    "about": {
+      "ru": "Этот насыщенный маршрут объединяет панораму Арарата из Хор Вирапа, винный регион Арени и краснокаменный монастырь Нораванк. Завершите путешествие у мощного водопада Шаки среди каньонов и горных пейзажей Сюника.",
+      "hy": "Այս ամբողջական երթուղին միավորում է Խոր Վիրապից բացվող Արարատի համայնապատկերը, Արենիի գինու շրջանը և կարմիր քարե Նորավանքը։ Ճանապարհորդությունը կավարտեք հզոր Շաքի ջրվեժի մոտ՝ Սյունիքի կիրճերի ու լեռների միջավայրում։",
+      "en": "This full-day route combines the Ararat panorama from Khor Virap, the wine country of Areni and the red-stone Noravank Monastery. Finish at powerful Shaki Waterfall among the canyons and mountain landscapes of Syunik."
+    },
+    "destinations": {
+      "ru": [
+        "Монастырь Хор Вирап",
+        "Винный тур и дегустация в Арени",
+        "Монастырь Нораванк",
+        "Водопад Шаки"
+      ],
+      "hy": [
+        "Խոր Վիրապ",
+        "Արենիի գինու շրջայց և համտես",
+        "Նորավանք",
+        "Շաքի ջրվեժ"
+      ],
+      "en": [
+        "Khor Virap",
+        "Areni Wine Tour and Tasting",
+        "Noravank Monastery",
+        "Shaki Waterfall"
+      ]
+    },
+    "categories": [
+      "popular",
+      "group"
+    ],
+    "priceFromAmd": 25000,
+    "departure": "07:30",
+    "durationHours": "13–14"
   }
 ]
