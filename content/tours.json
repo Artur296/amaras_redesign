@@ -4397,11 +4397,13 @@
       "en": []
     },
     "categories": [
-      "group"
+      "group",
+      "popular"
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
-    "durationHours": "10"
+    "durationHours": "10",
+    "featured": true
   },
   {
     "slug": "sevan-dilijan-monasteries",
