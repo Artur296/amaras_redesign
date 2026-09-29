@@ -4436,11 +4436,13 @@
       "en": []
     },
     "categories": [
-      "group"
+      "group",
+      "popular"
     ],
     "priceFromAmd": 20000,
     "departure": "09:00",
-    "durationHours": "10"
+    "durationHours": "10",
+    "featured": true
   },
   {
     "slug": "northern-armenia-treasures",
