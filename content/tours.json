@@ -4403,7 +4403,11 @@
     "priceFromAmd": 15000,
     "departure": "09:00",
     "durationHours": "10",
-    "featured": true
+    "featured": true,
+    "images": [
+      "/images/1790104024907-1001279689.webp",
+      "https://hyurservice.com/images/attractions/1/16118292486084/860x460.webp"
+    ]
   },
   {
     "slug": "sevan-dilijan-monasteries",
