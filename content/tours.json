@@ -1599,7 +1599,7 @@
   },
   {
     "slug": "khor-virap-areni-noravank-shaki",
-    "image": "",
+    "image": "/images/1790857643870-gwqyzfdel2z4resq5ehy91z-olltpxhbw972w489hkzssp9igqzc7tx5iv2re56knqjai-a2b5a88jdki3vj7hlfw9semybcoqtflqvngessdkzoiduxstpcejhe8c7fb7bix2ch4l5f3onnpjcozcnakehcui7je07wvqzvb7eixhyqbenayybzm5xlybk4.jpg",
     "title": {
       "ru": "Хор Вирап — Арени — Нораванк — водопад Шаки",
       "hy": "Խոր Վիրապ, Արենի, Նորավանք և Շաքի ջրվեժ",
@@ -1641,7 +1641,13 @@
     ],
     "priceFromAmd": 25000,
     "departure": "07:30",
-    "durationHours": "13–14"
+    "durationHours": "13–14",
+    "images": [
+      "/images/1790857643870-gwqyzfdel2z4resq5ehy91z-olltpxhbw972w489hkzssp9igqzc7tx5iv2re56knqjai-a2b5a88jdki3vj7hlfw9semybcoqtflqvngessdkzoiduxstpcejhe8c7fb7bix2ch4l5f3onnpjcozcnakehcui7je07wvqzvb7eixhyqbenayybzm5xlybk4.jpg",
+      "/images/1790857652954-bnhrlrkmbv2bi3b31epyabqyctg9bkydg46yuuevw-xna-vbv-xlzrmf3y0th8ksxaivmwodrhwpfv4zdfdiszbgqx-d0rbfbgddcmolkzr-dkhfbvcjhrbvcjeix6-bpsuzfm-cp3anxm0dttpryrrpyrf7hmraiqlnja0sbze1kf7pj0alcscqcn9wii3y.jpg",
+      "/images/1790857668765-3lswc8srlupqrobd6ldivdyksmohxwpnqxd1vtaxskowscux9vvdljst77butzfox3zfoxo-valex65na04zyllrd4kmjxyozn6xfgssbvasdflid9ne2gy4ibe4piavud-w-sg-q1pjus34a-mwqxashqbt-cv10rryzzkbl8qkcmqeb8bahzlotzcxdv6p.jpg",
+      "/images/1790857659098-c4arclvpxbsuxg5safzv5xqvah-fbrjbir-26ydcciurz7hb5h72tr03ds1v-kldqz3ge6wyupiclrcqp2wy6cvfooqhvlvg1qdtiziyb4l-d5votcx3blyz65hzrpbg8guzvxl5ot7l-gn-kjz6xnjchvy-v5zq0mexwsasqpwg30fqzccp1hoqqiw0z-l7.jpg"
+    ]
   },
   {
     "slug": "jeep-mount-dimats",
