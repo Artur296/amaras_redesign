@@ -1037,7 +1037,7 @@
   },
   {
     "slug": "echmiadzin-gayane-hripsime-lavash-zvartnots",
-    "image": "",
+    "image": "/images/1790851543350-clipboard-1790851545734.png",
     "title": {
       "ru": "Эчмиадзин — Гаяне — Рипсиме — лаваш — Звартноц",
       "hy": "Էջմիածնի մայր տաճար և Զվարթնոց",
@@ -1082,7 +1082,13 @@
     ],
     "priceFromAmd": 10000,
     "departure": "10:00",
-    "durationHours": "6–7"
+    "durationHours": "6–7",
+    "images": [
+      "/images/1790851543350-clipboard-1790851545734.png",
+      "/images/1790851586562-clipboard-1790851587820.png",
+      "/images/1790851608227-clipboard-1790851609592.png",
+      "/images/1790851625421-clipboard-1790851627577.jpg"
+    ]
   },
   {
     "slug": "garni-charents-arch-lavash-geghard",
