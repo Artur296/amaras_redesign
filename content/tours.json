@@ -1809,7 +1809,7 @@
   },
   {
     "slug": "jeep-smbataberd",
-    "image": "",
+    "image": "/images/1790860019734-zobisw-gur85l-jg-oho6rk5itvjgs-e99kzykbdp0wz2oikwmhk-drz9ihe0xkhubpsz0aqy6slf-uvjmchmf5thzh12oqf6pc2daoly-btswdgyhksvfjs5hgzvyc-fklcfqot63u2ypztrpmqme87dda9igtfc9nv-8jxke0lhndtlogrrc9d-3be7hdd.jpg",
     "title": {
       "ru": "Джип-тур к крепости Смбатаберд",
       "hy": "Ջիփ տուր դեպի Սմբատաբերդ",
@@ -1849,7 +1849,12 @@
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
-    "durationHours": "12–14"
+    "durationHours": "12–14",
+    "images": [
+      "/images/1790860019734-zobisw-gur85l-jg-oho6rk5itvjgs-e99kzykbdp0wz2oikwmhk-drz9ihe0xkhubpsz0aqy6slf-uvjmchmf5thzh12oqf6pc2daoly-btswdgyhksvfjs5hgzvyc-fklcfqot63u2ypztrpmqme87dda9igtfc9nv-8jxke0lhndtlogrrc9d-3be7hdd.jpg",
+      "/images/1790860027118-axywl-lmp9-hlc34polcelllh2zvsy2t1z-mwu8frc7r0ctml4nsylezmz13kfiyqi1fzmasu1dy3fzjb33rukfqqyc8mgbtbmfk6d9sob1w05ndryfp4jw2b8rbkfv2seelaivw4eafovelctgrmodgst-ug5tdv4rdoimlfjao-plsf-m2hlk6jxe7rnx-.jpg",
+      "/images/1790860032751-mmhhehcllgyockcnwswugu8lgi68v7lexp-yeqhvpzw5ipwe9dvkjp-hwm5sjvo0uth83zf9hvhnfritd6c-egdu2xeeg9xdcxb6rh0d2wjnfebu0zxcljj2eg9vfjjq6ilg3qsdvnokyaph44pn2u1y5mk3h5wonrpjqrw26lg-kthre19jibsrqxdzi7bg.jpg"
+    ]
   },
   {
     "slug": "jeep-trchkan-waterfall",
