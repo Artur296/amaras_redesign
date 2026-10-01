@@ -1858,7 +1858,7 @@
   },
   {
     "slug": "jeep-trchkan-waterfall",
-    "image": "",
+    "image": "/images/1790860105042-iiy3uobhxdb1j48o3itun8mq3m1hpkag1zfzr4qoxft-vejs9a94x1fvjersbishmt0ednye-kg2jwwxixs5fa-bszhrwo6v1fxzhdcq-l3m3uykat8kxr77x7vukwamvww53ucocdhswmenax8o4u18znvp-xnpyhycxtdqm3g-cgx50fbv-jsjaop3y4er.jpg",
     "title": {
       "ru": "Джип-тур к водопаду Трчкан",
       "hy": "Ջիփ տուր դեպի Թռչկան ջրվեժ",
@@ -1895,7 +1895,11 @@
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
-    "durationHours": "10–12"
+    "durationHours": "10–12",
+    "images": [
+      "/images/1790860105042-iiy3uobhxdb1j48o3itun8mq3m1hpkag1zfzr4qoxft-vejs9a94x1fvjersbishmt0ednye-kg2jwwxixs5fa-bszhrwo6v1fxzhdcq-l3m3uykat8kxr77x7vukwamvww53ucocdhswmenax8o4u18znvp-xnpyhycxtdqm3g-cgx50fbv-jsjaop3y4er.jpg",
+      "/images/1790860111658-eokpqhsc0imvs50atwzodyk72yhvkh4--yxtdwef-ys8whl9s9lt4czoiysypgcxmijqtpjhvgbiesb5axu9apajrbn-0f19qd-dxibs9ohp3afxjvp-5qpzwastot-zpd-j2phhtf482lilb7o3zwirqufnbnxxdmlqe-vxlz7vigde1aptkjq7d25nkb7.jpg"
+    ]
   },
   {
     "slug": "jeep-mount-armaghan",
