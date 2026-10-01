@@ -1204,7 +1204,7 @@
   },
   {
     "slug": "khor-virap-areni-noravank-birds-cave",
-    "image": "",
+    "image": "/images/1790853455264-awge04akby43ltzn8xib6wgtyoebnbkn2b6ehic8tsrpzvdpszi6fbjos252jqhxynu1op0eepxj8-y55gwqzzgal4ve5k-g-kb8nuibt-nqkyoo-nmnkfk-b1dzf2-vq17sdiykok-isgs0z4y-bp6kj6spaq-izeb3-7-zrlwyhqv3m7r3rjty0yowndu.jpg",
     "title": {
       "ru": "Хор Вирап — Арени — Нораванк — Пещера птиц",
       "hy": "Խոր Վիրապ, Արենի, Նորավանք և Թռչունների քարանձավ",
@@ -1246,7 +1246,13 @@
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
-    "durationHours": "8–9"
+    "durationHours": "8–9",
+    "images": [
+      "/images/1790853455264-awge04akby43ltzn8xib6wgtyoebnbkn2b6ehic8tsrpzvdpszi6fbjos252jqhxynu1op0eepxj8-y55gwqzzgal4ve5k-g-kb8nuibt-nqkyoo-nmnkfk-b1dzf2-vq17sdiykok-isgs0z4y-bp6kj6spaq-izeb3-7-zrlwyhqv3m7r3rjty0yowndu.jpg",
+      "/images/1790853475394-bnhrlrkmbv2bi3b31epyabqyctg9bkydg46yuuevw-xna-vbv-xlzrmf3y0th8ksxaivmwodrhwpfv4zdfdiszbgqx-d0rbfbgddcmolkzr-dkhfbvcjhrbvcjeix6-bpsuzfm-cp3anxm0dttpryrrpyrf7hmraiqlnja0sbze1kf7pj0alcscqcn9wii3y.jpg",
+      "/images/1790853463364-3lswc8srlupqrobd6ldivdyksmohxwpnqxd1vtaxskowscux9vvdljst77butzfox3zfoxo-valex65na04zyllrd4kmjxyozn6xfgssbvasdflid9ne2gy4ibe4piavud-w-sg-q1pjus34a-mwqxashqbt-cv10rryzzkbl8qkcmqeb8bahzlotzcxdv6p.jpg",
+      "/images/1790853467379-rz9uwjodasdjm-h5-b4wcqvd86qkqdxupy8utmv3wsugz-8smynk8nknff9wyapekbp3qmxwjxf-fhoia2cyqpugl5uwkpm8lvog0oatssupswwxfyqjpdbcmdla5wfa7hg6pbvjobjhxuaddu13fnk1t6o0e-tjf7gilo-cydxtmrssatnenkajqtzxevg.jpg"
+    ]
   },
   {
     "slug": "tsaghkadzor-sevan-dilijan",
