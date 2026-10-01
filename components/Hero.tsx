@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import BookButton from "@/components/BookButton";
 import { useLinks } from "@/components/SiteProvider";
-import { WhatsAppIcon } from "@/components/icons";
+import { WhatsAppIcon, TelegramIcon, InstagramIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
 
 const SLIDE_MS = 6500;
@@ -134,11 +134,11 @@ export default function Hero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.38, duration: 0.6 }}
-              className="mt-8 flex flex-wrap items-center gap-4"
+              className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
             >
               <Link
                 href={`/${locale}/tours`}
-                className="inline-flex items-center gap-3 rounded-full bg-[#C7FF32] px-8 py-4 text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-xl shadow-[#C7FF32]/25 transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-3 rounded-full bg-[#C7FF32] px-7 py-3.5 sm:px-8 sm:py-4 text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-xl shadow-[#C7FF32]/25 transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95"
               >
                 <span>
                   {locale === "ru"
@@ -154,10 +154,30 @@ export default function Hero({
                 href={links.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3.5 sm:py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-[#25D366] hover:bg-[#25D366]/20 hover:text-white hover:scale-105 active:scale-95"
               >
                 <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
                 <span>WhatsApp</span>
+              </a>
+
+              <a
+                href={links.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3.5 sm:py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-[#229ED9] hover:bg-[#229ED9]/20 hover:text-white hover:scale-105 active:scale-95"
+              >
+                <TelegramIcon className="h-4 w-4 text-[#229ED9]" />
+                <span>Telegram</span>
+              </a>
+
+              <a
+                href={links.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3.5 sm:py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-[#E1306C] hover:bg-[#E1306C]/20 hover:text-white hover:scale-105 active:scale-95"
+              >
+                <InstagramIcon className="h-4 w-4 text-[#E1306C]" />
+                <span>Instagram</span>
               </a>
             </motion.div>
           </div>

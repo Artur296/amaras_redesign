@@ -5,7 +5,7 @@ import FadeIn from "@/components/FadeIn";
 import Hero from "@/components/Hero";
 import JeepExpeditionWidget from "@/components/JeepExpeditionWidget";
 import ReviewsSection from "@/components/ReviewsSection";
-import { CalendarIcon, WhatsAppIcon, TelegramIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
+import { CalendarIcon, WhatsAppIcon, TelegramIcon, InstagramIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
 import { publicCategories } from "@/lib/tours";
 import { buildLinks } from "@/lib/site";
@@ -537,6 +537,15 @@ export default async function HomePage({ params }: Props) {
                 >
                   <TelegramIcon className="h-5 w-5 text-[#229ED9]" />
                   <span>Telegram</span>
+                </a>
+                <a
+                  href={links.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] px-8 py-4 font-black uppercase tracking-wider text-white shadow-xl transition-transform hover:scale-105"
+                >
+                  <InstagramIcon className="h-5 w-5" />
+                  <span>Instagram</span>
                 </a>
               </div>
             </div>
