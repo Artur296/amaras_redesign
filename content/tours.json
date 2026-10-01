@@ -1547,7 +1547,7 @@
   },
   {
     "slug": "northern-armenia-monasteries",
-    "image": "",
+    "image": "/images/1790857520353-mi82zcuqwtyuodgri-hu3dbvadti33lns25aruecfnmlbs-1ukgctxql8gbjtw4zapzseat2hvt-4mxjvnoodiuhwubav7nifybqv9qnbq7v4tbyky6ojv41zueschkhmm1qzakkg7zdkagyzxsknvkqo9mpmqp-qhpzuj-7qovwymttnnj5yhmya8ttqyo0.jpg",
     "title": {
       "ru": "Монастыри Северной Армении",
       "hy": "Հյուսիսային Հայաստանի վանքերը",
@@ -1589,7 +1589,13 @@
     ],
     "priceFromAmd": 25000,
     "departure": "09:00",
-    "durationHours": "10–11"
+    "durationHours": "10–11",
+    "images": [
+      "/images/1790857520353-mi82zcuqwtyuodgri-hu3dbvadti33lns25aruecfnmlbs-1ukgctxql8gbjtw4zapzseat2hvt-4mxjvnoodiuhwubav7nifybqv9qnbq7v4tbyky6ojv41zueschkhmm1qzakkg7zdkagyzxsknvkqo9mpmqp-qhpzuj-7qovwymttnnj5yhmya8ttqyo0.jpg",
+      "/images/1790857525722-yzsccg6d10kl0e-duxpwnsadtp3kw7uzbze0htrkfexbaapgta--uihjphmw-brtu7ujmxwbz0dpg-amdowgjohe5w8sc6mutzzr9c3flzvma6bbrdkvz4jul-vnojy8ajf0ytoft2ffd57it-inzvdzxpeljfqzbp1hfb9rtfutjdorlp8lks434vaw0-wd.jpg",
+      "/images/1790857531106-m314py6s-8tb0yc6b56bd3vanpjzxscn-3vlcnvbgmwkatsq7igwkppzu-vm2mynyo0sq3iimssqeyc-lfjedqvlemzcvltu6rfsupzdtxh8yzyovxapotyk5-3tpdir20tu7bbkt1kpqs6f-wxbexhxtipb9hmea1ywazmknbm8fkxvibl2te81lx3sm10i.jpg",
+      "/images/1790857535355-rr1dw3mrtgaqyyjxrwirqdnwp4cvtz4kwx72uqf1q47vbm29ed9pstoojuy7z-8rzuzkles0liieqfiijwsjxa4iazih4gm9tzioeenb90xfdp2chjj2escvbepeq-dvdjwdi1n-pwa9ncflg5ipe7bspvfsefxbiwcg1dgphgp-sg3hwxe5gxbplkd0av0g.jpg"
+    ]
   },
   {
     "slug": "khor-virap-areni-noravank-shaki",
