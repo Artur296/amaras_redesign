@@ -1312,7 +1312,7 @@
   },
   {
     "slug": "sevan-old-dilijan-haghartsin",
-    "image": "",
+    "image": "/images/1790853877240-i8cdorf8vjimxsfxt-lhxh49cqale0anwy92lold6hm9povdxdqpjegnn6xqgalmewbbms8hwt-pkcqvcp3heeqhrkqqi0fldd5dpahl52ylbg-umeivanthw6gmm5piyw0m5lb2fvz9ehpfjntot9tb55arptnryfnyx010dpxnsbrnoq5y7m-ucn5x3f2x.jpg",
     "title": {
       "ru": "Севан — Дилижан — Агарцин — Гошаванк",
       "hy": "Սևան, Դիլիջան, Հաղարծին և Գոշավանք",
@@ -1360,7 +1360,15 @@
     ],
     "priceFromAmd": 20000,
     "departure": "09:00",
-    "durationHours": "9–10"
+    "durationHours": "9–10",
+    "images": [
+      "/images/1790853877240-i8cdorf8vjimxsfxt-lhxh49cqale0anwy92lold6hm9povdxdqpjegnn6xqgalmewbbms8hwt-pkcqvcp3heeqhrkqqi0fldd5dpahl52ylbg-umeivanthw6gmm5piyw0m5lb2fvz9ehpfjntot9tb55arptnryfnyx010dpxnsbrnoq5y7m-ucn5x3f2x.jpg",
+      "/images/1790853890071-xjpxfhfeyi4b1viswt352kcrvvvggdgpsfyvokjfltqsxa6xh1arowoeb5rziv0ltvz9ulwgpjsluy3rjjndnqqnbsrzktri-b99-avm4lccoo9yhpus9vsuhi1gxlicvracp9u198v1-ostacip9eafslkk3rw-lbev2u-sp00cetadimqj4dgny4kexcir.jpg",
+      "/images/1790853896275-958yfzb7vtlpvj28ahkhfsfgki7zeknjt11ifz59vjz92bj3lgmupjaor9ix5mpgqipbfxw1zo6u6gq74myiwepo-einof6tw0bzrjuero4-hiyod6zvhdvlvrvohkglcyu-vel9l2j1hg-ln2ns7dfoofdirsvne8swqptkvesbc2qmrllmwcg4fgdz9jxo.jpg",
+      "/images/1790853901607-kju6pgjzd5ki1rhvzt8dzmwu4ztjrfdng6kuho97b--8fzh952nsr70dyp5ypfmvveppvclivsfz6zyzwj7l1mc6zsiud6lytxv1fssz0tjbyfbodqybmq0xaujjfxgrawprkpcdvsjltcmcx-fhcblj7xaos8fg44fmagi7i6zqi6qphw-am4bjttj3rg44.jpg",
+      "/images/1790853908336-x82lu-jesd0-rl9jlyj3zdlajsaqv89nthhdt-as1--myt746mfktqw4qojgxwb5385mvaaf4apbd-cs8-gmd86i8jwbwkbiteulricr-5zn2sedafnfcw-tao60noycdxdk7kiagkqyy1zsqwxa2c-uekgjbrgrxs6gifn3c-wiwkgyiqrcplrd7dmfg7z8.jpg",
+      "/images/1790853942836-pfflcp6xjihgagpnljitacegs9tio08wfs4aqmhfurxlpefy3tjwkm-zg-xpp9r6usx6w5xu3zvldm0lrdrkdlj7nd0unbv4daxwgrrxh1gspxxyspmgk39lobexwodqnmg62kguf1h0ipipofwyacg9mtkcq1xpkiv6lmjstxung7cbugmjxnow-kho7jub.jpg"
+    ]
   },
   {
     "slug": "akhtala-haghpat-mendz-er-sanaahin",
