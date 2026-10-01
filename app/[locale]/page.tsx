@@ -141,22 +141,22 @@ export default async function HomePage({ params }: Props) {
     {
       icon: "🗺️",
       title: locale === "ru" ? "Авторские маршруты" : locale === "hy" ? "Հեղինակային երթուղիներ" : "Handcrafted Routes",
-      desc: locale === "ru" ? "Каждый тур выверен по таймингу, локациям и видам: от главных святынь до тайных ущелий." : locale === "hy" ? "Յուրաքանչյուր տուր մշակված է մանրակրկիտ՝ լավագույն տպավորությունների համար:" : "Every itinerary is optimized for pacing, comfort, and breathtaking viewpoints.",
+      desc: locale === "ru" ? "Каждый тур выверен по таймингу, локациям и видам: от главных святынь до тайных ущелий." : locale === "hy" ? "Յուրաքանչյուր տուր մշակված է մանրակրկիտ՝ լավագույն տպավորությունների համար։" : "Every itinerary is optimized for pacing, comfort, and breathtaking viewpoints.",
     },
     {
       icon: "🎙️",
       title: locale === "ru" ? "Опытные гиды" : locale === "hy" ? "Փորձառու գիդեր" : "Expert Local Storytellers",
-      desc: locale === "ru" ? "Истории, легенды и культура оживают на трех языках: русском, армянском и английском." : locale === "hy" ? "Պատմությունն ու մշակույթը կենդանանում են երեք լեզուներով:" : "History and local lore come alive in Russian, Armenian, and English.",
+      desc: locale === "ru" ? "Истории, легенды и культура оживают на трех языках: русском, армянском и английском." : locale === "hy" ? "Պատմությունն ու մշակույթը կենդանանում են երեք լեզուներով։" : "History and local lore come alive in Russian, Armenian, and English.",
     },
     {
       icon: "🛡️",
       title: locale === "ru" ? "Честная цена без сюрпризов" : locale === "hy" ? "Ազնիվ գներ" : "Transparent Pricing",
-      desc: locale === "ru" ? "Никаких скрытых доплат. Транспорт высокого класса, питьевая вода и забота в пути." : locale === "hy" ? "Ոչ մի թաքնված վճար: Բարձրակարգ տրանսպորտ և հոգատար սպասարկում:" : "No surprise fees. Modern Mercedes Sprinters & 4x4 vehicles, bottled water included.",
+      desc: locale === "ru" ? "Никаких скрытых доплат. Транспорт высокого класса, питьевая вода и забота в пути." : locale === "hy" ? "Ոչ մի թաքնված վճար։ Բարձրակարգ տրանսպորտ և հոգատար սպասարկում։" : "No surprise fees. Modern Mercedes Sprinters & 4x4 vehicles, bottled water included.",
     },
     {
       icon: "⚡",
       title: locale === "ru" ? "Бронь за 1 минуту" : locale === "hy" ? "Արագ ամրագրում" : "Instant 1-Click Booking",
-      desc: locale === "ru" ? "Быстрая связь в WhatsApp и Telegram. Мгновенно подтверждаем места и отправляем детали." : locale === "hy" ? "Արագ կապ WhatsApp-ով և Telegram-ով՝ առանց ավելորդ բարդությունների:" : "Instant confirmation via WhatsApp & Telegram directly with your coordinator.",
+      desc: locale === "ru" ? "Быстрая связь в WhatsApp и Telegram. Мгновенно подтверждаем места и отправляем детали." : locale === "hy" ? "Արագ կապ WhatsApp-ով և Telegram-ով՝ առանց ավելորդ բարդությունների։" : "Instant confirmation via WhatsApp & Telegram directly with your coordinator.",
     },
   ];
 
@@ -210,7 +210,7 @@ export default async function HomePage({ params }: Props) {
                 {locale === "ru"
                   ? "От доступных групповых экскурсий до внедорожных экспедиций 4x4 и персональных туров."
                   : locale === "hy"
-                  ? "Մատչելի խմբային էքսկուրսիաներից մինչև արտաճանապարհային ջիպ արշավներ և անհատական պրեմիում տուրեր:"
+                  ? "Մատչելի խմբային էքսկուրսիաներից մինչև արտաճանապարհային ջիպ արշավներ և անհատական պրեմիում տուրեր։"
                   : "From friendly group excursions to rugged 4x4 mountain expeditions and private custom tours."}
               </p>
             </div>
@@ -301,7 +301,7 @@ export default async function HomePage({ params }: Props) {
                   {locale === "ru"
                     ? "Бронируйте групповые и джип-туры заранее по специальным фиксированным ценам. Без предоплаты — бронируйте прямо в WhatsApp."
                     : locale === "hy"
-                    ? "Ամրագրեք խմբային և ջիպ-տուրերը նախապես հատուկ շահավետ գներով: Առանց կանխավճարի:"
+                    ? "Ամրագրեք խմբային և ջիպ-տուրերը նախապես հատուկ շահավետ գներով։ Առանց կանխավճարի։"
                     : "Book group & 4x4 jeep tours in advance at special promotional rates with zero prepayment."}
                 </p>
               </div>

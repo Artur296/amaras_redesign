@@ -509,7 +509,7 @@ const hy: Dict = {
   },
   featured: { title: "Հանրաճանաչ տուրեր", all: "Բոլոր տուրերը" },
   why: {
-    title: "Ինչու՞ Amaras Tour",
+    title: "Ինչո՞ւ Amaras Tour",
     items: [
       {
         title: "Տեղացի գիդեր",
@@ -646,7 +646,7 @@ const en: Dict = {
     items: [
       {
         title: "Local guides",
-        desc: "Our guides were born and raised in Armenia and know it like no one else.",
+        desc: "Our guides were born and raised in Armenia, knowing every corner of this land and its living heritage like no one else.",
       },
       {
         title: "Comfortable transport",
@@ -677,7 +677,7 @@ const en: Dict = {
     route: "Route",
     duration: "Duration",
     departure: "Departure",
-    itinerary: "Day-by-day programme",
+    itinerary: "Day-by-day itinerary",
     day: "Day",
     accommodation: "Accommodation",
     perPerson: "per person",
@@ -687,7 +687,7 @@ const en: Dict = {
     badge: "Tour package",
     allInclusive: "All-inclusive",
     perPerson: "per person",
-    program: "Programme",
+    program: "Itinerary",
     intro:
       "This is not a day trip but a ready-made multi-day journey: accommodation, transfers, a guide and every excursion are already included in the price.",
     includesTitle: "Already included in the package price",
@@ -697,7 +697,7 @@ const en: Dict = {
       guide: "Guide for the whole route",
       tickets: "Entrance tickets",
     },
-    viewProgram: "See the programme",
+    viewProgram: "View full itinerary",
   },
   info: enInfo,
   about: {

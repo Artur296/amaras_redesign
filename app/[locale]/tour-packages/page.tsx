@@ -109,10 +109,14 @@ export default async function TourPackagesPage({ params }: Props) {
         <div className="flex items-center justify-between text-xs font-bold text-[#6B6967]">
           <span>
             {locale === "ru"
-              ? `Доступно программ: ${list.length}`
+              ? (list.length === 1
+                  ? "Доступна 1 программа"
+                  : list.length >= 2 && list.length <= 4
+                  ? `Доступно ${list.length} программы`
+                  : `Доступно ${list.length} программ`)
               : locale === "hy"
-              ? `Հասանելի է ${list.length} փաթեթ`
-              : `Available packages: ${list.length}`}
+              ? `Հասանելի է ${list.length} տուր-փաթեթ`
+              : `${list.length} ${list.length === 1 ? "tour package" : "tour packages"} available`}
           </span>
         </div>
 

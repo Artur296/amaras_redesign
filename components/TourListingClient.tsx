@@ -145,10 +145,14 @@ export default function TourListingClient({
       <div className="flex items-center justify-between text-xs font-bold text-[#6B6967]">
         <span>
           {locale === "ru"
-            ? `Найдено туров: ${filteredTours.length}`
+            ? (filteredTours.length === 1
+                ? "Найден 1 тур"
+                : filteredTours.length >= 2 && filteredTours.length <= 4
+                ? `Найдено ${filteredTours.length} тура`
+                : `Найдено ${filteredTours.length} туров`)
             : locale === "hy"
             ? `Գտնվել է ${filteredTours.length} տուր`
-            : `Found ${filteredTours.length} tours`}
+            : `${filteredTours.length} ${filteredTours.length === 1 ? "tour" : "tours"} found`}
         </span>
         {search && (
           <button
@@ -188,7 +192,7 @@ export default function TourListingClient({
             {locale === "ru"
               ? "Попробуйте изменить поисковый запрос или выбрать другую категорию."
               : locale === "hy"
-              ? "Փորձեք փոխել որոնման պարամետրերը:"
+              ? "Փորձեք փոխել որոնման պարամետրերը։"
               : "Try adjusting your search criteria or choosing a different category."}
           </p>
           <button

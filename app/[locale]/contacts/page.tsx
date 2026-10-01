@@ -235,14 +235,14 @@ export default async function ContactsPage({ params }: Props) {
                     {locale === "ru"
                       ? "Ереван, пр. Месропа Маштоца 51 (нижняя площадка Матенадарана, остановка Bus Voyage, на пересечении с ул. Корюна)."
                       : locale === "hy"
-                      ? "Երևան, Մեսրոպ Մաշտոցի պող. 51 (Մատենադարանի ստորին հարթակ, Bus Voyage կանգառ, Կորյունի փողոցի խաչմերուկում):"
+                      ? "Երևան, Մեսրոպ Մաշտոցի պող. 51 (Մատենադարանի ստորին հարթակ, Bus Voyage կանգառ, Կորյունի փողոցի խաչմերուկում)։"
                       : "Yerevan, 51 Mesrop Mashtots Ave (lower Matenadaran terrace, Bus Voyage stop, junction with Koryun St)."}
                   </p>
                   <p className="mt-2 text-xs text-[#FCFCF7]/50">
                     {locale === "ru"
                       ? "Рекомендуем подходить за 10–15 минут до времени выезда."
                       : locale === "hy"
-                      ? "Խորհուրդ ենք տալիս մոտենալ մեկնումից 10–15 րոպե առաջ:"
+                      ? "Խորհուրդ ենք տալիս մոտենալ մեկնումից 10–15 րոպե առաջ։"
                       : "We recommend arriving 10–15 minutes before departure."}
                   </p>
                 </div>

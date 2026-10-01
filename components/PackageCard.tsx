@@ -72,15 +72,16 @@ export default function PackageCard({
 
         {/* Day-by-Day Indicators */}
         {days.length > 0 && (
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-4 flex items-center gap-2.5">
             <span className="text-xs font-bold uppercase tracking-wider text-[#C7FF32]">
               {dict.pkg.program}:
             </span>
-            <span className="flex flex-wrap gap-1.5">
+            <span className="flex flex-wrap items-center gap-1.5">
               {days.map((day) => (
                 <span
                   key={day}
                   className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-[11px] font-black text-[#FCFCF7]"
+                  title={`${dict.tour.day} ${day}`}
                 >
                   {day}
                 </span>
@@ -107,29 +108,34 @@ export default function PackageCard({
           </ul>
         </div>
 
-        {/* Pricing */}
+        {/* Pricing: natural format "от 95 000 ֏ / с человека" */}
         <div className="mt-5 border-t border-white/10 pt-4">
-          <div className="flex items-baseline justify-between">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#FCFCF7]/70">
-              {dict.tours.from} · {dict.pkg.perPerson}
-            </span>
+          <div className="flex items-end justify-between gap-3">
+            <div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#FCFCF7]/70">
+                  {dict.tours.from}
+                </span>
+                {tour.priceOldAmd && (
+                  <s className="text-xs font-semibold text-[#FCFCF7]/50">
+                    {formatPrice(tour.priceOldAmd)}
+                  </s>
+                )}
+                <span className="text-2xl font-black text-[#C7FF32]">
+                  {formatPrice(tour.priceFromAmd)}
+                </span>
+              </div>
+              <span className="mt-0.5 block text-xs font-semibold text-[#FCFCF7]/75">
+                / {dict.pkg.perPerson}
+              </span>
+            </div>
+
             {stars.length > 0 && (
-              <span className="flex items-center gap-1 text-xs font-bold text-[#C7FF32]">
+              <span className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs font-bold text-[#C7FF32]">
                 <BedIcon className="h-3.5 w-3.5" />
                 {stars.join(" / ")}
               </span>
             )}
-          </div>
-
-          <div className="mt-1 flex items-baseline gap-2">
-            {tour.priceOldAmd && (
-              <s className="text-sm font-semibold text-[#FCFCF7]/50">
-                {formatPrice(tour.priceOldAmd)}
-              </s>
-            )}
-            <span className="text-2xl font-black text-[#FCFCF7]">
-              {formatPrice(tour.priceFromAmd)}
-            </span>
           </div>
         </div>
 

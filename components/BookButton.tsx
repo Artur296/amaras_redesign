@@ -2,9 +2,40 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { useParams } from "next/navigation";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { useLinks } from "@/components/SiteProvider";
 import { TelegramIcon, WhatsAppIcon } from "@/components/icons";
+
+const MODAL_I18N = {
+  ru: {
+    badge: "Бронирование и консультация",
+    title: "Выберите мессенджер",
+    close: "Закрыть",
+    desc: "Напишите нам — менеджер ответит в течение 5 минут, согласует дату и забронирует тур.",
+    waSub: "Быстрый ответ • Онлайн",
+    tgSub: "Чат с менеджером туров",
+    footer: "⚡ Без комиссии • Быстрый ответ 24/7",
+  },
+  hy: {
+    badge: "Ամրագրում և խորհրդատվություն",
+    title: "Ընտրեք մեսենջերը",
+    close: "Փակել",
+    desc: "Գրեք մեզ — մենեջերը կպատասխանի 5 րոպեի ընթացքում, կհամաձայնեցնի ամսաթիվը և կամրագրի տուրը։",
+    waSub: "Արագ պատասխան • Օնլայն",
+    tgSub: "Զրույց մենեջերի հետ",
+    footer: "⚡ Առանց միջնորդավճարի • 24/7 արագ կապ",
+  },
+  en: {
+    badge: "Booking & Inquiry",
+    title: "Choose Messenger",
+    close: "Close",
+    desc: "Message us — our tour coordinator will reply within 5 minutes to confirm dates and arrangements.",
+    waSub: "Instant reply • Online",
+    tgSub: "Chat with tour coordinator",
+    footer: "⚡ Direct rates • 24/7 fast support",
+  },
+};
 
 export default function BookButton({
   label,
@@ -22,6 +53,12 @@ export default function BookButton({
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const links = useLinks();
+  const params = useParams();
+  const rawLocale = params?.locale;
+  const locale = (typeof rawLocale === "string" && ["ru", "hy", "en"].includes(rawLocale)
+    ? rawLocale
+    : "ru") as "ru" | "hy" | "en";
+  const t = MODAL_I18N[locale] || MODAL_I18N.ru;
 
   useEffect(() => {
     setMounted(true);
@@ -57,7 +94,7 @@ export default function BookButton({
     {
       href: whatsappHref,
       label: "WhatsApp",
-      subtitle: "Быстрый ответ • Онлайн",
+      subtitle: t.waSub,
       icon: WhatsAppIcon,
       badgeColor: "bg-[#25D366]",
       hoverBorder: "hover:border-[#25D366] hover:bg-[#25D366]/5",
@@ -65,7 +102,7 @@ export default function BookButton({
     {
       href: links.telegram,
       label: "Telegram",
-      subtitle: "Чат с менеджером туров",
+      subtitle: t.tgSub,
       icon: TelegramIcon,
       badgeColor: "bg-[#229ED9]",
       hoverBorder: "hover:border-[#229ED9] hover:bg-[#229ED9]/5",
@@ -143,16 +180,16 @@ export default function BookButton({
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <span className="text-[11px] font-bold uppercase tracking-wider text-muted">
-                          Бронирование и консультация
+                          {t.badge}
                         </span>
                         <h3 className="mt-0.5 text-xl font-black text-[#312F2F]">
-                          Выберите мессенджер
+                          {t.title}
                         </h3>
                       </div>
                       <button
                         type="button"
                         onClick={() => setOpen(false)}
-                        aria-label="Закрыть"
+                        aria-label={t.close}
                         className="flex h-8 w-8 items-center justify-center rounded-full bg-black/5 text-[#312F2F] transition-colors hover:bg-black/10 hover:text-black"
                       >
                         ✕
@@ -160,7 +197,7 @@ export default function BookButton({
                     </div>
 
                     <p className="mt-2 text-xs text-[#6B6967] leading-relaxed">
-                      Напишите нам — менеджер ответит в течение 5 минут, согласует дату и забронирует тур.
+                      {t.desc}
                     </p>
 
                     {/* Messenger Cards */}
@@ -197,7 +234,7 @@ export default function BookButton({
                     {/* Footer badge */}
                     <div className="mt-5 pt-3.5 border-t border-black/5 text-center">
                       <span className="text-[11px] font-semibold text-muted">
-                        ⚡ Без комиссии • Быстрый ответ 24/7
+                        {t.footer}
                       </span>
                     </div>
                   </motion.div>

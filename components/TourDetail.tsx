@@ -236,6 +236,11 @@ export default function TourDetail({
                       <span className="text-3xl font-black text-[#312F2F]">
                         {formatPrice(tour.priceFromAmd)}
                       </span>
+                      {isPackage && (
+                        <span className="text-xs font-bold text-[#6B6967]">
+                          / {dict.pkg.perPerson}
+                        </span>
+                      )}
                     </div>
                     {discount !== null && (
                       <span className="mt-2 inline-block rounded-full bg-[#C7FF32] px-3 py-0.5 text-xs font-black text-[#312F2F]">
@@ -261,7 +266,7 @@ export default function TourDetail({
                       {locale === "ru"
                         ? "Индивидуальный расчет под ваши даты, количество гостей и класс авто."
                         : locale === "hy"
-                        ? "Անհատական հաշվարկ՝ ըստ ձեր ամսաթվերի, հյուրերի քանակի և ավտոմեքենայի դասի:"
+                        ? "Անհատական հաշվարկ՝ ըստ ձեր ամսաթվերի, հյուրերի քանակի և ավտոմեքենայի դասի։"
                         : "Custom quote tailored to your dates, group size, and car class."}
                     </p>
                   </div>
@@ -317,7 +322,7 @@ export default function TourDetail({
                             (locale === "ru"
                               ? "На текущие даты запись закрыта. Уточняйте ближайшие свободные места у координатора."
                               : locale === "hy"
-                              ? "Ընթացիկ ամսաթվերին տեղերը սպառված են: Ճշտեք առաջիկա ազատ օրերը կոորդինատորից:"
+                              ? "Ընթացիկ ամսաթվերին տեղերը սպառված են։ Ճշտեք առաջիկա ազատ օրերը կոորդինատորից։"
                               : "Currently fully booked. Please contact our coordinator for upcoming dates.")}
                         </p>
                       </div>
@@ -336,7 +341,7 @@ export default function TourDetail({
                       locale === "ru"
                         ? `Здравствуйте! Хочу уточнить доступные даты для тура: ${tour.title[locale]}`
                         : locale === "hy"
-                        ? `Բարև ձեզ: Ցանկանում եմ ճշտել հասանելի օրերը տուրի համար՝ ${tour.title[locale]}`
+                        ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը տուրի համար՝ ${tour.title[locale]}`
                         : `Hello! I would like to check available dates for: ${tour.title[locale]}`
                     }
                     variant="primary"

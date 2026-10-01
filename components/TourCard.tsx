@@ -150,7 +150,7 @@ export default function TourCard({
                   ? (locale === "ru"
                       ? `Здравствуйте! Подскажите, когда будут свободные даты на тур: ${tour.title[locale]}`
                       : locale === "hy"
-                      ? `Բարև ձեզ: Կասե՞ք, երբ կլինեն ազատ օրեր տուրի համար՝ ${tour.title[locale]}`
+                      ? `Բարև ձեզ, կասե՞ք, երբ կլինեն ազատ օրեր տուրի համար՝ ${tour.title[locale]}`
                       : `Hello! Could you let me know upcoming available dates for: ${tour.title[locale]}`)
                   : `${dict.tours.bookMessage} ${tour.title[locale]}`
               }
