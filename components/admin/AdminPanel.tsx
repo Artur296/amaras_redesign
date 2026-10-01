@@ -12,6 +12,7 @@ import {
 } from "@/lib/tours";
 import type { SiteInfo } from "@/lib/site";
 import type { Content, ContentKey } from "@/lib/content";
+import type { Review } from "@/lib/reviews";
 
 const localeNames: Record<Locale, string> = {
   ru: "Русский",
@@ -31,12 +32,13 @@ const sectionNames: Record<ContentKey, string> = {
   i18n: "Texts",
   site: "Contacts",
   hero: "Images",
+  reviews: "Reviews",
 };
 
-const TABS = ["Tours", "Packages", "Images", "Categories", "Texts", "Contacts", "Password"] as const;
+const TABS = ["Tours", "Packages", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
 type Tab = (typeof TABS)[number];
 
-// The five stored keys, read off the editing state. Tabs edit different
+// The stored keys, read off the editing state. Tabs edit different
 // parts of the same object, so this is what "everything you changed" means.
 function keyValues(content: Content): Record<ContentKey, unknown> {
   return {
@@ -45,6 +47,7 @@ function keyValues(content: Content): Record<ContentKey, unknown> {
     categories: content.categories,
     site: content.site,
     hero: content.hero,
+    reviews: content.reviews || [],
   };
 }
 
@@ -167,18 +170,30 @@ export default function AdminPanel() {
           </div>
         </div>
         <nav className="mx-auto flex max-w-[1100px] gap-1 px-6">
-          {TABS.map((t) => (
-            <button
-              key={t}
-              type="button"
-              onClick={() => setTab(t)}
-              className={`rounded-t-lg px-4 py-2 text-sm font-bold transition-colors ${
-                tab === t ? "bg-bg text-ink" : "text-white/70 hover:text-accent"
-              }`}
-            >
-              {t}
-            </button>
-          ))}
+          {TABS.map((t) => {
+            const pendingCount =
+              t === "Reviews"
+                ? (content.reviews || []).filter((r) => !r.approved).length
+                : 0;
+
+            return (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setTab(t)}
+                className={`flex items-center gap-1.5 rounded-t-lg px-4 py-2 text-sm font-bold transition-colors ${
+                  tab === t ? "bg-bg text-ink" : "text-white/70 hover:text-accent"
+                }`}
+              >
+                <span>{t === "Reviews" ? "Отзывы" : t}</span>
+                {pendingCount > 0 && (
+                  <span className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-amber-400 px-1 text-[10px] font-black text-black shadow-sm">
+                    {pendingCount}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </nav>
       </header>
 
@@ -249,6 +264,13 @@ export default function AdminPanel() {
           <CategoriesTab
             categories={content.categories}
             onChange={(categories) => setContent({ ...content, categories })}
+            onSave={publish}
+          />
+        )}
+        {tab === "Reviews" && (
+          <ReviewsTab
+            reviews={content.reviews || []}
+            onChange={(reviews) => setContent({ ...content, reviews })}
             onSave={publish}
           />
         )}
@@ -1725,6 +1747,281 @@ function PasswordTab() {
           </p>
         </div>
       )}
+    </div>
+  );
+}
+
+/* ---------- Reviews Tab ---------- */
+
+function ReviewsTab({
+  reviews,
+  onChange,
+  onSave,
+}: {
+  reviews: Review[];
+  onChange: (reviews: Review[]) => void;
+  onSave: () => void;
+}) {
+  const [filter, setFilter] = useState<"all" | "pending" | "approved">("all");
+  const [addingNew, setAddingNew] = useState(false);
+
+  // New review form
+  const [newAuthor, setNewAuthor] = useState("");
+  const [newLocation, setNewLocation] = useState("");
+  const [newTour, setNewTour] = useState("");
+  const [newRating, setNewRating] = useState(5);
+  const [newText, setNewText] = useState("");
+
+  const pendingList = reviews.filter((r) => !r.approved);
+  const approvedList = reviews.filter((r) => r.approved);
+
+  const displayed =
+    filter === "pending"
+      ? pendingList
+      : filter === "approved"
+      ? approvedList
+      : reviews;
+
+  function toggleApproval(id: string) {
+    onChange(
+      reviews.map((r) => (r.id === id ? { ...r, approved: !r.approved } : r))
+    );
+  }
+
+  function deleteReview(id: string) {
+    if (!window.confirm("Удалить этот отзыв?")) return;
+    onChange(reviews.filter((r) => r.id !== id));
+  }
+
+  function handleCreateReview(e: React.FormEvent) {
+    e.preventDefault();
+    if (!newAuthor.trim() || !newText.trim()) return;
+
+    const item: Review = {
+      id: `rev-${Date.now()}`,
+      author: newAuthor.trim(),
+      location: newLocation.trim(),
+      tourTitle: newTour.trim(),
+      rating: newRating,
+      text: newText.trim(),
+      date: new Date().toISOString().split("T")[0],
+      approved: true, // admin created reviews are approved by default
+      createdAt: new Date().toISOString(),
+    };
+
+    onChange([item, ...reviews]);
+    setAddingNew(false);
+    setNewAuthor("");
+    setNewLocation("");
+    setNewTour("");
+    setNewRating(5);
+    setNewText("");
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div>
+          <h2 className="text-xl font-black text-ink">Управление отзывами</h2>
+          <p className="text-xs text-muted">
+            Модерация отзывов гостей. Новые отзывы с сайта требуют проверки перед публикацией.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setAddingNew(!addingNew)}
+          className="rounded-full bg-primary px-5 py-2 text-xs font-bold text-white transition-colors hover:bg-primary-dark"
+        >
+          {addingNew ? "✕ Закрыть форму" : "+ Добавить отзыв вручную"}
+        </button>
+      </div>
+
+      {/* Manual Add Form */}
+      {addingNew && (
+        <form
+          onSubmit={handleCreateReview}
+          className="rounded-2xl border border-primary/30 bg-primary/5 p-6 space-y-4"
+        >
+          <h3 className="text-sm font-bold text-ink">Новый отзыв (будет опубликован сразу)</h3>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <Field label="Имя автора *">
+              <TextInput value={newAuthor} onChange={setNewAuthor} placeholder="Анна С." />
+            </Field>
+            <Field label="Город / страна">
+              <TextInput value={newLocation} onChange={setNewLocation} placeholder="Москва" />
+            </Field>
+            <Field label="Название тура">
+              <TextInput value={newTour} onChange={setNewTour} placeholder="Озеро Севан" />
+            </Field>
+          </div>
+
+          <div>
+            <span className="block text-sm font-semibold text-ink">Оценка</span>
+            <div className="mt-1 flex gap-2">
+              {[1, 2, 3, 4, 5].map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => setNewRating(s)}
+                  className={`rounded-lg px-3 py-1.5 text-xs font-bold ${
+                    newRating === s ? "bg-primary text-white" : "bg-white border text-ink"
+                  }`}
+                >
+                  {s} ★
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <Field label="Текст отзыва *">
+            <textarea
+              required
+              rows={3}
+              value={newText}
+              onChange={(e) => setNewText(e.target.value)}
+              className={inputCls}
+              placeholder="Текст отзыва..."
+            />
+          </Field>
+
+          <div className="flex justify-end gap-2">
+            <button
+              type="button"
+              onClick={() => setAddingNew(false)}
+              className="rounded-full border px-4 py-2 text-xs font-bold text-muted"
+            >
+              Отмена
+            </button>
+            <button
+              type="submit"
+              className="rounded-full bg-primary px-6 py-2 text-xs font-bold text-white hover:bg-primary-dark"
+            >
+              Сохранить отзыв
+            </button>
+          </div>
+        </form>
+      )}
+
+      {/* Filter Tabs */}
+      <div className="flex flex-wrap items-center gap-2 border-b border-black/10 pb-3">
+        <button
+          type="button"
+          onClick={() => setFilter("all")}
+          className={`rounded-full px-4 py-1.5 text-xs font-bold ${
+            filter === "all" ? "bg-deep text-white" : "bg-white border text-muted"
+          }`}
+        >
+          Все ({reviews.length})
+        </button>
+        <button
+          type="button"
+          onClick={() => setFilter("pending")}
+          className={`rounded-full px-4 py-1.5 text-xs font-bold ${
+            filter === "pending"
+              ? "bg-amber-500 text-white shadow-sm"
+              : "bg-white border text-amber-700"
+          }`}
+        >
+          Ожидают проверки ({pendingList.length})
+        </button>
+        <button
+          type="button"
+          onClick={() => setFilter("approved")}
+          className={`rounded-full px-4 py-1.5 text-xs font-bold ${
+            filter === "approved" ? "bg-green-600 text-white" : "bg-white border text-green-700"
+          }`}
+        >
+          Опубликованные ({approvedList.length})
+        </button>
+      </div>
+
+      {/* Reviews List */}
+      <div className="space-y-4">
+        {displayed.length === 0 ? (
+          <div className="rounded-2xl border border-black/10 bg-white p-8 text-center text-sm text-muted">
+            Нет отзывов в этой категории.
+          </div>
+        ) : (
+          displayed.map((rev) => {
+            const rawText =
+              typeof rev.text === "string"
+                ? rev.text
+                : rev.text?.ru || rev.text?.en || rev.text?.hy || "";
+
+            return (
+              <div
+                key={rev.id}
+                className={`rounded-2xl border p-5 transition-all ${
+                  rev.approved
+                    ? "border-black/10 bg-white"
+                    : "border-amber-400 bg-amber-50/50 shadow-sm"
+                }`}
+              >
+                <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
+                  <div className="space-y-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="font-bold text-ink">{rev.author}</span>
+                      {rev.location && (
+                        <span className="text-xs text-muted">({rev.location})</span>
+                      )}
+                      <span className="text-xs font-bold text-amber-600">
+                        {"★".repeat(rev.rating)} ({rev.rating}/5)
+                      </span>
+                      {rev.approved ? (
+                        <span className="rounded-full bg-green-100 px-2.5 py-0.5 text-[10px] font-bold text-green-800">
+                          ✓ Опубликован
+                        </span>
+                      ) : (
+                        <span className="rounded-full bg-amber-200 px-2.5 py-0.5 text-[10px] font-bold text-amber-900">
+                          ⏳ На проверке
+                        </span>
+                      )}
+                    </div>
+
+                    {rev.tourTitle && (
+                      <span className="block text-xs font-semibold text-primary">
+                        📍 Тур: {rev.tourTitle}
+                      </span>
+                    )}
+
+                    <p className="pt-1 text-sm text-ink leading-relaxed whitespace-pre-line">
+                      {rawText}
+                    </p>
+
+                    <span className="block text-[11px] text-muted">
+                      Дата: {rev.date}
+                    </span>
+                  </div>
+
+                  <div className="flex shrink-0 items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => toggleApproval(rev.id)}
+                      className={`rounded-full px-4 py-1.5 text-xs font-bold transition-colors ${
+                        rev.approved
+                          ? "border border-black/15 bg-white text-muted hover:border-amber-600 hover:text-amber-600"
+                          : "bg-green-600 text-white hover:bg-green-700 shadow-sm"
+                      }`}
+                    >
+                      {rev.approved ? "Скрыть с сайта" : "✓ Одобрить"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => deleteReview(rev.id)}
+                      className="rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-bold text-red-600 hover:bg-red-100"
+                    >
+                      Удалить
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      <SaveBar onSave={onSave} label="Опубликовать изменения на сайте" />
     </div>
   );
 }

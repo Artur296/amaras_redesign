@@ -11,6 +11,8 @@ import toursOverride from "@/content/tours.json";
 import categoriesOverride from "@/content/categories.json";
 import siteOverride from "@/content/site.json";
 import heroOverride from "@/content/hero.json";
+import reviewsOverride from "@/content/reviews.json";
+import type { Review } from "@/lib/reviews";
 
 export type Content = {
   dicts: Record<Locale, Dict>;
@@ -18,9 +20,17 @@ export type Content = {
   categories: Category[];
   site: SiteInfo;
   hero: { images: string[] };
+  reviews: Review[];
 };
 
-export const CONTENT_KEYS = ["i18n", "tours", "categories", "site", "hero"] as const;
+export const CONTENT_KEYS = [
+  "i18n",
+  "tours",
+  "categories",
+  "site",
+  "hero",
+  "reviews",
+] as const;
 export type ContentKey = (typeof CONTENT_KEYS)[number];
 
 export const defaultHeroImages = [
@@ -36,6 +46,7 @@ const defaults: Content = {
   categories: defaultCategories,
   site,
   hero: { images: defaultHeroImages },
+  reviews: (reviewsOverride as Review[]) || [],
 };
 
 // Overlay stored values on defaults so keys added in future code versions
@@ -91,6 +102,9 @@ function build(overrides: Record<ContentKey, unknown>): Content {
     categories: usableCategories(overrides.categories) ?? defaults.categories,
     site: deepMerge(defaults.site, overrides.site),
     hero: heroImages?.length ? { images: heroImages } : defaults.hero,
+    reviews: Array.isArray(overrides.reviews)
+      ? (overrides.reviews as Review[])
+      : defaults.reviews,
   };
 }
 
@@ -122,6 +136,7 @@ export function currentOverrides(): Record<ContentKey, unknown> {
     categories: readJsonFile("categories.json", categoriesOverride),
     site: readJsonFile("site.json", siteOverride),
     hero: readJsonFile("hero.json", heroOverride),
+    reviews: readJsonFile("reviews.json", reviewsOverride),
   };
 }
 

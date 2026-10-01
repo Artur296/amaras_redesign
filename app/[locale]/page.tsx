@@ -3,17 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import Hero from "@/components/Hero";
-import HomeTourFilter from "@/components/HomeTourFilter";
-import PackageCard from "@/components/PackageCard";
 import JeepExpeditionWidget from "@/components/JeepExpeditionWidget";
+import ReviewsSection from "@/components/ReviewsSection";
 import { CalendarIcon, WhatsAppIcon, TelegramIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
-import {
-  findPackagesCategory,
-  isPackageTour,
-  packageDayRange,
-  publicCategories,
-} from "@/lib/tours";
+import { publicCategories } from "@/lib/tours";
 import { buildLinks } from "@/lib/site";
 import { getContent } from "@/lib/content";
 
@@ -24,15 +18,12 @@ export const revalidate = 300;
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   if (!locales.includes(locale as Locale)) notFound();
-  const { dicts, tours, categories: allCategories, site, hero } = await getContent();
+  const { dicts, categories: allCategories, site, hero, reviews } = await getContent();
 
   const categories = publicCategories(allCategories);
   const dict = dicts[locale];
   const links = buildLinks(site);
-
-  const featured = tours.filter((t) => t.featured ?? true);
-  const featuredPackages = featured.filter(isPackageTour).slice(0, 3);
-  const packageCategory = findPackagesCategory(allCategories);
+  const approvedReviews = (reviews || []).filter((r) => r.approved !== false);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -194,40 +185,6 @@ export default async function HomePage({ params }: Props) {
     },
   ];
 
-  // Testimonials
-  const testimonials = [
-    {
-      quote: locale === "ru"
-        ? "Поездка на Севан и в Дилижан превзошла все ожидания! Водитель очень аккуратный, гид рассказывал потрясающие истории. Организация на высоте!"
-        : locale === "hy"
-        ? "Սևան և Դիլիջան ուղևորությունը գերազանցեց բոլոր սպասելիքները: Շնորհակալություն հիանալի կազմակերպման համար:"
-        : "The tour to Sevan and Dilijan exceeded all expectations. Extremely professional driver, knowledgeable guide, and seamless booking!",
-      author: "Anna & Mikhail S.",
-      location: "Moscow",
-      rating: 5,
-    },
-    {
-      quote: locale === "ru"
-        ? "Джип-тур к водопадам — это чистый восторг! Проехали туда, куда на обычной машине и не сунешься. Мощные внедорожники и море адреналина."
-        : locale === "hy"
-        ? "Ջիպ-տուրը պարզապես հիանալի էր: Հզոր մեքենաներ և անմոռանալի տպավորություններ:"
-        : "The 4x4 Jeep tour was breathtaking! Reached remote spots impossible with regular cars. Incredible adrenaline and mountain vistas.",
-      author: "David K.",
-      location: "Yerevan / Los Angeles",
-      rating: 5,
-    },
-    {
-      quote: locale === "ru"
-        ? "Брали 5-дневный тур-пакет. Отели отличные, трансферы минута в минуту, программа насыщенная. Ни о чем не беспокоились, только наслаждались Арменией!"
-        : locale === "hy"
-        ? "5-օրյա փաթեթը շատ հարմարավետ էր: Բոլոր հյուրանոցներն ու էքսկուրսիաները բարձր մակարդակի վրա էին:"
-        : "Booked a 5-day package. Premium hotels, punctual transfers, rich cultural programme. Truly stress-free vacation!",
-      author: "Elena V.",
-      location: "Saint Petersburg",
-      rating: 5,
-    },
-  ];
-
   return (
     <>
       <script
@@ -238,27 +195,89 @@ export default async function HomePage({ params }: Props) {
       {/* 1. HERO with integrated Trip Discovery Search */}
       <Hero locale={locale} dict={dict} images={hero.images} />
 
-      {/* 2. FEATURED TOURS & BEST HOLIDAY DEALS (Black Tomato / Luxury Travel style) */}
+      {/* 2. TRAVEL FORMATS (Landing Page Showcase) */}
       <section className="mx-auto max-w-[1240px] px-6 py-20">
         <FadeIn>
-          <div className="flex flex-col gap-2">
-            <span className="text-xs font-black uppercase tracking-[0.25em] text-[#586EFF]">
-              {locale === "ru" ? "Кураторская подборка" : locale === "hy" ? "Ընտրված տուրեր" : "Curated Journeys"}
-            </span>
-            <h2 className="font-serif text-3xl font-normal tracking-tight text-[#312F2F] sm:text-4xl lg:text-5xl">
-              {dict.featured.title}
-            </h2>
+          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#586EFF]">
+                {locale === "ru" ? "Форматы путешествий" : locale === "hy" ? "Տուրերի ձևաչափերը" : "Travel Formats"}
+              </span>
+              <h2 className="mt-2 font-serif text-3xl font-normal tracking-tight text-[#312F2F] sm:text-4xl lg:text-5xl">
+                {locale === "ru" ? "Выберите свой стиль Армении" : locale === "hy" ? "Ընտրեք ձեր ոճը" : "Choose Your Travel Style"}
+              </h2>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#6B6967]">
+                {locale === "ru"
+                  ? "От доступных групповых экскурсий до внедорожных экспедиций 4x4 и персональных туров."
+                  : locale === "hy"
+                  ? "Մատչելի խմբային էքսկուրսիաներից մինչև արտաճանապարհային ջիպ արշավներ և անհատական պրեմիում տուրեր:"
+                  : "From friendly group excursions to rugged 4x4 mountain expeditions and private custom tours."}
+              </p>
+            </div>
+
+            <Link
+              href={`/${locale}/tours`}
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#312F2F] px-7 py-3.5 text-sm font-black uppercase tracking-wider text-[#C7FF32] shadow-md transition-all hover:bg-[#242323] hover:scale-105 active:scale-95"
+            >
+              <span>
+                {locale === "ru"
+                  ? "Выбирай свой тур"
+                  : locale === "hy"
+                  ? "Ընտրիր քո տուրը"
+                  : "Choose Your Tour"}
+              </span>
+              <span className="text-base font-black">→</span>
+            </Link>
           </div>
         </FadeIn>
 
-        {/* Client Interactive Filter Tabs + Tour Grid */}
-        <div className="mt-8">
-          <HomeTourFilter
-            tours={featured}
-            categories={categories}
-            locale={locale}
-            dict={dict}
-          />
+        {/* Formats Grid */}
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {categories.map((cat, i) => (
+            <FadeIn key={cat.id} delay={i * 0.08} className="h-full">
+              <Link
+                href={`/${locale}/tours/${cat.id}`}
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#EAE9E0] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#586EFF]/50 hover:shadow-xl"
+              >
+                <div className="relative aspect-[16/11] overflow-hidden bg-black/10">
+                  <Image
+                    src={cat.image}
+                    alt={cat.title[locale]}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
+                  <span className="absolute bottom-3 left-3 rounded-full bg-[#312F2F]/90 px-3 py-1 text-xs font-bold text-[#C7FF32] backdrop-blur-md">
+                    {cat.id === "group" && (locale === "ru" ? "от 10 000 ֏" : locale === "hy" ? "10 000 ֏-ից" : "From 10k ֏")}
+                    {cat.id === "individual" && (locale === "ru" ? "Личный гид и авто" : locale === "hy" ? "Անձնական գիդ" : "Private Guide")}
+                    {cat.id === "jeep" && (locale === "ru" ? "Внедорожники 4x4" : locale === "hy" ? "Ամենագնաց 4x4" : "4x4 Off-Road")}
+                    {cat.id === "popular" && (locale === "ru" ? "Хиты поездок" : locale === "hy" ? "Թոփ տուրեր" : "Top Picks")}
+                    {cat.id === "packages" && (locale === "ru" ? "Все включено" : locale === "hy" ? "Ամեն ինչ ներառված է" : "All-Inclusive")}
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-xl font-black text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
+                    {cat.title[locale]}
+                  </h3>
+                  <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-[#6B6967]">
+                    {cat.desc[locale]}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#586EFF]">
+                    <span>
+                      {locale === "ru"
+                        ? "Выбрать направление"
+                        : locale === "hy"
+                        ? "Դիտել ուղղությունը"
+                        : "Explore tours"}
+                    </span>
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
+                </div>
+              </Link>
+            </FadeIn>
+          ))}
         </div>
       </section>
 
@@ -374,46 +393,6 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* 5. MULTI-DAY TOUR PACKAGES (All Inclusive Showcase) */}
-      {featuredPackages.length > 0 && packageCategory && (
-        <section className="mx-auto max-w-[1240px] px-6 py-20">
-          <FadeIn>
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <span className="text-xs font-black uppercase tracking-[0.25em] text-[#586EFF]">
-                  {dict.pkg.badge}
-                </span>
-                <h2 className="mt-2 font-serif text-3xl font-normal tracking-tight text-[#312F2F] sm:text-4xl lg:text-5xl">
-                  {packageCategory.title[locale]}
-                </h2>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#6B6967]">
-                  {packageCategory.desc[locale]}
-                </p>
-              </div>
-              <Link
-                href={`/${locale}/tour-packages`}
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#586EFF] hover:underline"
-              >
-                <span>{dict.tours.viewAll}</span>
-                <span className="text-base font-black">→</span>
-              </Link>
-            </div>
-          </FadeIn>
-
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredPackages.map((tour, i) => (
-              <FadeIn key={tour.slug} delay={i * 0.08} className="h-full">
-                <PackageCard
-                  tour={tour}
-                  locale={locale}
-                  dict={dict}
-                />
-              </FadeIn>
-            ))}
-          </div>
-        </section>
-      )}
-
       {/* 6. TRUST SECTION ("Book With Confidence" - TripMate pattern) */}
       <section className="bg-[#FCFCF7] border-y border-[#EAE9E0] py-20">
         <div className="mx-auto max-w-[1240px] px-6">
@@ -505,51 +484,8 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* 8. TESTIMONIALS (TripMate "What customers say about us") */}
-      <section className="bg-[#312F2F] py-20 text-[#FCFCF7]">
-        <div className="mx-auto max-w-[1240px] px-6">
-          <FadeIn>
-            <div className="text-center">
-              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#C7FF32]">
-                {locale === "ru" ? "Отзывы наших гостей" : locale === "hy" ? "Մեր հյուրերի կարծիքները" : "Traveler Testimonials"}
-              </span>
-              <h2 className="mt-2 font-serif text-3xl font-normal tracking-tight text-[#FCFCF7] sm:text-4xl lg:text-5xl">
-                {locale === "ru" ? "Что говорят о поездках с AMARAS" : locale === "hy" ? "Ինչ են ասում AMARAS-ի մասին" : "What Travelers Say About AMARAS"}
-              </h2>
-            </div>
-          </FadeIn>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {testimonials.map((test, i) => (
-              <FadeIn key={test.author} delay={i * 0.08} className="h-full">
-                <div className="flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
-                  <div>
-                    <div className="flex gap-1 text-sm text-[#C7FF32]">
-                      {"★".repeat(test.rating)}
-                    </div>
-                    <p className="mt-4 font-serif text-base leading-relaxed text-[#FCFCF7]/95 italic">
-                      “{test.quote}”
-                    </p>
-                  </div>
-                  <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#C7FF32] font-black text-[#312F2F]">
-                      {test.author.charAt(0)}
-                    </div>
-                    <div>
-                      <span className="block text-sm font-bold text-white">
-                        {test.author}
-                      </span>
-                      <span className="block text-xs text-white/60">
-                        {test.location}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 8. TESTIMONIALS & GUEST REVIEWS (Dynamic with interactive submit) */}
+      <ReviewsSection initialReviews={approvedReviews} locale={locale} />
 
       {/* 9. FINAL CALL TO ACTION */}
       <section className="mx-auto max-w-[1240px] px-6 py-20">
@@ -571,6 +507,19 @@ export default async function HomePage({ params }: Props) {
               </p>
 
               <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <Link
+                  href={`/${locale}/tours`}
+                  className="flex items-center justify-center gap-2.5 rounded-full bg-[#C7FF32] px-8 py-4 font-black uppercase tracking-wider text-[#312F2F] shadow-xl transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95"
+                >
+                  <span>
+                    {locale === "ru"
+                      ? "Выбирай свой тур"
+                      : locale === "hy"
+                      ? "Ընտրիր քո տուրը"
+                      : "Choose Your Tour"}
+                  </span>
+                  <span className="text-base font-black">→</span>
+                </Link>
                 <a
                   href={links.whatsapp}
                   target="_blank"

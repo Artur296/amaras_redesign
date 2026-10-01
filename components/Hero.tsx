@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import BookButton from "@/components/BookButton";
+import { useLinks } from "@/components/SiteProvider";
+import { WhatsAppIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
 
 const SLIDE_MS = 6500;
@@ -20,6 +22,7 @@ export default function Hero({
   images: string[];
 }) {
   const router = useRouter();
+  const links = useLinks();
   const slides = images.map((src, i) => ({
     src,
     alt: i === 0 ? dict.hero.imageAlt : "Armenia Landscape",
@@ -125,13 +128,45 @@ export default function Hero({
             >
               {dict.hero.subtitle}
             </motion.p>
+
+            {/* Prominent Landing CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.38, duration: 0.6 }}
+              className="mt-8 flex flex-wrap items-center gap-4"
+            >
+              <Link
+                href={`/${locale}/tours`}
+                className="inline-flex items-center gap-3 rounded-full bg-[#C7FF32] px-8 py-4 text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-xl shadow-[#C7FF32]/25 transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95"
+              >
+                <span>
+                  {locale === "ru"
+                    ? "Выбирай свой тур"
+                    : locale === "hy"
+                    ? "Ընտրիր քո տուրը"
+                    : "Choose Your Tour"}
+                </span>
+                <span className="text-base font-black">→</span>
+              </Link>
+
+              <a
+                href={links.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"
+              >
+                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                <span>WhatsApp</span>
+              </a>
+            </motion.div>
           </div>
 
           {/* Integrated Trip Discovery Widget (TripMate Reference Inspired) */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.6 }}
+            transition={{ delay: 0.48, duration: 0.6 }}
             className="mt-10 max-w-4xl"
           >
             <form
