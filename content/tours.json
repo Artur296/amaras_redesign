@@ -1372,7 +1372,7 @@
   },
   {
     "slug": "akhtala-haghpat-mendz-er-sanaahin",
-    "image": "",
+    "image": "/images/1790854086623-yvdk4ziykdpejjqtp0dsbdalay6gnxtjl74lcvntlkujf6ea8cig3tc3mleuhajf4wpxox3go7uxp-m7iob8wybnrad5zked-tv0qnqqkbhnphebe3rlqosieuqpsvlspczj6dlvdbcnfnurypnxfewjccbk2pjvpasvhctmfcdl8ybrb6l9oogzusa3vld7.jpg",
     "title": {
       "ru": "Ахтала — Хагпат — Мендз Эр — Санаин",
       "hy": "Ախթալա, Հաղպատ և Սանահին",
@@ -1414,7 +1414,13 @@
     ],
     "priceFromAmd": 20000,
     "departure": "09:00",
-    "durationHours": "10–11"
+    "durationHours": "10–11",
+    "images": [
+      "/images/1790854086623-yvdk4ziykdpejjqtp0dsbdalay6gnxtjl74lcvntlkujf6ea8cig3tc3mleuhajf4wpxox3go7uxp-m7iob8wybnrad5zked-tv0qnqqkbhnphebe3rlqosieuqpsvlspczj6dlvdbcnfnurypnxfewjccbk2pjvpasvhctmfcdl8ybrb6l9oogzusa3vld7.jpg",
+      "/images/1790854095022-uemyjldn26383pxlnn6fwwmaydkhvyk-lemz6ibn2zf2usqlfhonksksf6doo64m2rbb4mj5bsovpezpesxe63yhw3ya-oedpi2qcu6ac8kcks6akdz3vnit5id73orlod8jepxf5ihvkwjensyoinlzaayhijjl9ejqizze3t0vwt3lyrvuylvxmehpp98q.jpg",
+      "/images/1790854100979-ekfestavgzqmmr8w74xj8rn1ygvjafgcekbluyspetxr3afhzavukvvl-dvv8fkgio-u4sf2ao1-svf4m8cd0brp62gnxbcauuxldk6g3t3ilatjdealw35ffphcj0q601n2kzokko9aqybuvmnwcgy8ygl5o54yes3dz-muaoxqmt37rgvhdg9ur-flqoao.jpg",
+      "/images/1790854105604-blh3c5qp01vjas4f6nyham3j43gz3prrf2y63kecluq6xsoqwb-lzayd8x7ci136n1tprenwqup-8-w-k0vtysx-skhbw5xswq-gved0bfilicufi-tp1brmrquyr0k-cxmxorjxgtgfc0kskresupbys7uxdlklamxqxib-p0oexvsweoxm4xfy-fjmotih.jpg"
+    ]
   },
   {
     "slug": "khor-virap-sevan-garni-geghard",
