@@ -1092,7 +1092,7 @@
   },
   {
     "slug": "garni-charents-arch-lavash-geghard",
-    "image": "",
+    "image": "/images/1790852010585-30860288.jpg",
     "title": {
       "ru": "Гарни — Арка Чаренца — лаваш — Гегард",
       "hy": "Գառնի, Չարենցի կամար և Գեղարդ",
@@ -1137,7 +1137,14 @@
     ],
     "priceFromAmd": 15000,
     "departure": "10:00",
-    "durationHours": "6–7"
+    "durationHours": "6–7",
+    "images": [
+      "/images/1790852010585-30860288.jpg",
+      "/images/1790852018779-860x460.webp",
+      "/images/1790852214017-mm6ovjtxmp--d-43iano-slgu9izj9yphngl5cdmo2r97wh9ykwn9ldo3cpz6y8qi-2huqwaytyrecsjc4dpmtyhlfcobclhnnli6dnfu7s6dk14wd1jsxfdxcy2c3ckrdrsydjwgosu7cyo-9qomc0thj2smvaavr1b3a3jlk6oqk0s4dbhra-0alhlij5l.jpg",
+      "/images/1790852220056-ripzsgypnnvqs6g8qjy-gpvps-d3j3mdpdzg3e1jqvypp7antd0o-eimd-7cl8bv4gv-nouqmnk71bc-m1begnygpghp197kvtn7wth-4mf8zirv-1pm0idzdiq3qx7z4i5jaqel2l6efjmstyxzpwv7lwlxa1mvje2-mvypvnzuworwqdqwe3o4monn-ddh.jpg",
+      "/images/1790852238237-zvsf5duyfcow1oux6pyuadkk9kqw9xubftztbcwvfgf2yaxptyvnfwdrk05w4eqm6qceb1pipw2obl4rzgb2iw5pmjaawurevrvmeiszwznyvojlo8w6i7crsvzxupwwsru--8uize1a4-asqn19sxn-j-3hgigb5vw780nmoaylj9rxblx7wkcablppfi8u.jpg"
+    ]
   },
   {
     "slug": "khor-virap-azat-garni-geghard",
