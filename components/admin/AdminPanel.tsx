@@ -448,6 +448,7 @@ function ImagePicker({ value, onChange }: { value: string; onChange: (url: strin
   const fileRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
   // A just-uploaded image is committed but not deployed yet, so its real
   // path 404s for another minute. Preview the local file instead.
   const [pending, setPending] = useState<{ url: string; preview: string } | null>(
@@ -483,36 +484,118 @@ function ImagePicker({ value, onChange }: { value: string; onChange: (url: strin
     }
   }
 
+  function handlePaste(e: React.ClipboardEvent) {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (item.type.startsWith("image/")) {
+        e.preventDefault();
+        const file = item.getAsFile();
+        if (file) {
+          const ext = item.type.split("/")[1]?.replace("jpeg", "jpg") || "png";
+          const named = new File([file], `clipboard-${Date.now()}.${ext}`, { type: file.type });
+          upload(named);
+          return;
+        }
+      }
+    }
+  }
+
+  async function pasteFromClipboard() {
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard?.read) {
+        const items = await navigator.clipboard.read();
+        for (const item of items) {
+          const imageType = item.types.find((t) => t.startsWith("image/"));
+          if (imageType) {
+            const blob = await item.getType(imageType);
+            const ext = imageType.split("/")[1]?.replace("jpeg", "jpg") || "png";
+            const file = new File([blob], `clipboard-${Date.now()}.${ext}`, { type: imageType });
+            await upload(file);
+            return;
+          }
+        }
+        setError("В буфере обмена нет изображения. Скопируйте картинку и нажмите Paste (или Ctrl+V).");
+        return;
+      }
+      setError("Нажмите на поле ввода и используйте Ctrl+V для вставки картинки.");
+    } catch {
+      setError("Нажмите на поле ввода и нажмите Ctrl+V для вставки картинки.");
+    }
+  }
+
   return (
-    <div className="mt-1 flex flex-wrap items-center gap-3">
-      {value ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={pending?.url === value ? pending.preview : value}
-          alt=""
-          className="h-14 w-20 rounded-lg border border-black/10 object-cover"
-        />
-      ) : (
-        <span className="flex h-14 w-20 items-center justify-center rounded-lg border border-dashed border-black/20 text-xs text-muted">
-          no image
-        </span>
-      )}
-      <div className="flex-1">
+    <div
+      onPaste={handlePaste}
+      onDragOver={(e) => {
+        e.preventDefault();
+        setIsDragging(true);
+      }}
+      onDragLeave={() => setIsDragging(false)}
+      onDrop={(e) => {
+        e.preventDefault();
+        setIsDragging(false);
+        const f = e.dataTransfer.files?.[0];
+        if (f && f.type.startsWith("image/")) upload(f);
+      }}
+      className={`mt-1 flex flex-wrap items-center gap-3 rounded-xl p-1.5 transition-colors ${
+        isDragging ? "bg-primary/10 ring-2 ring-primary ring-dashed" : ""
+      }`}
+    >
+      <button
+        type="button"
+        onClick={() => fileRef.current?.click()}
+        title="Кликните для выбора файла или перетащите сюда картинку"
+        className="group relative cursor-pointer focus:outline-none"
+      >
+        {value ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={pending?.url === value ? pending.preview : value}
+            alt=""
+            className="h-14 w-20 rounded-lg border border-black/10 object-cover transition-opacity group-hover:opacity-80"
+          />
+        ) : (
+          <span className="flex h-14 w-20 flex-col items-center justify-center rounded-lg border border-dashed border-black/20 text-[11px] text-muted transition-colors group-hover:border-primary group-hover:text-primary">
+            <span>📷</span>
+            <span>no image</span>
+          </span>
+        )}
+      </button>
+
+      <div className="flex-1 min-w-[200px]">
         <input
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="/images/… or upload →"
+          onPaste={handlePaste}
+          placeholder="/images/… или Ctrl+V (вставить)"
           className={inputCls.replace("mt-1 ", "")}
         />
       </div>
-      <button
-        type="button"
-        disabled={busy}
-        onClick={() => fileRef.current?.click()}
-        className="rounded-full border border-black/15 px-4 py-2 text-xs font-bold hover:border-primary hover:text-primary disabled:opacity-50"
-      >
-        {busy ? "Uploading…" : "Upload"}
-      </button>
+
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          disabled={busy}
+          onClick={pasteFromClipboard}
+          title="Вставить картинку из буфера обмена (Ctrl+V)"
+          className="rounded-full border border-black/15 bg-white px-3.5 py-2 text-xs font-bold text-[#312F2F] hover:border-primary hover:text-primary hover:bg-primary/5 disabled:opacity-50 transition-all flex items-center gap-1.5"
+        >
+          <span>📋</span>
+          <span>{busy ? "..." : "Paste"}</span>
+        </button>
+
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => fileRef.current?.click()}
+          className="rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-bold text-[#312F2F] hover:border-primary hover:text-primary hover:bg-primary/5 disabled:opacity-50 transition-all"
+        >
+          {busy ? "Uploading…" : "Upload"}
+        </button>
+      </div>
+
       <input
         ref={fileRef}
         type="file"
