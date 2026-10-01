@@ -1753,7 +1753,7 @@
   },
   {
     "slug": "jeep-mineral-geyser-jermuk",
-    "image": "",
+    "image": "/images/1790859826142-sc2a0qemvrtku6ilofu4k3qbmmpfkg--zi-ojx-v37ff6lytftmngh-f2ak6n7pbo-e2hwnoacchjw1zaobofmgszxmav-dlb437qcmgov1fkyqu43d047kusywlndamn4dgjq4pgntlf65fdodvtm-dka1qeth8dvr-j154btdas1-6rjrwwodh3wfbfugh.jpg",
     "title": {
       "ru": "Джип-тур к минеральному гейзеру",
       "hy": "Ջիփ տուր դեպի հանքային գեյզեր",
@@ -1799,7 +1799,13 @@
     ],
     "priceFromAmd": 25000,
     "departure": "09:00",
-    "durationHours": "10–11"
+    "durationHours": "10–11",
+    "images": [
+      "/images/1790859826142-sc2a0qemvrtku6ilofu4k3qbmmpfkg--zi-ojx-v37ff6lytftmngh-f2ak6n7pbo-e2hwnoacchjw1zaobofmgszxmav-dlb437qcmgov1fkyqu43d047kusywlndamn4dgjq4pgntlf65fdodvtm-dka1qeth8dvr-j154btdas1-6rjrwwodh3wfbfugh.jpg",
+      "/images/1790859837481-pjqewy6yko-f4ueeemlcxss4i6mdy6glzl8zlsgyj-xdy0g-xd6md3wuruzpbwiikpxry0zjbwuu5wxx9z5j6rqdxl-cccomqeytagktyttisuzntbp4kblowrz1kj5cirtzqoyoseecyx-n4rw2uguaygfglr004bcksgess9xm0ugc1dnahmmrae2dhyfi.jpg",
+      "/images/1790859844905-xgtrsudqyc1c2u-jas-jfs82qnegrsjcmfebowltxqyjiybeihyksz1sejxtmvbstjdpjtcwwrlqeqgvezz7ooi96kdnlm-xqzmfzm0owuy7y44evxvfoczlcvq9l83oaytjo-loskjy76tqadf6zudznuqcmehpwhwvt1m2jxcfcgwpqgjmyluao-9r1-u.jpg",
+      "/images/1790859851449-ihxgmvl18dkzkpy7ykbow2p1v7gvwu4eu04xruecfkj4p2ju6ot0rdob9w2a1hqlecup51dailiww-joobpvrsa3te7ndoaxvqb2w2elcustpcurnmcciul9i3us96bpqri7dw8jfva9u4vhrchzintwqzvuc0huw5ubpylnqgkr41dpx-prv96ns4xc0oy-.jpg"
+    ]
   },
   {
     "slug": "jeep-smbataberd",
