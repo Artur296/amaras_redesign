@@ -1651,7 +1651,7 @@
   },
   {
     "slug": "jeep-mount-dimats",
-    "image": "",
+    "image": "/images/1790859426298-p-fpkuh3rpkpj4disycgr87wwpwes7iniguxadjtrkkqohuajp0nqtoycikdlkmue3poko5-sgwqtbyyrudwxegf0ag8p-m9d1k2rkumsozuqfvhtxu5zmeznw3itfmpd5v58k-pvybjn9xlxtrfa-ci4pzgkwvq74tqzliatz1csdbca-birn-qbtaoc0oq.jpg",
     "title": {
       "ru": "Джип-тур на гору Димац",
       "hy": "Ջիփ տուր դեպի Դիմաց լեռ",
@@ -1694,7 +1694,13 @@
     ],
     "priceFromAmd": 25000,
     "departure": "08:00",
-    "durationHours": "10–11"
+    "durationHours": "10–11",
+    "images": [
+      "/images/1790859426298-p-fpkuh3rpkpj4disycgr87wwpwes7iniguxadjtrkkqohuajp0nqtoycikdlkmue3poko5-sgwqtbyyrudwxegf0ag8p-m9d1k2rkumsozuqfvhtxu5zmeznw3itfmpd5v58k-pvybjn9xlxtrfa-ci4pzgkwvq74tqzliatz1csdbca-birn-qbtaoc0oq.jpg",
+      "/images/1790859432034-b8obkrd7yf-d-wwejbtni5snlihh-5nlypnpf-ze5xgwqy1i5fhijdmcxjppixplyy3xdhm69mjs0et1t6nz3etmwrm-uprxflrzmljirt6uslbnyk8pxewrlceuzanibvke-5creqvaf4pbv1zz0cqvk7yupabkrsnuo6fgfcsgusiybnl-y6qj4qavlvoz.jpg",
+      "/images/1790859436717-evc4jya0hgkszmwhqcso98gdgfvw1gz04zia02ctbmjdq9zrphzlsrsq8yng4dyqw3k72t-40s4c5zixswx3d-qytluzeotqizjhyg9ei1cso7kyhhol2nwnehypptivmqfe0pzhgz8hg9qs0yhbpjqr2b6nn8isly5roty0s6anzx9456lso-pzujvu27-1.jpg",
+      "/images/1790859447315-c1yro-o1hmwfvypxmhjgwd30r0rybyn5gkrk7udrvm-z5jmegin-5nu8r-0kqjwwfyvvxgkphjkbn-u4xqtth9mfttqapxf4ct7nsxfiiavezrycw-boll4zoui84lbtb9mjx7slpo7vaupy4bbcealtu2xbbwqlf0smhxvk2z3lzez7cnjcivkakpsxj08g.jpg"
+    ]
   },
   {
     "slug": "jeep-volcano-aztahak",
