@@ -1952,7 +1952,7 @@
   },
   {
     "slug": "jeep-mount-khustup",
-    "image": "",
+    "image": "/images/1790860313903-wmpdi1bf3paer5gomkqlxnrysev4d3kqse32v9-gpfzg67irwpcqnwsaq-jsz5q6x7cgacxmrz1yqpocbvruj4c5hzfjcrc-hy0r93n8vprao0pxetwaiel332jyu3atbc5-mqctntp-5zvhekcznfxt7aofpho6otib7xijsepnehr-uai8uhowpbeyq1-c.jpg",
     "title": {
       "ru": "Джип-тур к горе Хуступ",
       "hy": "Ջիփ տուր դեպի Խուստուփ լեռ",
@@ -1995,6 +1995,12 @@
     ],
     "priceFromAmd": 45000,
     "departure": "05:30",
-    "durationHours": "16–18"
+    "durationHours": "16–18",
+    "images": [
+      "/images/1790860313903-wmpdi1bf3paer5gomkqlxnrysev4d3kqse32v9-gpfzg67irwpcqnwsaq-jsz5q6x7cgacxmrz1yqpocbvruj4c5hzfjcrc-hy0r93n8vprao0pxetwaiel332jyu3atbc5-mqctntp-5zvhekcznfxt7aofpho6otib7xijsepnehr-uai8uhowpbeyq1-c.jpg",
+      "/images/1790860319526-eap7xordodled-gznm1hvkijujowk-6r61aol1b49uudtbwmkj6ark8tt7-fptloxglhbsgs1pg1shfs2gm4zpjmyy4nh5lekbw-dmmigluvhu4v2idcqe3mmvbnjxe6x0gef28kvg52iaagrw2mjlwyx9416fq1igjl-e4sbsupfad2agfg-c-gyuotntvu.jpg",
+      "/images/1790860327297-stoxactm20nusvx-zkgcds1ga-zuopscqlnv-8ewxd0-q6rja2bex8bm-8yt7kqxx6wxe93q-zchejzdztnlstx5mh6efhdo1mr-xuefeqheyil6kijfbeyuqapyv3knxgg1crp3qpcubdxx31lyqytsgukmnmherqi7ipfwaabracxaciou60xzkbshwmwo.jpg",
+      "/images/1790860338310-gtd5vgzhti73fcxscyemdyv0o1rivfdsa9gtuk5q7ctonzlowdsezpd4oxhg5zhrj0fmaotizdvekrlo9p2snzchkzhe3tzbiyr-9mbytl42vc40lzfbqpphe03zb9h8jub4tasboebrbikzgcistcisk6a1ytdisnlyzwdrihfovselt4dtbgqftdptcif0.jpg"
+    ]
   }
 ]
