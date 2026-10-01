@@ -30,7 +30,7 @@ const bebas = localFont({
       style: "normal",
     },
     {
-      path: "../../public/fonts/bebas/BebasNeue-Regular.ttf",
+      path: "../../public/fonts/bebas/BebasNeuePro-Regular.ttf",
       weight: "400",
       style: "normal",
     },

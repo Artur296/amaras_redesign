@@ -31,9 +31,9 @@
 
   --font-sans: var(--font-futura), var(--font-noto-armenian), "Futura PT",
     Futura, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: var(--font-bebas-arm), var(--font-bebas), "Bebas Neue", sans-serif;
-  --font-heading: var(--font-bebas-arm), var(--font-bebas), "Bebas Neue", sans-serif;
-  --font-bebas: var(--font-bebas-arm), var(--font-bebas), "Bebas Neue", sans-serif;
+  --font-serif: var(--font-bebas), var(--font-bebas-arm), "Bebas Neue", sans-serif;
+  --font-heading: var(--font-bebas), var(--font-bebas-arm), "Bebas Neue", sans-serif;
+  --font-bebas: var(--font-bebas), var(--font-bebas-arm), "Bebas Neue", sans-serif;
 }
 
 h1,
@@ -42,7 +42,7 @@ h3,
 .font-heading,
 .font-serif,
 .font-bebas {
-  font-family: var(--font-bebas-arm), var(--font-bebas), "Bebas Neue", sans-serif;
+  font-family: var(--font-bebas), var(--font-bebas-arm), "Bebas Neue", sans-serif;
   letter-spacing: 0.02em;
 }
 
