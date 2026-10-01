@@ -1148,7 +1148,7 @@
   },
   {
     "slug": "khor-virap-azat-garni-geghard",
-    "image": "",
+    "image": "/images/1790853222939-rrxtpmnxibzmr4kloxdg7vknxlbimtkchtimed83mbs1x1ahqjrnmdeo6k4txczebsbklwp7px9g-jvcp5suwqh66nmjqsqaejpyzkrj6x5h08w69q2ubeurhx8m29ahzkiyciqlbpa57gfw22bmfcmnqiyeuyyxlhca1a4iy4a8ys0ylhcyvzzryvag3ruy.jpg",
     "title": {
       "ru": "Хор Вирап — Азат — Гарни — Гегард",
       "hy": "Խոր Վիրապ, Ազատ, Գառնի և Գեղարդ",
@@ -1193,7 +1193,14 @@
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
-    "durationHours": "7–8"
+    "durationHours": "7–8",
+    "images": [
+      "/images/1790853222939-rrxtpmnxibzmr4kloxdg7vknxlbimtkchtimed83mbs1x1ahqjrnmdeo6k4txczebsbklwp7px9g-jvcp5suwqh66nmjqsqaejpyzkrj6x5h08w69q2ubeurhx8m29ahzkiyciqlbpa57gfw22bmfcmnqiyeuyyxlhca1a4iy4a8ys0ylhcyvzzryvag3ruy.jpg",
+      "/images/1790853233958-03wbyn-isdkfdvl6ojloetvzsqqlx0b16xj8wifgw7aepk1wm-nqeberiw29cmmurbtgihxusirdv4i-svzygx-tsvmm-olw-mbhyxtyshppzr3s-hojyljhohifawaiplvq9njsxsgdq0ywdciudrmfja1pggpayu642csfo5bsm0x39q9f7sesyn-icnq0.jpg",
+      "/images/1790853241629-qgenaxtt1uxl0-ol5mxfj4fsfuqp-fdao5xctsbqhkrs-hoodludxxbuarlfjnhsij0tzmp7kaiuxpbsqy2ne7bsezraer4yk4q68yb3wc5ew-n4hbsezqhygujhbcysbachj9bckevxytjusevwvk7jvcfbl602e1kv-z-epuaeqayi7tw3twkalg1tbjtt.jpg",
+      "/images/1790853257547-6hqejewko6ongi6fbsrniy3buwzepxozxlqgymh5sm6dqmfzvyfcgfjlssyfwx-fbgynb5i7aqguihmgaihpri3q3ktctejbsdmlhpxtbqtfbijxau3epry7gmadj7i4dse5st82h-n4bldjjiuco7uujd6pfpswgshka8tu77yq-2eifgcytjjg497k-ves.jpg",
+      "/images/1790853246121-a5tr4u91tdmx7hpcb432hsctx1n3rkba3fasiy6mo-ipwqmskmgb0bw-xclexxuvwitljpz9018lexkdc-kxag3iaw-xiyoosylyzj3ppg3ayz3-wgf30fwbpx1ozyjfcdgr9yr19vz0jmilpyda0bfbojpf5nelrlf9rcdlhqv5j5cba-oktxzelnasdnkl.jpg"
+    ]
   },
   {
     "slug": "khor-virap-areni-noravank-birds-cave",
