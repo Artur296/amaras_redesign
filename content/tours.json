@@ -1903,7 +1903,7 @@
   },
   {
     "slug": "jeep-mount-armaghan",
-    "image": "",
+    "image": "/images/1790860162880-wxpk6vx5p1qe3th13ss2x-ytgvdgoq3-6e1fvnxgvh6lyqcojp9p6bwzb1ojycdjznkybucxraixqxfk0skhpj94ekfsp8ewns-ibrrqgorncilmmf5az66gh0th-tumuoznhtigzruwen-ozxkmnp4odlkhba02jc5kkeengqysjdt926jx9b-nusfremg6.jpg",
     "title": {
       "ru": "Джип-тур к горе Армаган",
       "hy": "Ջիփ տուր դեպի Արմաղան լեռ",
@@ -1943,7 +1943,12 @@
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
-    "durationHours": "10–12"
+    "durationHours": "10–12",
+    "images": [
+      "/images/1790860162880-wxpk6vx5p1qe3th13ss2x-ytgvdgoq3-6e1fvnxgvh6lyqcojp9p6bwzb1ojycdjznkybucxraixqxfk0skhpj94ekfsp8ewns-ibrrqgorncilmmf5az66gh0th-tumuoznhtigzruwen-ozxkmnp4odlkhba02jc5kkeengqysjdt926jx9b-nusfremg6.jpg",
+      "/images/1790860169353-fg7oduw5lu6tf1o7qwbucajmu9n-okqbltwxovbtgc4btyurgq8xlhdnxnixpfip3-pr9d1jbz-gjlwdvsdbt3ta6c6i9jd3fw7wpaq5e4h9wkq998vj2e4pbbtotjxdbjvefkggreywfop2l4y5tbwac2bn45zeysxqstp31molypce4cecscxf7n8m2tww.jpg",
+      "/images/1790860175114-1qb28lerf8wyq3ywqpvirrjpkshhletvgy39kqsyfkcuzpa5hpvrew1t8ogosrdp1rdzn1ybbhd9sd62tcinzlsl4gfyz19m8-7uhlm9mgwm5jt04rjqnxu5olvlmoo9oukcro0cfxvc5c0frzmaq4isfpdqvulmmkl4m9qdfvqgqz6c0cgdr39hzgko4q9b.jpg"
+    ]
   },
   {
     "slug": "jeep-mount-khustup",
