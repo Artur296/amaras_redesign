@@ -1488,7 +1488,7 @@
   },
   {
     "slug": "khor-virap-areni-jermuk",
-    "image": "",
+    "image": "/images/1790857298232-sc2a0qemvrtku6ilofu4k3qbmmpfkg--zi-ojx-v37ff6lytftmngh-f2ak6n7pbo-e2hwnoacchjw1zaobofmgszxmav-dlb437qcmgov1fkyqu43d047kusywlndamn4dgjq4pgntlf65fdodvtm-dka1qeth8dvr-j154btdas1-6rjrwwodh3wfbfugh.jpg",
     "title": {
       "ru": "Хор Вирап — Арени — Нораванк — Джермук",
       "hy": "Խոր Վիրապ, Արենի, Նորավանք և Ջերմուկ",
@@ -1536,7 +1536,14 @@
     ],
     "priceFromAmd": 25000,
     "departure": "09:00",
-    "durationHours": "10–11"
+    "durationHours": "10–11",
+    "images": [
+      "/images/1790857298232-sc2a0qemvrtku6ilofu4k3qbmmpfkg--zi-ojx-v37ff6lytftmngh-f2ak6n7pbo-e2hwnoacchjw1zaobofmgszxmav-dlb437qcmgov1fkyqu43d047kusywlndamn4dgjq4pgntlf65fdodvtm-dka1qeth8dvr-j154btdas1-6rjrwwodh3wfbfugh.jpg",
+      "/images/1790857303658-bnhrlrkmbv2bi3b31epyabqyctg9bkydg46yuuevw-xna-vbv-xlzrmf3y0th8ksxaivmwodrhwpfv4zdfdiszbgqx-d0rbfbgddcmolkzr-dkhfbvcjhrbvcjeix6-bpsuzfm-cp3anxm0dttpryrrpyrf7hmraiqlnja0sbze1kf7pj0alcscqcn9wii3y.jpg",
+      "/images/1790857358338-y-vvhb5pplskwlfsblz7-khte-d1lcqapi-zeaj-f4-xi4dppegvvrmlyqgu1re6qyynxkuncpqltcxyax6xsj0m52igm3uvr9l5jiyznuokzr9zpjbdra9km3c747qo0pr6jyhk1dj3uthrf6-y8pwlhjshz08h1kl6fqnzqqmtprygrhbvtjlhmham-dhn.jpg",
+      "/images/1790857383815-q1nhqg7gi2m4jaue-3hknppxktiefhkl43zazs5ldp9nidf33fh5vezmqnixaugaleg5sy3y1fvgfpkv-3nsp-ufdkhj-slcuimwu89wsuenxad41-bjqkt76h-xapte804llvzu15jet6s0xchm2aibgi-3goykyf0svfp0swsie9qk1vtvo3o1ksq364xw.jpg",
+      "/images/1790857408787-xgtrsudqyc1c2u-jas-jfs82qnegrsjcmfebowltxqyjiybeihyksz1sejxtmvbstjdpjtcwwrlqeqgvezz7ooi96kdnlm-xqzmfzm0owuy7y44evxvfoczlcvq9l83oaytjo-loskjy76tqadf6zudznuqcmehpwhwvt1m2jxcfcgwpqgjmyluao-9r1-u.jpg"
+    ]
   },
   {
     "slug": "northern-armenia-monasteries",
