@@ -1424,7 +1424,7 @@
   },
   {
     "slug": "khor-virap-sevan-garni-geghard",
-    "image": "",
+    "image": "/images/1790856339840-jjdqnvch2xzef7elo5xpgcn3h1t7m3iy4l8gc285y5xjwdqexqpka4c-luojgnuot8dokclnrkbzs9eb3kqmlihnnkwhojerwi5urlse2nrwdrgf2wm61dnmsvqmatnlewygul8gqfvuzcxwgkjxpikifnc19ezxmyprgyqgm8v6ayq5sdv0segepdrmwnc.jpg",
     "title": {
       "ru": "Хор Вирап — Гарни — Гегард — Севан",
       "hy": "Խոր Վիրապ, Գառնի, Գեղարդ և Սևան",
@@ -1475,7 +1475,16 @@
     ],
     "priceFromAmd": 20000,
     "departure": "09:00",
-    "durationHours": "10–11"
+    "durationHours": "10–11",
+    "images": [
+      "/images/1790856339840-jjdqnvch2xzef7elo5xpgcn3h1t7m3iy4l8gc285y5xjwdqexqpka4c-luojgnuot8dokclnrkbzs9eb3kqmlihnnkwhojerwi5urlse2nrwdrgf2wm61dnmsvqmatnlewygul8gqfvuzcxwgkjxpikifnc19ezxmyprgyqgm8v6ayq5sdv0segepdrmwnc.jpg",
+      "/images/1790856824345-1ihpgega3rlfejnw4cav3ahkbboggjxg8gtjattgm-coh-hfswn-wimqt8xa0rf0vkz3eom-h5f5xe4pei7gjwyrz6zwxsg5g9hcjp-pgdwgvbx-bubg1nhx5th8lgiwy4cstlznxvrypbimibeyuupqslokgrskoxeinf-r5mj4tyaskk26dw4helfc7o2y.jpg",
+      "/images/1790856830685-6j1ng49civmoqzbsu30h-zhearfdvgzkg-2yqxhkquods40btydp4kku0oz-v2xdzi7zoubawzuu-fnbrvfhdae4kqkmfqc1oq6bphlgam28zqbaucnnjn0spssud7zqnysjjaethhqpga5hkpmy6zjxiduwidibmwffj8sudpohnftzflu-pvhi4hxwwqn-.jpg",
+      "/images/1790856839453-o5allgc18ory7zc8e6pvbu3pd-ywfloj0sx6asclvb-b4vcjz6akm-yx91mr5es71622stusugtpjjnop4-k1htwt593rwmdyxef-gjyj7zalct3gbd1xpzgebreid1i456vwf8ra2u7n18dqutmpqidv82lfd4h5d01n0gprjixtl-asqz1oolbiqaoinm6.jpg",
+      "/images/1790856848498-sj-ydiymsjbqufqcol0cfzaqzmclyn7qvierhhm3vjozafblzc1pkjhzevwevfrnimqnhxgiuy8jnwzo-vftqkjylnomaqy7z5ujdyzdo-yapduvmz-1ql8yzu-d6ei9bwekjapclzy0xi5sxl7ewgbrvh69jmrl2a28y-tdcqdtbienzggifgxanygu9doo.jpg",
+      "/images/1790856862001-wpmauhi5fy6kri6wbofi6k56nrveahdzfwf3x2v1djxer9ffino1t9xoqq-5ju42yrwfs-v-qv0lov-cgq5zggjro8gmh9qhpaarir-tys9xdp0-rflkjerueheyynhfqvk7qrbfdc5lhd9huutiyca3unp-kqe3ijpgg1trojiiehvq9ixnc2gdwi2ypycm.jpg",
+      "/images/1790856873489-0glrh2ui-esmohoczyzs0alpy9cjd09gagrilt6juhml4a0zglfhsiegkbnwaj69ndca1nq21rd5alyjfbz8957xgxiuo-nwp8lnnms0b-eiawfjq33zkswrxgp42fjs5vpnlsezjpofriphzzunuk7vlebksb-femdyzse5c3iie4d-8lewr4qaltsay9yq.jpg"
+    ]
   },
   {
     "slug": "khor-virap-areni-jermuk",
