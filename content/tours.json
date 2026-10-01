@@ -1704,7 +1704,7 @@
   },
   {
     "slug": "jeep-volcano-aztahak",
-    "image": "",
+    "image": "/images/1790859606529-cn-4sgudzvpal4fzj5hd7qyxczlwr3ni3b2yadfimgkvzn8hzcmejxtc8fx0hld-bcopamfkizgzmrtrriaran7rx7ka7eei99vzzqgjovj6k3vewgpuifogc45zbmgrd711bfocdb9psio680ke8egsdioszfqlcimgtweh6l4iard9vtvlhkod2-et9x1t.jpg",
     "title": {
       "ru": "Джип-тур к вулкану Аждаак",
       "hy": "Ջիփ տուր դեպի Աժդահակ հրաբուխ",
@@ -1744,7 +1744,12 @@
     ],
     "priceFromAmd": 25000,
     "departure": "08:00",
-    "durationHours": "10–12"
+    "durationHours": "10–12",
+    "images": [
+      "/images/1790859606529-cn-4sgudzvpal4fzj5hd7qyxczlwr3ni3b2yadfimgkvzn8hzcmejxtc8fx0hld-bcopamfkizgzmrtrriaran7rx7ka7eei99vzzqgjovj6k3vewgpuifogc45zbmgrd711bfocdb9psio680ke8egsdioszfqlcimgtweh6l4iard9vtvlhkod2-et9x1t.jpg",
+      "/images/1790859611575-860x460.webp",
+      "/images/1790859616128-7p33p-6sdamuuji7ubeo0agzvrw10b3b9izkxtkrmybdvxbwklaucztbtdxp8gnlsog-zb2ptlbvqsbrnmf-a7ffmbcqtersidnyo8bcg55f5tpi9uc-7bd4jousu3u37w6fedw1gbufau4q2jrnydzqnfws7ihkhfsuomb5gn7khmak-rwlpqyr-rdrddae.jpg"
+    ]
   },
   {
     "slug": "jeep-mineral-geyser-jermuk",
