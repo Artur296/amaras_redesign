@@ -1256,7 +1256,7 @@
   },
   {
     "slug": "tsaghkadzor-sevan-dilijan",
-    "image": "",
+    "image": "/images/1790853654530-wctshoaqbbh8ug1ygpfkttpirv4crqskbdxwtqitghwqia4cs26kkrpcumlfewtpcta2qb6pg06uak5p5kb5wgbkl2bwimaovgj0rswom8zkc61anwieok-e9wbydgivsst8m96mnjselavzcl8-pms2olxly3crqxotn41m6kex2abtk-qhx4p6brma7rwn.jpg",
     "title": {
       "ru": "Цахкадзор — Севан — Дилижан",
       "hy": "Ծաղկաձոր, Սևան և Դիլիջան",
@@ -1301,7 +1301,14 @@
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
-    "durationHours": "9–10"
+    "durationHours": "9–10",
+    "images": [
+      "/images/1790853654530-wctshoaqbbh8ug1ygpfkttpirv4crqskbdxwtqitghwqia4cs26kkrpcumlfewtpcta2qb6pg06uak5p5kb5wgbkl2bwimaovgj0rswom8zkc61anwieok-e9wbydgivsst8m96mnjselavzcl8-pms2olxly3crqxotn41m6kex2abtk-qhx4p6brma7rwn.jpg",
+      "/images/1790853649592-f5x5emetbd8yab86g24bvfsdysvqayiwk2q-oma0emlpxehcc5njhooubqovfn3vcxcivvvm9ha4ctsihrijr3daqnzz5zsmkvar9w1kh79hhvex4ickqekhyp7wlbx4d2ebyn9wk-gijnjm-bdqr0rukhsnju9wzb9iyacylrm-ynfg1r-ftegchuqeob80.jpg",
+      "/images/1790853697343-04ueknv5ppuj4zy1pyj3if1foj-yonh76nhzpzcfoxapqanv-9j-mxehdqrbuxx0--hlaokctrs5d6uqly1rjdubwsqmkutr8x2xlzq0bnkjih2mbidh5-hf-az8zlv-havjmvdhl1ey2in6quz5z-mpuoa36rcq9pi8sqsaavialffs9a5wk-jwnm9oc-yr.jpg",
+      "/images/1790853667334-wsxgbywah0yeclikapojemuiu6icll8egxzommnji4jwc6xmd5bzwgcbow-aj7t4yw8-58sofytopgn8dgocmcnvfphdpq7o-eot2wjvvpperpe0aqd-yikjaztopfsm3xdnottz13pbvet-h7fdgx5fw1nbtdabqpl7cl2psvsy8r8-vuik5v7yuljplcki.jpg",
+      "/images/1790853675247-evc4jya0hgkszmwhqcso98gdgfvw1gz04zia02ctbmjdq9zrphzlsrsq8yng4dyqw3k72t-40s4c5zixswx3d-qytluzeotqizjhyg9ei1cso7kyhhol2nwnehypptivmqfe0pzhgz8hg9qs0yhbpjqr2b6nn8isly5roty0s6anzx9456lso-pzujvu27-1.jpg"
+    ]
   },
   {
     "slug": "sevan-old-dilijan-haghartsin",
