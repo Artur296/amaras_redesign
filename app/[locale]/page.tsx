@@ -8,7 +8,6 @@ import JeepExpeditionWidget from "@/components/JeepExpeditionWidget";
 import ReviewsSection from "@/components/ReviewsSection";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FaqSection from "@/components/FaqSection";
-import TravelSearchBar from "@/components/TravelSearchBar";
 import TopToursSection from "@/components/TopToursSection";
 import FeaturedBannerSection from "@/components/FeaturedBannerSection";
 import TrendBentoGrid from "@/components/TrendBentoGrid";
@@ -219,10 +218,7 @@ export default async function HomePage({ params }: Props) {
       {/* 1. HERO with integrated Trip Discovery Search */}
       <Hero locale={locale} dict={dict} images={hero.images} />
 
-      {/* 1.1 Floating Travel Search Bar & Class Selector */}
-      <TravelSearchBar locale={locale} />
-
-      {/* 1.2 "Внутренний туризм — это тренд" Bento Grid (Screenshot 1) */}
+      {/* 1.1 "Внутренний туризм — это тренд" Bento Grid (Screenshot 1) */}
       <TrendBentoGrid locale={locale} />
 
       {/* 1.3 Signature TOP TOURS 3-Column Showcase */}
