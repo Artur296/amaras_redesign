@@ -83,7 +83,7 @@ export default function LuxuryResortCard({
           type="button"
           onClick={prevSlide}
           aria-label="Previous resort"
-          className="hidden sm:flex absolute -left-5 top-1/2 -translate-y-1/2 z-20 h-11 w-11 items-center justify-center rounded-full bg-white text-neutral-800 shadow-xl border border-neutral-200 transition-transform hover:scale-110 active:scale-95 cursor-pointer"
+          className="hidden sm:flex absolute -left-5 top-1/2 -translate-y-1/2 z-20 h-11 w-11 items-center justify-center rounded-full bg-[#312F2F] text-white shadow-xl border border-white/20 transition-all hover:border-[#C7FF32] hover:text-[#C7FF32] hover:scale-110 active:scale-95 cursor-pointer"
         >
           ‹
         </button>
@@ -91,7 +91,7 @@ export default function LuxuryResortCard({
           type="button"
           onClick={nextSlide}
           aria-label="Next resort"
-          className="hidden sm:flex absolute -right-5 top-1/2 -translate-y-1/2 z-20 h-11 w-11 items-center justify-center rounded-full bg-white text-neutral-800 shadow-xl border border-neutral-200 transition-transform hover:scale-110 active:scale-95 cursor-pointer"
+          className="hidden sm:flex absolute -right-5 top-1/2 -translate-y-1/2 z-20 h-11 w-11 items-center justify-center rounded-full bg-[#312F2F] text-white shadow-xl border border-white/20 transition-all hover:border-[#C7FF32] hover:text-[#C7FF32] hover:scale-110 active:scale-95 cursor-pointer"
         >
           ›
         </button>
@@ -107,13 +107,16 @@ export default function LuxuryResortCard({
               transition={{ duration: 0.5 }}
               className="relative grid grid-cols-1 lg:grid-cols-12 min-h-[420px] sm:min-h-[460px] items-stretch"
             >
-              {/* Left Side: Floating white card with luxury details */}
+              {/* Left Side: Dark charcoal / glassmorphic card with luxury details */}
               <div className="lg:col-span-5 z-10 flex items-center p-6 sm:p-10 lg:p-12">
-                <div className="w-full rounded-2xl sm:rounded-3xl bg-white p-7 sm:p-9 shadow-2xl text-[#1E1E1E]">
+                <div className="w-full rounded-2xl sm:rounded-3xl bg-[#312F2F]/95 backdrop-blur-xl border border-white/15 p-7 sm:p-9 shadow-2xl text-[#FCFCF7]">
                   {/* Top info & brand */}
-                  <div className="flex items-center justify-between text-xs text-neutral-500 font-bold uppercase tracking-wider">
-                    <span>{slide.location}</span>
-                    <span className="text-[#586EFF] font-black">{slide.brand}</span>
+                  <div className="flex items-center justify-between text-xs text-[#FCFCF7]/60 font-bold uppercase tracking-wider">
+                    <span className="flex items-center gap-1.5">
+                      <span className="text-[#C7FF32]">📍</span>
+                      {slide.location}
+                    </span>
+                    <span className="text-[#C7FF32] font-black">{slide.brand}</span>
                   </div>
 
                   {/* 5 Stars in Brand Lime */}
@@ -126,12 +129,12 @@ export default function LuxuryResortCard({
                   </div>
 
                   {/* Title */}
-                  <h3 className="mt-3 font-sans text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#1E1E1E]">
+                  <h3 className="mt-3 font-sans text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
                     {slide.title}
                   </h3>
 
                   {/* Subtitle */}
-                  <p className="mt-3 text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                  <p className="mt-3 text-xs sm:text-sm text-[#FCFCF7]/75 leading-relaxed">
                     {slide.subtitle}
                   </p>
 
