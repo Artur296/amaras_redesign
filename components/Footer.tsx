@@ -25,6 +25,7 @@ export default function Footer({
     { href: `/${locale}`, label: dict.nav.home },
     { href: `/${locale}/tours`, label: dict.nav.tours },
     { href: `/${locale}/tour-packages`, label: dict.nav.packages },
+    { href: `/${locale}/guests`, label: dict.nav.guests },
     { href: `/${locale}/about`, label: dict.nav.about },
     { href: `/${locale}/contacts`, label: dict.nav.contacts },
   ];

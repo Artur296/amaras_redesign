@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
     const rating = Math.max(1, Math.min(5, Math.round(Number(body.rating) || 5)));
     const location = typeof body.location === "string" ? body.location.trim() : "";
     const tourTitle = typeof body.tourTitle === "string" ? body.tourTitle.trim() : "";
+    const guideName = typeof body.guideName === "string" ? body.guideName.trim() : "";
 
     if (!author) {
       return NextResponse.json(
@@ -44,6 +45,7 @@ export async function POST(request: NextRequest) {
       location: location.slice(0, 60),
       rating,
       tourTitle: tourTitle.slice(0, 100),
+      guideName: guideName.slice(0, 80),
       text: text.slice(0, 1200),
       date: new Date().toISOString().split("T")[0],
       approved: false, // Awaiting admin approval

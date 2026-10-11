@@ -8,6 +8,7 @@ export type Review = {
   location?: string;
   rating: number; // 1 to 5
   tourTitle?: string;
+  guideName?: string;
   text: ReviewText;
   date: string; // "YYYY-MM-DD"
   approved: boolean;

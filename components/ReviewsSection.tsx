@@ -37,6 +37,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
   const [author, setAuthor] = useState("");
   const [location, setLocation] = useState("");
   const [tourTitle, setTourTitle] = useState("");
+  const [guideName, setGuideName] = useState("");
   const [rating, setRating] = useState(5);
   const [text, setText] = useState("");
 
@@ -57,6 +58,9 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
       cityPlaceholder: "Например: Москва, Сочи, Тбилиси",
       tourLabel: "Какой тур или места вы посетили?",
       tourPlaceholder: "Например: Озеро Севан и Дилижан / Джип-тур",
+      guideLabel: "Имя вашего гида (если хотите отметить)",
+      guidePlaceholder: "Например: Армен, Давид, Ашот",
+      guideBadge: "Гид",
       ratingLabel: "Ваша оценка",
       textLabel: "Ваш отзыв *",
       textPlaceholder:
@@ -87,6 +91,9 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
       cityPlaceholder: "Օրինակ՝ Երևան, Գլենդել, Մոսկվա",
       tourLabel: "Ո՞ր տուրն եք այցելել",
       tourPlaceholder: "Օրինակ՝ Սևան և Դիլիջան / Ջիպ-տուր",
+      guideLabel: "Ձեր գիդի անունը (ըստ ցանկության)",
+      guidePlaceholder: "Օրինակ՝ Արմեն, Դավիթ, Աշոտ",
+      guideBadge: "Գիդ",
       ratingLabel: "Ձեր գնահատականը",
       textLabel: "Ձեր կարծիքը *",
       textPlaceholder:
@@ -117,6 +124,9 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
       cityPlaceholder: "e.g. London, New York, Berlin",
       tourLabel: "Tour or destinations visited",
       tourPlaceholder: "e.g. Lake Sevan & Dilijan / 4x4 Jeep Expedition",
+      guideLabel: "Your guide's name (optional)",
+      guidePlaceholder: "e.g. Armen, David, Ashot",
+      guideBadge: "Guide",
       ratingLabel: "Your Rating",
       textLabel: "Your Review *",
       textPlaceholder:
@@ -148,6 +158,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
           author,
           location,
           tourTitle,
+          guideName,
           rating,
           text,
         }),
@@ -163,6 +174,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
       setAuthor("");
       setLocation("");
       setTourTitle("");
+      setGuideName("");
       setRating(5);
       setText("");
     } catch (err: any) {
@@ -270,10 +282,20 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
                     </span>
                   </div>
 
-                  {/* Tour visited pill if present */}
-                  {rev.tourTitle && (
-                    <div className="mt-3.5 inline-block rounded-lg bg-white/5 px-2.5 py-1 text-xs font-semibold text-[#586EFF]">
-                      {rev.tourTitle}
+                  {/* Tour visited and Guide pills if present */}
+                  {(rev.tourTitle || rev.guideName) && (
+                    <div className="mt-3.5 flex flex-wrap items-center gap-2">
+                      {rev.tourTitle && (
+                        <span className="inline-block rounded-lg bg-white/5 px-2.5 py-1 text-xs font-semibold text-[#586EFF]">
+                          {rev.tourTitle}
+                        </span>
+                      )}
+                      {rev.guideName && (
+                        <span className="inline-flex items-center gap-1 rounded-lg bg-[#C7FF32]/10 border border-[#C7FF32]/30 px-2.5 py-1 text-xs font-bold text-[#C7FF32]">
+                          <span className="text-white/60 font-normal">{texts.guideBadge}:</span>
+                          <span>{rev.guideName}</span>
+                        </span>
+                      )}
                     </div>
                   )}
 
@@ -455,6 +477,20 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
                         value={tourTitle}
                         onChange={(e) => setTourTitle(e.target.value)}
                         placeholder={texts.tourPlaceholder}
+                        className="mt-1 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-[#C7FF32] focus:outline-none"
+                      />
+                    </div>
+
+                    {/* Guide Name */}
+                    <div>
+                      <label className="block text-xs font-semibold text-white/80">
+                        {texts.guideLabel}
+                      </label>
+                      <input
+                        type="text"
+                        value={guideName}
+                        onChange={(e) => setGuideName(e.target.value)}
+                        placeholder={texts.guidePlaceholder}
                         className="mt-1 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-[#C7FF32] focus:outline-none"
                       />
                     </div>

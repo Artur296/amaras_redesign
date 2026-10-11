@@ -14,6 +14,7 @@ import { defaultHomepageImages, type HomepageImages, type SiteInfo } from "@/lib
 import type { Content, ContentKey } from "@/lib/content";
 import type { Review } from "@/lib/reviews";
 import type { SpecialOffer } from "@/lib/offers";
+import type { GuestMedia } from "@/lib/guests";
 
 const localeNames: Record<Locale, string> = {
   ru: "Русский",
@@ -35,9 +36,10 @@ const sectionNames: Record<ContentKey, string> = {
   hero: "Images",
   reviews: "Reviews",
   offers: "Спецпредложения",
+  guests: "Гости",
 };
 
-const TABS = ["Tours", "Packages", "Offers", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
+const TABS = ["Tours", "Packages", "Offers", "Guests", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
 type Tab = (typeof TABS)[number];
 
 // The stored keys, read off the editing state. Tabs edit different
@@ -51,6 +53,7 @@ function keyValues(content: Content): Record<ContentKey, unknown> {
     hero: content.hero,
     reviews: content.reviews || [],
     offers: content.offers || [],
+    guests: content.guests || [],
   };
 }
 
@@ -193,6 +196,8 @@ export default function AdminPanel() {
                     ? "Отзывы"
                     : t === "Offers"
                     ? "Спецпредложения"
+                    : t === "Guests"
+                    ? "Гости"
                     : t}
                 </span>
                 {pendingCount > 0 && (
@@ -262,6 +267,13 @@ export default function AdminPanel() {
           <OffersTab
             offers={content.offers || []}
             onChange={(offers) => setContent({ ...content, offers })}
+            onSave={publish}
+          />
+        )}
+        {tab === "Guests" && (
+          <GuestsTab
+            guests={content.guests || []}
+            onChange={(guests) => setContent({ ...content, guests })}
             onSave={publish}
           />
         )}
@@ -2235,6 +2247,7 @@ function ReviewsTab({
   const [newAuthor, setNewAuthor] = useState("");
   const [newLocation, setNewLocation] = useState("");
   const [newTour, setNewTour] = useState("");
+  const [newGuide, setNewGuide] = useState("");
   const [newRating, setNewRating] = useState(5);
   const [newText, setNewText] = useState("");
 
@@ -2268,6 +2281,7 @@ function ReviewsTab({
       author: newAuthor.trim(),
       location: newLocation.trim(),
       tourTitle: newTour.trim(),
+      guideName: newGuide.trim(),
       rating: newRating,
       text: newText.trim(),
       date: new Date().toISOString().split("T")[0],
@@ -2280,6 +2294,7 @@ function ReviewsTab({
     setNewAuthor("");
     setNewLocation("");
     setNewTour("");
+    setNewGuide("");
     setNewRating(5);
     setNewText("");
   }
@@ -2310,7 +2325,7 @@ function ReviewsTab({
           className="rounded-2xl border border-primary/30 bg-primary/5 p-6 space-y-4"
         >
           <h3 className="text-sm font-bold text-ink">Новый отзыв (будет опубликован сразу)</h3>
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-4">
             <Field label="Имя автора *">
               <TextInput value={newAuthor} onChange={setNewAuthor} placeholder="Анна С." />
             </Field>
@@ -2319,6 +2334,9 @@ function ReviewsTab({
             </Field>
             <Field label="Название тура">
               <TextInput value={newTour} onChange={setNewTour} placeholder="Озеро Севан" />
+            </Field>
+            <Field label="Имя гида">
+              <TextInput value={newGuide} onChange={setNewGuide} placeholder="Армен" />
             </Field>
           </div>
 
@@ -2448,6 +2466,12 @@ function ReviewsTab({
                     {rev.tourTitle && (
                       <span className="block text-xs font-semibold text-primary">
                         Тур: {rev.tourTitle}
+                      </span>
+                    )}
+
+                    {rev.guideName && (
+                      <span className="block text-xs font-semibold text-emerald-600">
+                        Гид: {rev.guideName}
                       </span>
                     )}
 
@@ -2869,3 +2893,212 @@ function OffersTab({
     </div>
   );
 }
+
+/* ---------- Guests Photo & Video Tab ---------- */
+
+function GuestsTab({
+  guests,
+  onChange,
+  onSave,
+}: {
+  guests: GuestMedia[];
+  onChange: (guests: GuestMedia[]) => void;
+  onSave: () => void;
+}) {
+  const [editingId, setEditingId] = useState<string | null>(guests[0]?.id ?? null);
+
+  const activeGuest = guests.find((g) => g.id === editingId) || guests[0];
+
+  function updateActiveGuest(patch: Partial<GuestMedia>) {
+    if (!activeGuest) return;
+    onChange(
+      guests.map((g) => (g.id === activeGuest.id ? { ...g, ...patch } : g))
+    );
+  }
+
+  function addGuest() {
+    const newId = `guest-${Date.now()}`;
+    const newGuest: GuestMedia = {
+      id: newId,
+      type: "photo",
+      url: "/images/hero-travellers.jpg",
+      title: "Новый момент с гостями",
+      location: "Армения",
+      guideName: "Армен",
+      date: "2026",
+      caption: "Описание поездки, эмоции гостей и яркие моменты путешествия.",
+    };
+    onChange([newGuest, ...guests]);
+    setEditingId(newId);
+  }
+
+  function deleteGuest(id: string) {
+    if (!window.confirm("Удалить этот материал из раздела Гости?")) return;
+    const remaining = guests.filter((g) => g.id !== id);
+    onChange(remaining);
+    if (editingId === id) {
+      setEditingId(remaining[0]?.id ?? null);
+    }
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-black text-ink">Гости (Guests Photo & Video)</h2>
+          <p className="mt-1 text-sm text-muted">
+            Управляйте фотографиями, видеороликами и историями гостей на странице /guests.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={addGuest}
+          className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white shadow hover:bg-primary-dark transition-colors"
+        >
+          + Добавить фото/видео гостя
+        </button>
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        {guests.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => setEditingId(item.id)}
+            className={`cursor-pointer rounded-xl border p-2 text-left transition-all ${
+              activeGuest?.id === item.id
+                ? "border-primary bg-primary/5 ring-2 ring-primary/20 shadow-sm"
+                : "border-border bg-white hover:border-gray-400"
+            }`}
+          >
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-gray-100">
+              {item.url && (
+                <Image
+                  src={item.url}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              )}
+              <span className="absolute top-1 right-1 rounded bg-black/60 px-1.5 py-0.5 text-[9px] font-bold text-white uppercase">
+                {item.type}
+              </span>
+            </div>
+            <p className="mt-1.5 text-xs font-bold text-ink truncate">{item.title}</p>
+            <p className="text-[10px] text-muted truncate">
+              {item.location} {item.guideName ? `• Гид: ${item.guideName}` : ""}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {activeGuest && (
+        <div className="rounded-2xl border border-border bg-white p-6 shadow-sm space-y-6">
+          <div className="flex items-center justify-between pb-4 border-b border-border">
+            <div>
+              <h3 className="text-lg font-bold text-ink">Редактирование: {activeGuest.title}</h3>
+              <p className="text-xs text-muted">ID: {activeGuest.id}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => deleteGuest(activeGuest.id)}
+              className="text-xs font-bold text-red-600 hover:text-red-800"
+            >
+              Удалить этот материал
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Field label="Тип материала">
+              <select
+                value={activeGuest.type}
+                onChange={(e) =>
+                  updateActiveGuest({ type: e.target.value as "photo" | "video" })
+                }
+                className={inputCls}
+              >
+                <option value="photo">Фотография</option>
+                <option value="video">Видео</option>
+              </select>
+            </Field>
+
+            <Field label="Имя гида">
+              <input
+                type="text"
+                value={activeGuest.guideName || ""}
+                onChange={(e) => updateActiveGuest({ guideName: e.target.value })}
+                className={inputCls}
+                placeholder="Например: Армен, Давид, Тигран"
+              />
+            </Field>
+
+            <Field label="Локация / Достопримечательность">
+              <input
+                type="text"
+                value={activeGuest.location}
+                onChange={(e) => updateActiveGuest({ location: e.target.value })}
+                className={inputCls}
+                placeholder="Например: Хор Вирап, Севан, Гарни"
+              />
+            </Field>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Field label="Заголовок момента">
+              <input
+                type="text"
+                value={activeGuest.title}
+                onChange={(e) => updateActiveGuest({ title: e.target.value })}
+                className={inputCls}
+                placeholder="Например: Поездка в монастырь Татев"
+              />
+            </Field>
+
+            <Field label="Дата / Сезон">
+              <input
+                type="text"
+                value={activeGuest.date || ""}
+                onChange={(e) => updateActiveGuest({ date: e.target.value })}
+                className={inputCls}
+                placeholder="2026"
+              />
+            </Field>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Field label="Фотография / Обложка видео">
+              <ImagePicker
+                value={activeGuest.url}
+                onChange={(url) => updateActiveGuest({ url })}
+              />
+            </Field>
+
+            {activeGuest.type === "video" && (
+              <Field label="Ссылка на видео (YouTube embed или MP4)">
+                <input
+                  type="text"
+                  value={activeGuest.videoUrl || ""}
+                  onChange={(e) => updateActiveGuest({ videoUrl: e.target.value })}
+                  className={inputCls}
+                  placeholder="https://www.youtube.com/embed/..."
+                />
+              </Field>
+            )}
+          </div>
+
+          <Field label="Описание / Отзыв к моменту">
+            <textarea
+              rows={3}
+              value={activeGuest.caption || ""}
+              onChange={(e) => updateActiveGuest({ caption: e.target.value })}
+              className={inputCls}
+              placeholder="Расскажите о том, как прошёл день..."
+            />
+          </Field>
+
+          <SaveBar onSave={onSave} label="Опубликовать изменения раздела Гости" />
+        </div>
+      )}
+    </div>
+  );
+}
+

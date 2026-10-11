@@ -13,8 +13,10 @@ import siteOverride from "@/content/site.json";
 import heroOverride from "@/content/hero.json";
 import reviewsOverride from "@/content/reviews.json";
 import offersOverride from "@/content/offers.json";
+import guestsOverride from "@/content/guests.json";
 import type { Review } from "@/lib/reviews";
 import { defaultOffers, type SpecialOffer } from "@/lib/offers";
+import { defaultGuests, type GuestMedia } from "@/lib/guests";
 
 export type Content = {
   dicts: Record<Locale, Dict>;
@@ -24,6 +26,7 @@ export type Content = {
   hero: { images: string[] };
   reviews: Review[];
   offers: SpecialOffer[];
+  guests: GuestMedia[];
 };
 
 export const CONTENT_KEYS = [
@@ -34,6 +37,7 @@ export const CONTENT_KEYS = [
   "hero",
   "reviews",
   "offers",
+  "guests",
 ] as const;
 export type ContentKey = (typeof CONTENT_KEYS)[number];
 
@@ -52,6 +56,7 @@ const defaults: Content = {
   hero: { images: defaultHeroImages },
   reviews: (reviewsOverride as Review[]) || [],
   offers: (offersOverride as SpecialOffer[]) || defaultOffers,
+  guests: (guestsOverride as GuestMedia[]) || defaultGuests,
 };
 
 // Overlay stored values on defaults so keys added in future code versions
@@ -113,6 +118,9 @@ function build(overrides: Record<ContentKey, unknown>): Content {
     offers: Array.isArray(overrides.offers)
       ? (overrides.offers as SpecialOffer[])
       : defaults.offers,
+    guests: Array.isArray(overrides.guests)
+      ? (overrides.guests as GuestMedia[])
+      : defaults.guests,
   };
 }
 
@@ -146,6 +154,7 @@ export function currentOverrides(): Record<ContentKey, unknown> {
     hero: readJsonFile("hero.json", heroOverride),
     reviews: readJsonFile("reviews.json", reviewsOverride),
     offers: readJsonFile("offers.json", offersOverride),
+    guests: readJsonFile("guests.json", guestsOverride),
   };
 }
 

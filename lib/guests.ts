@@ -1,0 +1,94 @@
+export type GuestMedia = {
+  id: string;
+  type: "photo" | "video";
+  url: string;
+  videoUrl?: string;
+  title: string;
+  location: string;
+  guideName?: string;
+  date?: string;
+  caption?: string;
+};
+
+export const defaultGuests: GuestMedia[] = [
+  {
+    id: "guest-1",
+    type: "photo",
+    url: "/images/hero-travellers.jpg",
+    title: "Хор Вирап и вид на Арарат",
+    location: "Хор Вирап",
+    guideName: "Армен",
+    date: "2026",
+    caption: "Незабываемый солнечный день с нашей группой у стен древнего монастыря Хор Вирап. Библейский Арарат открылся во всём величии!",
+  },
+  {
+    id: "guest-2",
+    type: "photo",
+    url: "/images/sevan.jpg",
+    title: "Озеро Севан и Севанаванк",
+    location: "Севан",
+    guideName: "Давид",
+    date: "2026",
+    caption: "Голубая жемчужина Армении. Поднялись к монастырю на полуострове и попробовали свежайшую севанскую форель.",
+  },
+  {
+    id: "guest-3",
+    type: "photo",
+    url: "/images/jeep.jpg",
+    title: "Джип-сафари к вулкану Аждаак",
+    location: "Гегамские горы",
+    guideName: "Тигран",
+    date: "2026",
+    caption: "Настоящий драйв на подготовленных внедорожниках 4x4. Подъём на высоту более 3000 метров и кратерное озеро.",
+  },
+  {
+    id: "guest-4",
+    type: "photo",
+    url: "/images/garni.jpg",
+    title: "Храм Гарни и Симфония камней",
+    location: "Гарни",
+    guideName: "Ани",
+    date: "2026",
+    caption: "Античный языческий храм, прогулка по базальтовому ущелью Симфония камней и традиционный армянский лаваш из тандыра.",
+  },
+  {
+    id: "guest-5",
+    type: "photo",
+    url: "/images/tatev.jpg",
+    title: "Крылья Татева и древний монастырь",
+    location: "Татев",
+    guideName: "Армен",
+    date: "2026",
+    caption: "Полёт над ущельем Воротан на канатной дороге 'Крылья Татева' и экскурсия по обители средневековых монахов.",
+  },
+  {
+    id: "guest-6",
+    type: "photo",
+    url: "/images/noravank.jpg",
+    title: "Красные скалы Нораванка",
+    location: "Нораванк & Арени",
+    guideName: "Давид",
+    date: "2026",
+    caption: "Монастырь Нораванк в окружении отвесных красных скал и дегустация эндемичного вина в деревушке Арени.",
+  },
+  {
+    id: "guest-7",
+    type: "photo",
+    url: "/images/dilijan.jpg",
+    title: "Армянская Швейцария — Дилижан",
+    location: "Дилижан & Агарцин",
+    guideName: "Ани",
+    date: "2026",
+    caption: "Густые буковые леса, свежий горный воздух и умиротворение в монастыре Агарцин среди вековых деревьев.",
+  },
+  {
+    id: "guest-8",
+    type: "photo",
+    url: "/images/family.jpg",
+    title: "Семейное путешествие по Армении",
+    location: "Ереван & Окрестности",
+    guideName: "Армен",
+    date: "2026",
+    caption: "Индивидуальный тур для семьи: комфортный минивэн, неспешный ритм, заботливый гид и тёплые воспоминания на всю жизнь.",
+  },
+];

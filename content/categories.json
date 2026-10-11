@@ -88,5 +88,21 @@
       "hy": "Բացառիկ ակցիաներ, կոմբո տուրեր և սեզոնային զեղչեր Հայաստանի լավագույն ճամփորդությունների համար։",
       "en": "Exclusive promotions, combo journeys and seasonal discounts on the best Armenia tours."
     }
+  },
+  {
+    "id": "guests",
+    "image": "/images/hero-travellers.jpg",
+    "imagePosition": "object-center",
+    "title": {
+      "ru": "Гости",
+      "hy": "Հյուրեր",
+      "en": "Our Guests"
+    },
+    "desc": {
+      "ru": "Живые кадры, фото, видео и искренние отзывы наших гостей со всех уголков Армении и любимые гиды.",
+      "hy": "Մեր ճամփորդների կենդանի կադրեր, լուսանկարներ, տեսանյութեր և անկեղծ կարծիքներ Հայաստանի բոլոր անկյուններից ու սիրելի գիդերը։",
+      "en": "Genuine moments, photos, videos and heartfelt reviews from our guests across Armenia and our expert guides."
+    }
   }
 ]
+

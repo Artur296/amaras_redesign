@@ -352,6 +352,7 @@ const ru = {
     about: "О нас",
     tours: "Туры",
     packages: "Тур-пакеты",
+    guests: "Гости",
     contacts: "Контакты",
   },
   hero: {
@@ -478,6 +479,11 @@ const ru = {
       description:
         "Свяжитесь с Amaras Tour: WhatsApp, Telegram, Instagram, телефон. Подберём тур под ваши даты.",
     },
+    guests: {
+      title: "Гости Amaras Tour — Фото, видео и отзывы путешественников",
+      description:
+        "Живые фотографии, видеоролики и отзывы гостей Amaras Tour из поездок по всей Армении. Узнайте впечатления о наших гидах и маршрутах.",
+    },
   },
 };
 
@@ -489,6 +495,7 @@ const hy: Dict = {
     about: "Մեր մասին",
     tours: "Տուրեր",
     packages: "Տուր փաթեթներ",
+    guests: "Հյուրեր",
     contacts: "Կապ",
   },
   hero: {
@@ -613,6 +620,11 @@ const hy: Dict = {
       description:
         "Կապվեք Amaras Tour-ի հետ՝ WhatsApp, Telegram, Instagram, հեռախոս։",
     },
+    guests: {
+      title: "Amaras Tour-ի հյուրերը — Լուսանկարներ, տեսանյութեր և կարծիքներ",
+      description:
+        "Amaras Tour-ի հյուրերի լուսանկարներ, տեսանյութեր և անկեղծ կարծիքներ Հայաստանի ճամփորդություններից։",
+    },
   },
 };
 
@@ -622,6 +634,7 @@ const en: Dict = {
     about: "About Us",
     tours: "Tours",
     packages: "Tour Packages",
+    guests: "Guests",
     contacts: "Contacts",
   },
   hero: {
@@ -745,6 +758,11 @@ const en: Dict = {
       title: "Contacts",
       description:
         "Get in touch with Amaras Tour via WhatsApp, Telegram, Instagram or phone.",
+    },
+    guests: {
+      title: "Our Guests — Photos, Videos & Reviews | Amaras Tour Armenia",
+      description:
+        "Explore photos, videos and guest reviews from Amaras Tour journeys across Armenia. Real stories and experiences with our expert guides.",
     },
   },
 };
