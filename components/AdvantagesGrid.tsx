@@ -110,7 +110,7 @@ export default function AdvantagesGrid({ locale }: { locale: Locale }) {
             transition={{ duration: 0.4, delay: idx * 0.06 }}
             className="flex flex-col items-start space-y-3"
           >
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#586EFF]/10 border border-[#586EFF]/20 shadow-sm">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#312F2F] border border-[#454343] shadow-md transition-transform duration-300 group-hover:scale-105">
               {item.icon}
             </div>
             <div>
