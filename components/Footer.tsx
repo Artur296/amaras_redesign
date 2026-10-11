@@ -40,17 +40,13 @@ export default function Footer({
     <footer className="mt-24 border-t border-[#454343] bg-[#242323] text-[#FCFCF7]">
       <div className="mx-auto max-w-[1240px] px-6 py-16">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Column 1: Brand */}
+          {/* Column 1: Brand matching YOUR LOGO */}
           <div className="space-y-4">
             <Link href={`/${locale}`} className="inline-block transition-transform hover:scale-105">
-              <Image
-                src="/images/amaras-logo.svg"
-                alt="AMARAS Tour"
-                width={220}
-                height={35}
-                className="h-8 w-auto object-contain"
-              />
-              <span className="mt-2 block text-[10px] font-bold uppercase tracking-[0.25em] text-[#C7FF32]">
+              <span className="font-sans text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#EA1D24] block">
+                AMARAS TOUR
+              </span>
+              <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400">
                 Armenia Travel Brand
               </span>
             </Link>
@@ -63,7 +59,7 @@ export default function Footer({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-all hover:border-[#25D366] hover:bg-[#25D366] hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-all hover:border-[#EA1D24] hover:bg-[#EA1D24] hover:text-white"
               >
                 <WhatsAppIcon className="h-5 w-5" />
               </a>
@@ -72,7 +68,7 @@ export default function Footer({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Telegram"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-all hover:border-[#229ED9] hover:bg-[#229ED9] hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-all hover:border-[#EA1D24] hover:bg-[#EA1D24] hover:text-white"
               >
                 <TelegramIcon className="h-5 w-5" />
               </a>
@@ -81,16 +77,53 @@ export default function Footer({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-all hover:border-[#E1306C] hover:bg-[#E1306C] hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-all hover:border-[#EA1D24] hover:bg-[#EA1D24] hover:text-white"
               >
                 <InstagramIcon className="h-5 w-5" />
               </a>
             </div>
           </div>
 
-          {/* Column 2: Quick Navigation */}
+          {/* Column 2: Address & Direct Contacts (Exact match to mockup Column 2) */}
+          <div className="space-y-4">
+            <h3 className="text-xs font-black uppercase tracking-[0.18em] text-[#EA1D24]">
+              {dict.nav.contacts}
+            </h3>
+            <div className="space-y-3 text-sm text-[#FCFCF7]/80">
+              <p className="flex items-start gap-3">
+                <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#EA1D24]" />
+                <span>{dict.contacts.address}</span>
+              </p>
+              <p>
+                <a
+                  href={links.phone}
+                  className="flex items-center gap-3 transition-colors hover:text-[#EA1D24]"
+                >
+                  <PhoneIcon className="h-4 w-4 shrink-0 text-[#EA1D24]" />
+                  <span className="font-bold">{site.phone}</span>
+                </a>
+              </p>
+              <p>
+                <a
+                  href={links.email}
+                  className="flex items-center gap-3 break-all transition-colors hover:text-[#EA1D24]"
+                >
+                  <MailIcon className="h-4 w-4 shrink-0 text-[#EA1D24]" />
+                  <span>{site.email}</span>
+                </a>
+              </p>
+            </div>
+            <div className="pt-1">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#EA1D24]/30 bg-[#EA1D24]/10 px-3 py-1 text-xs font-bold text-[#EA1D24]">
+                <span className="h-2 w-2 rounded-full bg-[#EA1D24] animate-pulse" />
+                {locale === "ru" ? "Ежедневно 09:00 – 21:00" : locale === "hy" ? "Ամեն օր 09:00 – 21:00" : "Daily 09:00 – 21:00"}
+              </span>
+            </div>
+          </div>
+
+          {/* Column 3: Navigation (About Us, Tours, Contacts) */}
           <div>
-            <h3 className="text-xs font-black uppercase tracking-[0.18em] text-[#C7FF32]">
+            <h3 className="text-xs font-black uppercase tracking-[0.18em] text-[#EA1D24]">
               {locale === "ru" ? "Навигация" : locale === "hy" ? "Նավիգացիա" : "Navigation"}
             </h3>
             <ul className="mt-5 space-y-3">
@@ -98,7 +131,7 @@ export default function Footer({
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm font-medium text-[#FCFCF7]/80 transition-colors hover:text-[#C7FF32]"
+                    className="text-sm font-medium text-[#FCFCF7]/80 transition-colors hover:text-[#EA1D24]"
                   >
                     {item.label}
                   </Link>
@@ -107,59 +140,27 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* Column 3: Travel Categories */}
-          <div>
-            <h3 className="text-xs font-black uppercase tracking-[0.18em] text-[#C7FF32]">
-              {locale === "ru" ? "Форматы туров" : locale === "hy" ? "Տուրերի ձևաչափեր" : "Tour Formats"}
-            </h3>
-            <ul className="mt-5 space-y-3">
-              {categories.map((cat) => (
-                <li key={cat.href}>
-                  <Link
-                    href={cat.href}
-                    className="text-sm font-medium text-[#FCFCF7]/80 transition-colors hover:text-[#C7FF32]"
-                  >
-                    {cat.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Contacts & Location */}
+          {/* Column 4: Work Inquiries / Partnership (Exact match to mockup Column 4) */}
           <div className="space-y-4">
-            <h3 className="text-xs font-black uppercase tracking-[0.18em] text-[#C7FF32]">
-              {dict.nav.contacts}
+            <h3 className="text-xs font-black uppercase tracking-[0.18em] text-[#EA1D24]">
+              {locale === "ru" ? "Сотрудничество" : locale === "hy" ? "Համագործակցություն" : "Work Inquiries"}
             </h3>
-            <div className="space-y-3 text-sm text-[#FCFCF7]/80">
-              <p className="flex items-start gap-3">
-                <PinIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#C7FF32]" />
-                <span>{dict.contacts.address}</span>
-              </p>
-              <p>
-                <a
-                  href={links.phone}
-                  className="flex items-center gap-3 transition-colors hover:text-[#C7FF32]"
-                >
-                  <PhoneIcon className="h-4 w-4 shrink-0 text-[#C7FF32]" />
-                  <span className="font-bold">{site.phone}</span>
-                </a>
-              </p>
-              <p>
-                <a
-                  href={links.email}
-                  className="flex items-center gap-3 break-all transition-colors hover:text-[#C7FF32]"
-                >
-                  <MailIcon className="h-4 w-4 shrink-0 text-[#C7FF32]" />
-                  <span>{site.email}</span>
-                </a>
-              </p>
-            </div>
+            <p className="text-sm leading-relaxed text-[#FCFCF7]/80">
+              {locale === "ru"
+                ? "Заинтересованы в партнерстве или организации корпоративного тура?"
+                : locale === "hy"
+                ? "Հետաքրքրվա՞ծ եք համագործակցությամբ կամ կորպորատիվ տուրերով:"
+                : "Interested in partnership or corporate travel bookings?"}
+            </p>
             <div className="pt-2">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#C7FF32]/30 bg-[#C7FF32]/10 px-3 py-1 text-xs font-bold text-[#C7FF32]">
-                <span className="h-2 w-2 rounded-full bg-[#C7FF32] animate-pulse" />
-                {locale === "ru" ? "Ежедневно 09:00 – 21:00" : locale === "hy" ? "Ամեն օր 09:00 – 21:00" : "Daily 09:00 – 21:00"}
-              </span>
+              <a
+                href={links.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white underline underline-offset-4 decoration-[#EA1D24] hover:text-[#EA1D24]"
+              >
+                <span>{locale === "ru" ? "Связаться с нами →" : locale === "hy" ? "Կապ մեզ հետ →" : "Contact team →"}</span>
+              </a>
             </div>
           </div>
         </div>
