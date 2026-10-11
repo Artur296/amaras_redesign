@@ -89,7 +89,7 @@ export default function Hero({
             muted
             playsInline
             preload="auto"
-            poster="/images/og-amaras.jpg"
+            poster="/images/hero-poster.jpg"
             className="h-full w-full object-cover object-center"
           >
             <source src="/video.mp4" type="video/mp4" />
