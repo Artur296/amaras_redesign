@@ -22,7 +22,7 @@ export default function FeaturedBannerSection({ locale }: { locale: Locale }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40" />
       </div>
 
-      {/* Centered Content: Meticulously formatted to match user mockup */}
+      {/* Centered Content in Brand Lime / Blue */}
       <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,8 +30,8 @@ export default function FeaturedBannerSection({ locale }: { locale: Locale }) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {/* Top kicker */}
-          <span className="block font-sans text-xs sm:text-sm font-black uppercase tracking-[0.28em] text-[#EA1D24]">
+          {/* Top kicker in Electric Lime */}
+          <span className="block font-sans text-xs sm:text-sm font-black uppercase tracking-[0.28em] text-[#C7FF32]">
             {locale === "ru" ? "НЕДЕЛЯ В" : locale === "hy" ? "ՄԵԿ ՇԱԲԱԹ" : "WEEK IN"}
           </span>
 
@@ -53,11 +53,11 @@ export default function FeaturedBannerSection({ locale }: { locale: Locale }) {
               : "Signature relaxation along the azure shores of Lake Sevan and pristine pine forests of Dilijan. Premium resort stays, private sailing, spa, and gourmet dining."}
           </p>
 
-          {/* Red bordered Read More button matching user mockup */}
+          {/* Lime bordered Read More button */}
           <div className="mt-8 flex justify-center">
             <Link
               href={`/${locale}/tour-packages`}
-              className="inline-flex items-center justify-center rounded-lg border-2 border-[#EA1D24] bg-black/40 px-8 py-3 text-xs sm:text-sm font-black uppercase tracking-widest text-white backdrop-blur-md transition-all duration-300 hover:bg-[#EA1D24] hover:shadow-[0_0_30px_rgba(234,29,36,0.5)] active:scale-95"
+              className="inline-flex items-center justify-center rounded-lg border-2 border-[#C7FF32] bg-black/50 px-8 py-3 text-xs sm:text-sm font-black uppercase tracking-widest text-[#C7FF32] backdrop-blur-md transition-all duration-300 hover:bg-[#C7FF32] hover:text-[#161616] hover:shadow-[0_0_30px_rgba(199,255,50,0.4)] active:scale-95"
             >
               {locale === "ru" ? "Подробнее" : locale === "hy" ? "Մանրամասն" : "Read More"}
             </Link>
