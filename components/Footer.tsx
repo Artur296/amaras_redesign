@@ -42,14 +42,14 @@ export default function Footer({
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Column 1: Brand matching logo */}
           <div className="space-y-4">
-            <Link href={`/${locale}`} className="inline-block transition-transform hover:scale-105">
-              <span className="font-sans text-2xl sm:text-3xl font-black uppercase tracking-tight block">
-                <span className="text-[#C7FF32]">AMARAS</span>{" "}
-                <span className="text-[#586EFF]">TOUR</span>
-              </span>
-              <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400">
-                Armenia Travel Brand
-              </span>
+            <Link href={`/${locale}`} className="inline-block transition-transform hover:scale-105" aria-label="AMARAS Home">
+              <Image
+                src="/images/amaras-logo-white.svg"
+                alt="AMARAS Tour"
+                width={260}
+                height={36}
+                className="h-8 sm:h-9 w-auto object-contain transition-opacity hover:opacity-90"
+              />
             </Link>
             <p className="text-sm leading-relaxed text-[#FCFCF7]/75">
               {dict.footer.tagline}
