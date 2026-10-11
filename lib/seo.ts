@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { locales, defaultLocale, type Locale } from "@/lib/i18n";
+import { getCanonicalSiteUrl } from "@/lib/site";
 
 // Canonical + hreflang alternates for a page at /<locale>/<path>.
 export function pageMetadata(
@@ -9,45 +10,68 @@ export function pageMetadata(
   description: string
 ): Metadata {
   const suffix = path ? `/${path}` : "";
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "https://amarastour.com");
+  const siteUrl = getCanonicalSiteUrl();
 
   const keywordsMap: Record<Locale, string[]> = {
     ru: [
-      "туры по Армении",
-      "экскурсии из Еревана",
-      "индивидуальные туры Армения",
-      "групповые экскурсии Армения",
-      "джип туры Армения",
-      "гид в Армении",
-      "отдых в Армении",
-      "достопримечательности Армении",
-      "AMARAS TOUR",
+      "туры в армению",
+      "туры в армению 2026",
+      "туры по армении",
+      "экскурсии в армении",
+      "экскурсии по армении",
+      "экскурсии из еревана",
+      "индивидуальные туры в армению",
+      "групповые туры по армении",
+      "джип туры армения",
+      "гид в армении",
+      "отдых в армении",
+      "достопримечательности армении",
+      "севан",
+      "гарни",
+      "татев",
+      "хор вирап",
+      "джемук",
+      "турпакеты армения",
+      "amaras tour",
+      "amarastour.com",
     ],
     hy: [
-      "տուրեր Հայաստանում",
-      "էքսկուրսիաներ Երևանից",
-      "անհատական տուրեր Հայաստան",
+      "տուրեր հայաստանում",
+      "էքսկուրսիաներ հայաստանում",
+      "էքսկուրսիաներ երևանից",
+      "հայաստանի տուրեր",
+      "անհատական տուրեր հայաստան",
       "խմբակային էքսկուրսիաներ",
-      "ջիպ տուրեր Հայաստան",
-      "զբոսավար Հայաստանում",
-      "հանգիստ Հայաստանում",
-      "AMARAS TOUR",
+      "ջիպ տուրեր հայաստան",
+      "զբոսավար հայաստանում",
+      "հանգիստ հայաստանում",
+      "տուր փաթեթներ հայաստան",
+      "սևան",
+      "գառնի",
+      "տաթև",
+      "խոր վիրապ",
+      "amaras tour",
+      "amarastour.com",
     ],
     en: [
-      "Armenia tours",
-      "Yerevan excursions",
-      "private tours Armenia",
-      "group tours Armenia",
-      "jeep tours Armenia",
-      "Armenia travel agency",
-      "travel to Armenia",
-      "AMARAS TOUR",
+      "armenia tours",
+      "armenian tours",
+      "tours in armenia",
+      "armenia travel",
+      "travel to armenia",
+      "yerevan excursions",
+      "day trips from yerevan",
+      "private tours armenia",
+      "group tours armenia",
+      "jeep safari armenia",
+      "lake sevan tour",
+      "garni geghard tour",
+      "tatev wings tour",
+      "armenia tour packages",
+      "armenia travel agency",
+      "local guide armenia",
+      "amaras tour",
+      "amarastour.com",
     ],
   };
 

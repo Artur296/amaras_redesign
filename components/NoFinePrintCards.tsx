@@ -148,7 +148,7 @@ export default function NoFinePrintCards({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mt-12 relative overflow-hidden rounded-[2.5rem] min-h-[380px] sm:min-h-[440px] shadow-2xl group"
+        className="mt-12 relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] min-h-[400px] sm:min-h-[440px] shadow-2xl group"
       >
         <Image
           src={bannerImage || "/images/noravank.jpg"}
@@ -160,28 +160,28 @@ export default function NoFinePrintCards({
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
 
         {/* Top Right Filter Tags */}
-        <div className="absolute top-6 right-6 sm:top-8 sm:right-8 flex items-center gap-2 z-10">
-          <span className="rounded-full bg-black/50 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-white/90 border border-white/20">
+        <div className="absolute top-5 right-5 sm:top-8 sm:right-8 flex items-center gap-2 z-10">
+          <span className="rounded-full bg-black/50 backdrop-blur-md px-3 sm:px-3.5 py-1 text-[11px] sm:text-xs font-bold text-white/90 border border-white/20">
             {locale === "ru" ? "Горы и озера" : "Mountains & Lakes"}
           </span>
-          <span className="rounded-full bg-[#586EFF] px-3.5 py-1 text-xs font-black text-white shadow-md">
+          <span className="rounded-full bg-[#586EFF] px-3 sm:px-3.5 py-1 text-[11px] sm:text-xs font-black text-white shadow-md">
             {locale === "ru" ? "Армения" : "Armenia"}
           </span>
         </div>
 
         {/* Content on the left */}
-        <div className="absolute inset-0 p-8 sm:p-12 lg:p-16 flex flex-col justify-end max-w-2xl text-white">
-          <span className="text-xs font-black uppercase tracking-[0.25em] text-[#C7FF32]">
+        <div className="absolute inset-0 p-6 sm:p-12 lg:p-16 flex flex-col justify-end max-w-2xl text-white">
+          <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-[#C7FF32]">
             {locale === "ru" ? "АВТОРСКИЙ ТУРИЗМ" : locale === "hy" ? "ՀԵՂԻՆԱԿԱՅԻՆ ՏՈՒՐԵՐ" : "SIGNATURE ESCAPES"}
           </span>
-          <h3 className="mt-2 font-sans text-3xl sm:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+          <h3 className="mt-2 font-sans text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
             {locale === "ru"
               ? "Тёплое солнце, горы и легендарный сервис"
               : locale === "hy"
               ? "Ջերմ արև, լեռներ և լեգենդար հյուրընկալություն"
               : "Warm Sun, Dramatic Peaks & Warm Hospitality"}
           </h3>
-          <p className="mt-3 text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-xl">
+          <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-xl">
             {locale === "ru"
               ? "Направления для романтического отдыха вдвоем, семейных каникул и незабываемых путешествий по всей Армении."
               : "Curated routes for couples, family holidays, and unforgettable journeys across Armenia."}

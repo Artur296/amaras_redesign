@@ -51,7 +51,7 @@ export default function TrendBentoGrid({
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/30" />
 
           {/* Text on card */}
-          <div className="absolute top-8 inset-x-8 text-white">
+          <div className="absolute top-6 inset-x-6 sm:top-8 sm:inset-x-8 text-white">
             <h3 className="font-serif text-2xl sm:text-3xl font-medium leading-snug">
               {locale === "ru"
                 ? "Путешествие в горную сказку"
@@ -59,7 +59,7 @@ export default function TrendBentoGrid({
                 ? "Ճամփորդություն լեռնային հեքիաթում"
                 : "Journey to Mountain Wonder"}
             </h3>
-            <p className="mt-3 text-xs sm:text-sm text-white/80 leading-relaxed max-w-xs">
+            <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-white/80 leading-relaxed max-w-xs">
               {locale === "ru"
                 ? "Застывшие горные озера, древние монастыри в снежных шапках и чистейший альпийский воздух"
                 : locale === "hy"
@@ -69,10 +69,10 @@ export default function TrendBentoGrid({
           </div>
 
           {/* Action button */}
-          <div className="absolute bottom-8 left-8">
+          <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8">
             <Link
               href={`/${locale}/tours/popular`}
-              className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-xs sm:text-sm font-bold text-[#161616] shadow-md transition-transform hover:scale-105 active:scale-95"
+              className="inline-flex items-center justify-center rounded-full bg-white px-6 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-[#161616] shadow-md transition-transform hover:scale-105 active:scale-95"
             >
               {locale === "ru" ? "Узнать больше" : locale === "hy" ? "Իմանալ ավելին" : "Learn more"}
             </Link>
@@ -98,7 +98,7 @@ export default function TrendBentoGrid({
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
 
-            <div className="absolute top-8 left-8 max-w-md text-white">
+            <div className="absolute top-6 left-6 right-6 sm:top-8 sm:left-8 max-w-md text-white">
               <h3 className="font-serif text-2xl sm:text-3xl font-medium leading-snug">
                 {locale === "ru"
                   ? "Популярные направления для отдыха в Армении"
@@ -108,10 +108,10 @@ export default function TrendBentoGrid({
               </h3>
             </div>
 
-            <div className="absolute bottom-8 left-8">
+            <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8">
               <Link
                 href={`/${locale}/tours`}
-                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-xs sm:text-sm font-bold text-[#161616] shadow-md transition-transform hover:scale-105 active:scale-95"
+                className="inline-flex items-center justify-center rounded-full bg-white px-6 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-[#161616] shadow-md transition-transform hover:scale-105 active:scale-95"
               >
                 {locale === "ru" ? "Узнать больше" : locale === "hy" ? "Իմանալ ավելին" : "Learn more"}
               </Link>

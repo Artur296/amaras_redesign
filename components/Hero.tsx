@@ -128,10 +128,10 @@ export default function Hero({
                 className="mt-4 sm:mt-6 font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal leading-[1.04] tracking-tight text-[#FCFCF7] drop-shadow-[0_4px_30px_rgba(0,0,0,0.9)]"
               >
                 {locale === "ru"
-                  ? "Туры по Армении"
+                  ? "Туры в Армению"
                   : locale === "hy"
                   ? "Տուրեր Հայաստանում"
-                  : "World Tours"}
+                  : "Armenia Tours"}
               </motion.h1>
 
               {/* Subtitle paragraph */}

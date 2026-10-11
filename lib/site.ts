@@ -71,3 +71,18 @@ export function buildLinks(s: SiteInfo) {
     email: `mailto:${s.email}`,
   };
 }
+
+/**
+ * Returns the canonical website URL for SEO, Schema.org, sitemaps, and OpenGraph.
+ * Always resolves to https://amarastour.com in production so Google never indexes preview URLs.
+ */
+export function getCanonicalSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  if (process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return site.url;
+}
+

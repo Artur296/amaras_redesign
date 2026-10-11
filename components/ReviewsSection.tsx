@@ -173,23 +173,23 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
   }
 
   return (
-    <section className="bg-[#312F2F] py-20 text-[#FCFCF7] overflow-hidden" id="reviews">
-      <div className="mx-auto max-w-[1240px] px-6">
+    <section className="bg-[#312F2F] py-14 sm:py-20 text-[#FCFCF7] overflow-hidden" id="reviews">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-6">
         {/* Section Header */}
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-[#C7FF32]/40 bg-[#C7FF32]/10 px-3.5 py-1 text-xs font-black uppercase tracking-[0.2em] text-[#C7FF32]">
               {texts.badge}
             </span>
-            <h2 className="mt-3 font-serif text-3xl font-normal tracking-tight text-[#FCFCF7] sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 font-serif text-2xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#FCFCF7]">
               {texts.title}
             </h2>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-[#FCFCF7]/80">
+            <p className="mt-2.5 sm:mt-3 max-w-2xl text-xs sm:text-base leading-relaxed text-[#FCFCF7]/80">
               {texts.subtitle}
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
             <button
               type="button"
               onClick={() => setModalOpen(true)}
@@ -331,7 +331,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
               initial={{ opacity: 0, scale: 0.95, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              className="relative z-10 w-full max-w-lg overflow-hidden rounded-3xl border border-white/15 bg-[#242323] p-6 text-[#FCFCF7] shadow-2xl sm:p-8"
+              className="relative z-10 w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-3xl border border-white/15 bg-[#242323] p-5 sm:p-8 text-[#FCFCF7] shadow-2xl"
             >
               {success ? (
                 <div className="py-6 text-center">

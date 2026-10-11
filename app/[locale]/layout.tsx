@@ -14,6 +14,7 @@ import {
   type Locale,
 } from "@/lib/i18n";
 import { getContent } from "@/lib/content";
+import { getCanonicalSiteUrl } from "@/lib/site";
 import "../globals.css";
 
 const bebasArmenian = localFont({
@@ -79,13 +80,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!locales.includes(locale as Locale)) return {};
   const { dicts, site } = await getContent();
   const dict = dicts[locale as Locale];
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : site.url);
+  const siteUrl = getCanonicalSiteUrl();
 
   return {
     metadataBase: new URL(siteUrl),
@@ -105,6 +100,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       template: `%s | ${site.name}`,
     },
     description: dict.meta.home.description,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: {

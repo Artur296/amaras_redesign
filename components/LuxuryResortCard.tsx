@@ -108,8 +108,8 @@ export default function LuxuryResortCard({
               className="relative grid grid-cols-1 lg:grid-cols-12 min-h-[420px] sm:min-h-[460px] items-stretch"
             >
               {/* Left Side: Dark charcoal / glassmorphic card with luxury details */}
-              <div className="lg:col-span-5 z-10 flex items-center p-6 sm:p-10 lg:p-12">
-                <div className="w-full rounded-2xl sm:rounded-3xl bg-[#312F2F]/95 backdrop-blur-xl border border-white/15 p-7 sm:p-9 shadow-2xl text-[#FCFCF7]">
+              <div className="lg:col-span-5 z-10 flex items-center p-4 sm:p-10 lg:p-12">
+                <div className="w-full rounded-2xl sm:rounded-3xl bg-[#312F2F]/95 backdrop-blur-xl border border-white/15 p-5 sm:p-9 shadow-2xl text-[#FCFCF7]">
                   {/* Top info & brand */}
                   <div className="flex items-center justify-between text-xs text-[#FCFCF7]/60 font-bold uppercase tracking-wider">
                     <span className="flex items-center gap-1.5">
@@ -120,7 +120,7 @@ export default function LuxuryResortCard({
                   </div>
 
                   {/* 5 Stars in Brand Lime */}
-                  <div className="mt-4 flex items-center gap-1 text-base text-[#C7FF32]">
+                  <div className="mt-3 sm:mt-4 flex items-center gap-1 text-sm sm:text-base text-[#C7FF32]">
                     <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">★</span>
                     <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">★</span>
                     <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">★</span>
@@ -129,20 +129,20 @@ export default function LuxuryResortCard({
                   </div>
 
                   {/* Title */}
-                  <h3 className="mt-3 font-sans text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+                  <h3 className="mt-2.5 sm:mt-3 font-sans text-xl sm:text-3xl font-black uppercase tracking-tight text-white">
                     {slide.title}
                   </h3>
 
                   {/* Subtitle */}
-                  <p className="mt-3 text-xs sm:text-sm text-[#FCFCF7]/75 leading-relaxed">
+                  <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-[#FCFCF7]/75 leading-relaxed">
                     {slide.subtitle}
                   </p>
 
                   {/* Button: [ Выбрать тур ] in Brand Royal Blue #586EFF */}
-                  <div className="mt-6 sm:mt-8">
+                  <div className="mt-5 sm:mt-8">
                     <Link
                       href={slide.href}
-                      className="inline-flex items-center justify-center rounded-xl bg-[#586EFF] px-8 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:bg-[#475ceb] hover:scale-105 active:scale-95"
+                      className="inline-flex items-center justify-center rounded-xl bg-[#586EFF] px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:bg-[#475ceb] hover:scale-105 active:scale-95 w-full sm:w-auto"
                     >
                       {locale === "ru" ? "Выбрать тур" : locale === "hy" ? "Ընտրել տուրը" : "Select Tour"}
                     </Link>
@@ -166,18 +166,36 @@ export default function LuxuryResortCard({
           </AnimatePresence>
         </div>
 
-        {/* Carousel Pagination Dots */}
-        <div className="mt-5 flex items-center justify-center gap-2">
-          {slides.map((s, idx) => (
-            <button
-              key={s.id}
-              onClick={() => setCurrentIndex(idx)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                idx === currentIndex ? "w-6 bg-[#586EFF]" : "w-2 bg-neutral-300 hover:bg-neutral-400"
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
+        {/* Carousel Pagination Dots & Mobile Arrows */}
+        <div className="mt-5 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={prevSlide}
+            aria-label="Previous resort"
+            className="sm:hidden flex h-8 w-8 items-center justify-center rounded-full bg-[#312F2F] text-white text-base shadow-md border border-white/20 active:scale-95 cursor-pointer"
+          >
+            ‹
+          </button>
+          <div className="flex items-center gap-2">
+            {slides.map((s, idx) => (
+              <button
+                key={s.id}
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  idx === currentIndex ? "w-6 bg-[#586EFF]" : "w-2 bg-neutral-300 hover:bg-neutral-400"
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={nextSlide}
+            aria-label="Next resort"
+            className="sm:hidden flex h-8 w-8 items-center justify-center rounded-full bg-[#312F2F] text-white text-base shadow-md border border-white/20 active:scale-95 cursor-pointer"
+          >
+            ›
+          </button>
         </div>
       </div>
     </section>

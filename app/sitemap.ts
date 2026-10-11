@@ -1,18 +1,12 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
-import { site } from "@/lib/site";
+import { getCanonicalSiteUrl } from "@/lib/site";
 import { publicCategories, tourPath } from "@/lib/tours";
 import { getContent } from "@/lib/content";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { tours, categories } = await getContent();
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : site.url);
+  const siteUrl = getCanonicalSiteUrl();
 
   const getPriority = (path: string): number => {
     if (path === "") return 1.0;

@@ -91,7 +91,7 @@ export default function SpecialOffersSection({
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="relative w-full overflow-hidden bg-[#242323] py-24 sm:py-36 text-[#FCFCF7]" id="special-offers">
+      <section className="relative w-full overflow-hidden bg-[#242323] py-16 sm:py-28 lg:py-36 text-[#FCFCF7]" id="special-offers">
         {/* Ambient Brand Glows */}
         <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-[#C7FF32]/12 blur-[160px]" />
         <div className="pointer-events-none absolute -right-40 bottom-1/4 h-[500px] w-[500px] rounded-full bg-[#586EFF]/18 blur-[170px]" />
@@ -103,16 +103,16 @@ export default function SpecialOffersSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-14 sm:mb-20 text-center"
+            className="mb-10 sm:mb-16 lg:mb-20 text-center"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#C7FF32]/40 bg-[#C7FF32]/10 px-5 py-2 text-xs sm:text-sm font-black uppercase tracking-widest text-[#C7FF32] shadow-[0_0_20px_rgba(199,255,50,0.15)] backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#C7FF32]/40 bg-[#C7FF32]/10 px-4 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-black uppercase tracking-widest text-[#C7FF32] shadow-[0_0_20px_rgba(199,255,50,0.15)] backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-[#C7FF32] animate-pulse" />
               <span>{badge}</span>
             </div>
-            <h2 className="mt-4 font-serif text-3xl font-normal tracking-tight text-[#FCFCF7] sm:text-5xl lg:text-6xl drop-shadow-md">
+            <h2 className="mt-4 font-serif text-2xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FCFCF7] drop-shadow-md">
               {locale === "ru" ? "Эксклюзивный пакет путешествий" : locale === "hy" ? "Բացառիկ ճամփորդական փաթեթ" : "Exclusive Armenia Travel Bundle"}
             </h2>
-            <p className="mt-3 text-base sm:text-lg text-[#FCFCF7]/75 max-w-2xl mx-auto">
+            <p className="mt-2.5 sm:mt-3 text-sm sm:text-lg text-[#FCFCF7]/75 max-w-2xl mx-auto leading-relaxed">
               {locale === "ru"
                 ? "Два главных направления страны в одном комбо-предложении по специальной цене"
                 : "Two iconic routes across Armenia in one curated bundle at an exceptional rate"}
@@ -120,7 +120,7 @@ export default function SpecialOffersSection({
           </motion.div>
 
           {/* 9:16 Vertical Card + Editorial Breakdown Showcase */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
             {/* LEFT COLUMN: Statuesque 9:16 Luxury Poster Card */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -129,8 +129,8 @@ export default function SpecialOffersSection({
               transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="lg:col-span-5 flex justify-center"
             >
-              <div className="w-full max-w-[420px] rounded-[2.5rem] p-2 bg-gradient-to-b from-white/20 via-white/5 to-white/10 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.85)] border border-white/15 backdrop-blur-md">
-                <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[calc(2.5rem-0.5rem)] bg-black group shadow-inner">
+              <div className="w-full max-w-[340px] sm:max-w-[420px] rounded-[2rem] sm:rounded-[2.5rem] p-2 bg-gradient-to-b from-white/20 via-white/5 to-white/10 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.85)] border border-white/15 backdrop-blur-md">
+                <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[calc(2rem-0.5rem)] sm:rounded-[calc(2.5rem-0.5rem)] bg-black group shadow-inner">
                   {/* High Definition Visual */}
                   <Image
                     src={offer.bannerImage || offer.image || "/images/offer-khor-virap.jpg"}
@@ -168,23 +168,23 @@ export default function SpecialOffersSection({
                   </div>
 
                   {/* Bottom Grand Callout inside 9:16 Card */}
-                  <div className="absolute bottom-6 inset-x-6 z-10 space-y-3 text-left">
-                    <span className="inline-block rounded-full bg-[#C7FF32]/20 border border-[#C7FF32]/60 px-3 py-0.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
+                  <div className="absolute bottom-4 inset-x-4 sm:bottom-6 sm:inset-x-6 z-10 space-y-2.5 sm:space-y-3 text-left">
+                    <span className="inline-block rounded-full bg-[#C7FF32]/20 border border-[#C7FF32]/60 px-2.5 sm:px-3 py-0.5 text-[11px] sm:text-xs font-black uppercase tracking-wider text-[#C7FF32]">
                       2 ЭКСКУРСИИ ПО ЦЕНЕ ОДНОЙ
                     </span>
 
-                    <div className="flex items-baseline gap-3">
-                      <span className="text-4xl sm:text-5xl font-black text-white tracking-tight drop-shadow-md">
+                    <div className="flex items-baseline gap-2.5 sm:gap-3">
+                      <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight drop-shadow-md">
                         39 900 ֏
                       </span>
                       {offer.priceOldAmd && (
-                        <span className="text-base font-bold text-white/50 line-through">
+                        <span className="text-sm sm:text-base font-bold text-white/50 line-through">
                           {formatPrice(offer.priceOldAmd)}
                         </span>
                       )}
                     </div>
 
-                    <p className="text-xs text-[#FCFCF7]/80 font-medium leading-relaxed">
+                    <p className="text-[11px] sm:text-xs text-[#FCFCF7]/80 font-medium leading-relaxed line-clamp-2 sm:line-clamp-none">
                       {locale === "ru"
                         ? "Хор Вирап, Арарат, Арени, Джермук + Гарни, Симфония камней, Севан"
                         : "Khor Virap, Areni, Jermuk + Garni, Symphony of Stones, Sevan"}
@@ -194,7 +194,7 @@ export default function SpecialOffersSection({
                       href={offer.linkHref}
                       target={offer.linkHref.startsWith("http") ? "_blank" : undefined}
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full rounded-2xl bg-[#C7FF32] py-3 text-xs font-black uppercase tracking-wider text-[#312F2F] shadow-lg transition-transform hover:scale-[1.02] active:scale-95"
+                      className="flex items-center justify-center gap-2 w-full rounded-xl sm:rounded-2xl bg-[#C7FF32] py-2.5 sm:py-3 text-xs font-black uppercase tracking-wider text-[#312F2F] shadow-lg transition-transform hover:scale-[1.02] active:scale-95"
                     >
                       <WhatsAppIcon className="h-4 w-4" />
                       <span>{primaryBtn}</span>
@@ -226,17 +226,17 @@ export default function SpecialOffersSection({
               </div>
 
               {/* Massive Price Card */}
-              <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-[#312F2F] to-[#2B2929] border border-white/15 shadow-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+              <div className="rounded-3xl p-5 sm:p-8 bg-gradient-to-r from-[#312F2F] to-[#2B2929] border border-white/15 shadow-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
                 <div>
                   <span className="text-xs font-black uppercase tracking-wider text-[#C7FF32]">
                     {priceHighlight}
                   </span>
-                  <div className="mt-1 flex items-baseline gap-4">
-                    <span className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+                  <div className="mt-1 flex items-baseline gap-3 sm:gap-4 flex-wrap">
+                    <span className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
                       39 900 ֏
                     </span>
                     {offer.priceOldAmd && (
-                      <span className="text-lg sm:text-xl font-bold text-white/50 line-through">
+                      <span className="text-base sm:text-xl font-bold text-white/50 line-through">
                         {formatPrice(offer.priceOldAmd)}
                       </span>
                     )}
@@ -246,9 +246,9 @@ export default function SpecialOffersSection({
                   </span>
                 </div>
 
-                <div className="shrink-0 rounded-2xl bg-[#C7FF32]/15 border border-[#C7FF32]/40 px-4 py-2 text-center">
-                  <span className="block text-xl font-black text-[#C7FF32]">-28%</span>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-white/90">ЭКОНОМИЯ 15 100 ֏</span>
+                <div className="shrink-0 rounded-2xl bg-[#C7FF32]/15 border border-[#C7FF32]/40 px-3.5 sm:px-4 py-2 text-center">
+                  <span className="block text-lg sm:text-xl font-black text-[#C7FF32]">-28%</span>
+                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white/90">ЭКОНОМИЯ 15 100 ֏</span>
                 </div>
               </div>
 
@@ -301,25 +301,25 @@ export default function SpecialOffersSection({
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                 <motion.a
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   href={offer.linkHref}
                   target={offer.linkHref.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 rounded-full bg-[#C7FF32] px-9 py-4.5 text-base font-black uppercase tracking-wider text-[#312F2F] shadow-[0_10px_35px_rgba(199,255,50,0.4)] transition-all hover:bg-[#b8f226]"
+                  className="flex items-center justify-center gap-2.5 sm:gap-3 rounded-full bg-[#C7FF32] px-6 sm:px-9 py-3.5 sm:py-4.5 text-sm sm:text-base font-black uppercase tracking-wider text-[#312F2F] shadow-[0_10px_35px_rgba(199,255,50,0.4)] transition-all hover:bg-[#b8f226] text-center"
                 >
-                  <WhatsAppIcon className="h-5 w-5" />
+                  <WhatsAppIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                   <span>{primaryBtn}</span>
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#312F2F] text-xs font-black text-[#C7FF32]">
+                  <span className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-[#312F2F] text-[10px] sm:text-xs font-black text-[#C7FF32]">
                     →
                   </span>
                 </motion.a>
 
                 <Link
                   href={offer.secondaryLinkHref || `/${locale}/tours`}
-                  className="flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-[#586EFF] hover:text-[#586EFF]"
+                  className="flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-[#586EFF] hover:text-[#586EFF] text-center"
                 >
                   <span>{secondaryBtn}</span>
                   <span>›</span>

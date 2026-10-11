@@ -37,9 +37,9 @@ export default function Footer({
   ];
 
   return (
-    <footer className="mt-24 border-t border-[#454343] bg-[#242323] text-[#FCFCF7]">
-      <div className="mx-auto max-w-[1240px] px-6 py-16">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-16 sm:mt-24 border-t border-[#454343] bg-[#242323] text-[#FCFCF7]">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-6 py-12 sm:py-16">
+        <div className="grid gap-8 sm:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {/* Column 1: Brand matching logo */}
           <div className="space-y-4">
             <Link href={`/${locale}`} className="inline-block transition-transform hover:scale-105" aria-label="AMARAS Home">
@@ -167,7 +167,7 @@ export default function Footer({
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[#454343] pt-6 text-xs text-[#FCFCF7]/60 sm:flex-row">
+        <div className="mt-10 sm:mt-14 flex flex-col items-center justify-between gap-3 border-t border-[#454343] pt-6 text-xs text-[#FCFCF7]/60 sm:flex-row text-center sm:text-left">
           <p>© {new Date().getFullYear()} {site.name}. {dict.footer.rights}</p>
           <div className="flex gap-4">
             <span className="text-[#C7FF32]/90">Armenia • Artsakh Spirit • Authentic Travel</span>

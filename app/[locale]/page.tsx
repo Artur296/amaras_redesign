@@ -445,28 +445,28 @@ export default async function HomePage({ params }: Props) {
       <FaqSection locale={locale} />
 
       {/* 9. FINAL CALL TO ACTION */}
-      <section className="mx-auto max-w-[1360px] px-6 py-24 sm:py-32">
+      <section className="mx-auto max-w-[1360px] px-4 sm:px-6 py-14 sm:py-24 lg:py-32">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#586EFF] px-8 py-20 text-center text-white shadow-2xl sm:px-14">
+          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] bg-[#586EFF] px-5 sm:px-14 py-12 sm:py-20 text-center text-white shadow-2xl">
             {/* Background design elements */}
-            <div className="absolute -left-12 -top-12 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
-            <div className="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-[#C7FF32]/20 blur-2xl" />
+            <div className="absolute -left-12 -top-12 h-64 w-64 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+            <div className="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-[#C7FF32]/20 blur-2xl pointer-events-none" />
 
             <div className="relative z-10 mx-auto max-w-2xl">
-              <span className="inline-block rounded-full bg-white/20 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-white">
+              <span className="inline-block rounded-full bg-white/20 px-3.5 sm:px-4 py-1.5 text-xs font-black uppercase tracking-wider text-white">
                 {locale === "ru" ? "Готовы к путешествию?" : locale === "hy" ? "Պատրա՞ստ եք ճամփորդության" : "Ready for your journey?"}
               </span>
-              <h2 className="mt-4 font-serif text-3xl font-normal tracking-tight sm:text-5xl lg:text-6xl">
+              <h2 className="mt-3 sm:mt-4 font-serif text-2xl sm:text-5xl lg:text-6xl font-normal tracking-tight">
                 {dict.cta.title}
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-white/90 sm:text-lg">
+              <p className="mt-3 sm:mt-4 text-xs sm:text-lg leading-relaxed text-white/90">
                 {dict.cta.subtitle}
               </p>
 
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-3">
                 <Link
                   href={`/${locale}/tours`}
-                  className="flex items-center justify-center gap-2.5 rounded-full bg-[#C7FF32] px-8 py-4 font-black uppercase tracking-wider text-[#312F2F] shadow-xl transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95"
+                  className="flex items-center justify-center gap-2.5 rounded-full bg-[#C7FF32] px-7 sm:px-8 py-3.5 sm:py-4 text-xs sm:text-base font-black uppercase tracking-wider text-[#312F2F] shadow-xl transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95 w-full sm:w-auto"
                 >
                   <span>
                     {locale === "ru"

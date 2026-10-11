@@ -1,15 +1,11 @@
 import type { Locale } from "@/lib/i18n";
 import type { Tour } from "@/lib/tours";
 import type { SiteInfo } from "@/lib/site";
+import { getCanonicalSiteUrl } from "@/lib/site";
 import { isPackageTour, tourPath } from "@/lib/tours";
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "https://amarastour.com");
+const SITE_URL = getCanonicalSiteUrl();
+
 
 /**
  * BreadcrumbList Schema.org generator
