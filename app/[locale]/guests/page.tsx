@@ -63,7 +63,7 @@ export default async function GuestsPage({ params }: Props) {
       />
 
       {/* Editorial Header & Breadcrumb */}
-      <div className="border-b border-[#FCFCF7]/10 bg-[#2A2929]">
+      <div className="border-b border-[#FCFCF7]/10 bg-[#242323]">
         <div className="mx-auto max-w-[1240px] px-4 py-8 sm:px-6 md:py-12">
           {/* Breadcrumbs */}
           <nav
@@ -72,7 +72,7 @@ export default async function GuestsPage({ params }: Props) {
           >
             <Link
               href={`/${locale}`}
-              className="transition-colors hover:text-[#C9974C]"
+              className="transition-colors hover:text-[#C7FF32]"
             >
               {dict.nav.home}
             </Link>
@@ -81,7 +81,7 @@ export default async function GuestsPage({ params }: Props) {
           </nav>
 
           <FadeIn>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#C9974C]/30 bg-[#C9974C]/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#E5B56A]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#C7FF32]/40 bg-[#C7FF32]/10 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
               {headers.badge}
             </div>
 

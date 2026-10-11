@@ -232,15 +232,15 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap cursor-pointer ${
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm transition-all whitespace-nowrap cursor-pointer ${
                   isActive
-                    ? "bg-[#C9974C] text-[#1C1B1B] shadow-md shadow-[#C9974C]/20 font-semibold"
-                    : "bg-[#2A2929] text-[#FCFCF7]/75 hover:bg-[#363535] hover:text-[#FCFCF7] border border-[#454343]"
+                    ? "bg-[#C7FF32] text-[#312F2F] shadow-md shadow-[#C7FF32]/20 font-bold"
+                    : "bg-[#242323] text-[#FCFCF7]/75 hover:bg-[#363535] hover:text-[#FCFCF7] border border-[#454343]"
                 }`}
               >
                 {t.tabs[tab]}
                 {tab === "reviews" && (
-                  <span className={`ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] ${isActive ? "bg-[#1C1B1B]/20 text-[#1C1B1B]" : "bg-white/10 text-white/80"}`}>
+                  <span className={`ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] ${isActive ? "bg-[#312F2F]/20 text-[#312F2F]" : "bg-white/10 text-white/80"}`}>
                     {filteredReviews.length}
                   </span>
                 )}
@@ -253,7 +253,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setModalOpen(true)}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#C9974C] to-[#E5B56A] text-[#1C1B1B] font-semibold text-xs sm:text-sm hover:brightness-110 active:scale-95 transition-all shadow-md shadow-[#C9974C]/25 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#C7FF32] text-[#312F2F] font-bold text-xs sm:text-sm hover:bg-[#b8f226] active:scale-95 transition-all shadow-md shadow-[#C7FF32]/25 cursor-pointer uppercase tracking-wider"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -285,8 +285,8 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
               onClick={() => setSelectedGuide(guide)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap cursor-pointer ${
                 selectedGuide === guide
-                  ? "bg-[#C9974C]/20 text-[#E5B56A] border border-[#C9974C]/60"
-                  : "bg-[#2A2929] text-white/60 hover:text-white border border-[#454343]"
+                  ? "bg-[#C7FF32]/15 text-[#C7FF32] border border-[#C7FF32]/50 font-bold"
+                  : "bg-[#242323] text-white/60 hover:text-white border border-[#454343]"
               }`}
             >
               {guide}
@@ -311,7 +311,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: idx * 0.05 }}
                   onClick={() => setActiveItem(item)}
-                  className="group relative rounded-2xl overflow-hidden bg-[#242323] border border-[#454343] hover:border-[#C9974C]/50 transition-all duration-300 hover:shadow-xl hover:shadow-black/40 cursor-pointer flex flex-col"
+                  className="group relative rounded-2xl overflow-hidden bg-[#242323] border border-[#454343] hover:border-[#C7FF32]/50 transition-all duration-300 hover:shadow-xl hover:shadow-black/40 cursor-pointer flex flex-col"
                 >
                   {/* Media Preview Container */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#1C1B1B]">
@@ -326,7 +326,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
 
                     {/* Type Badge (Video vs Photo) */}
                     {item.type === "video" ? (
-                      <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-[#E5B56A]">
+                      <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-[#C7FF32]">
                         <svg className="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
@@ -344,8 +344,8 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
 
                     {/* Guide Badge */}
                     {item.guideName && (
-                      <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#1C1B1B]/80 backdrop-blur-md border border-[#C9974C]/40 text-[11px] text-[#E5B56A] font-medium">
-                        <span className="text-white/60 text-[10px]">{t.guideLabel}:</span>
+                      <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#242323]/90 backdrop-blur-md border border-[#C7FF32]/40 text-[11px] text-[#C7FF32] font-semibold">
+                        <span className="text-white/60 text-[10px] font-normal">{t.guideLabel}:</span>
                         <span>{item.guideName}</span>
                       </div>
                     )}
@@ -353,7 +353,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
 
                   {/* Card Info */}
                   <div className="p-4 flex flex-col flex-1">
-                    <h3 className="font-semibold text-sm sm:text-base text-[#FCFCF7] line-clamp-1 group-hover:text-[#E5B56A] transition-colors">
+                    <h3 className="font-semibold text-sm sm:text-base text-[#FCFCF7] line-clamp-1 group-hover:text-[#C7FF32] transition-colors">
                       {item.title}
                     </h3>
                     {item.caption && (
@@ -383,7 +383,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
             </div>
             <button
               onClick={() => setModalOpen(true)}
-              className="text-xs sm:text-sm text-[#C9974C] hover:underline font-medium cursor-pointer"
+              className="text-xs sm:text-sm text-[#C7FF32] hover:underline font-bold cursor-pointer"
             >
               + {t.leaveReview}
             </button>
@@ -405,7 +405,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: idx * 0.04 }}
-                  className="rounded-2xl p-5 bg-[#242323] border border-[#454343] hover:border-[#C9974C]/30 transition-all flex flex-col justify-between"
+                  className="rounded-2xl p-5 bg-[#242323] border border-[#454343] hover:border-[#C7FF32]/40 transition-all flex flex-col justify-between"
                 >
                   <div>
                     {/* Header: Author & Rating */}
@@ -418,13 +418,13 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                           <p className="text-xs text-white/50">{rev.location}</p>
                         )}
                       </div>
-                      <div className="flex items-center gap-1 text-[#C9974C]">
+                      <div className="flex items-center gap-1 text-[#C7FF32]">
                         {Array.from({ length: 5 }).map((_, i) => (
                           <StarIcon
                             key={i}
                             className={`w-3.5 h-3.5 ${
                               i < rev.rating
-                                ? "text-[#C9974C] fill-current"
+                                ? "text-[#C7FF32] fill-current"
                                 : "text-white/20"
                             }`}
                           />
@@ -435,13 +435,13 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                     {/* Tour & Guide Badges */}
                     <div className="flex flex-wrap items-center gap-2 mb-3">
                       {rev.tourTitle && (
-                        <span className="text-[11px] px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-white/80">
+                        <span className="text-[11px] px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-[#586EFF] font-semibold">
                           {rev.tourTitle}
                         </span>
                       )}
                       {rev.guideName && (
-                        <span className="text-[11px] px-2.5 py-0.5 rounded-md bg-[#C9974C]/15 border border-[#C9974C]/30 text-[#E5B56A] font-medium">
-                          <span className="text-white/50 mr-1">{t.reviewGuide}:</span>
+                        <span className="text-[11px] px-2.5 py-0.5 rounded-md bg-[#C7FF32]/10 border border-[#C7FF32]/30 text-[#C7FF32] font-semibold">
+                          <span className="text-white/50 mr-1 font-normal">{t.reviewGuide}:</span>
                           {rev.guideName}
                         </span>
                       )}
@@ -456,7 +456,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                   {/* Footer Date & Status */}
                   <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] text-white/40">
                     <span>{rev.date}</span>
-                    <span className="text-[#C9974C]/80 font-medium">{t.verified}</span>
+                    <span className="text-[#C7FF32]/90 font-medium">{t.verified}</span>
                   </div>
                 </motion.div>
               ))}
@@ -485,7 +485,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
               {/* Close Button */}
               <button
                 onClick={() => setActiveItem(null)}
-                className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 border border-white/20 text-white hover:text-[#C9974C] flex items-center justify-center transition-colors cursor-pointer"
+                className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 border border-white/20 text-white hover:text-[#C7FF32] flex items-center justify-center transition-colors cursor-pointer"
                 aria-label={t.close}
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -533,7 +533,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                       {activeItem.location}
                     </span>
                     {activeItem.guideName && (
-                      <span className="text-xs px-2.5 py-1 rounded-md bg-[#C9974C]/20 border border-[#C9974C]/40 text-[#E5B56A] font-medium">
+                      <span className="text-xs px-2.5 py-1 rounded-md bg-[#C7FF32]/10 border border-[#C7FF32]/30 text-[#C7FF32] font-semibold">
                         {t.guideLabel}: {activeItem.guideName}
                       </span>
                     )}
@@ -580,7 +580,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
 
               {success ? (
                 <div className="text-center py-6">
-                  <div className="w-14 h-14 rounded-full bg-[#C9974C]/20 text-[#E5B56A] border border-[#C9974C]/40 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-14 h-14 rounded-full bg-[#C7FF32]/20 text-[#C7FF32] border border-[#C7FF32]/40 flex items-center justify-center mx-auto mb-4">
                     <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -589,7 +589,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                   <p className="text-sm text-white/70 mb-6 leading-relaxed">{t.successMsg}</p>
                   <button
                     onClick={handleCloseModal}
-                    className="w-full py-2.5 rounded-xl bg-[#C9974C] text-[#1C1B1B] font-semibold text-sm hover:brightness-110 cursor-pointer"
+                    className="w-full py-2.5 rounded-full bg-[#C7FF32] text-[#312F2F] font-bold text-sm hover:bg-[#b8f226] cursor-pointer"
                   >
                     {t.close}
                   </button>
@@ -627,7 +627,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                           <StarIcon
                             className={`w-6 h-6 ${
                               star <= rating
-                                ? "text-[#C9974C] fill-current"
+                                ? "text-[#C7FF32] fill-current"
                                 : "text-white/20"
                             }`}
                           />
@@ -647,7 +647,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                       value={author}
                       onChange={(e) => setAuthor(e.target.value)}
                       placeholder={t.namePlaceholder}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C9974C]"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C7FF32]"
                     />
                   </div>
 
@@ -662,7 +662,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder={t.cityPlaceholder}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C9974C]"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C7FF32]"
                       />
                     </div>
                     <div>
@@ -674,7 +674,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                         value={tourTitle}
                         onChange={(e) => setTourTitle(e.target.value)}
                         placeholder={t.tourPlaceholder}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C9974C]"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C7FF32]"
                       />
                     </div>
                   </div>
@@ -689,7 +689,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                       value={guideName}
                       onChange={(e) => setGuideName(e.target.value)}
                       placeholder={t.guideInputPlaceholder}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C9974C]"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C7FF32]"
                     />
                   </div>
 
@@ -704,7 +704,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                       value={text}
                       onChange={(e) => setText(e.target.value)}
                       placeholder={t.textPlaceholder}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C9974C] resize-none"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C7FF32] resize-none"
                     />
                   </div>
 
@@ -720,7 +720,7 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#C9974C] to-[#E5B56A] text-[#1C1B1B] font-semibold text-xs sm:text-sm hover:brightness-110 disabled:opacity-50 cursor-pointer shadow-md shadow-[#C9974C]/25"
+                      className="px-6 py-2.5 rounded-full bg-[#C7FF32] text-[#312F2F] font-bold text-xs sm:text-sm hover:bg-[#b8f226] disabled:opacity-50 cursor-pointer shadow-md shadow-[#C7FF32]/25 uppercase tracking-wider"
                     >
                       {submitting ? t.submitting : t.submit}
                     </button>
