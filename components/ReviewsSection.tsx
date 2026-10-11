@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
 import type { Review } from "@/lib/reviews";
@@ -18,6 +18,20 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: -360, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: 360, behavior: "smooth" });
+    }
+  };
 
   // Form state
   const [author, setAuthor] = useState("");
@@ -159,7 +173,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
   }
 
   return (
-    <section className="bg-[#312F2F] py-20 text-[#FCFCF7]" id="reviews">
+    <section className="bg-[#312F2F] py-20 text-[#FCFCF7] overflow-hidden" id="reviews">
       <div className="mx-auto max-w-[1240px] px-6">
         {/* Section Header */}
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -175,24 +189,53 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setModalOpen(true)}
-            className="inline-flex shrink-0 items-center gap-2.5 rounded-full bg-[#C7FF32] px-6 py-3.5 text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-lg shadow-[#C7FF32]/20 transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95"
-          >
-            <span>✍️</span>
-            <span>{texts.writeBtn}</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setModalOpen(true)}
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#C7FF32] px-5 py-3 text-xs sm:text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-lg shadow-[#C7FF32]/20 transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95"
+            >
+              <span>✍️</span>
+              <span>{texts.writeBtn}</span>
+            </button>
+
+            {/* Left / Right Carousel Controls */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={scrollLeft}
+                aria-label="Previous reviews"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] active:scale-95"
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={scrollRight}
+                aria-label="Next reviews"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] active:scale-95"
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Reviews Horizontal Slider */}
+        <div
+          ref={sliderRef}
+          className="mt-10 flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
           {reviews.map((rev) => {
             const reviewContent = getReviewText(rev.text, locale);
             return (
               <div
                 key={rev.id}
-                className="group relative flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-[#242323] p-7 shadow-lg transition-all duration-300 hover:border-[#C7FF32]/40 hover:bg-[#282727] hover:shadow-2xl"
+                className="group relative flex w-[85vw] sm:w-[360px] md:w-[380px] shrink-0 snap-start flex-col justify-between rounded-3xl border border-white/10 bg-[#242323] p-6 sm:p-7 shadow-lg transition-all duration-300 hover:border-[#C7FF32]/40 hover:bg-[#282727] hover:shadow-2xl"
               >
                 <div>
                   {/* Top Bar: Stars + Verified Badge */}
@@ -227,7 +270,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
                   )}
 
                   {/* Review Text */}
-                  <p className="mt-4 text-sm leading-relaxed text-[#FCFCF7]/90 font-normal">
+                  <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#FCFCF7]/90 font-normal">
                     “{reviewContent}”
                   </p>
                 </div>
@@ -259,6 +302,12 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
               </div>
             );
           })}
+        </div>
+
+        {/* Carousel swipe guidance indicator */}
+        <div className="mt-4 flex items-center justify-between text-xs text-[#FCFCF7]/50 px-1">
+          <span>← Листайте отзывы →</span>
+          <span>{reviews.length} отзывов от путешественников</span>
         </div>
       </div>
 

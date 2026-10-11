@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import PackageIncludes from "@/components/PackageIncludes";
 import TourCard from "@/components/TourCard";
+import SpecialOffersSection from "@/components/SpecialOffersSection";
 import { CalendarIcon, RouteIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CategoryPage({ params }: Props) {
   const { locale, category } = await params;
-  const { dicts, tours, categories } = await getContent();
+  const { dicts, tours, categories, offers } = await getContent();
   const found = categories.find((c) => c.id === category);
 
   if (!found || category === PACKAGES_CATEGORY_ID) notFound();
@@ -119,6 +120,15 @@ export default async function CategoryPage({ params }: Props) {
               className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
             />
           </section>
+        </FadeIn>
+      )}
+
+      {/* Special Offers Banner Showcase */}
+      {category === "offers" && (
+        <FadeIn delay={0.08}>
+          <div className="mt-8 overflow-hidden rounded-3xl">
+            <SpecialOffersSection offers={offers} locale={locale} dict={dict} />
+          </div>
         </FadeIn>
       )}
 

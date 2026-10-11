@@ -13,6 +13,7 @@ import {
 import type { SiteInfo } from "@/lib/site";
 import type { Content, ContentKey } from "@/lib/content";
 import type { Review } from "@/lib/reviews";
+import type { SpecialOffer } from "@/lib/offers";
 
 const localeNames: Record<Locale, string> = {
   ru: "Русский",
@@ -33,9 +34,10 @@ const sectionNames: Record<ContentKey, string> = {
   site: "Contacts",
   hero: "Images",
   reviews: "Reviews",
+  offers: "Спецпредложения",
 };
 
-const TABS = ["Tours", "Packages", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
+const TABS = ["Tours", "Packages", "Offers", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
 type Tab = (typeof TABS)[number];
 
 // The stored keys, read off the editing state. Tabs edit different
@@ -48,6 +50,7 @@ function keyValues(content: Content): Record<ContentKey, unknown> {
     site: content.site,
     hero: content.hero,
     reviews: content.reviews || [],
+    offers: content.offers || [],
   };
 }
 
@@ -185,7 +188,13 @@ export default function AdminPanel() {
                   tab === t ? "bg-bg text-ink" : "text-white/70 hover:text-accent"
                 }`}
               >
-                <span>{t === "Reviews" ? "Отзывы" : t}</span>
+                <span>
+                  {t === "Reviews"
+                    ? "Отзывы"
+                    : t === "Offers"
+                    ? "Спецпредложения"
+                    : t}
+                </span>
                 {pendingCount > 0 && (
                   <span className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-amber-400 px-1 text-[10px] font-black text-black shadow-sm">
                     {pendingCount}
@@ -247,6 +256,13 @@ export default function AdminPanel() {
             setContent={setContent}
             onSaveTours={publish}
             onSaveCategories={publish}
+          />
+        )}
+        {tab === "Offers" && (
+          <OffersTab
+            offers={content.offers || []}
+            onChange={(offers) => setContent({ ...content, offers })}
+            onSave={publish}
           />
         )}
         {tab === "Images" && (
@@ -2105,6 +2121,385 @@ function ReviewsTab({
       </div>
 
       <SaveBar onSave={onSave} label="Опубликовать изменения на сайте" />
+    </div>
+  );
+}
+
+/* ---------- Special Offers Tab ---------- */
+
+function OffersTab({
+  offers,
+  onChange,
+  onSave,
+}: {
+  offers: SpecialOffer[];
+  onChange: (offers: SpecialOffer[]) => void;
+  onSave: () => void;
+}) {
+  const [editingId, setEditingId] = useState<string | null>(offers[0]?.id ?? null);
+
+  const activeOffer = offers.find((o) => o.id === editingId) || offers[0];
+
+  function updateActiveOffer(patch: Partial<SpecialOffer>) {
+    if (!activeOffer) return;
+    onChange(
+      offers.map((o) => (o.id === activeOffer.id ? { ...o, ...patch } : o))
+    );
+  }
+
+  function addOffer() {
+    const newId = `offer-${Date.now()}`;
+    const newOffer: SpecialOffer = {
+      id: newId,
+      active: true,
+      badge: {
+        ru: "−15% СПЕЦПРЕДЛОЖЕНИЕ",
+        hy: "−15% ՀԱՏՈՒԿ ԱՌԱՋԱՐԿ",
+        en: "−15% SPECIAL DEAL",
+      },
+      title: {
+        ru: "Новое специальное предложение",
+        hy: "Նոր հատուկ առաջարկ",
+        en: "New Special Offer",
+      },
+      subtitle: {
+        ru: "Описание специального предложения, что включено и почему это выгодно.",
+        hy: "Հատուկ առաջարկի նկարագրություն, ինչ է ներառված։",
+        en: "Special offer description, inclusions and advantages.",
+      },
+      priceFromAmd: 100000,
+      priceOldAmd: 125000,
+      linkHref: "/#tours",
+      image: "/images/tatev.jpg",
+      validUntil: {
+        ru: "Предложение ограничено",
+        hy: "Առաջարկը սահմանափակ է",
+        en: "Limited Availability",
+      },
+      highlightFeatures: {
+        ru: ["Комфортный трансфер", "Гид включен"],
+        hy: ["Հարմարավետ տրանսֆեր", "Գիդը ներառված է"],
+        en: ["Comfortable transfer", "Guide included"],
+      },
+    };
+    onChange([...offers, newOffer]);
+    setEditingId(newId);
+  }
+
+  function deleteOffer(id: string) {
+    if (offers.length <= 1) {
+      alert("Нельзя удалить последнее предложение. Вы можете отключить его переключателем.");
+      return;
+    }
+    if (!window.confirm("Удалить это спецпредложение?")) return;
+    const remaining = offers.filter((o) => o.id !== id);
+    onChange(remaining);
+    if (editingId === id) {
+      setEditingId(remaining[0]?.id ?? null);
+    }
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-black text-ink">Спецпредложения (Special Offers)</h2>
+          <p className="mt-1 text-sm text-muted">
+            Управляйте спецпредложениями на главной: скидки, баннеры, цены и ссылки.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={addOffer}
+          className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white shadow hover:bg-primary-dark transition-colors"
+        >
+          + Добавить спецпредложение
+        </button>
+      </div>
+
+      {/* Offers Cards Selector */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {offers.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => setEditingId(item.id)}
+            className={`cursor-pointer rounded-2xl border p-4 transition-all ${
+              activeOffer?.id === item.id
+                ? "border-primary bg-primary/5 ring-2 ring-primary/20 shadow-sm"
+                : "border-black/10 bg-white hover:border-black/20"
+            }`}
+          >
+            <div className="flex items-center justify-between gap-2">
+              <span
+                className={`inline-block rounded-full px-2.5 py-0.5 text-[11px] font-bold ${
+                  item.active ? "bg-green-100 text-green-800" : "bg-gray-200 text-gray-700"
+                }`}
+              >
+                {item.active ? "✓ Активно на сайте" : "Отключено"}
+              </span>
+              <span className="text-xs font-bold text-primary">
+                {item.priceFromAmd ? `${item.priceFromAmd.toLocaleString()} ֏` : ""}
+              </span>
+            </div>
+            <h3 className="mt-2 text-sm font-bold text-ink line-clamp-1">
+              {item.title.ru || item.title.en || item.id}
+            </h3>
+            <p className="mt-1 text-xs text-muted line-clamp-1">
+              {item.badge.ru || item.badge.en}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Offer Editor Card */}
+      {activeOffer && (
+        <div className="rounded-3xl border border-black/10 bg-white p-6 sm:p-8 shadow-sm space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-black/10 pb-4">
+            <div className="flex items-center gap-3">
+              <h3 className="text-lg font-bold text-ink">Редактирование предложения</h3>
+              <label className="flex items-center gap-2 cursor-pointer rounded-full bg-bg px-3 py-1 border border-black/10 text-xs font-bold">
+                <input
+                  type="checkbox"
+                  checked={activeOffer.active}
+                  onChange={(e) => updateActiveOffer({ active: e.target.checked })}
+                  className="rounded text-primary focus:ring-primary"
+                />
+                <span>{activeOffer.active ? "Показывать на сайте" : "Скрыто"}</span>
+              </label>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => deleteOffer(activeOffer.id)}
+              className="text-xs font-bold text-red-600 hover:text-red-800"
+            >
+              Удалить это предложение
+            </button>
+          </div>
+
+          {/* Pricing & Link */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Field label="Новая цена со скидкой (֏ AMD)">
+              <input
+                type="number"
+                value={activeOffer.priceFromAmd || ""}
+                onChange={(e) => updateActiveOffer({ priceFromAmd: Number(e.target.value) || undefined })}
+                className={inputCls}
+                placeholder="39900"
+              />
+            </Field>
+
+            <Field label="Старая зачёркнутая цена (֏ AMD)">
+              <input
+                type="number"
+                value={activeOffer.priceOldAmd || ""}
+                onChange={(e) => updateActiveOffer({ priceOldAmd: Number(e.target.value) || undefined })}
+                className={inputCls}
+                placeholder="55000"
+              />
+            </Field>
+
+            <Field label="Ссылка бронирования (WhatsApp / URL)">
+              <input
+                type="text"
+                value={activeOffer.linkHref}
+                onChange={(e) => updateActiveOffer({ linkHref: e.target.value })}
+                className={inputCls}
+                placeholder="https://wa.me/..."
+              />
+            </Field>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Field label="Фоновое изображение баннера (URL или /images/...)">
+              <input
+                type="text"
+                value={activeOffer.bannerImage || activeOffer.image}
+                onChange={(e) => updateActiveOffer({ bannerImage: e.target.value, image: e.target.value })}
+                className={inputCls}
+                placeholder="/images/special-offer-autumn.jpg"
+              />
+            </Field>
+
+            <Field label="Ссылка второй кнопки 'Подробнее'">
+              <input
+                type="text"
+                value={activeOffer.secondaryLinkHref || ""}
+                onChange={(e) => updateActiveOffer({ secondaryLinkHref: e.target.value })}
+                className={inputCls}
+                placeholder="/#tours"
+              />
+            </Field>
+          </div>
+
+          {/* Multilingual Titles & Badges */}
+          <div className="space-y-4 pt-2 border-t border-black/10">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-muted">Языковые версии</h4>
+
+            {locales.map((loc) => (
+              <div key={loc} className="rounded-2xl border border-black/5 bg-bg/50 p-4 space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="rounded bg-black/10 px-2 py-0.5 text-xs font-black uppercase text-ink">
+                    {localeNames[loc]} ({loc.toUpperCase()})
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <Field label="Текст бейджа (Badge)">
+                    <input
+                      type="text"
+                      value={activeOffer.badge[loc] || ""}
+                      onChange={(e) =>
+                        updateActiveOffer({
+                          badge: { ...activeOffer.badge, [loc]: e.target.value },
+                        })
+                      }
+                      className={inputCls}
+                      placeholder="−20% СПЕЦПРЕДЛОЖЕНИЕ"
+                    />
+                  </Field>
+
+                  <Field label="Пометка срока (Valid Until)">
+                    <input
+                      type="text"
+                      value={activeOffer.validUntil?.[loc] || ""}
+                      onChange={(e) =>
+                        updateActiveOffer({
+                          validUntil: {
+                            ...(activeOffer.validUntil || { ru: "", hy: "", en: "" }),
+                            [loc]: e.target.value,
+                          },
+                        })
+                      }
+                      className={inputCls}
+                      placeholder="Предложение ограничено • Сезон 2026"
+                    />
+                  </Field>
+                </div>
+
+                <Field label="Заголовок (Title)">
+                  <input
+                    type="text"
+                    value={activeOffer.title[loc] || ""}
+                    onChange={(e) =>
+                      updateActiveOffer({
+                        title: { ...activeOffer.title, [loc]: e.target.value },
+                      })
+                    }
+                    className={inputCls}
+                    placeholder="Путешествуй больше — плати меньше"
+                  />
+                </Field>
+
+                <Field label="Текст акцентной плашки цены (Price Highlight)">
+                  <input
+                    type="text"
+                    value={activeOffer.priceHighlightText?.[loc] || ""}
+                    onChange={(e) =>
+                      updateActiveOffer({
+                        priceHighlightText: {
+                          ...(activeOffer.priceHighlightText || { ru: "", hy: "", en: "" }),
+                          [loc]: e.target.value,
+                        },
+                      })
+                    }
+                    className={inputCls}
+                    placeholder="2 экскурсии — всего 39 900 драм с человека"
+                  />
+                </Field>
+
+                <Field label="Подзаголовок / описание (Subtitle)">
+                  <textarea
+                    rows={2}
+                    value={activeOffer.subtitle[loc] || ""}
+                    onChange={(e) =>
+                      updateActiveOffer({
+                        subtitle: { ...activeOffer.subtitle, [loc]: e.target.value },
+                      })
+                    }
+                    className={inputCls}
+                    placeholder="Два насыщенных путешествия по Армении по одной специальной цене."
+                  />
+                </Field>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <Field label="Название левого маршрута">
+                    <input
+                      type="text"
+                      value={activeOffer.leftRouteTitle?.[loc] || ""}
+                      onChange={(e) =>
+                        updateActiveOffer({
+                          leftRouteTitle: {
+                            ...(activeOffer.leftRouteTitle || { ru: "", hy: "", en: "" }),
+                            [loc]: e.target.value,
+                          },
+                        })
+                      }
+                      className={inputCls}
+                      placeholder="ОТ АРАРАТА ДО ДЖЕРМУКА"
+                    />
+                  </Field>
+
+                  <Field label="Название правого маршрута">
+                    <input
+                      type="text"
+                      value={activeOffer.rightRouteTitle?.[loc] || ""}
+                      onChange={(e) =>
+                        updateActiveOffer({
+                          rightRouteTitle: {
+                            ...(activeOffer.rightRouteTitle || { ru: "", hy: "", en: "" }),
+                            [loc]: e.target.value,
+                          },
+                        })
+                      }
+                      className={inputCls}
+                      placeholder="ОТ ГАРНИ ДО СЕВАНА"
+                    />
+                  </Field>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <Field label="Текст главной кнопки (WhatsApp)">
+                    <input
+                      type="text"
+                      value={activeOffer.primaryButtonText?.[loc] || ""}
+                      onChange={(e) =>
+                        updateActiveOffer({
+                          primaryButtonText: {
+                            ...(activeOffer.primaryButtonText || { ru: "", hy: "", en: "" }),
+                            [loc]: e.target.value,
+                          },
+                        })
+                      }
+                      className={inputCls}
+                      placeholder="ЗАБРОНИРОВАТЬ СЕЙЧАС"
+                    />
+                  </Field>
+
+                  <Field label="Текст второй кнопки">
+                    <input
+                      type="text"
+                      value={activeOffer.secondaryLinkText?.[loc] || ""}
+                      onChange={(e) =>
+                        updateActiveOffer({
+                          secondaryLinkText: {
+                            ...(activeOffer.secondaryLinkText || { ru: "", hy: "", en: "" }),
+                            [loc]: e.target.value,
+                          },
+                        })
+                      }
+                      className={inputCls}
+                      placeholder="ПОДРОБНЕЕ"
+                    />
+                  </Field>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <SaveBar onSave={onSave} label="Опубликовать спецпредложения на сайте" />
+        </div>
+      )}
     </div>
   );
 }

@@ -454,9 +454,9 @@ const ru = {
   },
   meta: {
     home: {
-      title: "Amaras Tour — туры и экскурсии по Армении",
+      title: "Туры по Армении и Экскурсии из Еревана 2026 | Amaras Tour",
       description:
-        "Тур-пакеты, индивидуальные и групповые экскурсии по Армении: Хор Вирап, Татев, Севан, Гарни. Местные гиды, комфортный транспорт, честные цены.",
+        "Авторские, индивидуальные и групповые туры по Армении от 10 000 ֏: Севан, Гарни, Татев, Хор Вирап, Джип 4x4. Лицензированные гиды, автопарк Mercedes, бронь без предоплаты!",
     },
     about: {
       title: "О нас",
@@ -589,9 +589,9 @@ const hy: Dict = {
   },
   meta: {
     home: {
-      title: "Amaras Tour — տուրեր և էքսկուրսիաներ Հայաստանով",
+      title: "Տուրեր Հայաստանում և Էքսկուրսիաներ Երևանից 2026 | Amaras Tour",
       description:
-        "Տուր փաթեթներ, անհատական և խմբային էքսկուրսիաներ Հայաստանով՝ Խոր Վիրապ, Տաթև, Սևան, Գառնի։ Տեղացի գիդեր, հարմարավետ տրանսպորտ, ազնիվ գներ։",
+        "Հեղինակային, անհատական և խմբային տուրեր Հայաստանում 10 000 ֏-ից՝ Սևան, Գառնի, Տաթև, Խոր Վիրապ, Ջիպ 4x4։ Տեղացի փորձառու գիդեր, առանց կանխավճարի։",
     },
     about: {
       title: "Մեր մասին",
@@ -722,9 +722,9 @@ const en: Dict = {
   },
   meta: {
     home: {
-      title: "Amaras Tour — Tours & Excursions in Armenia",
+      title: "Armenia Tours & Day Excursions from Yerevan 2026 | Amaras Tour",
       description:
-        "Tour packages, private and group excursions across Armenia: Khor Virap, Tatev, Sevan, Garni. Local guides, comfortable transport, honest prices.",
+        "Handcrafted private & group tours in Armenia from 10,000 AMD: Lake Sevan, Garni, Tatev, Khor Virap, 4x4 Jeep safaris. Local guides, Mercedes fleet, no advance deposit.",
     },
     about: {
       title: "About Us",

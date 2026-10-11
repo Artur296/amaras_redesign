@@ -59,21 +59,21 @@ export default function PackageCard({
       </Link>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-xl font-black leading-snug text-[#FCFCF7] transition-colors group-hover:text-[#C7FF32]">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <h3 className="text-xl sm:text-2xl font-black leading-snug text-[#FCFCF7] transition-colors group-hover:text-[#C7FF32]">
           <Link href={href} className="line-clamp-2">
             {tour.title[locale]}
           </Link>
         </h3>
 
-        <p className="mt-2.5 line-clamp-2 flex-1 text-sm leading-relaxed text-[#FCFCF7]/80">
+        <p className="mt-2.5 line-clamp-2 flex-1 text-sm sm:text-[15px] leading-relaxed text-[#FCFCF7]/90 font-normal">
           {tour.description[locale]}
         </p>
 
         {/* Day-by-Day Indicators */}
         {days.length > 0 && (
           <div className="mt-4 flex items-center gap-2.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#C7FF32]">
+            <span className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#C7FF32]">
               {dict.pkg.program}:
             </span>
             <span className="flex flex-wrap items-center gap-1.5">
@@ -92,14 +92,14 @@ export default function PackageCard({
 
         {/* Inclusions pill box */}
         <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
-          <p className="text-[10px] font-black uppercase tracking-wider text-[#C7FF32]">
+          <p className="text-[11px] font-black uppercase tracking-wider text-[#C7FF32]">
             {dict.pkg.includesTitle}
           </p>
           <ul className="mt-2.5 grid grid-cols-2 gap-x-3 gap-y-2">
             {includes.map(({ icon: Icon, label }) => (
               <li
                 key={label}
-                className="flex items-start gap-2 text-xs font-medium text-[#FCFCF7]/90 leading-snug"
+                className="flex items-start gap-2 text-xs sm:text-[13px] font-medium text-[#FCFCF7] leading-snug"
               >
                 <Icon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C7FF32]" />
                 <span className="line-clamp-1">{label}</span>

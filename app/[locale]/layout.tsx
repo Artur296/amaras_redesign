@@ -165,11 +165,11 @@ export default async function LocaleLayout({
       </head>
       {/* suppressHydrationWarning: browser extensions (Bitdefender, Grammarly)
           inject attributes into <body> before React hydrates */}
-      <body className="font-sans" suppressHydrationWarning>
+      <body className="font-sans overflow-x-hidden min-h-screen relative" suppressHydrationWarning>
         <JeepPreloader />
         <SiteProvider site={site}>
           <Header locale={locale as Locale} dict={dict} />
-          <main>{children}</main>
+          <main className="overflow-x-hidden">{children}</main>
           <Footer locale={locale as Locale} dict={dict} site={site} />
           <ContactFab label={dict.hero.ctaWrite} />
         </SiteProvider>

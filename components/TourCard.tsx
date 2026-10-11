@@ -86,23 +86,23 @@ export default function TourCard({
       </Link>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-lg font-black leading-snug text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <h3 className="text-xl sm:text-xl font-black leading-snug text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
           <Link href={href} className="line-clamp-2">
             {tour.title[locale]}
           </Link>
         </h3>
 
-        <p className="mt-2.5 line-clamp-2 flex-1 text-sm leading-relaxed text-[#6B6967]">
+        <p className="mt-2.5 line-clamp-2 flex-1 text-sm sm:text-[15px] leading-relaxed text-[#4A4846]">
           {tour.description[locale]}
         </p>
 
         {/* Key Tour Specs / Inclusions */}
-        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[#EAE9E0] pt-3 text-xs text-[#6B6967]">
-          <span className="flex items-center gap-1">
+        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[#EAE9E0] pt-3 text-xs sm:text-[13px] font-medium text-[#555351]">
+          <span className="flex items-center gap-1.5">
             <span>🚐</span> {tour.departure ? `${dict.tour.departure}: ${tour.departure}` : (locale === "ru" ? "Комфортный трансфер" : locale === "hy" ? "Հարմարավետ տրանսֆեր" : "Comfort transfer")}
           </span>
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1.5">
             <span>🗣</span> RU • HY • EN
           </span>
         </div>

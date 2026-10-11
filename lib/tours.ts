@@ -12,7 +12,7 @@ export type Category = {
 export const defaultCategories: Category[] = [
   {
     id: "packages",
-    image: "/images/category-packages.jpg",
+    image: "/images/package-tatev.jpg",
     imagePosition: "object-center",
     title: { ru: "Тур-пакеты", hy: "Տուր փաթեթներ", en: "Tour Packages" },
     desc: {
@@ -69,6 +69,17 @@ export const defaultCategories: Category[] = [
       en: "Off-road routes to volcanoes, waterfalls and mountain fortresses that ordinary transport cannot reach.",
     },
   },
+  {
+    id: "offers",
+    image: "/images/offer-khor-virap.jpg",
+    imagePosition: "object-center",
+    title: { ru: "Спецпредложения", hy: "Հատուկ առաջարկներ", en: "Special Offers" },
+    desc: {
+      ru: "Эксклюзивные акции, комбо-туры и сезонные скидки на лучшие путешествия по Армении.",
+      hy: "Բացառիկ ակցիաներ, կոմբո տուրեր և սեզոնային զեղչեր Հայաստանի լավագույն ճամփորդությունների համար։",
+      en: "Exclusive promotions, combo journeys and seasonal discounts on the best Armenia tours.",
+    },
+  },
 ];
 
 // Multi-day packages are priced per person by hotel class.
@@ -120,7 +131,7 @@ export type Tour = {
 export const tours: Tour[] = [
   {
     slug: "tsaghkadzor-sevan-sevanavank",
-    categories: ["group"],
+    categories: ["group", "popular", "offers"],
     image: "/images/tours/tsaghkadzor-sevan-sevanavank.png",
     departure: "10:00",
     durationHours: "8–9",

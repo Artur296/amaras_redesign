@@ -3,7 +3,7 @@
 import { motion, MotionConfig } from "framer-motion";
 import type { ReactNode } from "react";
 
-// Subtle entrance animation; respects prefers-reduced-motion.
+// Traavellio Framer-style smooth reveal animation
 export default function FadeIn({
   children,
   delay = 0,
@@ -16,10 +16,14 @@ export default function FadeIn({
   return (
     <MotionConfig reducedMotion="user">
       <motion.div
-        initial={{ opacity: 0, y: 12 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.35, ease: "easeOut", delay }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{
+          duration: 0.65,
+          ease: [0.21, 0.47, 0.32, 0.98],
+          delay,
+        }}
         className={className}
       >
         {children}
