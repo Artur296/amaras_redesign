@@ -15,7 +15,7 @@ const MODAL_I18N = {
     desc: "Напишите нам — менеджер ответит в течение 5 минут, согласует дату и забронирует тур.",
     waSub: "Быстрый ответ • Онлайн",
     tgSub: "Чат с менеджером туров",
-    footer: "⚡ Без комиссии • Быстрый ответ 24/7",
+    footer: "Без комиссии • Быстрый ответ 24/7",
   },
   hy: {
     badge: "Ամրագրում և խորհրդատվություն",
@@ -24,7 +24,7 @@ const MODAL_I18N = {
     desc: "Գրեք մեզ — մենեջերը կպատասխանի 5 րոպեի ընթացքում, կհամաձայնեցնի ամսաթիվը և կամրագրի տուրը։",
     waSub: "Արագ պատասխան • Օնլայն",
     tgSub: "Զրույց մենեջերի հետ",
-    footer: "⚡ Առանց միջնորդավճարի • 24/7 արագ կապ",
+    footer: "Առանց միջնորդավճարի • 24/7 արագ կապ",
   },
   en: {
     badge: "Booking & Inquiry",
@@ -33,7 +33,7 @@ const MODAL_I18N = {
     desc: "Message us — our tour coordinator will reply within 5 minutes to confirm dates and arrangements.",
     waSub: "Instant reply • Online",
     tgSub: "Chat with tour coordinator",
-    footer: "⚡ Direct rates • 24/7 fast support",
+    footer: "Direct rates • 24/7 fast support",
   },
 };
 

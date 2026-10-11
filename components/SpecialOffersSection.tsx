@@ -52,22 +52,38 @@ export default function SpecialOffersSection({
 
   const inclusions = [
     {
-      icon: "🚐",
+      icon: (
+        <svg className="w-4 h-4 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 17H5a2 2 0 01-2-2V7a2 2 0 012-2h10a2 2 0 012 2v2m-6 8h4m2 0a2 2 0 104 0 2 2 0 00-4 0zm-10 0a2 2 0 104 0 2 2 0 00-4 0zm14-5h-4m4 0l-2-4h-3" />
+        </svg>
+      ),
       title: locale === "ru" ? "Комфортный трансфер" : locale === "hy" ? "Հարմարավետ տրանսֆեր" : "Comfort Transfer",
       desc: locale === "ru" ? "Mercedes Sprinter с панорамными окнами и климат-контролем" : locale === "hy" ? "Mercedes Sprinter օդորակիչով" : "Modern Mercedes Sprinter with A/C",
     },
     {
-      icon: "🗣️",
-      title: locale === "ru" ? "Лицензированный гид" : locale === "hy" ? "Արտոնագրված գիդ" : "Licensed Guide",
+      icon: (
+        <svg className="w-4 h-4 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      ),
+      title: locale === "ru" ? "Лицензированный гид" : locale === "hy" ? "Արտոնագրված գիд" : "Licensed Guide",
       desc: locale === "ru" ? "Увлекательные экскурсии на русском, армянском или английском" : locale === "hy" ? "Պրոֆեսիոնալ էքսկուրսավար" : "Fluent in Russian, Armenian & English",
     },
     {
-      icon: "🍷",
+      icon: (
+        <svg className="w-4 h-4 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 3v13m0 0l-4 4m4-4l4 4M7 8h10a5 5 0 01-10 0z" />
+        </svg>
+      ),
       title: locale === "ru" ? "Дегустации и мастер-класс" : locale === "hy" ? "Համտես և վարպետաց դաս" : "Tasting & Masterclass",
       desc: locale === "ru" ? "Дегустация армянских вин в Арени и выпечка горячего лаваша" : locale === "hy" ? "Արենիի գինի և լավաշի թխում" : "Areni wine tasting & fresh lavash baking",
     },
     {
-      icon: "🛡️",
+      icon: (
+        <svg className="w-4 h-4 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      ),
       title: locale === "ru" ? "Без скрытых доплат" : locale === "hy" ? "Առանց հավելյալ վճարների" : "Zero Hidden Fees",
       desc: locale === "ru" ? "Все остановки, транспортные сборы и питьевая вода включены" : locale === "hy" ? "Բոլոր կանգառները ներառված են" : "All toll fees, stops & bottled water included",
     },
@@ -141,12 +157,12 @@ export default function SpecialOffersSection({
                   {/* Mid Floating Badges */}
                   <div className="absolute top-20 left-5 right-5 space-y-2 z-10">
                     <div className="inline-flex items-center gap-2 rounded-xl bg-black/55 backdrop-blur-md border border-white/15 px-3 py-1.5 text-xs font-bold text-white shadow-md">
-                      <span>🏔️</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#C7FF32]" />
                       <span>{leftRoute}</span>
                     </div>
                     <br />
                     <div className="inline-flex items-center gap-2 rounded-xl bg-black/55 backdrop-blur-md border border-white/15 px-3 py-1.5 text-xs font-bold text-white shadow-md">
-                      <span>🌊</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#586EFF]" />
                       <span>{rightRoute}</span>
                     </div>
                   </div>
@@ -241,7 +257,7 @@ export default function SpecialOffersSection({
                 {/* Route 1 */}
                 <div className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-md transition-all hover:border-[#C7FF32]/50 hover:bg-white/10">
                   <div className="flex items-center gap-2">
-                    <span className="text-xl">🏔️</span>
+                    <span className="h-2 w-2 rounded-full bg-[#C7FF32]" />
                     <span className="text-xs font-black uppercase tracking-wider text-[#C7FF32]">
                       День 1 • Южное направление
                     </span>
@@ -257,7 +273,7 @@ export default function SpecialOffersSection({
                 {/* Route 2 */}
                 <div className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-md transition-all hover:border-[#586EFF]/50 hover:bg-white/10">
                   <div className="flex items-center gap-2">
-                    <span className="text-xl">🌊</span>
+                    <span className="h-2 w-2 rounded-full bg-[#586EFF]" />
                     <span className="text-xs font-black uppercase tracking-wider text-[#586EFF]">
                       День 2 • Классика Армении
                     </span>
@@ -275,7 +291,7 @@ export default function SpecialOffersSection({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {inclusions.map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 rounded-xl bg-white/[0.04] p-3 border border-white/10">
-                    <span className="text-xl shrink-0 mt-0.5">{item.icon}</span>
+                    <span className="shrink-0 mt-0.5">{item.icon}</span>
                     <div>
                       <h5 className="text-xs font-bold text-white">{item.title}</h5>
                       <p className="text-[11px] text-white/70 leading-snug mt-0.5">{item.desc}</p>
@@ -312,7 +328,7 @@ export default function SpecialOffersSection({
 
               {valid && (
                 <div className="text-xs font-medium text-white/50">
-                  ⚡ {valid}
+                  {valid}
                 </div>
               )}
             </motion.div>

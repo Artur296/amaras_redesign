@@ -33,7 +33,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
   const nav = [
     { href: `/${locale}`, label: dict.nav.home },
     { href: `/${locale}/tours`, label: dict.nav.tours },
-    { href: `/${locale}/tours/offers`, label: locale === "ru" ? "🔥 Спецпредложения" : locale === "hy" ? "🔥 Հատուկ առաջարկներ" : "🔥 Offers" },
+    { href: `/${locale}/tours/offers`, label: locale === "ru" ? "Спецпредложения" : locale === "hy" ? "Հատուկ առաջարկներ" : "Offers" },
     { href: `/${locale}/tour-packages`, label: dict.nav.packages },
     { href: `/${locale}/about`, label: dict.nav.about },
     { href: `/${locale}/contacts`, label: dict.nav.contacts },

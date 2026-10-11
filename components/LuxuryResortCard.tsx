@@ -105,7 +105,7 @@ export default function LuxuryResortCard({ locale }: { locale: Locale }) {
                 <div className="w-full rounded-2xl sm:rounded-3xl bg-white p-7 sm:p-9 shadow-2xl text-[#1E1E1E]">
                   {/* Top info & brand */}
                   <div className="flex items-center justify-between text-xs text-neutral-500 font-bold uppercase tracking-wider">
-                    <span>📍 {slide.location}</span>
+                    <span>{slide.location}</span>
                     <span className="text-[#586EFF] font-black">{slide.brand}</span>
                   </div>
 

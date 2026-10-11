@@ -159,29 +159,6 @@ export default async function HomePage({ params }: Props) {
     },
   ];
 
-  // Trust pillars (Reference "Book with confidence")
-  const trustPillars = [
-    {
-      icon: "🗺️",
-      title: locale === "ru" ? "Авторские маршруты" : locale === "hy" ? "Հեղինակային երթուղիներ" : "Handcrafted Routes",
-      desc: locale === "ru" ? "Каждый тур выверен по таймингу, локациям и видам: от главных святынь до тайных ущелий." : locale === "hy" ? "Յուրաքանչյուր տուր մշակված է մանրակրկիտ՝ լավագույն տպավորությունների համար։" : "Every itinerary is optimized for pacing, comfort, and breathtaking viewpoints.",
-    },
-    {
-      icon: "🎙️",
-      title: locale === "ru" ? "Опытные гиды" : locale === "hy" ? "Փորձառու գիդեր" : "Expert Local Storytellers",
-      desc: locale === "ru" ? "Истории, легенды и культура оживают на трех языках: русском, армянском и английском." : locale === "hy" ? "Պատմությունն ու մշակույթը կենդանանում են երեք լեզուներով։" : "History and local lore come alive in Russian, Armenian, and English.",
-    },
-    {
-      icon: "🛡️",
-      title: locale === "ru" ? "Честная цена без сюрпризов" : locale === "hy" ? "Ազնիվ գներ" : "Transparent Pricing",
-      desc: locale === "ru" ? "Никаких скрытых доплат. Транспорт высокого класса, питьевая вода и забота в пути." : locale === "hy" ? "Ոչ մի թաքնված վճար։ Բարձրակարգ տրանսպորտ և հոգատար սպասարկում։" : "No surprise fees. Modern Mercedes Sprinters & 4x4 vehicles, bottled water included.",
-    },
-    {
-      icon: "⚡",
-      title: locale === "ru" ? "Бронь за 1 минуту" : locale === "hy" ? "Արագ ամրագրում" : "Instant 1-Click Booking",
-      desc: locale === "ru" ? "Быстрая связь в WhatsApp и Telegram. Мгновенно подтверждаем места и отправляем детали." : locale === "hy" ? "Արագ կապ WhatsApp-ով և Telegram-ով՝ առանց ավելորդ բարդությունների։" : "Instant confirmation via WhatsApp & Telegram directly with your coordinator.",
-    },
-  ];
 
   // Travel Stories / Insights
   const travelArticles = [
@@ -300,7 +277,7 @@ export default async function HomePage({ params }: Props) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
                   <span className="absolute bottom-4 left-4 rounded-full bg-[#312F2F]/90 px-4 py-1.5 text-xs sm:text-sm font-bold text-[#C7FF32] backdrop-blur-md shadow-md">
-                    {cat.id === "offers" && (locale === "ru" ? "🔥 Выгода до 30%" : locale === "hy" ? "🔥 Մինչև 30% զեղչ" : "🔥 Save up to 30%")}
+                    {cat.id === "offers" && (locale === "ru" ? "Выгода до 30%" : locale === "hy" ? "Մինչև 30% զեղչ" : "Save up to 30%")}
                     {cat.id === "group" && (locale === "ru" ? "от 10 000 ֏" : locale === "hy" ? "10 000 ֏-ից" : "From 10k ֏")}
                     {cat.id === "individual" && (locale === "ru" ? "Личный гид и авто" : locale === "hy" ? "Անձնական գիд" : "Private Guide")}
                     {cat.id === "jeep" && (locale === "ru" ? "Внедорожники 4x4" : locale === "hy" ? "Ամենագնաց 4x4" : "4x4 Off-Road")}

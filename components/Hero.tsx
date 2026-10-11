@@ -213,7 +213,7 @@ export default function Hero({
                         {/* Top tag */}
                         <div className="absolute top-3 left-3 right-3 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <span className="rounded-full bg-black/60 px-2.5 py-0.5 text-[10px] font-bold text-[#C7FF32] backdrop-blur-md">
-                            ★ Популярно
+                            Популярно
                           </span>
                         </div>
 

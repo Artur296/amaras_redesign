@@ -100,8 +100,10 @@ export default function TourListingClient({
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           {/* Search */}
           <div className="relative flex-1 sm:w-64">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-muted">
-              🔍
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted">
+              <svg className="w-4 h-4 text-black/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
             </span>
             <input
               type="text"
@@ -184,7 +186,11 @@ export default function TourListingClient({
         </div>
       ) : (
         <div className="rounded-3xl border border-dashed border-[#EAE9E0] bg-white p-12 text-center">
-          <span className="text-4xl">🏔️</span>
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#586EFF]/10 text-[#586EFF]">
+            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm3.6 6.4l-2 5.6-5.6 2 2-5.6 5.6-2z" />
+            </svg>
+          </div>
           <h3 className="mt-4 text-lg font-black text-[#312F2F]">
             {locale === "ru" ? "Ничего не найдено" : locale === "hy" ? "Ոչինչ չի գտնվել" : "No tours found"}
           </h3>

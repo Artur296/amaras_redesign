@@ -42,7 +42,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
 
   const texts = {
     ru: {
-      badge: "★ 5.0 • ОТЗЫВЫ ГОСТЕЙ",
+      badge: "5.0 • ОТЗЫВЫ ГОСТЕЙ",
       title: "Что говорят о поездках с AMARAS",
       subtitle:
         "Искренние впечатления путешественников, открывших для себя Армению вместе с нашими гидами и водителями.",
@@ -70,7 +70,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
       close: "Понятно",
     },
     hy: {
-      badge: "★ 5.0 • ՀՅՈՒՐԵՐԻ ԿԱՐԾԻՔՆԵՐԸ",
+      badge: "5.0 • ՀՅՈՒՐԵՐԻ ԿԱՐԾԻՔՆԵՐԸ",
       title: "Ի՞նչ են ասում AMARAS-ի մասին",
       subtitle:
         "Անկեղծ տպավորություններ ճամփորդներից, ովքեր բացահայտել են Հայաստանը մեր գիդերի և վարորդների հետ։",
@@ -98,7 +98,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
       close: "Փակել",
     },
     en: {
-      badge: "★ 5.0 • TRAVELER REVIEWS",
+      badge: "5.0 • TRAVELER REVIEWS",
       title: "What Travelers Say About AMARAS",
       subtitle:
         "Genuine reviews and stories from guests who explored Armenia with our professional team.",
@@ -195,7 +195,9 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
               onClick={() => setModalOpen(true)}
               className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#C7FF32] px-5 py-3 text-xs sm:text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-lg shadow-[#C7FF32]/20 transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95"
             >
-              <span>✍️</span>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
               <span>{texts.writeBtn}</span>
             </button>
 
@@ -265,7 +267,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
                   {/* Tour visited pill if present */}
                   {rev.tourTitle && (
                     <div className="mt-3.5 inline-block rounded-lg bg-white/5 px-2.5 py-1 text-xs font-semibold text-[#586EFF]">
-                      📍 {rev.tourTitle}
+                      {rev.tourTitle}
                     </div>
                   )}
 

@@ -2080,7 +2080,7 @@ function ReviewsTab({
 
                     {rev.tourTitle && (
                       <span className="block text-xs font-semibold text-primary">
-                        📍 Тур: {rev.tourTitle}
+                        Тур: {rev.tourTitle}
                       </span>
                     )}
 

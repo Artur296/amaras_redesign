@@ -26,9 +26,9 @@ export const defaultOffers: SpecialOffer[] = [
     id: "autumn-promo-october",
     active: true,
     badge: {
-      ru: "СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ 🍁",
-      hy: "ՀԱՏՈՒԿ ԱՌԱՋԱՐԿ 🍁",
-      en: "SPECIAL EXCLUSIVE DEAL 🍁",
+      ru: "СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ",
+      hy: "ՀԱՏՈՒԿ ԱՌԱՋԱՐԿ",
+      en: "SPECIAL EXCLUSIVE DEAL",
     },
     title: {
       ru: "Путешествуй больше — плати меньше",

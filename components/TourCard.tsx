@@ -77,7 +77,10 @@ export default function TourCard({
         {/* Bottom Tag on image (Duration & Rating) */}
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-bold text-white">
           <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1 backdrop-blur-md">
-            <span>⏱</span> {durationText}
+            <svg className="w-3.5 h-3.5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{durationText}</span>
           </span>
           <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[#C7FF32] backdrop-blur-md">
             <span>★</span> 5.0
@@ -100,10 +103,16 @@ export default function TourCard({
         {/* Key Tour Specs / Inclusions */}
         <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[#EAE9E0] pt-3 text-xs sm:text-[13px] font-medium text-[#555351]">
           <span className="flex items-center gap-1.5">
-            <span>🚐</span> {tour.departure ? `${dict.tour.departure}: ${tour.departure}` : (locale === "ru" ? "Комфортный трансфер" : locale === "hy" ? "Հարմարավետ տրանսֆեր" : "Comfort transfer")}
+            <svg className="w-4 h-4 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 17H5a2 2 0 01-2-2V7a2 2 0 012-2h10a2 2 0 012 2v2m-6 8h4m2 0a2 2 0 104 0 2 2 0 00-4 0zm-10 0a2 2 0 104 0 2 2 0 00-4 0zm14-5h-4m4 0l-2-4h-3" />
+            </svg>
+            <span>{tour.departure ? `${dict.tour.departure}: ${tour.departure}` : (locale === "ru" ? "Комфортный трансфер" : locale === "hy" ? "Հարմարավետ տրանսֆեր" : "Comfort transfer")}</span>
           </span>
           <span className="flex items-center gap-1.5">
-            <span>🗣</span> RU • HY • EN
+            <svg className="w-4 h-4 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 18h5.498" />
+            </svg>
+            <span>RU • HY • EN</span>
           </span>
         </div>
 
