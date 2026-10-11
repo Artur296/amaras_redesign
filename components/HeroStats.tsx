@@ -14,15 +14,15 @@ export default function HeroStats({
   return (
     <MotionConfig reducedMotion="user">
       <section className="relative z-20 border-b border-[#454343] bg-[#312F2F] text-[#FCFCF7] shadow-xl">
-        <div className="mx-auto flex max-w-[1240px] flex-col items-center justify-between gap-6 px-4 py-5 sm:px-6 sm:py-6 sm:flex-row">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8 w-full sm:w-auto">
-            <dl className="grid w-full grid-cols-3 gap-2 sm:w-auto sm:gap-10 text-center sm:text-left">
+        <div className="mx-auto flex max-w-[1360px] flex-col items-center justify-between gap-6 px-4 py-6 sm:px-6 sm:py-7 sm:flex-row">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-12 w-full sm:w-auto">
+            <dl className="grid w-full grid-cols-3 gap-3 sm:w-auto sm:gap-12 text-center sm:text-left">
               {dict.stats.map((stat) => (
                 <div key={stat.label}>
-                  <dd className="text-xl sm:text-3xl font-black text-[#C7FF32]">
+                  <dd className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#C7FF32] tracking-tight">
                     {stat.value}
                   </dd>
-                  <dt className="mt-0.5 text-[11px] sm:text-xs font-semibold text-[#FCFCF7]/75">
+                  <dt className="mt-1 text-xs sm:text-sm font-bold text-[#FCFCF7]/80">
                     {stat.label}
                   </dt>
                 </div>
@@ -30,8 +30,8 @@ export default function HeroStats({
             </dl>
 
             {/* Trust Pill: 5-Star Reviews & Instant Response Guarantee */}
-            <div className="hidden xl:flex items-center gap-3 border-l border-white/10 pl-6 text-xs text-white/80">
-              <div className="flex items-center gap-1 text-[#C7FF32]">
+            <div className="hidden xl:flex items-center gap-3.5 border-l border-white/15 pl-8 text-sm text-white/90">
+              <div className="flex items-center gap-1 text-[#C7FF32] text-base">
                 <span>★</span>
                 <span>★</span>
                 <span>★</span>
@@ -45,14 +45,14 @@ export default function HeroStats({
                   ? "5.0 • 138+ հյուրերի կարծիք"
                   : "5.0 • 138+ Traveler Reviews"}
               </span>
-              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold text-[#C7FF32]">
+              <span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-bold text-[#C7FF32]">
                 {locale === "ru" ? "✓ Без предоплаты" : locale === "hy" ? "✓ Առանց կանխավճարի" : "✓ No Prepayment"}
               </span>
             </div>
           </div>
 
-          <div className="flex w-full items-center justify-between sm:justify-end gap-3 sm:w-auto">
-            <span className="text-xs font-semibold text-white/70">
+          <div className="flex w-full items-center justify-between sm:justify-end gap-4 sm:w-auto">
+            <span className="text-xs sm:text-sm font-semibold text-white/80">
               {locale === "ru"
                 ? "Индивидуальный расчет маршрута:"
                 : locale === "hy"
@@ -62,7 +62,7 @@ export default function HeroStats({
             <BookButton
               label={dict.hero.ctaWrite}
               variant="accent"
-              size="sm"
+              size="md"
               className="shrink-0"
             />
           </div>

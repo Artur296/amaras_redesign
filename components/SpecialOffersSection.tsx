@@ -49,224 +49,272 @@ export default function SpecialOffersSection({
     offer.secondaryLinkText?.ru ||
     (locale === "ru" ? "ПОДРОБНЕЕ" : locale === "hy" ? "ՄԱՆՐԱՄԱՍՆ" : "DETAILS");
   const valid = offer.validUntil?.[locale] || offer.validUntil?.ru;
-  const features = offer.highlightFeatures?.[locale] || offer.highlightFeatures?.ru || [
-    locale === "ru" ? "Только при 2 экскурсиях" : "Valid for 2 tours",
-    locale === "ru" ? "Специальная фиксированная цена" : "Fixed promotional price",
-    locale === "ru" ? "Два уникальных маршрута" : "Two iconic routes",
-    locale === "ru" ? "Больше впечатлений по выгодной цене" : "Maximum impressions",
+
+  const inclusions = [
+    {
+      icon: "🚐",
+      title: locale === "ru" ? "Комфортный трансфер" : locale === "hy" ? "Հարմարավետ տրանսֆեր" : "Comfort Transfer",
+      desc: locale === "ru" ? "Mercedes Sprinter с панорамными окнами и климат-контролем" : locale === "hy" ? "Mercedes Sprinter օդորակիչով" : "Modern Mercedes Sprinter with A/C",
+    },
+    {
+      icon: "🗣️",
+      title: locale === "ru" ? "Лицензированный гид" : locale === "hy" ? "Արտոնագրված գիդ" : "Licensed Guide",
+      desc: locale === "ru" ? "Увлекательные экскурсии на русском, армянском или английском" : locale === "hy" ? "Պրոֆեսիոնալ էքսկուրսավար" : "Fluent in Russian, Armenian & English",
+    },
+    {
+      icon: "🍷",
+      title: locale === "ru" ? "Дегустации и мастер-класс" : locale === "hy" ? "Համտես և վարպետաց դաս" : "Tasting & Masterclass",
+      desc: locale === "ru" ? "Дегустация армянских вин в Арени и выпечка горячего лаваша" : locale === "hy" ? "Արենիի գինի և լավաշի թխում" : "Areni wine tasting & fresh lavash baking",
+    },
+    {
+      icon: "🛡️",
+      title: locale === "ru" ? "Без скрытых доплат" : locale === "hy" ? "Առանց հավելյալ վճարների" : "Zero Hidden Fees",
+      desc: locale === "ru" ? "Все остановки, транспортные сборы и питьевая вода включены" : locale === "hy" ? "Բոլոր կանգառները ներառված են" : "All toll fees, stops & bottled water included",
+    },
   ];
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="relative w-full overflow-hidden bg-[#312F2F] pt-16 pb-24 sm:pt-20 sm:pb-32 text-[#FCFCF7]" id="special-offers">
+      <section className="relative w-full overflow-hidden bg-[#242323] py-24 sm:py-36 text-[#FCFCF7]" id="special-offers">
         {/* Ambient Brand Glows */}
-        <div className="pointer-events-none absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-[#C7FF32]/10 blur-[140px]" />
-        <div className="pointer-events-none absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-[#586EFF]/15 blur-[150px]" />
+        <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-[#C7FF32]/12 blur-[160px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-1/4 h-[500px] w-[500px] rounded-full bg-[#586EFF]/18 blur-[170px]" />
 
-        {/* Outer full-width container */}
-        <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
-          {/* Top Branding Header */}
+        <div className="relative z-10 mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="flex flex-col items-center text-center"
+            transition={{ duration: 0.6 }}
+            className="mb-14 sm:mb-20 text-center"
           >
-            {/* AMARAS Logo badge */}
-            <div className="flex items-center gap-2.5">
-              <span className="text-xl sm:text-2xl font-black tracking-widest text-[#C7FF32]">▲</span>
-              <span className="font-heading text-lg sm:text-xl tracking-[0.25em] text-[#FCFCF7] uppercase font-bold">
-                AMARAS TOUR
-              </span>
-            </div>
-            <span className="mt-1 text-[11px] sm:text-xs font-semibold tracking-widest uppercase text-[#FCFCF7]/65">
-              {locale === "ru" ? "Ваш гид и друг в Армении" : locale === "hy" ? "Ձեր գիդը և ընկերը Հայաստանում" : "Your Local Guide & Friend in Armenia"}
-            </span>
-
-            {/* Brand Lime Pill Badge */}
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#C7FF32]/40 bg-[#C7FF32]/10 px-5 py-2 text-xs sm:text-sm font-black uppercase tracking-wider text-[#C7FF32] shadow-[0_0_20px_rgba(199,255,50,0.15)] backdrop-blur-md"
-            >
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#C7FF32]/40 bg-[#C7FF32]/10 px-5 py-2 text-xs sm:text-sm font-black uppercase tracking-widest text-[#C7FF32] shadow-[0_0_20px_rgba(199,255,50,0.15)] backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-[#C7FF32] animate-pulse" />
               <span>{badge}</span>
-            </motion.div>
+            </div>
+            <h2 className="mt-4 font-serif text-3xl font-normal tracking-tight text-[#FCFCF7] sm:text-5xl lg:text-6xl drop-shadow-md">
+              {locale === "ru" ? "Эксклюзивный пакет путешествий" : locale === "hy" ? "Բացառիկ ճամփորդական փաթեթ" : "Exclusive Armenia Travel Bundle"}
+            </h2>
+            <p className="mt-3 text-base sm:text-lg text-[#FCFCF7]/75 max-w-2xl mx-auto">
+              {locale === "ru"
+                ? "Два главных направления страны в одном комбо-предложении по специальной цене"
+                : "Two iconic routes across Armenia in one curated bundle at an exceptional rate"}
+            </p>
           </motion.div>
 
-          {/* Main Triple-Wing Showcase Layout */}
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* LEFT WING: Khor Virap, Ararat, Jermuk preview */}
+          {/* 9:16 Vertical Card + Editorial Breakdown Showcase */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* LEFT COLUMN: Statuesque 9:16 Luxury Poster Card */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="hidden lg:flex lg:col-span-3 flex-col gap-4"
+              transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="lg:col-span-5 flex justify-center"
             >
-              <div className="group relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/15 bg-black/40 shadow-2xl transition-all duration-500 hover:border-[#C7FF32]/60 hover:shadow-[0_20px_40px_rgba(199,255,50,0.15)]">
-                <Image
-                  src="/images/offer-khor-virap.jpg"
-                  alt={leftRoute}
-                  fill
-                  sizes="25vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent" />
+              <div className="w-full max-w-[420px] rounded-[2.5rem] p-2 bg-gradient-to-b from-white/20 via-white/5 to-white/10 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.85)] border border-white/15 backdrop-blur-md">
+                <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[calc(2.5rem-0.5rem)] bg-black group shadow-inner">
+                  {/* High Definition Visual */}
+                  <Image
+                    src="/images/offer-khor-virap.jpg"
+                    alt={title}
+                    fill
+                    sizes="(max-width: 1024px) 90vw, 420px"
+                    priority
+                    className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105"
+                  />
 
-                {/* Left Route Badge */}
-                <div className="absolute top-4 left-4 right-4">
-                  <span className="inline-block rounded-full bg-[#312F2F]/85 backdrop-blur-md px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#C7FF32] border border-[#C7FF32]/35 shadow-md">
-                    {leftRoute}
-                  </span>
-                </div>
+                  {/* Gradient overlays for cinematic depth and readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/60 pointer-events-none" />
 
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-xs text-[#FCFCF7]/90 font-medium">
-                    {locale === "ru" ? "Хор Вирап • Арарат • Арени • Джермук" : "Khor Virap • Areni Winery • Jermuk"}
-                  </p>
+                  {/* Top Branding Pill inside Poster */}
+                  <div className="absolute top-5 inset-x-5 flex items-center justify-between gap-2 z-10">
+                    <span className="rounded-full bg-black/60 backdrop-blur-md px-3.5 py-1 text-[11px] font-black uppercase tracking-widest text-[#C7FF32] border border-[#C7FF32]/40 shadow-lg">
+                      AMARAS TOUR
+                    </span>
+                    <span className="rounded-full bg-[#586EFF] px-3 py-1 text-[11px] font-black uppercase tracking-wider text-white shadow-md">
+                      -28% СКИДКА
+                    </span>
+                  </div>
+
+                  {/* Mid Floating Badges */}
+                  <div className="absolute top-20 left-5 right-5 space-y-2 z-10">
+                    <div className="inline-flex items-center gap-2 rounded-xl bg-black/55 backdrop-blur-md border border-white/15 px-3 py-1.5 text-xs font-bold text-white shadow-md">
+                      <span>🏔️</span>
+                      <span>{leftRoute}</span>
+                    </div>
+                    <br />
+                    <div className="inline-flex items-center gap-2 rounded-xl bg-black/55 backdrop-blur-md border border-white/15 px-3 py-1.5 text-xs font-bold text-white shadow-md">
+                      <span>🌊</span>
+                      <span>{rightRoute}</span>
+                    </div>
+                  </div>
+
+                  {/* Bottom Grand Callout inside 9:16 Card */}
+                  <div className="absolute bottom-6 inset-x-6 z-10 space-y-3 text-left">
+                    <span className="inline-block rounded-full bg-[#C7FF32]/20 border border-[#C7FF32]/60 px-3 py-0.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
+                      2 ЭКСКУРСИИ ПО ЦЕНЕ ОДНОЙ
+                    </span>
+
+                    <div className="flex items-baseline gap-3">
+                      <span className="text-4xl sm:text-5xl font-black text-white tracking-tight drop-shadow-md">
+                        39 900 ֏
+                      </span>
+                      {offer.priceOldAmd && (
+                        <span className="text-base font-bold text-white/50 line-through">
+                          {formatPrice(offer.priceOldAmd)}
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="text-xs text-[#FCFCF7]/80 font-medium leading-relaxed">
+                      {locale === "ru"
+                        ? "Хор Вирап, Арарат, Арени, Джермук + Гарни, Симфония камней, Севан"
+                        : "Khor Virap, Areni, Jermuk + Garni, Symphony of Stones, Sevan"}
+                    </p>
+
+                    <a
+                      href={offer.linkHref}
+                      target={offer.linkHref.startsWith("http") ? "_blank" : undefined}
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full rounded-2xl bg-[#C7FF32] py-3 text-xs font-black uppercase tracking-wider text-[#312F2F] shadow-lg transition-transform hover:scale-[1.02] active:scale-95"
+                    >
+                      <WhatsAppIcon className="h-4 w-4" />
+                      <span>{primaryBtn}</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* CENTER STAGE: Huge Special Offer Billboard */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.97, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="lg:col-span-6 flex flex-col items-center text-center px-2 sm:px-6"
-            >
-              {/* Massive Bold Headline */}
-              <h2 className="font-heading text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-white leading-[1.05] drop-shadow-md">
-                {title}
-              </h2>
-
-              {/* Brand Cobalt Banner with Lime Price Highlight */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                className="mt-6 w-full max-w-xl rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#586EFF] via-[#475BE6] to-[#586EFF] px-6 py-4 sm:py-5 shadow-[0_12px_36px_rgba(88,110,255,0.35)] border border-white/20"
-              >
-                <div className="text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-wide text-white drop-shadow">
-                  {priceHighlight}
-                </div>
-                {offer.priceOldAmd && (
-                  <div className="mt-1 text-xs sm:text-sm font-semibold text-white/75 line-through">
-                    {locale === "ru" ? "Обычная цена:" : "Regular price:"} {formatPrice(offer.priceOldAmd)}
-                  </div>
-                )}
-              </motion.div>
-
-              {/* Subtitle */}
-              <p className="mt-5 max-w-lg text-base sm:text-lg text-[#FCFCF7]/90 font-normal leading-relaxed">
-                {subtitle}
-              </p>
-
-              {/* 4 Feature Badges with Icons */}
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
-                {features.map((feat, idx) => (
-                  <div
-                    key={idx}
-                    className="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-3 text-center backdrop-blur-md transition-colors hover:border-[#C7FF32]/40 hover:bg-white/10"
-                  >
-                    <span className="text-lg">
-                      {idx === 0 ? "📅" : idx === 1 ? "🕒" : idx === 2 ? "📍" : "⛰️"}
-                    </span>
-                    <span className="mt-1 text-xs font-bold leading-snug text-[#FCFCF7]/90">
-                      {feat}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Mobile route previews (shown only on mobile/tablet) */}
-              <div className="mt-6 flex flex-wrap lg:hidden items-center justify-center gap-2">
-                <span className="rounded-full bg-[#312F2F]/90 px-3 py-1 text-xs font-bold text-[#C7FF32] border border-[#C7FF32]/35">
-                  ✓ {leftRoute}
-                </span>
-                <span className="rounded-full bg-[#312F2F]/90 px-3 py-1 text-xs font-bold text-[#586EFF] border border-[#586EFF]/35">
-                  ✓ {rightRoute}
-                </span>
-              </div>
-
-              {/* Action Buttons Bar matching AMARAS signature buttons */}
-              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-                {/* Primary CTA (Signature Lime button) */}
-                <motion.a
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                  href={offer.linkHref}
-                  target={offer.linkHref.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="group flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-full bg-[#C7FF32] px-8 py-4 text-sm sm:text-base font-black uppercase tracking-wider text-[#312F2F] shadow-[0_8px_25px_rgba(199,255,50,0.35)] transition-all hover:bg-[#b8f226]"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                  <span>{primaryBtn}</span>
-                  <span className="transition-transform group-hover:translate-x-1">›</span>
-                </motion.a>
-
-                {/* Secondary CTA (Dark pill button with border) */}
-                <motion.div
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                  className="w-full sm:w-auto"
-                >
-                  <Link
-                    href={offer.secondaryLinkHref || "/#tours"}
-                    className="group flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-white/25 bg-black/40 px-8 py-4 text-sm sm:text-base font-black uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-[#586EFF] hover:text-[#586EFF]"
-                  >
-                    <span>{secondaryBtn}</span>
-                    <span className="transition-transform group-hover:translate-x-1">›</span>
-                  </Link>
-                </motion.div>
-              </div>
-
-              {valid && (
-                <span className="mt-4 text-xs font-medium text-white/50">
-                  {valid}
-                </span>
-              )}
-            </motion.div>
-
-            {/* RIGHT WING: Garni, Symphony of stones, Sevan preview */}
+            {/* RIGHT COLUMN: Large Editorial Details & Route Cards */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="hidden lg:flex lg:col-span-3 flex-col gap-4"
+              transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="lg:col-span-7 flex flex-col justify-center space-y-8"
             >
-              <div className="group relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/15 bg-black/40 shadow-2xl transition-all duration-500 hover:border-[#586EFF]/60 hover:shadow-[0_20px_40px_rgba(88,110,255,0.2)]">
-                <Image
-                  src="/images/package-garni-hd.jpg"
-                  alt={rightRoute}
-                  fill
-                  sizes="25vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent" />
+              {/* Massive Title */}
+              <div>
+                <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#C7FF32]">
+                  {locale === "ru" ? "Главная акция сезона" : locale === "hy" ? "Սեզոնի գլխավոր ակցիան" : "Top Seasonal Special"}
+                </span>
+                <h3 className="mt-2 font-heading text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-white leading-[1.05]">
+                  {title}
+                </h3>
+                <p className="mt-4 text-lg sm:text-xl text-[#FCFCF7]/85 font-normal leading-relaxed max-w-xl">
+                  {subtitle}
+                </p>
+              </div>
 
-                {/* Right Route Badge */}
-                <div className="absolute top-4 left-4 right-4">
-                  <span className="inline-block rounded-full bg-[#312F2F]/85 backdrop-blur-md px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#586EFF] border border-[#586EFF]/35 shadow-md">
-                    {rightRoute}
+              {/* Massive Price Card */}
+              <div className="rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-[#312F2F] to-[#2B2929] border border-white/15 shadow-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                <div>
+                  <span className="text-xs font-black uppercase tracking-wider text-[#C7FF32]">
+                    {priceHighlight}
+                  </span>
+                  <div className="mt-1 flex items-baseline gap-4">
+                    <span className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+                      39 900 ֏
+                    </span>
+                    {offer.priceOldAmd && (
+                      <span className="text-lg sm:text-xl font-bold text-white/50 line-through">
+                        {formatPrice(offer.priceOldAmd)}
+                      </span>
+                    )}
+                  </div>
+                  <span className="mt-1 block text-xs font-semibold text-white/70">
+                    {locale === "ru" ? "Фиксированная стоимость с человека за обе экскурсии" : "Fixed price per person for both day tours"}
                   </span>
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-xs text-[#FCFCF7]/90 font-medium">
-                    {locale === "ru" ? "Гарни • Симфония камней • Севан • Севанаванк" : "Garni • Symphony of Stones • Lake Sevan"}
+                <div className="shrink-0 rounded-2xl bg-[#C7FF32]/15 border border-[#C7FF32]/40 px-4 py-2 text-center">
+                  <span className="block text-xl font-black text-[#C7FF32]">-28%</span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-white/90">ЭКОНОМИЯ 15 100 ֏</span>
+                </div>
+              </div>
+
+              {/* Two Detailed Route Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Route 1 */}
+                <div className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-md transition-all hover:border-[#C7FF32]/50 hover:bg-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">🏔️</span>
+                    <span className="text-xs font-black uppercase tracking-wider text-[#C7FF32]">
+                      День 1 • Южное направление
+                    </span>
+                  </div>
+                  <h4 className="mt-2 text-lg font-black text-white">{leftRoute}</h4>
+                  <p className="mt-2 text-xs sm:text-sm text-[#FCFCF7]/75 leading-relaxed">
+                    {locale === "ru"
+                      ? "Монастырь Хор Вирап у подножия Арарата, дегустация вин в Арени, пещера Птиц, ущелье Нораванк и курортный Джермук с водопадом."
+                      : "Khor Virap at Mount Ararat, Areni wineries, Birds cave, Noravank canyon and Jermuk waterfall."}
+                  </p>
+                </div>
+
+                {/* Route 2 */}
+                <div className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-md transition-all hover:border-[#586EFF]/50 hover:bg-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">🌊</span>
+                    <span className="text-xs font-black uppercase tracking-wider text-[#586EFF]">
+                      День 2 • Классика Армении
+                    </span>
+                  </div>
+                  <h4 className="mt-2 text-lg font-black text-white">{rightRoute}</h4>
+                  <p className="mt-2 text-xs sm:text-sm text-[#FCFCF7]/75 leading-relaxed">
+                    {locale === "ru"
+                      ? "Языческий храм Гарни, Симфония камней, скальный монастырь Гегард (ЮНЕСКО), мастер-класс выпечки лаваша и высокогорное озеро Севан."
+                      : "Garni Temple, Symphony of Stones, Geghard cave monastery (UNESCO), lavash baking and Lake Sevan."}
                   </p>
                 </div>
               </div>
+
+              {/* Inclusions Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {inclusions.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3 rounded-xl bg-white/[0.04] p-3 border border-white/10">
+                    <span className="text-xl shrink-0 mt-0.5">{item.icon}</span>
+                    <div>
+                      <h5 className="text-xs font-bold text-white">{item.title}</h5>
+                      <p className="text-[11px] text-white/70 leading-snug mt-0.5">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                <motion.a
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  href={offer.linkHref}
+                  target={offer.linkHref.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-3 rounded-full bg-[#C7FF32] px-9 py-4.5 text-base font-black uppercase tracking-wider text-[#312F2F] shadow-[0_10px_35px_rgba(199,255,50,0.4)] transition-all hover:bg-[#b8f226]"
+                >
+                  <WhatsAppIcon className="h-5 w-5" />
+                  <span>{primaryBtn}</span>
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#312F2F] text-xs font-black text-[#C7FF32]">
+                    →
+                  </span>
+                </motion.a>
+
+                <Link
+                  href={offer.secondaryLinkHref || `/${locale}/tours`}
+                  className="flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all hover:border-[#586EFF] hover:text-[#586EFF]"
+                >
+                  <span>{secondaryBtn}</span>
+                  <span>›</span>
+                </Link>
+              </div>
+
+              {valid && (
+                <div className="text-xs font-medium text-white/50">
+                  ⚡ {valid}
+                </div>
+              )}
             </motion.div>
           </div>
         </div>

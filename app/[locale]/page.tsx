@@ -215,17 +215,17 @@ export default async function HomePage({ params }: Props) {
       <HeroStats locale={locale} dict={dict} />
 
       {/* 2. TRAVEL FORMATS (Landing Page Showcase) */}
-      <section className="mx-auto max-w-[1240px] px-6 py-20">
+      <section className="mx-auto max-w-[1360px] px-6 py-24 sm:py-32">
         <FadeIn>
-          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#586EFF]">
+              <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#586EFF]">
                 {locale === "ru" ? "Форматы путешествий" : locale === "hy" ? "Տուրերի ձևաչափերը" : "Travel Formats"}
               </span>
-              <h2 className="mt-2 font-serif text-3xl font-normal tracking-tight text-[#312F2F] sm:text-4xl lg:text-5xl">
+              <h2 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#312F2F]">
                 {locale === "ru" ? "Выберите свой стиль Армении" : locale === "hy" ? "Ընտրեք ձեր ոճը" : "Choose Your Travel Style"}
               </h2>
-              <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#6B6967]">
+              <p className="mt-3 max-w-2xl text-base sm:text-lg leading-relaxed text-[#555351]">
                 {locale === "ru"
                   ? "От доступных групповых экскурсий до внедорожных экспедиций 4x4 и персональных туров."
                   : locale === "hy"
@@ -236,7 +236,7 @@ export default async function HomePage({ params }: Props) {
 
             <Link
               href={`/${locale}/tours`}
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#312F2F] px-7 py-3.5 text-sm font-black uppercase tracking-wider text-[#C7FF32] shadow-md transition-all hover:bg-[#242323] hover:scale-105 active:scale-95"
+              className="inline-flex shrink-0 items-center gap-3 rounded-full bg-[#312F2F] px-8 py-4 text-sm sm:text-base font-black uppercase tracking-wider text-[#C7FF32] shadow-lg transition-all hover:bg-[#242323] hover:scale-105 active:scale-95"
             >
               <span>
                 {locale === "ru"
@@ -250,28 +250,28 @@ export default async function HomePage({ params }: Props) {
           </div>
         </FadeIn>
 
-        {/* Formats Grid */}
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {/* Large Format Cards Grid (3 columns for generous, impactful sizing) */}
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((cat, i) => (
             <FadeIn key={cat.id} delay={i * 0.08} className="h-full">
               <Link
                 href={`/${locale}/tours/${cat.id}`}
-                className={`group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${
+                className={`group flex h-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                   cat.id === "offers"
-                    ? "border-2 border-[#C7FF32] shadow-[0_4px_20px_rgba(199,255,50,0.2)]"
+                    ? "border-2 border-[#C7FF32] shadow-[0_8px_30px_rgba(199,255,50,0.25)]"
                     : "border border-[#EAE9E0] hover:border-[#586EFF]/50"
                 }`}
               >
-                <div className="relative aspect-[16/11] overflow-hidden bg-black/10">
+                <div className="relative aspect-[16/10] overflow-hidden bg-black/10">
                   <Image
                     src={cat.image}
                     alt={cat.title[locale]}
                     fill
-                    sizes="(max-width: 768px) 100vw, 25vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
-                  <span className="absolute bottom-3 left-3 rounded-full bg-[#312F2F]/90 px-3 py-1 text-xs font-bold text-[#C7FF32] backdrop-blur-md">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                  <span className="absolute bottom-4 left-4 rounded-full bg-[#312F2F]/90 px-4 py-1.5 text-xs sm:text-sm font-bold text-[#C7FF32] backdrop-blur-md shadow-md">
                     {cat.id === "offers" && (locale === "ru" ? "🔥 Выгода до 30%" : locale === "hy" ? "🔥 Մինչև 30% զեղչ" : "🔥 Save up to 30%")}
                     {cat.id === "group" && (locale === "ru" ? "от 10 000 ֏" : locale === "hy" ? "10 000 ֏-ից" : "From 10k ֏")}
                     {cat.id === "individual" && (locale === "ru" ? "Личный гид и авто" : locale === "hy" ? "Անձնական գիդ" : "Private Guide")}
@@ -281,14 +281,14 @@ export default async function HomePage({ params }: Props) {
                   </span>
                 </div>
 
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-xl font-black text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
+                <div className="flex flex-1 flex-col p-7 sm:p-8">
+                  <h3 className="text-2xl sm:text-3xl font-black text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
                     {cat.title[locale]}
                   </h3>
-                  <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-[#555351]">
+                  <p className="mt-3 line-clamp-3 flex-1 text-base leading-relaxed text-[#555351]">
                     {cat.desc[locale]}
                   </p>
-                  <div className="mt-4 flex items-center gap-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#586EFF]">
+                  <div className="mt-6 flex items-center gap-2 text-sm sm:text-base font-bold uppercase tracking-wider text-[#586EFF]">
                     <span>
                       {locale === "ru"
                         ? "Выбрать направление"
@@ -296,7 +296,7 @@ export default async function HomePage({ params }: Props) {
                         ? "Դիտել ուղղությունը"
                         : "Explore tours"}
                     </span>
-                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                    <span className="transition-transform group-hover:translate-x-1.5 font-black">→</span>
                   </div>
                 </div>
               </Link>
@@ -309,28 +309,28 @@ export default async function HomePage({ params }: Props) {
       <SpecialOffersSection offers={offers} locale={locale} dict={dict} />
 
       {/* 3.5 4x4 OFF-ROAD ARMENIA EXPEDITION WIDGET WITH INTERACTIVE JEEP CAR ANIMATION */}
-      <section className="mx-auto max-w-[1240px] px-6 py-20 sm:py-28">
+      <section className="mx-auto max-w-[1360px] px-6 py-24 sm:py-32">
         <FadeIn>
           <JeepExpeditionWidget locale={locale} />
         </FadeIn>
       </section>
 
       {/* 4. DESTINATIONS BENTO GALLERY (TripMate "Popular Cities" pattern) */}
-      <section className="bg-[#312F2F] py-20 text-[#FCFCF7]">
-        <div className="mx-auto max-w-[1240px] px-6">
+      <section className="bg-[#312F2F] py-24 sm:py-32 text-[#FCFCF7]">
+        <div className="mx-auto max-w-[1360px] px-6">
           <FadeIn>
-            <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+            <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
               <div>
-                <span className="text-xs font-black uppercase tracking-[0.25em] text-[#C7FF32]">
+                <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#C7FF32]">
                   {locale === "ru" ? "Направления Армении" : locale === "hy" ? "Հայաստանի ուղղությունները" : "Armenian Destinations"}
                 </span>
-                <h2 className="mt-2 font-serif text-3xl font-normal tracking-tight sm:text-4xl lg:text-5xl text-[#FCFCF7]">
+                <h2 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FCFCF7]">
                   {locale === "ru" ? "Легендарные места" : locale === "hy" ? "Հայտնի վայրեր" : "Iconic Landmarks"}
                 </h2>
               </div>
               <Link
                 href={`/${locale}/tours`}
-                className="rounded-full border border-white/20 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#FCFCF7] transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"
+                className="rounded-full border border-white/20 px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#FCFCF7] transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"
               >
                 {dict.tours.viewAll} →
               </Link>
@@ -338,12 +338,12 @@ export default async function HomePage({ params }: Props) {
           </FadeIn>
 
           {/* Bento Grid */}
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 md:grid-cols-4">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-4">
             {destinations.map((dest, i) => (
               <FadeIn key={dest.name} delay={i * 0.08} className={dest.span}>
                 <Link
                   href={dest.href}
-                  className="group relative block h-full w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all duration-300 hover:border-[#C7FF32]/50 hover:shadow-2xl"
+                  className="group relative block h-full w-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 transition-all duration-300 hover:border-[#C7FF32]/50 hover:shadow-2xl"
                 >
                   <Image
                     src={dest.image}
@@ -354,15 +354,15 @@ export default async function HomePage({ params }: Props) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
-                  <span className="absolute left-4 top-4 rounded-full bg-[#312F2F]/80 px-3 py-1 text-xs font-bold text-[#C7FF32] backdrop-blur-md">
+                  <span className="absolute left-4 top-4 rounded-full bg-[#312F2F]/80 px-3.5 py-1 text-xs font-bold text-[#C7FF32] backdrop-blur-md">
                     {dest.tag}
                   </span>
 
-                  <div className="absolute inset-x-0 bottom-0 p-6">
-                    <h3 className="font-serif text-2xl font-normal text-white transition-colors group-hover:text-[#C7FF32]">
+                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
+                    <h3 className="font-serif text-2xl sm:text-3xl font-normal text-white transition-colors group-hover:text-[#C7FF32]">
                       {dest.name}
                     </h3>
-                    <p className="mt-1.5 text-xs font-medium text-white/80 line-clamp-2">
+                    <p className="mt-2 text-xs sm:text-sm font-medium text-white/80 line-clamp-2">
                       {dest.subtitle}
                     </p>
                   </div>
@@ -374,30 +374,30 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       {/* 6. TRUST SECTION ("Book With Confidence" - TripMate pattern) */}
-      <section className="bg-[#FCFCF7] border-y border-[#EAE9E0] py-20">
-        <div className="mx-auto max-w-[1240px] px-6">
+      <section className="bg-[#FCFCF7] border-y border-[#EAE9E0] py-24 sm:py-32">
+        <div className="mx-auto max-w-[1360px] px-6">
           <FadeIn>
             <div className="text-center">
-              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#586EFF]">
+              <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#586EFF]">
                 {locale === "ru" ? "Надежность и опыт" : locale === "hy" ? "Վստահություն և փորձ" : "Travel with Confidence"}
               </span>
-              <h2 className="mt-2 font-serif text-3xl font-normal tracking-tight text-[#312F2F] sm:text-4xl lg:text-5xl">
+              <h2 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#312F2F]">
                 {dict.why.title}
               </h2>
             </div>
           </FadeIn>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {trustPillars.map((pillar, i) => (
               <FadeIn key={pillar.title} delay={i * 0.08} className="h-full">
-                <div className="flex h-full flex-col rounded-3xl border border-[#EAE9E0] bg-white p-7 shadow-sm transition-all duration-300 hover:border-[#586EFF]/40 hover:shadow-lg">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#586EFF]/10 text-2xl">
+                <div className="flex h-full flex-col rounded-[2rem] border border-[#EAE9E0] bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#586EFF]/40 hover:shadow-xl">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#586EFF]/10 text-3xl">
                     {pillar.icon}
                   </span>
-                  <h3 className="mt-5 text-lg font-black text-[#312F2F]">
+                  <h3 className="mt-6 text-xl font-black text-[#312F2F]">
                     {pillar.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#6B6967]">
+                  <p className="mt-3 text-sm sm:text-base leading-relaxed text-[#6B6967]">
                     {pillar.desc}
                   </p>
                 </div>
@@ -408,25 +408,26 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       {/* 7. TRAVEL STORIES / CULTURAL GUIDES (TripMate "Latest Travel Libraries") */}
-      <section className="mx-auto max-w-[1240px] px-6 py-20">
+      <section className="mx-auto max-w-[1360px] px-6 py-24 sm:py-32">
         <FadeIn>
-          <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
+          <div className="flex flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
             <div>
-              <span className="text-xs font-black uppercase tracking-[0.25em] text-[#586EFF]">
+              <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#586EFF]">
                 {locale === "ru" ? "Заметки путешественника" : locale === "hy" ? "Ճանապարհորդական նոթեր" : "Travel Stories & Guides"}
               </span>
-              <h2 className="mt-2 font-serif text-3xl font-normal tracking-tight text-[#312F2F] sm:text-4xl lg:text-5xl">
+              <h2 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#312F2F]">
                 {locale === "ru" ? "Вдохновение для поездки" : locale === "hy" ? "Ոգեշնչում ճամփորդության համար" : "Inspiration for Armenia"}
               </h2>
             </div>
             <Link
               href={`/${locale}/about`}
-              className="text-sm font-bold text-[#586EFF] hover:underline"
+              className="text-base font-bold text-[#586EFF] hover:underline"
             >
               {dict.nav.about} →
             </Link>
           </div>
         </FadeIn>
+
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {travelArticles.map((art, i) => (
@@ -471,9 +472,9 @@ export default async function HomePage({ params }: Props) {
       <FaqSection locale={locale} />
 
       {/* 9. FINAL CALL TO ACTION */}
-      <section className="mx-auto max-w-[1240px] px-6 py-20">
+      <section className="mx-auto max-w-[1360px] px-6 py-24 sm:py-32">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-3xl bg-[#586EFF] px-8 py-16 text-center text-white shadow-2xl sm:px-12">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#586EFF] px-8 py-20 text-center text-white shadow-2xl sm:px-14">
             {/* Background design elements */}
             <div className="absolute -left-12 -top-12 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
             <div className="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-[#C7FF32]/20 blur-2xl" />
