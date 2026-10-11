@@ -83,7 +83,7 @@ export default function Hero({
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="relative flex min-h-[100dvh] w-full flex-col justify-center overflow-hidden bg-black text-[#FCFCF7] pt-24 pb-12 sm:pt-28 sm:pb-16">
+      <section className="relative flex min-h-[100dvh] w-full flex-col justify-center overflow-hidden bg-black text-[#FCFCF7] pt-20 pb-8 sm:pt-28 sm:pb-16">
         {/* Fullscreen Video Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <video
@@ -104,18 +104,18 @@ export default function Hero({
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
         {/* Main Content Container: Left Editorial Text + Right Destination Cards Slider */}
-        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-12 items-center">
             {/* LEFT COLUMN: Bold Headline & Editorial Story */}
             <div className="lg:col-span-5 flex flex-col items-start justify-center text-left">
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-4 py-1.5 backdrop-blur-md shadow-md"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 sm:px-4 sm:py-1.5 backdrop-blur-md shadow-md"
               >
                 <span className="h-2 w-2 rounded-full bg-[#C7FF32] animate-pulse" />
-                <span className="text-xs font-black uppercase tracking-[0.2em] text-[#C7FF32]">
+                <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.2em] text-[#C7FF32]">
                   Armenia • Exclusive Tours
                 </span>
               </motion.div>
@@ -125,7 +125,7 @@ export default function Hero({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.6 }}
-                className="mt-4 sm:mt-6 font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal leading-[1.04] tracking-tight text-[#FCFCF7] drop-shadow-[0_4px_30px_rgba(0,0,0,0.9)]"
+                className="mt-3 sm:mt-6 font-serif text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal leading-[1.08] tracking-tight text-[#FCFCF7] drop-shadow-[0_4px_30px_rgba(0,0,0,0.9)]"
               >
                 {locale === "ru"
                   ? "Туры в Армению"
@@ -139,21 +139,21 @@ export default function Hero({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.28, duration: 0.6 }}
-                className="mt-4 sm:mt-6 max-w-lg text-base sm:text-lg leading-relaxed text-[#FCFCF7]/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] font-normal"
+                className="mt-3 sm:mt-6 max-w-lg text-sm sm:text-lg leading-relaxed text-[#FCFCF7]/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] font-normal"
               >
                 {dict.hero.subtitle}
               </motion.p>
 
-              {/* Action Button: Exact match to reference "see more" accent button */}
+              {/* Action Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.38, duration: 0.6 }}
-                className="mt-6 sm:mt-8"
+                className="mt-5 sm:mt-8 w-full sm:w-auto"
               >
                 <Link
                   href={`/${locale}/tours`}
-                  className="group inline-flex items-center justify-center gap-3 rounded-xl sm:rounded-2xl bg-[#C7FF32] px-8 py-4 sm:px-9 sm:py-4 text-sm sm:text-base font-black text-[#312F2F] shadow-[0_10px_30px_rgba(199,255,50,0.35)] transition-all duration-300 hover:bg-[#b8f226] hover:scale-105 active:scale-95"
+                  className="group inline-flex items-center justify-center gap-2.5 sm:gap-3 rounded-xl sm:rounded-2xl bg-[#C7FF32] px-7 py-3.5 sm:px-9 sm:py-4 text-xs sm:text-base font-black text-[#312F2F] shadow-[0_10px_30px_rgba(199,255,50,0.35)] transition-all duration-300 hover:bg-[#b8f226] hover:scale-105 active:scale-95 w-full sm:w-auto"
                 >
                   <span className="uppercase tracking-wider">
                     {locale === "ru" ? "Смотреть туры" : locale === "hy" ? "Դիտել տուրերը" : "See more"}
@@ -165,8 +165,8 @@ export default function Hero({
 
             {/* RIGHT COLUMN: Signature Destination Cards Slider */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              {/* Top Navigation Arrows: Circular Translucent Glass Buttons */}
-              <div className="flex items-center justify-end gap-3 mb-4 sm:mb-6 pr-2">
+              {/* Desktop Navigation Arrows (hidden on mobile to eliminate clutter) */}
+              <div className="hidden lg:flex items-center justify-end gap-3 mb-4 sm:mb-6 pr-2">
                 <button
                   type="button"
                   onClick={prevSlide}
@@ -189,9 +189,42 @@ export default function Hero({
                 </button>
               </div>
 
-              {/* Cards Row: Horizontal flowing cards with smooth animation */}
-              <div className="relative overflow-hidden pt-2 pb-6">
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+              {/* Mobile Swipeable Destination Reel (< lg) */}
+              <div className="lg:hidden mt-2 -mx-5 px-5 overflow-x-auto flex gap-3.5 pb-2 scrollbar-none snap-x snap-mandatory">
+                {destinations.map((item) => (
+                  <Link
+                    key={`mobile-${item.id}`}
+                    href={item.href}
+                    className="relative shrink-0 w-[145px] sm:w-[175px] aspect-[3/4] overflow-hidden rounded-2xl border border-white/20 bg-black/40 shadow-xl snap-start group"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="175px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
+                    <div className="absolute top-2.5 left-2.5">
+                      <span className="rounded-full bg-black/60 px-2 py-0.5 text-[9px] font-bold text-[#C7FF32] backdrop-blur-md">
+                        {locale === "ru" ? "Тур" : locale === "hy" ? "Տուր" : "Tour"}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-2.5 inset-x-2.5 text-left">
+                      <p className="text-xs font-bold text-white line-clamp-1 group-hover:text-[#C7FF32]">
+                        {item.title}
+                      </p>
+                      <p className="text-[10px] text-white/70 line-clamp-1 mt-0.5">
+                        {item.subtitle}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Desktop Cards Grid (>= lg) */}
+              <div className="hidden lg:block relative overflow-hidden pt-2 pb-6">
+                <div className="grid grid-cols-3 gap-6">
                   {visibleCards.slice(0, 3).map((item, idx) => (
                     <motion.div
                       key={`${item.id}-${idx}`}
@@ -202,13 +235,13 @@ export default function Hero({
                     >
                       <Link
                         href={item.href}
-                        className="relative w-full aspect-[3/4] sm:aspect-[9/13] overflow-hidden rounded-2xl sm:rounded-[2rem] border border-white/25 bg-black/40 shadow-2xl transition-all duration-500 hover:border-[#C7FF32]/80 hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
+                        className="relative w-full aspect-[9/13] overflow-hidden rounded-[2rem] border border-white/25 bg-black/40 shadow-2xl transition-all duration-500 hover:border-[#C7FF32]/80 hover:scale-[1.03] hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
                       >
                         <Image
                           src={item.image}
                           alt={item.title}
                           fill
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          sizes="25vw"
                           className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
@@ -216,7 +249,7 @@ export default function Hero({
                         {/* Top tag */}
                         <div className="absolute top-3 left-3 right-3 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <span className="rounded-full bg-black/60 px-2.5 py-0.5 text-[10px] font-bold text-[#C7FF32] backdrop-blur-md">
-                            Популярно
+                            {locale === "ru" ? "Популярно" : locale === "hy" ? "Հայտնի" : "Popular"}
                           </span>
                         </div>
 
@@ -228,7 +261,7 @@ export default function Hero({
                         </div>
                       </Link>
 
-                      {/* Destination Label Below Card (Exact match to reference style!) */}
+                      {/* Destination Label Below Card */}
                       <Link
                         href={item.href}
                         className="mt-3 text-center text-sm sm:text-base font-bold text-[#FCFCF7] drop-shadow-md transition-colors group-hover:text-[#C7FF32]"

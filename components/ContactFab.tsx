@@ -32,7 +32,7 @@ export default function ContactFab({ label }: { label: string }) {
         )}
       </AnimatePresence>
 
-      <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3">
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-3">
         <AnimatePresence>
           {open &&
             options.map((option, i) => (
@@ -55,9 +55,9 @@ export default function ContactFab({ label }: { label: string }) {
                   scale: 0.9,
                   transition: { duration: 0.15, delay: (options.length - 1 - i) * 0.03 },
                 }}
-                className={`flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-lg ${option.bg}`}
+                className={`flex items-center gap-2 rounded-full px-3.5 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold text-white shadow-lg ${option.bg}`}
               >
-                <option.icon className="h-5 w-5" />
+                <option.icon className="h-4 w-4 sm:h-5 sm:w-5" />
                 {option.label}
               </motion.a>
             ))}
@@ -69,11 +69,11 @@ export default function ContactFab({ label }: { label: string }) {
           aria-expanded={open}
           aria-label={label}
           whileTap={{ scale: 0.92 }}
-          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#586EFF] text-white shadow-[0_6px_24px_rgba(88,110,255,0.45)] transition-all hover:bg-[#475be6] hover:scale-105"
+          className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#586EFF] text-white shadow-[0_6px_24px_rgba(88,110,255,0.45)] transition-all hover:bg-[#475be6] hover:scale-105 active:scale-95"
         >
-          <span className="absolute -top-1 -right-1 flex h-4 w-4">
+          <span className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 flex h-3.5 w-3.5 sm:h-4 sm:w-4">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#C7FF32] opacity-75" />
-            <span className="relative inline-flex h-4 w-4 rounded-full bg-[#C7FF32] border-2 border-[#312F2F]" />
+            <span className="relative inline-flex h-3.5 w-3.5 sm:h-4 sm:w-4 rounded-full bg-[#C7FF32] border-2 border-[#312F2F]" />
           </span>
           <motion.svg
             viewBox="0 0 24 24"
@@ -81,7 +81,7 @@ export default function ContactFab({ label }: { label: string }) {
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
-            className="h-6 w-6"
+            className="h-5 w-5 sm:h-6 sm:w-6"
             aria-hidden="true"
             animate={{ rotate: open ? 90 : 0 }}
             transition={{ duration: 0.2 }}

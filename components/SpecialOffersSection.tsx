@@ -130,7 +130,7 @@ export default function SpecialOffersSection({
               className="lg:col-span-5 flex justify-center"
             >
               <div className="w-full max-w-[340px] sm:max-w-[420px] rounded-[2rem] sm:rounded-[2.5rem] p-2 bg-gradient-to-b from-white/20 via-white/5 to-white/10 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.85)] border border-white/15 backdrop-blur-md">
-                <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[calc(2rem-0.5rem)] sm:rounded-[calc(2.5rem-0.5rem)] bg-black group shadow-inner">
+                <div className="relative min-h-[440px] sm:min-h-0 sm:aspect-[9/16] w-full overflow-hidden rounded-[calc(2rem-0.5rem)] sm:rounded-[calc(2.5rem-0.5rem)] bg-black group shadow-inner">
                   {/* High Definition Visual */}
                   <Image
                     src={offer.bannerImage || offer.image || "/images/offer-khor-virap.jpg"}

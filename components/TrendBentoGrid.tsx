@@ -19,9 +19,9 @@ export default function TrendBentoGrid({
   const img4 = images?.bentoCard4 || "/images/package-garni-hd.jpg";
 
   return (
-    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-28">
       {/* Title */}
-      <div className="mb-10 sm:mb-14">
+      <div className="mb-8 sm:mb-14">
         <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-[#312F2F]">
           {locale === "ru"
             ? "Туры по Армении — это тренд"
@@ -39,7 +39,7 @@ export default function TrendBentoGrid({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="lg:col-span-4 relative overflow-hidden rounded-[2rem] min-h-[460px] lg:min-h-[580px] shadow-lg group"
+          className="lg:col-span-4 relative overflow-hidden rounded-[2rem] min-h-[360px] sm:min-h-[460px] lg:min-h-[580px] shadow-lg group"
         >
           <Image
             src={img1}
@@ -87,7 +87,7 @@ export default function TrendBentoGrid({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative overflow-hidden rounded-[2rem] min-h-[260px] sm:min-h-[280px] shadow-lg group"
+            className="relative overflow-hidden rounded-[2rem] min-h-[230px] sm:min-h-[280px] shadow-lg group"
           >
             <Image
               src={img2}
@@ -126,7 +126,7 @@ export default function TrendBentoGrid({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative overflow-hidden rounded-[2rem] min-h-[250px] shadow-lg group"
+              className="relative overflow-hidden rounded-[2rem] min-h-[220px] sm:min-h-[250px] shadow-lg group"
             >
               <Image
                 src={img3}
@@ -170,7 +170,7 @@ export default function TrendBentoGrid({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative overflow-hidden rounded-[2rem] min-h-[250px] shadow-lg group"
+              className="relative overflow-hidden rounded-[2rem] min-h-[220px] sm:min-h-[250px] shadow-lg group"
             >
               <Image
                 src={img4}

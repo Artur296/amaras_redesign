@@ -64,21 +64,21 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
           : "sticky top-0 bg-[#312F2F]/95 backdrop-blur-md border-b border-[#454343]"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-[1360px] items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 sm:h-20 max-w-[1360px] items-center justify-between gap-3 sm:gap-4 px-4 sm:px-6">
         {/* Brand identity - Official AMARAS Logo */}
         <Link
           href={`/${locale}`}
           className="group flex items-center transition-transform hover:scale-[1.03]"
           aria-label="AMARAS Home"
         >
-          <div className="relative h-10 flex items-center">
+          <div className="relative h-10 sm:h-12 flex items-center">
             <Image
               src="/images/amaras-logo.svg"
               alt="AMARAS Tour"
               width={260}
-              height={36}
+              height={44}
               priority
-              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 group-hover:brightness-110 drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+              className="h-9 sm:h-10 md:h-11 w-auto object-contain transition-all duration-300 group-hover:brightness-110 drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
             />
           </div>
         </Link>

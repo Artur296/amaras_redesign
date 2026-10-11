@@ -68,6 +68,8 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
       successMsg:
         "Мы получили ваш отзыв. После быстрой проверки администратором он будет опубликован на сайте.",
       close: "Понятно",
+      swipeHint: "← Листайте отзывы →",
+      reviewsCount: "отзывов гостей",
     },
     hy: {
       badge: "5.0 • ՀՅՈՒՐԵՐԻ ԿԱՐԾԻՔՆԵՐԸ",
@@ -96,6 +98,8 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
       successMsg:
         "Մենք ստացել ենք ձեր կարծիքը։ Ադմինիստրատորի ստուգումից հետո այն կհրապարակվի կայքում։",
       close: "Փակել",
+      swipeHint: "← Թերթեք կարծիքները →",
+      reviewsCount: "հյուրերի կարծիք",
     },
     en: {
       badge: "5.0 • TRAVELER REVIEWS",
@@ -124,6 +128,8 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
       successMsg:
         "We have received your review. It will appear on the website shortly after brief moderation.",
       close: "Got it",
+      swipeHint: "← Swipe reviews →",
+      reviewsCount: "traveler reviews",
     },
   }[locale];
 
@@ -189,11 +195,11 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#C7FF32] px-5 py-3 text-xs sm:text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-lg shadow-[#C7FF32]/20 transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#C7FF32] px-5 py-3 text-xs sm:text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-lg shadow-[#C7FF32]/20 transition-all hover:bg-[#bbf028] hover:scale-105 active:scale-95 w-full sm:w-auto"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -201,13 +207,13 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
               <span>{texts.writeBtn}</span>
             </button>
 
-            {/* Left / Right Carousel Controls */}
-            <div className="flex items-center gap-2">
+            {/* Left / Right Carousel Controls (desktop only) */}
+            <div className="hidden sm:flex items-center gap-2">
               <button
                 type="button"
                 onClick={scrollLeft}
                 aria-label="Previous reviews"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] active:scale-95"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] active:scale-95 cursor-pointer"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -217,7 +223,7 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
                 type="button"
                 onClick={scrollRight}
                 aria-label="Next reviews"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] active:scale-95"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] active:scale-95 cursor-pointer"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -307,9 +313,9 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
         </div>
 
         {/* Carousel swipe guidance indicator */}
-        <div className="mt-4 flex items-center justify-between text-xs text-[#FCFCF7]/50 px-1">
-          <span>← Листайте отзывы →</span>
-          <span>{reviews.length} отзывов от путешественников</span>
+        <div className="mt-4 flex items-center justify-between text-xs text-[#FCFCF7]/50 px-1 pr-16 sm:pr-1">
+          <span>{texts.swipeHint}</span>
+          <span>{reviews.length} {texts.reviewsCount}</span>
         </div>
       </div>
 

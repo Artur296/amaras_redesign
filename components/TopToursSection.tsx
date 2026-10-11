@@ -103,22 +103,41 @@ export default function TopToursSection({
   const nextTour = () => setCurrentIndex((prev) => (prev + 1) % tours.length);
   const prevTour = () => setCurrentIndex((prev) => (prev - 1 + tours.length) % tours.length);
 
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (diff > 50) nextTour();
+    if (diff < -50) prevTour();
+    setTouchStart(null);
+  };
+
   return (
-    <section className="relative overflow-hidden bg-[#141414] py-24 sm:py-32 text-white">
+    <section className="relative overflow-hidden bg-[#141414] py-14 sm:py-24 lg:py-32 text-white">
       {/* Subtle brand glow (Electric Lime & Blue) */}
       <div className="pointer-events-none absolute left-1/4 top-10 h-[450px] w-[500px] rounded-full bg-[#C7FF32]/8 blur-[160px]" />
       <div className="pointer-events-none absolute right-1/4 bottom-10 h-[450px] w-[500px] rounded-full bg-[#586EFF]/10 blur-[160px]" />
 
-      <div className="relative z-10 mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
+      <div
+        className="relative z-10 mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {/* Section Header: Styled in logo aesthetic */}
         <div className="text-center max-w-3xl mx-auto">
           <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#C7FF32]">
             {locale === "ru" ? "Хиты бронирования" : locale === "hy" ? "Թոփ ամրագրումներ" : "Top Selections"}
           </span>
-          <h2 className="mt-2 font-sans text-5xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white drop-shadow-md">
+          <h2 className="mt-2 font-sans text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white drop-shadow-md">
             TOP TOURS
           </h2>
-          <p className="mt-4 text-sm sm:text-base leading-relaxed text-neutral-400">
+          <p className="mt-3 text-xs sm:text-base leading-relaxed text-neutral-400">
             {locale === "ru"
               ? "Лучшие авторские и групповые экскурсии по Армении. Завораживающие горные панорамы, тысячелетние храмы и безупречный сервис Amaras Tours."
               : locale === "hy"
@@ -127,12 +146,12 @@ export default function TopToursSection({
           </p>
 
           {/* Dots / arrows control */}
-          <div className="mt-6 flex items-center justify-center gap-3">
+          <div className="mt-5 sm:mt-6 flex items-center justify-center gap-3">
             <button
               type="button"
               onClick={prevTour}
               aria-label="Previous tour"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-700 bg-neutral-900/80 text-white transition-colors hover:border-[#C7FF32] hover:text-[#C7FF32] cursor-pointer"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-700 bg-neutral-900/80 text-white transition-colors hover:border-[#C7FF32] hover:text-[#C7FF32] cursor-pointer active:scale-95"
             >
               ‹
             </button>
@@ -141,7 +160,7 @@ export default function TopToursSection({
                 <button
                   key={t.id}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                     idx === currentIndex ? "w-8 bg-[#C7FF32]" : "w-2.5 bg-neutral-700 hover:bg-neutral-500"
                   }`}
                   aria-label={`Go to tour ${idx + 1}`}
@@ -152,7 +171,7 @@ export default function TopToursSection({
               type="button"
               onClick={nextTour}
               aria-label="Next tour"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-700 bg-neutral-900/80 text-white transition-colors hover:border-[#C7FF32] hover:text-[#C7FF32] cursor-pointer"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-700 bg-neutral-900/80 text-white transition-colors hover:border-[#C7FF32] hover:text-[#C7FF32] cursor-pointer active:scale-95"
             >
               ›
             </button>
@@ -160,24 +179,24 @@ export default function TopToursSection({
         </div>
 
         {/* 3-Column Showcase in Brand Lime & Blue */}
-        <div className="mt-12 sm:mt-16">
+        <div className="mt-8 sm:mt-14">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentTour.id}
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.4 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center"
+              transition={{ duration: 0.35 }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center"
             >
-              {/* Left Column: Scenic Image */}
-              <div className="lg:col-span-4 order-2 lg:order-1">
-                <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl group">
+              {/* Desktop Left Column: Scenic Image */}
+              <div className="hidden lg:block lg:col-span-4 lg:order-1">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl group">
                   <Image
                     src={currentTour.leftImage}
                     alt={currentTour.leftCaption}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    sizes="33vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -190,27 +209,27 @@ export default function TopToursSection({
               {/* Center Column: Highlighted Brand Box + Details */}
               <div className="lg:col-span-4 order-1 lg:order-2 flex flex-col items-center text-center">
                 {/* Brand Header Banner: Electric Lime #C7FF32 */}
-                <div className="w-full flex items-center justify-between rounded-t-xl bg-[#C7FF32] px-6 py-4 shadow-lg text-[#161616]">
-                  <span className="font-sans text-xl sm:text-2xl font-black uppercase tracking-wider">
+                <div className="w-full flex items-center justify-between rounded-t-xl bg-[#C7FF32] px-5 sm:px-6 py-3.5 sm:py-4 shadow-lg text-[#161616]">
+                  <span className="font-sans text-lg sm:text-2xl font-black uppercase tracking-wider">
                     {currentTour.tag}
                   </span>
-                  <span className="font-sans text-2xl sm:text-3xl font-black">
+                  <span className="font-sans text-xl sm:text-3xl font-black">
                     {currentTour.price}
                   </span>
                 </div>
 
                 {/* Body Content */}
-                <div className="w-full rounded-b-xl border border-t-0 border-white/10 bg-[#1E1E1E] p-6 sm:p-7 backdrop-blur-md shadow-2xl flex flex-col justify-between">
+                <div className="w-full rounded-b-xl border border-t-0 border-white/10 bg-[#1E1E1E] p-5 sm:p-7 backdrop-blur-md shadow-2xl flex flex-col justify-between">
                   <div>
-                    <h3 className="font-sans text-xl sm:text-2xl font-black text-white tracking-tight">
+                    <h3 className="font-sans text-lg sm:text-2xl font-black text-white tracking-tight">
                       {currentTour.title}
                     </h3>
-                    <p className="mt-3 text-xs sm:text-sm leading-relaxed text-neutral-300 text-left">
+                    <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm leading-relaxed text-neutral-300 text-left line-clamp-4 sm:line-clamp-none">
                       {currentTour.desc}
                     </p>
                   </div>
 
-                  <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3">
                     <Link
                       href={currentTour.href}
                       className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl bg-white/10 border border-white/20 px-5 py-2.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white transition-all hover:bg-white/20 hover:border-[#C7FF32]"
@@ -228,14 +247,45 @@ export default function TopToursSection({
                 </div>
               </div>
 
-              {/* Right Column: Scenic Landscape Image */}
-              <div className="lg:col-span-4 order-3">
-                <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl group">
+              {/* Mobile / Tablet: 2-column side-by-side scenic photos */}
+              <div className="lg:hidden order-2 grid grid-cols-2 gap-3 pt-1">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-lg group">
+                  <Image
+                    src={currentTour.leftImage}
+                    alt={currentTour.leftCaption}
+                    fill
+                    sizes="50vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <span className="absolute bottom-2 left-2.5 text-[10px] sm:text-xs font-bold text-neutral-300 tracking-wider">
+                    {currentTour.leftCaption}
+                  </span>
+                </div>
+
+                <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-lg group">
                   <Image
                     src={currentTour.rightImage}
                     alt={currentTour.rightCaption}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    sizes="50vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <span className="absolute bottom-2 left-2.5 text-[10px] sm:text-xs font-bold text-neutral-300 tracking-wider">
+                    {currentTour.rightCaption}
+                  </span>
+                </div>
+              </div>
+
+              {/* Desktop Right Column: Scenic Landscape Image */}
+              <div className="hidden lg:block lg:col-span-4 lg:order-3">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl group">
+                  <Image
+                    src={currentTour.rightImage}
+                    alt={currentTour.rightCaption}
+                    fill
+                    sizes="33vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />

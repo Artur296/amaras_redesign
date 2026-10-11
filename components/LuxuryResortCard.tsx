@@ -75,10 +75,29 @@ export default function LuxuryResortCard({
   const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (diff > 50) nextSlide();
+    if (diff < -50) prevSlide();
+    setTouchStart(null);
+  };
+
   return (
-    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-      <div className="relative">
-        {/* Navigation arrows (outside or on sides) */}
+    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-24">
+      <div
+        className="relative"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Navigation arrows (desktop sides) */}
         <button
           type="button"
           onClick={prevSlide}
@@ -96,8 +115,72 @@ export default function LuxuryResortCard({
           ›
         </button>
 
-        {/* Main Card Container with green/blue border accent */}
-        <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-[#586EFF]/30 bg-neutral-900 shadow-2xl">
+        {/* Mobile View (< lg): Unified Luxury Poster Card */}
+        <div className="lg:hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slide.id}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.35 }}
+              className="relative overflow-hidden rounded-[2rem] border-2 border-[#586EFF]/40 bg-neutral-900 shadow-2xl min-h-[460px] flex flex-col justify-end p-5 text-white"
+            >
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/25 pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col items-start w-full">
+                {/* Top Location & Brand Pill */}
+                <div className="flex items-center justify-between w-full text-[11px] font-bold uppercase tracking-wider text-white/80 pb-2 border-b border-white/10">
+                  <span className="flex items-center gap-1.5 text-white/90">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#C7FF32]" />
+                    {slide.location}
+                  </span>
+                  <span className="text-[#C7FF32] font-black">{slide.brand}</span>
+                </div>
+
+                {/* 5 Stars */}
+                <div className="mt-3 flex items-center gap-1 text-sm text-[#C7FF32]">
+                  <span>★</span>
+                  <span>★</span>
+                  <span>★</span>
+                  <span>★</span>
+                  <span>★</span>
+                </div>
+
+                {/* Title */}
+                <h3 className="mt-2 font-sans text-2xl font-black uppercase tracking-tight text-white leading-tight">
+                  {slide.title}
+                </h3>
+
+                {/* Subtitle */}
+                <p className="mt-2 text-xs text-[#FCFCF7]/85 leading-relaxed line-clamp-3">
+                  {slide.subtitle}
+                </p>
+
+                {/* Select Tour Button */}
+                <div className="mt-5 w-full">
+                  <Link
+                    href={slide.href}
+                    className="inline-flex w-full items-center justify-center rounded-xl bg-[#586EFF] py-3 text-xs font-black uppercase tracking-wider text-white shadow-lg transition-all active:scale-95"
+                  >
+                    {locale === "ru" ? "Выбрать тур" : locale === "hy" ? "Ընտրել տուրը" : "Select Tour"}
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Desktop View (>= lg): Split Card Layout */}
+        <div className="hidden lg:block relative overflow-hidden rounded-[2.5rem] border-2 border-[#586EFF]/30 bg-neutral-900 shadow-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.id}
@@ -105,22 +188,22 @@ export default function LuxuryResortCard({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="relative grid grid-cols-1 lg:grid-cols-12 min-h-[420px] sm:min-h-[460px] items-stretch"
+              className="relative grid grid-cols-12 min-h-[460px] items-stretch"
             >
-              {/* Left Side: Dark charcoal / glassmorphic card with luxury details */}
-              <div className="lg:col-span-5 z-10 flex items-center p-4 sm:p-10 lg:p-12">
-                <div className="w-full rounded-2xl sm:rounded-3xl bg-[#312F2F]/95 backdrop-blur-xl border border-white/15 p-5 sm:p-9 shadow-2xl text-[#FCFCF7]">
+              {/* Left Side: Dark charcoal card with luxury details */}
+              <div className="col-span-5 z-10 flex items-center p-10 lg:p-12">
+                <div className="w-full rounded-3xl bg-[#312F2F]/95 backdrop-blur-xl border border-white/15 p-9 shadow-2xl text-[#FCFCF7]">
                   {/* Top info & brand */}
                   <div className="flex items-center justify-between text-xs text-[#FCFCF7]/60 font-bold uppercase tracking-wider">
                     <span className="flex items-center gap-1.5">
-                      <span className="text-[#C7FF32]">📍</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#C7FF32]" />
                       {slide.location}
                     </span>
                     <span className="text-[#C7FF32] font-black">{slide.brand}</span>
                   </div>
 
                   {/* 5 Stars in Brand Lime */}
-                  <div className="mt-3 sm:mt-4 flex items-center gap-1 text-sm sm:text-base text-[#C7FF32]">
+                  <div className="mt-4 flex items-center gap-1 text-base text-[#C7FF32]">
                     <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">★</span>
                     <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">★</span>
                     <span className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">★</span>
@@ -129,20 +212,20 @@ export default function LuxuryResortCard({
                   </div>
 
                   {/* Title */}
-                  <h3 className="mt-2.5 sm:mt-3 font-sans text-xl sm:text-3xl font-black uppercase tracking-tight text-white">
+                  <h3 className="mt-3 font-sans text-3xl font-black uppercase tracking-tight text-white">
                     {slide.title}
                   </h3>
 
                   {/* Subtitle */}
-                  <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-[#FCFCF7]/75 leading-relaxed">
+                  <p className="mt-3 text-sm text-[#FCFCF7]/75 leading-relaxed">
                     {slide.subtitle}
                   </p>
 
-                  {/* Button: [ Выбрать тур ] in Brand Royal Blue #586EFF */}
-                  <div className="mt-5 sm:mt-8">
+                  {/* Button */}
+                  <div className="mt-8">
                     <Link
                       href={slide.href}
-                      className="inline-flex items-center justify-center rounded-xl bg-[#586EFF] px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:bg-[#475ceb] hover:scale-105 active:scale-95 w-full sm:w-auto"
+                      className="inline-flex items-center justify-center rounded-xl bg-[#586EFF] px-8 py-3.5 text-sm font-black uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:bg-[#475ceb] hover:scale-105 active:scale-95"
                     >
                       {locale === "ru" ? "Выбрать тур" : locale === "hy" ? "Ընտրել տուրը" : "Select Tour"}
                     </Link>
@@ -150,52 +233,34 @@ export default function LuxuryResortCard({
                 </div>
               </div>
 
-              {/* Right Side: Scenic Resort / Pool Aerial Photo */}
-              <div className="lg:col-span-7 relative min-h-[300px] lg:min-h-full">
+              {/* Right Side: Scenic Resort Aerial Photo */}
+              <div className="col-span-7 relative min-h-full">
                 <Image
                   src={slide.image}
                   alt={slide.title}
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  sizes="60vw"
                   className="object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-neutral-900 via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-r from-neutral-900 via-transparent to-transparent opacity-60" />
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Carousel Pagination Dots & Mobile Arrows */}
-        <div className="mt-5 flex items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={prevSlide}
-            aria-label="Previous resort"
-            className="sm:hidden flex h-8 w-8 items-center justify-center rounded-full bg-[#312F2F] text-white text-base shadow-md border border-white/20 active:scale-95 cursor-pointer"
-          >
-            ‹
-          </button>
-          <div className="flex items-center gap-2">
-            {slides.map((s, idx) => (
-              <button
-                key={s.id}
-                onClick={() => setCurrentIndex(idx)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  idx === currentIndex ? "w-6 bg-[#586EFF]" : "w-2 bg-neutral-300 hover:bg-neutral-400"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-          <button
-            type="button"
-            onClick={nextSlide}
-            aria-label="Next resort"
-            className="sm:hidden flex h-8 w-8 items-center justify-center rounded-full bg-[#312F2F] text-white text-base shadow-md border border-white/20 active:scale-95 cursor-pointer"
-          >
-            ›
-          </button>
+        {/* Carousel Pagination Dots */}
+        <div className="mt-5 flex items-center justify-center gap-2">
+          {slides.map((s, idx) => (
+            <button
+              key={s.id}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                idx === currentIndex ? "w-6 bg-[#586EFF]" : "w-2 bg-neutral-500 hover:bg-neutral-400"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

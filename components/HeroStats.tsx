@@ -51,8 +51,8 @@ export default function HeroStats({
             </div>
           </div>
 
-          <div className="flex w-full items-center justify-between sm:justify-end gap-4 sm:w-auto">
-            <span className="text-xs sm:text-sm font-semibold text-white/80">
+          <div className="flex flex-col sm:flex-row w-full sm:w-auto items-stretch sm:items-center justify-between sm:justify-end gap-3 sm:gap-4 pt-1 sm:pt-0">
+            <span className="text-xs sm:text-sm font-semibold text-white/80 text-center sm:text-left">
               {locale === "ru"
                 ? "Индивидуальный расчет маршрута:"
                 : locale === "hy"
@@ -63,7 +63,7 @@ export default function HeroStats({
               label={dict.hero.ctaWrite}
               variant="accent"
               size="md"
-              className="shrink-0"
+              className="w-full sm:w-auto shrink-0 justify-center"
             />
           </div>
         </div>
