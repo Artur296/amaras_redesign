@@ -1,7 +1,7 @@
 [
   {
     "id": "packages",
-    "image": "/images/category-packages.jpg",
+    "image": "/images/package-tatev.jpg",
     "imagePosition": "object-center",
     "title": {
       "ru": "Тур-пакеты",
@@ -72,6 +72,21 @@
       "ru": "Внедорожные маршруты к вулканам, водопадам и горным крепостям, куда не доедет обычный транспорт.",
       "hy": "Ճանապարհից դուրս երթուղիներ դեպի հրաբուխներ, ջրվեժներ և լեռնային ամրոցներ, ուր սովորական տրանսպորտը չի հասնում։",
       "en": "Off-road routes to volcanoes, waterfalls and mountain fortresses that ordinary transport cannot reach."
+    }
+  },
+  {
+    "id": "offers",
+    "image": "/images/offer-khor-virap.jpg",
+    "imagePosition": "object-center",
+    "title": {
+      "ru": "Спецпредложения",
+      "hy": "Հատուկ առաջարկներ",
+      "en": "Special Offers"
+    },
+    "desc": {
+      "ru": "Эксклюзивные акции, комбо-туры и сезонные скидки на лучшие путешествия по Армении.",
+      "hy": "Բացառիկ ակցիաներ, կոմբո տուրեր և սեզոնային զեղչեր Հայաստանի լավագույն ճամփորդությունների համար։",
+      "en": "Exclusive promotions, combo journeys and seasonal discounts on the best Armenia tours."
     }
   }
 ]

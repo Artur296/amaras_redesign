@@ -3,9 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import FadeIn from "@/components/FadeIn";
 import Hero from "@/components/Hero";
+import HeroStats from "@/components/HeroStats";
 import JeepExpeditionWidget from "@/components/JeepExpeditionWidget";
 import ReviewsSection from "@/components/ReviewsSection";
-import { CalendarIcon, WhatsAppIcon, TelegramIcon, InstagramIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
+import SpecialOffersSection from "@/components/SpecialOffersSection";
+import FaqSection from "@/components/FaqSection";
+import { faqs } from "@/lib/faqs";
+import { CalendarIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
 import { publicCategories } from "@/lib/tours";
 import { buildLinks } from "@/lib/site";
@@ -18,7 +22,7 @@ export const revalidate = 300;
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   if (!locales.includes(locale as Locale)) notFound();
-  const { dicts, categories: allCategories, site, hero, reviews } = await getContent();
+  const { dicts, categories: allCategories, site, hero, reviews, offers } = await getContent();
 
   const categories = publicCategories(allCategories);
   const dict = dicts[locale];
@@ -88,6 +92,18 @@ export default async function HomePage({ params }: Props) {
           reviewCount: "138",
         },
         sameAs: [links.instagram, links.telegram].filter(Boolean),
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${site.url}/${locale}/#faq`,
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question[locale] || f.question.ru,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: f.answer[locale] || f.answer.ru,
+          },
+        })),
       },
     ],
   };
@@ -195,6 +211,9 @@ export default async function HomePage({ params }: Props) {
       {/* 1. HERO with integrated Trip Discovery Search */}
       <Hero locale={locale} dict={dict} images={hero.images} />
 
+      {/* 1.1 Stats & Trust Strip */}
+      <HeroStats locale={locale} dict={dict} />
+
       {/* 2. TRAVEL FORMATS (Landing Page Showcase) */}
       <section className="mx-auto max-w-[1240px] px-6 py-20">
         <FadeIn>
@@ -232,12 +251,16 @@ export default async function HomePage({ params }: Props) {
         </FadeIn>
 
         {/* Formats Grid */}
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {categories.map((cat, i) => (
             <FadeIn key={cat.id} delay={i * 0.08} className="h-full">
               <Link
                 href={`/${locale}/tours/${cat.id}`}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#EAE9E0] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#586EFF]/50 hover:shadow-xl"
+                className={`group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl ${
+                  cat.id === "offers"
+                    ? "border-2 border-[#C7FF32] shadow-[0_4px_20px_rgba(199,255,50,0.2)]"
+                    : "border border-[#EAE9E0] hover:border-[#586EFF]/50"
+                }`}
               >
                 <div className="relative aspect-[16/11] overflow-hidden bg-black/10">
                   <Image
@@ -249,6 +272,7 @@ export default async function HomePage({ params }: Props) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                   <span className="absolute bottom-3 left-3 rounded-full bg-[#312F2F]/90 px-3 py-1 text-xs font-bold text-[#C7FF32] backdrop-blur-md">
+                    {cat.id === "offers" && (locale === "ru" ? "🔥 Выгода до 30%" : locale === "hy" ? "🔥 Մինչև 30% զեղչ" : "🔥 Save up to 30%")}
                     {cat.id === "group" && (locale === "ru" ? "от 10 000 ֏" : locale === "hy" ? "10 000 ֏-ից" : "From 10k ֏")}
                     {cat.id === "individual" && (locale === "ru" ? "Личный гид и авто" : locale === "hy" ? "Անձնական գիդ" : "Private Guide")}
                     {cat.id === "jeep" && (locale === "ru" ? "Внедорожники 4x4" : locale === "hy" ? "Ամենագնաց 4x4" : "4x4 Off-Road")}
@@ -261,10 +285,10 @@ export default async function HomePage({ params }: Props) {
                   <h3 className="text-xl font-black text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
                     {cat.title[locale]}
                   </h3>
-                  <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-[#6B6967]">
+                  <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-[#555351]">
                     {cat.desc[locale]}
                   </p>
-                  <div className="mt-4 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#586EFF]">
+                  <div className="mt-4 flex items-center gap-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#586EFF]">
                     <span>
                       {locale === "ru"
                         ? "Выбрать направление"
@@ -281,55 +305,11 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* 3. PROMOTIONAL SEASONAL BANNER */}
-      <section className="mx-auto max-w-[1240px] px-6 pb-12">
-        <FadeIn>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#312F2F] via-[#242323] to-[#312F2F] p-8 text-[#FCFCF7] shadow-xl sm:p-12 border border-[#454343]">
-            {/* Ambient accent flare */}
-            <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[#C7FF32]/10 blur-3xl pointer-events-none" />
-            <div className="absolute -left-16 -bottom-16 h-64 w-64 rounded-full bg-[#586EFF]/15 blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-              <div className="max-w-2xl">
-                <span className="inline-flex items-center gap-2 rounded-full bg-[#C7FF32] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#312F2F]">
-                  ⚡ {locale === "ru" ? "Скидка до 25% на раннее бронирование" : locale === "hy" ? "Մինչև 25% զեղչ վաղ ամրագրման դեպքում" : "Up to 25% Off Early Bookings"}
-                </span>
-                <h3 className="mt-4 font-serif text-2xl font-normal tracking-tight sm:text-3xl lg:text-4xl text-[#FCFCF7]">
-                  {locale === "ru" ? "Откройте настоящую Армению с AMARAS" : locale === "hy" ? "Բացահայտեք իրական Հայաստանը" : "Experience Authentic Armenia With AMARAS"}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#FCFCF7]/80 sm:text-base">
-                  {locale === "ru"
-                    ? "Бронируйте групповые и джип-туры заранее по специальным фиксированным ценам. Без предоплаты — бронируйте прямо в WhatsApp."
-                    : locale === "hy"
-                    ? "Ամրագրեք խմբային և ջիպ-տուրերը նախապես հատուկ շահավետ գներով։ Առանց կանխավճարի։"
-                    : "Book group & 4x4 jeep tours in advance at special promotional rates with zero prepayment."}
-                </p>
-              </div>
-
-              <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-                <a
-                  href={links.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-full bg-[#C7FF32] px-7 py-3.5 text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-lg transition-all hover:bg-[#b8f226] hover:scale-105"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                  <span>WhatsApp</span>
-                </a>
-                <Link
-                  href={`/${locale}/tours`}
-                  className="flex items-center justify-center rounded-full border border-white/25 px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"
-                >
-                  {dict.tours.viewAll} →
-                </Link>
-              </div>
-            </div>
-          </div>
-        </FadeIn>
-      </section>
+      {/* 3. DYNAMIC SPECIAL OFFERS & SEASONAL PROMOTIONS (Customizable in /admin) */}
+      <SpecialOffersSection offers={offers} locale={locale} dict={dict} />
 
       {/* 3.5 4x4 OFF-ROAD ARMENIA EXPEDITION WIDGET WITH INTERACTIVE JEEP CAR ANIMATION */}
-      <section className="mx-auto max-w-[1240px] px-6 pb-20">
+      <section className="mx-auto max-w-[1240px] px-6 py-20 sm:py-28">
         <FadeIn>
           <JeepExpeditionWidget locale={locale} />
         </FadeIn>
@@ -487,6 +467,9 @@ export default async function HomePage({ params }: Props) {
       {/* 8. TESTIMONIALS & GUEST REVIEWS (Dynamic with interactive submit) */}
       <ReviewsSection initialReviews={approvedReviews} locale={locale} />
 
+      {/* 8.5 FREQUENTLY ASKED QUESTIONS (Armenia travel tips, payments, vehicles) */}
+      <FaqSection locale={locale} />
+
       {/* 9. FINAL CALL TO ACTION */}
       <section className="mx-auto max-w-[1240px] px-6 py-20">
         <FadeIn>
@@ -520,33 +503,6 @@ export default async function HomePage({ params }: Props) {
                   </span>
                   <span className="text-base font-black">→</span>
                 </Link>
-                <a
-                  href={links.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-8 py-4 font-black uppercase tracking-wider text-white shadow-xl transition-transform hover:scale-105"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                  <span>WhatsApp</span>
-                </a>
-                <a
-                  href={links.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2.5 rounded-full bg-white px-8 py-4 font-black uppercase tracking-wider text-[#312F2F] shadow-xl transition-transform hover:scale-105"
-                >
-                  <TelegramIcon className="h-5 w-5 text-[#229ED9]" />
-                  <span>Telegram</span>
-                </a>
-                <a
-                  href={links.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] px-8 py-4 font-black uppercase tracking-wider text-white shadow-xl transition-transform hover:scale-105"
-                >
-                  <InstagramIcon className="h-5 w-5" />
-                  <span>Instagram</span>
-                </a>
               </div>
             </div>
           </div>

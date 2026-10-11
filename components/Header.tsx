@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { locales, type Dict, type Locale } from "@/lib/i18n";
 import { useLinks, useSite } from "@/components/SiteProvider";
@@ -14,21 +14,44 @@ const localeLabels: Record<Locale, string> = { ru: "RU", hy: "HY", en: "EN" };
 export default function Header({ locale, dict }: { locale: Locale; dict: Dict }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const links = useLinks();
   const { logo } = useSite();
+
+  const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const restPath = pathname.replace(/^\/(ru|hy|en)(?=\/|$)/, "");
   const nav = [
     { href: `/${locale}`, label: dict.nav.home },
     { href: `/${locale}/tours`, label: dict.nav.tours },
+    { href: `/${locale}/tours/offers`, label: locale === "ru" ? "🔥 Спецпредложения" : locale === "hy" ? "🔥 Հատուկ առաջարկներ" : "🔥 Offers" },
     { href: `/${locale}/tour-packages`, label: dict.nav.packages },
     { href: `/${locale}/about`, label: dict.nav.about },
     { href: `/${locale}/contacts`, label: dict.nav.contacts },
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#454343] bg-[#312F2F]/95 backdrop-blur-md text-[#FCFCF7]">
-      <div className="mx-auto flex h-20 max-w-[1240px] items-center justify-between gap-4 px-4 sm:px-6">
+    <header
+      className={`z-50 transition-all duration-300 text-[#FCFCF7] ${
+        isHome
+          ? `fixed top-0 inset-x-0 ${
+              scrolled
+                ? "bg-[#312F2F]/90 backdrop-blur-md border-b border-white/10 shadow-lg"
+                : "bg-transparent border-b border-transparent"
+            }`
+          : "sticky top-0 bg-[#312F2F]/95 backdrop-blur-md border-b border-[#454343]"
+      }`}
+    >
+      <div className="mx-auto flex h-20 max-w-[1360px] items-center justify-between gap-4 px-4 sm:px-6">
         {/* Brand identity - Official AMARAS Logo */}
         <Link
           href={`/${locale}`}
@@ -42,13 +65,13 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
               width={260}
               height={36}
               priority
-              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 group-hover:brightness-110"
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 group-hover:brightness-110 drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
             />
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm lg:flex" aria-label="Main">
+        <nav className="hidden items-center gap-1.5 rounded-full border border-white/20 bg-black/25 px-3 py-1.5 backdrop-blur-md shadow-lg lg:flex" aria-label="Main">
           {nav.map((item) => {
             const isActive =
               item.href === `/${locale}`
@@ -58,10 +81,10 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative rounded-full px-4 py-1.5 text-sm font-semibold transition-all duration-200 ${
+                className={`relative rounded-full px-3.5 py-1.5 text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
                   isActive
                     ? "bg-[#C7FF32] font-bold text-[#312F2F] shadow-sm"
-                    : "text-[#FCFCF7]/85 hover:text-[#C7FF32] hover:bg-white/5"
+                    : "text-[#FCFCF7]/90 hover:text-[#C7FF32] hover:bg-white/10"
                 }`}
               >
                 {item.label}
@@ -72,19 +95,8 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
 
         {/* Right Actions */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          {/* Social icons */}
-          <a
-            href={links.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="hidden h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition-all hover:border-[#C7FF32] hover:text-[#C7FF32] sm:flex"
-          >
-            <InstagramIcon className="h-4 w-4" />
-          </a>
-
           {/* Language Switcher */}
-          <div className="flex items-center rounded-full border border-white/15 bg-white/5 p-1" role="group" aria-label="Language">
+          <div className="flex items-center rounded-full border border-white/20 bg-black/25 p-1 backdrop-blur-md shadow-lg" role="group" aria-label="Language">
             {locales.map((l) => (
               <Link
                 key={l}
@@ -93,21 +105,13 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
                 className={`rounded-full px-2.5 py-1 text-xs font-bold transition-all ${
                   l === locale
                     ? "bg-[#586EFF] text-white shadow-sm"
-                    : "text-white/70 hover:text-white"
+                    : "text-white/80 hover:text-white"
                 }`}
               >
                 {localeLabels[l]}
               </Link>
             ))}
           </div>
-
-          {/* Quick Booking CTA */}
-          <Link
-            href={`/${locale}/tours`}
-            className="hidden rounded-full bg-[#586EFF] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all hover:bg-[#475be6] hover:shadow-lg sm:inline-flex"
-          >
-            {dict.hero.ctaTours}
-          </Link>
 
           {/* Mobile hamburger button */}
           <button

@@ -9,3 +9,10 @@ next-env.d.ts
 .env*
 !.env.example
 .antigravity
+/video.mp4
+public/video_opt.mp4
+seo.plugin
+skills-lock.json
+scripts/test-mobile.mjs
+*.log
+mobile_viewport_390.png
