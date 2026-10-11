@@ -5,13 +5,19 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
 
-export default function FeaturedBannerSection({ locale }: { locale: Locale }) {
+export default function FeaturedBannerSection({
+  locale,
+  bannerImage,
+}: {
+  locale: Locale;
+  bannerImage?: string;
+}) {
   return (
     <section className="relative w-full overflow-hidden bg-black py-28 sm:py-36 text-white">
       {/* Full-width scenic background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/package-sevan.jpg"
+          src={bannerImage || "/images/package-sevan.jpg"}
           alt="The Best Resort in Armenia"
           fill
           priority

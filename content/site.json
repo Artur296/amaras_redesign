@@ -7,5 +7,31 @@
   "instagram": "amarastourarmenia",
   "email": "amarastour.am@gmail.com",
   "aboutImage": "/images/1791116685054-3lswc8srlupqrobd6ldivdyksmohxwpnqxd1vtaxskowscux9vvdljst77butzfox3zfoxo-valex65na04zyllrd4kmjxyozn6xfgssbvasdflid9ne2gy4ibe4piavud-w-sg-q1pjus34a-mwqxashqbt-cv10rryzzkbl8qkcmqeb8bahzlotzcxdv6p.jpg",
-  "logo": "/images/logo.png"
+  "logo": "/images/logo.png",
+  "homepageImages": {
+    "heroSevan": "/images/package-sevan.jpg",
+    "heroKhorVirap": "/images/offer-khor-virap.jpg",
+    "heroGarni": "/images/package-garni-hd.jpg",
+    "heroTatev": "/images/package-tatev.jpg",
+    "heroNoravank": "/images/package-noravank.jpg",
+    "heroAzhdahak": "/images/azhdahak.jpg",
+    "bentoCard1": "/images/package-sevan.jpg",
+    "bentoCard2": "/images/offer-khor-virap.jpg",
+    "bentoCard3": "/images/package-dilijan.jpg",
+    "bentoCard4": "/images/package-garni-hd.jpg",
+    "resortSevan": "/images/package-sevan.jpg",
+    "resortDilijan": "/images/package-dilijan.jpg",
+    "resortJermuk": "/images/offer-khor-virap.jpg",
+    "panoramicBanner": "/images/noravank.jpg",
+    "featuredBanner": "/images/package-sevan.jpg",
+    "topTour1Left": "/images/khor-virap.jpg",
+    "topTour1Right": "/images/noravank.jpg",
+    "topTour2Left": "/images/garni.jpg",
+    "topTour2Right": "/images/sevan.jpg",
+    "topTour3Left": "/images/tatev.jpg",
+    "topTour3Right": "/images/azhdahak.jpg",
+    "article1": "/images/jeep.jpg",
+    "article2": "/images/garni.jpg",
+    "article3": "/images/noravank.jpg"
+  }
 }

@@ -4,8 +4,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
+import type { HomepageImages } from "@/lib/site";
 
-export default function TrendBentoGrid({ locale }: { locale: Locale }) {
+export default function TrendBentoGrid({
+  locale,
+  images,
+}: {
+  locale: Locale;
+  images?: Partial<HomepageImages>;
+}) {
+  const img1 = images?.bentoCard1 || "/images/package-sevan.jpg";
+  const img2 = images?.bentoCard2 || "/images/offer-khor-virap.jpg";
+  const img3 = images?.bentoCard3 || "/images/package-dilijan.jpg";
+  const img4 = images?.bentoCard4 || "/images/package-garni-hd.jpg";
+
   return (
     <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
       {/* Title */}
@@ -30,7 +42,7 @@ export default function TrendBentoGrid({ locale }: { locale: Locale }) {
           className="lg:col-span-4 relative overflow-hidden rounded-[2rem] min-h-[460px] lg:min-h-[580px] shadow-lg group"
         >
           <Image
-            src="/images/package-sevan.jpg"
+            src={img1}
             alt="Севан и Цахкадзор"
             fill
             sizes="(max-width: 1024px) 100vw, 33vw"
@@ -78,7 +90,7 @@ export default function TrendBentoGrid({ locale }: { locale: Locale }) {
             className="relative overflow-hidden rounded-[2rem] min-h-[260px] sm:min-h-[280px] shadow-lg group"
           >
             <Image
-              src="/images/offer-khor-virap.jpg"
+              src={img2}
               alt="Популярные направления Армении"
               fill
               sizes="(max-width: 1024px) 100vw, 66vw"
@@ -117,7 +129,7 @@ export default function TrendBentoGrid({ locale }: { locale: Locale }) {
               className="relative overflow-hidden rounded-[2rem] min-h-[250px] shadow-lg group"
             >
               <Image
-                src="/images/package-dilijan.jpg"
+                src={img3}
                 alt="Премиум-отели Армении"
                 fill
                 sizes="(max-width: 1024px) 100vw, 33vw"
@@ -161,7 +173,7 @@ export default function TrendBentoGrid({ locale }: { locale: Locale }) {
               className="relative overflow-hidden rounded-[2rem] min-h-[250px] shadow-lg group"
             >
               <Image
-                src="/images/package-garni-hd.jpg"
+                src={img4}
                 alt="Экскурсионные туры"
                 fill
                 sizes="(max-width: 1024px) 100vw, 33vw"

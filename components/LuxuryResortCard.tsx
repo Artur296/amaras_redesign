@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
+import type { HomepageImages } from "@/lib/site";
 
 interface ResortSlide {
   id: string;
@@ -16,7 +17,13 @@ interface ResortSlide {
   href: string;
 }
 
-export default function LuxuryResortCard({ locale }: { locale: Locale }) {
+export default function LuxuryResortCard({
+  locale,
+  images,
+}: {
+  locale: Locale;
+  images?: Partial<HomepageImages>;
+}) {
   const slides: ResortSlide[] = [
     {
       id: "sevan-resort",
@@ -29,7 +36,7 @@ export default function LuxuryResortCard({ locale }: { locale: Locale }) {
           : locale === "hy"
           ? "Հյուրընկալության արվեստը յուրաքանչյուր դետալում։ Լազուր ափ, պանորամային քոթեջներ և հեղինակային խոհանոց։"
           : "The art of hospitality in every detail. Azure shoreline, panoramic cottages, and gourmet dining.",
-      image: "/images/package-sevan.jpg",
+      image: images?.resortSevan || "/images/package-sevan.jpg",
       href: `/${locale}/tour-packages`,
     },
     {
@@ -43,7 +50,7 @@ export default function LuxuryResortCard({ locale }: { locale: Locale }) {
           : locale === "hy"
           ? "Ալպիական սպա հյուրանոց սոճիների անտառներում։ Բյուրեղյա օդ և բացարձակ հանգստություն։"
           : "Alpine spa sanctuary nestled in ancient pine woods. Pure mountain air and serene luxury.",
-      image: "/images/package-dilijan.jpg",
+      image: images?.resortDilijan || "/images/package-dilijan.jpg",
       href: `/${locale}/tour-packages`,
     },
     {
@@ -57,7 +64,7 @@ export default function LuxuryResortCard({ locale }: { locale: Locale }) {
           : locale === "hy"
           ? "Հանքային բուժիչ աղբյուրներ, ջերմային սպա ավազաններ և գեղատեսիլ լեռնային կիրճ։"
           : "Healing mineral springs, thermal pools, and breathtaking waterfall gorge panoramas.",
-      image: "/images/offer-khor-virap.jpg",
+      image: images?.resortJermuk || "/images/offer-khor-virap.jpg",
       href: `/${locale}/tour-packages`,
     },
   ];

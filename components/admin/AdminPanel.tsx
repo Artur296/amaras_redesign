@@ -10,7 +10,7 @@ import {
   type Category,
   type Tour,
 } from "@/lib/tours";
-import type { SiteInfo } from "@/lib/site";
+import { defaultHomepageImages, type HomepageImages, type SiteInfo } from "@/lib/site";
 import type { Content, ContentKey } from "@/lib/content";
 import type { Review } from "@/lib/reviews";
 import type { SpecialOffer } from "@/lib/offers";
@@ -268,11 +268,9 @@ export default function AdminPanel() {
         {tab === "Images" && (
           <ImagesTab
             images={content.hero.images}
-            aboutImage={content.site.aboutImage}
+            site={content.site}
             onChange={(images) => setContent({ ...content, hero: { images } })}
-            onChangeAbout={(aboutImage) =>
-              setContent({ ...content, site: { ...content.site, aboutImage } })
-            }
+            onChangeSite={(site) => setContent({ ...content, site })}
             onSave={publish}
           />
         )}
@@ -1283,21 +1281,40 @@ function ToursTab({
   );
 }
 
-/* ---------- Homepage (hero slideshow) ---------- */
+/* ---------- Homepage & Site Images ---------- */
 
 function ImagesTab({
   images,
-  aboutImage,
+  site,
   onChange,
-  onChangeAbout,
+  onChangeSite,
   onSave,
 }: {
   images: string[];
-  aboutImage: string;
+  site: SiteInfo;
   onChange: (images: string[]) => void;
-  onChangeAbout: (url: string) => void;
+  onChangeSite: (site: SiteInfo) => void;
   onSave: () => void;
 }) {
+  const [subTab, setSubTab] = useState<
+    "hero" | "quick" | "bento" | "tours" | "resorts" | "banners" | "articles" | "branding"
+  >("hero");
+
+  const hpImages: HomepageImages = {
+    ...defaultHomepageImages,
+    ...(site.homepageImages || {}),
+  };
+
+  function updateHpImage(key: keyof HomepageImages, url: string) {
+    onChangeSite({
+      ...site,
+      homepageImages: {
+        ...hpImages,
+        [key]: url,
+      },
+    });
+  }
+
   function move(i: number, dir: -1 | 1) {
     const j = i + dir;
     if (j < 0 || j >= images.length) return;
@@ -1306,79 +1323,428 @@ function ImagesTab({
     onChange(next);
   }
 
-  return (
-    <section>
-      <h2 className="text-xl font-extrabold">Homepage slideshow</h2>
-      <p className="mt-2 text-sm text-muted">
-        The big photos at the top of the main page. They rotate automatically;
-        the first one is shown first. The “Popular tours” section below the
-        slideshow is managed in the Tours tab (the “Show in Popular tours”
-        checkbox and the ▲▼ order).
-      </p>
+  const sections = [
+    { id: "hero", label: "Слайдер шапки", icon: "🖼️" },
+    { id: "quick", label: "Карточки первого экрана", icon: "⚡" },
+    { id: "bento", label: "Бенто-сетка", icon: "📐" },
+    { id: "tours", label: "Топ-туры", icon: "⭐" },
+    { id: "resorts", label: "Курорты и СПА", icon: "🏨" },
+    { id: "banners", label: "Панорамные баннеры", icon: "🌄" },
+    { id: "articles", label: "Статьи и гид", icon: "📖" },
+    { id: "branding", label: "О нас и логотип", icon: "ℹ️" },
+  ] as const;
 
-      <div className="mt-5 space-y-3">
-        {images.map((src, i) => (
-          <div
-            key={`${src}-${i}`}
-            className="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-sm"
+  return (
+    <section className="space-y-6">
+      <div>
+        <h2 className="text-2xl font-black text-ink">Управление всеми изображениями сайта</h2>
+        <p className="mt-1 text-sm text-muted">
+          Редактируйте любые фотографии, баннеры, карточки направлений и обложки статей.
+        </p>
+      </div>
+
+      {/* Sub-tabs selector */}
+      <div className="flex flex-wrap gap-2 border-b border-black/10 pb-3">
+        {sections.map((sec) => (
+          <button
+            key={sec.id}
+            type="button"
+            onClick={() => setSubTab(sec.id)}
+            className={`flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-bold transition-all ${
+              subTab === sec.id
+                ? "bg-[#312F2F] text-white shadow-sm"
+                : "bg-white text-ink/70 hover:bg-black/5 hover:text-ink border border-black/5"
+            }`}
           >
-            <div className="flex flex-col">
-              <button
-                type="button"
-                aria-label="Move up"
-                onClick={() => move(i, -1)}
-                disabled={i === 0}
-                className="px-1.5 text-xs text-muted hover:text-primary disabled:opacity-30"
-              >
-                ▲
-              </button>
-              <button
-                type="button"
-                aria-label="Move down"
-                onClick={() => move(i, 1)}
-                disabled={i === images.length - 1}
-                className="px-1.5 text-xs text-muted hover:text-primary disabled:opacity-30"
-              >
-                ▼
-              </button>
-            </div>
-            <div className="flex-1">
-              <ImagePicker
-                value={src}
-                onChange={(url) =>
-                  onChange(images.map((x, j) => (j === i ? url : x)))
-                }
-              />
-            </div>
-            {images.length > 1 && (
-              <DeleteButton
-                label="Remove"
-                onDelete={() => onChange(images.filter((_, j) => j !== i))}
-              />
-            )}
-          </div>
+            <span>{sec.icon}</span>
+            <span>{sec.label}</span>
+          </button>
         ))}
       </div>
 
-      <button
-        type="button"
-        onClick={() => onChange([...images, ""])}
-        className="mt-4 rounded-full border border-black/15 px-4 py-2 text-sm font-bold hover:border-primary hover:text-primary"
-      >
-        + Add photo
-      </button>
+      {/* 1. Hero Slideshow */}
+      {subTab === "hero" && (
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-extrabold text-ink">Слайдер главного экрана (Hero Slideshow)</h3>
+            <p className="mt-1 text-xs text-muted">
+              Большие фоновые фотографии в шапке сайта. Они автоматически сменяются при просмотре.
+            </p>
+          </div>
 
-      <h2 className="mt-10 border-t border-black/5 pt-8 text-xl font-extrabold">
-        About page photo
-      </h2>
-      <p className="mt-2 text-sm text-muted">
-        The photo shown next to the text on the “About us” page.
-      </p>
-      <div className="mt-4 max-w-xl">
-        <ImagePicker value={aboutImage} onChange={onChangeAbout} />
-      </div>
+          <div className="space-y-3">
+            {images.map((src, i) => (
+              <div
+                key={`${src}-${i}`}
+                className="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-sm"
+              >
+                <div className="flex flex-col">
+                  <button
+                    type="button"
+                    aria-label="Move up"
+                    onClick={() => move(i, -1)}
+                    disabled={i === 0}
+                    className="px-1.5 text-xs text-muted hover:text-primary disabled:opacity-30"
+                  >
+                    ▲
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Move down"
+                    onClick={() => move(i, 1)}
+                    disabled={i === images.length - 1}
+                    className="px-1.5 text-xs text-muted hover:text-primary disabled:opacity-30"
+                  >
+                    ▼
+                  </button>
+                </div>
+                <div className="flex-1">
+                  <ImagePicker
+                    value={src}
+                    onChange={(url) =>
+                      onChange(images.map((x, j) => (j === i ? url : x)))
+                    }
+                  />
+                </div>
+                {images.length > 1 && (
+                  <DeleteButton
+                    label="Удалить"
+                    onDelete={() => onChange(images.filter((_, j) => j !== i))}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
 
-      <SaveBar onSave={onSave} label="Publish all changes" />
+          <button
+            type="button"
+            onClick={() => onChange([...images, ""])}
+            className="rounded-full border border-black/15 bg-white px-4 py-2 text-sm font-bold hover:border-primary hover:text-primary"
+          >
+            + Добавить фото в слайдер
+          </button>
+        </div>
+      )}
+
+      {/* 2. Hero Quick Cards */}
+      {subTab === "quick" && (
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-extrabold text-ink">Карточки быстрого выбора направлений (Hero Cards)</h3>
+            <p className="mt-1 text-xs text-muted">
+              6 карточек популярных локаций в блоке под главным поиском на первом экране.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">1. Озеро Севан (Голубая жемчужина)</span>
+              <ImagePicker
+                value={hpImages.heroSevan}
+                onChange={(url) => updateHpImage("heroSevan", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">2. Хор Вирап & Арарат</span>
+              <ImagePicker
+                value={hpImages.heroKhorVirap}
+                onChange={(url) => updateHpImage("heroKhorVirap", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">3. Храм Гарни & Гегард</span>
+              <ImagePicker
+                value={hpImages.heroGarni}
+                onChange={(url) => updateHpImage("heroGarni", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">4. Крылья Татева</span>
+              <ImagePicker
+                value={hpImages.heroTatev}
+                onChange={(url) => updateHpImage("heroTatev", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">5. Красный Нораванк</span>
+              <ImagePicker
+                value={hpImages.heroNoravank}
+                onChange={(url) => updateHpImage("heroNoravank", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">6. Вулкан Аждаак (4x4)</span>
+              <ImagePicker
+                value={hpImages.heroAzhdahak}
+                onChange={(url) => updateHpImage("heroAzhdahak", url)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 3. Bento Grid */}
+      {subTab === "bento" && (
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-extrabold text-ink">Трендовые направления (Бенто-сетка)</h3>
+            <p className="mt-1 text-xs text-muted">
+              Блок «Туры по Армении — это тренд» с 4 карточками разного размера.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Карточка 1 (Вертикальная): Горная сказка / Севан</span>
+              <ImagePicker
+                value={hpImages.bentoCard1}
+                onChange={(url) => updateHpImage("bentoCard1", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Карточка 2 (Широкая вверху): Популярные направления / Хор Вирап</span>
+              <ImagePicker
+                value={hpImages.bentoCard2}
+                onChange={(url) => updateHpImage("bentoCard2", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Карточка 3 (Слева внизу): Премиум-отели / Дилижан</span>
+              <ImagePicker
+                value={hpImages.bentoCard3}
+                onChange={(url) => updateHpImage("bentoCard3", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Карточка 4 (Справа внизу): Экскурсионные туры / Гарни</span>
+              <ImagePicker
+                value={hpImages.bentoCard4}
+                onChange={(url) => updateHpImage("bentoCard4", url)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 4. Top Tours Showcase */}
+      {subTab === "tours" && (
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-extrabold text-ink">Топ-туры и авторские маршруты</h3>
+            <p className="mt-1 text-xs text-muted">
+              3 визитные карточки туров, в каждой из которых отображаются два фото: основное и дополнительное.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-3">
+              <h4 className="text-sm font-bold text-ink">Тур 1: Хор Вирап, Арени и Нораванк</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <span className="text-xs text-muted block mb-1">Левое фото (Хор Вирап & Арарат):</span>
+                  <ImagePicker
+                    value={hpImages.topTour1Left}
+                    onChange={(url) => updateHpImage("topTour1Left", url)}
+                  />
+                </div>
+                <div>
+                  <span className="text-xs text-muted block mb-1">Правое фото (Каньон Нораванк):</span>
+                  <ImagePicker
+                    value={hpImages.topTour1Right}
+                    onChange={(url) => updateHpImage("topTour1Right", url)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-3">
+              <h4 className="text-sm font-bold text-ink">Тур 2: Гарни, Гегард и Симфония Камней</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <span className="text-xs text-muted block mb-1">Левое фото (Храм Гарни):</span>
+                  <ImagePicker
+                    value={hpImages.topTour2Left}
+                    onChange={(url) => updateHpImage("topTour2Left", url)}
+                  />
+                </div>
+                <div>
+                  <span className="text-xs text-muted block mb-1">Правое фото (Лазурный Севан):</span>
+                  <ImagePicker
+                    value={hpImages.topTour2Right}
+                    onChange={(url) => updateHpImage("topTour2Right", url)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-3">
+              <h4 className="text-sm font-bold text-ink">Тур 3: Крылья Татева, Водопад Шаки и Джермук</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <span className="text-xs text-muted block mb-1">Левое фото (Крылья Татева):</span>
+                  <ImagePicker
+                    value={hpImages.topTour3Left}
+                    onChange={(url) => updateHpImage("topTour3Left", url)}
+                  />
+                </div>
+                <div>
+                  <span className="text-xs text-muted block mb-1">Правое фото (Горные перевалы):</span>
+                  <ImagePicker
+                    value={hpImages.topTour3Right}
+                    onChange={(url) => updateHpImage("topTour3Right", url)}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 5. Luxury Resorts */}
+      {subTab === "resorts" && (
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-extrabold text-ink">Премиум-курорты и отели (Слайдер)</h3>
+            <p className="mt-1 text-xs text-muted">
+              3 слайда с курортами и СПА-отелями Армении.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Слайд 1: SEVAN RESORT & SPA</span>
+              <ImagePicker
+                value={hpImages.resortSevan}
+                onChange={(url) => updateHpImage("resortSevan", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Слайд 2: DILIJAN FOREST CHALET</span>
+              <ImagePicker
+                value={hpImages.resortDilijan}
+                onChange={(url) => updateHpImage("resortDilijan", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Слайд 3: GRAND JERMUK SPRINGS</span>
+              <ImagePicker
+                value={hpImages.resortJermuk}
+                onChange={(url) => updateHpImage("resortJermuk", url)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 6. Banners */}
+      {subTab === "banners" && (
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-extrabold text-ink">Широкоформатные панорамные баннеры</h3>
+            <p className="mt-1 text-xs text-muted">
+              Фоновые изображения для панорамных разделителей на главной странице.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Панорамный горный баннер («Отдых без мелкого шрифта»)</span>
+              <ImagePicker
+                value={hpImages.panoramicBanner}
+                onChange={(url) => updateHpImage("panoramicBanner", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Полноэкранный баннер курортов («THE BEST BEACH & MOUNTAIN RESORTS»)</span>
+              <ImagePicker
+                value={hpImages.featuredBanner}
+                onChange={(url) => updateHpImage("featuredBanner", url)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 7. Travel Articles */}
+      {subTab === "articles" && (
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-extrabold text-ink">Статьи и гид путешественника (Travel Stories)</h3>
+            <p className="mt-1 text-xs text-muted">
+              Обложки 3 статей и путеводителей на главной странице.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Статья 1: «Джип-тур на вулкан Аждаак»</span>
+              <ImagePicker
+                value={hpImages.article1}
+                onChange={(url) => updateHpImage("article1", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Статья 2: «Симфония камней и скальный Гегард»</span>
+              <ImagePicker
+                value={hpImages.article2}
+                onChange={(url) => updateHpImage("article2", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Статья 3: «Как выбрать многодневный тур по Армении»</span>
+              <ImagePicker
+                value={hpImages.article3}
+                onChange={(url) => updateHpImage("article3", url)}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 8. Branding & About */}
+      {subTab === "branding" && (
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-extrabold text-ink">Страница «О нас» и Логотип</h3>
+            <p className="mt-1 text-xs text-muted">
+              Основное фото на странице компании и логотип.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Фотография на странице «О нас»</span>
+              <ImagePicker
+                value={site.aboutImage}
+                onChange={(url) => onChangeSite({ ...site, aboutImage: url })}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Логотип сайта (Иконка / Круглый знак)</span>
+              <ImagePicker
+                value={site.logo}
+                onChange={(url) => onChangeSite({ ...site, logo: url })}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      <SaveBar onSave={onSave} label="Опубликовать изменения изображений" />
     </section>
   );
 }
@@ -1707,7 +2073,8 @@ function ContactsTab({
   onChange: (site: SiteInfo) => void;
   onSave: () => void;
 }) {
-  const fields: { key: keyof SiteInfo; label: string; hint?: string }[] = [
+  type ContactKey = "name" | "phone" | "whatsapp" | "telegram" | "instagram" | "email";
+  const fields: { key: ContactKey; label: string; hint?: string }[] = [
     { key: "name", label: "Company name" },
     { key: "phone", label: "Phone" },
     { key: "whatsapp", label: "WhatsApp number", hint: "digits only, e.g. 37499250525" },
@@ -2311,13 +2678,12 @@ function OffersTab({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Field label="Фоновое изображение баннера (URL или /images/...)">
-              <input
-                type="text"
-                value={activeOffer.bannerImage || activeOffer.image}
-                onChange={(e) => updateActiveOffer({ bannerImage: e.target.value, image: e.target.value })}
-                className={inputCls}
-                placeholder="/images/special-offer-autumn.jpg"
+            <Field label="Изображение постера спецпредложения">
+              <ImagePicker
+                value={activeOffer.bannerImage || activeOffer.image || ""}
+                onChange={(url) =>
+                  updateActiveOffer({ bannerImage: url, image: url })
+                }
               />
             </Field>
 

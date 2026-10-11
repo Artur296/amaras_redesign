@@ -5,7 +5,13 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
 
-export default function NoFinePrintCards({ locale }: { locale: Locale }) {
+export default function NoFinePrintCards({
+  locale,
+  bannerImage,
+}: {
+  locale: Locale;
+  bannerImage?: string;
+}) {
   return (
     <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
       {/* Header matching Screenshot 5 */}
@@ -145,7 +151,7 @@ export default function NoFinePrintCards({ locale }: { locale: Locale }) {
         className="mt-12 relative overflow-hidden rounded-[2.5rem] min-h-[380px] sm:min-h-[440px] shadow-2xl group"
       >
         <Image
-          src="/images/noravank.jpg"
+          src={bannerImage || "/images/noravank.jpg"}
           alt="Отдых в Армении"
           fill
           sizes="100vw"

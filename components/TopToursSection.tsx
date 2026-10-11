@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
+import type { HomepageImages } from "@/lib/site";
 import BookButton from "@/components/BookButton";
 
 interface TourHighlight {
@@ -20,7 +21,13 @@ interface TourHighlight {
   href: string;
 }
 
-export default function TopToursSection({ locale }: { locale: Locale }) {
+export default function TopToursSection({
+  locale,
+  images,
+}: {
+  locale: Locale;
+  images?: Partial<HomepageImages>;
+}) {
   const tours: TourHighlight[] = [
     {
       id: "ararat-noravank",
@@ -38,9 +45,9 @@ export default function TopToursSection({ locale }: { locale: Locale }) {
           : locale === "hy"
           ? "Լեգենդար տեսարան դեպի բիբլիական Արարատ, գինու համտես Արենիում և Նորավանքի կարմիր ժայռերը։ Հարմարավետ Mercedes Sprinter և փորձառու գիդ։"
           : "Iconic view of biblical Mount Ararat, authentic wine tasting in Areni, and dramatic red cliffs of Noravank. Premium Mercedes Sprinter with private guide.",
-      leftImage: "/images/khor-virap.jpg",
+      leftImage: images?.topTour1Left || "/images/khor-virap.jpg",
       leftCaption: locale === "ru" ? "Хор Вирап и Арарат" : "Khor Virap & Ararat",
-      rightImage: "/images/noravank.jpg",
+      rightImage: images?.topTour1Right || "/images/noravank.jpg",
       rightCaption: locale === "ru" ? "Каньон Нораванк" : "Noravank Canyon",
       href: `/${locale}/tours/popular/khor-virap-areni-noravank-birds-cave`,
     },
@@ -60,9 +67,9 @@ export default function TopToursSection({ locale }: { locale: Locale }) {
           : locale === "hy"
           ? "Անտիկ հեթանոսական տաճար, ժայռափոր Գեղարդավանք (ՅՈՒՆԵՍԿՕ), Քարերի Սիմֆոնիա և ավանդական թոնրի լավաշի թխում։"
           : "The sole Hellenistic temple in Caucasus, rock-cut Geghard Monastery (UNESCO), basalt cliff organ, and live traditional lavash baking.",
-      leftImage: "/images/garni.jpg",
+      leftImage: images?.topTour2Left || "/images/garni.jpg",
       leftCaption: locale === "ru" ? "Храм Гарни" : "Garni Temple",
-      rightImage: "/images/sevan.jpg",
+      rightImage: images?.topTour2Right || "/images/sevan.jpg",
       rightCaption: locale === "ru" ? "Лазурный Севан" : "Lake Sevan",
       href: `/${locale}/tours/popular/garni-charents-arch-lavash-geghard`,
     },
@@ -82,9 +89,9 @@ export default function TopToursSection({ locale }: { locale: Locale }) {
           : locale === "hy"
           ? "Աշխարհի ամենաերկար հետադարձ ճոպանուղին Որոտանի կիրճի վրայով, Տաթևի միջնադարյան վանական համալիրը և Ջերմուկի հանքային աղբյուրները։"
           : "The world's longest reversible aerial tramway soaring above Vorotan gorge, medieval Tatev sanctuary, and mineral hot springs.",
-      leftImage: "/images/tatev.jpg",
+      leftImage: images?.topTour3Left || "/images/tatev.jpg",
       leftCaption: locale === "ru" ? "Крылья Татева" : "Wings of Tatev",
-      rightImage: "/images/azhdahak.jpg",
+      rightImage: images?.topTour3Right || "/images/azhdahak.jpg",
       rightCaption: locale === "ru" ? "Горные перевалы" : "Highland Passes",
       href: `/${locale}/tours/popular/khor-virap-areni-noravank-birds-cave`,
     },

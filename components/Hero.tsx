@@ -5,57 +5,60 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import type { Dict, Locale } from "@/lib/i18n";
+import type { HomepageImages } from "@/lib/site";
 
 export default function Hero({
   locale,
   dict,
   images,
+  cardImages,
 }: {
   locale: Locale;
   dict: Dict;
   images: string[];
+  cardImages?: Partial<HomepageImages>;
 }) {
   const destinations = [
     {
       id: "sevan",
       title: locale === "ru" ? "Озеро Севан" : locale === "hy" ? "Սևանա լիճ" : "Lake Sevan",
       subtitle: locale === "ru" ? "Голубая жемчужина Армении" : "Azure Highland Lake",
-      image: "/images/package-sevan.jpg",
+      image: cardImages?.heroSevan || "/images/package-sevan.jpg",
       href: `/${locale}/tours/popular/tsaghkadzor-sevan-dilijan`,
     },
     {
       id: "khor-virap",
       title: locale === "ru" ? "Хор Вирап & Арарат" : locale === "hy" ? "Խոր Վիրապ և Արարատ" : "Khor Virap & Ararat",
       subtitle: locale === "ru" ? "Легендарный вид на библейскую гору" : "Iconic Mount Ararat views",
-      image: "/images/offer-khor-virap.jpg",
+      image: cardImages?.heroKhorVirap || "/images/offer-khor-virap.jpg",
       href: `/${locale}/tours/popular/khor-virap-azat-garni-geghard`,
     },
     {
       id: "garni",
       title: locale === "ru" ? "Храм Гарни & Гегард" : locale === "hy" ? "Գառնի և Գեղարդ" : "Garni & Geghard",
       subtitle: locale === "ru" ? "Античный храм и скальные святыни" : "Classical temple & UNESCO cave",
-      image: "/images/package-garni-hd.jpg",
+      image: cardImages?.heroGarni || "/images/package-garni-hd.jpg",
       href: `/${locale}/tours/popular/garni-charents-arch-lavash-geghard`,
     },
     {
       id: "tatev",
       title: locale === "ru" ? "Крылья Татева" : locale === "hy" ? "Տաթևի թևեր" : "Wings of Tatev",
       subtitle: locale === "ru" ? "Монастырь над ущельем Воротан" : "Medieval monastery over the gorge",
-      image: "/images/package-tatev.jpg",
+      image: cardImages?.heroTatev || "/images/package-tatev.jpg",
       href: `/${locale}/tours?q=tatev`,
     },
     {
       id: "noravank",
       title: locale === "ru" ? "Красный Нораванк" : locale === "hy" ? "Նորավանք" : "Noravank Canyon",
       subtitle: locale === "ru" ? "Живописные скалы и край вин Арени" : "Red rock canyon & Areni wines",
-      image: "/images/package-noravank.jpg",
+      image: cardImages?.heroNoravank || "/images/package-noravank.jpg",
       href: `/${locale}/tours/popular/khor-virap-areni-noravank-birds-cave`,
     },
     {
       id: "azhdahak",
       title: locale === "ru" ? "Вулкан Аждаак (4x4)" : locale === "hy" ? "Աժդահակ (4x4)" : "Azhdahak 4x4",
       subtitle: locale === "ru" ? "Внедорожная экспедиция к кратеру" : "Volcano crater lake expedition",
-      image: "/images/azhdahak.jpg",
+      image: cardImages?.heroAzhdahak || "/images/azhdahak.jpg",
       href: `/${locale}/tours/jeep`,
     },
   ];

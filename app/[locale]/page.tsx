@@ -166,21 +166,21 @@ export default async function HomePage({ params }: Props) {
       title: locale === "ru" ? "Джип-тур на вулкан Аждаак: марсианские пейзажи и ледяное озеро" : locale === "hy" ? "Ջիպ-տուր դեպի Աժդահակ հրաբուխ" : "4x4 Expedition to Mount Azhdahak",
       category: locale === "ru" ? "Приключения" : locale === "hy" ? "Արկածներ" : "Adventure",
       readTime: "5 min",
-      image: "/images/jeep.jpg",
+      image: site.homepageImages?.article1 || "/images/jeep.jpg",
       slug: "tours/jeep",
     },
     {
       title: locale === "ru" ? "Симфония камней и скальный Гегард: чудеса Гарнийского ущелья" : locale === "hy" ? "Քարերի սիմֆոնիա և Գեղարդ" : "Symphony of Stones & Geghard Cave Monastery",
       category: locale === "ru" ? "Культура" : locale === "hy" ? "Մշակույթ" : "Heritage",
       readTime: "4 min",
-      image: "/images/garni.jpg",
+      image: site.homepageImages?.article2 || "/images/garni.jpg",
       slug: "tours/individual/garni-geghard-symphony",
     },
     {
       title: locale === "ru" ? "Как выбрать многодневный тур по Армении: отели, гиды и маршруты" : locale === "hy" ? "Ինչպես ընտրել բազմօրյա տուր փաթեթ" : "Choosing the Perfect Multi-Day Armenia Journey",
       category: locale === "ru" ? "Советы" : locale === "hy" ? "Խորհուրդներ" : "Travel Guide",
       readTime: "6 min",
-      image: "/images/noravank.jpg",
+      image: site.homepageImages?.article3 || "/images/noravank.jpg",
       slug: "tour-packages",
     },
   ];
@@ -193,25 +193,25 @@ export default async function HomePage({ params }: Props) {
       />
 
       {/* 1. HERO with integrated Trip Discovery Search */}
-      <Hero locale={locale} dict={dict} images={hero.images} />
+      <Hero locale={locale} dict={dict} images={hero.images} cardImages={site.homepageImages} />
 
       {/* 1.1 "Внутренний туризм — это тренд" Bento Grid (Screenshot 1) */}
-      <TrendBentoGrid locale={locale} />
+      <TrendBentoGrid locale={locale} images={site.homepageImages} />
 
       {/* 1.3 Signature TOP TOURS 3-Column Showcase */}
-      <TopToursSection locale={locale} />
+      <TopToursSection locale={locale} images={site.homepageImages} />
 
       {/* 1.4 Luxury Resort & Spa Showcase (Screenshot 1 bottom) */}
-      <LuxuryResortCard locale={locale} />
+      <LuxuryResortCard locale={locale} images={site.homepageImages} />
 
       {/* 1.5 Signature Full-Width Immersive Banner */}
-      <FeaturedBannerSection locale={locale} />
+      <FeaturedBannerSection locale={locale} bannerImage={site.homepageImages?.featuredBanner} />
 
       {/* 1.6 Scientific & Heritage Expeditions Banner (Screenshot 2) */}
       <HeritageBanner locale={locale} />
 
       {/* 1.7 "Отдых без мелкого шрифта" & Panoramic Escapes (Screenshot 5 & 4) */}
-      <NoFinePrintCards locale={locale} />
+      <NoFinePrintCards locale={locale} bannerImage={site.homepageImages?.panoramicBanner} />
 
       {/* 1.8 "Наши преимущества" 8-Item Grid (Screenshot 3) */}
       <AdvantagesGrid locale={locale} />

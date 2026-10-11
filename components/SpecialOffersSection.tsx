@@ -133,7 +133,7 @@ export default function SpecialOffersSection({
                 <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[calc(2.5rem-0.5rem)] bg-black group shadow-inner">
                   {/* High Definition Visual */}
                   <Image
-                    src="/images/offer-khor-virap.jpg"
+                    src={offer.bannerImage || offer.image || "/images/offer-khor-virap.jpg"}
                     alt={title}
                     fill
                     sizes="(max-width: 1024px) 90vw, 420px"
