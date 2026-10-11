@@ -39,6 +39,19 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
     { href: `/${locale}/contacts`, label: dict.nav.contacts },
   ];
 
+  const isItemActive = (href: string) => {
+    if (href === `/${locale}`) {
+      return pathname === `/${locale}`;
+    }
+    if (href === `/${locale}/tours`) {
+      return (
+        (pathname === href || pathname.startsWith(`${href}/`)) &&
+        !pathname.startsWith(`/${locale}/tours/offers`)
+      );
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
   return (
     <header
       className={`z-50 transition-all duration-300 text-[#FCFCF7] ${
@@ -73,10 +86,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-1.5 rounded-full border border-white/20 bg-black/25 px-3 py-1.5 backdrop-blur-md shadow-lg lg:flex" aria-label="Main">
           {nav.map((item) => {
-            const isActive =
-              item.href === `/${locale}`
-                ? pathname === `/${locale}`
-                : pathname.startsWith(item.href);
+            const isActive = isItemActive(item.href);
             return (
               <Link
                 key={item.href}
@@ -142,10 +152,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
             >
               <ul className="flex flex-col gap-1.5 px-6 py-5">
                 {nav.map((item) => {
-                  const isActive =
-                    item.href === `/${locale}`
-                      ? pathname === `/${locale}`
-                      : pathname.startsWith(item.href);
+                  const isActive = isItemActive(item.href);
                   return (
                     <li key={item.href}>
                       <Link
