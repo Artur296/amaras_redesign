@@ -15,6 +15,7 @@ import LuxuryResortCard from "@/components/LuxuryResortCard";
 import HeritageBanner from "@/components/HeritageBanner";
 import AdvantagesGrid from "@/components/AdvantagesGrid";
 import NoFinePrintCards from "@/components/NoFinePrintCards";
+import AboutCompanySection from "@/components/AboutCompanySection";
 import { faqs } from "@/lib/faqs";
 import { CalendarIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
@@ -218,6 +219,9 @@ export default async function HomePage({ params }: Props) {
 
       {/* 1.9 Stats & Trust Strip */}
       <HeroStats locale={locale} dict={dict} />
+
+      {/* 1.10 About Amaras Tour Armenia Section */}
+      <AboutCompanySection locale={locale} />
 
       {/* 2. TRAVEL FORMATS (Landing Page Showcase) */}
       <section className="mx-auto max-w-[1360px] px-6 py-24 sm:py-32">
