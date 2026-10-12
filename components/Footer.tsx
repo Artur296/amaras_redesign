@@ -24,6 +24,7 @@ export default function Footer({
   const nav = [
     { href: `/${locale}`, label: dict.nav.home },
     { href: `/${locale}/tours`, label: dict.nav.tours },
+    { href: `/${locale}#what-to-see`, label: locale === "ru" ? "Что посмотреть в Армении" : locale === "hy" ? "Ինչ տեսնել Հայաստանում" : "What to See in Armenia" },
     { href: `/${locale}/tour-packages`, label: dict.nav.packages },
     { href: `/${locale}/guests`, label: dict.nav.guests },
     { href: `/${locale}/about`, label: dict.nav.about },

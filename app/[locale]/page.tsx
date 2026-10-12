@@ -16,6 +16,7 @@ import HeritageBanner from "@/components/HeritageBanner";
 import AdvantagesGrid from "@/components/AdvantagesGrid";
 import NoFinePrintCards from "@/components/NoFinePrintCards";
 import AboutCompanySection from "@/components/AboutCompanySection";
+import { WhatToSeeSection } from "@/components/WhatToSeeSection";
 import { faqs } from "@/lib/faqs";
 import { CalendarIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
@@ -161,30 +162,7 @@ export default async function HomePage({ params }: Props) {
   ];
 
 
-  // Travel Stories / Insights
-  const travelArticles = [
-    {
-      title: locale === "ru" ? "Джип-тур на вулкан Аждаак: марсианские пейзажи и ледяное озеро" : locale === "hy" ? "Ջիպ-տուր դեպի Աժդահակ հրաբուխ" : "4x4 Expedition to Mount Azhdahak",
-      category: locale === "ru" ? "Приключения" : locale === "hy" ? "Արկածներ" : "Adventure",
-      readTime: "5 min",
-      image: site.homepageImages?.article1 || "/images/jeep.jpg",
-      slug: "tours/jeep",
-    },
-    {
-      title: locale === "ru" ? "Симфония камней и скальный Гегард: чудеса Гарнийского ущелья" : locale === "hy" ? "Քարերի սիմֆոնիա և Գեղարդ" : "Symphony of Stones & Geghard Cave Monastery",
-      category: locale === "ru" ? "Культура" : locale === "hy" ? "Մշակույթ" : "Heritage",
-      readTime: "4 min",
-      image: site.homepageImages?.article2 || "/images/garni.jpg",
-      slug: "tours/individual/garni-geghard-symphony",
-    },
-    {
-      title: locale === "ru" ? "Как выбрать многодневный тур по Армении: отели, гиды и маршруты" : locale === "hy" ? "Ինչպես ընտրել բազմօրյա տուր փաթեթ" : "Choosing the Perfect Multi-Day Armenia Journey",
-      category: locale === "ru" ? "Советы" : locale === "hy" ? "Խորհուրդներ" : "Travel Guide",
-      readTime: "6 min",
-      image: site.homepageImages?.article3 || "/images/noravank.jpg",
-      slug: "tour-packages",
-    },
-  ];
+
 
   return (
     <>
@@ -384,63 +362,8 @@ export default async function HomePage({ params }: Props) {
 
 
 
-      {/* 7. TRAVEL STORIES / CULTURAL GUIDES (TripMate "Latest Travel Libraries") */}
-      <section className="mx-auto max-w-[1360px] px-6 py-24 sm:py-32">
-        <FadeIn>
-          <div className="flex flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
-            <div>
-              <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#586EFF]">
-                {locale === "ru" ? "Заметки путешественника" : locale === "hy" ? "Ճանապարհորդական նոթեր" : "Travel Stories & Guides"}
-              </span>
-              <h2 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#312F2F]">
-                {locale === "ru" ? "Вдохновение для поездки" : locale === "hy" ? "Ոգեշնչում ճամփորդության համար" : "Inspiration for Armenia"}
-              </h2>
-            </div>
-            <Link
-              href={`/${locale}/about`}
-              className="text-base font-bold text-[#586EFF] hover:underline"
-            >
-              {dict.nav.about} →
-            </Link>
-          </div>
-        </FadeIn>
-
-
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {travelArticles.map((art, i) => (
-            <FadeIn key={art.title} delay={i * 0.08} className="h-full">
-              <Link
-                href={`/${locale}/${art.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#EAE9E0] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-black/5">
-                  <Image
-                    src={art.image}
-                    alt={art.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <span className="absolute left-3 top-3 rounded-full bg-[#312F2F]/85 px-3 py-1 text-xs font-bold text-[#C7FF32] backdrop-blur-md">
-                    {art.category}
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <span className="text-xs font-semibold text-muted">
-                    {art.readTime} {locale === "ru" ? "чтения" : "read"}
-                  </span>
-                  <h3 className="mt-2 text-lg font-black leading-snug text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
-                    {art.title}
-                  </h3>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#586EFF]">
-                    {locale === "ru" ? "Читать подробнее" : locale === "hy" ? "Կարդալ ավելին" : "Read more"} →
-                  </span>
-                </div>
-              </Link>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
+      {/* 7. WHAT TO SEE IN ARMENIA (ИНФОРМАТИВНЫЙ ПУТЕВОДИТЕЛЬ: 18 СВЯТЫНЬ И ДОСТОПРИМЕЧАТЕЛЬНОСТЕЙ) */}
+      <WhatToSeeSection locale={locale} />
 
       {/* 8. TESTIMONIALS & GUEST REVIEWS (Dynamic with interactive submit) */}
       <ReviewsSection initialReviews={approvedReviews} locale={locale} guides={guides} />
