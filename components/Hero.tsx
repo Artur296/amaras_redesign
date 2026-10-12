@@ -83,7 +83,7 @@ export default function Hero({
 
   return (
     <MotionConfig reducedMotion="user">
-      <section className="relative flex min-h-[100dvh] w-full flex-col justify-center overflow-hidden bg-black text-[#FCFCF7] pt-20 pb-8 sm:pt-28 sm:pb-16">
+      <section className="relative flex min-h-[100dvh] w-full flex-col justify-end lg:justify-center overflow-hidden bg-black text-[#FCFCF7] pt-20 pb-5 sm:pt-28 sm:pb-16">
         {/* Fullscreen Video Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <video
@@ -99,23 +99,23 @@ export default function Hero({
           </video>
         </div>
 
-        {/* Ambient Overlay for Cinematic Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/30 pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
+        {/* Ambient Overlay for Cinematic Contrast - lighter on mobile to keep video crystal clear */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/75 lg:bg-gradient-to-r lg:from-black/85 lg:via-black/45 lg:to-black/30 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-28 sm:h-48 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
         {/* Main Content Container: Left Editorial Text + Right Destination Cards Slider */}
-        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-12 items-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-10 lg:gap-12 items-center">
             {/* LEFT COLUMN: Bold Headline & Editorial Story */}
             <div className="lg:col-span-5 flex flex-col items-start justify-center text-left">
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 sm:px-4 sm:py-1.5 backdrop-blur-md shadow-md"
+                className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/20 bg-black/40 px-3 py-0.5 sm:px-4 sm:py-1.5 backdrop-blur-md shadow-md"
               >
-                <span className="h-2 w-2 rounded-full bg-[#C7FF32] animate-pulse" />
-                <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.2em] text-[#C7FF32]">
+                <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#C7FF32] animate-pulse" />
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.18em] text-[#C7FF32]">
                   Armenia • Exclusive Tours
                 </span>
               </motion.div>
@@ -125,7 +125,7 @@ export default function Hero({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.6 }}
-                className="mt-3 sm:mt-6 font-serif text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal leading-[1.08] tracking-tight text-[#FCFCF7] drop-shadow-[0_4px_30px_rgba(0,0,0,0.9)]"
+                className="mt-2 sm:mt-6 font-serif text-3xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal leading-[1.08] tracking-tight text-[#FCFCF7] drop-shadow-[0_4px_30px_rgba(0,0,0,0.9)]"
               >
                 {locale === "ru"
                   ? "Туры в Армению"
@@ -139,7 +139,7 @@ export default function Hero({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.28, duration: 0.6 }}
-                className="mt-3 sm:mt-6 max-w-lg text-sm sm:text-lg leading-relaxed text-[#FCFCF7]/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] font-normal"
+                className="mt-1.5 sm:mt-6 max-w-lg text-xs sm:text-lg leading-relaxed text-[#FCFCF7]/90 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] font-normal line-clamp-2 sm:line-clamp-none"
               >
                 {dict.hero.subtitle}
               </motion.p>
@@ -149,16 +149,16 @@ export default function Hero({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.38, duration: 0.6 }}
-                className="mt-5 sm:mt-8 w-full sm:w-auto"
+                className="mt-3.5 sm:mt-8 w-auto inline-flex self-start"
               >
                 <Link
                   href={`/${locale}/tours`}
-                  className="group inline-flex items-center justify-center gap-2.5 sm:gap-3 rounded-xl sm:rounded-2xl bg-[#C7FF32] px-7 py-3.5 sm:px-9 sm:py-4 text-xs sm:text-base font-black text-[#312F2F] shadow-[0_10px_30px_rgba(199,255,50,0.35)] transition-all duration-300 hover:bg-[#b8f226] hover:scale-105 active:scale-95 w-full sm:w-auto"
+                  className="group inline-flex items-center justify-center gap-2 sm:gap-3 rounded-full bg-[#C7FF32] px-6 py-2.5 sm:px-9 sm:py-4 text-xs sm:text-base font-black text-[#312F2F] shadow-[0_8px_25px_rgba(199,255,50,0.35)] transition-all duration-300 hover:bg-[#b8f226] hover:scale-105 active:scale-95 w-auto"
                 >
                   <span className="uppercase tracking-wider">
                     {locale === "ru" ? "Смотреть туры" : locale === "hy" ? "Դիտել տուրերը" : "See more"}
                   </span>
-                  <span className="text-base font-black transition-transform group-hover:translate-x-1">→</span>
+                  <span className="text-sm sm:text-base font-black transition-transform group-hover:translate-x-1">→</span>
                 </Link>
               </motion.div>
             </div>
@@ -189,32 +189,32 @@ export default function Hero({
                 </button>
               </div>
 
-              {/* Mobile Swipeable Destination Reel (< lg) */}
-              <div className="lg:hidden mt-2 -mx-5 px-5 overflow-x-auto flex gap-3.5 pb-2 scrollbar-none snap-x snap-mandatory">
+              {/* Mobile Swipeable Destination Reel (< lg) - Compact low-profile height */}
+              <div className="lg:hidden mt-3 -mx-4 px-4 overflow-x-auto flex gap-2.5 pb-1 scrollbar-none snap-x snap-mandatory">
                 {destinations.map((item) => (
                   <Link
                     key={`mobile-${item.id}`}
                     href={item.href}
-                    className="relative shrink-0 w-[145px] sm:w-[175px] aspect-[3/4] overflow-hidden rounded-2xl border border-white/20 bg-black/40 shadow-xl snap-start group"
+                    className="relative shrink-0 w-[125px] sm:w-[155px] h-[72px] sm:h-[84px] overflow-hidden rounded-xl border border-white/25 bg-black/40 shadow-lg snap-start group"
                   >
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      sizes="175px"
+                      sizes="155px"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
-                    <div className="absolute top-2.5 left-2.5">
-                      <span className="rounded-full bg-black/60 px-2 py-0.5 text-[9px] font-bold text-[#C7FF32] backdrop-blur-md">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                    <div className="absolute top-1.5 left-2">
+                      <span className="rounded-full bg-black/60 px-1.5 py-0.5 text-[8px] font-bold text-[#C7FF32] backdrop-blur-md">
                         {locale === "ru" ? "Тур" : locale === "hy" ? "Տուր" : "Tour"}
                       </span>
                     </div>
-                    <div className="absolute bottom-2.5 inset-x-2.5 text-left">
-                      <p className="text-xs font-bold text-white line-clamp-1 group-hover:text-[#C7FF32]">
+                    <div className="absolute bottom-1.5 inset-x-2 text-left">
+                      <p className="text-[11px] font-bold text-white line-clamp-1 group-hover:text-[#C7FF32] leading-tight">
                         {item.title}
                       </p>
-                      <p className="text-[10px] text-white/70 line-clamp-1 mt-0.5">
+                      <p className="text-[9px] text-white/70 line-clamp-1">
                         {item.subtitle}
                       </p>
                     </div>
