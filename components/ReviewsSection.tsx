@@ -5,14 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
 import type { Review } from "@/lib/reviews";
 import { getReviewText } from "@/lib/reviews";
+import type { Guide } from "@/lib/guides";
+import { defaultGuides } from "@/lib/guides";
 import { StarIcon } from "@/components/icons";
 
 type Props = {
   initialReviews: Review[];
   locale: Locale;
+  guides?: Guide[];
 };
 
-export default function ReviewsSection({ initialReviews, locale }: Props) {
+export default function ReviewsSection({ initialReviews, locale, guides }: Props) {
+  const guideList = guides && guides.length ? guides : defaultGuides;
   const [reviews] = useState<Review[]>(initialReviews);
   const [modalOpen, setModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -483,16 +487,49 @@ export default function ReviewsSection({ initialReviews, locale }: Props) {
 
                     {/* Guide Name */}
                     <div>
-                      <label className="block text-xs font-semibold text-white/80">
-                        {texts.guideLabel}
-                      </label>
+                      <div className="flex items-center justify-between">
+                        <label className="block text-xs font-semibold text-white/80">
+                          {texts.guideLabel}
+                        </label>
+                        {guideList.length > 0 && (
+                          <span className="text-[10px] text-white/50">
+                            {locale === "ru" ? "выберите или напишите" : locale === "hy" ? "ընտրեք կամ գրեք" : "select or type"}
+                          </span>
+                        )}
+                      </div>
                       <input
                         type="text"
+                        list="home-review-guides-list"
                         value={guideName}
                         onChange={(e) => setGuideName(e.target.value)}
                         placeholder={texts.guidePlaceholder}
                         className="mt-1 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/30 focus:border-[#C7FF32] focus:outline-none"
                       />
+                      {guideList.length > 0 && (
+                        <>
+                          <datalist id="home-review-guides-list">
+                            {guideList.map((g) => (
+                              <option key={g.id || g.name} value={g.name} />
+                            ))}
+                          </datalist>
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            {guideList.map((g) => (
+                              <button
+                                key={g.id || g.name}
+                                type="button"
+                                onClick={() => setGuideName(guideName === g.name ? "" : g.name)}
+                                className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-all cursor-pointer ${
+                                  guideName === g.name
+                                    ? "bg-[#C7FF32] text-[#312F2F] font-bold shadow-sm"
+                                    : "bg-white/10 text-white/80 hover:bg-white/20 hover:text-white"
+                                }`}
+                              >
+                                {g.name}
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      )}
                     </div>
 
                     {/* Review text */}

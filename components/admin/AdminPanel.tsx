@@ -15,6 +15,7 @@ import type { Content, ContentKey } from "@/lib/content";
 import type { Review } from "@/lib/reviews";
 import type { SpecialOffer } from "@/lib/offers";
 import type { GuestMedia } from "@/lib/guests";
+import type { Guide } from "@/lib/guides";
 
 const localeNames: Record<Locale, string> = {
   ru: "Русский",
@@ -37,9 +38,10 @@ const sectionNames: Record<ContentKey, string> = {
   reviews: "Reviews",
   offers: "Спецпредложения",
   guests: "Гости",
+  guides: "Гиды",
 };
 
-const TABS = ["Tours", "Packages", "Offers", "Guests", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
+const TABS = ["Tours", "Packages", "Offers", "Guests", "Guides", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
 type Tab = (typeof TABS)[number];
 
 // The stored keys, read off the editing state. Tabs edit different
@@ -54,6 +56,7 @@ function keyValues(content: Content): Record<ContentKey, unknown> {
     reviews: content.reviews || [],
     offers: content.offers || [],
     guests: content.guests || [],
+    guides: content.guides || [],
   };
 }
 
@@ -198,6 +201,8 @@ export default function AdminPanel() {
                     ? "Спецпредложения"
                     : t === "Guests"
                     ? "Гости"
+                    : t === "Guides"
+                    ? "Гиды"
                     : t}
                 </span>
                 {pendingCount > 0 && (
@@ -273,7 +278,15 @@ export default function AdminPanel() {
         {tab === "Guests" && (
           <GuestsTab
             guests={content.guests || []}
+            guides={content.guides || []}
             onChange={(guests) => setContent({ ...content, guests })}
+            onSave={publish}
+          />
+        )}
+        {tab === "Guides" && (
+          <GuidesTab
+            guides={content.guides || []}
+            onChange={(guides) => setContent({ ...content, guides })}
             onSave={publish}
           />
         )}
@@ -2898,10 +2911,12 @@ function OffersTab({
 
 function GuestsTab({
   guests,
+  guides,
   onChange,
   onSave,
 }: {
   guests: GuestMedia[];
+  guides: Guide[];
   onChange: (guests: GuestMedia[]) => void;
   onSave: () => void;
 }) {
@@ -3024,11 +3039,17 @@ function GuestsTab({
             <Field label="Имя гида">
               <input
                 type="text"
+                list="admin-guest-guides-list"
                 value={activeGuest.guideName || ""}
                 onChange={(e) => updateActiveGuest({ guideName: e.target.value })}
                 className={inputCls}
-                placeholder="Например: Армен, Давид, Тигран"
+                placeholder="Выберите или введите имя гида"
               />
+              <datalist id="admin-guest-guides-list">
+                {guides.map((g) => (
+                  <option key={g.id || g.name} value={g.name} />
+                ))}
+              </datalist>
             </Field>
 
             <Field label="Локация / Достопримечательность">
@@ -3101,4 +3122,132 @@ function GuestsTab({
     </div>
   );
 }
+
+/* ---------- Guides Management Tab ---------- */
+
+function GuidesTab({
+  guides,
+  onChange,
+  onSave,
+}: {
+  guides: Guide[];
+  onChange: (guides: Guide[]) => void;
+  onSave: () => void;
+}) {
+  const [newName, setNewName] = useState("");
+
+  function addGuide(e?: React.FormEvent) {
+    if (e) e.preventDefault();
+    const trimmed = newName.trim();
+    if (!trimmed) return;
+
+    if (guides.some((g) => g.name.toLowerCase() === trimmed.toLowerCase())) {
+      alert("Гид с таким именем уже есть в списке!");
+      return;
+    }
+
+    const newGuide: Guide = {
+      id: `guide-${Date.now()}`,
+      name: trimmed,
+      active: true,
+    };
+    onChange([...guides, newGuide]);
+    setNewName("");
+  }
+
+  function updateGuide(id: string, name: string) {
+    onChange(guides.map((g) => (g.id === id ? { ...g, name } : g)));
+  }
+
+  function deleteGuide(id: string, name: string) {
+    if (!window.confirm(`Вы уверены, что хотите удалить гида «${name}»?`)) return;
+    onChange(guides.filter((g) => g.id !== id));
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <h2 className="text-2xl font-black text-ink">Гиды компании (Guides)</h2>
+            <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">
+              Всего: {guides.length}
+            </span>
+          </div>
+          <p className="mt-1 text-sm text-muted">
+            Управляйте списком гидов. Они используются в отзывах, фото-моментах и фильтрах на странице «Гости».
+          </p>
+        </div>
+      </div>
+
+      {/* Add Guide Form */}
+      <form
+        onSubmit={addGuide}
+        className="rounded-2xl border border-border bg-white p-5 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-end gap-3"
+      >
+        <div className="flex-1">
+          <label className="block text-xs font-bold text-ink mb-1.5">
+            Добавить нового гида
+          </label>
+          <input
+            type="text"
+            required
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            placeholder="Введите имя гида (например: Карен)"
+            className={inputCls}
+          />
+        </div>
+        <button
+          type="submit"
+          className="rounded-xl bg-primary px-6 py-2.5 font-bold text-white transition-colors hover:bg-primary-dark cursor-pointer text-sm whitespace-nowrap shadow-sm"
+        >
+          + Добавить гида
+        </button>
+      </form>
+
+      {/* Guides Grid / List */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {guides.map((guide, idx) => (
+          <div
+            key={guide.id || idx}
+            className="rounded-2xl border border-border bg-white p-4 shadow-sm hover:border-gray-400 transition-all flex items-center justify-between gap-3"
+          >
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center font-black text-primary text-sm shrink-0">
+                {guide.name ? guide.name.charAt(0).toUpperCase() : "G"}
+              </div>
+              <div className="flex-1 min-w-0">
+                <input
+                  type="text"
+                  value={guide.name}
+                  onChange={(e) => updateGuide(guide.id, e.target.value)}
+                  className="w-full font-bold text-sm text-ink bg-transparent border-b border-transparent hover:border-gray-300 focus:border-primary focus:outline-none px-1 py-0.5 rounded transition-colors"
+                  title="Нажмите, чтобы отредактировать имя"
+                />
+                <span className="block text-[10px] text-muted px-1">Лицензированный гид</span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => deleteGuide(guide.id, guide.name)}
+              className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition-colors cursor-pointer shrink-0"
+              title={`Удалить ${guide.name}`}
+              aria-label={`Удалить ${guide.name}`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <SaveBar onSave={onSave} label="Опубликовать список гидов на сайте" />
+    </div>
+  );
+}
+
 

@@ -30,7 +30,7 @@ export const revalidate = 300;
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   if (!locales.includes(locale as Locale)) notFound();
-  const { dicts, categories: allCategories, site, hero, reviews, offers } = await getContent();
+  const { dicts, categories: allCategories, site, hero, reviews, offers, guides } = await getContent();
 
   const categories = publicCategories(allCategories);
   const dict = dicts[locale];
@@ -443,7 +443,7 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       {/* 8. TESTIMONIALS & GUEST REVIEWS (Dynamic with interactive submit) */}
-      <ReviewsSection initialReviews={approvedReviews} locale={locale} />
+      <ReviewsSection initialReviews={approvedReviews} locale={locale} guides={guides} />
 
       {/* 8.5 FREQUENTLY ASKED QUESTIONS (Armenia travel tips, payments, vehicles) */}
       <FaqSection locale={locale} />

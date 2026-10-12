@@ -7,15 +7,19 @@ import type { Locale } from "@/lib/i18n";
 import type { GuestMedia } from "@/lib/guests";
 import type { Review } from "@/lib/reviews";
 import { getReviewText } from "@/lib/reviews";
+import type { Guide } from "@/lib/guides";
+import { defaultGuides } from "@/lib/guides";
 import { StarIcon } from "@/components/icons";
 
 type Props = {
   guests: GuestMedia[];
   reviews: Review[];
   locale: Locale;
+  guides?: Guide[];
 };
 
-export default function GuestsGallery({ guests, reviews, locale }: Props) {
+export default function GuestsGallery({ guests, reviews, locale, guides }: Props) {
+  const guideList = guides && guides.length ? guides : defaultGuides;
   const [activeTab, setActiveTab] = useState<"all" | "photo" | "video" | "reviews">("all");
   const [selectedGuide, setSelectedGuide] = useState<string>("all");
   const [activeItem, setActiveItem] = useState<GuestMedia | null>(null);
@@ -146,9 +150,10 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
     },
   }[locale];
 
-  // Distinct guides across guests and reviews
+  // Distinct guides across registered guides, guests and reviews
   const allGuides = Array.from(
     new Set([
+      ...guideList.map((g) => g.name),
       ...guests.map((g) => g.guideName).filter(Boolean),
       ...reviews.map((r) => r.guideName).filter(Boolean),
     ])
@@ -681,16 +686,49 @@ export default function GuestsGallery({ guests, reviews, locale }: Props) {
 
                   {/* Tour Guide Name input */}
                   <div>
-                    <label className="block text-xs font-medium text-white/80 mb-1">
-                      {t.guideInputLabel}
-                    </label>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="block text-xs font-medium text-white/80">
+                        {t.guideInputLabel}
+                      </label>
+                      {guideList.length > 0 && (
+                        <span className="text-[10px] text-white/50">
+                          {locale === "ru" ? "выберите или напишите" : locale === "hy" ? "ընտրեք կամ գրեք" : "select or type"}
+                        </span>
+                      )}
+                    </div>
                     <input
                       type="text"
+                      list="gallery-review-guides-list"
                       value={guideName}
                       onChange={(e) => setGuideName(e.target.value)}
                       placeholder={t.guideInputPlaceholder}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-[#1C1B1B] border border-[#454343] text-sm text-[#FCFCF7] placeholder:text-white/30 focus:outline-none focus:border-[#C7FF32]"
                     />
+                    {guideList.length > 0 && (
+                      <>
+                        <datalist id="gallery-review-guides-list">
+                          {guideList.map((g) => (
+                            <option key={g.id || g.name} value={g.name} />
+                          ))}
+                        </datalist>
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {guideList.map((g) => (
+                            <button
+                              key={g.id || g.name}
+                              type="button"
+                              onClick={() => setGuideName(guideName === g.name ? "" : g.name)}
+                              className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-all cursor-pointer ${
+                                guideName === g.name
+                                  ? "bg-[#C7FF32] text-[#312F2F] font-bold shadow-sm"
+                                  : "bg-white/10 text-white/80 hover:bg-white/20 hover:text-white"
+                              }`}
+                            >
+                              {g.name}
+                            </button>
+                          ))}
+                        </div>
+                      </>
+                    )}
                   </div>
 
                   {/* Review Text */}

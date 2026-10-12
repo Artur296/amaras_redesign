@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GuestsPage({ params }: Props) {
   const { locale } = await params;
-  const { dicts, guests, reviews } = await getContent();
+  const { dicts, guests, reviews, guides } = await getContent();
   const dict = dicts[locale];
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -101,6 +101,7 @@ export default async function GuestsPage({ params }: Props) {
         <GuestsGallery
           guests={guests}
           reviews={reviews}
+          guides={guides}
           locale={locale}
         />
       </main>
