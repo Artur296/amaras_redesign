@@ -95,7 +95,7 @@ export default function Hero({
             poster="/images/hero-poster.jpg"
             className="h-full w-full object-cover object-center"
           >
-            <source src="/video.mp4" type="video/mp4" />
+            <source src="/video.mp4?v=2" type="video/mp4" />
           </video>
         </div>
 
