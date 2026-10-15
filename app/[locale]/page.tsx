@@ -16,7 +16,7 @@ import HeritageBanner from "@/components/HeritageBanner";
 import AdvantagesGrid from "@/components/AdvantagesGrid";
 import NoFinePrintCards from "@/components/NoFinePrintCards";
 import AboutCompanySection from "@/components/AboutCompanySection";
-import { WhatToSeeSection } from "@/components/WhatToSeeSection";
+
 import { faqs } from "@/lib/faqs";
 import { CalendarIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
 import { locales, type Locale } from "@/lib/i18n";
@@ -362,8 +362,7 @@ export default async function HomePage({ params }: Props) {
 
 
 
-      {/* 7. WHAT TO SEE IN ARMENIA (ИНФОРМАТИВНЫЙ ПУТЕВОДИТЕЛЬ: 18 СВЯТЫНЬ И ДОСТОПРИМЕЧАТЕЛЬНОСТЕЙ) */}
-      <WhatToSeeSection locale={locale} />
+
 
       {/* 8. TESTIMONIALS & GUEST REVIEWS (Dynamic with interactive submit) */}
       <ReviewsSection initialReviews={approvedReviews} locale={locale} guides={guides} />

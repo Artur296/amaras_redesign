@@ -16,6 +16,7 @@ import type { Review } from "@/lib/reviews";
 import type { SpecialOffer } from "@/lib/offers";
 import type { GuestMedia } from "@/lib/guests";
 import type { Guide } from "@/lib/guides";
+import type { Attraction, RegionCategory } from "@/lib/attractions";
 
 const localeNames: Record<Locale, string> = {
   ru: "Русский",
@@ -39,9 +40,10 @@ const sectionNames: Record<ContentKey, string> = {
   offers: "Спецпредложения",
   guests: "Гости",
   guides: "Гиды",
+  attractions: "Что посмотреть",
 };
 
-const TABS = ["Tours", "Packages", "Offers", "Guests", "Guides", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
+const TABS = ["Tours", "Packages", "Attractions", "Offers", "Guests", "Guides", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
 type Tab = (typeof TABS)[number];
 
 // The stored keys, read off the editing state. Tabs edit different
@@ -57,6 +59,7 @@ function keyValues(content: Content): Record<ContentKey, unknown> {
     offers: content.offers || [],
     guests: content.guests || [],
     guides: content.guides || [],
+    attractions: content.attractions || [],
   };
 }
 
@@ -203,6 +206,8 @@ export default function AdminPanel() {
                     ? "Гости"
                     : t === "Guides"
                     ? "Гиды"
+                    : t === "Attractions"
+                    ? "Что посмотреть"
                     : t}
                 </span>
                 {pendingCount > 0 && (
@@ -266,6 +271,13 @@ export default function AdminPanel() {
             setContent={setContent}
             onSaveTours={publish}
             onSaveCategories={publish}
+          />
+        )}
+        {tab === "Attractions" && (
+          <AttractionsTab
+            attractions={content.attractions || []}
+            onChange={(attractions) => setContent({ ...content, attractions })}
+            onSave={publish}
           />
         )}
         {tab === "Offers" && (
@@ -3249,5 +3261,425 @@ function GuidesTab({
     </div>
   );
 }
+
+/* ---------- Attractions Tab ---------- */
+
+const REGION_OPTIONS: { id: RegionCategory; label: string }[] = [
+  { id: "near_yerevan", label: "Рядом с Ереваном" },
+  { id: "sevan_dilijan", label: "Севан & Дилижан" },
+  { id: "south", label: "Юг (Вайоц Дзор & Сюник)" },
+  { id: "north_lori", label: "Север и Лори" },
+];
+
+function AttractionsTab({
+  attractions,
+  onChange,
+  onSave,
+}: {
+  attractions: Attraction[];
+  onChange: (attractions: Attraction[]) => void;
+  onSave: () => void;
+}) {
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [loc, setLoc] = useState<Locale>("ru");
+  const [filterRegion, setFilterRegion] = useState<"all" | RegionCategory>("all");
+  const [query, setQuery] = useState("");
+
+  const needle = query.trim().toLocaleLowerCase();
+  const visible = attractions.filter((a) => {
+    if (filterRegion !== "all" && a.regionCategory !== filterRegion) return false;
+    if (!needle) return true;
+    return (["ru", "hy", "en"] as const).some((l) =>
+      (a.name?.[l] ?? "").toLocaleLowerCase().includes(needle) ||
+      (a.tagline?.[l] ?? "").toLocaleLowerCase().includes(needle) ||
+      (a.id ?? "").toLocaleLowerCase().includes(needle)
+    );
+  });
+
+  function update(index: number, patch: Partial<Attraction>) {
+    onChange(attractions.map((a, i) => (i === index ? { ...a, ...patch } : a)));
+  }
+
+  function move(index: number, dir: -1 | 1) {
+    const target = index + dir;
+    if (target < 0 || target >= attractions.length) return;
+    const next = [...attractions];
+    [next[index], next[target]] = [next[target], next[index]];
+    onChange(next);
+  }
+
+  function addAttraction() {
+    const id = `attraction-${Date.now()}`;
+    const empty = { ru: "", hy: "", en: "" };
+    const newAttraction: Attraction = {
+      id,
+      name: { ru: "Новое место", hy: "Նոր վայր", en: "New Place" },
+      tagline: { ...empty },
+      regionCategory: "near_yerevan",
+      region: { ...empty },
+      distance: { ru: "0 км от Еревана", hy: "0 կմ Երևանից", en: "0 km from Yerevan" },
+      travelTime: { ru: "0 минут", hy: "0 րոպե", en: "0 mins" },
+      image: "/images/hero-mountain-road.jpg",
+      unesco: false,
+      highlights: { ru: [], hy: [], en: [] },
+      shortDescription: { ...empty },
+      fullStory: { ...empty },
+      tourQuery: "",
+    };
+    onChange([newAttraction, ...attractions]);
+    setOpenId(id);
+  }
+
+  function removeAttraction(id: string) {
+    onChange(attractions.filter((a) => a.id !== id));
+    if (openId === id) setOpenId(null);
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header and Add button */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <h2 className="text-2xl font-black text-ink">Что посмотреть в Армении</h2>
+            <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-bold text-primary">
+              Всего: {attractions.length}
+            </span>
+          </div>
+          <p className="mt-1 text-sm text-muted">
+            Управляйте путеводителем по достопримечательностям и историческим местам. Добавляйте описания, историю, фото и время в пути.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={addAttraction}
+          className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-primary-dark cursor-pointer shadow-sm"
+        >
+          + Добавить новое место
+        </button>
+      </div>
+
+      {/* Filter and Search Bar */}
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 rounded-2xl border border-border bg-white p-3 shadow-sm">
+        <div className="flex flex-wrap items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() => setFilterRegion("all")}
+            className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors cursor-pointer ${
+              filterRegion === "all" ? "bg-primary text-white" : "text-muted hover:bg-gray-100"
+            }`}
+          >
+            Все ({attractions.length})
+          </button>
+          {REGION_OPTIONS.map((r) => {
+            const count = attractions.filter((a) => a.regionCategory === r.id).length;
+            return (
+              <button
+                key={r.id}
+                type="button"
+                onClick={() => setFilterRegion(r.id)}
+                className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors cursor-pointer ${
+                  filterRegion === r.id ? "bg-primary text-white" : "text-muted hover:bg-gray-100"
+                }`}
+              >
+                {r.label} ({count})
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="w-full md:w-64">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Поиск по названию…"
+            className="w-full rounded-full border border-black/10 bg-gray-50 px-3.5 py-1.5 text-xs outline-none focus:border-primary focus:bg-white"
+          />
+        </div>
+      </div>
+
+      {/* Attractions List */}
+      <div className="space-y-3">
+        {visible.map((attraction) => {
+          const actualIndex = attractions.findIndex((a) => a.id === attraction.id);
+          const isOpen = openId === attraction.id;
+
+          return (
+            <div
+              key={attraction.id}
+              className={`rounded-2xl border bg-white transition-all shadow-sm ${
+                isOpen ? "border-primary ring-1 ring-primary/20" : "border-border hover:border-gray-400"
+              }`}
+            >
+              {/* Row Summary Card */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4">
+                <div
+                  className="flex items-center gap-3.5 flex-1 min-w-0 cursor-pointer"
+                  onClick={() => setOpenId(isOpen ? null : attraction.id)}
+                >
+                  {/* Thumbnail */}
+                  <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-100 border border-black/5">
+                    {attraction.image ? (
+                      <Image
+                        src={attraction.image}
+                        alt={attraction.name.ru || "Attraction"}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-[10px] text-muted">
+                        No image
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h4 className="font-bold text-sm text-ink truncate">
+                        {attraction.name.ru || attraction.name.en || attraction.id}
+                      </h4>
+                      {attraction.unesco && (
+                        <span className="shrink-0 rounded bg-amber-50 px-1.5 py-0.5 text-[10px] font-bold text-amber-700 border border-amber-200">
+                          UNESCO
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-muted truncate mt-0.5">
+                      {attraction.tagline.ru || attraction.tagline.en || "—"}
+                    </p>
+                    <div className="flex items-center gap-3 text-[11px] text-muted/80 mt-1">
+                      <span>{attraction.region.ru || "Армения"}</span>
+                      <span>•</span>
+                      <span>{attraction.distance.ru || "—"}</span>
+                      <span>•</span>
+                      <span>{attraction.travelTime.ru || "—"}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center justify-end gap-2 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-black/5">
+                  {/* Reorder Buttons */}
+                  <div className="flex items-center rounded-lg border border-black/10 bg-gray-50 p-0.5">
+                    <button
+                      type="button"
+                      disabled={actualIndex === 0}
+                      onClick={() => move(actualIndex, -1)}
+                      title="Поднять выше"
+                      className="rounded p-1 text-xs text-muted hover:bg-white hover:text-ink disabled:opacity-30 cursor-pointer"
+                    >
+                      ▲
+                    </button>
+                    <button
+                      type="button"
+                      disabled={actualIndex === attractions.length - 1}
+                      onClick={() => move(actualIndex, 1)}
+                      title="Опустить ниже"
+                      className="rounded p-1 text-xs text-muted hover:bg-white hover:text-ink disabled:opacity-30 cursor-pointer"
+                    >
+                      ▼
+                    </button>
+                  </div>
+
+                  {/* Edit Toggle */}
+                  <button
+                    type="button"
+                    onClick={() => setOpenId(isOpen ? null : attraction.id)}
+                    className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors cursor-pointer ${
+                      isOpen
+                        ? "bg-primary text-white"
+                        : "border border-black/15 bg-white text-ink hover:border-primary hover:text-primary"
+                    }`}
+                  >
+                    {isOpen ? "Свернуть" : "Редактировать"}
+                  </button>
+
+                  {/* Delete */}
+                  <DeleteButton
+                    label="Удалить"
+                    onDelete={() => removeAttraction(attraction.id)}
+                  />
+                </div>
+              </div>
+
+              {/* Expanded Edit Form */}
+              {isOpen && (
+                <div className="border-t border-border bg-[#FAFAF8] p-5 sm:p-6 rounded-b-2xl space-y-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/10 pb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-muted">Язык для редактирования:</span>
+                      <LocaleTabs active={loc} onChange={setLoc} />
+                    </div>
+                    <div className="text-xs text-muted">
+                      ID: <code className="bg-black/5 px-2 py-0.5 rounded font-mono">{attraction.id}</code>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Field label={`Название места (${localeNames[loc]})`}>
+                      <TextInput
+                        value={attraction.name[loc] ?? ""}
+                        onChange={(v) =>
+                          update(actualIndex, {
+                            name: { ...attraction.name, [loc]: v },
+                          })
+                        }
+                        placeholder="Например: Хор Вирап"
+                      />
+                    </Field>
+
+                    <Field label={`Слоган / Короткое описание (${localeNames[loc]})`}>
+                      <TextInput
+                        value={attraction.tagline[loc] ?? ""}
+                        onChange={(v) =>
+                          update(actualIndex, {
+                            tagline: { ...attraction.tagline, [loc]: v },
+                          })
+                        }
+                        placeholder="Например: Святыня у подножия Арарата"
+                      />
+                    </Field>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <Field label="Категория региона">
+                      <select
+                        value={attraction.regionCategory}
+                        onChange={(e) =>
+                          update(actualIndex, {
+                            regionCategory: e.target.value as RegionCategory,
+                          })
+                        }
+                        className={inputCls}
+                      >
+                        {REGION_OPTIONS.map((r) => (
+                          <option key={r.id} value={r.id}>
+                            {r.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+
+                    <Field label={`Область / Регион (${localeNames[loc]})`}>
+                      <TextInput
+                        value={attraction.region[loc] ?? ""}
+                        onChange={(v) =>
+                          update(actualIndex, {
+                            region: { ...attraction.region, [loc]: v },
+                          })
+                        }
+                        placeholder="Например: Араратская область, Армения"
+                      />
+                    </Field>
+
+                    <Field label="Статус ЮНЕСКО">
+                      <label className="mt-2.5 flex items-center gap-2.5 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={attraction.unesco}
+                          onChange={(e) =>
+                            update(actualIndex, { unesco: e.target.checked })
+                          }
+                          className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <span className="text-xs font-bold text-ink">
+                          Объект всемирного наследия ЮНЕСКО
+                        </span>
+                      </label>
+                    </Field>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <Field label={`Расстояние от Еревана (${localeNames[loc]})`}>
+                      <TextInput
+                        value={attraction.distance[loc] ?? ""}
+                        onChange={(v) =>
+                          update(actualIndex, {
+                            distance: { ...attraction.distance, [loc]: v },
+                          })
+                        }
+                        placeholder="Например: около 40 км"
+                      />
+                    </Field>
+
+                    <Field label={`Время в пути (${localeNames[loc]})`}>
+                      <TextInput
+                        value={attraction.travelTime[loc] ?? ""}
+                        onChange={(v) =>
+                          update(actualIndex, {
+                            travelTime: { ...attraction.travelTime, [loc]: v },
+                          })
+                        }
+                        placeholder="Например: около 45–50 минут"
+                      />
+                    </Field>
+
+                    <Field label="Поиск для бронирования экскурсии (tourQuery)">
+                      <TextInput
+                        value={attraction.tourQuery ?? ""}
+                        onChange={(v) => update(actualIndex, { tourQuery: v })}
+                        placeholder="Например: Хор Вирап"
+                      />
+                    </Field>
+                  </div>
+
+                  <Field label="Фотография места">
+                    <ImagePicker
+                      value={attraction.image}
+                      onChange={(url) => update(actualIndex, { image: url })}
+                    />
+                  </Field>
+
+                  <Field label={`Краткое описание для карточки (${localeNames[loc]})`}>
+                    <AutoTextarea
+                      value={attraction.shortDescription[loc] ?? ""}
+                      onChange={(v) =>
+                        update(actualIndex, {
+                          shortDescription: { ...attraction.shortDescription, [loc]: v },
+                        })
+                      }
+                    />
+                  </Field>
+
+                  <Field label={`Ключевые особенности / Highlights (${localeNames[loc]}) — по одной на строку`}>
+                    <AutoTextarea
+                      value={(attraction.highlights[loc] ?? []).join("\n")}
+                      onChange={(v) =>
+                        update(actualIndex, {
+                          highlights: {
+                            ...attraction.highlights,
+                            [loc]: v.split("\n").map((s) => s.trim()).filter(Boolean),
+                          },
+                        })
+                      }
+                    />
+                  </Field>
+
+                  <Field label={`Полная история и факты для модального окна (${localeNames[loc]})`}>
+                    <AutoTextarea
+                      value={attraction.fullStory[loc] ?? ""}
+                      onChange={(v) =>
+                        update(actualIndex, {
+                          fullStory: { ...attraction.fullStory, [loc]: v },
+                        })
+                      }
+                    />
+                  </Field>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <SaveBar onSave={onSave} label="Опубликовать изменения мест на сайте" />
+    </div>
+  );
+}
+
 
 

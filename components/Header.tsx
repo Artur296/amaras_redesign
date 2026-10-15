@@ -34,6 +34,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
     { href: `/${locale}`, label: dict.nav.home },
     { href: `/${locale}/tours`, label: dict.nav.tours },
     { href: `/${locale}/tours/offers`, label: locale === "ru" ? "Спецпредложения" : locale === "hy" ? "Հատուկ առաջարկներ" : "Offers" },
+    { href: `/${locale}/what-to-see`, label: locale === "ru" ? "Что посмотреть" : locale === "hy" ? "Ինչ տեսնել" : "What to See" },
     { href: `/${locale}/tour-packages`, label: dict.nav.packages },
     { href: `/${locale}/guests`, label: dict.nav.guests },
     { href: `/${locale}/about`, label: dict.nav.about },

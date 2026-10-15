@@ -9,60 +9,69 @@ import FadeIn from "@/components/FadeIn";
 
 type Props = {
   locale: Locale;
+  initialAttractions?: Attraction[];
 };
 
-const CATEGORIES: { id: "all" | RegionCategory; label: Record<Locale, string>; count: number }[] = [
-  {
-    id: "all",
-    label: {
-      ru: "Все достопримечательности",
-      hy: "Բոլոր տեսարժան վայրերը",
-      en: "All Attractions",
-    },
-    count: 18,
-  },
-  {
-    id: "near_yerevan",
-    label: {
-      ru: "Рядом с Ереваном",
-      hy: "Երևանի մոտակայքում",
-      en: "Near Yerevan",
-    },
-    count: 4,
-  },
-  {
-    id: "sevan_dilijan",
-    label: {
-      ru: "Севан & Дилижан",
-      hy: "Սևան և Դիլիջան",
-      en: "Sevan & Dilijan",
-    },
-    count: 3,
-  },
-  {
-    id: "south",
-    label: {
-      ru: "Юг (Вайоц Дзор & Сюник)",
-      hy: "Հարավ (Վայոց ձոր և Սյունիք)",
-      en: "South (Vayots Dzor & Syunik)",
-    },
-    count: 4,
-  },
-  {
-    id: "north_lori",
-    label: {
-      ru: "Север и Лори",
-      hy: "Հյուսիս և Լոռի",
-      en: "North & Lori",
-    },
-    count: 7,
-  },
-];
-
-export function WhatToSeeSection({ locale }: Props) {
+export function WhatToSeeSection({ locale, initialAttractions }: Props) {
   const [activeCategory, setActiveCategory] = useState<"all" | RegionCategory>("all");
   const [selectedAttraction, setSelectedAttraction] = useState<Attraction | null>(null);
-  const [allAttractions] = useState<Attraction[]>(() => getAttractions());
+  const [allAttractions, setAllAttractions] = useState<Attraction[]>(
+    () => initialAttractions ?? getAttractions()
+  );
+
+  useEffect(() => {
+    if (initialAttractions) {
+      setAllAttractions(initialAttractions);
+    }
+  }, [initialAttractions]);
+
+  const categories: { id: "all" | RegionCategory; label: Record<Locale, string>; count: number }[] = [
+    {
+      id: "all",
+      label: {
+        ru: "Все достопримечательности",
+        hy: "Բոլոր տեսարժան վայրերը",
+        en: "All Attractions",
+      },
+      count: allAttractions.length,
+    },
+    {
+      id: "near_yerevan",
+      label: {
+        ru: "Рядом с Ереваном",
+        hy: "Երևանի մոտակայքում",
+        en: "Near Yerevan",
+      },
+      count: allAttractions.filter((a) => a.regionCategory === "near_yerevan").length,
+    },
+    {
+      id: "sevan_dilijan",
+      label: {
+        ru: "Севан & Дилижан",
+        hy: "Սևան և Դիլիջան",
+        en: "Sevan & Dilijan",
+      },
+      count: allAttractions.filter((a) => a.regionCategory === "sevan_dilijan").length,
+    },
+    {
+      id: "south",
+      label: {
+        ru: "Юг (Вайоц Дзор & Сюник)",
+        hy: "Հարավ (Վայոց ձոր և Սյունիք)",
+        en: "South (Vayots Dzor & Syunik)",
+      },
+      count: allAttractions.filter((a) => a.regionCategory === "south").length,
+    },
+    {
+      id: "north_lori",
+      label: {
+        ru: "Север и Лори",
+        hy: "Հյուսիս և Լոռի",
+        en: "North & Lori",
+      },
+      count: allAttractions.filter((a) => a.regionCategory === "north_lori").length,
+    },
+  ];
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -149,7 +158,7 @@ export function WhatToSeeSection({ locale }: Props) {
       {/* 2. Region Filter Tabs */}
       <FadeIn delay={0.1}>
         <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-2.5">
-          {CATEGORIES.map((cat) => {
+          {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
               <button

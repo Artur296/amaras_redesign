@@ -15,10 +15,12 @@ import reviewsOverride from "@/content/reviews.json";
 import offersOverride from "@/content/offers.json";
 import guestsOverride from "@/content/guests.json";
 import guidesOverride from "@/content/guides.json";
+import attractionsOverride from "@/content/attractions.json";
 import type { Review } from "@/lib/reviews";
 import { defaultOffers, type SpecialOffer } from "@/lib/offers";
 import { defaultGuests, type GuestMedia } from "@/lib/guests";
 import { defaultGuides, type Guide } from "@/lib/guides";
+import { defaultAttractions, type Attraction } from "@/lib/attractions";
 
 export type Content = {
   dicts: Record<Locale, Dict>;
@@ -30,6 +32,7 @@ export type Content = {
   offers: SpecialOffer[];
   guests: GuestMedia[];
   guides: Guide[];
+  attractions: Attraction[];
 };
 
 export const CONTENT_KEYS = [
@@ -42,6 +45,7 @@ export const CONTENT_KEYS = [
   "offers",
   "guests",
   "guides",
+  "attractions",
 ] as const;
 export type ContentKey = (typeof CONTENT_KEYS)[number];
 
@@ -62,6 +66,7 @@ const defaults: Content = {
   offers: (offersOverride as SpecialOffer[]) || defaultOffers,
   guests: (guestsOverride as GuestMedia[]) || defaultGuests,
   guides: (guidesOverride as Guide[]) || defaultGuides,
+  attractions: (attractionsOverride as unknown as Attraction[]) || defaultAttractions,
 };
 
 // Overlay stored values on defaults so keys added in future code versions
@@ -129,6 +134,9 @@ function build(overrides: Record<ContentKey, unknown>): Content {
     guides: Array.isArray(overrides.guides)
       ? (overrides.guides as Guide[])
       : defaults.guides,
+    attractions: Array.isArray(overrides.attractions)
+      ? (overrides.attractions as Attraction[])
+      : defaults.attractions,
   };
 }
 
@@ -164,6 +172,7 @@ export function currentOverrides(): Record<ContentKey, unknown> {
     offers: readJsonFile("offers.json", offersOverride),
     guests: readJsonFile("guests.json", guestsOverride),
     guides: readJsonFile("guides.json", guidesOverride),
+    attractions: readJsonFile("attractions.json", attractionsOverride),
   };
 }
 

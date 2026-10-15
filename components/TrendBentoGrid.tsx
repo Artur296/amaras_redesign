@@ -81,39 +81,51 @@ export default function TrendBentoGrid({
 
         {/* Right Column: Top Wide Card + Bottom Two Cards */}
         <div className="lg:col-span-8 flex flex-col gap-6">
-          {/* Card 2: Top Wide Horizontal Card */}
+          {/* Card 2: Top Wide Horizontal Card - Что посмотреть в Армении */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative overflow-hidden rounded-[2rem] min-h-[230px] sm:min-h-[280px] shadow-lg group"
+            className="relative overflow-hidden rounded-[2rem] min-h-[230px] sm:min-h-[280px] shadow-lg group cursor-pointer"
           >
+            <Link href={`/${locale}/what-to-see`} className="absolute inset-0 z-10" aria-label="Что посмотреть в Армении" />
             <Image
               src={img2}
-              alt="Популярные направления Армении"
+              alt="Что посмотреть в Армении"
               fill
               sizes="(max-width: 1024px) 100vw, 66vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
 
-            <div className="absolute top-6 left-6 right-6 sm:top-8 sm:left-8 max-w-md text-white">
+            <div className="absolute top-6 left-6 right-6 sm:top-8 sm:left-8 max-w-lg text-white pointer-events-none">
+              <span className="inline-block rounded-full bg-[#C7FF32]/20 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#C7FF32] backdrop-blur-md mb-2">
+                {locale === "ru" ? "Путеводитель" : locale === "hy" ? "Ուղեցույց" : "Travel Guide"}
+              </span>
               <h3 className="font-serif text-2xl sm:text-3xl font-medium leading-snug">
                 {locale === "ru"
-                  ? "Популярные направления для отдыха в Армении"
+                  ? "Что посмотреть в Армении"
                   : locale === "hy"
-                  ? "Հանրաճանաչ ուղղություններ Հայաստանում"
-                  : "Popular Destinations Across Armenia"}
+                  ? "Ինչ տեսնել Հայաստանում"
+                  : "What to See in Armenia"}
               </h3>
+              <p className="mt-2 text-xs sm:text-sm text-white/80 leading-relaxed max-w-md line-clamp-2">
+                {locale === "ru"
+                  ? "Древние монастыри ЮНЕСКО, средневековые крепости и чудеса природы с точным расстоянием от Еревана"
+                  : locale === "hy"
+                  ? "ՅՈՒՆԵՍԿՕ-ի հնագույն վանքեր, միջնադարյան ամրոցներ և բնության հրաշքներ՝ Երևանից հեռավորությամբ"
+                  : "Ancient UNESCO sanctuaries, medieval fortresses and natural wonders with distances from Yerevan"}
+              </p>
             </div>
 
-            <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8">
+            <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 z-20">
               <Link
-                href={`/${locale}/tours`}
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-[#161616] shadow-md transition-transform hover:scale-105 active:scale-95"
+                href={`/${locale}/what-to-see`}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-[#161616] shadow-md transition-transform hover:scale-105 active:scale-95 group-hover:bg-[#C7FF32]"
               >
-                {locale === "ru" ? "Узнать больше" : locale === "hy" ? "Իմանալ ավելին" : "Learn more"}
+                <span>{locale === "ru" ? "Узнать больше" : locale === "hy" ? "Իմանալ ավելին" : "Learn more"}</span>
+                <span className="text-xs transition-transform group-hover:translate-x-1">→</span>
               </Link>
             </div>
           </motion.div>
