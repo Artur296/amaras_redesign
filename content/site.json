@@ -11,7 +11,7 @@
   "homepageImages": {
     "heroSevan": "/images/package-sevan.jpg",
     "heroKhorVirap": "/images/offer-khor-virap.jpg",
-    "heroGarni": "/images/package-garni-hd.jpg",
+    "heroGarni": "/images/1792095049826-garni-temple-web.jpg",
     "heroTatev": "/images/package-tatev.jpg",
     "heroNoravank": "/images/package-noravank.jpg",
     "heroAzhdahak": "/images/azhdahak.jpg",
@@ -30,8 +30,8 @@
     "topTour2Right": "/images/sevan.jpg",
     "topTour3Left": "/images/tatev.jpg",
     "topTour3Right": "/images/azhdahak.jpg",
-    "article1": "/images/jeep.jpg",
-    "article2": "/images/garni.jpg",
+    "article1": "/images/1792095011523-azhdahak-crater-web.jpg",
+    "article2": "/images/1792095024566-garni-symphony-stones-web.jpg",
     "article3": "/images/noravank.jpg"
   }
 }
