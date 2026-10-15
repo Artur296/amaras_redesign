@@ -58,7 +58,7 @@ export default function TourDetail({
   ]);
 
   return (
-    <div className="mx-auto max-w-[1240px] px-6 py-12 md:py-16">
+    <div className="mx-auto max-w-[1240px] px-4 sm:px-6 pt-4 pb-28 sm:py-8 md:py-16">
       {/* Schema.org Structured Data for SEO Rich Snippets */}
       <script
         type="application/ld+json"
@@ -69,71 +69,76 @@ export default function TourDetail({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* Breadcrumb Navigation */}
+      {/* Breadcrumb Navigation - single-line scroll on mobile to prevent awkward line breaks */}
       <FadeIn>
-        <div className="flex items-center gap-2 text-xs font-bold text-[#6B6967]">
-          <Link href={`/${locale}`} className="hover:text-[#586EFF]">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-1.5 text-xs font-semibold text-[#6B6967] overflow-x-auto whitespace-nowrap scrollbar-none py-1"
+        >
+          <Link href={`/${locale}`} className="hover:text-[#586EFF] shrink-0 transition-colors">
             {dict.nav.home}
           </Link>
-          <span>/</span>
-          <Link href={backHref} className="hover:text-[#586EFF]">
+          <span className="text-[#6B6967]/40 shrink-0">/</span>
+          <Link href={backHref} className="hover:text-[#586EFF] shrink-0 transition-colors">
             {backLabel}
           </Link>
-          <span>/</span>
-          <span className="truncate text-[#312F2F]">{tour.title[locale]}</span>
-        </div>
+          <span className="text-[#6B6967]/40 shrink-0">/</span>
+          <span className="text-[#312F2F] font-bold truncate max-w-[180px] sm:max-w-none shrink-0 sm:shrink">
+            {tour.title[locale]}
+          </span>
+        </nav>
 
         {/* Tour Header */}
-        <div className="mt-6 flex flex-col gap-4">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="mt-4 sm:mt-6 flex flex-col gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             {tour.categories.map((id) => (
               <span
                 key={id}
-                className="rounded-full bg-[#312F2F] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#C7FF32]"
+                className="rounded-full bg-[#312F2F] px-2.5 sm:px-3.5 py-0.5 sm:py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#C7FF32]"
               >
                 {catTitle(id)}
               </span>
             ))}
             {discount !== null && (
-              <span className="rounded-full bg-[#C7FF32] px-3 py-1 text-xs font-black text-[#312F2F] shadow-sm">
+              <span className="rounded-full bg-[#C7FF32] px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-black text-[#312F2F] shadow-xs">
                 −{discount}% {locale === "ru" ? "СКИДКА" : locale === "hy" ? "ԶԵՂՉ" : "OFF"}
               </span>
             )}
-            <span className="flex items-center gap-1 rounded-full bg-white border border-[#EAE9E0] px-3 py-1 text-xs font-bold text-[#312F2F]">
-              <span>★</span> 5.0 (120+ {locale === "ru" ? "отзывов" : "reviews"})
+            <span className="flex items-center gap-1 rounded-full bg-white border border-[#EAE9E0] px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-bold text-[#312F2F] shadow-xs">
+              <span className="text-amber-500">★</span> 5.0 (120+ {locale === "ru" ? "отзывов" : "reviews"})
             </span>
           </div>
 
-          <h1 className="font-serif text-3xl font-normal tracking-tight text-[#312F2F] sm:text-4xl lg:text-5xl">
+          <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#312F2F] leading-snug sm:leading-tight">
             {tour.title[locale]}
           </h1>
 
-          {/* Quick specs bar */}
-          <div className="flex flex-wrap items-center gap-4 text-sm font-semibold text-[#6B6967]">
+          {/* Quick specs bar - styled chip badges */}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold text-[#6B6967]">
             {isPackage ? (
-              <span className="flex items-center gap-1.5 rounded-full bg-[#586EFF]/10 px-3.5 py-1 text-xs font-bold text-[#586EFF]">
-                <CalendarIcon className="h-4 w-4" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#586EFF]/10 px-3 py-1 text-xs font-bold text-[#586EFF]">
+                <CalendarIcon className="h-3.5 w-3.5" />
                 {tour.days} {dict.tours.days}
                 {tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}
               </span>
             ) : (
               <>
                 {tour.departure && (
-                  <span className="flex items-center gap-1.5">
-                    <svg className="w-4 h-4 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EAE9E0] px-3 py-1 text-[#312F2F] shadow-xs">
+                    <svg className="w-3.5 h-3.5 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span>{dict.tour.departure}: <b>{tour.departure}</b></span>
+                    <span>{dict.tour.departure}: <b className="text-[#312F2F]">{tour.departure}</b></span>
                   </span>
                 )}
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EAE9E0] px-3 py-1 text-[#312F2F] shadow-xs">
+                  <svg className="w-3.5 h-3.5 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span>{dict.tour.duration}: <b>{duration}</b></span>
+                  <span>{dict.tour.duration}: <b className="text-[#312F2F]">{duration}</b></span>
                 </span>
-                <span className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EAE9E0] px-3 py-1 text-[#312F2F] shadow-xs">
+                  <svg className="w-3.5 h-3.5 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
@@ -146,9 +151,9 @@ export default function TourDetail({
       </FadeIn>
 
       {/* Main Grid: Details + Sticky Booking Card */}
-      <div className="mt-10 grid items-start gap-12 lg:grid-cols-12">
+      <div className="mt-6 sm:mt-10 grid items-start gap-8 lg:gap-12 lg:grid-cols-12">
         {/* Left Column: Image, Story, Route, Itinerary, Info */}
-        <div className="lg:col-span-7 xl:col-span-8 space-y-10">
+        <div className="lg:col-span-7 xl:col-span-8 space-y-6 sm:space-y-10">
           {/* Main Hero Gallery / Slideshow */}
           <FadeIn>
             <TourGallery
@@ -161,13 +166,90 @@ export default function TourDetail({
             />
           </FadeIn>
 
+          {/* Mobile Quick Pricing & Booking Card (directly under gallery on phones) */}
+          <FadeIn delay={0.05}>
+            <div className="lg:hidden rounded-2xl border border-[#EAE9E0] bg-white p-5 shadow-sm space-y-4">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B6967]">
+                    {hasPrice(tour)
+                      ? dict.tours.from
+                      : locale === "ru"
+                      ? "Стоимость тура"
+                      : locale === "hy"
+                      ? "Արժեքը"
+                      : "Tour Pricing"}
+                  </span>
+                  <div className="mt-0.5 flex items-baseline gap-2.5">
+                    {tour.priceOldAmd && (
+                      <s className="text-xs font-bold text-[#6B6967]/60">
+                        {formatPrice(tour.priceOldAmd)}
+                      </s>
+                    )}
+                    <span className="text-2xl font-black text-[#312F2F]">
+                      {hasPrice(tour) ? formatPrice(tour.priceFromAmd) : dict.tours.onRequest}
+                    </span>
+                    {isPackage && hasPrice(tour) && (
+                      <span className="text-[11px] font-bold text-[#6B6967]">
+                        / {dict.pkg.perPerson}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {discount !== null && (
+                  <span className="rounded-full bg-[#C7FF32] px-2.5 py-1 text-xs font-black text-[#312F2F]">
+                    −{discount}%
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <BookButton
+                  label={
+                    tour.bookingDisabled
+                      ? locale === "ru"
+                        ? "Узнать о доступных датах"
+                        : locale === "hy"
+                        ? "Ճշտել հասանելի օրերը"
+                        : "Check Available Dates"
+                      : dict.tours.book
+                  }
+                  message={
+                    tour.bookingDisabled
+                      ? locale === "ru"
+                        ? `Здравствуйте! Хочу уточнить доступные даты для тура: ${tour.title[locale]}`
+                        : locale === "hy"
+                        ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը տուրի համար՝ ${tour.title[locale]}`
+                        : `Hello! I would like to check available dates for: ${tour.title[locale]}`
+                      : `${dict.tours.bookMessage} ${tour.title[locale]}`
+                  }
+                  variant="primary"
+                  size="md"
+                  className="w-full justify-center text-sm font-bold"
+                />
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] font-medium text-[#6B6967] pt-2 border-t border-black/5">
+                <span className="flex items-center gap-1">
+                  <span className="text-[#586EFF]">✓</span>{" "}
+                  {locale === "ru" ? "Оплата на месте" : locale === "hy" ? "Վճարում տեղում" : "Pay on site"}
+                </span>
+                <span className="flex items-center gap-1">
+                  <span className="text-[#586EFF]">✓</span>{" "}
+                  {locale === "ru" ? "Без предоплаты" : locale === "hy" ? "Առանց կանխավճարի" : "Zero prepayment"}
+                </span>
+              </div>
+            </div>
+          </FadeIn>
+
           {/* Description & Overview */}
           <FadeIn delay={0.1}>
-            <div className="rounded-3xl border border-[#EAE9E0] bg-white p-8 shadow-sm">
-              <h2 className="text-xl font-black uppercase tracking-tight text-[#312F2F]">
+            <div className="rounded-2xl sm:rounded-3xl border border-[#EAE9E0] bg-white p-5 sm:p-8 shadow-sm">
+              <h2 className="text-lg sm:text-xl font-black uppercase tracking-tight text-[#312F2F]">
                 {locale === "ru" ? "О путешествии" : locale === "hy" ? "Տուրի մասին" : "About this journey"}
               </h2>
-              <div className="mt-4 space-y-4 text-base leading-relaxed text-[#6B6967]">
+              <div className="mt-3 sm:mt-4 space-y-3 sm:space-y-4 text-sm sm:text-base leading-relaxed text-[#6B6967]">
                 {tour.about[locale].split("\n\n").map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
@@ -178,31 +260,31 @@ export default function TourDetail({
           {/* Itinerary Timeline */}
           {tour.itinerary?.length ? (
             <FadeIn delay={0.15}>
-              <div className="rounded-3xl border border-[#EAE9E0] bg-white p-8 shadow-sm">
-                <h2 className="text-xl font-black uppercase tracking-tight text-[#312F2F]">
+              <div className="rounded-2xl sm:rounded-3xl border border-[#EAE9E0] bg-white p-5 sm:p-8 shadow-sm">
+                <h2 className="text-lg sm:text-xl font-black uppercase tracking-tight text-[#312F2F]">
                   {dict.tour.itinerary}
                 </h2>
-                <ol className="mt-6 space-y-6">
+                <ol className="mt-4 sm:mt-6 space-y-4 sm:space-y-6">
                   {tour.itinerary.map((entry) => (
                     <li
                       key={entry.day}
-                      className="rounded-2xl border border-[#EAE9E0] bg-[#FCFCF7] p-6 transition-all hover:border-[#586EFF]/40"
+                      className="rounded-xl sm:rounded-2xl border border-[#EAE9E0] bg-[#FCFCF7] p-4 sm:p-6 transition-all hover:border-[#586EFF]/40"
                     >
-                      <div className="flex items-baseline gap-3">
-                        <span className="rounded-full bg-[#586EFF] px-3.5 py-1 text-xs font-black uppercase tracking-wider text-white">
+                      <div className="flex items-baseline gap-2.5 sm:gap-3">
+                        <span className="rounded-full bg-[#586EFF] px-3 py-0.5 sm:px-3.5 sm:py-1 text-[11px] sm:text-xs font-black uppercase tracking-wider text-white">
                           {dict.tour.day} {entry.day}
                         </span>
-                        <h3 className="text-lg font-black text-[#312F2F]">
+                        <h3 className="text-base sm:text-lg font-black text-[#312F2F]">
                           {entry.title[locale]}
                         </h3>
                       </div>
-                      <ul className="mt-4 space-y-2.5">
+                      <ul className="mt-3 sm:mt-4 space-y-2 sm:space-y-2.5">
                         {entry.items[locale].map((item, k) => (
                           <li
                             key={k}
-                            className="flex items-start gap-3 text-sm leading-relaxed text-[#6B6967]"
+                            className="flex items-start gap-2.5 sm:gap-3 text-xs sm:text-sm leading-relaxed text-[#6B6967]"
                           >
-                            <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#586EFF]" />
+                            <span className="mt-1.5 h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0 rounded-full bg-[#586EFF]" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -418,7 +500,7 @@ export default function TourDetail({
 
           {/* Route Stops Card */}
           <FadeIn delay={0.2}>
-            <div className="rounded-3xl border border-[#EAE9E0] bg-white p-7 shadow-sm">
+            <div className="rounded-2xl sm:rounded-3xl border border-[#EAE9E0] bg-white p-5 sm:p-7 shadow-sm">
               <h3 className="text-base font-black uppercase tracking-tight text-[#312F2F]">
                 {dict.tour.route}
               </h3>
@@ -445,6 +527,55 @@ export default function TourDetail({
               )}
             </div>
           </FadeIn>
+        </div>
+      </div>
+
+      {/* Mobile Sticky Bottom Floating Bar */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#EAE9E0] px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          <span className="block text-[10px] font-bold uppercase tracking-wider text-[#6B6967] leading-none">
+            {hasPrice(tour)
+              ? dict.tours.from
+              : locale === "ru"
+              ? "Стоимость"
+              : locale === "hy"
+              ? "Արժեքը"
+              : "Price"}
+          </span>
+          <div className="text-base sm:text-lg font-black text-[#312F2F] leading-tight truncate mt-0.5">
+            {hasPrice(tour) ? formatPrice(tour.priceFromAmd) : dict.tours.onRequest}
+            {isPackage && hasPrice(tour) && (
+              <span className="text-[10px] font-bold text-[#6B6967] ml-1">
+                / {dict.pkg.perPerson}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="shrink-0">
+          <BookButton
+            label={
+              tour.bookingDisabled
+                ? locale === "ru"
+                  ? "Узнать даты"
+                  : locale === "hy"
+                  ? "Ճշտել օրերը"
+                  : "Check Dates"
+                : dict.tours.book
+            }
+            message={
+              tour.bookingDisabled
+                ? locale === "ru"
+                  ? `Здравствуйте! Хочу уточнить доступные даты для тура: ${tour.title[locale]}`
+                  : locale === "hy"
+                  ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը տուրի համար՝ ${tour.title[locale]}`
+                  : `Hello! I would like to check available dates for: ${tour.title[locale]}`
+                : `${dict.tours.bookMessage} ${tour.title[locale]}`
+            }
+            variant="primary"
+            size="md"
+            className="px-4 py-2 text-xs font-bold shadow-md"
+          />
         </div>
       </div>
     </div>

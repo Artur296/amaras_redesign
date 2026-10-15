@@ -33,15 +33,39 @@ export default function TourGallery({
     );
   }
 
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
   const prev = () =>
     setCurrentIndex((prev) => (prev === 0 ? validImages.length - 1 : prev - 1));
   const next = () =>
     setCurrentIndex((prev) => (prev === validImages.length - 1 ? 0 : prev + 1));
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStart - touchEnd;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        next();
+      } else {
+        prev();
+      }
+    }
+    setTouchStart(null);
+  };
+
   return (
-    <div className="space-y-3">
+    <div className="space-y-2.5 sm:space-y-3">
       {/* Main Slide Stage */}
-      <div className="group relative aspect-[16/10] overflow-hidden rounded-3xl border border-[#EAE9E0] bg-black shadow-md">
+      <div
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className="group relative aspect-[16/10] overflow-hidden rounded-2xl sm:rounded-3xl border border-[#EAE9E0] bg-black shadow-md touch-pan-y"
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -63,7 +87,7 @@ export default function TourGallery({
         </AnimatePresence>
 
         {/* Counter Badge */}
-        <div className="absolute bottom-4 right-4 z-10 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold text-white tracking-widest">
+        <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-10 rounded-full bg-black/60 backdrop-blur-md px-2.5 py-0.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs font-bold text-white tracking-widest">
           {currentIndex + 1} / {validImages.length}
         </div>
 
@@ -72,9 +96,9 @@ export default function TourGallery({
           type="button"
           onClick={prev}
           aria-label="Previous photo"
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md transition-all duration-200 hover:bg-[#586EFF] hover:scale-110 active:scale-95 sm:opacity-0 sm:group-hover:opacity-100"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-md transition-all duration-200 hover:bg-[#586EFF] hover:scale-110 active:scale-95"
         >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -82,9 +106,9 @@ export default function TourGallery({
           type="button"
           onClick={next}
           aria-label="Next photo"
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md transition-all duration-200 hover:bg-[#586EFF] hover:scale-110 active:scale-95 sm:opacity-0 sm:group-hover:opacity-100"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black/45 text-white backdrop-blur-md transition-all duration-200 hover:bg-[#586EFF] hover:scale-110 active:scale-95"
         >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -97,7 +121,7 @@ export default function TourGallery({
             key={i}
             type="button"
             onClick={() => setCurrentIndex(i)}
-            className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-200 ${
+            className={`relative h-12 w-18 sm:h-16 sm:w-24 shrink-0 overflow-hidden rounded-lg sm:rounded-xl border-2 transition-all duration-200 ${
               currentIndex === i
                 ? "border-[#586EFF] scale-105 shadow-md"
                 : "border-transparent opacity-60 hover:opacity-100"
