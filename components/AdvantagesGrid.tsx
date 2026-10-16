@@ -61,9 +61,13 @@ export default function AdvantagesGrid({ locale }: { locale: Locale }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
         </svg>
       ),
-      highlight: locale === "ru" ? "Премиум-транспорт" : locale === "hy" ? "Պրեմիում տրանսպորտ" : "Modern fleet",
-      title: locale === "ru" ? "Mercedes и внедорожники 4x4" : locale === "hy" ? "Mercedes և 4x4 ջիպեր" : "Mercedes Sprinter & 4x4 SUVs",
-      desc: locale === "ru" ? "Климат-контроль, панорамные окна и вода" : "Full A/C, panoramic view and comfort",
+      highlight: locale === "ru" ? "Автопарк" : locale === "hy" ? "Ավտոպարկ" : "Modern fleet",
+      title: locale === "ru" ? "на любой вкус и маршрут" : locale === "hy" ? "ցանկացած ճաշակի և երթուղու համար" : "for every route & travel style",
+      desc: locale === "ru"
+        ? "Комфортные минивэны, современные кроссоверы, автомобили премиум-класса и внедорожники 4×4 для горных приключений. Выбирайте свой уровень комфорта и стиль путешествия."
+        : locale === "hy"
+        ? "Հարմարավետ մինիվեներ, ժամանակակից քրոսովերներ, պրեմիում դասի ավտոմեքենաներ և 4x4 ամենագնացներ լեռնային արկածների համար։ Ընտրեք ձեր հարմարավետության մակարդակը։"
+        : "Comfortable minivans, modern crossovers, luxury executive cars, and 4x4 off-road SUVs for mountain adventures. Choose your preferred comfort level.",
     },
     {
       icon: (
