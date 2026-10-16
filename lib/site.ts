@@ -28,7 +28,7 @@ export const defaultHomepageImages = {
   featuredBanner: "/images/package-sevan.jpg",
 
   // Top Tours Highlights (Left & Right images)
-  topTour1Left: "/images/khor-virap.jpg",
+  topTour1Left: "/images/offer-khor-virap.jpg",
   topTour1Right: "/images/noravank.jpg",
   topTour2Left: "/images/garni.jpg",
   topTour2Right: "/images/sevan.jpg",

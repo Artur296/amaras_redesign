@@ -47,7 +47,7 @@ export default function TopToursSection({
           : locale === "hy"
           ? "Լեգենդար տեսարան դեպի բիբլիական Արարատ, գինու համտես Արենիում և Նորավանքի կարմիր ժայռերը։ Հարմարավետ Mercedes Sprinter և փորձառու գիդ։"
           : "Iconic view of biblical Mount Ararat, authentic wine tasting in Areni, and dramatic red cliffs of Noravank. Premium Mercedes Sprinter with private guide.",
-      leftImage: images?.topTour1Left || "/images/khor-virap.jpg",
+      leftImage: images?.topTour1Left || "/images/offer-khor-virap.jpg",
       leftCaption: locale === "ru" ? "Хор Вирап и Арарат" : "Khor Virap & Ararat",
       rightImage: images?.topTour1Right || "/images/noravank.jpg",
       rightCaption: locale === "ru" ? "Каньон Нораванк" : "Noravank Canyon",
