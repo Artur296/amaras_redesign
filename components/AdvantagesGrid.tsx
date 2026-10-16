@@ -53,7 +53,7 @@ export default function AdvantagesGrid({ locale }: { locale: Locale }) {
       ),
       highlight: locale === "ru" ? "Профессиональные" : locale === "hy" ? "Պրոֆեսիոնալ" : "Certified",
       title: locale === "ru" ? "гиды и консультанты" : locale === "hy" ? "գիդեր և էքսկուրսավարներ" : "local storytellers",
-      desc: locale === "ru" ? "Живые захватывающие истории на 3 языках" : "Fluent in Russian, Armenian & English",
+      desc: locale === "ru" ? "Живые захватывающие истории на 10 языках" : locale === "hy" ? "Հետաքրքիր պատմություններ 10 լեզուներով" : "Live storytelling in up to 10 languages",
     },
     {
       icon: (
