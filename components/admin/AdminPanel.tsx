@@ -1402,7 +1402,7 @@ function ToursTab({
           );
         })}
       </div>
-      <SaveBar onSave={onSave} label="Publish all changes" />
+      <SaveBar onSave={onSave} label="Опубликовать изменения сразу" />
     </section>
   );
 }
@@ -1965,7 +1965,7 @@ function CategoriesTab({
           </div>
         ))}
       </div>
-      <SaveBar onSave={onSave} label="Publish all changes" />
+      <SaveBar onSave={onSave} label="Опубликовать изменения сразу" />
     </section>
   );
 }
@@ -2040,7 +2040,7 @@ function PackagesTab({
                 />
               </Field>
             </div>
-            <SaveBar onSave={onSaveCategories} label="Publish all changes" />
+            <SaveBar onSave={onSaveCategories} label="Опубликовать изменения сразу" />
           </div>
         </div>
       )}
@@ -2183,7 +2183,7 @@ function TextsTab({
           onChange={(v) => onChange({ ...dicts, [loc]: v as Dict })}
         />
       </div>
-      <SaveBar onSave={onSave} label="Publish all changes" />
+      <SaveBar onSave={onSave} label="Опубликовать изменения сразу" />
     </section>
   );
 }
@@ -2221,7 +2221,7 @@ function ContactsTab({
           </Field>
         ))}
       </div>
-      <SaveBar onSave={onSave} label="Publish all changes" />
+      <SaveBar onSave={onSave} label="Опубликовать изменения сразу" />
     </section>
   );
 }

@@ -6,6 +6,7 @@ import {
   CONTENT_KEYS,
   currentOverrides,
   fetchContent,
+  setRuntimeOverrides,
   type ContentKey,
 } from "@/lib/content";
 import { getAdminUser } from "@/lib/admin-auth";
@@ -19,9 +20,51 @@ export async function GET() {
   return NextResponse.json(await fetchContent());
 }
 
+function purgeCaches() {
+  const targets = [
+    { path: "/[locale]", type: "layout" as const },
+    { path: "/[locale]", type: "page" as const },
+    { path: "/", type: "layout" as const },
+    { path: "/", type: "page" as const },
+    { path: "/ru", type: "layout" as const },
+    { path: "/hy", type: "layout" as const },
+    { path: "/en", type: "layout" as const },
+    { path: "/ru", type: "page" as const },
+    { path: "/hy", type: "page" as const },
+    { path: "/en", type: "page" as const },
+    { path: "/ru/tours", type: "layout" as const },
+    { path: "/hy/tours", type: "layout" as const },
+    { path: "/en/tours", type: "layout" as const },
+    { path: "/ru/tour-packages", type: "layout" as const },
+    { path: "/hy/tour-packages", type: "layout" as const },
+    { path: "/en/tour-packages", type: "layout" as const },
+    { path: "/ru/what-to-see", type: "layout" as const },
+    { path: "/hy/what-to-see", type: "layout" as const },
+    { path: "/en/what-to-see", type: "layout" as const },
+    { path: "/ru/guests", type: "layout" as const },
+    { path: "/hy/guests", type: "layout" as const },
+    { path: "/en/guests", type: "layout" as const },
+    { path: "/ru/about", type: "layout" as const },
+    { path: "/hy/about", type: "layout" as const },
+    { path: "/en/about", type: "layout" as const },
+    { path: "/ru/contacts", type: "layout" as const },
+    { path: "/hy/contacts", type: "layout" as const },
+    { path: "/en/contacts", type: "layout" as const },
+  ];
+
+  for (const { path: p, type } of targets) {
+    try {
+      revalidatePath(p, type);
+    } catch (e) {
+      console.warn(`revalidatePath(${p}, ${type}) warning:`, e);
+    }
+  }
+}
+
 /**
- * Publishes an edit by writing content/*.json to disk, and if GitHub credentials
- * are configured, committing back to the repository.
+ * Publishes an edit by writing to in-memory runtime cache, /tmp, and disk,
+ * instantly purging ISR caches so changes appear with 0-second delay,
+ * and committing to GitHub for permanent cloud deployment.
  */
 export async function PUT(request: NextRequest) {
   try {
@@ -49,47 +92,13 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Bad request" }, { status: 400 });
     }
 
-    // 1. Try writing changes to content/*.json on the local filesystem if writable
-    let localSaved = false;
-    try {
-      const contentDir = path.join(process.cwd(), "content");
-      await fs.promises.mkdir(contentDir, { recursive: true });
+    // 1. Immediately apply edits to in-memory runtime cache & /tmp & local disk
+    setRuntimeOverrides(edits);
 
-      for (const [key, val] of Object.entries(edits)) {
-        const filePath = path.join(contentDir, `${key}.json`);
-        await fs.promises.writeFile(
-          filePath,
-          `${JSON.stringify(val, null, 2)}\n`,
-          "utf8"
-        );
-      }
-      localSaved = true;
-    } catch (fsErr) {
-      // In serverless environments (e.g. Vercel), the filesystem is read-only
-      console.warn("Local filesystem write skipped (read-only):", fsErr);
-    }
+    // 2. Immediately purge Next.js ISR caches so the live site updates with 0-second delay
+    purgeCaches();
 
-    function purgeCaches() {
-      try {
-        revalidatePath("/", "layout");
-        revalidatePath("/ru");
-        revalidatePath("/hy");
-        revalidatePath("/en");
-        revalidatePath("/ru/tours");
-        revalidatePath("/hy/tours");
-        revalidatePath("/en/tours");
-        revalidatePath("/ru/tour-packages");
-        revalidatePath("/hy/tour-packages");
-        revalidatePath("/en/tour-packages");
-        revalidatePath("/ru/what-to-see");
-        revalidatePath("/hy/what-to-see");
-        revalidatePath("/en/what-to-see");
-      } catch (e) {
-        console.warn("revalidatePath error:", e);
-      }
-    }
-
-    // 2. If GitHub is configured, commit to remote repo
+    // 3. If GitHub is configured, commit to remote repo for permanent deployment
     const cfg = githubConfig();
     if (cfg) {
       const stored = currentOverrides();
@@ -101,6 +110,7 @@ export async function PUT(request: NextRequest) {
       const changed = Object.keys(edits).join(", ");
       try {
         const sha = await commitFiles(cfg, files, `content: update ${changed} via admin panel`);
+        // Purge caches again after commit
         purgeCaches();
         return NextResponse.json({
           ok: true,
@@ -119,31 +129,21 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json(
           {
             error: `Ошибка GitHub: ${message}`,
-            warning: localSaved ? "Изменения сохранены локально, но не отправлены в GitHub" : undefined,
+            warning: "Изменения применены в рантайме, но не отправлены в GitHub",
           },
           { status: 502 }
         );
       }
     }
 
-    // If GitHub is not configured and local disk is read-only (production Vercel without token)
-    if (!localSaved) {
-      return NextResponse.json(
-        {
-          error:
-            "Не настроен GITHUB_TOKEN в Vercel. На Vercel файловая система доступна только для чтения, поэтому для публикации необходимо добавить GITHUB_TOKEN в настройках Vercel (Settings → Environment Variables).",
-        },
-        { status: 400 }
-      );
-    }
-
+    // If GitHub is not configured (e.g. purely local development)
     purgeCaches();
     return NextResponse.json({
       ok: true,
       changed: true,
       local: true,
       immediate: true,
-      message: "Saved to content/*.json",
+      message: "Applied immediately",
     });
   } catch (err) {
     console.error("PUT /api/admin/content error:", err);

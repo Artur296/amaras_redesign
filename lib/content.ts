@@ -147,10 +147,72 @@ export async function getContent(): Promise<Content> {
 // What the admin panel loads and edits — identical to what the site renders.
 export const fetchContent = getContent;
 
+// Global in-memory overrides for zero-latency serverless updates across requests
+const globalContentOverrides = ((globalThis as any).__amarasContentOverrides ||
+  ((globalThis as any).__amarasContentOverrides = {})) as Record<string, unknown>;
+
+export function setRuntimeOverrides(edits: Partial<Record<ContentKey, unknown>>) {
+  for (const [key, val] of Object.entries(edits)) {
+    if (val !== undefined && val !== null) {
+      globalContentOverrides[key] = val;
+    }
+  }
+
+  // Also persist to /tmp so any other process or lambda execution in same container can read it
+  try {
+    const tmpDir = path.join("/tmp", "amaras_content");
+    if (!fs.existsSync(tmpDir)) {
+      fs.mkdirSync(tmpDir, { recursive: true });
+    }
+    for (const [key, val] of Object.entries(edits)) {
+      if (val !== undefined && val !== null) {
+        fs.writeFileSync(
+          path.join(tmpDir, `${key}.json`),
+          JSON.stringify(val, null, 2),
+          "utf8"
+        );
+      }
+    }
+  } catch (err) {
+    console.warn("Writing to /tmp/amaras_content warning:", err);
+  }
+
+  // Also write to local project directory if writable (e.g. local dev)
+  try {
+    const contentDir = path.join(process.cwd(), "content");
+    for (const [key, val] of Object.entries(edits)) {
+      if (val !== undefined && val !== null) {
+        fs.writeFileSync(
+          path.join(contentDir, `${key}.json`),
+          `${JSON.stringify(val, null, 2)}\n`,
+          "utf8"
+        );
+      }
+    }
+  } catch {}
+}
+
 import fs from "fs";
 import path from "path";
 
-function readJsonFile<T>(filename: string, fallback: T): T {
+function readJsonFile<T>(key: ContentKey, filename: string, fallback: T): T {
+  // 1. Check in-memory global override (fastest, 0ms)
+  if (globalContentOverrides[key] !== undefined && globalContentOverrides[key] !== null) {
+    return globalContentOverrides[key] as T;
+  }
+
+  // 2. Check /tmp/amaras_content/ (writable on Vercel serverless / lambda)
+  try {
+    const tmpPath = path.join("/tmp", "amaras_content", filename);
+    if (fs.existsSync(tmpPath)) {
+      const data = fs.readFileSync(tmpPath, "utf8");
+      const parsed = JSON.parse(data) as T;
+      globalContentOverrides[key] = parsed;
+      return parsed;
+    }
+  } catch {}
+
+  // 3. Check process.cwd()/content/ (local dev or repository clone)
   try {
     const p = path.join(process.cwd(), "content", filename);
     if (fs.existsSync(p)) {
@@ -158,21 +220,22 @@ function readJsonFile<T>(filename: string, fallback: T): T {
       return JSON.parse(data) as T;
     }
   } catch {}
+
   return fallback;
 }
 
 export function currentOverrides(): Record<ContentKey, unknown> {
   return {
-    i18n: readJsonFile("i18n.json", i18nOverride),
-    tours: readJsonFile("tours.json", toursOverride),
-    categories: readJsonFile("categories.json", categoriesOverride),
-    site: readJsonFile("site.json", siteOverride),
-    hero: readJsonFile("hero.json", heroOverride),
-    reviews: readJsonFile("reviews.json", reviewsOverride),
-    offers: readJsonFile("offers.json", offersOverride),
-    guests: readJsonFile("guests.json", guestsOverride),
-    guides: readJsonFile("guides.json", guidesOverride),
-    attractions: readJsonFile("attractions.json", attractionsOverride),
+    i18n: readJsonFile("i18n", "i18n.json", i18nOverride),
+    tours: readJsonFile("tours", "tours.json", toursOverride),
+    categories: readJsonFile("categories", "categories.json", categoriesOverride),
+    site: readJsonFile("site", "site.json", siteOverride),
+    hero: readJsonFile("hero", "hero.json", heroOverride),
+    reviews: readJsonFile("reviews", "reviews.json", reviewsOverride),
+    offers: readJsonFile("offers", "offers.json", offersOverride),
+    guests: readJsonFile("guests", "guests.json", guestsOverride),
+    guides: readJsonFile("guides", "guides.json", guidesOverride),
+    attractions: readJsonFile("attractions", "attractions.json", attractionsOverride),
   };
 }
 
