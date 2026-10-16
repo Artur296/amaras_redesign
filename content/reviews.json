@@ -1,17 +1,5 @@
 [
   {
-    "id": "rev-1792147033131-9q7yg",
-    "author": "Артур",
-    "location": "Дилиджан",
-    "rating": 5,
-    "tourTitle": "Джип-тур",
-    "guideName": "Марина",
-    "text": "Круто всё",
-    "date": "2026-10-16",
-    "approved": false,
-    "createdAt": "2026-10-16T10:37:13.131Z"
-  },
-  {
     "id": "rev-1",
     "author": "Анна и Михаил С.",
     "location": "Москва",
