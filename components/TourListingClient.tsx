@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from "react";
 import TourCard from "@/components/TourCard";
 import type { Dict, Locale } from "@/lib/i18n";
-import { getTourCode, type Category, type Tour } from "@/lib/tours";
+import { getTourCode, isPackageTour, type Category, type Tour } from "@/lib/tours";
 
 export default function TourListingClient({
   tours,
@@ -20,9 +20,53 @@ export default function TourListingClient({
   initialCategory?: string;
   initialQuery?: string;
 }) {
+  const [toursList, setToursList] = useState<Tour[]>(tours);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [search, setSearch] = useState(initialQuery);
   const [sortBy, setSortBy] = useState<"default" | "price-asc" | "price-desc" | "duration">("default");
+
+  useEffect(() => {
+    setToursList(tours);
+  }, [tours]);
+
+  useEffect(() => {
+    function syncLive() {
+      try {
+        const raw = localStorage.getItem("amaras_live_content_v2");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed.content?.tours && Array.isArray(parsed.content.tours)) {
+            if (Date.now() - (parsed.timestamp || 0) < 30 * 60 * 1000) {
+              const dayTours = parsed.content.tours.filter((t: Tour) => !isPackageTour(t));
+              if (dayTours.length > 0) {
+                setToursList(dayTours);
+              }
+            }
+          }
+        }
+      } catch {}
+    }
+
+    syncLive();
+
+    let bc: BroadcastChannel | null = null;
+    if (typeof BroadcastChannel !== "undefined") {
+      try {
+        bc = new BroadcastChannel("amaras_content_sync");
+        bc.onmessage = () => syncLive();
+      } catch {}
+    }
+
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "amaras_live_content_v2") syncLive();
+    };
+    window.addEventListener("storage", onStorage);
+
+    return () => {
+      if (bc) bc.close();
+      window.removeEventListener("storage", onStorage);
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -43,7 +87,7 @@ export default function TourListingClient({
   ];
 
   const filteredTours = useMemo(() => {
-    return tours
+    return toursList
       .filter((tour) => {
         // Category filter
         if (selectedCategory !== "all") {

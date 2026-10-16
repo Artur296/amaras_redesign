@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, MotionConfig } from "framer-motion";
@@ -17,7 +18,49 @@ export default function SpecialOffersSection({
   locale: Locale;
   dict: Dict;
 }) {
-  const activeOffers = offers.filter((o) => o.active);
+  const [offerList, setOfferList] = useState<SpecialOffer[]>(offers);
+
+  useEffect(() => {
+    setOfferList(offers);
+  }, [offers]);
+
+  useEffect(() => {
+    function syncLive() {
+      try {
+        const raw = localStorage.getItem("amaras_live_content_v2");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed.content?.offers && Array.isArray(parsed.content.offers)) {
+            if (Date.now() - (parsed.timestamp || 0) < 30 * 60 * 1000) {
+              setOfferList(parsed.content.offers);
+            }
+          }
+        }
+      } catch {}
+    }
+
+    syncLive();
+
+    let bc: BroadcastChannel | null = null;
+    if (typeof BroadcastChannel !== "undefined") {
+      try {
+        bc = new BroadcastChannel("amaras_content_sync");
+        bc.onmessage = () => syncLive();
+      } catch {}
+    }
+
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "amaras_live_content_v2") syncLive();
+    };
+    window.addEventListener("storage", onStorage);
+
+    return () => {
+      if (bc) bc.close();
+      window.removeEventListener("storage", onStorage);
+    };
+  }, []);
+
+  const activeOffers = offerList.filter((o) => o.active);
   if (!activeOffers.length) return null;
 
   // Primary active offer

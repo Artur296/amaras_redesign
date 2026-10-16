@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import ContactFab from "@/components/ContactFab";
 import JeepPreloader from "@/components/JeepPreloader";
 import { SiteProvider } from "@/components/SiteProvider";
+import LiveContentSync from "@/components/LiveContentSync";
 import {
   locales,
   defaultLocale,
@@ -172,6 +173,7 @@ export default async function LocaleLayout({
       {/* suppressHydrationWarning: browser extensions (Bitdefender, Grammarly)
           inject attributes into <body> before React hydrates */}
       <body className="font-sans overflow-x-hidden min-h-screen relative" suppressHydrationWarning>
+        <LiveContentSync />
         <JeepPreloader />
         <SiteProvider site={site}>
           <Header

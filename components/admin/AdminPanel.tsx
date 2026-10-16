@@ -113,6 +113,20 @@ export default function AdminPanel() {
     );
     setBusy(true);
     setStatus("Публикация изменений…");
+
+    // Immediately persist snapshot to localStorage for 0-second instant local preview across tabs
+    try {
+      localStorage.setItem(
+        "amaras_live_content_v2",
+        JSON.stringify({ timestamp: Date.now(), content: snapshot })
+      );
+      if (typeof BroadcastChannel !== "undefined") {
+        const bc = new BroadcastChannel("amaras_content_sync");
+        bc.postMessage({ type: "CONTENT_UPDATED", timestamp: Date.now() });
+        bc.close();
+      }
+    } catch {}
+
     try {
       const res = await fetch("/api/admin/content", {
         method: "PUT",
@@ -124,6 +138,14 @@ export default function AdminPanel() {
         setStatus(body?.error ?? `Ошибка публикации (${res.status})`);
       } else {
         setLive(snapshot);
+        // Broadcast again after server confirms commit
+        try {
+          if (typeof BroadcastChannel !== "undefined") {
+            const bc = new BroadcastChannel("amaras_content_sync");
+            bc.postMessage({ type: "CONTENT_UPDATED", timestamp: Date.now() });
+            bc.close();
+          }
+        } catch {}
         setStatus(
           body?.changed === false
             ? "Изменений нет — сайт уже актуален"

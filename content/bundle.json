@@ -1,0 +1,3534 @@
+{
+  "i18n": null,
+  "tours": [
+    {
+      "slug": "pervoe-znakomstvo-s-armeniey",
+      "categories": [
+        "packages"
+      ],
+      "image": "/images/package-garni-hd.jpg",
+      "days": 3,
+      "nights": 2,
+      "priceFromAmd": 95000,
+      "priceTiers": [
+        {
+          "stars": 3,
+          "amd": 95000
+        },
+        {
+          "stars": 4,
+          "amd": 127000
+        },
+        {
+          "stars": 5,
+          "amd": 170000
+        }
+      ],
+      "title": {
+        "ru": "Первое знакомство с Арменией",
+        "hy": "Առաջին ծանոթություն Հայաստանի հետ",
+        "en": "Introduction to Armenia"
+      },
+      "description": {
+        "ru": "Компактное путешествие на 3 дня: Гарни, Гегард, Симфония камней и озеро Севан — без спешки и суеты.",
+        "hy": "Կոմպակտ 3-օրյա ճամփորդություն՝ Գառնի, Գեղարդ, Քարերի սիմֆոնիա և Սևանա լիճ՝ առանց շտապելու։",
+        "en": "A compact 3-day journey: Garni, Geghard, the Symphony of Stones and Lake Sevan — unhurried and easy."
+      },
+      "about": {
+        "ru": "Компактное путешествие для тех, кто приезжает в Армению впервые и хочет увидеть главное — без спешки, усталости и суеты.\n\nЗа три дня вы познакомитесь с самыми узнаваемыми символами страны: языческим храмом Гарни I века, пещерным монастырём Гегард из списка ЮНЕСКО, базальтовой «Симфонией камней» и высокогорным озером Севан с монастырём Севанаванк.\n\nВ стоимость входят проживание с завтраками, все трансферы, экскурсии с профессиональным гидом и входные билеты. Вам остаётся только приехать.",
+        "hy": "Կոմպակտ ճամփորդություն նրանց համար, ովքեր առաջին անգամ են գալիս Հայաստան և ուզում են տեսնել գլխավորը՝ առանց շտապելու և հոգնության։\n\nԵրեք օրում կծանոթանաք երկրի ամենաճանաչելի խորհրդանիշներին՝ I դարի Գառնու հեթանոսական տաճար, ՅՈՒՆԵՍԿՕ-ի ցանկում ընդգրկված Գեղարդի վանք, բազալտե «Քարերի սիմֆոնիա» և Սևանա լիճը՝ Սևանավանքով։\n\nԱրժեքի մեջ ներառված են կեցությունը նախաճաշերով, բոլոր տրանսֆերները, էքսկուրսիաները մասնագիտական գիդով և մուտքի տոմսերը։",
+        "en": "A compact journey for first-time visitors who want to see the essentials — without rushing or exhaustion.\n\nIn three days you meet the country's most recognisable symbols: the 1st-century pagan temple of Garni, the UNESCO-listed cave monastery of Geghard, the basalt Symphony of Stones, and high-altitude Lake Sevan with Sevanavank Monastery.\n\nThe price includes accommodation with breakfasts, all transfers, excursions with a professional guide and entrance fees. All you have to do is arrive."
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "title": {
+            "ru": "Прибытие и знакомство с Ереваном",
+            "hy": "Ժամանում և ծանոթություն Երևանի հետ",
+            "en": "Arrival and first look at Yerevan"
+          },
+          "items": {
+            "ru": [
+              "Встреча в аэропорту и трансфер в отель",
+              "Заселение и отдых",
+              "Свободное время в центре Еревана"
+            ],
+            "hy": [
+              "Դիմավորում օդանավակայանում և տրանսֆեր հյուրանոց",
+              "Բնակեցում և հանգիստ",
+              "Ազատ ժամանակ Երևանի կենտրոնում"
+            ],
+            "en": [
+              "Airport pick-up and transfer to the hotel",
+              "Check-in and rest",
+              "Free time in central Yerevan"
+            ]
+          }
+        },
+        {
+          "day": 2,
+          "title": {
+            "ru": "Сердце Армении",
+            "hy": "Հայաստանի սիրտը",
+            "en": "The heart of Armenia"
+          },
+          "items": {
+            "ru": [
+              "Монастырь Гегард (ЮНЕСКО)",
+              "Языческий храм Гарни",
+              "Симфония камней",
+              "Азатское водохранилище",
+              "Арка Чаренца с видом на Арарат",
+              "Озеро Севан и монастырь Севанаванк"
+            ],
+            "hy": [
+              "Գեղարդի վանք (ՅՈՒՆԵՍԿՕ)",
+              "Գառնու հեթանոսական տաճար",
+              "Քարերի սիմֆոնիա",
+              "Ազատի ջրամբար",
+              "Չարենցի կամար՝ Արարատի տեսարանով",
+              "Սևանա լիճ և Սևանավանք"
+            ],
+            "en": [
+              "Geghard Monastery (UNESCO)",
+              "Garni pagan temple",
+              "Symphony of Stones",
+              "Azat reservoir",
+              "Charents Arch with a view of Ararat",
+              "Lake Sevan and Sevanavank Monastery"
+            ]
+          }
+        },
+        {
+          "day": 3,
+          "title": {
+            "ru": "Завершение путешествия",
+            "hy": "Ճամփորդության ավարտ",
+            "en": "End of the journey"
+          },
+          "items": {
+            "ru": [
+              "Завтрак в отеле",
+              "Трансфер в аэропорт"
+            ],
+            "hy": [
+              "Նախաճաշ հյուրանոցում",
+              "Տրանսֆեր օդանավակայան"
+            ],
+            "en": [
+              "Breakfast at the hotel",
+              "Transfer to the airport"
+            ]
+          }
+        }
+      ],
+      "destinations": {
+        "ru": [
+          "Храм Гарни",
+          "Монастырь Гегард",
+          "Симфония камней",
+          "Арка Чаренца",
+          "Озеро Севан",
+          "Монастырь Севанаванк"
+        ],
+        "hy": [
+          "Գառնու տաճար",
+          "Գեղարդի վանք",
+          "Քարերի սիմֆոնիա",
+          "Չարենցի կամար",
+          "Սևանա լիճ",
+          "Սևանավանք"
+        ],
+        "en": [
+          "Garni Temple",
+          "Geghard Monastery",
+          "Symphony of Stones",
+          "Charents Arch",
+          "Lake Sevan",
+          "Sevanavank Monastery"
+        ]
+      },
+      "code": "201"
+    },
+    {
+      "slug": "glubokoe-znakomstvo-s-armeniey",
+      "categories": [
+        "packages"
+      ],
+      "image": "/images/package-dilijan.jpg",
+      "days": 4,
+      "nights": 3,
+      "priceFromAmd": 120000,
+      "priceTiers": [
+        {
+          "stars": 3,
+          "amd": 120000
+        },
+        {
+          "stars": 4,
+          "amd": 155000
+        },
+        {
+          "stars": 5,
+          "amd": 230000
+        }
+      ],
+      "title": {
+        "ru": "Глубокое знакомство с Арменией",
+        "hy": "Խորը ծանոթություն Հայաստանի հետ",
+        "en": "Discover Armenia in Depth"
+      },
+      "description": {
+        "ru": "4 дня по ключевым символам страны: Гарни и Гегард, Севан, Дилижан и Агарцин, с мастер-классом по лавашу.",
+        "hy": "4 օր երկրի հիմնական խորհրդանիշներով՝ Գառնի և Գեղարդ, Սևան, Դիլիջան և Հաղարծին՝ լավաշի վարպետաց դասով։",
+        "en": "4 days through the country's key symbols: Garni and Geghard, Sevan, Dilijan and Haghartsin, with a lavash masterclass."
+      },
+      "about": {
+        "ru": "Продуманный тур в небольшой группе для тех, кто хочет узнать Армению вдумчиво, а не галопом.\n\nМаршрут охватывает ключевые символы страны — историю, природу и традиции: храм Гарни, монастырь Гегард, Симфонию камней, озеро Севан, лесной Дилижан и монастырь Агарцин.\n\nОтдельная часть программы — мастер-класс по выпечке лаваша в тонире. В стоимость входят 3 ночи проживания с завтраками, вся программа экскурсий, трансферы, гид и входные билеты.",
+        "hy": "Մտածված տուր փոքր խմբով նրանց համար, ովքեր ուզում են ճանաչել Հայաստանը խորությամբ, ոչ թե վազքով։\n\nԵրթուղին ընդգրկում է երկրի հիմնական խորհրդանիշները՝ պատմություն, բնություն և ավանդույթներ՝ Գառնու տաճար, Գեղարդի վանք, Քարերի սիմֆոնիա, Սևանա լիճ, անտառապատ Դիլիջան և Հաղարծնի վանք։\n\nԾրագրի առանձին մասն է թոնրում լավաշ թխելու վարպետաց դասը։ Արժեքի մեջ ներառված են 3 գիշեր կեցություն նախաճաշերով, էքսկուրսիաների ամբողջ ծրագիրը, տրանսֆերները, գիդը և մուտքի տոմսերը։",
+        "en": "A thoughtfully paced small-group tour for travellers who want to get to know Armenia properly rather than at a gallop.\n\nThe route covers the country's key symbols — history, nature and tradition: Garni Temple, Geghard Monastery, the Symphony of Stones, Lake Sevan, forested Dilijan and Haghartsin Monastery.\n\nA separate highlight is the lavash-baking masterclass in a tonir. The price includes 3 nights with breakfasts, the full excursion programme, transfers, guide and entrance fees."
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "title": {
+            "ru": "Встреча и первые впечатления",
+            "hy": "Դիմավորում և առաջին տպավորություններ",
+            "en": "Arrival and first impressions"
+          },
+          "items": {
+            "ru": [
+              "Трансфер из аэропорта и заселение",
+              "Свободное время для прогулки по центру Еревана"
+            ],
+            "hy": [
+              "Տրանսֆեր օդանավակայանից և բնակեցում",
+              "Ազատ ժամանակ Երևանի կենտրոնում զբոսնելու համար"
+            ],
+            "en": [
+              "Airport transfer and hotel check-in",
+              "Free time to explore central Yerevan"
+            ]
+          }
+        },
+        {
+          "day": 2,
+          "title": {
+            "ru": "Сердце Армении и традиции",
+            "hy": "Հայաստանի սիրտը և ավանդույթները",
+            "en": "The heart of Armenia and its traditions"
+          },
+          "items": {
+            "ru": [
+              "Монастырь Гегард (ЮНЕСКО)",
+              "Симфония камней",
+              "Языческий храм Гарни",
+              "Азатское водохранилище",
+              "Арка Чаренца с видом на Арарат",
+              "Мастер-класс по выпечке лаваша"
+            ],
+            "hy": [
+              "Գեղարդի վանք (ՅՈՒՆԵՍԿՕ)",
+              "Քարերի սիմֆոնիա",
+              "Գառնու հեթանոսական տաճար",
+              "Ազատի ջրամբար",
+              "Չարենցի կամար՝ Արարատի տեսարանով",
+              "Լավաշի թխման վարպետաց դաս"
+            ],
+            "en": [
+              "Geghard Monastery (UNESCO)",
+              "Symphony of Stones",
+              "Garni pagan temple",
+              "Azat reservoir",
+              "Charents Arch with a view of Ararat",
+              "Lavash-baking masterclass"
+            ]
+          }
+        },
+        {
+          "day": 3,
+          "title": {
+            "ru": "Севан и Дилижан",
+            "hy": "Սևան և Դիլիջան",
+            "en": "Sevan and Dilijan"
+          },
+          "items": {
+            "ru": [
+              "Озеро Севан и монастырь Севанаванк",
+              "Старый Дилижан",
+              "Монастырь Агарцин"
+            ],
+            "hy": [
+              "Սևանա լիճ և Սևանավանք",
+              "Հին Դիլիջան",
+              "Հաղարծնի վանք"
+            ],
+            "en": [
+              "Lake Sevan and Sevanavank Monastery",
+              "Old Dilijan",
+              "Haghartsin Monastery"
+            ]
+          }
+        },
+        {
+          "day": 4,
+          "title": {
+            "ru": "Завершение путешествия",
+            "hy": "Ճամփորդության ավարտ",
+            "en": "End of the journey"
+          },
+          "items": {
+            "ru": [
+              "Завтрак в отеле",
+              "Трансфер в аэропорт"
+            ],
+            "hy": [
+              "Նախաճաշ հյուրանոցում",
+              "Տրանսֆեր օդանավակայան"
+            ],
+            "en": [
+              "Breakfast at the hotel",
+              "Transfer to the airport"
+            ]
+          }
+        }
+      ],
+      "destinations": {
+        "ru": [
+          "Монастырь Гегард",
+          "Храм Гарни",
+          "Симфония камней",
+          "Озеро Севан",
+          "Старый Дилижан",
+          "Монастырь Агарцин"
+        ],
+        "hy": [
+          "Գեղարդի վանք",
+          "Գառնու տաճար",
+          "Քարերի սիմֆոնիա",
+          "Սևանա լիճ",
+          "Հին Դիլիջան",
+          "Հաղարծնի վանք"
+        ],
+        "en": [
+          "Geghard Monastery",
+          "Garni Temple",
+          "Symphony of Stones",
+          "Lake Sevan",
+          "Old Dilijan",
+          "Haghartsin Monastery"
+        ]
+      },
+      "code": "202"
+    },
+    {
+      "slug": "pyat-dney-armenia-v-serdtse",
+      "categories": [
+        "packages"
+      ],
+      "image": "/images/package-noravank.jpg",
+      "days": 5,
+      "nights": 4,
+      "priceFromAmd": 165000,
+      "priceTiers": [
+        {
+          "stars": 3,
+          "amd": 165000
+        },
+        {
+          "stars": 4,
+          "amd": 205000
+        },
+        {
+          "stars": 5,
+          "amd": 295000
+        }
+      ],
+      "title": {
+        "ru": "5 дней, после которых Армения остаётся в сердце",
+        "hy": "5 օր, որից հետո Հայաստանը մնում է սրտում",
+        "en": "5-Day Journey: Armenia in Your Heart"
+      },
+      "description": {
+        "ru": "Ереван, Эчмиадзин, Гарни и Гегард, Севан, Хор Вирап, Нораванк и канатная дорога в Татев за 5 дней.",
+        "hy": "Երևան, Էջմիածին, Գառնի և Գեղարդ, Սևան, Խոր Վիրապ, Նորավանք և Տաթևի ճոպանուղին՝ 5 օրում։",
+        "en": "Yerevan, Etchmiadzin, Garni and Geghard, Sevan, Khor Virap, Noravank and the Tatev cableway in 5 days."
+      },
+      "about": {
+        "ru": "Тур для тех, кто приезжает впервые и ценит сервис, эмоции и продуманную программу.\n\nЗа пять дней вы увидите главные символы Армении, древние святыни и природные пейзажи: обзорную по Еревану, Эчмиадзинский собор и Звартноц, Гарни и Гегард, озеро Севан, Хор Вирап с видом на Арарат, Нораванк, водопад Шаки и самую длинную канатную дорогу в Татев.\n\nСпокойный темп, малая группа и мастер-класс по лавашу. В стоимость входят 4 ночи с завтраками, все экскурсии, трансферы, гид и входные билеты.",
+        "hy": "Տուր նրանց համար, ովքեր առաջին անգամ են գալիս և գնահատում են սերվիսը, հույզերը և մտածված ծրագիրը։\n\nՀինգ օրում կտեսնեք Հայաստանի գլխավոր խորհրդանիշները, հին սրբավայրերը և բնական լանդշաֆտները՝ Երևանի շրջայց, Էջմիածնի Մայր տաճար և Զվարթնոց, Գառնի և Գեղարդ, Սևանա լիճ, Խոր Վիրապ՝ Արարատի տեսարանով, Նորավանք, Շաքիի ջրվեժ և Տաթևի ամենաերկար ճոպանուղին։\n\nՀանգիստ տեմպ, փոքր խումբ և լավաշի վարպետաց դաս։ Արժեքի մեջ՝ 4 գիշեր նախաճաշերով, բոլոր էքսկուրսիաները, տրանսֆերները, գիդը և մուտքի տոմսերը։",
+        "en": "A tour for first-time visitors who value service, emotion and a well-thought-out programme.\n\nOver five days you see Armenia's main symbols, ancient shrines and natural landscapes: a Yerevan city tour, Etchmiadzin Cathedral and Zvartnots, Garni and Geghard, Lake Sevan, Khor Virap with its view of Ararat, Noravank, Shaki waterfall and the longest cableway in the world to Tatev.\n\nA relaxed pace, a small group and a lavash masterclass. The price includes 4 nights with breakfasts, all excursions, transfers, guide and entrance fees."
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "title": {
+            "ru": "Прибытие в Ереван",
+            "hy": "Ժամանում Երևան",
+            "en": "Arrival in Yerevan"
+          },
+          "items": {
+            "ru": [
+              "Трансфер из аэропорта",
+              "Заселение в отель",
+              "Свободное время в Ереване"
+            ],
+            "hy": [
+              "Տրանսֆեր օդանավակայանից",
+              "Բնակեցում հյուրանոցում",
+              "Ազատ ժամանակ Երևանում"
+            ],
+            "en": [
+              "Airport transfer",
+              "Hotel check-in",
+              "Free time in Yerevan"
+            ]
+          }
+        },
+        {
+          "day": 2,
+          "title": {
+            "ru": "Ереван и духовный центр",
+            "hy": "Երևան և հոգևոր կենտրոն",
+            "en": "Yerevan and the spiritual centre"
+          },
+          "items": {
+            "ru": [
+              "Площадь Республики",
+              "Монумент «Мать Армения»",
+              "Каскад и Оперный театр",
+              "Эчмиадзинский кафедральный собор",
+              "Храм Звартноц"
+            ],
+            "hy": [
+              "Հանրապետության հրապարակ",
+              "«Մայր Հայաստան» հուշարձան",
+              "Կասկադ և Օպերայի շենք",
+              "Էջմիածնի Մայր տաճար",
+              "Զվարթնոց տաճար"
+            ],
+            "en": [
+              "Republic Square",
+              "Mother Armenia monument",
+              "The Cascade and the Opera House",
+              "Etchmiadzin Cathedral",
+              "Zvartnots Temple"
+            ]
+          }
+        },
+        {
+          "day": 3,
+          "title": {
+            "ru": "Гарни, Гегард и Севан",
+            "hy": "Գառնի, Գեղարդ և Սևան",
+            "en": "Garni, Geghard and Sevan"
+          },
+          "items": {
+            "ru": [
+              "Храм Гарни",
+              "Симфония камней",
+              "Монастырь Гегард",
+              "Мастер-класс по выпечке лаваша",
+              "Озеро Севан и монастырь Севанаванк"
+            ],
+            "hy": [
+              "Գառնու տաճար",
+              "Քարերի սիմֆոնիա",
+              "Գեղարդի վանք",
+              "Լավաշի թխման վարպետաց դաս",
+              "Սևանա լիճ և Սևանավանք"
+            ],
+            "en": [
+              "Garni Temple",
+              "Symphony of Stones",
+              "Geghard Monastery",
+              "Lavash-baking masterclass",
+              "Lake Sevan and Sevanavank Monastery"
+            ]
+          }
+        },
+        {
+          "day": 4,
+          "title": {
+            "ru": "Юг Армении и Татев",
+            "hy": "Հայաստանի հարավը և Տաթև",
+            "en": "Southern Armenia and Tatev"
+          },
+          "items": {
+            "ru": [
+              "Монастырь Хор Вирап",
+              "Монастырь Нораванк",
+              "Водопад Шаки",
+              "Канатная дорога «Крылья Татева»",
+              "Монастырь Татев"
+            ],
+            "hy": [
+              "Խոր Վիրապ",
+              "Նորավանք",
+              "Շաքիի ջրվեժ",
+              "«Տաթևի թևեր» ճոպանուղի",
+              "Տաթևի վանք"
+            ],
+            "en": [
+              "Khor Virap Monastery",
+              "Noravank Monastery",
+              "Shaki waterfall",
+              "Wings of Tatev cableway",
+              "Tatev Monastery"
+            ]
+          }
+        },
+        {
+          "day": 5,
+          "title": {
+            "ru": "Завершение путешествия",
+            "hy": "Ճամփորդության ավարտ",
+            "en": "End of the journey"
+          },
+          "items": {
+            "ru": [
+              "Завтрак в отеле",
+              "Трансфер в аэропорт"
+            ],
+            "hy": [
+              "Նախաճաշ հյուրանոցում",
+              "Տրանսֆեր օդանավակայան"
+            ],
+            "en": [
+              "Breakfast at the hotel",
+              "Transfer to the airport"
+            ]
+          }
+        }
+      ],
+      "destinations": {
+        "ru": [
+          "Ереван",
+          "Эчмиадзин",
+          "Звартноц",
+          "Храм Гарни",
+          "Монастырь Гегард",
+          "Озеро Севан",
+          "Хор Вирап",
+          "Нораванк",
+          "Монастырь Татев"
+        ],
+        "hy": [
+          "Երևան",
+          "Էջմիածին",
+          "Զվարթնոց",
+          "Գառնու տաճար",
+          "Գեղարդի վանք",
+          "Սևանա լիճ",
+          "Խոր Վիրապ",
+          "Նորավանք",
+          "Տաթևի վանք"
+        ],
+        "en": [
+          "Yerevan",
+          "Etchmiadzin",
+          "Zvartnots",
+          "Garni Temple",
+          "Geghard Monastery",
+          "Lake Sevan",
+          "Khor Virap",
+          "Noravank",
+          "Tatev Monastery"
+        ]
+      },
+      "code": "203"
+    },
+    {
+      "slug": "armenia-s-nochevkoy-v-gorah",
+      "categories": [
+        "packages"
+      ],
+      "image": "/images/package-tatev.jpg",
+      "days": 6,
+      "nights": 5,
+      "priceFromAmd": 205000,
+      "priceTiers": [
+        {
+          "stars": 3,
+          "amd": 205000
+        },
+        {
+          "stars": 4,
+          "amd": 275000
+        },
+        {
+          "stars": 5,
+          "amd": 360000
+        }
+      ],
+      "title": {
+        "ru": "Армения с ночёвкой в горах",
+        "hy": "Հայաստան՝ գիշերակացով լեռներում",
+        "en": "Armenia with a Night in the Mountains"
+      },
+      "description": {
+        "ru": "6 дней с ночёвкой в горах на юге страны: Татев, канатная дорога, водопад Шаки, дегустация вина и Севан.",
+        "hy": "6 օր՝ գիշերակացով լեռներում երկրի հարավում՝ Տաթև, ճոպանուղի, Շաքիի ջրվեժ, գինու համտես և Սևան։",
+        "en": "6 days including a night in the southern mountains: Tatev, the cableway, Shaki waterfall, wine tasting and Sevan."
+      },
+      "about": {
+        "ru": "Тур для тех, кто хочет увидеть Армению не поверхностно, а почувствовать её ритм, пространство и атмосферу.\n\nПрограмма сочетает насыщенные экскурсионные дни и дни отдыха: юг страны с ночёвкой в горах, монастырь Татев и знаменитая канатная дорога, водопад Шаки, винный регион с дегустацией, а также классический маршрут Гарни — Гегард — Севан.\n\nВ стоимость входят 5 ночей проживания с завтраками, дегустация вина, все экскурсии, трансферы, профессиональный гид и входные билеты.",
+        "hy": "Տուր նրանց համար, ովքեր ուզում են Հայաստանը տեսնել ոչ մակերեսային, այլ զգալ նրա ռիթմը, տարածությունը և մթնոլորտը։\n\nԾրագիրը համատեղում է հագեցած էքսկուրսիոն օրերը և հանգստի օրերը՝ երկրի հարավը՝ գիշերակացով լեռներում, Տաթևի վանք և հայտնի ճոպանուղին, Շաքիի ջրվեժ, գինու շրջան՝ համտեսով, ինչպես նաև դասական Գառնի — Գեղարդ — Սևան երթուղին։\n\nԱրժեքի մեջ՝ 5 գիշեր կեցություն նախաճաշերով, գինու համտես, բոլոր էքսկուրսիաները, տրանսֆերները, մասնագիտական գիդը և մուտքի տոմսերը։",
+        "en": "A tour for travellers who want to feel Armenia's rhythm, space and atmosphere rather than skim the surface.\n\nThe programme balances full excursion days with rest days: the south of the country with a night in the mountains, Tatev Monastery and its famous cableway, Shaki waterfall, the wine region with a tasting, plus the classic Garni — Geghard — Sevan route.\n\nThe price includes 5 nights with breakfasts, a wine tasting, all excursions, transfers, a professional guide and entrance fees."
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "title": {
+            "ru": "Прибытие и отдых",
+            "hy": "Ժամանում և հանգիստ",
+            "en": "Arrival and rest"
+          },
+          "items": {
+            "ru": [
+              "Трансфер из аэропорта",
+              "Заселение в отель",
+              "Отдых и акклиматизация"
+            ],
+            "hy": [
+              "Տրանսֆեր օդանավակայանից",
+              "Բնակեցում հյուրանոցում",
+              "Հանգիստ և ադապտացիա"
+            ],
+            "en": [
+              "Airport transfer",
+              "Hotel check-in",
+              "Rest and acclimatisation"
+            ]
+          }
+        },
+        {
+          "day": 2,
+          "title": {
+            "ru": "Дорога на юг и ночёвка в горах",
+            "hy": "Ճանապարհ դեպի հարավ և գիշերակաց լեռներում",
+            "en": "South and a night in the mountains"
+          },
+          "items": {
+            "ru": [
+              "Маршрут на юг Армении",
+              "Дегустация вина в винном регионе",
+              "Ночёвка в горах"
+            ],
+            "hy": [
+              "Երթուղի դեպի Հայաստանի հարավ",
+              "Գինու համտես գինու շրջանում",
+              "Գիշերակաց լեռներում"
+            ],
+            "en": [
+              "Route to southern Armenia",
+              "Wine tasting in the wine region",
+              "Overnight in the mountains"
+            ]
+          }
+        },
+        {
+          "day": 3,
+          "title": {
+            "ru": "Татев и водопад Шаки",
+            "hy": "Տաթև և Շաքիի ջրվեժ",
+            "en": "Tatev and Shaki waterfall"
+          },
+          "items": {
+            "ru": [
+              "Канатная дорога «Крылья Татева»",
+              "Монастырь Татев",
+              "Водопад Шаки",
+              "Возвращение в Ереван"
+            ],
+            "hy": [
+              "«Տաթևի թևեր» ճոպանուղի",
+              "Տաթևի վանք",
+              "Շաքիի ջրվեժ",
+              "Վերադարձ Երևան"
+            ],
+            "en": [
+              "Wings of Tatev cableway",
+              "Tatev Monastery",
+              "Shaki waterfall",
+              "Return to Yerevan"
+            ]
+          }
+        },
+        {
+          "day": 4,
+          "title": {
+            "ru": "Свободный день в Ереване",
+            "hy": "Ազատ օր Երևանում",
+            "en": "Free day in Yerevan"
+          },
+          "items": {
+            "ru": [
+              "Свободный день",
+              "Дополнительные экскурсии по желанию"
+            ],
+            "hy": [
+              "Ազատ օր",
+              "Լրացուցիչ էքսկուրսիաներ ըստ ցանկության"
+            ],
+            "en": [
+              "Free day",
+              "Optional extra excursions"
+            ]
+          }
+        },
+        {
+          "day": 5,
+          "title": {
+            "ru": "Классическая Армения",
+            "hy": "Դասական Հայաստան",
+            "en": "Classical Armenia"
+          },
+          "items": {
+            "ru": [
+              "Храм Гарни",
+              "Монастырь Гегард",
+              "Арка Чаренца",
+              "Озеро Севан и монастырь Севанаванк"
+            ],
+            "hy": [
+              "Գառնու տաճար",
+              "Գեղարդի վանք",
+              "Չարենցի կամար",
+              "Սևանա լիճ և Սևանավանք"
+            ],
+            "en": [
+              "Garni Temple",
+              "Geghard Monastery",
+              "Charents Arch",
+              "Lake Sevan and Sevanavank Monastery"
+            ]
+          }
+        },
+        {
+          "day": 6,
+          "title": {
+            "ru": "Завершение путешествия",
+            "hy": "Ճամփորդության ավարտ",
+            "en": "End of the journey"
+          },
+          "items": {
+            "ru": [
+              "Завтрак и выселение",
+              "Трансфер в аэропорт"
+            ],
+            "hy": [
+              "Նախաճաշ և դուրս գրվել",
+              "Տրանսֆեր օդանավակայան"
+            ],
+            "en": [
+              "Breakfast and check-out",
+              "Transfer to the airport"
+            ]
+          }
+        }
+      ],
+      "destinations": {
+        "ru": [
+          "Юг Армении",
+          "Монастырь Татев",
+          "Канатная дорога «Крылья Татева»",
+          "Водопад Шаки",
+          "Храм Гарни",
+          "Монастырь Гегард",
+          "Озеро Севан"
+        ],
+        "hy": [
+          "Հայաստանի հարավ",
+          "Տաթևի վանք",
+          "«Տաթևի թևեր» ճոպանուղի",
+          "Շաքիի ջրվեժ",
+          "Գառնու տաճար",
+          "Գեղարդի վանք",
+          "Սևանա լիճ"
+        ],
+        "en": [
+          "Southern Armenia",
+          "Tatev Monastery",
+          "Wings of Tatev cableway",
+          "Shaki waterfall",
+          "Garni Temple",
+          "Geghard Monastery",
+          "Lake Sevan"
+        ]
+      },
+      "code": "204"
+    },
+    {
+      "slug": "armenia-vne-shablonov",
+      "categories": [
+        "packages"
+      ],
+      "image": "/images/package-sevan.jpg",
+      "days": 8,
+      "nights": 7,
+      "priceFromAmd": 335000,
+      "priceTiers": [
+        {
+          "stars": 3,
+          "amd": 335000
+        },
+        {
+          "stars": 4,
+          "amd": 405000
+        },
+        {
+          "stars": 5,
+          "amd": 505000
+        }
+      ],
+      "title": {
+        "ru": "Армения вне шаблонов",
+        "hy": "Հայաստանը կաղապարներից դուրս",
+        "en": "Authentic Armenia: Beyond the Ordinary"
+      },
+      "description": {
+        "ru": "8 дней по всей стране: север и Лори, Дилижан, Севан, Цахкадзор, монастыри ЮНЕСКО и мастер-класс по лавашу.",
+        "hy": "8 օր ամբողջ երկրով՝ հյուսիս և Լոռի, Դիլիջան, Սևան, Ծաղկաձոր, ՅՈՒՆԵՍԿՕ-ի վանքեր և լավաշի վարպետաց դաս։",
+        "en": "8 days across the country: the north and Lori, Dilijan, Sevan, Tsaghkadzor, UNESCO monasteries and a lavash masterclass."
+      },
+      "about": {
+        "ru": "Самое полное путешествие для тех, кто хочет увидеть настоящую Армению — не только открыточные места.\n\nМаршрут охватывает духовные монастыри, альпийские пейзажи, северные регионы Лори, озеро Севан и традиционные ремёсла. Программа построена без изматывающих переездов: насыщенные дни чередуются со свободными.\n\nВ стоимость входят 7 ночей проживания с завтраками, все экскурсии и мастер-классы, трансферы, профессиональный гид и входные билеты.",
+        "hy": "Ամենալիարժեք ճամփորդությունը նրանց համար, ովքեր ուզում են տեսնել իսկական Հայաստանը՝ ոչ միայն բացիկների վայրերը։\n\nԵրթուղին ընդգրկում է հոգևոր վանքեր, ալպիական լանդշաֆտներ, Լոռու հյուսիսային շրջանները, Սևանա լիճը և ավանդական արհեստները։ Ծրագիրը կառուցված է առանց հոգնեցնող տեղափոխությունների՝ հագեցած օրերը հերթափոխվում են ազատներով։\n\nԱրժեքի մեջ՝ 7 գիշեր կեցություն նախաճաշերով, բոլոր էքսկուրսիաներն ու վարպետաց դասերը, տրանսֆերները, մասնագիտական գիդը և մուտքի տոմսերը։",
+        "en": "The most complete journey, for travellers who want the real Armenia — not just the postcard spots.\n\nThe route takes in spiritual monasteries, alpine landscapes, the northern Lori region, Lake Sevan and traditional crafts. It is built without exhausting transfers: busy days alternate with free ones.\n\nThe price includes 7 nights with breakfasts, all excursions and masterclasses, transfers, a professional guide and entrance fees."
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "title": {
+            "ru": "Прибытие в Ереван",
+            "hy": "Ժամանում Երևան",
+            "en": "Arrival in Yerevan"
+          },
+          "items": {
+            "ru": [
+              "Встреча в аэропорту",
+              "Трансфер и заселение в отель"
+            ],
+            "hy": [
+              "Դիմավորում օդանավակայանում",
+              "Տրանսֆեր և բնակեցում հյուրանոցում"
+            ],
+            "en": [
+              "Airport pick-up",
+              "Transfer and hotel check-in"
+            ]
+          }
+        },
+        {
+          "day": 2,
+          "title": {
+            "ru": "Вид на Арарат и духовные центры",
+            "hy": "Արարատի տեսարան և հոգևոր կենտրոններ",
+            "en": "Ararat views and spiritual centres"
+          },
+          "items": {
+            "ru": [
+              "Панорамы Арарата",
+              "Монастырь Сагмосаванк",
+              "Монастырь Ованаванк"
+            ],
+            "hy": [
+              "Արարատի համայնապատկերներ",
+              "Սաղմոսավանք",
+              "Հովհաննավանք"
+            ],
+            "en": [
+              "Ararat panoramas",
+              "Saghmosavank Monastery",
+              "Hovhannavank Monastery"
+            ]
+          }
+        },
+        {
+          "day": 3,
+          "title": {
+            "ru": "Север Армении — Лори",
+            "hy": "Հայաստանի հյուսիս — Լոռի",
+            "en": "Northern Armenia — Lori"
+          },
+          "items": {
+            "ru": [
+              "Монастырь Санаин (ЮНЕСКО)",
+              "Монастырь Ахпат (ЮНЕСКО)",
+              "Крепость Зарни-Парни",
+              "Пещера Мендз-Ер"
+            ],
+            "hy": [
+              "Սանահինի վանք (ՅՈՒՆԵՍԿՕ)",
+              "Հաղպատի վանք (ՅՈՒՆԵՍԿՕ)",
+              "Զառնի-Փառնի ամրոց",
+              "Մենձ-Եր քարանձավ"
+            ],
+            "en": [
+              "Sanahin Monastery (UNESCO)",
+              "Haghpat Monastery (UNESCO)",
+              "Zarni-Parni fortress",
+              "Mendz-Er cave"
+            ]
+          }
+        },
+        {
+          "day": 4,
+          "title": {
+            "ru": "Дилижан и озеро Севан",
+            "hy": "Դիլիջան և Սևանա լիճ",
+            "en": "Dilijan and Lake Sevan"
+          },
+          "items": {
+            "ru": [
+              "Леса Дилижана",
+              "Озеро Парз",
+              "Монастырь Гошаванк",
+              "Переезд на Севан"
+            ],
+            "hy": [
+              "Դիլիջանի անտառներ",
+              "Պարզ լիճ",
+              "Գոշավանք",
+              "Տեղափոխում Սևան"
+            ],
+            "en": [
+              "Dilijan forests",
+              "Lake Parz",
+              "Goshavank Monastery",
+              "Transfer to Lake Sevan"
+            ]
+          }
+        },
+        {
+          "day": 5,
+          "title": {
+            "ru": "Свободный день на Севане",
+            "hy": "Ազատ օր Սևանում",
+            "en": "Free day at Sevan"
+          },
+          "items": {
+            "ru": [
+              "Свободный день у озера",
+              "Дополнительные активности по желанию"
+            ],
+            "hy": [
+              "Ազատ օր լճի մոտ",
+              "Լրացուցիչ ակտիվություններ ըստ ցանկության"
+            ],
+            "en": [
+              "Free day by the lake",
+              "Optional activities"
+            ]
+          }
+        },
+        {
+          "day": 6,
+          "title": {
+            "ru": "Цахкадзор и Гутанасар",
+            "hy": "Ծաղկաձոր և Գութանասար",
+            "en": "Tsaghkadzor and Gutanasar"
+          },
+          "items": {
+            "ru": [
+              "Горный курорт Цахкадзор",
+              "Монастырь Кечарис",
+              "Вулкан Гутанасар"
+            ],
+            "hy": [
+              "Ծաղկաձոր լեռնային հանգստավայր",
+              "Կեչառիսի վանք",
+              "Գութանասար հրաբուխ"
+            ],
+            "en": [
+              "Tsaghkadzor mountain resort",
+              "Kecharis Monastery",
+              "Gutanasar volcano"
+            ]
+          }
+        },
+        {
+          "day": 7,
+          "title": {
+            "ru": "Традиции и наследие ЮНЕСКО",
+            "hy": "Ավանդույթներ և ՅՈՒՆԵՍԿՕ-ի ժառանգություն",
+            "en": "Traditions and UNESCO heritage"
+          },
+          "items": {
+            "ru": [
+              "Мастер-класс по выпечке лаваша",
+              "Монастырь Гегард (ЮНЕСКО)",
+              "Храм Гарни",
+              "Арка Чаренца",
+              "Азатское водохранилище"
+            ],
+            "hy": [
+              "Լավաշի թխման վարպետաց դաս",
+              "Գեղարդի վանք (ՅՈՒՆԵՍԿՕ)",
+              "Գառնու տաճար",
+              "Չարենցի կամար",
+              "Ազատի ջրամբար"
+            ],
+            "en": [
+              "Lavash-baking masterclass",
+              "Geghard Monastery (UNESCO)",
+              "Garni Temple",
+              "Charents Arch",
+              "Azat reservoir"
+            ]
+          }
+        },
+        {
+          "day": 8,
+          "title": {
+            "ru": "Завершение путешествия",
+            "hy": "Ճամփորդության ավարտ",
+            "en": "End of the journey"
+          },
+          "items": {
+            "ru": [
+              "Завтрак в отеле",
+              "Трансфер в аэропорт"
+            ],
+            "hy": [
+              "Նախաճաշ հյուրանոցում",
+              "Տրանսֆեր օդանավակայան"
+            ],
+            "en": [
+              "Breakfast at the hotel",
+              "Transfer to the airport"
+            ]
+          }
+        }
+      ],
+      "destinations": {
+        "ru": [
+          "Сагмосаванк",
+          "Ованаванк",
+          "Санаин и Ахпат (ЮНЕСКО)",
+          "Дилижан",
+          "Озеро Парз",
+          "Гошаванк",
+          "Озеро Севан",
+          "Цахкадзор",
+          "Монастырь Гегард",
+          "Храм Гарни"
+        ],
+        "hy": [
+          "Սաղմոսավանք",
+          "Հովհաննավանք",
+          "Սանահին և Հաղպատ (ՅՈՒՆԵՍԿՕ)",
+          "Դիլիջան",
+          "Պարզ լիճ",
+          "Գոշավանք",
+          "Սևանա լիճ",
+          "Ծաղկաձոր",
+          "Գեղարդի վանք",
+          "Գառնու տաճար"
+        ],
+        "en": [
+          "Saghmosavank",
+          "Hovhannavank",
+          "Sanahin and Haghpat (UNESCO)",
+          "Dilijan",
+          "Lake Parz",
+          "Goshavank",
+          "Lake Sevan",
+          "Tsaghkadzor",
+          "Geghard Monastery",
+          "Garni Temple"
+        ]
+      },
+      "code": "205"
+    },
+    {
+      "slug": "echmiadzin-gayane-hripsime-lavash-zvartnots",
+      "image": "/images/1790851543350-clipboard-1790851545734.png",
+      "title": {
+        "ru": "Эчмиадзин — Гаяне — Рипсиме — лаваш — Звартноц",
+        "hy": "Էջմիածնի մայր տաճար և Զվարթնոց",
+        "en": "Etchmiadzin Cathedral and Zvartnots"
+      },
+      "description": {
+        "ru": "Духовное путешествие в сердце Армении с мастер-классом по лавашу.",
+        "hy": "Հոգևոր ճանապարհորդություն Հայաստանի սրտում՝ լավաշի վարպետաց դասով։",
+        "en": "A spiritual journey through Armenia’s sacred heart, with a lavash master class."
+      },
+      "about": {
+        "ru": "Посетите главный духовный центр Армении — Эчмиадзинский кафедральный собор, древние церкви Гаяне и Рипсиме. Познакомьтесь с местными традициями на мастер-классе по выпечке лаваша и завершите маршрут у величественного храма Звартноц.",
+        "hy": "Կայցելեք Հայաստանի գլխավոր հոգևոր կենտրոնը՝ Էջմիածնի մայր տաճարը, Գայանե և Հռիփսիմե հնագույն եկեղեցիները։ Կծանոթանաք տեղական ավանդույթներին լավաշի վարպետաց դասի ընթացքում և կավարտեք ուղևորությունը Զվարթնոցի հիասքանչ տաճարում։",
+        "en": "Visit the Mother See of Holy Etchmiadzin and the historic churches of Gayane and Hripsime. Meet local traditions during a lavash master class, then finish at the magnificent Zvartnots Temple."
+      },
+      "destinations": {
+        "ru": [
+          "Эчмиадзинский кафедральный собор",
+          "Церковь Святой Гаяне",
+          "Церковь Святой Рипсиме",
+          "Мастер-класс по лавашу",
+          "Храм Звартноц"
+        ],
+        "hy": [
+          "Էջմիածնի մայր տաճար",
+          "Սուրբ Գայանե եկեղեցի",
+          "Սուրբ Հռիփսիմե եկեղեցի",
+          "Լավաշի վարպետաց դաս",
+          "Զվարթնոց"
+        ],
+        "en": [
+          "Etchmiadzin Cathedral",
+          "Saint Gayane Church",
+          "Saint Hripsime Church",
+          "Lavash Master Class",
+          "Zvartnots Temple"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group"
+      ],
+      "priceFromAmd": 10000,
+      "departure": "10:00",
+      "durationHours": "6–7",
+      "images": [
+        "/images/1790851543350-clipboard-1790851545734.png",
+        "/images/1790851832321-gayane5.jpg",
+        "/images/1790851900463-s.-hripsime-exterior.jpg",
+        "/images/1790851837006-hqwfpmgxawkuvaszgaomtf3kbruwdgrqnqcatx9dzcljow9w5x-hcptbazppvsdw-fs8kxfap05pwqax1ts-auftfbrhhcjldvk7g6o2rlnq03ecfovjnhhhbsquyr0somhwvoioz4rfdjecfywn4o9tyiird-jdaxo9g4-kp5kucjejlwld3kwc-kpppdqe.jpg"
+      ],
+      "code": "p01"
+    },
+    {
+      "slug": "garni-charents-arch-lavash-geghard",
+      "image": "/images/1790852010585-30860288.jpg",
+      "title": {
+        "ru": "Гарни — Арка Чаренца — лаваш — Гегард",
+        "hy": "Գառնի, Չարենցի կամար և Գեղարդ",
+        "en": "Garni, Charents Arch and Geghard"
+      },
+      "description": {
+        "ru": "Древние храмы, горные панорамы и вкусы Армении в одном насыщенном дне.",
+        "hy": "Հնագույն տաճարներ, լեռնային տեսարաններ և Հայաստանի համերը մեկ անմոռանալի օրում։",
+        "en": "Ancient temples, mountain views and the flavours of Armenia in one memorable day."
+      },
+      "about": {
+        "ru": "Отправьтесь от панорамной арки Чаренца к античному храму Гарни. Примите участие в мастер-классе по лавашу, увидьте базальтовую «Симфонию камней» и исследуйте монастырь Гегард из списка ЮНЕСКО.",
+        "hy": "Չարենցի կամարի համայնապատկերից կուղևորվեք դեպի անտիկ Գառնիի տաճար։ Կմասնակցեք լավաշի վարպետաց դասի, կտեսնեք բազալտե Քարերի սիմֆոնիան և կուսումնասիրեք ՅՈՒՆԵՍԿՕ-ի ցանկում ընդգրկված Գեղարդի վանքը։",
+        "en": "Travel from the panoramic Charents Arch to the classical Garni Temple. Enjoy a hands-on lavash master class before exploring the basalt Symphony of Stones and the UNESCO-listed Geghard Monastery."
+      },
+      "destinations": {
+        "ru": [
+          "Арка Чаренца",
+          "Азатское водохранилище",
+          "Храм Гарни",
+          "Симфония камней",
+          "Монастырь Гегард"
+        ],
+        "hy": [
+          "Չարենցի կամար",
+          "Ազատի ջրամբար",
+          "Գառնիի տաճար",
+          "Քարերի սիմֆոնիա",
+          "Գեղարդի վանք"
+        ],
+        "en": [
+          "Charents Arch",
+          "Azat Reservoir",
+          "Garni Temple",
+          "Symphony of Stones",
+          "Geghard Monastery"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group",
+        "offers"
+      ],
+      "priceFromAmd": 15000,
+      "departure": "10:00",
+      "durationHours": "6–7",
+      "images": [
+        "/images/1790852010585-30860288.jpg",
+        "/images/1790852018779-860x460.webp",
+        "/images/1790852214017-mm6ovjtxmp--d-43iano-slgu9izj9yphngl5cdmo2r97wh9ykwn9ldo3cpz6y8qi-2huqwaytyrecsjc4dpmtyhlfcobclhnnli6dnfu7s6dk14wd1jsxfdxcy2c3ckrdrsydjwgosu7cyo-9qomc0thj2smvaavr1b3a3jlk6oqk0s4dbhra-0alhlij5l.jpg",
+        "/images/1790852220056-ripzsgypnnvqs6g8qjy-gpvps-d3j3mdpdzg3e1jqvypp7antd0o-eimd-7cl8bv4gv-nouqmnk71bc-m1begnygpghp197kvtn7wth-4mf8zirv-1pm0idzdiq3qx7z4i5jaqel2l6efjmstyxzpwv7lwlxa1mvje2-mvypvnzuworwqdqwe3o4monn-ddh.jpg",
+        "/images/1790852238237-zvsf5duyfcow1oux6pyuadkk9kqw9xubftztbcwvfgf2yaxptyvnfwdrk05w4eqm6qceb1pipw2obl4rzgb2iw5pmjaawurevrvmeiszwznyvojlo8w6i7crsvzxupwwsru--8uize1a4-asqn19sxn-j-3hgigb5vw780nmoaylj9rxblx7wkcablppfi8u.jpg"
+      ],
+      "code": "p02"
+    },
+    {
+      "slug": "khor-virap-azat-garni-geghard",
+      "image": "/images/1790853222939-rrxtpmnxibzmr4kloxdg7vknxlbimtkchtimed83mbs1x1ahqjrnmdeo6k4txczebsbklwp7px9g-jvcp5suwqh66nmjqsqaejpyzkrj6x5h08w69q2ubeurhx8m29ahzkiyciqlbpa57gfw22bmfcmnqiyeuyyxlhca1a4iy4a8ys0ylhcyvzzryvag3ruy.jpg",
+      "title": {
+        "ru": "Хор Вирап — Азат — Гарни — Гегард",
+        "hy": "Խոր Վիրապ, Ազատ, Գառնի և Գեղարդ",
+        "en": "Khor Virap, Garni and Geghard"
+      },
+      "description": {
+        "ru": "Классический маршрут по Армении: Арарат, языческое наследие и святыни.",
+        "hy": "Հայաստանի դասական երթուղի՝ Արարատի տեսարանով, հեթանոսական ժառանգությամբ և սրբավայրերով։",
+        "en": "A classic Armenia route combining the Ararat panorama, pagan heritage and sacred architecture."
+      },
+      "about": {
+        "ru": "Начните день в монастыре Хор Вирап с его незабываемым видом на гору Арарат. Затем вас ждут Азатское водохранилище, античный храм Гарни, «Симфония камней» и высеченный в скале монастырь Гегард.",
+        "hy": "Օրը կսկսեք Խոր Վիրապից՝ Արարատ լեռան անմոռանալի տեսարանով։ Այնուհետև կայցելեք Ազատի ջրամբարը, անտիկ Գառնիի տաճարը, Քարերի սիմֆոնիան և ժայռափոր Գեղարդի վանքը։",
+        "en": "Begin at Khor Virap with its unforgettable view of Mount Ararat. Continue to Azat Reservoir, the ancient Garni Temple, the Symphony of Stones and the rock-cut Geghard Monastery."
+      },
+      "destinations": {
+        "ru": [
+          "Монастырь Хор Вирап",
+          "Азатское водохранилище",
+          "Храм Гарни",
+          "Симфония камней",
+          "Монастырь Гегард"
+        ],
+        "hy": [
+          "Խոր Վիրապ",
+          "Ազատի ջրամբար",
+          "Գառնիի տաճար",
+          "Քարերի սիմֆոնիա",
+          "Գեղարդի վանք"
+        ],
+        "en": [
+          "Khor Virap",
+          "Azat Reservoir",
+          "Garni Temple",
+          "Symphony of Stones",
+          "Geghard Monastery"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group"
+      ],
+      "priceFromAmd": 15000,
+      "departure": "09:00",
+      "durationHours": "7–8",
+      "images": [
+        "/images/1790853222939-rrxtpmnxibzmr4kloxdg7vknxlbimtkchtimed83mbs1x1ahqjrnmdeo6k4txczebsbklwp7px9g-jvcp5suwqh66nmjqsqaejpyzkrj6x5h08w69q2ubeurhx8m29ahzkiyciqlbpa57gfw22bmfcmnqiyeuyyxlhca1a4iy4a8ys0ylhcyvzzryvag3ruy.jpg",
+        "/images/1790853233958-03wbyn-isdkfdvl6ojloetvzsqqlx0b16xj8wifgw7aepk1wm-nqeberiw29cmmurbtgihxusirdv4i-svzygx-tsvmm-olw-mbhyxtyshppzr3s-hojyljhohifawaiplvq9njsxsgdq0ywdciudrmfja1pggpayu642csfo5bsm0x39q9f7sesyn-icnq0.jpg",
+        "/images/1790853241629-qgenaxtt1uxl0-ol5mxfj4fsfuqp-fdao5xctsbqhkrs-hoodludxxbuarlfjnhsij0tzmp7kaiuxpbsqy2ne7bsezraer4yk4q68yb3wc5ew-n4hbsezqhygujhbcysbachj9bckevxytjusevwvk7jvcfbl602e1kv-z-epuaeqayi7tw3twkalg1tbjtt.jpg",
+        "/images/1790853257547-6hqejewko6ongi6fbsrniy3buwzepxozxlqgymh5sm6dqmfzvyfcgfjlssyfwx-fbgynb5i7aqguihmgaihpri3q3ktctejbsdmlhpxtbqtfbijxau3epry7gmadj7i4dse5st82h-n4bldjjiuco7uujd6pfpswgshka8tu77yq-2eifgcytjjg497k-ves.jpg",
+        "/images/1790853246121-a5tr4u91tdmx7hpcb432hsctx1n3rkba3fasiy6mo-ipwqmskmgb0bw-xclexxuvwitljpz9018lexkdc-kxag3iaw-xiyoosylyzj3ppg3ayz3-wgf30fwbpx1ozyjfcdgr9yr19vz0jmilpyda0bfbojpf5nelrlf9rcdlhqv5j5cba-oktxzelnasdnkl.jpg"
+      ],
+      "code": "103"
+    },
+    {
+      "slug": "khor-virap-areni-noravank-birds-cave",
+      "image": "/images/1790853455264-awge04akby43ltzn8xib6wgtyoebnbkn2b6ehic8tsrpzvdpszi6fbjos252jqhxynu1op0eepxj8-y55gwqzzgal4ve5k-g-kb8nuibt-nqkyoo-nmnkfk-b1dzf2-vq17sdiykok-isgs0z4y-bp6kj6spaq-izeb3-7-zrlwyhqv3m7r3rjty0yowndu.jpg",
+      "title": {
+        "ru": "Хор Вирап — Арени — Нораванк — Пещера птиц",
+        "hy": "Խոր Վիրապ, Արենի, Նորավանք և Թռչունների քարանձավ",
+        "en": "Khor Virap, Areni Wine and Noravank"
+      },
+      "description": {
+        "ru": "Живописный маршрут по виноградникам, каньонам и краснокаменным монастырям.",
+        "hy": "Գեղատեսիլ երթուղի խաղողի այգիներով, կիրճերով և կարմիր քարե վանքերով։",
+        "en": "A scenic journey through vineyards, canyon landscapes and the red-stone Noravank Monastery."
+      },
+      "about": {
+        "ru": "Полюбуйтесь Араратом из Хор Вирапа, познакомьтесь с винодельческим регионом Арени и отправьтесь в живописный каньон Амагу. Завершение маршрута — монастырь Нораванк и загадочная Пещера птиц.",
+        "hy": "Խոր Վիրապից կհիանաք Արարատի տեսարանով, կծանոթանաք Արենիի գինեգործական շրջանին և կուղևորվեք գեղատեսիլ Ամաղուի կիրճ։ Երթուղին կավարտվի Նորավանքում և խորհրդավոր Թռչունների քարանձավում։",
+        "en": "See Mount Ararat from Khor Virap, taste the flavours of Areni wine country and explore the dramatic Amaghu Canyon. The route ends at Noravank and the atmospheric Birds’ Cave."
+      },
+      "destinations": {
+        "ru": [
+          "Монастырь Хор Вирап",
+          "Винный тур и дегустация в Арени",
+          "Монастырь Нораванк",
+          "Пещера птиц"
+        ],
+        "hy": [
+          "Խոր Վիրապ",
+          "Արենիի գինու շրջայց և համտես",
+          "Նորավանք",
+          "Թռչունների քարանձավ"
+        ],
+        "en": [
+          "Khor Virap",
+          "Areni Wine Tour and Tasting",
+          "Noravank Monastery",
+          "Birds’ Cave"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group"
+      ],
+      "priceFromAmd": 15000,
+      "departure": "09:00",
+      "durationHours": "8–9",
+      "images": [
+        "/images/1790853455264-awge04akby43ltzn8xib6wgtyoebnbkn2b6ehic8tsrpzvdpszi6fbjos252jqhxynu1op0eepxj8-y55gwqzzgal4ve5k-g-kb8nuibt-nqkyoo-nmnkfk-b1dzf2-vq17sdiykok-isgs0z4y-bp6kj6spaq-izeb3-7-zrlwyhqv3m7r3rjty0yowndu.jpg",
+        "/images/1790853475394-bnhrlrkmbv2bi3b31epyabqyctg9bkydg46yuuevw-xna-vbv-xlzrmf3y0th8ksxaivmwodrhwpfv4zdfdiszbgqx-d0rbfbgddcmolkzr-dkhfbvcjhrbvcjeix6-bpsuzfm-cp3anxm0dttpryrrpyrf7hmraiqlnja0sbze1kf7pj0alcscqcn9wii3y.jpg",
+        "/images/1790853463364-3lswc8srlupqrobd6ldivdyksmohxwpnqxd1vtaxskowscux9vvdljst77butzfox3zfoxo-valex65na04zyllrd4kmjxyozn6xfgssbvasdflid9ne2gy4ibe4piavud-w-sg-q1pjus34a-mwqxashqbt-cv10rryzzkbl8qkcmqeb8bahzlotzcxdv6p.jpg",
+        "/images/1790853467379-rz9uwjodasdjm-h5-b4wcqvd86qkqdxupy8utmv3wsugz-8smynk8nknff9wyapekbp3qmxwjxf-fhoia2cyqpugl5uwkpm8lvog0oatssupswwxfyqjpdbcmdla5wfa7hg6pbvjobjhxuaddu13fnk1t6o0e-tjf7gilo-cydxtmrssatnenkajqtzxevg.jpg"
+      ],
+      "code": "104"
+    },
+    {
+      "slug": "tsaghkadzor-sevan-dilijan",
+      "image": "/images/1790853654530-wctshoaqbbh8ug1ygpfkttpirv4crqskbdxwtqitghwqia4cs26kkrpcumlfewtpcta2qb6pg06uak5p5kb5wgbkl2bwimaovgj0rswom8zkc61anwieok-e9wbydgivsst8m96mnjselavzcl8-pms2olxly3crqxotn41m6kex2abtk-qhx4p6brma7rwn.jpg",
+      "title": {
+        "ru": "Цахкадзор — Севан — Дилижан",
+        "hy": "Ծաղկաձոր, Սևան և Դիլիջան",
+        "en": "Tsaghkadzor, Sevan and Dilijan"
+      },
+      "description": {
+        "ru": "Горные панорамы, канатная дорога и тихие леса Дилижана.",
+        "hy": "Լեռնային տեսարաններ, ճոպանուղի և Դիլիջանի խաղաղ անտառները։",
+        "en": "Mountain resort views, a cable-car ride and the tranquil forests of Dilijan."
+      },
+      "about": {
+        "ru": "Поднимитесь на канатной дороге Цахкадзора, посетите монастырь Кечарис и отправьтесь к озеру Севан. Увидьте Севанаванк, а затем прогуляйтесь по старому Дилижану среди зелёных лесов и уютных улиц.",
+        "hy": "Կբարձրանաք Ծաղկաձորի ճոպանուղով, կայցելեք Կեչառիսի վանքը և կուղևորվեք դեպի Սևանա լիճ։ Կտեսնեք Սևանավանքը, ապա կզբոսնեք հին Դիլիջանում՝ կանաչ անտառների և հինավուրց փողոցների միջով։",
+        "en": "Ride the Tsaghkadzor Cable Car for sweeping mountain views, visit Kecharis Monastery and continue to Lake Sevan. Discover Sevanavank and the green resort town of Dilijan with its old streets and forests."
+      },
+      "destinations": {
+        "ru": [
+          "Канатная дорога Цахкадзора",
+          "Монастырь Кечарис",
+          "Озеро Севан",
+          "Монастырь Севанаванк",
+          "Старый Дилижан"
+        ],
+        "hy": [
+          "Ծաղկաձորի ճոպանուղի",
+          "Կեչառիսի վանք",
+          "Սևանա լիճ",
+          "Սևանավանք",
+          "Հին Դիլիջան"
+        ],
+        "en": [
+          "Tsaghkadzor Cable Car",
+          "Kecharis Monastery",
+          "Lake Sevan",
+          "Sevanavank Monastery",
+          "Old Dilijan"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group",
+        "offers"
+      ],
+      "priceFromAmd": 15000,
+      "departure": "09:00",
+      "durationHours": "9–10",
+      "images": [
+        "/images/1790853654530-wctshoaqbbh8ug1ygpfkttpirv4crqskbdxwtqitghwqia4cs26kkrpcumlfewtpcta2qb6pg06uak5p5kb5wgbkl2bwimaovgj0rswom8zkc61anwieok-e9wbydgivsst8m96mnjselavzcl8-pms2olxly3crqxotn41m6kex2abtk-qhx4p6brma7rwn.jpg",
+        "/images/1790853649592-f5x5emetbd8yab86g24bvfsdysvqayiwk2q-oma0emlpxehcc5njhooubqovfn3vcxcivvvm9ha4ctsihrijr3daqnzz5zsmkvar9w1kh79hhvex4ickqekhyp7wlbx4d2ebyn9wk-gijnjm-bdqr0rukhsnju9wzb9iyacylrm-ynfg1r-ftegchuqeob80.jpg",
+        "/images/1790853697343-04ueknv5ppuj4zy1pyj3if1foj-yonh76nhzpzcfoxapqanv-9j-mxehdqrbuxx0--hlaokctrs5d6uqly1rjdubwsqmkutr8x2xlzq0bnkjih2mbidh5-hf-az8zlv-havjmvdhl1ey2in6quz5z-mpuoa36rcq9pi8sqsaavialffs9a5wk-jwnm9oc-yr.jpg",
+        "/images/1790853667334-wsxgbywah0yeclikapojemuiu6icll8egxzommnji4jwc6xmd5bzwgcbow-aj7t4yw8-58sofytopgn8dgocmcnvfphdpq7o-eot2wjvvpperpe0aqd-yikjaztopfsm3xdnottz13pbvet-h7fdgx5fw1nbtdabqpl7cl2psvsy8r8-vuik5v7yuljplcki.jpg",
+        "/images/1790853675247-evc4jya0hgkszmwhqcso98gdgfvw1gz04zia02ctbmjdq9zrphzlsrsq8yng4dyqw3k72t-40s4c5zixswx3d-qytluzeotqizjhyg9ei1cso7kyhhol2nwnehypptivmqfe0pzhgz8hg9qs0yhbpjqr2b6nn8isly5roty0s6anzx9456lso-pzujvu27-1.jpg"
+      ],
+      "code": "105"
+    },
+    {
+      "slug": "sevan-old-dilijan-haghartsin",
+      "image": "/images/1790853877240-i8cdorf8vjimxsfxt-lhxh49cqale0anwy92lold6hm9povdxdqpjegnn6xqgalmewbbms8hwt-pkcqvcp3heeqhrkqqi0fldd5dpahl52ylbg-umeivanthw6gmm5piyw0m5lb2fvz9ehpfjntot9tb55arptnryfnyx010dpxnsbrnoq5y7m-ucn5x3f2x.jpg",
+      "title": {
+        "ru": "Севан — Дилижан — Агарцин — Гошаванк",
+        "hy": "Սևան, Դիլիջան, Հաղարծին և Գոշավանք",
+        "en": "Lake Sevan, Dilijan and Haghartsin"
+      },
+      "description": {
+        "ru": "Насыщенный день у лазурного Севана, в лесах Дилижана и горных монастырях.",
+        "hy": "Ամբողջական օր Հայաստանի կապույտ լճի, անտառային վանքերի և լեռնային բնության մեջ։",
+        "en": "A refreshing day among Armenia’s blue lake, forest monasteries and mountain scenery."
+      },
+      "about": {
+        "ru": "Исследуйте берега озера Севан и его полуостров, а затем отправьтесь через Дилижанский национальный парк. В программе — Севанаванк, Старый Дилижан, монастырь Агарцин и тихий монастырь Гошаванк.",
+        "hy": "Կուսումնասիրեք Սևանա լճի ափերն ու թերակղզին, ապա կանցնեք Դիլիջանի ազգային պարկով։ Ծրագրում են Սևանավանքը, Հին Դիլիջանը, Հաղարծնի և խաղաղ Գոշավանքի վանքերը։",
+        "en": "Explore the shores of Lake Sevan and its peninsula, then travel through Dilijan National Park. Visit Sevanavank, Old Dilijan, Haghartsin Monastery and the peaceful Goshavank Monastery."
+      },
+      "destinations": {
+        "ru": [
+          "Озеро Севан",
+          "Озеро Парз",
+          "Монастырь Севанаванк",
+          "Старый Дилижан",
+          "Монастырь Агарцин",
+          "Монастырь Гошаванк"
+        ],
+        "hy": [
+          "Սևանա լիճ",
+          "Պարզ լիճ",
+          "Սևանավանք",
+          "Հին Դիլիջան",
+          "Հաղարծնի վանք",
+          "Գոշավանք"
+        ],
+        "en": [
+          "Lake Sevan",
+          "Parz Lake",
+          "Sevanavank Monastery",
+          "Old Dilijan",
+          "Haghartsin Monastery",
+          "Goshavank Monastery"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group"
+      ],
+      "priceFromAmd": 20000,
+      "departure": "09:00",
+      "durationHours": "9–10",
+      "images": [
+        "/images/1790853877240-i8cdorf8vjimxsfxt-lhxh49cqale0anwy92lold6hm9povdxdqpjegnn6xqgalmewbbms8hwt-pkcqvcp3heeqhrkqqi0fldd5dpahl52ylbg-umeivanthw6gmm5piyw0m5lb2fvz9ehpfjntot9tb55arptnryfnyx010dpxnsbrnoq5y7m-ucn5x3f2x.jpg",
+        "/images/1790853890071-xjpxfhfeyi4b1viswt352kcrvvvggdgpsfyvokjfltqsxa6xh1arowoeb5rziv0ltvz9ulwgpjsluy3rjjndnqqnbsrzktri-b99-avm4lccoo9yhpus9vsuhi1gxlicvracp9u198v1-ostacip9eafslkk3rw-lbev2u-sp00cetadimqj4dgny4kexcir.jpg",
+        "/images/1790853896275-958yfzb7vtlpvj28ahkhfsfgki7zeknjt11ifz59vjz92bj3lgmupjaor9ix5mpgqipbfxw1zo6u6gq74myiwepo-einof6tw0bzrjuero4-hiyod6zvhdvlvrvohkglcyu-vel9l2j1hg-ln2ns7dfoofdirsvne8swqptkvesbc2qmrllmwcg4fgdz9jxo.jpg",
+        "/images/1790853901607-kju6pgjzd5ki1rhvzt8dzmwu4ztjrfdng6kuho97b--8fzh952nsr70dyp5ypfmvveppvclivsfz6zyzwj7l1mc6zsiud6lytxv1fssz0tjbyfbodqybmq0xaujjfxgrawprkpcdvsjltcmcx-fhcblj7xaos8fg44fmagi7i6zqi6qphw-am4bjttj3rg44.jpg",
+        "/images/1790853908336-x82lu-jesd0-rl9jlyj3zdlajsaqv89nthhdt-as1--myt746mfktqw4qojgxwb5385mvaaf4apbd-cs8-gmd86i8jwbwkbiteulricr-5zn2sedafnfcw-tao60noycdxdk7kiagkqyy1zsqwxa2c-uekgjbrgrxs6gifn3c-wiwkgyiqrcplrd7dmfg7z8.jpg",
+        "/images/1790853942836-pfflcp6xjihgagpnljitacegs9tio08wfs4aqmhfurxlpefy3tjwkm-zg-xpp9r6usx6w5xu3zvldm0lrdrkdlj7nd0unbv4daxwgrrxh1gspxxyspmgk39lobexwodqnmg62kguf1h0ipipofwyacg9mtkcq1xpkiv6lmjstxung7cbugmjxnow-kho7jub.jpg"
+      ],
+      "code": "106"
+    },
+    {
+      "slug": "akhtala-haghpat-mendz-er-sanaahin",
+      "image": "/images/1790854086623-yvdk4ziykdpejjqtp0dsbdalay6gnxtjl74lcvntlkujf6ea8cig3tc3mleuhajf4wpxox3go7uxp-m7iob8wybnrad5zked-tv0qnqqkbhnphebe3rlqosieuqpsvlspczj6dlvdbcnfnurypnxfewjccbk2pjvpasvhctmfcdl8ybrb6l9oogzusa3vld7.jpg",
+      "title": {
+        "ru": "Ахтала — Хагпат — Мендз Эр — Санаин",
+        "hy": "Ախթալա, Հաղպատ և Սանահին",
+        "en": "Akhtala, Haghpat and Sanahin"
+      },
+      "description": {
+        "ru": "Крепости и монастыри Северной Армении среди зелёных ландшафтов Лори.",
+        "hy": "Հյուսիսային Հայաստանի ամրոցներն ու ՅՈՒՆԵՍԿՕ-ի վանքերը Լոռու կանաչ բնության մեջ։",
+        "en": "Northern Armenia’s fortresses and UNESCO monasteries in a journey through Lori’s green landscapes."
+      },
+      "about": {
+        "ru": "Исследуйте фрески и крепостные стены Ахталы, а затем посетите монастыри Хагпат и Санаин из списка ЮНЕСКО. Маршрут проходит по долинам Лори и знакомит с богатым средневековым наследием Армении.",
+        "hy": "Կուսումնասիրեք Ախթալայի որմնանկարներն ու ամրոցի պարիսպները, ապա կայցելեք Հաղպատի և Սանահինի ՅՈՒՆԵՍԿՕ-ի վանքերը։ Երթուղին անցնում է Լոռու հովիտներով և բացահայտում Հայաստանի միջնադարյան ժառանգությունը։",
+        "en": "Discover the frescoes and fortress walls of Akhtala, then visit the UNESCO monasteries of Haghpat and Sanahin. The route follows the valleys of Lori and reveals Armenia’s rich medieval heritage."
+      },
+      "destinations": {
+        "ru": [
+          "Монастырь Ахтала",
+          "Монастырь Хагпат",
+          "Пещера Мендз Эр",
+          "Монастырь Санаин"
+        ],
+        "hy": [
+          "Ախթալայի վանք",
+          "Հաղպատի վանք",
+          "Մեծ Էրի քարանձավ",
+          "Սանահինի վանք"
+        ],
+        "en": [
+          "Akhtala Monastery",
+          "Haghpat Monastery",
+          "Mendz Er Cave",
+          "Sanahin Monastery"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group"
+      ],
+      "priceFromAmd": 20000,
+      "departure": "09:00",
+      "durationHours": "10–11",
+      "images": [
+        "/images/1790854086623-yvdk4ziykdpejjqtp0dsbdalay6gnxtjl74lcvntlkujf6ea8cig3tc3mleuhajf4wpxox3go7uxp-m7iob8wybnrad5zked-tv0qnqqkbhnphebe3rlqosieuqpsvlspczj6dlvdbcnfnurypnxfewjccbk2pjvpasvhctmfcdl8ybrb6l9oogzusa3vld7.jpg",
+        "/images/1790854095022-uemyjldn26383pxlnn6fwwmaydkhvyk-lemz6ibn2zf2usqlfhonksksf6doo64m2rbb4mj5bsovpezpesxe63yhw3ya-oedpi2qcu6ac8kcks6akdz3vnit5id73orlod8jepxf5ihvkwjensyoinlzaayhijjl9ejqizze3t0vwt3lyrvuylvxmehpp98q.jpg",
+        "/images/1790854100979-ekfestavgzqmmr8w74xj8rn1ygvjafgcekbluyspetxr3afhzavukvvl-dvv8fkgio-u4sf2ao1-svf4m8cd0brp62gnxbcauuxldk6g3t3ilatjdealw35ffphcj0q601n2kzokko9aqybuvmnwcgy8ygl5o54yes3dz-muaoxqmt37rgvhdg9ur-flqoao.jpg",
+        "/images/1790854105604-blh3c5qp01vjas4f6nyham3j43gz3prrf2y63kecluq6xsoqwb-lzayd8x7ci136n1tprenwqup-8-w-k0vtysx-skhbw5xswq-gved0bfilicufi-tp1brmrquyr0k-cxmxorjxgtgfc0kskresupbys7uxdlklamxqxib-p0oexvsweoxm4xfy-fjmotih.jpg"
+      ],
+      "code": "107"
+    },
+    {
+      "slug": "khor-virap-sevan-garni-geghard",
+      "image": "/images/1790856339840-jjdqnvch2xzef7elo5xpgcn3h1t7m3iy4l8gc285y5xjwdqexqpka4c-luojgnuot8dokclnrkbzs9eb3kqmlihnnkwhojerwi5urlse2nrwdrgf2wm61dnmsvqmatnlewygul8gqfvuzcxwgkjxpikifnc19ezxmyprgyqgm8v6ayq5sdv0segepdrmwnc.jpg",
+      "title": {
+        "ru": "Хор Вирап — Гарни — Гегард — Севан",
+        "hy": "Խոր Վիրապ, Գառնի, Գեղարդ և Սևան",
+        "en": "Khor Virap, Garni and Lake Sevan"
+      },
+      "description": {
+        "ru": "От вида на Арарат к античным храмам и лазурным просторам высокогорного Севана.",
+        "hy": "Արարատի տեսարաններից դեպի անտիկ տաճարներ և բարձրադիր Սևանի կապույտը։",
+        "en": "From Mount Ararat views to pagan temples and the high-altitude blue of Lake Sevan."
+      },
+      "about": {
+        "ru": "Объедините главные символы Армении в одном насыщенном дне: Хор Вирап, Азатское водохранилище, храм Гарни, «Симфонию камней», монастырь Гегард и озеро Севан с Севанаванком.",
+        "hy": "Մեկ ամբողջական օրում կհամատեղեք Հայաստանի գլխավոր խորհրդանիշները՝ Խոր Վիրապ, Ազատի ջրամբար, Գառնիի տաճար, Քարերի սիմֆոնիա, Գեղարդի վանք և Սևանա լիճ՝ Սևանավանքով։",
+        "en": "Combine Armenia’s most recognisable sights in one full day: Khor Virap, Azat Reservoir, Garni Temple, the Symphony of Stones, Geghard Monastery and Lake Sevan with Sevanavank."
+      },
+      "destinations": {
+        "ru": [
+          "Монастырь Хор Вирап",
+          "Азатское водохранилище",
+          "Храм Гарни",
+          "Симфония камней",
+          "Монастырь Гегард",
+          "Озеро Севан",
+          "Монастырь Севанаванк"
+        ],
+        "hy": [
+          "Խոր Վիրապ",
+          "Ազատի ջրամբար",
+          "Գառնիի տաճար",
+          "Քարերի սիմֆոնիա",
+          "Գեղարդի վանք",
+          "Սևանա լիճ",
+          "Սևանավանք"
+        ],
+        "en": [
+          "Khor Virap",
+          "Azat Reservoir",
+          "Garni Temple",
+          "Symphony of Stones",
+          "Geghard Monastery",
+          "Lake Sevan",
+          "Sevanavank Monastery"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group"
+      ],
+      "priceFromAmd": 20000,
+      "departure": "09:00",
+      "durationHours": "10–11",
+      "images": [
+        "/images/1790856339840-jjdqnvch2xzef7elo5xpgcn3h1t7m3iy4l8gc285y5xjwdqexqpka4c-luojgnuot8dokclnrkbzs9eb3kqmlihnnkwhojerwi5urlse2nrwdrgf2wm61dnmsvqmatnlewygul8gqfvuzcxwgkjxpikifnc19ezxmyprgyqgm8v6ayq5sdv0segepdrmwnc.jpg",
+        "/images/1790856824345-1ihpgega3rlfejnw4cav3ahkbboggjxg8gtjattgm-coh-hfswn-wimqt8xa0rf0vkz3eom-h5f5xe4pei7gjwyrz6zwxsg5g9hcjp-pgdwgvbx-bubg1nhx5th8lgiwy4cstlznxvrypbimibeyuupqslokgrskoxeinf-r5mj4tyaskk26dw4helfc7o2y.jpg",
+        "/images/1790856830685-6j1ng49civmoqzbsu30h-zhearfdvgzkg-2yqxhkquods40btydp4kku0oz-v2xdzi7zoubawzuu-fnbrvfhdae4kqkmfqc1oq6bphlgam28zqbaucnnjn0spssud7zqnysjjaethhqpga5hkpmy6zjxiduwidibmwffj8sudpohnftzflu-pvhi4hxwwqn-.jpg",
+        "/images/1790856839453-o5allgc18ory7zc8e6pvbu3pd-ywfloj0sx6asclvb-b4vcjz6akm-yx91mr5es71622stusugtpjjnop4-k1htwt593rwmdyxef-gjyj7zalct3gbd1xpzgebreid1i456vwf8ra2u7n18dqutmpqidv82lfd4h5d01n0gprjixtl-asqz1oolbiqaoinm6.jpg",
+        "/images/1790856848498-sj-ydiymsjbqufqcol0cfzaqzmclyn7qvierhhm3vjozafblzc1pkjhzevwevfrnimqnhxgiuy8jnwzo-vftqkjylnomaqy7z5ujdyzdo-yapduvmz-1ql8yzu-d6ei9bwekjapclzy0xi5sxl7ewgbrvh69jmrl2a28y-tdcqdtbienzggifgxanygu9doo.jpg",
+        "/images/1790856862001-wpmauhi5fy6kri6wbofi6k56nrveahdzfwf3x2v1djxer9ffino1t9xoqq-5ju42yrwfs-v-qv0lov-cgq5zggjro8gmh9qhpaarir-tys9xdp0-rflkjerueheyynhfqvk7qrbfdc5lhd9huutiyca3unp-kqe3ijpgg1trojiiehvq9ixnc2gdwi2ypycm.jpg",
+        "/images/1790856873489-0glrh2ui-esmohoczyzs0alpy9cjd09gagrilt6juhml4a0zglfhsiegkbnwaj69ndca1nq21rd5alyjfbz8957xgxiuo-nwp8lnnms0b-eiawfjq33zkswrxgp42fjs5vpnlsezjpofriphzzunuk7vlebksb-femdyzse5c3iie4d-8lewr4qaltsay9yq.jpg"
+      ],
+      "code": "108"
+    },
+    {
+      "slug": "khor-virap-areni-jermuk",
+      "image": "/images/1790857298232-sc2a0qemvrtku6ilofu4k3qbmmpfkg--zi-ojx-v37ff6lytftmngh-f2ak6n7pbo-e2hwnoacchjw1zaobofmgszxmav-dlb437qcmgov1fkyqu43d047kusywlndamn4dgjq4pgntlf65fdodvtm-dka1qeth8dvr-j154btdas1-6rjrwwodh3wfbfugh.jpg",
+      "title": {
+        "ru": "Хор Вирап — Арени — Нораванк — Джермук",
+        "hy": "Խոր Վիրապ, Արենի, Նորավանք և Ջերմուկ",
+        "en": "Khor Virap, Areni, Noravank and Jermuk"
+      },
+      "description": {
+        "ru": "Винный край, каньоны и целебные воды Джермука.",
+        "hy": "Գինու երկիր, կիրճեր և Ջերմուկի բուժիչ ջրերը։",
+        "en": "Wine country, canyon landscapes and the healing waters of Jermuk."
+      },
+      "about": {
+        "ru": "Начните с панорамы Арарата в Хор Вирапе, попробуйте местное вино в Арени и полюбуйтесь красными скалами Нораванка. Затем отправьтесь в Джермук к водопаду, минеральным источникам и знаменитой арке «Крылья мечты». ",
+        "hy": "Ուղևորությունը կսկսեք Խոր Վիրապում՝ Արարատի համայնապատկերով, Արենիում կհամտեսեք տեղական գինի և կհիանաք Նորավանքի կարմիր ժայռերով։ Այնուհետև կուղևորվեք Ջերմուկ՝ ջրվեժի, հանքային ջրերի և «Երազանքների կամարի» մոտ։",
+        "en": "Start with the Ararat panorama at Khor Virap, taste local wine in Areni and admire Noravank’s red cliffs. Continue to Jermuk for its waterfall, mineral waters and the peaceful atmosphere of the resort town."
+      },
+      "destinations": {
+        "ru": [
+          "Монастырь Хор Вирап",
+          "Винный тур и дегустация в Арени",
+          "Монастырь Нораванк",
+          "Минеральные воды Джермука",
+          "Водопад «Волосы русалки»",
+          "Арка «Крылья мечты»"
+        ],
+        "hy": [
+          "Խոր Վիրապ",
+          "Արենիի գինու շրջայց և համտես",
+          "Նորավանք",
+          "Ջերմուկի հանքային ջուր",
+          "Ջրահարսի վարսեր ջրվեժ",
+          "Երազանքների կամար"
+        ],
+        "en": [
+          "Khor Virap",
+          "Areni Wine Tour and Tasting",
+          "Noravank Monastery",
+          "Jermuk Mineral Water",
+          "Mermaid’s Hair Waterfall",
+          "Arch of Dreams"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group",
+        "offers"
+      ],
+      "priceFromAmd": 25000,
+      "departure": "09:00",
+      "durationHours": "10–11",
+      "images": [
+        "/images/1790857298232-sc2a0qemvrtku6ilofu4k3qbmmpfkg--zi-ojx-v37ff6lytftmngh-f2ak6n7pbo-e2hwnoacchjw1zaobofmgszxmav-dlb437qcmgov1fkyqu43d047kusywlndamn4dgjq4pgntlf65fdodvtm-dka1qeth8dvr-j154btdas1-6rjrwwodh3wfbfugh.jpg",
+        "/images/1790857303658-bnhrlrkmbv2bi3b31epyabqyctg9bkydg46yuuevw-xna-vbv-xlzrmf3y0th8ksxaivmwodrhwpfv4zdfdiszbgqx-d0rbfbgddcmolkzr-dkhfbvcjhrbvcjeix6-bpsuzfm-cp3anxm0dttpryrrpyrf7hmraiqlnja0sbze1kf7pj0alcscqcn9wii3y.jpg",
+        "/images/1790857358338-y-vvhb5pplskwlfsblz7-khte-d1lcqapi-zeaj-f4-xi4dppegvvrmlyqgu1re6qyynxkuncpqltcxyax6xsj0m52igm3uvr9l5jiyznuokzr9zpjbdra9km3c747qo0pr6jyhk1dj3uthrf6-y8pwlhjshz08h1kl6fqnzqqmtprygrhbvtjlhmham-dhn.jpg",
+        "/images/1790857383815-q1nhqg7gi2m4jaue-3hknppxktiefhkl43zazs5ldp9nidf33fh5vezmqnixaugaleg5sy3y1fvgfpkv-3nsp-ufdkhj-slcuimwu89wsuenxad41-bjqkt76h-xapte804llvzu15jet6s0xchm2aibgi-3goykyf0svfp0swsie9qk1vtvo3o1ksq364xw.jpg",
+        "/images/1790857408787-xgtrsudqyc1c2u-jas-jfs82qnegrsjcmfebowltxqyjiybeihyksz1sejxtmvbstjdpjtcwwrlqeqgvezz7ooi96kdnlm-xqzmfzm0owuy7y44evxvfoczlcvq9l83oaytjo-loskjy76tqadf6zudznuqcmehpwhwvt1m2jxcfcgwpqgjmyluao-9r1-u.jpg"
+      ],
+      "code": "109"
+    },
+    {
+      "slug": "northern-armenia-monasteries",
+      "image": "/images/1790857520353-mi82zcuqwtyuodgri-hu3dbvadti33lns25aruecfnmlbs-1ukgctxql8gbjtw4zapzseat2hvt-4mxjvnoodiuhwubav7nifybqv9qnbq7v4tbyky6ojv41zueschkhmm1qzakkg7zdkagyzxsknvkqo9mpmqp-qhpzuj-7qovwymttnnj5yhmya8ttqyo0.jpg",
+      "title": {
+        "ru": "Монастыри Северной Армении",
+        "hy": "Հյուսիսային Հայաստանի վանքերը",
+        "en": "Monasteries of Northern Armenia"
+      },
+      "description": {
+        "ru": "Глубокое культурное путешествие по средневековым монастырям, пещерам и зелёным долинам Лори.",
+        "hy": "Մշակութային խոր ճանապարհորդություն Լոռու միջնադարյան վանքերով, քարանձավներով և կանաչ հովիտներով։",
+        "en": "A deep cultural journey through Lori’s medieval monasteries, caves and green valleys."
+      },
+      "about": {
+        "ru": "Отправьтесь на север к средневековым монастырям Кобайр, Хагпат и Одзун. По пути откройте для себя историческую церковь Сурб Ншан и драматичные пейзажи Лори — региона, где каждая долина хранит свою историю.",
+        "hy": "Կուղևորվեք դեպի հյուսիս՝ Կոբայրի, Հաղպատի և Օձունի միջնադարյան վանքեր։ Ճանապարհին կբացահայտեք Սուրբ Նշան պատմական եկեղեցին և Լոռու տպավորիչ բնությունը, որտեղ յուրաքանչյուր հովիտ իր պատմությունն ունի։",
+        "en": "Travel north to the medieval monasteries of Kobayr, Haghpat and Odzun. Along the way discover the historic Surb Nshan Church and the dramatic landscapes of Lori, a region where every valley carries a story."
+      },
+      "destinations": {
+        "ru": [
+          "Монастырь Кобайр",
+          "Монастырь Хагпат",
+          "Церковь Сурб Ншан",
+          "Монастырь Одзун"
+        ],
+        "hy": [
+          "Կոբայրի վանք",
+          "Հաղպատի վանք",
+          "Սուրբ Նշան եկեղեցի",
+          "Օձունի վանք"
+        ],
+        "en": [
+          "Kobayr Monastery",
+          "Haghpat Monastery",
+          "Surb Nshan Church",
+          "Odzun Monastery"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group"
+      ],
+      "priceFromAmd": 25000,
+      "departure": "09:00",
+      "durationHours": "10–11",
+      "images": [
+        "/images/1790857520353-mi82zcuqwtyuodgri-hu3dbvadti33lns25aruecfnmlbs-1ukgctxql8gbjtw4zapzseat2hvt-4mxjvnoodiuhwubav7nifybqv9qnbq7v4tbyky6ojv41zueschkhmm1qzakkg7zdkagyzxsknvkqo9mpmqp-qhpzuj-7qovwymttnnj5yhmya8ttqyo0.jpg",
+        "/images/1790857525722-yzsccg6d10kl0e-duxpwnsadtp3kw7uzbze0htrkfexbaapgta--uihjphmw-brtu7ujmxwbz0dpg-amdowgjohe5w8sc6mutzzr9c3flzvma6bbrdkvz4jul-vnojy8ajf0ytoft2ffd57it-inzvdzxpeljfqzbp1hfb9rtfutjdorlp8lks434vaw0-wd.jpg",
+        "/images/1790857531106-m314py6s-8tb0yc6b56bd3vanpjzxscn-3vlcnvbgmwkatsq7igwkppzu-vm2mynyo0sq3iimssqeyc-lfjedqvlemzcvltu6rfsupzdtxh8yzyovxapotyk5-3tpdir20tu7bbkt1kpqs6f-wxbexhxtipb9hmea1ywazmknbm8fkxvibl2te81lx3sm10i.jpg",
+        "/images/1790857535355-rr1dw3mrtgaqyyjxrwirqdnwp4cvtz4kwx72uqf1q47vbm29ed9pstoojuy7z-8rzuzkles0liieqfiijwsjxa4iazih4gm9tzioeenb90xfdp2chjj2escvbepeq-dvdjwdi1n-pwa9ncflg5ipe7bspvfsefxbiwcg1dgphgp-sg3hwxe5gxbplkd0av0g.jpg"
+      ],
+      "code": "110"
+    },
+    {
+      "slug": "khor-virap-areni-noravank-shaki",
+      "image": "/images/1790857643870-gwqyzfdel2z4resq5ehy91z-olltpxhbw972w489hkzssp9igqzc7tx5iv2re56knqjai-a2b5a88jdki3vj7hlfw9semybcoqtflqvngessdkzoiduxstpcejhe8c7fb7bix2ch4l5f3onnpjcozcnakehcui7je07wvqzvb7eixhyqbenayybzm5xlybk4.jpg",
+      "title": {
+        "ru": "Хор Вирап — Арени — Нораванк — водопад Шаки",
+        "hy": "Խոր Վիրապ, Արենի, Նորավանք և Շաքի ջրվեժ",
+        "en": "Khor Virap, Areni, Noravank and Shaki Waterfall"
+      },
+      "description": {
+        "ru": "Большой день на юге Армении: Арарат, вино, монастырь Нораванк и водопад Шаки.",
+        "hy": "Հագեցած օր Հայաստանի հարավում՝ Արարատ, գինի, Նորավանք և Շաքի ջրվեժ։",
+        "en": "A full southern Armenia day with Ararat views, wine, Noravank and Shaki Waterfall."
+      },
+      "about": {
+        "ru": "Этот насыщенный маршрут объединяет панораму Арарата из Хор Вирапа, винный регион Арени и краснокаменный монастырь Нораванк. Завершите путешествие у мощного водопада Шаки среди каньонов и горных пейзажей Сюника.",
+        "hy": "Այս ամբողջական երթուղին միավորում է Խոր Վիրապից բացվող Արարատի համայնապատկերը, Արենիի գինու շրջանը և կարմիր քարե Նորավանքը։ Ճանապարհորդությունը կավարտեք հզոր Շաքի ջրվեժի մոտ՝ Սյունիքի կիրճերի ու լեռների միջավայրում։",
+        "en": "This full-day route combines the Ararat panorama from Khor Virap, the wine country of Areni and the red-stone Noravank Monastery. Finish at powerful Shaki Waterfall among the canyons and mountain landscapes of Syunik."
+      },
+      "destinations": {
+        "ru": [
+          "Монастырь Хор Вирап",
+          "Винный тур и дегустация в Арени",
+          "Монастырь Нораванк",
+          "Водопад Шаки"
+        ],
+        "hy": [
+          "Խոր Վիրապ",
+          "Արենիի գինու շրջայց և համտես",
+          "Նորավանք",
+          "Շաքի ջրվեժ"
+        ],
+        "en": [
+          "Khor Virap",
+          "Areni Wine Tour and Tasting",
+          "Noravank Monastery",
+          "Shaki Waterfall"
+        ]
+      },
+      "categories": [
+        "popular",
+        "group"
+      ],
+      "priceFromAmd": 25000,
+      "departure": "07:30",
+      "durationHours": "13–14",
+      "images": [
+        "/images/1790857643870-gwqyzfdel2z4resq5ehy91z-olltpxhbw972w489hkzssp9igqzc7tx5iv2re56knqjai-a2b5a88jdki3vj7hlfw9semybcoqtflqvngessdkzoiduxstpcejhe8c7fb7bix2ch4l5f3onnpjcozcnakehcui7je07wvqzvb7eixhyqbenayybzm5xlybk4.jpg",
+        "/images/1790857652954-bnhrlrkmbv2bi3b31epyabqyctg9bkydg46yuuevw-xna-vbv-xlzrmf3y0th8ksxaivmwodrhwpfv4zdfdiszbgqx-d0rbfbgddcmolkzr-dkhfbvcjhrbvcjeix6-bpsuzfm-cp3anxm0dttpryrrpyrf7hmraiqlnja0sbze1kf7pj0alcscqcn9wii3y.jpg",
+        "/images/1790857668765-3lswc8srlupqrobd6ldivdyksmohxwpnqxd1vtaxskowscux9vvdljst77butzfox3zfoxo-valex65na04zyllrd4kmjxyozn6xfgssbvasdflid9ne2gy4ibe4piavud-w-sg-q1pjus34a-mwqxashqbt-cv10rryzzkbl8qkcmqeb8bahzlotzcxdv6p.jpg",
+        "/images/1790857659098-c4arclvpxbsuxg5safzv5xqvah-fbrjbir-26ydcciurz7hb5h72tr03ds1v-kldqz3ge6wyupiclrcqp2wy6cvfooqhvlvg1qdtiziyb4l-d5votcx3blyz65hzrpbg8guzvxl5ot7l-gn-kjz6xnjchvy-v5zq0mexwsasqpwg30fqzccp1hoqqiw0z-l7.jpg"
+      ],
+      "code": "111"
+    },
+    {
+      "slug": "jeep-mount-dimats",
+      "image": "/images/1790859426298-p-fpkuh3rpkpj4disycgr87wwpwes7iniguxadjtrkkqohuajp0nqtoycikdlkmue3poko5-sgwqtbyyrudwxegf0ag8p-m9d1k2rkumsozuqfvhtxu5zmeznw3itfmpd5v58k-pvybjn9xlxtrfa-ci4pzgkwvq74tqzliatz1csdbca-birn-qbtaoc0oq.jpg",
+      "title": {
+        "ru": "Джип-тур на гору Димац",
+        "hy": "Ջիփ տուր դեպի Դիմաց լեռ",
+        "en": "Jeep Tour to Mount Dimats"
+      },
+      "description": {
+        "ru": "Внедорожное приключение в высокогорье над Дилижаном и Севаном.",
+        "hy": "Արտաճանապարհային արկած Դիլիջանի և Սևանի վերևում գտնվող բարձրադիր լեռներում։",
+        "en": "An off-road mountain escape to the highlands above Dilijan and Lake Sevan."
+      },
+      "about": {
+        "ru": "На внедорожнике поднимитесь в высокогорье Армении и насладитесь панорамами гор. Маршрут объединяет склоны горы Димац, озеро Севан, Старый Дилижан и тихий монастырь Агарцин.",
+        "hy": "Ամենագնացով կբարձրանաք Հայաստանի բարձրադիր գոտիներ և կվայելեք լեռնային համայնապատկերները։ Երթուղին միավորում է Դիմաց լեռան լանջերը, Սևանա լիճը, Հին Դիլիջանն ու խաղաղ Հաղարծնի վանքը։",
+        "en": "Climb into Armenia’s highlands by 4x4 and enjoy wide-open mountain scenery. The route combines the slopes of Mount Dimats with Lake Sevan, Old Dilijan and the quiet Haghartsin Monastery."
+      },
+      "destinations": {
+        "ru": [
+          "Гора Димац, 2 378 м",
+          "Озеро Севан",
+          "Старый Дилижан",
+          "Монастырь Агарцин"
+        ],
+        "hy": [
+          "Դիմաց լեռ, 2 378 մ",
+          "Սևանա լիճ",
+          "Հին Դիլիջան",
+          "Հաղարծնի վանք"
+        ],
+        "en": [
+          "Mount Dimats, 2,378 m",
+          "Lake Sevan",
+          "Old Dilijan",
+          "Haghartsin Monastery"
+        ]
+      },
+      "categories": [
+        "popular",
+        "jeep",
+        "group"
+      ],
+      "priceFromAmd": 25000,
+      "departure": "08:00",
+      "durationHours": "10–11",
+      "images": [
+        "/images/1790859426298-p-fpkuh3rpkpj4disycgr87wwpwes7iniguxadjtrkkqohuajp0nqtoycikdlkmue3poko5-sgwqtbyyrudwxegf0ag8p-m9d1k2rkumsozuqfvhtxu5zmeznw3itfmpd5v58k-pvybjn9xlxtrfa-ci4pzgkwvq74tqzliatz1csdbca-birn-qbtaoc0oq.jpg",
+        "/images/1790859432034-b8obkrd7yf-d-wwejbtni5snlihh-5nlypnpf-ze5xgwqy1i5fhijdmcxjppixplyy3xdhm69mjs0et1t6nz3etmwrm-uprxflrzmljirt6uslbnyk8pxewrlceuzanibvke-5creqvaf4pbv1zz0cqvk7yupabkrsnuo6fgfcsgusiybnl-y6qj4qavlvoz.jpg",
+        "/images/1790859436717-evc4jya0hgkszmwhqcso98gdgfvw1gz04zia02ctbmjdq9zrphzlsrsq8yng4dyqw3k72t-40s4c5zixswx3d-qytluzeotqizjhyg9ei1cso7kyhhol2nwnehypptivmqfe0pzhgz8hg9qs0yhbpjqr2b6nn8isly5roty0s6anzx9456lso-pzujvu27-1.jpg",
+        "/images/1790859447315-c1yro-o1hmwfvypxmhjgwd30r0rybyn5gkrk7udrvm-z5jmegin-5nu8r-0kqjwwfyvvxgkphjkbn-u4xqtth9mfttqapxf4ct7nsxfiiavezrycw-boll4zoui84lbtb9mjx7slpo7vaupy4bbcealtu2xbbwqlf0smhxvk2z3lzez7cnjcivkakpsxj08g.jpg"
+      ],
+      "code": "301"
+    },
+    {
+      "slug": "jeep-volcano-aztahak",
+      "image": "/images/1790859606529-cn-4sgudzvpal4fzj5hd7qyxczlwr3ni3b2yadfimgkvzn8hzcmejxtc8fx0hld-bcopamfkizgzmrtrriaran7rx7ka7eei99vzzqgjovj6k3vewgpuifogc45zbmgrd711bfocdb9psio680ke8egsdioszfqlcimgtweh6l4iard9vtvlhkod2-et9x1t.jpg",
+      "title": {
+        "ru": "Джип-тур к вулкану Аждаак",
+        "hy": "Ջիփ տուր դեպի Աժդահակ հրաբուխ",
+        "en": "Jeep Tour to Azhdahak Volcano"
+      },
+      "description": {
+        "ru": "Внедорожная экспедиция к вулканическому кратеру, горным озёрам и петроглифам.",
+        "hy": "Արտաճանապարհային արշավ դեպի հրաբխային խառնարան, լեռնային լճեր և ժայռապատկերներ։",
+        "en": "A raw highland expedition to a volcanic crater, alpine lakes and ancient petroglyphs."
+      },
+      "about": {
+        "ru": "Отправьтесь на внедорожнике в Гегамские горы к вулкану Аждаак. Увидьте кратерное озеро, суровые высокогорные пейзажи и древние петроглифы, оставленные первыми жителями Армении.",
+        "hy": "Ամենագնացով կուղևորվեք Գեղամա լեռներ՝ դեպի Աժդահակ հրաբուխ։ Կտեսնեք խառնարանային լիճը, բարձրադիր խիստ բնությունը և Հայաստանի հնագույն բնակիչների թողած ժայռապատկերները։",
+        "en": "Drive deep into the Gegham Mountains toward Mount Azhdahak. Discover the volcano’s crater lake, the remote Mount Azhdahak landscape and ancient petroglyphs left by Armenia’s early inhabitants."
+      },
+      "destinations": {
+        "ru": [
+          "Вулкан Аждаак, 3 597 м",
+          "Озеро Кармир",
+          "Древние петроглифы"
+        ],
+        "hy": [
+          "Աժդահակ հրաբուխ, 3 597 մ",
+          "Կարմիր լիճ",
+          "Ժայռապատկերներ"
+        ],
+        "en": [
+          "Mount Azhdahak, 3,597 m",
+          "Karmir Lake",
+          "Petroglyphs"
+        ]
+      },
+      "categories": [
+        "popular",
+        "jeep",
+        "group"
+      ],
+      "priceFromAmd": 25000,
+      "departure": "08:00",
+      "durationHours": "10–12",
+      "images": [
+        "/images/1790859606529-cn-4sgudzvpal4fzj5hd7qyxczlwr3ni3b2yadfimgkvzn8hzcmejxtc8fx0hld-bcopamfkizgzmrtrriaran7rx7ka7eei99vzzqgjovj6k3vewgpuifogc45zbmgrd711bfocdb9psio680ke8egsdioszfqlcimgtweh6l4iard9vtvlhkod2-et9x1t.jpg",
+        "/images/1790859611575-860x460.webp",
+        "/images/1790859616128-7p33p-6sdamuuji7ubeo0agzvrw10b3b9izkxtkrmybdvxbwklaucztbtdxp8gnlsog-zb2ptlbvqsbrnmf-a7ffmbcqtersidnyo8bcg55f5tpi9uc-7bd4jousu3u37w6fedw1gbufau4q2jrnydzqnfws7ihkhfsuomb5gn7khmak-rwlpqyr-rdrddae.jpg"
+      ],
+      "code": "302"
+    },
+    {
+      "slug": "jeep-mineral-geyser-jermuk",
+      "image": "/images/1790859826142-sc2a0qemvrtku6ilofu4k3qbmmpfkg--zi-ojx-v37ff6lytftmngh-f2ak6n7pbo-e2hwnoacchjw1zaobofmgszxmav-dlb437qcmgov1fkyqu43d047kusywlndamn4dgjq4pgntlf65fdodvtm-dka1qeth8dvr-j154btdas1-6rjrwwodh3wfbfugh.jpg",
+      "title": {
+        "ru": "Джип-тур к минеральному гейзеру",
+        "hy": "Ջիփ տուր դեպի հանքային գեյզեր",
+        "en": "Jeep Tour to the Mineral Geyser"
+      },
+      "description": {
+        "ru": "Живописное путешествие по Вайоц Дзору, водопадам и минеральным источникам Джермука.",
+        "hy": "Գեղատեսիլ 4x4 ուղևորություն Վայոց ձորով, ջրվեժներով և Ջերմուկի հանքային ջրերով։",
+        "en": "A scenic 4x4 journey through Vayots Dzor, waterfalls and the mineral waters of Jermuk."
+      },
+      "about": {
+        "ru": "По горным дорогам отправьтесь к минеральному гейзеру Вайоц Дзора. Затем проедьте через винный край Арени, увидьте водопад «Волосы русалки» и посетите галерею минеральных вод Джермука.",
+        "hy": "Լեռնային ճանապարհներով կուղևորվեք դեպի Վայոց ձորի հանքային գեյզերը։ Այնուհետև կանցնեք Արենիի գինու շրջանի միջով, կայցելեք Ջրահարսի վարսեր ջրվեժը և Ջերմուկի հանքային ջրերի պատկերասրահը։",
+        "en": "Cross remote mountain roads to the mineral geyser of Vayots Dzor. Continue through Areni wine country, visit the Mermaid’s Hair Waterfall and explore the mineral-water gallery of Jermuk."
+      },
+      "destinations": {
+        "ru": [
+          "Монастырь Хор Вирап",
+          "Винный тур и дегустация в Арени",
+          "Водопад «Волосы русалки»",
+          "Арка «Крылья мечты»",
+          "Галерея минеральных вод Джермука"
+        ],
+        "hy": [
+          "Խոր Վիրապ",
+          "Արենիի գինու շրջայց և համտես",
+          "Ջրահարսի վարսեր ջրվեժ",
+          "Երազանքների կամար",
+          "Ջերմուկի հանքային ջրերի պատկերասրահ"
+        ],
+        "en": [
+          "Khor Virap",
+          "Areni Wine Tour and Tasting",
+          "Mermaid’s Hair Waterfall",
+          "Arch of Dreams",
+          "Jermuk Mineral Water Gallery"
+        ]
+      },
+      "categories": [
+        "popular",
+        "jeep",
+        "group"
+      ],
+      "priceFromAmd": 25000,
+      "departure": "09:00",
+      "durationHours": "10–11",
+      "images": [
+        "/images/1790859826142-sc2a0qemvrtku6ilofu4k3qbmmpfkg--zi-ojx-v37ff6lytftmngh-f2ak6n7pbo-e2hwnoacchjw1zaobofmgszxmav-dlb437qcmgov1fkyqu43d047kusywlndamn4dgjq4pgntlf65fdodvtm-dka1qeth8dvr-j154btdas1-6rjrwwodh3wfbfugh.jpg",
+        "/images/1790859837481-pjqewy6yko-f4ueeemlcxss4i6mdy6glzl8zlsgyj-xdy0g-xd6md3wuruzpbwiikpxry0zjbwuu5wxx9z5j6rqdxl-cccomqeytagktyttisuzntbp4kblowrz1kj5cirtzqoyoseecyx-n4rw2uguaygfglr004bcksgess9xm0ugc1dnahmmrae2dhyfi.jpg",
+        "/images/1790859844905-xgtrsudqyc1c2u-jas-jfs82qnegrsjcmfebowltxqyjiybeihyksz1sejxtmvbstjdpjtcwwrlqeqgvezz7ooi96kdnlm-xqzmfzm0owuy7y44evxvfoczlcvq9l83oaytjo-loskjy76tqadf6zudznuqcmehpwhwvt1m2jxcfcgwpqgjmyluao-9r1-u.jpg",
+        "/images/1790859851449-ihxgmvl18dkzkpy7ykbow2p1v7gvwu4eu04xruecfkj4p2ju6ot0rdob9w2a1hqlecup51dailiww-joobpvrsa3te7ndoaxvqb2w2elcustpcurnmcciul9i3us96bpqri7dw8jfva9u4vhrchzintwqzvuc0huw5ubpylnqgkr41dpx-prv96ns4xc0oy-.jpg"
+      ],
+      "code": "303"
+    },
+    {
+      "slug": "jeep-smbataberd",
+      "image": "/images/1790860019734-zobisw-gur85l-jg-oho6rk5itvjgs-e99kzykbdp0wz2oikwmhk-drz9ihe0xkhubpsz0aqy6slf-uvjmchmf5thzh12oqf6pc2daoly-btswdgyhksvfjs5hgzvyc-fklcfqot63u2ypztrpmqme87dda9igtfc9nv-8jxke0lhndtlogrrc9d-3be7hdd.jpg",
+      "title": {
+        "ru": "Джип-тур к крепости Смбатаберд",
+        "hy": "Ջիփ տուր դեպի Սմբատաբերդ",
+        "en": "Jeep Tour to Smbataberd Fortress"
+      },
+      "description": {
+        "ru": "Высокогорное внедорожное приключение к древним крепостям и монастырям Вайоц Дзора.",
+        "hy": "Բարձրադիր արտաճանապարհային արկած դեպի Վայոց ձորի հին ամրոցներն ու վանքերը։",
+        "en": "A highland off-road adventure to ancient fortifications and the monasteries of Vayots Dzor."
+      },
+      "about": {
+        "ru": "По сложным горным дорогам отправьтесь в Вайоц Дзор к исторической крепости Смбатаберд. Посетите Ехегис и монастырь Цахац Кар, наслаждаясь открытыми пейзажами юга Армении.",
+        "hy": "Դժվարանցանելի լեռնային ճանապարհներով կուղևորվեք Վայոց ձոր՝ դեպի պատմական Սմբատաբերդ։ Կայցելեք Եղեգիսն ու Ցախաց Քարի վանքը և կվայելեք Հայաստանի հարավի բաց բնապատկերները։",
+        "en": "Follow rugged roads through Vayots Dzor to the historic Smbataberd Fortress. Visit Yeghegis and Tsakhats Kar Monastery while taking in the open landscapes of Armenia’s south."
+      },
+      "destinations": {
+        "ru": [
+          "Ехегис",
+          "Монастырь Цахац Кар",
+          "Крепость Смбатаберд"
+        ],
+        "hy": [
+          "Եղեգիս",
+          "Ցախաց Քարի վանք",
+          "Սմբատաբերդի ամրոց"
+        ],
+        "en": [
+          "Yeghegis",
+          "Tsakhats Kar Monastery",
+          "Smbataberd Fortress"
+        ]
+      },
+      "categories": [
+        "popular",
+        "jeep",
+        "group"
+      ],
+      "priceFromAmd": 30000,
+      "departure": "08:00",
+      "durationHours": "12–14",
+      "images": [
+        "/images/1790860019734-zobisw-gur85l-jg-oho6rk5itvjgs-e99kzykbdp0wz2oikwmhk-drz9ihe0xkhubpsz0aqy6slf-uvjmchmf5thzh12oqf6pc2daoly-btswdgyhksvfjs5hgzvyc-fklcfqot63u2ypztrpmqme87dda9igtfc9nv-8jxke0lhndtlogrrc9d-3be7hdd.jpg",
+        "/images/1790860027118-axywl-lmp9-hlc34polcelllh2zvsy2t1z-mwu8frc7r0ctml4nsylezmz13kfiyqi1fzmasu1dy3fzjb33rukfqqyc8mgbtbmfk6d9sob1w05ndryfp4jw2b8rbkfv2seelaivw4eafovelctgrmodgst-ug5tdv4rdoimlfjao-plsf-m2hlk6jxe7rnx-.jpg",
+        "/images/1790860032751-mmhhehcllgyockcnwswugu8lgi68v7lexp-yeqhvpzw5ipwe9dvkjp-hwm5sjvo0uth83zf9hvhnfritd6c-egdu2xeeg9xdcxb6rh0d2wjnfebu0zxcljj2eg9vfjjq6ilg3qsdvnokyaph44pn2u1y5mk3h5wonrpjqrw26lg-kthre19jibsrqxdzi7bg.jpg"
+      ],
+      "code": "304"
+    },
+    {
+      "slug": "jeep-trchkan-waterfall",
+      "image": "/images/1790860105042-iiy3uobhxdb1j48o3itun8mq3m1hpkag1zfzr4qoxft-vejs9a94x1fvjersbishmt0ednye-kg2jwwxixs5fa-bszhrwo6v1fxzhdcq-l3m3uykat8kxr77x7vukwamvww53ucocdhswmenax8o4u18znvp-xnpyhycxtdqm3g-cgx50fbv-jsjaop3y4er.jpg",
+      "title": {
+        "ru": "Джип-тур к водопаду Трчкан",
+        "hy": "Ջիփ տուր դեպի Թռչկան ջրվեժ",
+        "en": "Jeep Tour to Trchkan Waterfall"
+      },
+      "description": {
+        "ru": "Внедорожное путешествие к одному из самых впечатляющих водопадов Армении.",
+        "hy": "Լեռնային արկած դեպի Հայաստանի ամենատպավորիչ ջրվեժներից մեկը։",
+        "en": "A wild mountain escape to one of Armenia’s most impressive waterfalls."
+      },
+      "about": {
+        "ru": "На внедорожнике отправьтесь в зелёные долины Северной Армении к водопаду Трчкан. Вас ждут свежий горный воздух, удалённые пейзажи и пикник на природе вдали от шумных дорог.",
+        "hy": "Ամենագնացով կուղևորվեք Հյուսիսային Հայաստանի կանաչ հովիտներ՝ դեպի Թռչկան ջրվեժ։ Ձեզ սպասում են մաքուր լեռնային օդ, հեռավոր բնապատկերներ և բնության գրկում խնջույք։",
+        "en": "Take the 4x4 into the green valleys of northern Armenia and reach Trchkan Waterfall. The journey is about fresh air, remote landscapes and a picnic in nature away from the busy roads."
+      },
+      "destinations": {
+        "ru": [
+          "Водопад Трчкан",
+          "Пикник на природе"
+        ],
+        "hy": [
+          "Թռչկան ջրվեժ",
+          "Պիկնիկ բնության գրկում"
+        ],
+        "en": [
+          "Trchkan Waterfall",
+          "Picnic in nature"
+        ]
+      },
+      "categories": [
+        "popular",
+        "jeep",
+        "group"
+      ],
+      "priceFromAmd": 30000,
+      "departure": "08:00",
+      "durationHours": "10–12",
+      "images": [
+        "/images/1790860105042-iiy3uobhxdb1j48o3itun8mq3m1hpkag1zfzr4qoxft-vejs9a94x1fvjersbishmt0ednye-kg2jwwxixs5fa-bszhrwo6v1fxzhdcq-l3m3uykat8kxr77x7vukwamvww53ucocdhswmenax8o4u18znvp-xnpyhycxtdqm3g-cgx50fbv-jsjaop3y4er.jpg",
+        "/images/1790860111658-eokpqhsc0imvs50atwzodyk72yhvkh4--yxtdwef-ys8whl9s9lt4czoiysypgcxmijqtpjhvgbiesb5axu9apajrbn-0f19qd-dxibs9ohp3afxjvp-5qpzwastot-zpd-j2phhtf482lilb7o3zwirqufnbnxxdmlqe-vxlz7vigde1aptkjq7d25nkb7.jpg"
+      ],
+      "code": "305"
+    },
+    {
+      "slug": "jeep-mount-armaghan",
+      "image": "/images/1790866647576-wxpk6vx5p1qe3th13ss2x-ytgvdgoq3-6e1fvnxgvh6lyqcojp9p6bwzb1ojycdjznkybucxraixqxfk0skhpj94ekfsp8ewns-ibrrqgorncilmmf5az66gh0th-tumuoznhtigzruwen-ozxkmnp4odlkhba02jc5kkeengqysjdt926jx9b-nusfremg6.jpg",
+      "title": {
+        "ru": "Джип-тур к горе Армаган",
+        "hy": "Ջիփ տուր դեպի Արմաղան լեռ",
+        "en": "Jeep Tour to Mount Armagan"
+      },
+      "description": {
+        "ru": "Удалённое высокогорное путешествие к кратерному озеру и монастырю Айраванк.",
+        "hy": "Հեռավոր բարձրադիր ուղևորություն դեպի խառնարանային լիճ և Հայրավանքի վանք։",
+        "en": "A remote highland drive to a volcanic crater lake and the historic Hayravank Monastery."
+      },
+      "about": {
+        "ru": "На внедорожнике поднимитесь к горе Армаган и её выразительному кратерному озеру. Соедините приключение в горах с посещением тихого монастыря Айраванк на берегу озера Севан.",
+        "hy": "Ամենագնացով կբարձրանաք Արմաղան լեռ և կտեսնեք նրա տպավորիչ խառնարանային լիճը։ Արտաճանապարհային արկածը կհամատեղեք Սևանա լճի ափին գտնվող խաղաղ Հայրավանքի այցելության հետ։",
+        "en": "Climb by 4x4 toward Mount Armagan and its striking crater lake. Combine an off-road mountain experience with the tranquil setting of Hayravank Monastery on the shores of Lake Sevan."
+      },
+      "destinations": {
+        "ru": [
+          "Гора Армаган, 2 829 м",
+          "Монастырь Айраванк",
+          "Кратерное озеро"
+        ],
+        "hy": [
+          "Արմաղան լեռ, 2 829 մ",
+          "Հայրավանքի վանք",
+          "Խառնարանային լիճ"
+        ],
+        "en": [
+          "Mount Armagan, 2,829 m",
+          "Hayravank Monastery",
+          "Crater Lake"
+        ]
+      },
+      "categories": [
+        "popular",
+        "jeep",
+        "group"
+      ],
+      "priceFromAmd": 30000,
+      "departure": "08:00",
+      "durationHours": "10–12",
+      "images": [
+        "/images/1790866647576-wxpk6vx5p1qe3th13ss2x-ytgvdgoq3-6e1fvnxgvh6lyqcojp9p6bwzb1ojycdjznkybucxraixqxfk0skhpj94ekfsp8ewns-ibrrqgorncilmmf5az66gh0th-tumuoznhtigzruwen-ozxkmnp4odlkhba02jc5kkeengqysjdt926jx9b-nusfremg6.jpg",
+        "/images/1790866654183-fg7oduw5lu6tf1o7qwbucajmu9n-okqbltwxovbtgc4btyurgq8xlhdnxnixpfip3-pr9d1jbz-gjlwdvsdbt3ta6c6i9jd3fw7wpaq5e4h9wkq998vj2e4pbbtotjxdbjvefkggreywfop2l4y5tbwac2bn45zeysxqstp31molypce4cecscxf7n8m2tww.jpg",
+        "/images/1790866665503-1qb28lerf8wyq3ywqpvirrjpkshhletvgy39kqsyfkcuzpa5hpvrew1t8ogosrdp1rdzn1ybbhd9sd62tcinzlsl4gfyz19m8-7uhlm9mgwm5jt04rjqnxu5olvlmoo9oukcro0cfxvc5c0frzmaq4isfpdqvulmmkl4m9qdfvqgqz6c0cgdr39hzgko4q9b.jpg"
+      ],
+      "code": "306"
+    },
+    {
+      "slug": "jeep-mount-khustup",
+      "image": "/images/1790860901806-wmpdi1bf3paer5gomkqlxnrysev4d3kqse32v9-gpfzg67irwpcqnwsaq-jsz5q6x7cgacxmrz1yqpocbvruj4c5hzfjcrc-hy0r93n8vprao0pxetwaiel332jyu3atbc5-mqctntp-5zvhekcznfxt7aofpho6otib7xijsepnehr-uai8uhowpbeyq1-c.jpg",
+      "title": {
+        "ru": "Джип-тур к горе Хуступ",
+        "hy": "Ջիփ տուր դեպի Խուստուփ լեռ",
+        "en": "Jeep Tour to Mount Khustup"
+      },
+      "description": {
+        "ru": "Целодневная высокогорная экспедиция к легендарной горе юга Армении.",
+        "hy": "Ամբողջօրյա բարձրադիր արշավ դեպի Հայաստանի հարավի լեգենդար Խուստուփը։",
+        "en": "A full-day highland expedition to southern Armenia’s legendary Mount Khustup."
+      },
+      "about": {
+        "ru": "Отправьтесь до рассвета в насыщенное внедорожное путешествие по горам Сюника. Посетите монастыри Татев и Ваганаванк, а затем встретьте закат у горы Хуступ в одном из самых запоминающихся уголков Армении.",
+        "hy": "Արևածագից առաջ կսկսեք 4x4 արկածային ուղևորությունը Սյունիքի լեռներով։ Կայցելեք Տաթևի և Վահանավանքի վանքերը, ապա Խուստուփ լեռան մոտ կվայելեք մայրամուտը Հայաստանի ամենատպավորիչ բնապատկերներից մեկում։",
+        "en": "Set out before sunrise for a dramatic 4x4 journey through the mountains of Syunik. Visit Tatev and Vahanavank monasteries, then watch the sun set near Mount Khustup in one of Armenia’s most memorable landscapes."
+      },
+      "destinations": {
+        "ru": [
+          "Гора Хуступ, 3 201 м",
+          "Монастырь Татев",
+          "Монастырь Ваганаванк",
+          "Закат на горе Хуступ"
+        ],
+        "hy": [
+          "Խուստուփ լեռ, 3 201 մ",
+          "Տաթևի վանք",
+          "Վահանավանքի վանք",
+          "Մայրամուտ Խուստուփի վրա"
+        ],
+        "en": [
+          "Mount Khustup, 3,201 m",
+          "Tatev Monastery",
+          "Vahanavank Monastery",
+          "Sunset on Mount Khustup"
+        ]
+      },
+      "categories": [
+        "popular",
+        "jeep",
+        "group"
+      ],
+      "priceFromAmd": 45000,
+      "departure": "05:30",
+      "durationHours": "16–18",
+      "images": [
+        "/images/1790860901806-wmpdi1bf3paer5gomkqlxnrysev4d3kqse32v9-gpfzg67irwpcqnwsaq-jsz5q6x7cgacxmrz1yqpocbvruj4c5hzfjcrc-hy0r93n8vprao0pxetwaiel332jyu3atbc5-mqctntp-5zvhekcznfxt7aofpho6otib7xijsepnehr-uai8uhowpbeyq1-c.jpg",
+        "/images/1790860908308-eap7xordodled-gznm1hvkijujowk-6r61aol1b49uudtbwmkj6ark8tt7-fptloxglhbsgs1pg1shfs2gm4zpjmyy4nh5lekbw-dmmigluvhu4v2idcqe3mmvbnjxe6x0gef28kvg52iaagrw2mjlwyx9416fq1igjl-e4sbsupfad2agfg-c-gyuotntvu.jpg",
+        "/images/1790860913524-stoxactm20nusvx-zkgcds1ga-zuopscqlnv-8ewxd0-q6rja2bex8bm-8yt7kqxx6wxe93q-zchejzdztnlstx5mh6efhdo1mr-xuefeqheyil6kijfbeyuqapyv3knxgg1crp3qpcubdxx31lyqytsgukmnmherqi7ipfwaabracxaciou60xzkbshwmwo.jpg",
+        "/images/1790860923646-gtd5vgzhti73fcxscyemdyv0o1rivfdsa9gtuk5q7ctonzlowdsezpd4oxhg5zhrj0fmaotizdvekrlo9p2snzchkzhe3tzbiyr-9mbytl42vc40lzfbqpphe03zb9h8jub4tasboebrbikzgcistcisk6a1ytdisnlyzwdrihfovselt4dtbgqftdptcif0.jpg"
+      ],
+      "code": "307"
+    }
+  ],
+  "categories": [
+    {
+      "id": "packages",
+      "image": "/images/package-tatev.jpg",
+      "imagePosition": "object-center",
+      "title": {
+        "ru": "Тур-пакеты",
+        "hy": "Տուր փաթեթներ",
+        "en": "Tour Packages"
+      },
+      "desc": {
+        "ru": "Готовые многодневные путешествия по Армении: отель, трансферы, гид и экскурсии — всё продумано и организовано.",
+        "hy": "Պատրաստի բազմօրյա ճամփորդություններ Հայաստանում՝ հյուրանոց, տրանսֆերներ, գիդ և էքսկուրսիաներ՝ ամեն ինչ մտածված և կազմակերպված է։",
+        "en": "Ready-made multi-day journeys across Armenia: hotel, transfers, guide and excursions — everything planned and organised."
+      }
+    },
+    {
+      "id": "popular",
+      "image": "/images/1792157179415-143ce3e7-7a31-4c46-9760-c49c17d50abb.jpg",
+      "imagePosition": "object-center",
+      "title": {
+        "ru": "Популярные туры",
+        "hy": "Հանրաճանաչ տուրեր",
+        "en": "Popular Tours"
+      },
+      "desc": {
+        "ru": "Самые востребованные и любимые путешественниками экскурсии по Армении.",
+        "hy": "Ամենապահանջված և սիրված էքսկուրսիաները Հայաստանում։",
+        "en": "The most requested and beloved journeys and excursions across Armenia."
+      }
+    },
+    {
+      "id": "group",
+      "image": "/images/category-group.jpg",
+      "imagePosition": "object-[center_60%]",
+      "title": {
+        "ru": "Групповые туры",
+        "hy": "Խմբային տուրեր",
+        "en": "Group Tours"
+      },
+      "desc": {
+        "ru": "Небольшие дружные группы, насыщенная программа и выгодные цены.",
+        "hy": "Փոքր ջերմ խմբեր, հագեցած ծրագիր և շահավետ գներ։",
+        "en": "Small friendly groups, a rich programme and great prices."
+      }
+    },
+    {
+      "id": "individual",
+      "image": "/images/category-individual.jpg",
+      "imagePosition": "object-center",
+      "title": {
+        "ru": "Индивидуальные туры",
+        "hy": "Անհատական տուրեր",
+        "en": "Private Tours"
+      },
+      "desc": {
+        "ru": "Личный гид, свой темп и маршрут, собранный под ваши пожелания.",
+        "hy": "Անձնական գիդ, ձեր տեմպը և երթուղի՝ կազմված ձեր ցանկություններով։",
+        "en": "A personal guide, your own pace and an itinerary built around your wishes."
+      }
+    },
+    {
+      "id": "jeep",
+      "image": "/images/1792096571726-jeep-mountain-road-web.jpg",
+      "imagePosition": "object-center",
+      "title": {
+        "ru": "Джип-туры",
+        "hy": "Ջիպ-տուրեր",
+        "en": "Jeep Tours"
+      },
+      "desc": {
+        "ru": "Внедорожные маршруты к вулканам, водопадам и горным крепостям, куда не доедет обычный транспорт.",
+        "hy": "Ճանապարհից դուրս երթուղիներ դեպի հրաբուխներ, ջրվեժներ և լեռնային ամրոցներ, ուր սովորական տրանսպորտը չի հասնում։",
+        "en": "Off-road routes to volcanoes, waterfalls and mountain fortresses that ordinary transport cannot reach."
+      }
+    },
+    {
+      "id": "offers",
+      "image": "/images/offer-khor-virap.jpg",
+      "imagePosition": "object-center",
+      "title": {
+        "ru": "Спецпредложения",
+        "hy": "Հատուկ առաջարկներ",
+        "en": "Special Offers"
+      },
+      "desc": {
+        "ru": "Эксклюзивные акции, комбо-туры и сезонные скидки на лучшие путешествия по Армении.",
+        "hy": "Բացառիկ ակցիաներ, կոմբո տուրեր և սեզոնային զեղչեր Հայաստանի լավագույն ճամփորդությունների համար։",
+        "en": "Exclusive promotions, combo journeys and seasonal discounts on the best Armenia tours."
+      }
+    },
+    {
+      "id": "guests",
+      "image": "/images/hero-travellers.jpg",
+      "imagePosition": "object-center",
+      "title": {
+        "ru": "Гости",
+        "hy": "Հյուրեր",
+        "en": "Our Guests"
+      },
+      "desc": {
+        "ru": "Живые кадры, фото, видео и искренние отзывы наших гостей со всех уголков Армении и любимые гиды.",
+        "hy": "Մեր ճամփորդների կենդանի կադրեր, լուսանկարներ, տեսանյութեր և անկեղծ կարծիքներ Հայաստանի բոլոր անկյուններից ու սիրելի գիդերը։",
+        "en": "Genuine moments, photos, videos and heartfelt reviews from our guests across Armenia and our expert guides."
+      }
+    }
+  ],
+  "site": {
+    "name": "Amaras Tour",
+    "url": "https://amarastour.com",
+    "phone": "+374 99 250 525",
+    "whatsapp": "37499250525",
+    "telegram": "amaras_tour_armenia",
+    "instagram": "amarastourarmenia",
+    "email": "info@amarastour.am",
+    "aboutImage": "/images/1791116685054-3lswc8srlupqrobd6ldivdyksmohxwpnqxd1vtaxskowscux9vvdljst77butzfox3zfoxo-valex65na04zyllrd4kmjxyozn6xfgssbvasdflid9ne2gy4ibe4piavud-w-sg-q1pjus34a-mwqxashqbt-cv10rryzzkbl8qkcmqeb8bahzlotzcxdv6p.jpg",
+    "logo": "/images/logo.png",
+    "homepageImages": {
+      "heroSevan": "/images/package-sevan.jpg",
+      "heroKhorVirap": "/images/offer-khor-virap.jpg",
+      "heroGarni": "/images/1792095049826-garni-temple-web.jpg",
+      "heroTatev": "/images/package-tatev.jpg",
+      "heroNoravank": "/images/package-noravank.jpg",
+      "heroAzhdahak": "/images/azhdahak.jpg",
+      "bentoCard1": "/images/package-sevan.jpg",
+      "bentoCard2": "/images/offer-khor-virap.jpg",
+      "bentoCard3": "/images/package-dilijan.jpg",
+      "bentoCard4": "/images/package-garni-hd.jpg",
+      "resortSevan": "/images/package-sevan.jpg",
+      "resortDilijan": "/images/package-dilijan.jpg",
+      "resortJermuk": "/images/offer-khor-virap.jpg",
+      "panoramicBanner": "/images/noravank.jpg",
+      "featuredBanner": "/images/package-sevan.jpg",
+      "topTour1Left": "/images/khor-virap.jpg",
+      "topTour1Right": "/images/noravank.jpg",
+      "topTour2Left": "/images/garni.jpg",
+      "topTour2Right": "/images/sevan.jpg",
+      "topTour3Left": "/images/tatev.jpg",
+      "topTour3Right": "/images/azhdahak.jpg",
+      "article1": "/images/1792095011523-azhdahak-crater-web.jpg",
+      "article2": "/images/1792095024566-garni-symphony-stones-web.jpg",
+      "article3": "/images/noravank.jpg"
+    }
+  },
+  "hero": {
+    "images": [
+      "/images/1790867240949-t7napfkugdmqa3m21idodypgqd5qj48wpqfmjhcgvcgboxmbj2bmxxy-gxsxetzfqv2syix0humpuyp79wtn-lb3ktrvupzt8m2lkupmydtzfuwljr7-z7msq7avuywt4zf8jfoycsbrzpfs6djpytyvjzdqxddjs-8m3iv5ndyop6jodakjokhggn6bt1a-.jpg",
+      "/images/1790867249321-dur-ih1xnxhwpnh53uwivtw2xw7cms6xl66l-yggpcs2ouyu1gorptfc37ruxhxuxpq51cjznuu17ya1z6ipxwdexv-uu1lqepnay7yfx-kimtstdbdrwscr--a7w9tw2svdgkxxbf0garkkuxcixra-ms1vzxeb4sziidmqtf1bmy7x-sgzr3vmbu5x2l-w.jpg",
+      "/images/1790867257470-hmfpgtkuzjzjicqbgxt87fg3rhrfk7ervxybeos6fkufrt0efhbzsyno5kvihcbpe0k2egvriaebxk3bj-riidjxhqtw0smksavr3ul2qr--soeklxouvvnng7at-ottjnslgmv7ye6nw-wgxzyiokeabxzeptgq7f6i5gb-cqqusj1inbdtbgsuzqov7r-y.jpg",
+      "/images/1791116551997-3lswc8srlupqrobd6ldivdyksmohxwpnqxd1vtaxskowscux9vvdljst77butzfox3zfoxo-valex65na04zyllrd4kmjxyozn6xfgssbvasdflid9ne2gy4ibe4piavud-w-sg-q1pjus34a-mwqxashqbt-cv10rryzzkbl8qkcmqeb8bahzlotzcxdv6p.jpg",
+      "/images/1791116567490-8ptk-d2v1spri5qnqfk4nxlyhg0trvbktmiqa8hta6xr1new3yqzd877eo9vkxsb-eexsz-mnxxuk2waz8osxzsvztqyvq575xzzpbs6-nobjy1h8-asjl5v6ctq5qcx4biyydrx6ezvjfgkozt1xj2jgjosmyalso2y2dxnmu1l-iddnz5pq3uv70bip7q.jpg",
+      "/images/1791116577455-cn-4sgudzvpal4fzj5hd7qyxczlwr3ni3b2yadfimgkvzn8hzcmejxtc8fx0hld-bcopamfkizgzmrtrriaran7rx7ka7eei99vzzqgjovj6k3vewgpuifogc45zbmgrd711bfocdb9psio680ke8egsdioszfqlcimgtweh6l4iard9vtvlhkod2-et9x1t.jpg",
+      "/images/1791116634113-jhewq8m6h4n0qxotsq4v7-jos8-gzboudeycoxhy0rnopu5pfobkeeg5dd9alciv6qhn-vuzhm30-k4hwv5ve2vnbpbosteiwvjusz69vckukzzqvaypzgdkgqz8zqaxuxrimkxlm09m7gub0jtvgbx-lcgixbstpdzgu5zjneaidjolw39o1lsy6zitblpq.jpg",
+      "/images/1791116643847-shwzadupdyvj-5cfhbih7tqgdep6furtcsvxpzypvhxdggmuswahr-eoqzabuymnqrnxbh01et3jk3acigpwir8inp-jacjnyhy-x3xjrx54yem1qinsnmb9dw-uczn1dijax9utmphbke3jrghkrmcy-ly89ttq79hm93mlqwt-3etzntquy1oflxardoij.jpg",
+      "/images/1791116656292-xqzz-pb6rqcpdohdmvr-ud7gytm0k8y-uxn84eebfo5croz-y-s5pzepdf9ygnv0wp16kbbkgbb8unsxs4-l07c-0xtwietafqgp4sazyjwfg0dwuwshchloo-cm-l6wwtcuxvyw67rxbmb92hd6ac19bvsna-wnuhavx9oxnwgu4aehhps0hqrfetyz1ynh.jpg"
+    ]
+  },
+  "reviews": [
+    {
+      "id": "rev-1",
+      "author": "Анна и Михаил С.",
+      "location": "Москва",
+      "rating": 5,
+      "tourTitle": "Озеро Севан и Дилижан",
+      "text": {
+        "ru": "Поездка на Севан и в Дилижан превзошла все ожидания! Водитель очень аккуратный, гид рассказывал потрясающие истории о монастырях и природе. Организация на высшем уровне, обязательно поедем с вами снова!",
+        "hy": "Սևան և Դիլիջան ուղևորությունը գերազանցեց բոլոր սպասելիքները։ Շնորհակալություն հիանալի կազմակերպման, հոգատարության և ջերմ մթնոլորտի համար։",
+        "en": "The tour to Sevan and Dilijan exceeded all expectations! Very careful driver, the guide told fascinating stories. Truly top-notch organization, highly recommended!"
+      },
+      "date": "2026-09-15",
+      "approved": true,
+      "createdAt": "2026-09-15T14:30:00.000Z"
+    },
+    {
+      "id": "rev-2",
+      "author": "David K.",
+      "location": "Yerevan / Los Angeles",
+      "rating": 5,
+      "tourTitle": "Джип-тур на вулкан Аждаак",
+      "text": {
+        "ru": "Джип-тур к кратерному озеру — это чистый восторг! Проехали туда, куда на обычной машине и не сунешься. Мощные внедорожники, отличная команда и море незабываемых впечатлений.",
+        "hy": "Ջիպ-տուրը դեպի Աժդահակ պարզապես հիանալի էր։ Հզոր մեքենաներ, պրոֆեսիոնալ թիմ և անմոռանալի տպավորություններ։",
+        "en": "The 4x4 Jeep tour to the crater lake was pure thrill! Reached remote spots completely impossible with regular cars. Outstanding team and unforgettable memories."
+      },
+      "date": "2026-09-20",
+      "approved": true,
+      "createdAt": "2026-09-20T10:15:00.000Z"
+    },
+    {
+      "id": "rev-3",
+      "author": "Елена В.",
+      "location": "Санкт-Петербург",
+      "rating": 5,
+      "tourTitle": "5-дневный тур-пакет «Армения в сердце»",
+      "text": {
+        "ru": "Брали 5-дневный тур-пакет. Отели отличные, трансферы минута в минуту, программа очень насыщенная и комфортная. Ни о чем не беспокоились, только наслаждались Арменией!",
+        "hy": "5-օրյա փաթեթը շատ հարմարավետ էր։ Բոլոր հյուրանոցներն ու էքսկուրսիաները բարձր մակարդակի վրա էին։ Շնորհակալություն հիանալի հանգստի համար։",
+        "en": "Booked a 5-day tour package. Excellent hotels, punctual transfers, and a rich itinerary. We didn't have to worry about a thing, just enjoyed Armenia!"
+      },
+      "date": "2026-09-24",
+      "approved": true,
+      "createdAt": "2026-09-24T18:45:00.000Z"
+    },
+    {
+      "id": "rev-4",
+      "author": "Сергей и Наталья",
+      "location": "Екатеринбург",
+      "rating": 5,
+      "tourTitle": "Хор Вирап, Нораванк и Арени",
+      "text": {
+        "ru": "Прекрасный однодневный тур на юг! Вид на Арарат из Хор Вирапа захватывает дух, а дегустация вина в Арени была великолепной. Очень душевный и внимательный гид.",
+        "hy": "Հիանալի մեկօրյա տուր դեպի հարավ։ Խոր Վիրապից Արարատի տեսարանը շունչ էր կտրում, իսկ գինու համտեսը՝ անմոռանալի։ Շնորհակալություն։",
+        "en": "Wonderful day tour to the south! The view of Mount Ararat from Khor Virap was breathtaking, and the winery visit in Areni was fabulous. Warm and attentive guide."
+      },
+      "date": "2026-09-28",
+      "approved": true,
+      "createdAt": "2026-09-28T16:20:00.000Z"
+    }
+  ],
+  "offers": [
+    {
+      "id": "autumn-promo-october",
+      "active": true,
+      "badge": {
+        "ru": "СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ",
+        "hy": "ՀԱՏՈՒԿ ԱՌԱՋԱՐԿ",
+        "en": "SPECIAL EXCLUSIVE DEAL"
+      },
+      "title": {
+        "ru": "Путешествуй больше — плати меньше",
+        "hy": "Ճամփորդիր ավելին — վճարիր պակաս",
+        "en": "Travel More — Pay Less"
+      },
+      "subtitle": {
+        "ru": "Два насыщенных путешествия по Армении по одной специальной цене.",
+        "hy": "Երկու հագեցած ճամփորդություն Հայաստանում մեկ հատուկ գնով։",
+        "en": "Two breathtaking Armenia journeys for one special combined price."
+      },
+      "priceHighlightText": {
+        "ru": "2 экскурсии — всего 39 900 драм с человека",
+        "hy": "2 էքսկուրսիա — ընդամենը 39 900 դրամ մեկ անձի համար",
+        "en": "2 Day Tours — Only 39 900 AMD per person"
+      },
+      "priceFromAmd": 39900,
+      "priceOldAmd": 55000,
+      "linkHref": "https://wa.me/37493444455?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D0%BF%D0%B5%D1%86%D0%BF%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5:%202%20%D1%8D%D0%BA%D1%81%D0%BA%D1%83%D1%80%D1%81%D0%B8%D0%B8%20%D0%B7%D0%B0%2039%20900%20%D0%B4%D1%80%D0%B0%D0%BC",
+      "secondaryLinkHref": "/#tours",
+      "image": "/images/offer-khor-virap.jpg",
+      "bannerImage": "/images/offer-khor-virap.jpg",
+      "leftRouteTitle": {
+        "ru": "ОТ АРАРАТА ДО ДЖЕРМУКА",
+        "hy": "ԱՐԱՐԱՏԻՑ ՄԻՆՉԵՎ ՋԵՐՄՈՒԿ",
+        "en": "FROM ARARAT TO JERMUK"
+      },
+      "rightRouteTitle": {
+        "ru": "ОТ ГАРНИ ДО СЕВАНА",
+        "hy": "ԳԱՌՆԻԻՑ ՄԻՆՉԵՎ ՍԵՎԱՆ",
+        "en": "FROM GARNI TO SEVAN"
+      },
+      "primaryButtonText": {
+        "ru": "ЗАБРОНИРОВАТЬ СЕЙЧАС",
+        "hy": "ԱՄՐԱԳՐԵԼ ՀԻՄԱ",
+        "en": "BOOK NOW"
+      },
+      "secondaryLinkText": {
+        "ru": "ПОДРОБНЕЕ",
+        "hy": "ՄԱՆՐԱՄԱՍՆ",
+        "en": "DETAILS"
+      },
+      "validUntil": {
+        "ru": "До конца сезона включительно",
+        "hy": "Մինչև սեզոնի ավարտ",
+        "en": "Limited Availability This Season"
+      },
+      "highlightFeatures": {
+        "ru": [
+          "Только при 2 экскурсиях",
+          "Специальная фиксированная цена",
+          "Два уникальных маршрута",
+          "Больше впечатлений по выгодной цене"
+        ],
+        "hy": [
+          "Միայն 2 էքսկուրսիայի դեպքում",
+          "Հատուկ ֆիքսված գին",
+          "Երկու եզակի երթուղի",
+          "Ավելի շատ տպավորություններ շահավետ գնով"
+        ],
+        "en": [
+          "Valid for any 2 day tours",
+          "Special fixed bundle rate",
+          "Two iconic Armenia routes",
+          "Maximum impressions & best value"
+        ]
+      }
+    }
+  ],
+  "guests": [
+    {
+      "id": "guest-1",
+      "type": "photo",
+      "url": "/images/hero-travellers.jpg",
+      "title": "Хор Вирап и вид на Арарат",
+      "location": "Хор Вирап",
+      "guideName": "Мгер",
+      "date": "2026",
+      "caption": "Незабываемый солнечный день с нашей группой у стен древнего монастыря Хор Вирап. Библейский Арарат открылся во всём величии!"
+    },
+    {
+      "id": "guest-2",
+      "type": "photo",
+      "url": "/images/sevan.jpg",
+      "title": "Озеро Севан и Севанаванк",
+      "location": "Севан",
+      "guideName": "Григор",
+      "date": "2026",
+      "caption": "Голубая жемчужина Армении. Поднялись к монастырю на полуострове и попробовали свежайшую севанскую форель."
+    },
+    {
+      "id": "guest-3",
+      "type": "photo",
+      "url": "/images/jeep.jpg",
+      "title": "Джип-сафари к вулкану Аждаак",
+      "location": "Гегамские горы",
+      "guideName": "Арсен",
+      "date": "2026",
+      "caption": "Настоящий драйв на подготовленных внедорожниках 4x4. Подъём на высоту более 3000 метров и кратерное озеро."
+    },
+    {
+      "id": "guest-4",
+      "type": "photo",
+      "url": "/images/garni.jpg",
+      "title": "Храм Гарни и Симфония камней",
+      "location": "Гарни",
+      "guideName": "Армине",
+      "date": "2026",
+      "caption": "Античный языческий храм, прогулка по базальтовому ущелью Симфония камней и традиционный армянский лаваш из тандыра."
+    },
+    {
+      "id": "guest-7",
+      "type": "photo",
+      "url": "/images/dilijan.jpg",
+      "title": "Армянская Швейцария — Дилижан",
+      "location": "Дилижан & Агарцин",
+      "guideName": "Анаит",
+      "date": "2026",
+      "caption": "Густые буковые леса, свежий горный воздух и умиротворение в монастыре Агарцин среди вековых деревьев."
+    },
+    {
+      "id": "guest-8",
+      "type": "photo",
+      "url": "/images/family.jpg",
+      "title": "Семейное путешествие по Армении",
+      "location": "Ереван & Окрестности",
+      "guideName": "Артур",
+      "date": "2026",
+      "caption": "Индивидуальный тур для семьи: комфортный минивэн, неспешный ритм, заботливый гид и тёплые воспоминания на всю жизнь."
+    }
+  ],
+  "guides": [
+    {
+      "id": "guide-mher",
+      "name": "Мгер"
+    },
+    {
+      "id": "guide-armine",
+      "name": "Армине"
+    },
+    {
+      "id": "guide-grigor",
+      "name": "Григор"
+    },
+    {
+      "id": "guide-andranik",
+      "name": "Андраник"
+    },
+    {
+      "id": "guide-arsen",
+      "name": "Арсен"
+    },
+    {
+      "id": "guide-vladimir",
+      "name": "Владимир"
+    },
+    {
+      "id": "guide-anahit",
+      "name": "Анаит"
+    },
+    {
+      "id": "guide-marina",
+      "name": "Марина"
+    },
+    {
+      "id": "guide-manuel",
+      "name": "Мануэль"
+    },
+    {
+      "id": "guide-mikael",
+      "name": "Микаэль"
+    },
+    {
+      "id": "guide-artur",
+      "name": "Артур"
+    }
+  ],
+  "attractions": [
+    {
+      "id": "khor-virap",
+      "name": {
+        "ru": "Хор Вирап",
+        "hy": "Խոր Վիրապ",
+        "en": "Khor Virap"
+      },
+      "tagline": {
+        "ru": "Святыня у подножия Арарата",
+        "hy": "Սրբավայր Արարատի ստորոտում",
+        "en": "Sanctuary at the Foot of Mount Ararat"
+      },
+      "regionCategory": "near_yerevan",
+      "region": {
+        "ru": "Араратская область, Армения",
+        "hy": "Արարատի մարզ, Հայաստան",
+        "en": "Ararat Province, Armenia"
+      },
+      "distance": {
+        "ru": "около 40 км от Еревана",
+        "hy": "մոտ 40 կմ Երևանից",
+        "en": "approx. 40 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "45–50 минут",
+        "hy": "45–50 րոպե",
+        "en": "45–50 minutes"
+      },
+      "image": "/images/hero-khor-virap.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Легендарная подземная темница св. Григория Просветителя",
+          "Ближайшая и самая величественная панорама горы Арарат",
+          "Место крещения Армении в 301 году",
+          "Древняя церковь Сурб Аствацацин XVII века"
+        ],
+        "hy": [
+          "Սբ. Գրիգոր Լուսավորչի պատմական ստորգետնյա վիրապը",
+          "Արարատ լեռան ամենամոտ և շքեղ համայնապատկերը",
+          "301 թ. Հայաստանի քրիստոնեացման օրրանը",
+          "XVII դարի Սուրբ Աստվածածին եկեղեցին"
+        ],
+        "en": [
+          "Underground pit of St. Gregory the Illuminator",
+          "The closest and most breathtaking view of Mount Ararat",
+          "Cradle of Armenian Christianity (301 AD)",
+          "17th-century Holy Mother of God Church"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Одно из самых священных мест Армении, где святой Григорий Просветитель провёл 13 лет в заточении. Отсюда открывается самый знаменитый вид на библейскую гору Арарат.",
+        "hy": "Հայաստանի ամենանվիրական սրբավայրերից մեկը, որտեղ Սուրբ Գրիգոր Լուսավորիչը 13 տարի անցկացրել է խոր վիրապում։ Այստեղից բացվում է Արարատ լեռան ամենահայտնի տեսարանը։",
+        "en": "One of Armenia's most sacred places, where St. Gregory the Illuminator was imprisoned for 13 years. Offers the iconic panoramic view of Mount Ararat."
+      },
+      "fullStory": {
+        "ru": "Хор Вирап — одно из самых священных и исторически значимых мест Армении, расположенное посреди живописной Араратской долины, у подножия величественной горы Арарат.\n\nНазвание «Хор Вирап» в переводе с армянского означает «Глубокая темница».\n\nИстория этого места связана со святым Григорием Просветителем, который, согласно преданию, провёл здесь 13 лет в заточении по приказу царя Трдата III за свою христианскую веру.\n\nПо преданию, после долгих лет заключения Григорий был освобождён и исцелил тяжело заболевшего царя. Это событие стало поворотным моментом в истории страны. В 301 году, согласно традиционной датировке, Армения первой в мире приняла христианство в качестве государственной религии.\n\nСегодня на месте древней темницы возвышается монастырский комплекс, основные сохранившиеся постройки которого относятся к XVII веку. Посетители могут спуститься в историческое подземелье, увидеть древние церкви и прикоснуться к многовековой истории Армении.\n\nОсобую красоту этому месту придаёт захватывающий вид на библейскую гору Арарат — символ армянского народа. Именно отсюда открывается одна из самых знаменитых панорам Армении.\n\nХор Вирап — это не просто монастырь. Это место, где история, вера и величие природы соединяются воедино.",
+        "hy": "Խոր Վիրապը Հայաստանի ամենասրբազան և պատմականորեն նշանակալից վայրերից մեկն է, որը գտնվում է Արարատյան դաշտավայրում՝ բիբլիական Արարատ լեռան ստորոտին։\n\nՎանքի պատմությունը սերտորեն կապված է Սուրբ Գրիգոր Լուսավորչի հետ, ով Տրդատ Գ թագավորի հրամանով 13 տարի անցկացրել է խոր վիրապում քրիստոնեական հավատքի համար։\n\n301 թվականին Հայաստանն առաջինն աշխարհում քրիստոնեությունը հռչակեց որպես պետական կրոն։ Այսօր այցելուները կարող են իջնել պատմական ստորգետնյա վիրապը և վայելել Արարատ լեռան անկրկնելի տեսարանը։",
+        "en": "Khor Virap is one of Armenia's most sacred sanctuaries, standing in the Ararat plain right before the majestic Mount Ararat.\n\nIts name translates to \"deep pit\" or \"deep dungeon\". According to tradition, St. Gregory the Illuminator was imprisoned here for 13 years by King Trdat III for preaching Christianity.\n\nFollowing his release and the miraculous healing of the king, Armenia became the first nation in the world to adopt Christianity as its state religion in 301 AD. Visitors can descend into the original dungeon and admire the iconic panorama of Mount Ararat."
+      },
+      "tourQuery": "khor-virap"
+    },
+    {
+      "id": "garni",
+      "name": {
+        "ru": "Храм Гарни",
+        "hy": "Գառնիի տաճար",
+        "en": "Garni Temple"
+      },
+      "tagline": {
+        "ru": "Античное сокровище Армении",
+        "hy": "Հայաստանի անտիկ գոհարը",
+        "en": "Ancient Greco-Roman Treasure of Armenia"
+      },
+      "regionCategory": "near_yerevan",
+      "region": {
+        "ru": "Котайкская область, село Гарни",
+        "hy": "Կոտայքի մարզ, գյուղ Գառնի",
+        "en": "Kotayk Province, Garni village"
+      },
+      "distance": {
+        "ru": "около 28 км от Еревана",
+        "hy": "մոտ 28 կմ Երևանից",
+        "en": "approx. 28 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "40–50 минут",
+        "hy": "40–50 րոպե",
+        "en": "40–50 minutes"
+      },
+      "image": "/images/garni.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Единственный сохранившийся античный храм с колоннадой на Кавказе",
+          "Построен в I веке н.э. царём Трдатом I (ок. 77 г.)",
+          "24 изящные базальтовые колонны",
+          "Руины царской крепости и римские бани с мозаикой III века"
+        ],
+        "hy": [
+          "Կովկասում միակ պահպանված հեթանոսական սյունազարդ տաճարը",
+          "Կառուցվել է մ.թ. I դարում Տրդատ Ա արքայի կողմից (մոտ 77 թ.)",
+          "24 նրբակերտ բազալտե սյուներ",
+          "Արքայական ամրոցի ավերակները և III դարի խճանկարով հռոմեական բաղնիքը"
+        ],
+        "en": [
+          "Only standing Greco-Roman colonnaded temple in the former USSR and Caucasus",
+          "Built in the 1st century AD (approx. 77 AD) by King Tiridates I",
+          "24 basalt ionic columns symbolizing the 24 hours of the day",
+          "Royal fortress ruins and 3rd-century Roman baths with mosaic floor"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Единственный сохранившийся языческий храм эпохи эллинизма на территории Кавказа, возведённый из базальта над живописным ущельем реки Азат в I веке н.э.",
+        "hy": "Կովկասի տարածքում միակ պահպանված հելլենիստական հեթանոսական տաճարը՝ կառուցված I դարում Ազատ գետի գեղատեսիլ կիրճի եզրին։",
+        "en": "The only surviving Hellenistic pagan temple in the Caucasus, perched above the dramatic Azat River gorge since the 1st century AD."
+      },
+      "fullStory": {
+        "ru": "Храм Гарни — один из самых уникальных исторических памятников Армении и единственный сохранившийся античный храм с колоннадой на территории страны.\n\nРасположенный на краю живописного ущелья реки Азат, храм поражает своей величественной архитектурой и удивительным сочетанием древней истории с красотой армянской природы.\n\nСчитается, что храм был построен в I веке нашей эры, во времена правления армянского царя Трдата I, приблизительно в 77 году. По наиболее распространённой версии, он был посвящён Михру — богу солнца и света в древнеармянской мифологии.\n\nХрам возведён из базальта и украшен 24 изящными колоннами, символизирующими, согласно популярной интерпретации, 24 часа суток.\n\nПосле принятия христианства в Армении в 301 году большинство языческих святилищ было разрушено или перестроено. Однако Гарни сохранился. Существует версия, что здание использовалось как летняя резиденция царской семьи.\n\nВ 1679 году мощное землетрясение разрушило храм. Почти три столетия его руины напоминали о величии древней армянской архитектуры. В 1969–1975 годах храм был восстановлен с использованием сохранившихся оригинальных камней.\n\nСегодня Гарни является одним из самых известных памятников античной архитектуры на Кавказе. На территории исторического комплекса также можно увидеть руины царского дворца, остатки древней крепости и римские бани с уникальной мозаикой.",
+        "hy": "Գառնիի հեթանոսական տաճարը Հայաստանի հնագույն և ինքնատիպ հուշարձաններից է, միակ անտիկ սյունազարդ կառույցը երկրի տարածքում։\n\nԿառուցվել է մ.թ. 77 թվականին Տրդատ Ա թագավորի օրոք և նվիրված է եղել արևի աստված Միհրին։ Տաճարը կառուցված է մոխրագույն բազալտից և ունի 24 սյուն։ Տարածքում պահպանվել են արքայական ամառանոցը և հռոմեական բաղնիքի հոյակապ խճանկարը։",
+        "en": "The Temple of Garni is the premier classical monument in Armenia and the only standing Greco-Roman colonnaded temple in the region.\n\nConstructed around 77 AD by King Tiridates I, it is believed to have been dedicated to Mihr, the ancient Armenian god of light and the sun. Standing with 24 basalt columns high on a triangular promontory above the Azat River canyon, the complex also includes ancient fortress walls, a royal summer palace, and third-century Roman baths with genuine mosaic flooring."
+      },
+      "tourQuery": "garni"
+    },
+    {
+      "id": "geghard",
+      "name": {
+        "ru": "Монастырь Гегард",
+        "hy": "Գեղարդի վանք",
+        "en": "Geghard Monastery"
+      },
+      "tagline": {
+        "ru": "Святыня, высеченная в скалах (ЮНЕСКО)",
+        "hy": "Ժայռափոր սրբավայր (ՅՈՒՆԵՍԿՕ)",
+        "en": "Monastery of the Spear Carved in Solid Rock (UNESCO)"
+      },
+      "regionCategory": "near_yerevan",
+      "region": {
+        "ru": "Котайкская область, ущелье реки Азат",
+        "hy": "Կոտայքի մարզ, Ազատի կիրճ",
+        "en": "Kotayk Province, Azat River Canyon"
+      },
+      "distance": {
+        "ru": "около 40 км от Еревана",
+        "hy": "մոտ 40 կմ Երևանից",
+        "en": "approx. 40 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "50–60 минут",
+        "hy": "50–60 րոպե",
+        "en": "50–60 minutes"
+      },
+      "image": "/images/package-garni-hd.jpg",
+      "unesco": true,
+      "highlights": {
+        "ru": [
+          "Объект Всемирного наследия ЮНЕСКО",
+          "Часть храмов вырублена целиком внутри монолитной скалы",
+          "Хранилище священного Копья Лонгина (Копьё Судьбы)",
+          "Уникальная акустика пещерных залов и священный горный родник"
+        ],
+        "hy": [
+          "ՅՈՒՆԵՍԿՕ-ի Համաշխարհային ժառանգության օբյեկտ",
+          "Ամբողջությամբ ժայռի մեջ փորված եկեղեցիներ և գավիթներ",
+          "Սուրբ Գեղարդի (Նիզակի) դարավոր հանգրվանը",
+          "Անկրկնելի ակուստիկա և ժայռից բխող սուրբ աղբյուր"
+        ],
+        "en": [
+          "UNESCO World Heritage Site",
+          "Rock-cut cave churches sculpted directly inside the cliff",
+          "Centuries-long home of the Holy Lance (Spear of Longinus)",
+          "Extraordinary natural acoustic resonance and sacred spring"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Шедевр средневекового зодчества ЮНЕСКО: скальные церкви, высеченные в теле горы, древние хачкары и удивительная акустика, где веками хранилось Святое Копьё.",
+        "hy": "ՅՈՒՆԵՍԿՕ-ի գոհար. ժայռափոր տաճարներ, դարավոր խաչքարեր և ակուստիկ հրաշք, որտեղ դարեր շարունակ պահվել է Սուրբ Գեղարդը։",
+        "en": "A UNESCO-listed architectural wonder carved straight out of the surrounding cliff face, famous for incredible vocal acoustics and ancient cross-stones."
+      },
+      "fullStory": {
+        "ru": "Монастырь Гегард — одна из самых удивительных исторических и духовных святынь Армении, расположенная среди величественных скал живописного ущелья реки Азат.\n\nУникальность этого места заключается в том, что часть монастырского комплекса построена из камня, а другая часть буквально высечена внутри горных скал. Благодаря этому Гегард считается одним из выдающихся памятников средневековой армянской архитектуры.\n\nСогласно преданию, монастырь был основан в IV веке святым Григорием Просветителем, вскоре после принятия христианства в Армении. Первоначально он назывался Айриванк, что в переводе с армянского означает «Пещерный монастырь».\n\nСвоё нынешнее название Гегард получил благодаря священной реликвии — копью, которым, согласно христианскому преданию, римский воин пронзил тело Иисуса Христа во время распятия. Считается, что эта реликвия на протяжении нескольких столетий хранилась в монастыре. Сегодня она находится в сокровищнице Первопрестольного Святого Эчмиадзина.\n\nОсновные сооружения монастырского комплекса были построены в XII–XIII веках. Главный храм Катогике возвели в 1215 году, а позднее появились уникальные пещерные церкви, часовни и усыпальницы, высеченные непосредственно в скальном массиве.\n\nОсобое впечатление производят внутренние помещения монастыря. Каменные своды, древние хачкары, искусная резьба и необыкновенная акустика создают атмосферу, в которой словно оживает многовековая история. В некоторых помещениях можно увидеть природные источники воды, которые издавна почитались паломниками.\n\nВ 2000 году монастырь Гегард вместе с верховьями реки Азат был включён в Список Всемирного наследия ЮНЕСКО.",
+        "hy": "Գեղարդավանքը (Այրիվանք) հիմնադրվել է IV դարում Սուրբ Գրիգոր Լուսավորչի կողմից։ Վանքի մեծ մասը փորված է հսկա ժայռերի մեջ։ Իր անվանումը ստացել է այն նիզակից (գեղարդ), որով հռոմեացի զինվորը խոցել էր Քրիստոսին խաչի վրա։\n\nԳեղարդավանքը հայտնի է իր աննման ակուստիկայով, խորհրդավոր ժայռափոր մատուռներով և 2000 թվականից ընդգրկված է ՅՈՒՆԵՍԿՕ-ի համաշխարհային ժառանգության ցանկում։",
+        "en": "Geghard Monastery is a legendary rock-carved monastery complex situated in the scenic Azat River gorge. Originally founded in the 4th century by St. Gregory the Illuminator as Ayrivank (\"Cave Monastery\"), it later earned the name Geghardavank (\"Monastery of the Spear\") because it housed the Holy Lance that pierced Jesus on the Cross.\n\nThe complex was designated a UNESCO World Heritage site in 2000. It features freestanding basilicas interconnected with monolithic rock-cut churches and tombs decorated with intricately chiseled khachkars."
+      },
+      "tourQuery": "geghard"
+    },
+    {
+      "id": "symphony-of-stones",
+      "name": {
+        "ru": "Симфония камней",
+        "hy": "Քարերի սիմֆոնիա",
+        "en": "Symphony of Stones"
+      },
+      "tagline": {
+        "ru": "Природное чудо Армении в ущелье Гарни",
+        "hy": "Հայաստանի բնական հրաշքը Գառնու կիրճում",
+        "en": "Natural Wonder of Basalt Columns"
+      },
+      "regionCategory": "near_yerevan",
+      "region": {
+        "ru": "Котайкская область, ущелье реки Азат",
+        "hy": "Կոտայքի մարզ, Ազատի կիրճ",
+        "en": "Kotayk Province, Azat River Canyon"
+      },
+      "distance": {
+        "ru": "около 30 км от Еревана",
+        "hy": "մոտ 30 կմ Երևանից",
+        "en": "approx. 30 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "45–50 минут",
+        "hy": "45–50 րոպե",
+        "en": "45–50 minutes"
+      },
+      "image": "/images/1790853463364-3lswc8srlupqrobd6ldivdyksmohxwpnqxd1vtaxskowscux9vvdljst77butzfox3zfoxo-valex65na04zyllrd4kmjxyozn6xfgssbvasdflid9ne2gy4ibe4piavud-w-sg-q1pjus34a-mwqxashqbt-cv10rryzzkbl8qkcmqeb8bahzlotzcxdv6p.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Гигантские базальтовые шестигранные колонны высотой до 50 метров",
+          "Удивительное сходство с трубами гигантского церковного органа",
+          "Вулканическое происхождение возрастом в миллионы лет",
+          "Пешеходная прогулка вдоль бурлящей реки Азат"
+        ],
+        "hy": [
+          "Մինչև 50 մետր բարձրությամբ հսկայական վեցանկյուն բազալտե սյուներ",
+          "Երաժշտական երգեհոն հիշեցնող բնական քարե սյունաշար",
+          "Միլիոնավոր տարիների հրաբխային ծագում",
+          "Հաճելի զբոսանք Ազատ գետի ափով"
+        ],
+        "en": [
+          "Towering hexagonal basalt columns soaring up to 50 meters high",
+          "Remarkable resemblance to a colossal cathedral organ",
+          "Millions of years of volcanic lava cooling history",
+          "Scenic walking trail right along the bubbling Azat River"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Грандиозный памятник природы: тысячи правильных шестигранных базальтовых колонн, нависающих над ущельем реки Азат словно трубы гигантского органа.",
+        "hy": "Հոյակապ բնական հուշարձան. հազարավոր բազալտե կանոնավոր սյուներ, որոնք կախված են Ազատ գետի կիրճի վրա հսկայական երգեհոնի նման։",
+        "en": "A breath-taking geological wonder where thousands of perfectly geometric basalt columns drape over the canyon walls like the pipes of a giant church organ."
+      },
+      "fullStory": {
+        "ru": "Симфония камней — одно из самых удивительных природных чудес Армении, расположенное в живописном ущелье реки Азат, неподалёку от знаменитого языческого храма Гарни.\n\nЭто уникальное место поражает своей необычной красотой. Огромные базальтовые колонны, словно созданные руками талантливого скульптора, свисают со скал и напоминают трубы гигантского музыкального органа. Именно благодаря этому удивительному сходству природный памятник получил поэтичное название — «Симфония камней» (или «Базальтовый орган»).\n\nИстория этого природного чуда началась миллионы лет назад, когда территория современной Армении была зоной активной вулканической деятельности.\n\nВо время древних извержений потоки раскалённой лавы покрывали поверхность земли. Постепенно остывая и затвердевая, вулканическая порода сжималась и растрескивалась, образуя удивительно ровные многогранные базальтовые колонны. На протяжении тысячелетий река Азат и природные процессы постепенно формировали ущелье, обнажая эти необычные каменные образования.\n\nСегодня здесь можно увидеть тысячи базальтовых колонн, расположенных вертикально, горизонтально и под разными углами. Некоторые из них достигают нескольких десятков метров в высоту, создавая впечатление грандиозного природного сооружения.",
+        "hy": "«Քարերի սիմֆոնիա» կամ «Բազալտե երգեհոն» բնական հուշարձանը գտնվում է Ազատ գետի կիրճում՝ Գառնի գյուղի մոտ։ \n\nԱյն իրենից ներկայացնում է հսկայական, կանոնավոր վեցանկյուն բազալտե սյուներ, որոնք առաջացել են միլիոնավոր տարիներ առաջ հրաբխային լավայի դանդաղ սառչելու և ճաքճքելու արդյունքում։ Զբոսնելով կիրճով՝ հիանում ես բնության այս կատարյալ ճարտարապետությամբ։",
+        "en": "The Symphony of Stones (also called the Basalt Organ) is a geological marvel located in the Azat River canyon near Garni village.\n\nThe monument features massive cliff-sides of hanging hexagonal and pentagonal basalt columns created millions of years ago by slow, uniform cooling of volcanic basaltic lava. Walking along the bottom of the gorge alongside the rushing river offers an unforgettable acoustic and visual experience."
+      },
+      "tourQuery": "symphony"
+    },
+    {
+      "id": "sevan",
+      "name": {
+        "ru": "Озеро Севан",
+        "hy": "Սևանա լիճ",
+        "en": "Lake Sevan"
+      },
+      "tagline": {
+        "ru": "Голубая жемчужина Армении (1900 м)",
+        "hy": "Հայաստանի կապուտաչյա գոհարը (1900 մ)",
+        "en": "The Blue Pearl of Armenia (1,900 m)"
+      },
+      "regionCategory": "sevan_dilijan",
+      "region": {
+        "ru": "Гегаркуникская область, Армения",
+        "hy": "Գեղարքունիքի մարզ, Հայաստան",
+        "en": "Gegharkunik Province, Armenia"
+      },
+      "distance": {
+        "ru": "около 65 км от Еревана",
+        "hy": "մոտ 65 կմ Երևանից",
+        "en": "approx. 65 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 1 час",
+        "hy": "մոտ 1 ժամ",
+        "en": "approx. 1 hour"
+      },
+      "image": "/images/sevan.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Одно из крупнейших высокогорных пресноводных озёр мира (1900 м над уровнем моря)",
+          "Монастырь Севанаванк IX века (874 г.) на панорамном полуострове",
+          "Древняя обитель Айраванк на скалистом берегу озера",
+          "Норатус — музей сотен древних хачкаров под открытым небом",
+          "Знаменитая севанская форель (ишхан) и блюда прибрежной кухни"
+        ],
+        "hy": [
+          "Աշխարհի խոշորագույն բարձրլեռնային քաղցրահամ լճերից մեկը (1900 մ բարձրություն)",
+          "IX դարի (874 թ.) Սևանավանքը գեղատեսիլ թերակղզում",
+          "Հայրավանքի վանական համալիրը ժայռոտ ափին",
+          "Նորատուսի խաչքարերի դաշտ — բացօթյա թանգարան",
+          "Հայտնի սևանյան իշխան և ափամերձ խոհանոց"
+        ],
+        "en": [
+          "One of the largest alpine freshwater high-altitude lakes in Eurasia (1,900 m elevation)",
+          "9th-century Sevanavank Monastery (874 AD) perched on the scenic peninsula",
+          "Hayravank Monastery sitting high over the rocky shores",
+          "Noratus open-air cemetery with the world's largest collection of medieval khachkars",
+          "Fresh culinary tradition featuring Sevan trout (Ishkhan)"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Высокогорное «Гегамское море» на высоте 1900 метров: бирюзовая гладь в кольце гор, монастыри Севанаванк и Айраванк, лес хачкаров в Норатусе и знаменитая форель.",
+        "hy": "Բարձրլեռնային «Գեղամա ծով» 1900 մետր բարձրության վրա. փիրուզագույն ջրեր, Սևանավանք և Հայրավանք, Նորատուսի խաչքարեր և սևանյան իշխան։",
+        "en": "Armenia's turquoise high-mountain sea at 1,900 m, hosting 9th-century monasteries, the Noratus khachkar forest, and scenic beaches."
+      },
+      "fullStory": {
+        "ru": "Озеро Севан — одно из самых красивых природных сокровищ Армении, которое по праву называют «Голубой жемчужиной» страны.\n\nРасположенное на высоте около 1900 метров над уровнем моря, Севан является крупнейшим озером Армении и одним из крупнейших высокогорных пресноводных озёр Евразии. Его площадь составляет около 1240 квадратных километров, а бескрайняя голубая гладь, окружённая величественными горными хребтами, создаёт впечатление настоящего моря среди гор. Не случайно в древности Севан называли Гегамским морем.\n\nСеванаванк — монастырь с потрясающим видом на озеро\nОдной из главных достопримечательностей является монастырь Севанаванк, основанный в 874 году княгиней Мариам, дочерью царя Ашота I Багратуни. Когда-то обитель находилась на отдельном острове, превратившемся в полуостров в XX веке. Две церкви IX века из чёрного туфа возвышаются над бескрайней лазурью.\n\nАйраванк — древняя святыня на скалистом берегу\nЮжнее расположен тихий монастырь Айраванк IX–XII веков. С ним связана легенда об отшельнике Ованесе, спасшем жителей от нашествия врагов. Отсюда открывается медитативный вид на гладь озера.\n\nНоратус — музей хачкаров под открытым небом\nНедалеко от озера находится село Норатус с крупнейшим в мире средневековым собранием армянских хачкаров, насчитывающим сотни резных памятников IX–XVII веков.\n\nШоржа и Артаниш — дикие пляжи и круговой обзор\nДля любителей уединения восточный берег (Шоржа и мыс Артаниш) открывает вид сразу на Большой и Малый Севан. В местных ресторанах обязательно стоит попробовать севанскую форель — ишхан («князь»).",
+        "hy": "Սևանա լիճը («Գեղամա ծով») Հայաստանի գլխավոր բնական գոհարն է։ Գտնվելով ծովի մակարդակից մոտ 1900 մետր բարձրության վրա՝ այն Եվրասիայի խոշորագույն բարձրլեռնային քաղցրահամ լճերից է։\n\nՍևանավանքի վանական համալիրը հիմնադրվել է 874 թվականին Մարիամ իշխանուհու կողմից։ Ափին են գտնվում նաև Հայրավանքը և Նորատուսի խաչքարերի դաշտը, իսկ ռեստորաններում կարելի է վայելել հանրահայտ սևանյան իշխանը։",
+        "en": "Lake Sevan is the crowning natural jewel of Armenia, affectionately called the \"Blue Pearl\". Sitting at 1,900 meters above sea level and covering around 1,240 square kilometers, it resembles an expansive inland sea framed by rugged mountain ridges.\n\nHighlights include the 9th-century Sevanavank Monastery built from black volcanic tuff on the peninsula, the peaceful cliffside monastery of Hayravank, and the medieval khachkar field at Noratus. No visit is complete without tasting fresh local Ishkhan (Sevan trout)."
+      },
+      "tourQuery": "sevan"
+    },
+    {
+      "id": "noravank",
+      "name": {
+        "ru": "Монастырь Нораванк",
+        "hy": "Նորավանք",
+        "en": "Noravank Monastery"
+      },
+      "tagline": {
+        "ru": "Жемчужина архитектуры среди красных скал",
+        "hy": "Կարմիր ժայռերի ճարտարապետական գոհարը",
+        "en": "Medieval Masterpiece Framed by Crimson Cliffs"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Вайоцдзорская область, ущелье Амагу",
+        "hy": "Վայոց ձորի մարզ, Ամաղուի կիրճ",
+        "en": "Vayots Dzor Province, Amaghu Gorge"
+      },
+      "distance": {
+        "ru": "около 120 км от Еревана",
+        "hy": "մոտ 120 կմ Երևանից",
+        "en": "approx. 120 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 2–2,5 часа",
+        "hy": "մոտ 2–2.5 ժամ",
+        "en": "approx. 2–2.5 hours"
+      },
+      "image": "/images/noravank.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Окружён гигантскими отвесными скалами терракотово-красного цвета",
+          "Двухэтажная церковь Сурб Аствацацин (1339 г.) с узкими фасадными лестницами",
+          "Шедевры гениального средневекового зодчего и миниатюриста Момика",
+          "Усыпальницы княжеского рода Орбелянов XIII–XIV веков",
+          "Один из самых красивых каньонов Армении"
+        ],
+        "hy": [
+          "Շրջապատված է հրաբխային կարմիր ուղղաձիգ ժայռերով",
+          "Սուրբ Աստվածածին երկհարկ դամբարան-եկեղեցին (1339 թ.)՝ արտաքին նեղ աստիճաններով",
+          "Միջնադարյան հանճարեղ ճարտարապետ և քանդակագործ Մոմիկի գլուխգործոցները",
+          "Օրբելյան իշխանական տոհմի դամբարանները XIII-XIV դդ.",
+          "Հայաստանի ամենագեղատեսիլ կիրճերից մեկը"
+        ],
+        "en": [
+          "Encircled by towering sheer brick-red and orange limestone cliffs",
+          "Two-story Surb Astvatsatsin church (1339) with narrow cantilevered stone stairs",
+          "Masterpieces crafted by the brilliant medieval architect and sculptor Momik",
+          "Burial vaults of the princely Orbelian dynasty (13th-14th centuries)",
+          "One of the most photogenic canyon landscapes in the Caucasus"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Средневековый шедевр зодчего Момика в ущелье красных скал: двухэтажная церковь Сурб Аствацацин с узкими консольными лестницами и барельефами Бога-Отца.",
+        "hy": "Մոմիկ վարպետի միջնադարյան գլուխգործոցը կարմիր ժայռերի կիրճում. Սուրբ Աստվածածին երկհարկ եկեղեցին՝ ճակատային աստիճաններով։",
+        "en": "A 13th-century monastery tucked inside a canyon of sheer red cliffs, famed for Momik's two-tier church with narrow cantilever stone facade stairs."
+      },
+      "fullStory": {
+        "ru": "Нораванк — один из самых красивых и выдающихся средневековых монастырей Армении, расположенный среди величественных красных скал живописного ущелья Амагу в Вайоц Дзоре.\n\nНазвание «Нораванк» в переводе с армянского означает «Новый монастырь». Основанный в XII веке, монастырь в XIII–XIV веках стал духовным, культурным и образовательным центром, а также резиденцией епископов Сюника и усыпальницей княжеского рода Орбелянов.\n\nГлавная жемчужина комплекса — двухэтажная церковь-усыпальница Сурб Аствацацин (Святой Богородицы, известная как Буртелашен), завершённая в 1339 году. Её визитная карточка — узкие консольные наружные каменные лестницы, по которым поднимаются на второй этаж без перил.\n\nС Нораванком неразрывно связано имя выдающегося архитектора, скульптора и миниатюриста Момика. Именно его резец создал уникальные барельефы, включая редчайшее в христианском искусстве изображение Бога-Отца над входом в притвор церкви Сурб Карапет.\n\nСкалы вокруг монастыря в зависимости от времени суток и освещения меняют цвет от кирпично-красного до пылающего золотистого, превращая дорогу по ущелью в захватывающее дух приключение.",
+        "hy": "Նորավանքը հիմնադրվել է XII դարում և եղել է Օրբելյան իշխանական տան հոգևոր կենտրոնն ու դամբարանավայրը։\n\nԱյն հայտնի է իր անկրկնելի դիրքով՝ շրջապատված հեքիաթային կարմիր ժայռերով։ Համալիրի գլխավոր զարդը Մոմիկ ճարտարապետի կերտած Սուրբ Աստվածածին (Բուրթելաշեն) երկհարկ եկեղեցին է (1339 թ.), որի երկրորդ հարկ տանող նեղ արտաքին աստիճանները զբոսաշրջիկների սիրված վայրն են։",
+        "en": "Noravank (\"New Monastery\") is a 13th-century Armenian monastery nestled in a narrow winding gorge carved by the Amaghu River, surrounded by dramatic crimson cliffs.\n\nThe centerpiece is the two-tiered church of Surb Astvatsatsin completed in 1339 by master sculptor Momik. Its ground floor houses the tomb of Prince Burtel Orbelian, while the upper chapel is accessed via steep stone steps protruding from the front facade. The intricate stone reliefs, including one of the earliest depictions of God the Father, represent the pinnacle of Armenian medieval art."
+      },
+      "tourQuery": "noravank"
+    },
+    {
+      "id": "birds-cave",
+      "name": {
+        "ru": "Пещера птиц (Арени-1)",
+        "hy": "Թռչունների քարանձավ (Արենի-1)",
+        "en": "Birds' Cave (Areni-1)"
+      },
+      "tagline": {
+        "ru": "Тайна древней Армении и виноделие 6100 лет",
+        "hy": "Հին Հայաստանի գաղտնիքը և 6100-ամյա գինեգործությունը",
+        "en": "World's Oldest Winery & 6,000-Year Secrets"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Вайоцдзорская область, ущелье реки Арпа",
+        "hy": "Վայոց ձորի մարզ, Արփայի կիրճ",
+        "en": "Vayots Dzor Province, Arpa Gorge"
+      },
+      "distance": {
+        "ru": "около 110 км от Еревана",
+        "hy": "մոտ 110 կմ Երևանից",
+        "en": "approx. 110 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 1,5–2 часа",
+        "hy": "մոտ 1.5–2 ժամ",
+        "en": "approx. 1.5–2 hours"
+      },
+      "image": "/images/1790853467379-rz9uwjodasdjm-h5-b4wcqvd86qkqdxupy8utmv3wsugz-8smynk8nknff9wyapekbp3qmxwjxf-fhoia2cyqpugl5uwkpm8lvog0oatssupswwxfyqjpdbcmdla5wfa7hg6pbvjobjhxuaddu13fnk1t6o0e-tjf7gilo-cydxtmrssatnenkajqtzxevg.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Древнейшая в мире винодельня возрастом 6100 лет (кувшины-карасы, пресс, лоза)",
+          "Древнейшая кожаная туфля в истории человечества (5500 лет, старше Стоунхенджа)",
+          "Уникальный сухой микроклимат, сохранивший органику эпохи энеолита",
+          "Тайны обрядов и быта древних цивилизаций медного века"
+        ],
+        "hy": [
+          "Աշխարհի հնագույն գինեգործարանը՝ 6100 տարեկան (կարասներ, մամլիչ, խաղողի կորիզներ)",
+          "Աշխարհի ամենահին կաշվե կոշիկը (5500 տարեկան՝ ավելի հին, քան Սթոունհենջը)",
+          "Չոր միկրոկլիմա, որը պահպանել է էնեոլիթյան դարաշրջանի օրգանական նյութերը",
+          "Պղնձի դարի մարդկանց ծեսերի և կենցաղի գաղտնիքները"
+        ],
+        "en": [
+          "World's oldest known winery (6,100 years old, complete with fermentation vats and press)",
+          "World's oldest leather shoe (5,500 years old, predating Stonehenge)",
+          "Unique dry cave microclimate preserving delicate chalcolithic organic artifacts",
+          "Archaeological sensation revealing the cradle of winemaking"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Сенсационный археологический памятник в Вайоц Дзоре: древнейшая в мире винодельня возрастом 6100 лет и древнейшая кожаная туфля (5500 лет).",
+        "hy": "Հնագիտական սենսացիոն հուշարձան Վայոց ձորում. աշխարհի ամենահին գինեգործարանը (6100 տ.) և ամենահին կաշվե կոշիկը (5500 տ.)։",
+        "en": "A global archaeological sensation: the world's oldest known winery (6,100 years old) and oldest leather shoe (5,500 years old)."
+      },
+      "fullStory": {
+        "ru": "Пещера птиц, известная в научном мире как Арени-1, — один из самых сенсационных археологических памятников Армении, расположенный в известняковых скалах ущелья реки Арпа возле села Арени.\n\nВ 2007 году международная группа археологов начала здесь раскопки, перевернувшие представления историков о зарождении цивилизации:\n\n1. Древнейшая кожаная туфля в мире (2008 г.): возраст около 5500 лет. Изготовленная из цельного куска воловьей кожи со шнуровкой, она на несколько веков старше египетских пирамид в Гизе и Стоунхенджа. Обувь идеально сохранилась благодаря уникальному стабильному сухому микроклимату пещеры.\n\n2. Древнейший винодельческий комплекс в мире: возраст свыше 6100 лет (ок. 4100 г. до н.э.). Археологи нашли глиняные сосуды-карасы, вкопанные в землю, остатки пресса для винограда, засохшие виноградные лозы и косточки сорта Арени. Это прямое доказательство того, что Армения является одной из колыбелей мирового виноделия.\n\nВ пещере также обнаружены керамика, плетёные корзины, фрагменты тканей и захоронения энеолитического периода. Посещение пещеры позволяет заглянуть в быт людей, живших здесь более шести тысяч лет назад.",
+        "hy": "Արենի-1 կամ Թռչունների քարանձավը գտնվում է Վայոց ձորում՝ Արփա գետի կիրճում։\n\n2007 թվականից սկսված պեղումների ժամանակ այստեղ հայտնաբերվեցին աշխարհացունց գտածոներ. աշխարհի ամենահին կաշվե կոշիկը (5500 տարեկան) և աշխարհի հնագույն գինեգործական համալիրը (6100 տարեկան)՝ խաղողի ճզմման հարմարանքներով, կարասներով և խաղողի կորիզներով։ Այս վայրը վկայում է Հայաստանում գինեգործության հազարամյա արմատների մասին։",
+        "en": "Areni-1 cave complex, also known as Birds' Cave, is a karstic cave in Vayots Dzor where international archaeologists unearthed two world-record discoveries:\n\nIn 2008, researchers found the world's oldest intact leather shoe (approx. 5,500 years old), crafted from a single piece of cowhide laced with cord. In 2011, excavators confirmed the discovery of the world's earliest known winery (approx. 6,100 years old), including a pressing vat, fermentation jars, desiccated grape seeds, and dried vines. It conclusively proves that winemaking was thriving in the Armenian highlands in the Chalcolithic era."
+      },
+      "tourQuery": "birds-cave"
+    },
+    {
+      "id": "khndzoresk",
+      "name": {
+        "ru": "Хндзореск",
+        "hy": "Խնձորեսկ",
+        "en": "Khndzoresk Cave Village"
+      },
+      "tagline": {
+        "ru": "Древний пещерный город и подвесной мост",
+        "hy": "Հին քարանձավային քաղաք և ճոճվող կամուրջ",
+        "en": "Ancient Cave City & 160m Suspension Bridge"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Сюникская область, недалеко от города Горис",
+        "hy": "Սյունիքի մարզ, Գորիսի մոտ",
+        "en": "Syunik Province, near Goris"
+      },
+      "distance": {
+        "ru": "около 255 км от Еревана",
+        "hy": "մոտ 255 կմ Երևանից",
+        "en": "approx. 255 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 4–5 часов",
+        "hy": "մոտ 4–5 ժամ",
+        "en": "approx. 4–5 hours"
+      },
+      "image": "/images/hero-valley-road.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Подвесной качающийся мост длиной 160 метров на высоте 63 метра над пропастью",
+          "Многоярусные пещерные дома, вырубленные прямо в скалах",
+          "Люди жили в скальных домах вплоть до 1950-х годов XX века",
+          "Церковь Святой Рипсиме XVII века и могила полководца Мхитара Спарапета"
+        ],
+        "hy": [
+          "160 մետր երկարությամբ և 63 մետր բարձրությամբ կախովի ճոճվող կամուրջ",
+          "Բազմահարկ քարանձավային տներ՝ փորված անմիջապես ժայռերի մեջ",
+          "Մարդիկ քարանձավներում ապրել են մինչև 1950-ական թվականները",
+          "XVII դարի Սուրբ Հռիփսիմե եկեղեցին և Մխիթար Սպարապետի շիրիմը"
+        ],
+        "en": [
+          "160-meter-long swinging suspension bridge hanging 63 meters above the canyon",
+          "Multi-tiered cave dwellings carved by hand directly into the volcanic cliffs",
+          "Inhabitants lived inside these natural cliff caves right up until the 1950s",
+          "17th-century St. Hripsime Church and tomb of military leader Mkhitar Sparapet"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Фантастический пещерный город в скалах Сюника, где ещё в XX веке жили люди. Два края ущелья соединяет захватывающий 160-метровый подвесной мост над бездной.",
+        "hy": "Զարմանահրաշ քարանձավային քաղաք Սյունիքի ժայռերում, որտեղ մարդիկ ապրել են դեռ XX դարում։ Կիրճի երկու կողմերը միացնում է 160 մետրանոց կախովի կամուրջը։",
+        "en": "An otherworldly troglodyte cave settlement where families lived inside cliff hollows until the 1950s, connected by a dramatic 160m footbridge suspended over the canyon."
+      },
+      "fullStory": {
+        "ru": "Хндзореск — одно из самых необычных и загадочных исторических мест Армении, расположенное среди живописных гор и глубоких ущелий Сюникской области.\n\nГлавная особенность Старого Хндзореска заключается в том, что на протяжении веков люди здесь жили не в обычных домах, а в пещерах, вырубленных прямо в скалах. Жилые помещения располагались в несколько ярусов, образуя фантастический вертикальный город. В период расцвета в поселении жили тысячи людей, действовали школы, мельницы, ремесленные лавки и церкви. Поразительно, но жители обитали в этих пещерных домах вплоть до середины 1950-х годов, пока советские власти не переселили их в Новый Хндзореск на плато.\n\nПодвесной мост Хндзореска\nВ 2012 году ущелье соединил подвесной качающийся пешеходный мост длиной 160 метров и высотой около 63 метров над пропастью. Прогулка по мосту захватывает дух и открывает открыточный вид на дикие скалы и древние пещеры.\n\nСреди достопримечательностей старого города — трёхнефная базилика Сурб Рипсиме XVII века, церковь Сурб Тадевос и скит Анапат, где покоится национальный герой Армении — военачальник XVIII века Мхитар Спарапет, возглавлявший освободительную борьбу Сюника.",
+        "hy": "Հին Խնձորեսկը հայտնի է իր անսովոր քարանձավային բնակավայրով։ Ժայռափոր տները դարեր շարունակ ծառայել են որպես ապահով ապաստարան թշնամիներից։ Զարմանալի է, որ մարդիկ այստեղ ապրել են մինչև 1950-ական թվականները։\n\n2012 թվականին կառուցված 160 մետրանոց կախովի կամուրջը, որը ճոճվում է 63 մետր բարձրության վրա, կապում է կիրճի երկու ափերը։ Այստեղ է գտնվում նաև ազատագրական պայքարի առաջնորդ Մխիթար Սպարապետի գերեզմանը։",
+        "en": "Old Khndzoresk is an ancient cave village dug into the soft volcanic stone of a deep gorge near Goris. For centuries, residents carved homes, storage rooms, and churches right into the cliffside, using ropes and ladders to move between the multiple stacked levels.\n\nRemarkably, people inhabited these cave homes continuously until the mid-1950s. Today, an exhilarating 160-meter pedestrian suspension bridge, swinging 63 meters over the canyon floor, connects the modern village with the historic cave ghost-town."
+      },
+      "tourQuery": "khndzoresk"
+    },
+    {
+      "id": "haghartsin",
+      "name": {
+        "ru": "Монастырь Агарцин",
+        "hy": "Հաղարծնի վանք",
+        "en": "Haghartsin Monastery"
+      },
+      "tagline": {
+        "ru": "Древняя святыня среди зелёных лесов Дилижана",
+        "hy": "Դիլիջանի անտառներում թաքնված հնագույն սրբավայր",
+        "en": "Ancient Monastery Hidden in Dilijan's Virgin Forests"
+      },
+      "regionCategory": "sevan_dilijan",
+      "region": {
+        "ru": "Тавушская область, Дилижанский нацпарк",
+        "hy": "Տավուշի մարզ, Դիլիջան",
+        "en": "Tavush Province, Dilijan National Park"
+      },
+      "distance": {
+        "ru": "около 110–115 км от Еревана",
+        "hy": "մոտ 110–115 կմ Երևանից",
+        "en": "approx. 110–115 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 2 часа",
+        "hy": "մոտ 2 ժամ",
+        "en": "approx. 2 hours"
+      },
+      "image": "/images/1790853908336-x82lu-jesd0-rl9jlyj3zdlajsaqv89nthhdt-as1--myt746mfktqw4qojgxwb5385mvaaf4apbd-cs8-gmd86i8jwbwkbiteulricr-5zn2sedafnfcw-tao60noycdxdk7kiagkqyy1zsqwxa2c-uekgjbrgrxs6gifn3c-wiwkgyiqrcplrd7dmfg7z8.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Построен из светлого травертина посреди векового букового леса",
+          "Главный храм Сурб Аствацацин (1281 г.) с куполом небесной красоты",
+          "Средневековая трапезная (1248 г.) зодчего Минаса — шедевр гражданской архитектуры",
+          "Легенда об орле («Агарцин» — игра орлов), освятившем купол храма",
+          "Древний дуб желаний возрастом сотни лет"
+        ],
+        "hy": [
+          "Կառուցված է բաց գույնի տրավերտինից՝ դարավոր անտառների գրկում",
+          "Սուրբ Աստվածածին գլխավոր եկեղեցին (1281 թ.)",
+          "Մինաս ճարտարապետի կերտած միջնադարյան հռչակավոր սեղանատունը (1248 թ.)",
+          "Արծիվների խաղի մասին գեղեցիկ ավանդությունը («Հաղարծին»)",
+          "Հարյուրամյա կաղնի ծառը"
+        ],
+        "en": [
+          "Constructed from light travertine limestone in beech and oak forests",
+          "Cathedral of the Holy Mother of God (1281) with decorated conical dome",
+          "Medieval refectory (1248) designed by architect Minas, a secular masterpiece",
+          "Legend of soaring eagles blessing the dome giving the monastery its name",
+          "Centuries-old venerable hollow wishing tree"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Белокаменный средневековый монастырь X–XIII веков, спрятанный в изумрудных лесах Дилижанского национального парка. Знаменит средневековой трапезной и атмосферой умиротворения.",
+        "hy": "X-XIII դարերի սպիտակաքար վանք՝ թաքնված Դիլիջանի ազգային պարկի զմրուխտյա անտառներում։ Հայտնի է իր հոյակերտ սեղանատնով։",
+        "en": "A secluded 10th-13th century travertine monastery hidden in Dilijan's verdant national park, famed for its remarkable 1248 vaulted refectory."
+      },
+      "fullStory": {
+        "ru": "Агарцин — один из самых красивых средневековых монастырей Армении, спрятанный среди густых реликтовых лесов и живописных ущелий Дилижанского национального парка.\n\nМонастырь словно скрыт от суеты всего мира. Согласно легенде, название «Агарцин» происходит от армянских слов «хаг» (игра) и «арцив» (орёл): во время освящения главного храма в небе над куполом кружили орлы, словно благословляя святыню.\n\nСтроительство комплекса началось в X веке и продолжалось до XIII века при покровительстве князей династий Багратуни и Закарянов:\n- Церковь Сурб Григор (X–XI вв.) — древнейшая постройка комплекса;\n- Церковь Сурб Степанос (1244 г.) — изящная крестово-купольная церковь;\n- Главный храм Сурб Аствацацин (1281 г.) — жемчужина ансамбля с изысканной каменной резьбой и барельефом ктиторов на фасаде;\n- Монастырская трапезная (1248 г.), построенная зодчим Минасом — один из выдающихся образцов средневековой гражданской архитектуры с арочными перекрытиями.\n\nМонастырь производит неизгладимое впечатление в любое время года: летом в изумрудной листве, осенью в пылающем золоте буковых лесов и зимой под белым снежным покровом.",
+        "hy": "Հաղարծնի վանական համալիրը գտնվում է Տավուշի մարզում՝ Դիլիջանից 18 կմ հեռավորության վրա, անտառախիտ կիրճում։ Կառուցվել է X-XIII դարերում։\n\nՀամալիրը ներառում է Սուրբ Գրիգոր, Սուրբ Ստեփանոս և Սուրբ Աստվածածին եկեղեցիները, ինչպես նաև 1248 թ. Մինաս ճարտարապետի կողմից կառուցված նշանավոր սեղանատունը։ Անվանումը կապվում է «արծվի խաղ» ավանդության հետ։",
+        "en": "Haghartsin Monastery is a medieval ensemble nestled in the lush woodlands of Dilijan National Park. Built between the 10th and 13th centuries under the Bagratuni and Zakaryan dynasties, its white stone structures appear magically out of the deep green trees.\n\nIts name means \"soaring eagle\". Highlights include St. Gregory Church, the 1281 Church of the Holy Mother of God, and an extraordinary monastic refectory built in 1248 by architect Minas, celebrated as one of medieval Armenia's greatest secular halls."
+      },
+      "tourQuery": "haghartsin"
+    },
+    {
+      "id": "goshavank",
+      "name": {
+        "ru": "Монастырь Гошаванк",
+        "hy": "Գոշավանք",
+        "en": "Goshavank Monastery"
+      },
+      "tagline": {
+        "ru": "Центр средневековой мудрости и права (1188 г.)",
+        "hy": "Միջնադարյան իմաստության և իրավունքի կենտրոն (1188 թ.)",
+        "en": "Center of Medieval Law and Wisdom (1188 AD)"
+      },
+      "regionCategory": "sevan_dilijan",
+      "region": {
+        "ru": "Тавушская область, село Гош",
+        "hy": "Տավուշի մարզ, գյուղ Գոշ",
+        "en": "Tavush Province, Gosh village"
+      },
+      "distance": {
+        "ru": "около 120 км от Еревана",
+        "hy": "մոտ 120 կմ Երևանից",
+        "en": "approx. 120 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 2–2,5 часа",
+        "hy": "մոտ 2–2.5 ժամ",
+        "en": "approx. 2–2.5 hours"
+      },
+      "image": "/images/1790853942836-pfflcp6xjihgagpnljitacegs9tio08wfs4aqmhfurxlpefy3tjwkm-zg-xpp9r6usx6w5xu3zvldm0lrdrkdlj7nd0unbv4daxwgrrxh1gspxxyspmgk39lobexwodqnmg62kguf1h0ipipofwyacg9mtkcq1xpkiv6lmjstxung7cbugmjxnow-kho7jub.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Основан в 1188 году великим законодателем Мхитаром Гошем",
+          "Создание первого армянского «Судебника» (свода законов)",
+          "Знаменитый кружевной хачкар мастера Погоса (1291 г.) — шедевр камнерезного искусства",
+          "Древнее двухэтажное книгохранилище со скрипторием и колокольней",
+          "Спокойная умиротворяющая атмосфера горного села Гош"
+        ],
+        "hy": [
+          "Հիմնադրվել է 1188 թվականին մեծ օրենսդիր Մխիթար Գոշի կողմից",
+          "Հայտնի «Դատաստանագրքի» ստեղծման վայրը",
+          "Պողոս վարպետի ասեղնագործ խաչքարը (1291 թ.)՝ քարարվեստի գլուխգործոց",
+          "Երկհարկանի գրատուն-զանգակատունը և միջնադարյան համալսարանը",
+          "Գոշ գյուղի խաղաղ լեռնային միջավայրը"
+        ],
+        "en": [
+          "Founded in 1188 by prominent scholar and lawgiver Mkhitar Gosh",
+          "Birthplace of the first Armenian Code of Laws (Datastanagirk)",
+          "The famous lace khachkar carved by master Poghos (1291) — stone embroidery",
+          "Two-story medieval scriptorium, library, and bell tower",
+          "Peaceful contemplative atmosphere of Gosh village near Dilijan"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Один из крупнейших духовных и научных центров средневековой Армении, основанный Мхитаром Гошем в 1188 году. Славится легендарным «кружевным» хачкаром 1291 года.",
+        "hy": "Միջնադարյան Հայաստանի գիտական և հոգևոր կենտրոններից մեկը՝ հիմնված Մխիթար Գոշի կողմից 1188 թ.։ Հայտնի է Պողոս վարպետի ասեղնագործ խաչքարով։",
+        "en": "A historic 12th-century monastic academy founded by scholar Mkhitar Gosh, renowned for its incredible 1291 needlework lace khachkar."
+      },
+      "fullStory": {
+        "ru": "Гошаванк — один из важнейших средневековых монастырей Армении, расположенный в селе Гош среди зелёных лесистых гор Тавушской области.\n\nИстория обители начинается в 1188 году, когда выдающийся армянский мыслитель, учёный, баснописец и правовед Мхитар Гош основал монастырь на месте разрушенного землетрясением монастыря Гетик. Первоначально он назывался Нор Гетик («Новый Гетик»), а после смерти мыслителя был назван в его честь — Гошаванк.\n\nИменно здесь Мхитар Гош создал свой знаменитый «Судебник» — первый фундаментальный свод гражданского и канонического права средневековой Армении, применявшийся веками в армянских общинах от Киликии до Польши.\n\nКружевной хачкар мастера Погоса\nГлавное художественное сокровище Гошаванка — непревзойдённый каменный крест (хачкар), высеченный мастером Погосом в 1291 году у входа в часовню Сурб Григор Лусаворич. Тончайшая ажурная резьба по камню выполнена с такой ювелирной точностью, что напоминает тончайшее кружево.\n\nВ монастыре также сохранились главный храм Сурб Аствацацин (XII в.), церковь Сурб Григор и двухэтажное здание книгохранилища со скрипторием и колокольней, где монахи переписывали манускрипты.",
+        "hy": "Գոշավանքը (Նոր Գետիկ) հիմնադրվել է 1188 թ. նշանավոր գիտնական, օրենսդիր և առակագիր Մխիթար Գոշի կողմից։ Այստեղ է գրվել նրա հռչակավոր «Դատաստանագիրքը»։\n\nՎանքի բակում է գտնվում Պողոս վարպետի կերտած 1291 թ. ասեղնագործ խաչքարը, որը համարվում է հայ միջնադարյան խաչքարագործության բացարձակ գագաթնակետը։",
+        "en": "Goshavank was established in 1188 by Mkhitar Gosh, a celebrated scholar, cleric, and fabulist who composed the Armenian Law Code here. Originally called Nor Getik, it was renamed Goshavank in his honor.\n\nIts crowning jewel is the 1291 khachkar carved by master artisan Poghos standing beside St. Gregory the Illuminator chapel. Its stone filigree is carved so delicately that it is universally referred to as \"embroidered\" or \"lace\" in stone."
+      },
+      "tourQuery": "goshavank"
+    },
+    {
+      "id": "haghpat",
+      "name": {
+        "ru": "Монастырь Ахпат",
+        "hy": "Հաղպատի վանք",
+        "en": "Haghpat Monastery"
+      },
+      "tagline": {
+        "ru": "Сокровище Всемирного наследия ЮНЕСКО (976 г.)",
+        "hy": "ՅՈՒՆԵՍԿՕ-ի Համաշխարհային ժառանգության գանձը (976 թ.)",
+        "en": "UNESCO World Heritage Treasure (976 AD)"
+      },
+      "regionCategory": "north_lori",
+      "region": {
+        "ru": "Лорийская область, село Ахпат",
+        "hy": "Լոռու մարզ, գյուղ Հաղպատ",
+        "en": "Lori Province, Haghpat village"
+      },
+      "distance": {
+        "ru": "около 175–180 км от Еревана",
+        "hy": "մոտ 175–180 կմ Երևանից",
+        "en": "approx. 175–180 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 3–3,5 часа",
+        "hy": "մոտ 3–3.5 ժամ",
+        "en": "approx. 3–3.5 hours"
+      },
+      "image": "/images/1790854095022-uemyjldn26383pxlnn6fwwmaydkhvyk-lemz6ibn2zf2usqlfhonksksf6doo64m2rbb4mj5bsovpezpesxe63yhw3ya-oedpi2qcu6ac8kcks6akdz3vnit5id73orlod8jepxf5ihvkwjensyoinlzaayhijjl9ejqizze3t0vwt3lyrvuylvxmehpp98q.jpg",
+      "unesco": true,
+      "highlights": {
+        "ru": [
+          "Объект Всемирного наследия ЮНЕСКО с 1996 года",
+          "Основан в 976 году царицей Хосровануш (династия Багратуни)",
+          "Церковь Сурб Ншан с фрагментами древних фресок X–XIII веков",
+          "Знаменитый резной хачкар Аменапркич (Всеспаситель, 1273 г.)",
+          "Величественная трёхъярусная колокольня (1245 г.) и скрипторий",
+          "Здесь жил и творил великий армянский ашуг Саят-Нова"
+        ],
+        "hy": [
+          "ՅՈՒՆԵՍԿՕ-ի Համաշխարհային ժառանգության հուշարձան (1996 թ.-ից)",
+          "Հիմնադրվել է 976 թ. Խոսրովանույշ թագուհու կողմից (Բագրատունյաց հարստություն)",
+          "Սուրբ Նշան եկեղեցին՝ հնագույն որմնանկարներով",
+          "Ամենափրկիչ հռչակավոր խաչքարը (1273 թ.)",
+          "Եռահարկ զանգակատունը (1245 թ.) և ձեռագրատունը",
+          "Այստեղ ապրել և ստեղծագործել է մեծն Սայաթ-Նովան"
+        ],
+        "en": [
+          "UNESCO World Heritage Site inscribed in 1996",
+          "Founded in 976 AD by Queen Khosrovanush of the Bagratid dynasty",
+          "St. Nishan Church retaining original medieval fresco paintings",
+          "Famed Amenaprkich (All-Savior) khachkar carved in 1273",
+          "Three-story freestanding bell tower (1245) and scriptorium",
+          "Refuge and sanctuary of celebrated bard Sayat-Nova"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Выдающийся средневековый монастырский комплекс X–XIII веков под охраной ЮНЕСКО, возвышающийся над каньоном реки Дебед. Крупнейший центр книжности и родина шедевров зодчества.",
+        "hy": "X-XIII դդ. ՅՈՒՆԵՍԿՕ-ի համաշխարհային գլուխգործոց Դեբեդի կիրճի վերևում։ Միջնադարյան գրչության խոշորագույն կենտրոն և Սայաթ-Նովայի հանգրվանը։",
+        "en": "A monumental 10th-13th century UNESCO monastic university perched high above the Debed River canyon, rich with ancient frescoes, libraries, and stone carvings."
+      },
+      "fullStory": {
+        "ru": "Монастырь Ахпат — один из самых выдающихся архитектурных ансамблей Армении, внесённый в Список Всемирного наследия ЮНЕСКО в 1996 году. Он расположен на зелёном горном плато над живописным ущельем реки Дебед в Лори.\n\nОснование монастыря относят к 976 году во времена правления армянских царей Багратуни. Инициатором строительства была царица Хосровануш — супруга царя Ашота III Милостивого.\n\nНа протяжении веков Ахпат являлся крупнейшим духовным, научным и культурным центром средневековой Армении. Здесь действовала высшая школа, скрипторий с богатейшей библиотекой, изучались богословие, философия, музыка и искусство миниатюры. С Ахпатом неразрывно связана жизнь великого армянского поэта и певца-ашуга Саят-Новы, который принял здесь монашеский постриг под именем отца Степаноса.\n\nГлавный храм — церковь Сурб Ншан (976–991 гг.) со строгими пропорциями и сохранившимися древними настенными росписями.\n\nВ ансамбль также входят отдельно стоящая трёхэтажная колокольня 1245 года, изящная часовня Сурб Григор, притворы князей Закарянов, уникальное книгохранилище и знаменитый хачкар Аменапркич («Всеспаситель») 1273 года, изображающий Распятие Христа с поразительной пластической выразительностью.",
+        "hy": "Հաղպատավանքը հիմնադրվել է 976 թ. Բագրատունյաց Աշոտ Գ Ողորմած թագավորի կնոջ՝ Խոսրովանույշ թագուհու կողմից։ Այն միջնադարյան Հայաստանի գիտական և հոգևոր կարևորագույն կենտրոններից էր։\n\n1996 թ.-ից այն ընդգրկված է ՅՈՒՆԵՍԿՕ-ի Համաշխարհային ժառանգության ցանկում։ Գլխավոր տաճարը Սուրբ Նշանն է։ Այստեղ երկար տարիներ ապրել և ծառայել է անմահ երգիչ Սայաթ-Նովան։",
+        "en": "Haghpat Monastery is an exceptional medieval monastery complex inscribed on the UNESCO World Heritage list in 1996. Perched on a high plateau above the Debed River canyon, it was founded in 976 AD by Queen Khosrovanush of the Bagratuni royal dynasty.\n\nThe complex was celebrated for its scriptorium and library, where medieval manuscripts were illuminated and scholars studied philosophy, theology, and astronomy. Legendary 18th-century lyric poet and bard Sayat-Nova spent his later life here as a monk. Masterpieces on site include the 991 AD Cathedral of Surb Nishan with surviving frescoes, a picturesque 1245 freestanding bell tower, and the monumental 1273 Amenaprkich khachkar."
+      },
+      "tourQuery": "haghpat"
+    },
+    {
+      "id": "akhtala",
+      "name": {
+        "ru": "Монастырь Ахтала",
+        "hy": "Ախթալայի վանք",
+        "en": "Akhtala Monastery"
+      },
+      "tagline": {
+        "ru": "Древняя крепость и сокровищница фресок XIII века",
+        "hy": "Հին բերդ և XIII դարի որմնանկարների գանձարան",
+        "en": "Medieval Fortress & 13th-Century Fresco Treasury"
+      },
+      "regionCategory": "north_lori",
+      "region": {
+        "ru": "Лорийская область, город Ахтала",
+        "hy": "Լոռու մարզ, քաղաք Ախթալա",
+        "en": "Lori Province, Akhtala town"
+      },
+      "distance": {
+        "ru": "около 185–190 км от Еревана",
+        "hy": "մոտ 185–190 կմ Երևանից",
+        "en": "approx. 185–190 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 3–3,5 часа",
+        "hy": "մոտ 3–3.5 ժամ",
+        "en": "approx. 3–3.5 hours"
+      },
+      "image": "/images/1790854086623-yvdk4ziykdpejjqtp0dsbdalay6gnxtjl74lcvntlkujf6ea8cig3tc3mleuhajf4wpxox3go7uxp-m7iob8wybnrad5zked-tv0qnqqkbhnphebe3rlqosieuqpsvlspczj6dlvdbcnfnurypnxfewjccbk2pjvpasvhctmfcdl8ybrb6l9oogzusa3vld7.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Самые масштабные и лучше всего сохранившиеся фрески XIII века в Армении",
+          "Расположен внутри мощной средневековой крепости с башнями X века",
+          "Храм Сурб Аствацацин с росписями на армянском и греческом языках",
+          "Исторический центр медного дела (древнее название Пгндзаанк)",
+          "Место съёмок шедевра Сергея Параджанова «Цвет граната»"
+        ],
+        "hy": [
+          "Հայաստանում XIII դարի ամենաընդարձակ և լավ պահպանված որմնանկարները",
+          "Գտնվում է X դարի հզոր ամրոցի և պարիսպների ներսում",
+          "Սուրբ Աստվածածին եկեղեցին՝ հայերեն և հունարեն մակագրություններով",
+          "Հայտնի պղնձահանքերի պատմական կենտրոն (Պղնձահանք)",
+          "Սերգեյ Փարաջանովի «Նռան գույնը» ֆիլմի նկարահանման վայրը"
+        ],
+        "en": [
+          "Largest and best-preserved 13th-century monumental church frescoes in Armenia",
+          "Constructed inside a dramatic 10th-century fortified hilltop castle",
+          "Church of the Holy Mother of God featuring bilingual Armenian-Greek inscriptions",
+          "Ancient copper-mining center known historically as Pghndzahank",
+          "Filming location of Sergei Parajanov's cinematic masterpiece 'The Color of Pomegranates'"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Уникальный укреплённый монастырь X–XIII веков, скрывающий внутри крепостных стен самую богатую коллекцию средневековых фресок на всем Кавказе.",
+        "hy": "X-XIII դարերի բերդ-ամրոց և վանք, որի պատերին պահպանվել են Կովկասի ամենահարուստ միջնադարյան որմնանկարները։",
+        "en": "A 10th-century clifftop fortress sheltering the Church of the Holy Mother of God, home to the finest and most complete 13th-century biblical frescoes in Armenia."
+      },
+      "fullStory": {
+        "ru": "Монастырь Ахтала — один из самых необычных и художественно значимых памятников Армении, расположенный на высоком скалистом утёсе ущелья реки Дебед в Лори.\n\nВ отличие от большинства армянских монастырей, где главный акцент сделан на архитектурной строгости камня, главное сокровище Ахталы открывается внутри: это великолепные настенные росписи XIII века, покрывающие купол, своды и стены церкви Сурб Аствацацин.\n\nСтены храма украшены монументальными изображениями Богородицы с Младенцем, апостолов, святых воинов и евангельских сцен. Фрески отличаются богатой палитрой (глубокий лазурит, охра, пурпур), тонкой передачей лиц и отражают переплетение византийских, армянских и грузинских художественных школ эпохи князей Закарянов.\n\nКрепость Ахтала\nМонастырь возведён внутри древней крепости X века (историческое название — Пгндзаанк, то есть «медный рудник»). Мощные базальтовые оборонительные стены с круглыми башнями защищали обитель от набегов.\n\nКрасота и кинематографичность этого места пленили выдающегося режиссёра Сергея Параджанова, который снимал здесь ключевые сцены своего культового фильма «Цвет граната».",
+        "hy": "Ախթալայի վանքը (Պղնձահանք) գտնվում է Լոռու մարզում՝ ժայռոտ բարձունքի վրա։ Այն ամրոց-վանական համալիր է՝ շրջապատված X դարի հզոր պարիսպներով։\n\nԱխթալայի գլխավոր հարստությունը Սուրբ Աստվածածին եկեղեցու XIII դարի որմնանկարներն են, որոնք Հայաստանում պահպանված ամենաամբողջական և գունեղ որմնանկարչական գլուխգործոցներն են։ Այստեղ է նկարահանվել Սերգեյ Փարաջանովի «Նռան գույնը» ֆիլմը։",
+        "en": "Akhtala is a 10th-century fortress and monastery complex perched on a triangular promontory above the Debed River canyon. Originally established as the fortified stronghold of Pghndzahank (\"copper ore mine\"), it flourished in the 12th and 13th centuries under Prince Ivane Zakaryan.\n\nThe Church of the Holy Mother of God is celebrated for its breathtaking 13th-century frescoes covering the interior walls with scenes from the Gospels, the Communion of the Apostles, and portraits of saints. It served as a prominent filming location for Sergei Parajanov's masterpiece 'The Color of Pomegranates'."
+      },
+      "tourQuery": "akhtala"
+    },
+    {
+      "id": "sanahin",
+      "name": {
+        "ru": "Монастырь Санаин",
+        "hy": "Սանահինի վանք",
+        "en": "Sanahin Monastery"
+      },
+      "tagline": {
+        "ru": "Тысячелетняя академия и наследие ЮНЕСКО (X век)",
+        "hy": "Հազարամյա ակադեմիա և ՅՈՒՆԵՍԿՕ-ի ժառանգություն (X դար)",
+        "en": "Millennium-Old Academy & UNESCO World Heritage (10th Century)"
+      },
+      "regionCategory": "north_lori",
+      "region": {
+        "ru": "Лорийская область, город Алаверди",
+        "hy": "Լոռու մարզ, քաղաք Ալավերդի",
+        "en": "Lori Province, Alaverdi town"
+      },
+      "distance": {
+        "ru": "около 170–175 км от Еревана",
+        "hy": "մոտ 170–175 կմ Երևանից",
+        "en": "approx. 170–175 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 3–3,5 часа",
+        "hy": "մոտ 3–3.5 ժամ",
+        "en": "approx. 3–3.5 hours"
+      },
+      "image": "/images/1790854105604-blh3c5qp01vjas4f6nyham3j43gz3prrf2y63kecluq6xsoqwb-lzayd8x7ci136n1tprenwqup-8-w-k0vtysx-skhbw5xswq-gved0bfilicufi-tp1brmrquyr0k-cxmxorjxgtgfc0kskresupbys7uxdlklamxqxib-p0oexvsweoxm4xfy-fjmotih.jpg",
+      "unesco": true,
+      "highlights": {
+        "ru": [
+          "Объект Всемирного наследия ЮНЕСКО (вместе с Ахпатом с 1996 г.)",
+          "Построен в 966 году царицей Хосровануш (династия Багратуни)",
+          "Знаменитая средневековая Академия Григора Магистроса Пахлавуни (X–XI вв.)",
+          "Древнее книгохранилище XI века с уникальными резными нишами",
+          "Барельеф царевичей Смбата и Гургена, держащих модель храма",
+          "Родина выдающихся братьев Микоян (авиаконструктора Артёма и государственного деятеля Анастаса)"
+        ],
+        "hy": [
+          "ՅՈՒՆԵՍԿՕ-ի Համաշխարհային ժառանգության հուշարձան (1996 թ.-ից)",
+          "Հիմնադրվել է 966 թ. Խոսրովանույշ թագուհու կողմից",
+          "Գրիգոր Մագիստրոս Պահլավունու նշանավոր ճեմարանը (X-XI դդ.)",
+          "XI դարի հոյակերտ մատենադարանը",
+          "Սմբատ և Գուրգեն իշխանների հայտնի քանդակաքանդակը",
+          "Միկոյան եղբայրների ծննդավայրը (ավիակոնստրուկտոր Արտեմ Միկոյան)"
+        ],
+        "en": [
+          "UNESCO World Heritage Site inscribed in 1996",
+          "Founded in 966 AD by Queen Khosrovanush of the Bagratid dynasty",
+          "Medieval Academy of Grigor Magistros Pahlavuni (10th-11th centuries)",
+          "11th-century monumental library and scriptorium with carved book niches",
+          "Iconic stone relief depicting princes Smbat and Gurgen holding a model of the cathedral",
+          "Birthplace of the Mikoyan brothers (MiG fighter jet designer Artem Mikoyan)"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Древнейший монастырский ансамбль X века под охраной ЮНЕСКО. Славился средневековой академией Григора Магистроса, книгохранилищем и арочными галереями.",
+        "hy": "X դարի վանական համալիր՝ ՅՈՒՆԵՍԿՕ-ի հովանու ներքո։ Հայտնի էր Գրիգոր Մագիստրոսի ճեմարանով և հարուստ մատենադարանով։",
+        "en": "A 10th-century UNESCO World Heritage monastic university complex renowned for its stone academy gallery, vaulted library, and belfries."
+      },
+      "fullStory": {
+        "ru": "Санаин — один из древнейших и наиболее значимых монастырских комплексов Армении, расположенный на высоком горном плато над ущельем Дебед в Лори.\n\nНародная этимология объясняет название «Санаин» как «Са нран иц а» («Этот старше того»), сравнивая его с соседним Ахпатом. Монастырь был основан в 966 году царицей Хосровануш из династии Багратуни, которая возвела собор Сурб Аменапркич в честь своих сыновей Смбата и Гургена (их барельеф с моделью церкви и сегодня украшает восточный фасад).\n\nАкадемия Санаина — центр средневековой науки\nВ X–XI веках при монастыре действовала знаменитая академия под руководством выдающегося учёного Григора Магистроса Пахлавуни. Здесь преподавали философию, риторику, грамматику, математику, медицину и астрономию. Прогуливаясь по каменной галерее Академии («Магистросовской семинарии»), соединяющей две главные церкви, можно прикоснуться к истокам армянского университетского образования.\n\nКомплекс включает соборы Сурб Аствацацин и Сурб Аменапркич, книгохранилище XI века, колокольню XIII века, княжеские усыпальницы рода Закарянов и Аргутинских-Долгоруких, а также старинные резные хачкары.\n\nВ 1996 году монастырь Санаин вместе с Ахпатом был включён в Список Всемирного наследия ЮНЕСКО.",
+        "hy": "Սանահինի վանքը հիմնադրվել է X դարում Բագրատունյաց Խոսրովանույշ թագուհու կողմից։ Այստեղ գործել է միջնադարյան հռչակավոր ճեմարանը՝ Գրիգոր Մագիստրոսի ղեկավարությամբ։\n\nՀամալիրը բաղկացած է Սուրբ Աստվածածին և Սուրբ Ամենափրկիչ եկեղեցիներից, գավիթներից, նշանավոր գրատնից և 1211 թ. զանգակատնից։ 1996 թ.-ից այն ՅՈՒՆԵՍԿՕ-ի Համաշխարհային ժառանգության օբյեկտ է։",
+        "en": "Sanahin Monastery is an expansive 10th-century monastic university overlooking the Debed River canyon. Founded in 966 AD by Queen Khosrovanush, it was famed for its school of calligraphy and illumination.\n\nThe complex was designated a UNESCO World Heritage site in 1996. It features the Church of the Redeemer, the Church of the Mother of God, an arched educational gallery known as the Academy of Grigor Magistros, a handsome 1063 library hall, and the vaulted family mausoleums of the Zakaryan princes."
+      },
+      "tourQuery": "sanahin"
+    },
+    {
+      "id": "odzun",
+      "name": {
+        "ru": "Храм Одзун",
+        "hy": "Օձունի տաճար",
+        "en": "Odzun Basilica"
+      },
+      "tagline": {
+        "ru": "Раннехристианская базилика VI–VII веков",
+        "hy": "Վաղքրիստոնեական բազիլիկ VI-VII դարերի",
+        "en": "Early Christian Domed Basilica (6th-7th Century)"
+      },
+      "regionCategory": "north_lori",
+      "region": {
+        "ru": "Лорийская область, село Одзун",
+        "hy": "Լոռու մարզ, գյուղ Օձուն",
+        "en": "Lori Province, Odzun village"
+      },
+      "distance": {
+        "ru": "около 165–175 км от Еревана",
+        "hy": "մոտ 165–175 կմ Երևանից",
+        "en": "approx. 165–175 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 3–3,5 часа",
+        "hy": "մոտ 3–3.5 ժամ",
+        "en": "approx. 3–3.5 hours"
+      },
+      "image": "/images/1790857535355-rr1dw3mrtgaqyyjxrwirqdnwp4cvtz4kwx72uqf1q47vbm29ed9pstoojuy7z-8rzuzkles0liieqfiijwsjxa4iazih4gm9tzioeenb90xfdp2chjj2escvbepeq-dvdjwdi1n-pwa9ncflg5ipe7bspvfsefxbiwcg1dgphgp-sg3hwxe5gxbplkd0av0g.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Один из древнейших христианских храмов Армении (VI–VII вв.)",
+          "Построен из розового фельзита с великолепными наружными арочными галереями",
+          "Уникальный раннесредневековый мемориальный обелиск-памятник с библейскими рельефами",
+          "Связан с именем выдающегося католикоса Ованеса III Одзнеци (Иоанна Философа)",
+          "Панорамный вид на каньон Дебед с высоты горного плато"
+        ],
+        "hy": [
+          "Հայաստանի հնագույն քրիստոնեական տաճարներից մեկը (VI-VII դդ.)",
+          "Կառուցված է վարդագույն ֆելզիտից՝ արտաքին նրբակերտ կամարաշար սյունասրահով",
+          "Եզակի վաղմիջնադարյան կոթող-հուշարձան՝ աստվածաշնչյան բարձրաքանդակներով",
+          "Կապված է Հովհաննես Գ Օձնեցի (Իմաստասեր) կաթողիկոսի անվան հետ",
+          "Դեբեդի կիրճի հիասքանչ համայնապատկերը բարձունքից"
+        ],
+        "en": [
+          "One of Armenia's earliest and finest domed basilicas (6th-7th century)",
+          "Constructed of pink felsite stone with exterior arcaded galleries",
+          "Unique early medieval funerary monument featuring carved dual obelisks in double arches",
+          "Associated with Catholicos Hovhannes III of Odzun (John the Philosopher)",
+          "Sweeping clifftop views across the Debed Canyon plateau"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Величественная купольная базилика VI–VII веков из розового камня с наружными галереями и уникальным раннехристианским мемориальным памятником.",
+        "hy": "VI-VII դդ. վարդագույն քարից կերտված հոյակերտ գմբեթավոր բազիլիկ՝ արտաքին սյունասրահներով և եզակի վաղքրիստոնեական կոթողով։",
+        "en": "A monumental 6th-century pink-stone domed basilica with external colonnaded porticos and a rare early-Christian dual obelisk monument."
+      },
+      "fullStory": {
+        "ru": "Храм Одзун — один из древнейших, наиболее монументальных и прекрасно сохранившихся памятников раннехристианской купольной архитектуры Армении. Он гордо возвышается на просторном плато над ущельем реки Дебед.\n\nЦерковь датируется концом VI — началом VII века. Здание сложено из блоков розового и желтоватого фельзита. Характерная архитектурная черта Одзуна, выделяющая его среди сотен других армянских храмов — наружные арочные галереи с северной и южной сторон, предназначавшиеся для оглашенных и паломников.\n\nУникальный мемориальный памятник\nК северо-востоку от церкви стоит удивительный раннесредневековый монумент: две высокие каменные стелы, установленные под сводами двухпролётной аркады на ступенчатом постаменте. Стелы покрыты рельефами с библейскими сюжетами (сцены из Ветхого и Нового Заветов, крещение царя Трдата). Этот памятник не имеет прямых аналогов в христианском искусстве всего Ближнего Востока.\n\nХрам тесно связан с именем выдающегося религиозного деятеля и богослова VIII века — католикоса Ованеса III Одзнеци (Иоанна Философа), похороненного на территории родного села.",
+        "hy": "Օձունի Սուրբ Աստվածածին եկեղեցին վաղ միջնադարյան հայկական ճարտարապետության գլուխգործոց է (VI-VII դդ.)։ Տաճարը կառուցված է վարդագույն ֆելզիտից և ունի շքեղ արտաքին կամարակապ սրահ։\n\nՏաճարի բակում է գտնվում V-VI դարերի եզակի կոթողային հուշարձանը՝ երկու քանդակազարդ սյուներով, որն աշխարհում նմանօրինակը չունի։ Այն կապված է Հովհան Օձնեցի կաթողիկոսի գործունեության հետ։",
+        "en": "The Odzun Church is an exceptionally well-preserved 6th-7th century domed basilica constructed on a high plateau above the Debed gorge. Built of pink and ochre felsite stone, it is renowned for its arched open-air exterior porticos running along the northern and southern facades.\n\nAdjacent to the basilica stands an enigmatic early medieval funerary monument featuring two carved stone stele pillars set beneath a double-arch pavilion, depicting biblical scenes and the conversion of Armenia."
+      },
+      "tourQuery": "odzun"
+    },
+    {
+      "id": "horomayr",
+      "name": {
+        "ru": "Монастырь Оромайр",
+        "hy": "Հոռոմայրի վանք",
+        "en": "Horomayr Monastery"
+      },
+      "tagline": {
+        "ru": "Святыня, спрятанная в отвесных скалах каньона",
+        "hy": "Կիրճի ուղղաձիգ ժայռերում թաքնված սրբավայր",
+        "en": "Secret Sanctuary Clinging to Vertical Cliffs"
+      },
+      "regionCategory": "north_lori",
+      "region": {
+        "ru": "Лорийская область, каньон реки Дебед",
+        "hy": "Լոռու մարզ, Դեբեդի կիրճ",
+        "en": "Lori Province, Debed River Canyon"
+      },
+      "distance": {
+        "ru": "около 165–175 км от Еревана",
+        "hy": "մոտ 165–175 կմ Երևանից",
+        "en": "approx. 165–175 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 3–3,5 часа",
+        "hy": "մոտ 3–3.5 ժամ",
+        "en": "approx. 3–3.5 hours"
+      },
+      "image": "/images/1790856830685-6j1ng49civmoqzbsu30h-zhearfdvgzkg-2yqxhkquods40btydp4kku0oz-v2xdzi7zoubawzuu-fnbrvfhdae4kqkmfqc1oq6bphlgam28zqbaucnnjn0spssud7zqnysjjaethhqpga5hkpmy6zjxiduwidibmwffj8sudpohnftzflu-pvhi4hxwwqn-.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Необычная двухуровневая планировка: верхний храм на плато и нижний монастырь прямо в скале",
+          "Нижний комплекс (Дзорамиджи ванк) буквально высечен в отвесной пропасти",
+          "Церковь Сурб Ншан (1187 г.) с барельефом Христа и кельи отшельников",
+          "Легенда о греческом князе Васиде («ором» — грек, «айр» — пещера)",
+          "Один из самых захватывающих и малоизвестных треккинговых маршрутов Лори"
+        ],
+        "hy": [
+          "Երկմակարդակ կառուցվածք՝ վերին համալիրը սարահարթին և ստորինը՝ անմիջապես ժայռի տակ",
+          "Ստորին համալիրը (Ձորամիջի վանք) կառուցված է ուղղաձիգ անդունդի ժայռախորշում",
+          "Սուրբ Նշան եկեղեցին (1187 թ.)՝ Քրիստոսի բարձրաքանդակով և ճգնավորների խցերով",
+          "Հույն Վասիլ իշխանի ավանդությունը («հոռոմ» և «այր» - քարանձավ)",
+          "Լոռվա ամենահետաքրքիր և խորհրդավոր արշավային վայրերից մեկը"
+        ],
+        "en": [
+          "Unique two-tiered monastic architecture: upper church on plateau, lower monastery inside cliff",
+          "Lower complex clings precariously underneath sheer vertical limestone overhangs",
+          "1187 Church of Surb Nishan with Christ relief, hermits' caves, and stone cells",
+          "Ancient legend of Greek prince Vasid ('Horom' = Greek, 'Ayr' = Cave)",
+          "Thrilling off-the-beaten-path hiking trail with raw canyon vistas"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Древнейшая обитель XII–XIV веков, разделённая на две части: одна стоит на краю плато, а вторая фантастически прилеплена к отвесной скале ущелья Дебед.",
+        "hy": "XII-XIV դդ. աննկարագրելի վանական համալիր՝ բաժանված երկու մասի. մեկը՝ սարահարթի եզրին, իսկ մյուսը՝ Դեբեդի անդունդի ուղղաձիգ ժայռերին կպած։",
+        "en": "A drama of medieval engineering split into two halves: one on the high plateau rim and the other clinging to the sheer cliffs deep inside the canyon."
+      },
+      "fullStory": {
+        "ru": "Монастырь Оромайр — один из самых головокружительных и малоизвестных уголков Армении. Его каменные стены словно вырастают из отвесных скал каньона реки Дебед неподалёку от села Одзун.\n\nУникальность монастыря в том, что он состоит из двух обособленных комплексов:\n1. Верхний Оромайр (Дзораезри ванк): расположен на самом краю плато. Здесь стоят две церкви из темного базальта с общим притвором (1206 г.), откуда открывается фантастический вид на бездну ущелья.\n2. Нижний Оромайр (Дзорамиджи ванк): спрятан глубоко внизу, прямо под циклопическим скальным козырьком. Скала служит стеной и естественной крышей построек! Главный храм Сурб Ншан был возведён в 1187 году князьями Закаре и Иване Закарянами. Рядом сохранилась часовня Богородицы (1301 г.), старинные хачкары и кельи монахов-отшельников.\n\nНазвание монастыря связывают с древней легендой о византийском (греческом) князе Васиде, принявшем армянскую веру после чудес католикоса Ованеса Одзнеци и уединившемся в этой пещере («ором» — византиец/грек, «айр» — пещера). Маршрут к нижнему комплексу требует удобной треккинговой обуви и дарит незабываемые эмоции исследователя.",
+        "hy": "Հոռոմայրի վանական համալիրը գտնվում է Լոռու մարզի Օձուն գյուղի մոտ։ Այն բաղկացած է երկու մասից՝ վերին համալիրը գտնվում է կիրճի եզրին, իսկ ստորինը՝ անդունդի ուղղաձիգ ժայռերի տակ։\n\nՀիմնադրվել է XII-XIII դարերում։ Ստորին համալիրի գլխավոր Սուրբ Նշան եկեղեցին կառուցվել է 1187 թվականին Զաքարյան եղբայրների կողմից։ Անվանումը ծագում է հույն (հոռոմ) ճգնավորի քարանձավից (այր)։",
+        "en": "Horomayr Monastery is a hidden architectural jewel built into the cliffs of the Debed Gorge near Odzun. The monastery is dramatically split into two parts: the upper structure stands on the edge of the plateau, while the lower monastery clings to the vertical canyon face below.\n\nThe lower complex, founded in 1187 by the Zakaryan princes, incorporates natural cavernous cliff-faces into its halls and hermitage cells, accessible only by a scenic mountain walking trail."
+      },
+      "tourQuery": "horomayr"
+    },
+    {
+      "id": "kobayr",
+      "name": {
+        "ru": "Монастырь Кобайр",
+        "hy": "Քոբայրի վանք",
+        "en": "Kobayr Monastery"
+      },
+      "tagline": {
+        "ru": "Забытая жемчужина и фрески Закарянов (1171 г.)",
+        "hy": "Զաքարյանների որմնանկարները և ժայռային վանքը (1171 թ.)",
+        "en": "Cliffside Sanctuary & Zakaryan Masterpiece Frescoes (1171 AD)"
+      },
+      "regionCategory": "north_lori",
+      "region": {
+        "ru": "Лорийская область, ущелье Дебед у города Туманян",
+        "hy": "Լոռու մարզ, Դեբեդի կիրճ",
+        "en": "Lori Province, Debed Gorge near Tumanyan"
+      },
+      "distance": {
+        "ru": "около 150–160 км от Еревана",
+        "hy": "մոտ 150–160 կմ Երևանից",
+        "en": "approx. 150–160 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 2,5–3 часа",
+        "hy": "մոտ 2.5–3 ժամ",
+        "en": "approx. 2.5–3 hours"
+      },
+      "image": "/images/1790857520353-mi82zcuqwtyuodgri-hu3dbvadti33lns25aruecfnmlbs-1ukgctxql8gbjtw4zapzseat2hvt-4mxjvnoodiuhwubav7nifybqv9qnbq7v4tbyky6ojv41zueschkhmm1qzakkg7zdkagyzxsknvkqo9mpmqp-qhpzuj-7qovwymttnnj5yhmya8ttqyo0.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Основан в 1171 году князьями Кюрикянами (ветвь Багратуни)",
+          "Уникальные монументальные фрески XIII века с надписями на армянском и грузинском языках",
+          "Расположен на лесистом скальном уступе над каньоном Дебед",
+          "Родовая усыпальница великих князей Закарянов (Шаханшаха)",
+          "Атмосфера затерянной в джунглях древней обители"
+        ],
+        "hy": [
+          "Հիմնադրվել է 1171 թ. Կյուրիկյան իշխանների կողմից (Բագրատունյաց ճյուղ)",
+          "XIII դարի եզակի մոնումենտալ որմնանկարներ՝ հայերեն և վրացերեն մակագրություններով",
+          "Գտնվում է Դեբեդի կիրճի անտառապատ ժայռային դարավանդի վրա",
+          "Զաքարյան իշխանական տոհմի դամբարանավայրը (Շահնշահ)",
+          "Հնագույն խորհրդավոր մթնոլորտ՝ անտառների խորքում"
+        ],
+        "en": [
+          "Founded in 1171 AD by the Kiurikian kings (Bagratid branch)",
+          "Rare monumental 13th-century frescoes with bilingual inscriptions",
+          "Perched high on a terraced forested ledge above the Debed gorge",
+          "Ancestral pantheon of the noble Zakaryan dynasty (Prince Shahnshah)",
+          "Romantic ruined atmosphere shrouded by wild walnut trees"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Романтичный монастырь XII века на скальном уступе среди густого леса. Известен великолепными фресками XIII века и родовыми усыпальницами династии Закарянов.",
+        "hy": "XII դարի ռոմանտիկ ժայռափոր վանք անտառախիտ լանջին։ Հայտնի է XIII դարի անկրկնելի որմնանկարներով և Զաքարյանների տոհմական դամբարանով։",
+        "en": "A 12th-century ruined monastery perched on a wooded cliff terrace, revered for dramatic 13th-century wall paintings and princely tombs."
+      },
+      "fullStory": {
+        "ru": "Кобайр (Քոբայր) — один из самых поэтичных и атмосферных средневековых монастырей Армении, расположенный на крутом скалистом склоне ущелья Дебед в Лори, среди диких лесов и журчащих горных ручьёв.\n\nНазвание обители происходит от армянского корня «айр» (пещера, коб-айр — пещерная обитель). Монастырь был основан в 1171 году князьями Кюрикянами — младшей ветвью армянской царской династии Багратуни. В XIII веке Кобайр перешёл под опеку влиятельного княжеского дома Закарянов и стал их родовой усыпальницей. Здесь похоронен сын князя Закаре — Шаханшах Закарян.\n\nГлавное сокровище Кобайра — его грандиозные настенные росписи XIII века, украшающие алтарную апсиду главного собора Катаке. На них изображены Христос Вседержитель, апостолы, святители церкви и пророки. Фрески органично соединяют армянские и халкидонитские традиции эпохи.\n\nК монастырю ведёт живописная лесная тропа (около 20–30 минут пешком от станции Кобер). Вокруг царит атмосфера первозданной тишины, прерываемой только шелестом листьев и видом на бескрайние лорийские горы.",
+        "hy": "Քոբայրի վանքը հիմնադրվել է 1171 թ. Կյուրիկյան թագավորների կողմից, իսկ XIII դարում անցել է Զաքարյաններին։\n\nՎանքի գլխավոր հարստությունը Կաթողիկե եկեղեցու որմնանկարներն են, որոնք պատկերում են Քրիստոսին, առաքյալներին և սրբերին։ Դեպի վանք է տանում գեղատեսիլ արշավային արահետը՝ բացելով հիասքանչ տեսարաններ։",
+        "en": "Kobayr Monastery is a 12th-century monastic retreat carved into the forested cliffs of the Debed river canyon. Founded in 1171 by the Bagratid Kiurikian rulers, it later became a princely seat of the Zakaryan dynasty, holding the mausoleum of Prince Shahnshah.\n\nThe monastery is internationally celebrated for its expressive 13th-century fresco art depicting Christ Pantocrator, angels, and Old Testament prophets. Reaching the site requires an invigorating 20-minute hike through lush walnut groves."
+      },
+      "tourQuery": "kobayr"
+    },
+    {
+      "id": "lori-berd",
+      "name": {
+        "ru": "Крепость Лори-Берд",
+        "hy": "Լոռի Բերդ",
+        "en": "Lori Berd Fortress"
+      },
+      "tagline": {
+        "ru": "Средневековая столица среди неприступных каньонов",
+        "hy": "Միջնադարյան մայրաքաղաք անառիկ կիրճերի գրկում",
+        "en": "Medieval Royal Capital on an Impregnable Promontory"
+      },
+      "regionCategory": "north_lori",
+      "region": {
+        "ru": "Лорийская область, недалеко от Степанавана",
+        "hy": "Լոռու մարզ, Ստեփանավանի մոտ",
+        "en": "Lori Province, near Stepanavan"
+      },
+      "distance": {
+        "ru": "около 145–155 км от Еревана",
+        "hy": "մոտ 145–155 կմ Երևանից",
+        "en": "approx. 145–155 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 2,5–3 часа",
+        "hy": "մոտ 2.5–3 ժամ",
+        "en": "approx. 2.5–3 hours"
+      },
+      "image": "/images/1790856873489-0glrh2ui-esmohoczyzs0alpy9cjd09gagrilt6juhml4a0zglfhsiegkbnwaj69ndca1nq21rd5alyjfbz8957xgxiuo-nwp8lnnms0b-eiawfjq33zkswrxgp42fjs5vpnlsezjpofriphzzunuk7vlebksb-femdyzse5c3iie4d-8lewr4qaltsay9yq.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Столица средневекового армянского царства Ташир-Дзорагет (с 1065 г.)",
+          "Естественная крепость на высоте 1490 м между глубочайшими каньонами рек Дзорагет и Мисхана",
+          "Мощные крепостные стены цитадели толщиной до 2 метров и башни",
+          "Сохранившиеся средневековые бани с системой подогрева и водопровод XI–XII веков",
+          "Захватывающие дух панорамы ущелий и первозданной природы северной Армении"
+        ],
+        "hy": [
+          "Տաշիր-Ձորագետի հայկական թագավորության մայրաքաղաքը (1065 թ.-ից)",
+          "Անառիկ բնական ամրոց 1490 մ բարձրության վրա՝ Ձորագետի և Միսխանայի խոր կիրճերի միջև",
+          "Միջնաբերդի հզոր պարիսպները (մինչև 2 մ հաստությամբ) և աշտարակները",
+          "XI-XII դարերի միջնադարյան բաղնիքները և ջրամատակարարման համակարգը",
+          "Հյուսիսային Հայաստանի անառիկ կիրճերի շունչ կտրող տեսարանները"
+        ],
+        "en": [
+          "Capital city of the Tashir-Dzoraget Armenian Kingdom (from 1065 AD)",
+          "Naturally protected fortress standing at 1,490 m elevation above deep river gorges",
+          "Massive basalt citadel defensive walls up to two meters thick with stone bastions",
+          "Preserved 11th-century royal bathhouses with advanced hypocaust heating",
+          "Jaw-dropping panoramic views over the confluence of the Dzoraget and Miskhana rivers"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Грандиозная средневековая крепость XI века и бывшая столица царства Кюрикянов, неприступно стоящая на мысу над глубочайшими ущельями рек Дзорагет и Мисхана.",
+        "hy": "XI դարի հոյակերտ ամրոց և Կյուրիկյան թագավորության նախկին մայրաքաղաքը՝ անառիկ կանգնած Ձորագետի և Միսխանայի խոր կիրճերի հատման վայրում։",
+        "en": "A formidable 11th-century royal citadel and ancient capital city, fortified atop a high cliff peninsula between two sheer canyon gorges."
+      },
+      "fullStory": {
+        "ru": "Лори-Берд (Լոռի Բերդ) — одна из самых впечатляющих средневековых крепостей Армении, расположенная на естественном плато между головокружительными каньонами рек Дзорагет и Мисхана (Урут) недалеко от Степанавана на высоте 1490 метров.\n\nКрепость была заложена в X–XI веках царём Давидом I Безземельным из династии Багратуни. В 1065 году его сын, царь Кюрике II, перенёс сюда столицу Ташир-Дзорагетского армянского царства. Лори-Берд быстро превратился в процветающий мегаполис своего времени с населением более 10 000 человек, богатыми торговыми рядами, оружейными и керамическими мастерскими.\n\nПриродная неприступность\nУщелья рек с двух сторон представляли собой отвесные каменные стены глубиной до 100 метров. Единственную уязвимую сторону защищала грандиозная крепостная стена цитадели длиной более 200 метров с полукруглыми башнями, сложенная из гигантских базальтовых блоков.\n\nСегодня посетители могут исследовать мощные башни цитадели, арочные ворота, древние жилые кварталы, две церкви, а также уникальный банный комплекс XI–XII веков с двойными полами и сложной системой циркуляции горячего воздуха. Отсюда открываются одни из самых впечатляющих панорамных пейзажей на севере Армении.",
+        "hy": "Լոռի Բերդը հիմնադրվել է Դավիթ Անհողին թագավորի կողմից։ 1065 թվականից այն դարձավ Տաշիր-Ձորագետի (Կյուրիկյան) թագավորության մայրաքաղաքը։\n\nԱմրոցը տեղակայված է Ձորագետ և Միսխանա գետերի խոր անդունդներով պաշտպանված եռանկյունաձև սարահարթի վրա։ Այստեղ պահպանվել են միջնաբերդի հզոր պարիսպները, աշտարակները և միջնադարյան բաղնիքների համալիրը։",
+        "en": "Lori Berd is a formidable medieval fortified city perched at 1,490 meters altitude near Stepanavan. Situated on a triangular promontory formed by the deep, sheer gorges of the Dzoraget and Miskhana rivers, it served as the royal capital of the Tashir-Dzoraget Kingdom from 1065 AD.\n\nProtected on two sides by vertical 100-meter canyon chasms, its landward side was shielded by massive basalt curtain walls and bastions. Excavations have revealed royal chambers, two churches, and an intricate 11th-century palace bathhouse with underground hypocaust heating."
+      },
+      "tourQuery": "lori-berd"
+    }
+  ]
+}

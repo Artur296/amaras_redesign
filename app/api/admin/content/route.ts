@@ -7,6 +7,7 @@ import {
   currentOverrides,
   fetchContent,
   setRuntimeOverrides,
+  setRuntimeBundle,
   type ContentKey,
 } from "@/lib/content";
 import { getAdminUser } from "@/lib/admin-auth";
@@ -92,8 +93,15 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Bad request" }, { status: 400 });
     }
 
-    // 1. Immediately apply edits to in-memory runtime cache & /tmp & local disk
+    const stored = currentOverrides();
+    const fullBundle: Record<string, unknown> = {};
+    for (const key of CONTENT_KEYS) {
+      fullBundle[key] = key in edits ? edits[key] : stored[key];
+    }
+
+    // 1. Immediately apply edits to in-memory runtime cache & bundle & /tmp & local disk
     setRuntimeOverrides(edits);
+    setRuntimeBundle(fullBundle as Record<ContentKey, unknown>);
 
     // 2. Immediately purge Next.js ISR caches so the live site updates with 0-second delay
     purgeCaches();
@@ -101,15 +109,21 @@ export async function PUT(request: NextRequest) {
     // 3. If GitHub is configured, commit to remote repo for permanent deployment
     const cfg = githubConfig();
     if (cfg) {
-      const stored = currentOverrides();
-      const files = CONTENT_KEYS.map((key) => ({
-        path: `content/${key}.json`,
-        content: `${JSON.stringify(key in edits ? edits[key] : stored[key], null, 2)}\n`,
-      }));
+      const files = [
+        ...CONTENT_KEYS.map((key) => ({
+          path: `content/${key}.json`,
+          content: `${JSON.stringify(key in edits ? edits[key] : stored[key], null, 2)}\n`,
+        })),
+        {
+          path: `content/bundle.json`,
+          content: `${JSON.stringify(fullBundle, null, 2)}\n`,
+        },
+      ];
 
       const changed = Object.keys(edits).join(", ");
       try {
         const sha = await commitFiles(cfg, files, `content: update ${changed} via admin panel`);
+        setRuntimeBundle(fullBundle as Record<ContentKey, unknown>);
         // Purge caches again after commit
         purgeCaches();
         return NextResponse.json({

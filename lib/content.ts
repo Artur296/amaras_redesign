@@ -21,6 +21,7 @@ import { defaultOffers, type SpecialOffer } from "@/lib/offers";
 import { defaultGuests, type GuestMedia } from "@/lib/guests";
 import { defaultGuides, type Guide } from "@/lib/guides";
 import { defaultAttractions, type Attraction } from "@/lib/attractions";
+import { githubConfig } from "@/lib/github";
 
 export type Content = {
   dicts: Record<Locale, Dict>;
@@ -140,16 +141,105 @@ function build(overrides: Record<ContentKey, unknown>): Content {
   };
 }
 
+// Global in-memory overrides for zero-latency serverless updates across requests
+const globalContentOverrides = ((globalThis as any).__amarasContentOverrides ||
+  ((globalThis as any).__amarasContentOverrides = {})) as Record<string, unknown>;
+
+let liveBundleCache: Record<ContentKey, unknown> | null = null;
+let lastGitHubCheckTime = 0;
+const GITHUB_CHECK_INTERVAL_MS = 15_000;
+
+export function setRuntimeBundle(bundle: Record<ContentKey, unknown>) {
+  liveBundleCache = bundle;
+  lastGitHubCheckTime = Date.now();
+  setRuntimeOverrides(bundle);
+}
+
+async function fetchLatestGitHubBundle(): Promise<Record<ContentKey, unknown> | null> {
+  const now = Date.now();
+  if (liveBundleCache && now - lastGitHubCheckTime < GITHUB_CHECK_INTERVAL_MS) {
+    return liveBundleCache;
+  }
+
+  const cfg = githubConfig();
+  if (!cfg) return liveBundleCache;
+
+  if (now - lastGitHubCheckTime < GITHUB_CHECK_INTERVAL_MS) {
+    return liveBundleCache;
+  }
+  lastGitHubCheckTime = now;
+
+  try {
+    const refRes = await fetch(
+      `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/commits/${encodeURIComponent(cfg.branch)}`,
+      {
+        headers: {
+          Authorization: `Bearer ${cfg.token}`,
+          Accept: "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+        cache: "no-store",
+      }
+    );
+
+    if (!refRes.ok) return liveBundleCache;
+    const commit = await refRes.json();
+    const latestSha: string | undefined = commit?.sha;
+
+    if (!latestSha) return liveBundleCache;
+
+    const deployedSha = process.env.VERCEL_GIT_COMMIT_SHA;
+    if (deployedSha && deployedSha === latestSha) {
+      liveBundleCache = null;
+      return null;
+    }
+
+    const bundleRes = await fetch(
+      `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/content/bundle.json?ref=${latestSha}`,
+      {
+        headers: {
+          Authorization: `Bearer ${cfg.token}`,
+          Accept: "application/vnd.github.raw",
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+        cache: "no-store",
+      }
+    );
+
+    if (bundleRes.ok) {
+      const raw = await bundleRes.json();
+      if (raw && typeof raw === "object") {
+        liveBundleCache = raw as Record<ContentKey, unknown>;
+        setRuntimeOverrides(liveBundleCache);
+        return liveBundleCache;
+      }
+    }
+  } catch (err) {
+    console.warn("Failed to fetch latest GitHub bundle:", err);
+  }
+
+  return liveBundleCache;
+}
+
 export async function getContent(): Promise<Content> {
+  if (liveBundleCache) {
+    return build(liveBundleCache);
+  }
+
+  if (typeof window === "undefined") {
+    try {
+      const remote = await fetchLatestGitHubBundle();
+      if (remote) {
+        return build(remote);
+      }
+    } catch {}
+  }
+
   return build(currentOverrides());
 }
 
 // What the admin panel loads and edits — identical to what the site renders.
 export const fetchContent = getContent;
-
-// Global in-memory overrides for zero-latency serverless updates across requests
-const globalContentOverrides = ((globalThis as any).__amarasContentOverrides ||
-  ((globalThis as any).__amarasContentOverrides = {})) as Record<string, unknown>;
 
 export function setRuntimeOverrides(edits: Partial<Record<ContentKey, unknown>>) {
   for (const [key, val] of Object.entries(edits)) {
