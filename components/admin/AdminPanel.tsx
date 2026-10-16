@@ -112,7 +112,7 @@ export default function AdminPanel() {
       dirty.map((key) => [key, keyValues(snapshot)[key]])
     );
     setBusy(true);
-    setStatus("Publishing…");
+    setStatus("Публикация изменений…");
     try {
       const res = await fetch("/api/admin/content", {
         method: "PUT",
@@ -121,17 +121,17 @@ export default function AdminPanel() {
       });
       const body = await res.json().catch(() => null);
       if (!res.ok) {
-        setStatus(body?.error ?? `Publish failed (${res.status})`);
+        setStatus(body?.error ?? `Ошибка публикации (${res.status})`);
       } else {
         setLive(snapshot);
         setStatus(
           body?.changed === false
-            ? "Nothing to publish — this is already live"
-            : "Published ✓ — the site updates in about a minute"
+            ? "Изменений нет — сайт уже актуален"
+            : "Опубликовано ✓ — изменения применены сразу!"
         );
       }
     } catch {
-      setStatus("Publish failed — check your connection and try again.");
+      setStatus("Ошибка публикации — проверьте подключение и повторите.");
     } finally {
       setBusy(false);
     }
@@ -238,19 +238,19 @@ export default function AdminPanel() {
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-black/10 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-[1100px] flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4 px-4 py-2.5 sm:px-6 sm:py-3">
             <p className="text-xs sm:text-sm font-semibold">
-              Unpublished changes in{" "}
+              Неопубликованные изменения в{" "}
               <b>{dirty.map((k) => sectionNames[k]).join(", ")}</b>
               <span className="hidden sm:inline ml-2 font-normal text-muted">
-                Not live until you publish.
+                Изменения применятся сразу после нажатия.
               </span>
             </p>
             <button
               type="button"
               onClick={publish}
               disabled={busy}
-              className="shrink-0 rounded-full bg-primary px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-bold text-white transition-colors hover:bg-primary-dark disabled:opacity-50 text-center"
+              className="shrink-0 rounded-full bg-primary px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-bold text-white transition-colors hover:bg-primary-dark disabled:opacity-50 text-center cursor-pointer"
             >
-              {busy ? "Publishing…" : "Publish all changes"}
+              {busy ? "Публикация…" : "Опубликовать изменения сразу"}
             </button>
           </div>
         </div>
@@ -347,13 +347,13 @@ export default function AdminPanel() {
 
 /* ---------- shared bits ---------- */
 
-function SaveBar({ onSave, label = "Publish changes" }: { onSave: () => void; label?: string }) {
+function SaveBar({ onSave, label = "Опубликовать изменения сразу" }: { onSave: () => void; label?: string }) {
   return (
     <div className="mt-6">
       <button
         type="button"
         onClick={onSave}
-        className="rounded-full bg-primary px-6 py-2.5 font-bold text-white transition-colors hover:bg-primary-dark"
+        className="rounded-full bg-primary px-6 py-2.5 font-bold text-white transition-colors hover:bg-primary-dark cursor-pointer"
       >
         {label}
       </button>
