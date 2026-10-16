@@ -46,7 +46,7 @@ export default function HeroStats({
                   : "5.0 • 138+ Traveler Reviews"}
               </span>
               <span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-bold text-[#C7FF32]">
-                {locale === "ru" ? "Без предоплаты" : locale === "hy" ? "Առանց կանխավճարի" : "No Prepayment"}
+                {locale === "ru" ? "Официальный туроператор" : locale === "hy" ? "Պաշտոնական տուրօպերատոր" : "Licensed Operator"}
               </span>
             </div>
           </div>

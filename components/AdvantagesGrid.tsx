@@ -75,16 +75,6 @@ export default function AdvantagesGrid({ locale }: { locale: Locale }) {
       title: locale === "ru" ? "на связи 24/7" : locale === "hy" ? "24/7 ռեժիմով" : "always at your side",
       desc: locale === "ru" ? "Персональный менеджер отвечает за 5 минут" : "Prompt personal assistant during journey",
     },
-    {
-      icon: (
-        <svg className="h-8 w-8 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      ),
-      highlight: locale === "ru" ? "Без предоплаты" : locale === "hy" ? "Առանց կանխավճարի" : "Zero prepayment",
-      title: locale === "ru" ? "оплата в день поездки" : locale === "hy" ? "վճարում տեղում" : "pay on tour day",
-      desc: locale === "ru" ? "Гибкие условия отмены и бронирования" : "Stress-free booking and free cancellations",
-    },
   ];
 
   return (
