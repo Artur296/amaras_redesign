@@ -4,7 +4,7 @@ import BookButton from "@/components/BookButton";
 import { packageIncludes } from "@/components/PackageIncludes";
 import { BedIcon, CalendarIcon, RouteIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
-import { discountPercent, formatPrice, getTourCode, tourHref, type Tour } from "@/lib/tours";
+import { discountPercent, formatPrice, getTourCode, getTourGroupSize, tourHref, type Tour } from "@/lib/tours";
 
 export default function PackageCard({
   tour,
@@ -16,6 +16,7 @@ export default function PackageCard({
   dict: Dict;
 }) {
   const code = getTourCode(tour);
+  const groupSize = getTourGroupSize(tour, locale);
   const href = tourHref(locale, tour);
   const includes = packageIncludes(dict);
   const days = tour.itinerary?.map((entry) => entry.day) ?? [];
@@ -62,6 +63,10 @@ export default function PackageCard({
           <CalendarIcon className="h-3.5 w-3.5 text-[#C7FF32]" />
           {tour.days} {dict.tours.days}
           {tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}
+        </span>
+
+        <span className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-full bg-[#312F2F]/90 px-3 py-1.5 text-xs font-bold text-white/90 backdrop-blur-md">
+          <span>👥</span> {groupSize}
         </span>
       </Link>
 

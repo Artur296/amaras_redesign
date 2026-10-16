@@ -407,7 +407,14 @@ function TextInput({
   );
 }
 
-function AutoTextarea({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+function AutoTextarea({
+  value,
+  onChange,
+  ...rest
+}: {
+  value: string;
+  onChange: (v: string) => void;
+} & Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "value" | "onChange">) {
   const rows = Math.min(14, Math.max(2, Math.ceil(value.length / 80) + value.split("\n").length - 1));
   return (
     <textarea
@@ -415,6 +422,7 @@ function AutoTextarea({ value, onChange }: { value: string; onChange: (v: string
       onChange={(e) => onChange(e.target.value)}
       rows={rows}
       className={inputCls}
+      {...rest}
     />
   );
 }
@@ -1199,6 +1207,76 @@ function ToursTab({
                           update(i, {
                             destinations: {
                               ...tour.destinations,
+                              [loc]: v.split("\n").filter((s) => s.trim()),
+                            },
+                          })
+                        }
+                      />
+                    </Field>
+
+                    <div className="grid gap-4 sm:grid-cols-2 pt-2 border-t border-black/5">
+                      <Field label={`Вместимость группы (${localeNames[loc]}): сколько человек`}>
+                        <TextInput
+                          placeholder={
+                            loc === "ru"
+                              ? "Например: до 4–6 чел. (джип) / до 15–18 чел."
+                              : loc === "hy"
+                              ? "Օրինակ՝ մինչև 4–6 մարդ / մինչև 15–18 մարդ"
+                              : "e.g. up to 4–6 people / up to 15–18 people"
+                          }
+                          value={tour.groupSize?.[loc] || ""}
+                          onChange={(v) =>
+                            update(i, {
+                              groupSize: {
+                                ru: tour.groupSize?.ru || "",
+                                hy: tour.groupSize?.hy || "",
+                                en: tour.groupSize?.en || "",
+                                [loc]: v,
+                              },
+                            })
+                          }
+                        />
+                      </Field>
+                      <Field label={`Что одеть / обувь / дресс-код (${localeNames[loc]})`}>
+                        <TextInput
+                          placeholder={
+                            loc === "ru"
+                              ? "Удобная спортивная обувь, ветровка для гор, платок для монастырей"
+                              : loc === "hy"
+                              ? "Հարմարավետ կոշիկներ, տաք բաճկոն, գլխաշոր վանքերի համար"
+                              : "Comfortable footwear, warm windbreaker, scarf for monasteries"
+                          }
+                          value={tour.dressCode?.[loc] || ""}
+                          onChange={(v) =>
+                            update(i, {
+                              dressCode: {
+                                ru: tour.dressCode?.ru || "",
+                                hy: tour.dressCode?.hy || "",
+                                en: tour.dressCode?.en || "",
+                                [loc]: v,
+                              },
+                            })
+                          }
+                        />
+                      </Field>
+                    </div>
+
+                    <Field label={`Что взять с собой (${localeNames[loc]}, каждый пункт с новой строки)`}>
+                      <AutoTextarea
+                        placeholder={
+                          loc === "ru"
+                            ? "Паспорт или удостоверение личности\nУдобная обувь для прогулок\nБутылка питьевой воды\nСолнцезащитные очки и крем\nНаличные драмы\nЗарядное устройство или powerbank"
+                            : loc === "hy"
+                            ? "Անձնագիր\nՀարմարավետ կոշիկներ\nԽմելու ջուր\nԱրևային ակնոց\nԿանխիկ դրամ\nPowerbank"
+                            : "Passport or photo ID\nComfortable shoes\nBottled water\nSunglasses & sunscreen\nCash in AMD\nPower bank"
+                        }
+                        value={(tour.whatToBring?.[loc] || []).join("\n")}
+                        onChange={(v) =>
+                          update(i, {
+                            whatToBring: {
+                              ru: tour.whatToBring?.ru || [],
+                              hy: tour.whatToBring?.hy || [],
+                              en: tour.whatToBring?.en || [],
                               [loc]: v.split("\n").filter((s) => s.trim()),
                             },
                           })

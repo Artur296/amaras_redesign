@@ -7,6 +7,7 @@ import {
   discountPercent,
   formatPrice,
   getTourCode,
+  getTourGroupSize,
   hasPrice,
   isPackageTour,
   tourHref,
@@ -31,6 +32,7 @@ export default function TourCard({
   }
 
   const code = getTourCode(tour);
+  const groupSize = getTourGroupSize(tour, locale);
   const catTitle = (id: string) =>
     categories.find((c) => c.id === id)?.title[locale] ?? id;
   const href = tourHref(locale, tour);
@@ -81,14 +83,19 @@ export default function TourCard({
           ) : null}
         </div>
 
-        {/* Bottom Tag on image (Duration & Rating) */}
+        {/* Bottom Tag on image (Duration, Group & Rating) */}
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-bold text-white">
-          <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1 backdrop-blur-md">
-            <svg className="w-3.5 h-3.5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>{durationText}</span>
-          </span>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 sm:px-3 py-1 backdrop-blur-md">
+              <svg className="w-3.5 h-3.5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{durationText}</span>
+            </span>
+            <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 backdrop-blur-md text-[11px] text-white/90">
+              <span>👥</span> {groupSize}
+            </span>
+          </div>
           <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[#C7FF32] backdrop-blur-md">
             <span>★</span> 5.0
           </span>

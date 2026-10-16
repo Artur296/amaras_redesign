@@ -14,6 +14,9 @@ import {
   discountPercent,
   formatPrice,
   getTourCode,
+  getTourGroupSize,
+  getTourWhatToBring,
+  getTourDressCode,
   hasPrice,
   isPackageTour,
   tourPath,
@@ -39,6 +42,9 @@ export default function TourDetail({
   phone: string;
 }) {
   const code = getTourCode(tour);
+  const groupSize = getTourGroupSize(tour, locale);
+  const whatToBring = getTourWhatToBring(tour, locale);
+  const dressCode = getTourDressCode(tour, locale);
   const catTitle = (id: string) =>
     categories.find((c) => c.id === id)?.title[locale] ?? id;
   const isPackage = isPackageTour(tour);
@@ -124,11 +130,19 @@ export default function TourDetail({
           {/* Quick specs bar - styled chip badges */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm font-semibold text-[#6B6967]">
             {isPackage ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#586EFF]/10 px-3 py-1 text-xs font-bold text-[#586EFF]">
-                <CalendarIcon className="h-3.5 w-3.5" />
-                {tour.days} {dict.tours.days}
-                {tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}
-              </span>
+              <>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#586EFF]/10 px-3 py-1 text-xs font-bold text-[#586EFF]">
+                  <CalendarIcon className="h-3.5 w-3.5" />
+                  {tour.days} {dict.tours.days}
+                  {tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EAE9E0] px-3 py-1 text-[#312F2F] shadow-xs">
+                  <svg className="w-3.5 h-3.5 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>{locale === "ru" ? "Группа" : locale === "hy" ? "Խումբ" : "Group"}: <b className="text-[#312F2F]">{groupSize}</b></span>
+                </span>
+              </>
             ) : (
               <>
                 {tour.departure && (
@@ -144,6 +158,12 @@ export default function TourDetail({
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span>{dict.tour.duration}: <b className="text-[#312F2F]">{duration}</b></span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EAE9E0] px-3 py-1 text-[#312F2F] shadow-xs">
+                  <svg className="w-3.5 h-3.5 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>{locale === "ru" ? "Группа" : locale === "hy" ? "Խումբ" : "Group"}: <b className="text-[#312F2F]">{groupSize}</b></span>
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#EAE9E0] px-3 py-1 text-[#312F2F] shadow-xs">
                   <svg className="w-3.5 h-3.5 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -184,6 +204,104 @@ export default function TourDetail({
                 {tour.about[locale].split("\n\n").map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
                 ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Practical Checklist: What to Bring, Dress code & Group size */}
+          <FadeIn delay={0.12}>
+            <div className="rounded-2xl sm:rounded-3xl border border-[#EAE9E0] bg-white p-5 sm:p-8 shadow-sm">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#C7FF32]/25 text-xl">
+                  🎒
+                </span>
+                <div>
+                  <h2 className="text-lg sm:text-xl font-black uppercase tracking-tight text-[#312F2F]">
+                    {locale === "ru"
+                      ? "Что взять с собой и как одеться"
+                      : locale === "hy"
+                      ? "Ի՞նչ վերցնել և ինչպե՞ս հագնվել"
+                      : "What to Bring & Dress Code"}
+                  </h2>
+                  <p className="text-xs text-[#6B6967]">
+                    {locale === "ru"
+                      ? "Полезные рекомендации для максимального комфорта в поездке"
+                      : locale === "hy"
+                      ? "Օգտակար խորհուրդներ ուղևորության հարմարավետության համար"
+                      : "Helpful travel tips for a smooth and comfortable journey"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {/* 1. Group Size & Vehicle */}
+                <div className="sm:col-span-2 rounded-2xl border border-[#EAE9E0] bg-[#FCFCF7] p-4 sm:p-5">
+                  <div className="flex items-center justify-between gap-3 flex-wrap">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#586EFF]/10 text-[#586EFF] text-xl">
+                        👥
+                      </span>
+                      <div>
+                        <span className="block text-xs font-bold uppercase tracking-wider text-[#6B6967]">
+                          {locale === "ru" ? "Количество человек в туре" : locale === "hy" ? "Խմբի մասնակիցների քանակ" : "Group Size & Capacity"}
+                        </span>
+                        <span className="text-base sm:text-lg font-black text-[#312F2F]">
+                          {groupSize}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="rounded-full bg-white border border-[#EAE9E0] px-3 py-1 text-xs font-bold text-[#586EFF]">
+                      {locale === "ru" ? "Комфортные авто с кондиционером" : locale === "hy" ? "Հարմարավետ մեքենաներ օդորակիչով" : "Air-conditioned vehicles"}
+                    </span>
+                  </div>
+                </div>
+
+                {/* 2. What to bring (checklist) */}
+                <div className="rounded-2xl border border-[#EAE9E0] bg-[#FCFCF7] p-5 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 pb-3 border-b border-[#EAE9E0]">
+                      <span className="text-base">🎒</span>
+                      <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-[#312F2F]">
+                        {locale === "ru" ? "Что взять с собой" : locale === "hy" ? "Ի՞նչ վերցնել հետը" : "What to bring"}
+                      </h3>
+                    </div>
+                    <ul className="mt-3.5 space-y-2.5">
+                      {whatToBring.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#312F2F] leading-snug">
+                          <span className="flex h-4 w-4 sm:h-5 sm:w-5 shrink-0 items-center justify-center rounded-full bg-[#C7FF32]/40 text-[#312F2F] text-[10px] sm:text-xs font-black">
+                            ✓
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* 3. Dress code & footwear */}
+                <div className="rounded-2xl border border-[#EAE9E0] bg-[#FCFCF7] p-5 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 pb-3 border-b border-[#EAE9E0]">
+                      <span className="text-base">👟</span>
+                      <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-[#312F2F]">
+                        {locale === "ru" ? "Что одеть / Обувь" : locale === "hy" ? "Ի՞նչ հագնել / Կոշիկ" : "Dress code & Footwear"}
+                      </h3>
+                    </div>
+                    <p className="mt-3.5 text-xs sm:text-sm text-[#6B6967] leading-relaxed">
+                      {dressCode}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-[#EAE9E0] text-[11px] text-[#6B6967] flex items-center gap-1.5">
+                    <span>💡</span>
+                    <span>
+                      {locale === "ru"
+                        ? "В горах погода прохладнее на 5–10°C, чем в Ереване"
+                        : locale === "hy"
+                        ? "Լեռներում եղանակը 5–10°C ավելի զով է, քան Երևանում"
+                        : "Highlands are typically 5–10°C cooler than Yerevan"}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </FadeIn>
@@ -298,6 +416,10 @@ export default function TourDetail({
                 <div className="flex items-center justify-between">
                   <span>{dict.tour.duration}</span>
                   <span className="font-bold text-[#312F2F]">{duration}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>{locale === "ru" ? "Группа" : locale === "hy" ? "Խումբ" : "Group size"}</span>
+                  <span className="font-bold text-[#312F2F]">{groupSize}</span>
                 </div>
                 {tour.departure && (
                   <div className="flex items-center justify-between">
