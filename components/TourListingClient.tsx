@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from "react";
 import TourCard from "@/components/TourCard";
 import type { Dict, Locale } from "@/lib/i18n";
-import type { Category, Tour } from "@/lib/tours";
+import { getTourCode, type Category, type Tour } from "@/lib/tours";
 
 export default function TourListingClient({
   tours,
@@ -59,7 +59,7 @@ export default function TourListingClient({
         if (search.trim()) {
           const q = search.toLowerCase();
           const cleanQ = q.replace(/[#№]/g, "").trim();
-          const tourCode = (tour.code || "").toLowerCase();
+          const tourCode = getTourCode(tour).toLowerCase();
           if (tourCode && (tourCode === cleanQ || tourCode.includes(cleanQ))) {
             return true;
           }

@@ -1,12 +1,20 @@
 import fs from "fs";
 import path from "path";
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getContent } from "@/lib/content";
 import { commitFiles, githubConfig } from "@/lib/github";
 import type { Review } from "@/lib/reviews";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+// Persistent memory buffer across warm invocations in serverless / node runtime
+const globalReviewsCache = ((globalThis as any).__amarasReviewsCache ||
+  ((globalThis as any).__amarasReviewsCache = new Map<string, Review>())) as Map<
+  string,
+  Review
+>;
 
 export async function GET() {
   try {
@@ -24,9 +32,28 @@ export async function GET() {
       allReviews = reviews || [];
     }
 
-    const approved = (allReviews || []).filter((r) => r.approved !== false);
+    // Merge in any reviews stored in the runtime cache
+    const map = new Map<string, Review>();
+    for (const [id, r] of globalReviewsCache.entries()) {
+      map.set(id, r);
+    }
+    for (const r of allReviews) {
+      if (!map.has(r.id)) {
+        map.set(r.id, r);
+      }
+    }
+
+    const merged = Array.from(map.values()).filter((r) => r.approved !== false);
+
+    // Sort newest first
+    merged.sort((a, b) => {
+      const tA = a.createdAt ? new Date(a.createdAt).getTime() : new Date(a.date || 0).getTime();
+      const tB = b.createdAt ? new Date(b.createdAt).getTime() : new Date(b.date || 0).getTime();
+      return tB - tA;
+    });
+
     return NextResponse.json(
-      { reviews: approved },
+      { reviews: merged },
       {
         headers: {
           "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
@@ -75,6 +102,9 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
+    // Store in global in-memory buffer immediately for zero-delay visibility
+    globalReviewsCache.set(newReview.id, newReview);
+
     // Load existing reviews
     let existingReviews: Review[] = [];
     try {
@@ -103,7 +133,17 @@ export async function POST(request: NextRequest) {
       console.warn("Local reviews.json write skipped (read-only):", fsErr);
     }
 
-    // 2. Try GitHub commit if configured
+    // 2. Revalidate cached pages immediately
+    try {
+      revalidatePath("/", "layout");
+      revalidatePath("/ru");
+      revalidatePath("/hy");
+      revalidatePath("/en");
+    } catch (e) {
+      console.warn("Reviews revalidatePath error:", e);
+    }
+
+    // 3. Try GitHub commit if configured
     const cfg = githubConfig();
     if (cfg) {
       try {

@@ -24,42 +24,74 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  // Sync latest reviews from API and client storage
+  // Sync latest reviews from API and client storage with stable sorting
   useEffect(() => {
-    // 1. Read any recent reviews submitted by this client from localStorage
-    try {
-      const stored = localStorage.getItem("amaras_recent_reviews");
-      if (stored) {
-        const parsed: Review[] = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setReviews((prev) => {
-            const map = new Map<string, Review>();
-            parsed.forEach((r) => map.set(r.id, r));
-            prev.forEach((r) => {
-              if (!map.has(r.id)) map.set(r.id, r);
-            });
-            return Array.from(map.values());
-          });
-        }
-      }
-    } catch {}
+    let active = true;
 
-    // 2. Fetch fresh approved reviews from the server
-    fetch("/api/reviews", { cache: "no-store" })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data && Array.isArray(data.reviews) && data.reviews.length > 0) {
-          setReviews((prev) => {
-            const map = new Map<string, Review>();
-            data.reviews.forEach((r: Review) => map.set(r.id, r));
-            prev.forEach((r) => {
-              if (!map.has(r.id)) map.set(r.id, r);
-            });
-            return Array.from(map.values());
-          });
+    async function syncReviews() {
+      let localReviews: Review[] = [];
+      try {
+        const stored = localStorage.getItem("amaras_recent_reviews");
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) localReviews = parsed;
         }
-      })
-      .catch(() => {});
+      } catch {}
+
+      try {
+        const res = await fetch("/api/reviews", { cache: "no-store" });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && Array.isArray(data.reviews) && active) {
+            setReviews((prev) => {
+              const map = new Map<string, Review>();
+              // User's local reviews take priority for their own browser
+              localReviews.forEach((r) => map.set(r.id, r));
+              // Fresh approved reviews from server
+              data.reviews.forEach((r: Review) => {
+                if (!map.has(r.id)) map.set(r.id, r);
+              });
+              // Initial reviews passed from SSR
+              prev.forEach((r) => {
+                if (!map.has(r.id)) map.set(r.id, r);
+              });
+
+              const list = Array.from(map.values());
+              list.sort((a, b) => {
+                const tA = a.createdAt ? new Date(a.createdAt).getTime() : new Date(a.date || 0).getTime();
+                const tB = b.createdAt ? new Date(b.createdAt).getTime() : new Date(b.date || 0).getTime();
+                return tB - tA;
+              });
+              return list;
+            });
+            return;
+          }
+        }
+      } catch {}
+
+      // Fallback if network is offline but local reviews exist
+      if (localReviews.length > 0 && active) {
+        setReviews((prev) => {
+          const map = new Map<string, Review>();
+          localReviews.forEach((r) => map.set(r.id, r));
+          prev.forEach((r) => {
+            if (!map.has(r.id)) map.set(r.id, r);
+          });
+          const list = Array.from(map.values());
+          list.sort((a, b) => {
+            const tA = a.createdAt ? new Date(a.createdAt).getTime() : new Date(a.date || 0).getTime();
+            const tB = b.createdAt ? new Date(b.createdAt).getTime() : new Date(b.date || 0).getTime();
+            return tB - tA;
+          });
+          return list;
+        });
+      }
+    }
+
+    syncReviews();
+    return () => {
+      active = false;
+    };
   }, []);
 
   // Lock body scroll when modal is open to eliminate background page jitter
@@ -339,10 +371,10 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
           </div>
         </div>
 
-        {/* Reviews Horizontal Slider: No scroll-smooth on container to eliminate touch/snap jitter */}
+        {/* Reviews Horizontal Slider: snap-proximity prevents abrupt touch snapping */}
         <div
           ref={sliderRef}
-          className="mt-8 sm:mt-10 flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 overscroll-x-contain touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden items-stretch"
+          className="mt-8 sm:mt-10 flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-proximity scroll-smooth pb-4 pt-2 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 overscroll-x-contain touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden items-stretch"
         >
           {reviews.map((rev) => {
             const reviewContent = getReviewText(rev.text, locale);

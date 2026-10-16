@@ -31,6 +31,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/tours",
     "/contacts",
     "/tour-packages",
+    "/what-to-see",
+    "/guests",
     ...publicCategories(categories).map((c) => `/tours/${c.id}`),
     ...tours.map((t) => tourPath(t)),
   ];
