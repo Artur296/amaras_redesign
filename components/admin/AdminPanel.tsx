@@ -168,20 +168,20 @@ export default function AdminPanel() {
               admin
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            <a href="/" target="_blank" className="text-sm text-white/80 hover:text-accent">
+          <div className="flex items-center gap-3">
+            <a href="/" target="_blank" className="text-xs sm:text-sm text-white/80 hover:text-accent">
               View site ↗
             </a>
             <button
               type="button"
               onClick={logout}
-              className="rounded-full border border-white/25 px-3 py-1 text-sm font-semibold hover:border-accent hover:text-accent"
+              className="rounded-full border border-white/25 px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-semibold hover:border-accent hover:text-accent"
             >
               Log out
             </button>
           </div>
         </div>
-        <nav className="mx-auto flex max-w-[1100px] gap-1 px-6">
+        <nav className="mx-auto flex max-w-[1100px] gap-1 px-3 sm:px-6 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
           {TABS.map((t) => {
             const pendingCount =
               t === "Reviews"
@@ -193,7 +193,7 @@ export default function AdminPanel() {
                 key={t}
                 type="button"
                 onClick={() => setTab(t)}
-                className={`flex items-center gap-1.5 rounded-t-lg px-4 py-2 text-sm font-bold transition-colors ${
+                className={`flex shrink-0 items-center gap-1.5 rounded-t-lg px-3 sm:px-4 py-2 text-xs sm:text-sm font-bold transition-colors ${
                   tab === t ? "bg-bg text-ink" : "text-white/70 hover:text-accent"
                 }`}
               >
@@ -236,11 +236,11 @@ export default function AdminPanel() {
           every tab, not just the one the last edit happened in. */}
       {dirty.length > 0 && (
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-black/10 bg-white/95 backdrop-blur">
-          <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-4 px-6 py-3">
-            <p className="text-sm font-semibold">
+          <div className="mx-auto flex max-w-[1100px] flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-4 px-4 py-2.5 sm:px-6 sm:py-3">
+            <p className="text-xs sm:text-sm font-semibold">
               Unpublished changes in{" "}
               <b>{dirty.map((k) => sectionNames[k]).join(", ")}</b>
-              <span className="ml-2 font-normal text-muted">
+              <span className="hidden sm:inline ml-2 font-normal text-muted">
                 Not live until you publish.
               </span>
             </p>
@@ -248,7 +248,7 @@ export default function AdminPanel() {
               type="button"
               onClick={publish}
               disabled={busy}
-              className="shrink-0 rounded-full bg-primary px-6 py-2.5 font-bold text-white transition-colors hover:bg-primary-dark disabled:opacity-50"
+              className="shrink-0 rounded-full bg-primary px-5 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-bold text-white transition-colors hover:bg-primary-dark disabled:opacity-50 text-center"
             >
               {busy ? "Publishing…" : "Publish all changes"}
             </button>
@@ -256,7 +256,7 @@ export default function AdminPanel() {
         </div>
       )}
 
-      <div className="mx-auto max-w-[1100px] px-6 py-8">
+      <div className="mx-auto max-w-[1100px] px-3 sm:px-6 py-4 sm:py-8 pb-28 sm:pb-12">
         {tab === "Tours" && (
           <ToursTab
             tours={content.tours}
@@ -820,9 +820,9 @@ function ToursTab({
                 <button
                   type="button"
                   onClick={() => setOpenSlug(open ? null : tour.slug)}
-                  className="flex w-full items-center justify-between gap-3 py-4 pr-3 text-left"
+                  className="flex w-full flex-col sm:flex-row sm:items-center justify-between gap-2 py-3.5 pr-3 text-left"
                 >
-                  <span className="font-bold">
+                  <span className="font-bold text-sm sm:text-base">
                     {tour.title.ru || tour.title.en || tour.slug}
                     <span className="ml-2 text-xs font-semibold text-muted">
                       {tour.categories?.includes("individual") || tour.priceFromAmd === 0
@@ -830,7 +830,7 @@ function ToursTab({
                         : `${tour.priceFromAmd.toLocaleString("ru-RU")} ֏`}
                     </span>
                   </span>
-                  <span className="flex items-center gap-2">
+                  <span className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                     {tour.bookingDisabled && (
                       <span className="rounded-full bg-red-100 px-2.5 py-0.5 text-[11px] font-bold text-red-700">
                         ⛔ Бронь закрыта
@@ -846,13 +846,13 @@ function ToursTab({
                         индивидуальный
                       </span>
                     )}
-                    <span className="text-muted">{open ? "–" : "+"}</span>
+                    <span className="text-muted ml-auto sm:ml-0 font-bold">{open ? "–" : "+"}</span>
                   </span>
                 </button>
               </div>
 
               {open && (
-                <div className="border-t border-black/5 px-5 py-5">
+                <div className="border-t border-black/5 px-3.5 sm:px-5 py-4 sm:py-5">
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     <Field label="Price from (AMD, 0 = on request)">
                       <TextInput
@@ -1811,9 +1811,9 @@ function CategoriesTab({
 
   return (
     <section>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <h2 className="text-xl font-extrabold">Tour categories</h2>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           <LocaleTabs active={loc} onChange={setLoc} />
           <button
             type="button"
@@ -1917,7 +1917,7 @@ function PackagesTab({
     <section className="space-y-8">
       {section && (
         <div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <h2 className="text-xl font-extrabold">Tour packages section</h2>
             <LocaleTabs active={loc} onChange={setLoc} />
           </div>
@@ -2347,7 +2347,7 @@ function ReviewsTab({
       {addingNew && (
         <form
           onSubmit={handleCreateReview}
-          className="rounded-2xl border border-primary/30 bg-primary/5 p-6 space-y-4"
+          className="rounded-2xl border border-primary/30 bg-primary/5 p-4 sm:p-6 space-y-4"
         >
           <h3 className="text-sm font-bold text-ink">Новый отзыв (будет опубликован сразу)</h3>
           <div className="grid gap-4 sm:grid-cols-4">
@@ -2669,7 +2669,7 @@ function OffersTab({
 
       {/* Offer Editor Card */}
       {activeOffer && (
-        <div className="rounded-3xl border border-black/10 bg-white p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="rounded-2xl sm:rounded-3xl border border-black/10 bg-white p-4 sm:p-8 shadow-sm space-y-6">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-black/10 pb-4">
             <div className="flex items-center gap-3">
               <h3 className="text-lg font-bold text-ink">Редактирование предложения</h3>
@@ -3019,7 +3019,7 @@ function GuestsTab({
       </div>
 
       {activeGuest && (
-        <div className="rounded-2xl border border-border bg-white p-6 shadow-sm space-y-6">
+        <div className="rounded-2xl border border-border bg-white p-4 sm:p-6 shadow-sm space-y-6">
           <div className="flex items-center justify-between pb-4 border-b border-border">
             <div>
               <h3 className="text-lg font-bold text-ink">Редактирование: {activeGuest.title}</h3>

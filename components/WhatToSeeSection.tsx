@@ -157,7 +157,7 @@ export function WhatToSeeSection({ locale, initialAttractions }: Props) {
 
       {/* 2. Region Filter Tabs */}
       <FadeIn delay={0.1}>
-        <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-2.5">
+        <div className="mt-8 sm:mt-10 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap sm:overflow-visible sm:pb-0 justify-start lg:justify-start">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
@@ -165,7 +165,7 @@ export function WhatToSeeSection({ locale, initialAttractions }: Props) {
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
                 type="button"
-                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
+                className={`shrink-0 inline-flex items-center gap-2 rounded-full px-3.5 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                   isActive
                     ? "bg-[#312F2F] text-[#C7FF32] shadow-md scale-[1.02]"
                     : "bg-white border border-[#EAE9E0] text-[#312F2F] hover:bg-neutral-50 hover:border-neutral-300"

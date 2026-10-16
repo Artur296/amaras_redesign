@@ -77,15 +77,15 @@ export default function TourListingClient({
   return (
     <div className="mt-8 space-y-8">
       {/* Control Bar: Search, Category Tabs & Sort */}
-      <div className="flex flex-col gap-4 rounded-3xl border border-[#EAE9E0] bg-white p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between">
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-col gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-[#EAE9E0] bg-white p-3 sm:p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between">
+        {/* Category Pills - swipeable on mobile */}
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto whitespace-nowrap scrollbar-none pb-1 sm:pb-0">
           {categoryTabs.map((tab) => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setSelectedCategory(tab.id)}
-              className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-wider transition-all ${
+              className={`shrink-0 rounded-full px-3.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold sm:font-black uppercase tracking-wider transition-all cursor-pointer ${
                 selectedCategory === tab.id
                   ? "bg-[#586EFF] text-white shadow-md shadow-[#586EFF]/25"
                   : "bg-[#FCFCF7] text-[#312F2F] hover:bg-[#EAE9E0] border border-[#EAE9E0]"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { useLinks } from "@/components/SiteProvider";
 import { TelegramIcon, WhatsAppIcon } from "@/components/icons";
@@ -9,6 +10,15 @@ import { TelegramIcon, WhatsAppIcon } from "@/components/icons";
 export default function ContactFab({ label }: { label: string }) {
   const [open, setOpen] = useState(false);
   const links = useLinks();
+  const pathname = usePathname() || "";
+
+  // Tour detail pages have their own dedicated sticky booking CTA on mobile.
+  // Hide the global FAB on mobile for these pages to prevent overlapping/clashing.
+  const cleanPath = pathname.split("?")[0].replace(/\/+$/, "");
+  const segments = cleanPath.split("/").filter(Boolean);
+  const isTourDetail =
+    (segments[1] === "tours" && segments.length >= 4) ||
+    (segments[1] === "tour-packages" && segments.length >= 3);
 
   const options = [
     { href: links.whatsapp, label: "WhatsApp", icon: WhatsAppIcon, bg: "bg-[#25D366]" },
@@ -32,7 +42,11 @@ export default function ContactFab({ label }: { label: string }) {
         )}
       </AnimatePresence>
 
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-3">
+      <div
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-3 ${
+          isTourDetail ? "hidden lg:flex" : "flex"
+        }`}
+      >
         <AnimatePresence>
           {open &&
             options.map((option, i) => (

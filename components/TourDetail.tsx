@@ -83,7 +83,7 @@ export default function TourDetail({
             {backLabel}
           </Link>
           <span className="text-[#6B6967]/40 shrink-0">/</span>
-          <span className="text-[#312F2F] font-bold truncate max-w-[180px] sm:max-w-none shrink-0 sm:shrink">
+          <span className="text-[#312F2F] font-bold shrink-0">
             {tour.title[locale]}
           </span>
         </nav>
@@ -164,83 +164,6 @@ export default function TourDetail({
               }
               title={tour.title[locale]}
             />
-          </FadeIn>
-
-          {/* Mobile Quick Pricing & Booking Card (directly under gallery on phones) */}
-          <FadeIn delay={0.05}>
-            <div className="lg:hidden rounded-2xl border border-[#EAE9E0] bg-white p-5 shadow-sm space-y-4">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B6967]">
-                    {hasPrice(tour)
-                      ? dict.tours.from
-                      : locale === "ru"
-                      ? "Стоимость тура"
-                      : locale === "hy"
-                      ? "Արժեքը"
-                      : "Tour Pricing"}
-                  </span>
-                  <div className="mt-0.5 flex items-baseline gap-2.5">
-                    {tour.priceOldAmd && (
-                      <s className="text-xs font-bold text-[#6B6967]/60">
-                        {formatPrice(tour.priceOldAmd)}
-                      </s>
-                    )}
-                    <span className="text-2xl font-black text-[#312F2F]">
-                      {hasPrice(tour) ? formatPrice(tour.priceFromAmd) : dict.tours.onRequest}
-                    </span>
-                    {isPackage && hasPrice(tour) && (
-                      <span className="text-[11px] font-bold text-[#6B6967]">
-                        / {dict.pkg.perPerson}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {discount !== null && (
-                  <span className="rounded-full bg-[#C7FF32] px-2.5 py-1 text-xs font-black text-[#312F2F]">
-                    −{discount}%
-                  </span>
-                )}
-              </div>
-
-              <div>
-                <BookButton
-                  label={
-                    tour.bookingDisabled
-                      ? locale === "ru"
-                        ? "Узнать о доступных датах"
-                        : locale === "hy"
-                        ? "Ճշտել հասանելի օրերը"
-                        : "Check Available Dates"
-                      : dict.tours.book
-                  }
-                  message={
-                    tour.bookingDisabled
-                      ? locale === "ru"
-                        ? `Здравствуйте! Хочу уточнить доступные даты для тура: ${tour.title[locale]}`
-                        : locale === "hy"
-                        ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը տուրի համար՝ ${tour.title[locale]}`
-                        : `Hello! I would like to check available dates for: ${tour.title[locale]}`
-                      : `${dict.tours.bookMessage} ${tour.title[locale]}`
-                  }
-                  variant="primary"
-                  size="md"
-                  className="w-full justify-center text-sm font-bold"
-                />
-              </div>
-
-              <div className="flex items-center justify-between text-[11px] font-medium text-[#6B6967] pt-2 border-t border-black/5">
-                <span className="flex items-center gap-1">
-                  <span className="text-[#586EFF]">✓</span>{" "}
-                  {locale === "ru" ? "Оплата на месте" : locale === "hy" ? "Վճարում տեղում" : "Pay on site"}
-                </span>
-                <span className="flex items-center gap-1">
-                  <span className="text-[#586EFF]">✓</span>{" "}
-                  {locale === "ru" ? "Без предоплаты" : locale === "hy" ? "Առանց կանխավճարի" : "Zero prepayment"}
-                </span>
-              </div>
-            </div>
           </FadeIn>
 
           {/* Description & Overview */}
