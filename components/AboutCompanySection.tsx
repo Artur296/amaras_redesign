@@ -72,7 +72,7 @@ export default function AboutCompanySection({ locale }: { locale: Locale }) {
   return (
     <MotionConfig reducedMotion="user">
       <section
-        className="relative overflow-hidden bg-[#1E1E1E] py-16 sm:py-24 lg:py-28 text-[#FCFCF7]"
+        className="relative overflow-hidden bg-[#1E1E1E] py-10 sm:py-20 lg:py-28 text-[#FCFCF7]"
         id="about-company"
       >
         {/* Ambient atmospheric glows */}

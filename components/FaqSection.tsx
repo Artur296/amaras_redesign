@@ -36,7 +36,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
       : "Everything you need to know about booking, vehicles, payment options, and safety.";
 
   return (
-    <section className="bg-white py-14 sm:py-20 border-b border-[#EAE9E0]" id="faq">
+    <section className="bg-white py-10 sm:py-20 border-b border-[#EAE9E0]" id="faq">
       <div className="mx-auto max-w-[1000px] px-4 sm:px-6">
         <div className="text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-[#586EFF]/30 bg-[#586EFF]/10 px-3.5 sm:px-4 py-1 text-[11px] sm:text-xs font-black uppercase tracking-[0.2em] text-[#586EFF]">

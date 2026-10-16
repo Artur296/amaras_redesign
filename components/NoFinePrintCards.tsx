@@ -13,13 +13,13 @@ export default function NoFinePrintCards({
   bannerImage?: string;
 }) {
   return (
-    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-10 sm:py-20 lg:py-28">
       {/* Header matching Screenshot 5 */}
-      <div className="mb-12">
+      <div className="mb-6 sm:mb-12">
         <span className="text-xs font-black uppercase tracking-[0.25em] text-[#586EFF]">
           ПОЧЕМУ AMARAS TOURS
         </span>
-        <h2 className="mt-2 font-sans text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#1E1E1E]">
+        <h2 className="mt-2 font-sans text-2xl sm:text-5xl font-black uppercase tracking-tight text-[#1E1E1E]">
           {locale === "ru" ? (
             <>
               Отдых <span className="text-[#586EFF]">без мелкого шрифта</span>
@@ -36,27 +36,27 @@ export default function NoFinePrintCards({
         </h2>
       </div>
 
-      {/* 4 Cards Row matching Screenshot 5 */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* 4 Cards Row: 2 columns on mobile, 4 on desktop */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
         {/* Card 1: Electric Blue #586EFF */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-[#586EFF] p-7 sm:p-8 text-white shadow-xl min-h-[220px]"
+          className="relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-[#586EFF] p-4 sm:p-8 text-white shadow-xl min-h-[160px] sm:min-h-[220px]"
         >
           <div className="flex items-start justify-between">
-            <h3 className="font-sans text-xl sm:text-2xl font-black">
+            <h3 className="font-sans text-sm sm:text-2xl font-black">
               {locale === "ru" ? "Цены напрямую" : locale === "hy" ? "Ուղիղ գներ" : "Direct Rates"}
             </h3>
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-md text-white">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <span className="flex h-7 w-7 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-white/20 backdrop-blur-md text-white">
+              <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
               </svg>
             </span>
           </div>
-          <p className="mt-6 text-xs sm:text-sm text-blue-100 leading-relaxed font-medium">
+          <p className="mt-3 sm:mt-6 text-[11px] sm:text-sm text-blue-100 leading-relaxed font-medium line-clamp-2 sm:line-clamp-none">
             {locale === "ru"
               ? "От проверенных отелей и прямых организаторов, без скрытых агентских наценок."
               : locale === "hy"
@@ -71,19 +71,19 @@ export default function NoFinePrintCards({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-[#0E1A63] p-7 sm:p-8 text-white shadow-xl min-h-[220px]"
+          className="relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-[#0E1A63] p-4 sm:p-8 text-white shadow-xl min-h-[160px] sm:min-h-[220px]"
         >
           <div className="flex items-start justify-between">
-            <h3 className="font-sans text-xl sm:text-2xl font-black">
+            <h3 className="font-sans text-sm sm:text-2xl font-black">
               {locale === "ru" ? "Гарантия цены" : locale === "hy" ? "Գնի երաշխիք" : "Price Guarantee"}
             </h3>
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 backdrop-blur-md text-white">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <span className="flex h-7 w-7 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-white/15 backdrop-blur-md text-white">
+              <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </span>
           </div>
-          <p className="mt-6 text-xs sm:text-sm text-blue-200/90 leading-relaxed font-medium">
+          <p className="mt-3 sm:mt-6 text-[11px] sm:text-sm text-blue-200/90 leading-relaxed font-medium line-clamp-2 sm:line-clamp-none">
             {locale === "ru"
               ? "Забронировали — и стоимость зафиксирована. Честно, без доплат в пути."
               : locale === "hy"
@@ -98,13 +98,13 @@ export default function NoFinePrintCards({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative flex flex-col items-center justify-center text-center overflow-hidden rounded-[2rem] bg-[#C7FF32] p-7 sm:p-8 text-[#161616] shadow-xl min-h-[220px]"
+          className="relative flex flex-col items-center justify-center text-center overflow-hidden rounded-2xl sm:rounded-[2rem] bg-[#C7FF32] p-4 sm:p-8 text-[#161616] shadow-xl min-h-[160px] sm:min-h-[220px]"
         >
           <div>
-            <span className="font-sans text-5xl sm:text-6xl font-black tracking-tight text-[#161616]">
+            <span className="font-sans text-4xl sm:text-6xl font-black tracking-tight text-[#161616]">
               50+
             </span>
-            <span className="block mt-2 text-xs font-black uppercase tracking-wider text-[#161616]/80">
+            <span className="block mt-1 sm:mt-2 text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#161616]/80">
               {locale === "ru"
                 ? "ТУРИСТИЧЕСКИХ НАПРАВЛЕНИЙ"
                 : locale === "hy"
@@ -120,19 +120,19 @@ export default function NoFinePrintCards({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-neutral-100 border border-neutral-200/80 p-7 sm:p-8 text-[#1E1E1E] shadow-xl min-h-[220px]"
+          className="relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-neutral-100 border border-neutral-200/80 p-4 sm:p-8 text-[#1E1E1E] shadow-xl min-h-[160px] sm:min-h-[220px]"
         >
           <div className="flex items-start justify-between">
-            <h3 className="font-sans text-xl sm:text-2xl font-black">
+            <h3 className="font-sans text-sm sm:text-2xl font-black">
               {locale === "ru" ? "Поддержка 24/7" : locale === "hy" ? "Աջակցություն 24/7" : "Support 24/7"}
             </h3>
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm text-neutral-800">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <span className="flex h-7 w-7 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-white shadow-sm text-neutral-800">
+              <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
             </span>
           </div>
-          <p className="mt-6 text-xs sm:text-sm text-neutral-600 leading-relaxed font-medium">
+          <p className="mt-3 sm:mt-6 text-[11px] sm:text-sm text-neutral-600 leading-relaxed font-medium line-clamp-2 sm:line-clamp-none">
             {locale === "ru"
               ? "Живые координаторы на связи до, во время и после завершения поездки."
               : locale === "hy"
@@ -142,13 +142,13 @@ export default function NoFinePrintCards({
         </motion.div>
       </div>
 
-      {/* Panoramic Card (From Screenshot 4: "Тёплое солнце, горы и сервис") */}
+      {/* Panoramic Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mt-12 relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] min-h-[400px] sm:min-h-[440px] shadow-2xl group"
+        className="mt-6 sm:mt-12 relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] min-h-[240px] sm:min-h-[440px] shadow-2xl group"
       >
         <Image
           src={bannerImage || "/images/noravank.jpg"}

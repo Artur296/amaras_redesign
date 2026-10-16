@@ -88,9 +88,9 @@ export default function AdvantagesGrid({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-      <div className="mb-12 sm:mb-16">
-        <h2 className="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-[#312F2F]">
+    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-10 sm:py-20 lg:py-28">
+      <div className="mb-6 sm:mb-14">
+        <h2 className="font-serif text-2xl sm:text-5xl font-normal tracking-tight text-[#312F2F]">
           {locale === "ru"
             ? "Наши преимущества"
             : locale === "hy"
@@ -99,26 +99,28 @@ export default function AdvantagesGrid({ locale }: { locale: Locale }) {
         </h2>
       </div>
 
-      {/* 8-Item Grid: 2 rows of 4 columns matching Screenshot 3 */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+      {/* 8-Item Grid: 2 columns on mobile, 4 columns on desktop */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
         {advantages.map((item, idx) => (
           <motion.div
             key={idx}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: idx * 0.06 }}
-            className="flex flex-col items-start space-y-3"
+            transition={{ duration: 0.4, delay: idx * 0.05 }}
+            className="flex flex-col items-start space-y-2 sm:space-y-3"
           >
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#312F2F] border border-[#454343] shadow-md transition-transform duration-300 group-hover:scale-105">
-              {item.icon}
+            <div className="flex h-10 w-10 sm:h-14 sm:w-14 items-center justify-center rounded-xl sm:rounded-2xl bg-[#312F2F] border border-[#454343] shadow-md transition-transform duration-300 group-hover:scale-105">
+              <div className="scale-75 sm:scale-100 flex items-center justify-center">
+                {item.icon}
+              </div>
             </div>
             <div>
-              <p className="text-base font-bold text-[#1E1E1E] leading-snug">
+              <p className="text-xs sm:text-base font-bold text-[#1E1E1E] leading-snug">
                 <span className="text-[#586EFF] font-black">{item.highlight}</span>{" "}
                 {item.title}
               </p>
-              <p className="mt-1.5 text-xs text-neutral-500 leading-relaxed">
+              <p className="mt-1 text-[11px] sm:text-xs text-neutral-500 leading-relaxed line-clamp-2 sm:line-clamp-none">
                 {item.desc}
               </p>
             </div>

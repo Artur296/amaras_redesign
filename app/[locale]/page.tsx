@@ -183,16 +183,20 @@ export default async function HomePage({ params }: Props) {
       {/* 1.4 Luxury Resort & Spa Showcase (Screenshot 1 bottom) */}
       <LuxuryResortCard locale={locale} images={site.homepageImages} />
 
-      {/* 1.5 Signature Full-Width Immersive Banner */}
-      <FeaturedBannerSection locale={locale} bannerImage={site.homepageImages?.featuredBanner} />
+      {/* 1.5 Signature Full-Width Immersive Banner (Hidden on mobile to reduce page length) */}
+      <div className="hidden md:block">
+        <FeaturedBannerSection locale={locale} bannerImage={site.homepageImages?.featuredBanner} />
+      </div>
 
-      {/* 1.6 Scientific & Heritage Expeditions Banner (Screenshot 2) */}
-      <HeritageBanner locale={locale} />
+      {/* 1.6 Scientific & Heritage Expeditions Banner (Hidden on mobile to reduce page length) */}
+      <div className="hidden md:block">
+        <HeritageBanner locale={locale} />
+      </div>
 
-      {/* 1.7 "Отдых без мелкого шрифта" & Panoramic Escapes (Screenshot 5 & 4) */}
+      {/* 1.7 "Отдых без мелкого шрифта" & Panoramic Escapes */}
       <NoFinePrintCards locale={locale} bannerImage={site.homepageImages?.panoramicBanner} />
 
-      {/* 1.8 "Наши преимущества" 8-Item Grid (Screenshot 3) */}
+      {/* 1.8 "Наши преимущества" 8-Item Grid */}
       <AdvantagesGrid locale={locale} />
 
       {/* 1.9 Stats & Trust Strip */}
@@ -202,17 +206,17 @@ export default async function HomePage({ params }: Props) {
       <AboutCompanySection locale={locale} />
 
       {/* 2. TRAVEL FORMATS (Landing Page Showcase) */}
-      <section className="mx-auto max-w-[1360px] px-6 py-24 sm:py-32">
+      <section className="mx-auto max-w-[1360px] px-4 sm:px-6 py-12 sm:py-20 lg:py-32">
         <FadeIn>
-          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
             <div>
               <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#586EFF]">
                 {locale === "ru" ? "Форматы путешествий" : locale === "hy" ? "Տուրերի ձևաչափերը" : "Travel Formats"}
               </span>
-              <h2 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#312F2F]">
+              <h2 className="mt-2 sm:mt-3 font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#312F2F]">
                 {locale === "ru" ? "Выберите свой стиль Армении" : locale === "hy" ? "Ընտրեք ձեր ոճը" : "Choose Your Travel Style"}
               </h2>
-              <p className="mt-3 max-w-2xl text-base sm:text-lg leading-relaxed text-[#555351]">
+              <p className="mt-2 sm:mt-3 max-w-2xl text-sm sm:text-lg leading-relaxed text-[#555351]">
                 {locale === "ru"
                   ? "От доступных групповых экскурсий до внедорожных экспедиций 4x4 и персональных туров."
                   : locale === "hy"
@@ -223,7 +227,7 @@ export default async function HomePage({ params }: Props) {
 
             <Link
               href={`/${locale}/tours`}
-              className="inline-flex shrink-0 items-center gap-3 rounded-full bg-[#312F2F] px-8 py-4 text-sm sm:text-base font-black uppercase tracking-wider text-[#C7FF32] shadow-lg transition-all hover:bg-[#242323] hover:scale-105 active:scale-95"
+              className="inline-flex shrink-0 items-center gap-2 sm:gap-3 rounded-full bg-[#312F2F] px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-base font-black uppercase tracking-wider text-[#C7FF32] shadow-lg transition-all hover:bg-[#242323] hover:scale-105 active:scale-95"
             >
               <span>
                 {locale === "ru"
@@ -237,18 +241,19 @@ export default async function HomePage({ params }: Props) {
           </div>
         </FadeIn>
 
-        {/* Large Format Cards Grid (3 columns for generous, impactful sizing) */}
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Large Format Cards Grid (3 columns on desktop, horizontal swipe carousel on mobile) */}
+        <div className="mt-8 sm:mt-14 flex gap-4 overflow-x-auto pb-4 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 scrollbar-none snap-x snap-mandatory">
           {categories.map((cat, i) => (
-            <FadeIn key={cat.id} delay={i * 0.08} className="h-full">
-              <Link
-                href={`/${locale}/tours/${cat.id}`}
-                className={`group flex h-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
-                  cat.id === "offers"
-                    ? "border-2 border-[#C7FF32] shadow-[0_8px_30px_rgba(199,255,50,0.25)]"
-                    : "border border-[#EAE9E0] hover:border-[#586EFF]/50"
-                }`}
-              >
+            <div key={cat.id} className="shrink-0 w-[82vw] max-w-[320px] snap-center sm:w-auto sm:shrink sm:max-w-none h-full">
+              <FadeIn delay={i * 0.08} className="h-full">
+                <Link
+                  href={`/${locale}/tours/${cat.id}`}
+                  className={`group flex h-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
+                    cat.id === "offers"
+                      ? "border-2 border-[#C7FF32] shadow-[0_8px_30px_rgba(199,255,50,0.25)]"
+                      : "border border-[#EAE9E0] hover:border-[#586EFF]/50"
+                  }`}
+                >
                 <div className="relative aspect-[16/10] overflow-hidden bg-black/10">
                   <Image
                     src={cat.image}
@@ -288,6 +293,7 @@ export default async function HomePage({ params }: Props) {
                 </div>
               </Link>
             </FadeIn>
+            </div>
           ))}
         </div>
       </section>
@@ -296,65 +302,70 @@ export default async function HomePage({ params }: Props) {
       <SpecialOffersSection offers={offers} locale={locale} dict={dict} />
 
       {/* 3.5 4x4 OFF-ROAD ARMENIA EXPEDITION WIDGET WITH INTERACTIVE JEEP CAR ANIMATION */}
-      <section className="mx-auto max-w-[1360px] px-6 py-24 sm:py-32">
+      <section className="mx-auto max-w-[1360px] px-4 sm:px-6 py-10 sm:py-20 lg:py-28">
         <FadeIn>
           <JeepExpeditionWidget locale={locale} />
         </FadeIn>
       </section>
 
       {/* 4. DESTINATIONS BENTO GALLERY (TripMate "Popular Cities" pattern) */}
-      <section className="bg-[#312F2F] py-24 sm:py-32 text-[#FCFCF7]">
-        <div className="mx-auto max-w-[1360px] px-6">
+      <section className="bg-[#312F2F] py-12 sm:py-20 lg:py-32 text-[#FCFCF7]">
+        <div className="mx-auto max-w-[1360px] px-4 sm:px-6">
           <FadeIn>
-            <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+            <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
               <div>
                 <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#C7FF32]">
                   {locale === "ru" ? "Направления Армении" : locale === "hy" ? "Հայաստանի ուղղությունները" : "Armenian Destinations"}
                 </span>
-                <h2 className="mt-3 font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FCFCF7]">
+                <h2 className="mt-2 sm:mt-3 font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FCFCF7]">
                   {locale === "ru" ? "Легендарные места" : locale === "hy" ? "Հայտնի վայրեր" : "Iconic Landmarks"}
                 </h2>
               </div>
               <Link
                 href={`/${locale}/tours`}
-                className="rounded-full border border-white/20 px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#FCFCF7] transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"
+                className="rounded-full border border-white/20 px-6 sm:px-8 py-2.5 sm:py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#FCFCF7] transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"
               >
                 {dict.tours.viewAll} →
               </Link>
             </div>
           </FadeIn>
 
-          {/* Bento Grid */}
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+          {/* Bento Grid: swipeable carousel on mobile, bento grid on desktop */}
+          <div className="mt-8 sm:mt-14 flex gap-4 overflow-x-auto pb-4 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-4 scrollbar-none snap-x snap-mandatory">
             {destinations.map((dest, i) => (
-              <FadeIn key={dest.name} delay={i * 0.08} className={dest.span}>
-                <Link
-                  href={dest.href}
-                  className="group relative block h-full w-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 transition-all duration-300 hover:border-[#C7FF32]/50 hover:shadow-2xl"
-                >
-                  <Image
-                    src={dest.image}
-                    alt={dest.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+              <div
+                key={dest.name}
+                className={`shrink-0 w-[80vw] max-w-[300px] snap-center sm:w-auto sm:shrink sm:max-w-none ${dest.span.replace("aspect-[16/11]", "aspect-[16/10]")}`}
+              >
+                <FadeIn delay={i * 0.08} className="h-full">
+                  <Link
+                    href={dest.href}
+                    className="group relative block h-full w-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 transition-all duration-300 hover:border-[#C7FF32]/50 hover:shadow-2xl"
+                  >
+                    <Image
+                      src={dest.image}
+                      alt={dest.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
-                  <span className="absolute left-4 top-4 rounded-full bg-[#312F2F]/80 px-3.5 py-1 text-xs font-bold text-[#C7FF32] backdrop-blur-md">
-                    {dest.tag}
-                  </span>
+                    <span className="absolute left-4 top-4 rounded-full bg-[#312F2F]/80 px-3.5 py-1 text-xs font-bold text-[#C7FF32] backdrop-blur-md">
+                      {dest.tag}
+                    </span>
 
-                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
-                    <h3 className="font-serif text-2xl sm:text-3xl font-normal text-white transition-colors group-hover:text-[#C7FF32]">
-                      {dest.name}
-                    </h3>
-                    <p className="mt-2 text-xs sm:text-sm font-medium text-white/80 line-clamp-2">
-                      {dest.subtitle}
-                    </p>
-                  </div>
-                </Link>
-              </FadeIn>
+                    <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+                      <h3 className="font-serif text-xl sm:text-3xl font-normal text-white transition-colors group-hover:text-[#C7FF32]">
+                        {dest.name}
+                      </h3>
+                      <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm font-medium text-white/80 line-clamp-2">
+                        {dest.subtitle}
+                      </p>
+                    </div>
+                  </Link>
+                </FadeIn>
+              </div>
             ))}
           </div>
         </div>
