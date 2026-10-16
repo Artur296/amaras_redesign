@@ -9,6 +9,7 @@ import {
   type ContentKey,
 } from "@/lib/content";
 import { getAdminUser } from "@/lib/admin-auth";
+import { revalidatePath } from "next/cache";
 
 // Current live content (defaults merged with saved edits).
 export async function GET() {
@@ -68,6 +69,26 @@ export async function PUT(request: NextRequest) {
       console.warn("Local filesystem write skipped (read-only):", fsErr);
     }
 
+    function purgeCaches() {
+      try {
+        revalidatePath("/", "layout");
+        revalidatePath("/ru");
+        revalidatePath("/hy");
+        revalidatePath("/en");
+        revalidatePath("/ru/tours");
+        revalidatePath("/hy/tours");
+        revalidatePath("/en/tours");
+        revalidatePath("/ru/tour-packages");
+        revalidatePath("/hy/tour-packages");
+        revalidatePath("/en/tour-packages");
+        revalidatePath("/ru/what-to-see");
+        revalidatePath("/hy/what-to-see");
+        revalidatePath("/en/what-to-see");
+      } catch (e) {
+        console.warn("revalidatePath error:", e);
+      }
+    }
+
     // 2. If GitHub is configured, commit to remote repo
     const cfg = githubConfig();
     if (cfg) {
@@ -80,10 +101,12 @@ export async function PUT(request: NextRequest) {
       const changed = Object.keys(edits).join(", ");
       try {
         const sha = await commitFiles(cfg, files, `content: update ${changed} via admin panel`);
+        purgeCaches();
         return NextResponse.json({
           ok: true,
           changed: sha !== null,
           commit: sha,
+          immediate: true,
         });
       } catch (error) {
         const message =
@@ -114,10 +137,12 @@ export async function PUT(request: NextRequest) {
       );
     }
 
+    purgeCaches();
     return NextResponse.json({
       ok: true,
       changed: true,
       local: true,
+      immediate: true,
       message: "Saved to content/*.json",
     });
   } catch (err) {
