@@ -4,7 +4,7 @@ import BookButton from "@/components/BookButton";
 import { packageIncludes } from "@/components/PackageIncludes";
 import { BedIcon, CalendarIcon, RouteIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
-import { discountPercent, formatPrice, tourHref, type Tour } from "@/lib/tours";
+import { discountPercent, formatPrice, getTourCode, tourHref, type Tour } from "@/lib/tours";
 
 export default function PackageCard({
   tour,
@@ -15,6 +15,7 @@ export default function PackageCard({
   locale: Locale;
   dict: Dict;
 }) {
+  const code = getTourCode(tour);
   const href = tourHref(locale, tour);
   const includes = packageIncludes(dict);
   const days = tour.itinerary?.map((entry) => entry.day) ?? [];
@@ -23,16 +24,22 @@ export default function PackageCard({
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#454343] bg-[#312F2F] text-[#FCFCF7] shadow-[0_4px_20px_rgba(49,47,47,0.2)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#C7FF32]/50 hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
-      {/* Top Header Strip */}
+      {/* Top Header Strip with Code */}
       <div className="flex items-center justify-between gap-2 border-b border-[#454343] bg-[#242323] px-5 py-3">
-        <span className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
-          <RouteIcon className="h-4 w-4" />
-          {dict.pkg.badge}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="rounded-full bg-black/80 px-2.5 py-0.5 text-xs font-black tracking-wider text-[#C7FF32] font-mono border border-[#C7FF32]/40 shadow-sm">
+            №{code}
+          </span>
+          <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
+            <RouteIcon className="h-4 w-4" />
+            {dict.pkg.badge}
+          </span>
+        </div>
         <span className="rounded-full bg-[#C7FF32] px-3 py-0.5 text-[11px] font-black uppercase tracking-wide text-[#312F2F]">
           {dict.pkg.allInclusive}
         </span>
       </div>
+
 
       {/* Image with Duration & Discount */}
       <Link href={href} className="relative block aspect-[16/10] overflow-hidden bg-black/20">
@@ -143,10 +150,11 @@ export default function PackageCard({
         <div className="mt-5 flex flex-col gap-2.5">
           <BookButton
             label={dict.tours.book}
-            message={`${dict.tours.bookMessage} ${tour.title[locale]}`}
+            message={`${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`}
             variant="accent"
             size="md"
           />
+
           <Link
             href={href}
             className="flex w-full items-center justify-center rounded-full border border-white/20 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#FCFCF7] transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"

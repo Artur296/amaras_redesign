@@ -5,6 +5,7 @@ import BookButton from "@/components/BookButton";
 import PackageIncludes from "@/components/PackageIncludes";
 import TourInfo from "@/components/TourInfo";
 import TourGallery from "@/components/TourGallery";
+import CopyCodeBadge from "@/components/CopyCodeBadge";
 import { CalendarIcon, PhoneIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
@@ -12,6 +13,7 @@ import { generateTourDetailSchema, generateBreadcrumbSchema } from "@/lib/schema
 import {
   discountPercent,
   formatPrice,
+  getTourCode,
   hasPrice,
   isPackageTour,
   tourPath,
@@ -36,6 +38,7 @@ export default function TourDetail({
   backLabel: string;
   phone: string;
 }) {
+  const code = getTourCode(tour);
   const catTitle = (id: string) =>
     categories.find((c) => c.id === id)?.title[locale] ?? id;
   const isPackage = isPackageTour(tour);
@@ -43,6 +46,7 @@ export default function TourDetail({
   const duration = tour.days
     ? `${tour.days} ${dict.tours.days}${tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}`
     : `${tour.durationHours} ${dict.tours.hours}`;
+
 
   const tourSchema = generateTourDetailSchema({
     tour,
@@ -91,6 +95,9 @@ export default function TourDetail({
         {/* Tour Header */}
         <div className="mt-4 sm:mt-6 flex flex-col gap-3 sm:gap-4">
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            {/* Interactive Tour Code Chip */}
+            <CopyCodeBadge code={code} locale={locale} />
+
             {tour.categories.map((id) => (
               <span
                 key={id}
@@ -99,6 +106,7 @@ export default function TourDetail({
                 {catTitle(id)}
               </span>
             ))}
+
             {discount !== null && (
               <span className="rounded-full bg-[#C7FF32] px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-black text-[#312F2F] shadow-xs">
                 −{discount}% {locale === "ru" ? "СКИДКА" : locale === "hy" ? "ԶԵՂՉ" : "OFF"}
@@ -353,10 +361,10 @@ export default function TourDetail({
                     }
                     message={
                       locale === "ru"
-                        ? `Здравствуйте! Хочу уточнить доступные даты для тура: ${tour.title[locale]}`
+                        ? `Здравствуйте! Хочу уточнить доступные даты для тура [Код: ${code}] ${tour.title[locale]}`
                         : locale === "hy"
-                        ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը տուրի համար՝ ${tour.title[locale]}`
-                        : `Hello! I would like to check available dates for: ${tour.title[locale]}`
+                        ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը [Կոդ՝ ${code}] ${tour.title[locale]} տուրի համար`
+                        : `Hello! I would like to check available dates for [Code: ${code}] ${tour.title[locale]}`
                     }
                     variant="primary"
                     size="lg"
@@ -366,12 +374,23 @@ export default function TourDetail({
                 <div className="pt-2">
                   <BookButton
                     label={dict.tours.book}
-                    message={`${dict.tours.bookMessage} ${tour.title[locale]}`}
+                    message={`${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`}
                     variant="primary"
                     size="lg"
                   />
                 </div>
               )}
+
+              {/* Tour Code Callout for Phone / Chat Orders */}
+              <div className="mt-3.5 flex items-center justify-between rounded-xl bg-[#F6F5EE] border border-[#EAE9E0] px-3.5 py-2.5 text-xs">
+                <span className="text-[#6B6967] font-semibold">
+                  {locale === "ru" ? "Код тура оператору:" : locale === "hy" ? "Տուրի կոդը օպերատորին․" : "Tour code for operator:"}
+                </span>
+                <span className="font-mono font-black text-[#312F2F] text-sm bg-white px-2 py-0.5 rounded border border-black/10">
+                  #{code}
+                </span>
+              </div>
+
 
               {/* Direct Telephone */}
               <div className="mt-4 text-center">
@@ -489,12 +508,13 @@ export default function TourDetail({
             message={
               tour.bookingDisabled
                 ? locale === "ru"
-                  ? `Здравствуйте! Хочу уточнить доступные даты для тура: ${tour.title[locale]}`
+                  ? `Здравствуйте! Хочу уточнить доступные даты для тура [Код: ${code}] ${tour.title[locale]}`
                   : locale === "hy"
-                  ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը տուրի համար՝ ${tour.title[locale]}`
-                  : `Hello! I would like to check available dates for: ${tour.title[locale]}`
-                : `${dict.tours.bookMessage} ${tour.title[locale]}`
+                  ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը [Կոդ՝ ${code}] ${tour.title[locale]} տուրի համար`
+                  : `Hello! I would like to check available dates for [Code: ${code}] ${tour.title[locale]}`
+                : `${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`
             }
+
             variant="primary"
             size="md"
             className="px-4 py-2 text-xs font-bold shadow-md"

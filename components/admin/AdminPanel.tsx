@@ -697,6 +697,7 @@ function ToursTab({
   const needle = query.trim().toLocaleLowerCase();
   const visible = needle
     ? rows.filter(({ tour }) =>
+        (tour.code && tour.code.toLowerCase().includes(needle)) ||
         (["ru", "hy", "en"] as const).some((l) =>
           (tour.title[l] ?? "").toLocaleLowerCase().includes(needle)
         )
@@ -822,9 +823,12 @@ function ToursTab({
                   onClick={() => setOpenSlug(open ? null : tour.slug)}
                   className="flex w-full flex-col sm:flex-row sm:items-center justify-between gap-2 py-3.5 pr-3 text-left"
                 >
-                  <span className="font-bold text-sm sm:text-base">
-                    {tour.title.ru || tour.title.en || tour.slug}
-                    <span className="ml-2 text-xs font-semibold text-muted">
+                  <span className="font-bold text-sm sm:text-base flex items-center flex-wrap gap-2">
+                    <span className="inline-block rounded bg-primary/10 border border-primary/20 px-2 py-0.5 text-xs font-mono font-black text-primary">
+                      #{tour.code || "---"}
+                    </span>
+                    <span>{tour.title.ru || tour.title.en || tour.slug}</span>
+                    <span className="text-xs font-semibold text-muted">
                       {tour.categories?.includes("individual") || tour.priceFromAmd === 0
                         ? "по запросу"
                         : `${tour.priceFromAmd.toLocaleString("ru-RU")} ֏`}
@@ -1291,7 +1295,14 @@ function ToursTab({
                     </div>
                   )}
 
-                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                  <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                    <Field label="Код тура (цифры: 101, 201, 301...)">
+                      <TextInput
+                        value={tour.code ?? ""}
+                        placeholder="101"
+                        onChange={(v) => update(i, { code: v.trim() })}
+                      />
+                    </Field>
                     <Field label="Link (slug, latin letters and dashes)">
                       <TextInput
                         value={tour.slug}

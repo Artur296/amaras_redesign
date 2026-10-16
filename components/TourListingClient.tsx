@@ -55,9 +55,14 @@ export default function TourListingClient({
           }
         }
 
-        // Search query filter (title, destinations, description across languages)
+        // Search query filter (code, title, destinations, description across languages)
         if (search.trim()) {
           const q = search.toLowerCase();
+          const cleanQ = q.replace(/[#№]/g, "").trim();
+          const tourCode = (tour.code || "").toLowerCase();
+          if (tourCode && (tourCode === cleanQ || tourCode.includes(cleanQ))) {
+            return true;
+          }
           const title = (tour.title[locale] || "").toLowerCase();
           const titleRu = (tour.title.ru || "").toLowerCase();
           const titleEn = (tour.title.en || "").toLowerCase();
@@ -77,6 +82,7 @@ export default function TourListingClient({
             return false;
           }
         }
+
 
         return true;
       })
@@ -134,11 +140,12 @@ export default function TourListingClient({
               onChange={(e) => setSearch(e.target.value)}
               placeholder={
                 locale === "ru"
-                  ? "Поиск по названию или месту..."
+                  ? "Поиск по коду (102) или месту..."
                   : locale === "hy"
-                  ? "Որոնել ըստ վայրի..."
-                  : "Search destination..."
+                  ? "Որոնել ըստ կոդի (102) կամ վայրի..."
+                  : "Search by code (102) or place..."
               }
+
               className="w-full rounded-full border border-[#EAE9E0] bg-[#FCFCF7] py-2 pl-9 pr-4 text-xs font-semibold text-[#312F2F] placeholder-black/40 focus:border-[#586EFF] focus:outline-none"
             />
             {search && (

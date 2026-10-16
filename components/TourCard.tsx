@@ -6,6 +6,7 @@ import type { Dict, Locale } from "@/lib/i18n";
 import {
   discountPercent,
   formatPrice,
+  getTourCode,
   hasPrice,
   isPackageTour,
   tourHref,
@@ -29,6 +30,7 @@ export default function TourCard({
     return <PackageCard tour={tour} locale={locale} dict={dict} />;
   }
 
+  const code = getTourCode(tour);
   const catTitle = (id: string) =>
     categories.find((c) => c.id === id)?.title[locale] ?? id;
   const href = tourHref(locale, tour);
@@ -36,6 +38,7 @@ export default function TourCard({
   const durationText = tour.days
     ? `${tour.days} ${dict.tours.days}${tour.nights ? ` / ${tour.nights} ${dict.tours.nights}` : ""}`
     : `${tour.durationHours} ${dict.tours.hours}`;
+
 
   return (
     <article className="group flex h-full flex-col rounded-3xl border border-[#EAE9E0] bg-white shadow-[0_2px_12px_rgba(49,47,47,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:border-[#586EFF]/40 hover:shadow-[0_16px_36px_rgba(49,47,47,0.12)]">
@@ -52,7 +55,10 @@ export default function TourCard({
 
         {/* Top Badges (Category & Discount) */}
         <div className="absolute left-3 top-3 right-3 flex items-center justify-between gap-2">
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="rounded-full bg-black/85 px-2.5 py-0.5 text-xs font-black tracking-wider text-[#C7FF32] backdrop-blur-md border border-[#C7FF32]/40 font-mono shadow-sm">
+              №{code}
+            </span>
             {tour.categories.map((category) => (
               <span
                 key={category}
@@ -62,6 +68,7 @@ export default function TourCard({
               </span>
             ))}
           </div>
+
 
           {tour.bookingDisabled ? (
             <span className="rounded-full bg-amber-500 px-2.5 py-1 text-xs font-black text-white shadow-sm">
@@ -157,15 +164,16 @@ export default function TourCard({
               message={
                 tour.bookingDisabled
                   ? (locale === "ru"
-                      ? `Здравствуйте! Подскажите, когда будут свободные даты на тур: ${tour.title[locale]}`
+                      ? `Здравствуйте! Подскажите, когда будут свободные даты на тур [Код: ${code}] ${tour.title[locale]}`
                       : locale === "hy"
-                      ? `Բարև ձեզ, կասե՞ք, երբ կլինեն ազատ օրեր տուրի համար՝ ${tour.title[locale]}`
-                      : `Hello! Could you let me know upcoming available dates for: ${tour.title[locale]}`)
-                  : `${dict.tours.bookMessage} ${tour.title[locale]}`
+                      ? `Բարև ձեզ, կասե՞ք, երբ կլինեն ազատ օրեր [Կոդ՝ ${code}] ${tour.title[locale]} տուրի համար`
+                      : `Hello! Could you let me know upcoming available dates for [Code: ${code}] ${tour.title[locale]}`)
+                  : `${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`
               }
               variant={tour.bookingDisabled ? "dark" : "primary"}
               size="sm"
             />
+
           </div>
         </div>
       </div>

@@ -93,6 +93,7 @@ export type ItineraryDay = {
 
 export type Tour = {
   slug: string;
+  code?: string; // Unique numeric identifier for easy booking & reference (e.g. "101", "201", "301")
   featured?: boolean; // show in "Popular tours" on the homepage (default true)
   categories: string[]; // category ids; a tour can be offered in several formats
   image: string;
@@ -793,3 +794,39 @@ export function tourPath(tour: Tour): string {
 export function tourHref(locale: string, tour: Tour): string {
   return `/${locale}${tourPath(tour)}`;
 }
+
+// Retrieve or compute the unique numeric tour code for quick client reference
+export function getTourCode(tour: Tour): string {
+  if (tour.code && tour.code.trim()) return tour.code.trim();
+  const slugCodeMap: Record<string, string> = {
+    "pervoe-znakomstvo-s-armeniey": "201",
+    "glubokoe-znakomstvo-s-armeniey": "202",
+    "pyat-dney-armenia-v-serdtse": "203",
+    "armenia-s-nochevkoy-v-gorah": "204",
+    "armenia-vne-shablonov": "205",
+    "echmiadzin-gayane-hripsime-lavash-zvartnots": "101",
+    "garni-charents-arch-lavash-geghard": "102",
+    "khor-virap-azat-garni-geghard": "103",
+    "khor-virap-areni-noravank-birds-cave": "104",
+    "tsaghkadzor-sevan-dilijan": "105",
+    "sevan-old-dilijan-haghartsin": "106",
+    "akhtala-haghpat-mendz-er-sanaahin": "107",
+    "khor-virap-sevan-garni-geghard": "108",
+    "khor-virap-areni-jermuk": "109",
+    "northern-armenia-monasteries": "110",
+    "khor-virap-areni-noravank-shaki": "111",
+    "tsaghkadzor-sevan-sevanavank": "112",
+    "garni-geghard-symphony": "113",
+    "hovhannavank-saghmosavank-alphabet": "114",
+    "gutanasar-sevan-dilijan": "115",
+    "jeep-mount-dimats": "301",
+    "jeep-volcano-aztahak": "302",
+    "jeep-mineral-geyser-jermuk": "303",
+    "jeep-smbataberd": "304",
+    "jeep-trchkan-waterfall": "305",
+    "jeep-mount-armaghan": "306",
+    "jeep-mount-khustup": "307",
+  };
+  return slugCodeMap[tour.slug] || (isPackageTour(tour) ? "200" : "100");
+}
+

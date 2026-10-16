@@ -10,6 +10,7 @@ import BookButton from "@/components/BookButton";
 
 interface TourHighlight {
   id: string;
+  code: string;
   tag: string;
   price: string;
   title: string;
@@ -31,6 +32,7 @@ export default function TopToursSection({
   const tours: TourHighlight[] = [
     {
       id: "ararat-noravank",
+      code: "104",
       tag: locale === "ru" ? "АРМЕНИЯ" : locale === "hy" ? "ՀԱՅԱՍՏԱՆ" : "ARMENIA",
       price: "15 000 ֏",
       title:
@@ -53,6 +55,7 @@ export default function TopToursSection({
     },
     {
       id: "garni-geghard",
+      code: "102",
       tag: locale === "ru" ? "АРМЕНИЯ" : locale === "hy" ? "ՀԱՅԱՍՏԱՆ" : "ARMENIA",
       price: "12 000 ֏",
       title:
@@ -75,6 +78,7 @@ export default function TopToursSection({
     },
     {
       id: "tatev-cable",
+      code: "111",
       tag: locale === "ru" ? "ЮГ АРМЕНИИ" : locale === "hy" ? "ՀԱՐԱՎԱՅԻՆ ՀԱՅԱՍՏԱՆ" : "SOUTH ARMENIA",
       price: "24 000 ֏",
       title:
@@ -93,8 +97,9 @@ export default function TopToursSection({
       leftCaption: locale === "ru" ? "Крылья Татева" : "Wings of Tatev",
       rightImage: images?.topTour3Right || "/images/azhdahak.jpg",
       rightCaption: locale === "ru" ? "Горные перевалы" : "Highland Passes",
-      href: `/${locale}/tours/popular/khor-virap-areni-noravank-birds-cave`,
+      href: `/${locale}/tours/popular/khor-virap-areni-noravank-shaki`,
     },
+
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -210,8 +215,11 @@ export default function TopToursSection({
               <div className="lg:col-span-4 order-1 lg:order-2 flex flex-col items-center text-center">
                 {/* Brand Header Banner: Electric Lime #C7FF32 */}
                 <div className="w-full flex items-center justify-between rounded-t-xl bg-[#C7FF32] px-5 sm:px-6 py-3.5 sm:py-4 shadow-lg text-[#161616]">
-                  <span className="font-sans text-lg sm:text-2xl font-black uppercase tracking-wider">
-                    {currentTour.tag}
+                  <span className="font-sans text-lg sm:text-2xl font-black uppercase tracking-wider flex items-center gap-2">
+                    <span>{currentTour.tag}</span>
+                    <span className="font-mono text-xs sm:text-sm bg-black/15 px-2 py-0.5 rounded text-black font-black">
+                      №{currentTour.code}
+                    </span>
                   </span>
                   <span className="font-sans text-xl sm:text-3xl font-black">
                     {currentTour.price}
@@ -238,13 +246,14 @@ export default function TopToursSection({
                     </Link>
                     <BookButton
                       label={locale === "ru" ? "Забронировать" : locale === "hy" ? "Ամրագրել" : "Book Now"}
-                      message={`Здравствуйте! Хочу забронировать тур: ${currentTour.title}`}
+                      message={`Здравствуйте! Хочу забронировать тур [Код: ${currentTour.code}] ${currentTour.title}`}
                       variant="accent"
                       size="md"
                       className="w-full sm:w-auto"
                     />
                   </div>
                 </div>
+
               </div>
 
               {/* Mobile / Tablet: 2-column side-by-side scenic photos */}

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
-import { type Tour, isPackageTour, tourHref, formatPrice } from "@/lib/tours";
+import { type Tour, isPackageTour, tourHref, formatPrice, getTourCode } from "@/lib/tours";
 import { type Attraction } from "@/lib/attractions";
 import { SearchIcon, WhatsAppIcon } from "@/components/icons";
 import { useLinks } from "@/components/SiteProvider";
@@ -127,8 +127,16 @@ export default function SearchModal({
       // Check slug
       if (matchesText(tour.slug.replace(/-/g, " "))) return true;
 
+      // Check numeric tour code (e.g. "102", "201", "301", "#102")
+      const tourCode = getTourCode(tour);
+      const cleanRaw = raw.replace(/[#№]/g, "").trim();
+      if (tourCode && (tourCode === cleanRaw || raw.includes(tourCode) || matchesText(tourCode))) {
+        return true;
+      }
+
       return false;
     };
+
 
     const matchesAttraction = (attr: Attraction) => {
       // Check names across all locales
@@ -207,7 +215,7 @@ export default function SearchModal({
 
   const labels = {
     ru: {
-      placeholder: "Поиск туров, турпакетов или мест (например: Гарни, Севан)...",
+      placeholder: "Поиск по коду тура (102, 201) или названию (Гарни, Севан)...",
       popular: "Популярные направления:",
       all: "Все",
       dayTours: "Экскурсии",
@@ -225,7 +233,7 @@ export default function SearchModal({
       seeStory: "Читать путеводитель →",
     },
     hy: {
-      placeholder: "Որոնել տուրեր, փաթեթներ կամ վայրեր (օր․՝ Գառնի, Սևան)...",
+      placeholder: "Որոնել ըստ տուրի կոդի (102, 201) կամ անվան (Գառնի, Սևան)...",
       popular: "Հանրաճանաչ ուղղություններ․",
       all: "Բոլորը",
       dayTours: "Էքսկուրսիաներ",
@@ -243,7 +251,8 @@ export default function SearchModal({
       seeStory: "Կարդալ պատմությունը →",
     },
     en: {
-      placeholder: "Search tours, packages or sights (e.g. Garni, Sevan)...",
+      placeholder: "Search by tour code (102, 201) or destination (Garni, Sevan)...",
+
       popular: "Popular searches:",
       all: "All",
       dayTours: "Day Tours",
@@ -378,9 +387,14 @@ export default function SearchModal({
                           />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="truncate text-sm font-bold text-white group-hover:text-[#C7FF32] transition-colors">
-                            {tour.title[locale]}
-                          </h4>
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-mono text-[10px] font-black text-[#C7FF32] bg-black/40 px-1.5 py-0.5 rounded border border-[#C7FF32]/30">
+                              №{getTourCode(tour)}
+                            </span>
+                            <h4 className="truncate text-sm font-bold text-white group-hover:text-[#C7FF32] transition-colors">
+                              {tour.title[locale]}
+                            </h4>
+                          </div>
                           <div className="mt-0.5 flex items-center gap-2 text-xs text-white/60">
                             {tour.priceFromAmd > 0 && (
                               <span className="font-semibold text-[#C7FF32]">
@@ -518,6 +532,9 @@ export default function SearchModal({
                                 </div>
                                 <div className="min-w-0">
                                   <div className="flex items-center gap-2">
+                                    <span className="rounded bg-black/40 px-1.5 py-0.5 text-[10px] font-black font-mono text-[#C7FF32] border border-[#C7FF32]/30">
+                                      №{getTourCode(tour)}
+                                    </span>
                                     <span className="rounded-md bg-white/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white/80">
                                       {labels.dayTours}
                                     </span>
@@ -592,6 +609,9 @@ export default function SearchModal({
                                 </div>
                                 <div className="min-w-0">
                                   <div className="flex items-center gap-2">
+                                    <span className="rounded bg-black/40 px-1.5 py-0.5 text-[10px] font-black font-mono text-[#C7FF32] border border-[#C7FF32]/30">
+                                      №{getTourCode(tour)}
+                                    </span>
                                     <span className="rounded-md bg-[#586EFF] px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-white">
                                       {tour.days} {labels.days} / {tour.nights} {labels.nights}
                                     </span>
