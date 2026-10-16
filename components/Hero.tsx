@@ -64,6 +64,7 @@ export default function Hero({
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % destinations.length);
@@ -85,15 +86,18 @@ export default function Hero({
     <MotionConfig reducedMotion="user">
       <section className="relative flex min-h-[100dvh] w-full flex-col justify-end lg:justify-center overflow-hidden bg-black text-[#FCFCF7] pt-20 pb-5 sm:pt-28 sm:pb-16">
         {/* Fullscreen Video Background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none bg-black">
           <video
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
-            poster="/images/hero-poster.jpg"
-            className="h-full w-full object-cover object-center"
+            onPlaying={() => setVideoLoaded(true)}
+            onLoadedData={() => setVideoLoaded(true)}
+            className={`h-full w-full object-cover object-center transition-opacity duration-700 ${
+              videoLoaded ? "opacity-100" : "opacity-0"
+            }`}
           >
             <source src="/video.mp4?v=2" type="video/mp4" />
           </video>
