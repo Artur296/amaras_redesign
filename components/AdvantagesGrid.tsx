@@ -11,7 +11,7 @@ export default function AdvantagesGrid({ locale }: { locale: Locale }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
       ),
-      highlight: locale === "ru" ? "Более 5 000" : locale === "hy" ? "Ավելի քան 5 000" : "Over 5,000",
+      highlight: locale === "ru" ? "Более 100 000" : locale === "hy" ? "Ավելի քան 100 000" : "Over 100,000",
       title: locale === "ru" ? "довольных туристов на отдыхе" : locale === "hy" ? "գոհ զբոսաշրջիկ" : "Happy travelers guided",
       desc: locale === "ru" ? "Организовали безупречный отдых и яркие эмоции" : "Curated memorable holidays across Armenia",
     },

@@ -24,7 +24,7 @@ export default function AboutCompanySection({ locale }: { locale: Locale }) {
       contactBtn: "Связаться с нами",
       statsExp: "10+ лет",
       statsExpLabel: "успешной работы в Ереване",
-      statsHappy: "15 000+",
+      statsHappy: "100 000+",
       statsHappyLabel: "довольных гостей со всего мира",
     },
     hy: {
@@ -44,7 +44,7 @@ export default function AboutCompanySection({ locale }: { locale: Locale }) {
       contactBtn: "Կապվել մեզ հետ",
       statsExp: "10+ տարի",
       statsExpLabel: "աշխատանքային փորձ Երևանում",
-      statsHappy: "15 000+",
+      statsHappy: "100 000+",
       statsHappyLabel: "գոհ ճամփորդներ աշխարհից",
     },
     en: {
@@ -64,7 +64,7 @@ export default function AboutCompanySection({ locale }: { locale: Locale }) {
       contactBtn: "Contact Us",
       statsExp: "10+ Years",
       statsExpLabel: "of hospitality in Yerevan",
-      statsHappy: "15,000+",
+      statsHappy: "100,000+",
       statsHappyLabel: "happy travelers worldwide",
     },
   }[locale];
