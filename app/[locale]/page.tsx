@@ -183,26 +183,32 @@ export default async function HomePage({ params }: Props) {
       {/* 1.4 Luxury Resort & Spa Showcase (Screenshot 1 bottom) */}
       <LuxuryResortCard locale={locale} images={site.homepageImages} />
 
-      {/* 1.5 Signature Full-Width Immersive Banner (Hidden on mobile to reduce page length) */}
+      {/* 1.5 TESTIMONIALS & GUEST REVIEWS (Moved up for high visibility & social proof) */}
+      <ReviewsSection initialReviews={approvedReviews} locale={locale} guides={guides} />
+
+      {/* 1.6 FREQUENTLY ASKED QUESTIONS (Armenia travel tips, payments, vehicles) */}
+      <FaqSection locale={locale} />
+
+      {/* 1.7 Signature Full-Width Immersive Banner (Hidden on mobile to reduce page length) */}
       <div className="hidden md:block">
         <FeaturedBannerSection locale={locale} bannerImage={site.homepageImages?.featuredBanner} />
       </div>
 
-      {/* 1.6 Scientific & Heritage Expeditions Banner (Hidden on mobile to reduce page length) */}
+      {/* 1.8 Scientific & Heritage Expeditions Banner (Hidden on mobile to reduce page length) */}
       <div className="hidden md:block">
         <HeritageBanner locale={locale} />
       </div>
 
-      {/* 1.7 "Отдых без мелкого шрифта" & Panoramic Escapes */}
+      {/* 1.9 "Отдых без мелкого шрифта" & Panoramic Escapes */}
       <NoFinePrintCards locale={locale} bannerImage={site.homepageImages?.panoramicBanner} />
 
-      {/* 1.8 "Наши преимущества" 8-Item Grid */}
+      {/* 1.10 "Наши преимущества" 8-Item Grid */}
       <AdvantagesGrid locale={locale} />
 
-      {/* 1.9 Stats & Trust Strip */}
+      {/* 1.11 Stats & Trust Strip */}
       <HeroStats locale={locale} dict={dict} />
 
-      {/* 1.10 About Amaras Tour Armenia Section */}
+      {/* 1.12 About Amaras Tour Armenia Section */}
       <AboutCompanySection locale={locale} />
 
       {/* 2. TRAVEL FORMATS (Landing Page Showcase) */}
@@ -374,12 +380,6 @@ export default async function HomePage({ params }: Props) {
 
 
 
-
-      {/* 8. TESTIMONIALS & GUEST REVIEWS (Dynamic with interactive submit) */}
-      <ReviewsSection initialReviews={approvedReviews} locale={locale} guides={guides} />
-
-      {/* 8.5 FREQUENTLY ASKED QUESTIONS (Armenia travel tips, payments, vehicles) */}
-      <FaqSection locale={locale} />
 
       {/* 9. FINAL CALL TO ACTION */}
       <section className="mx-auto max-w-[1360px] px-4 sm:px-6 py-14 sm:py-24 lg:py-32">
