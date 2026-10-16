@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import TourCard from "@/components/TourCard";
 import type { Dict, Locale } from "@/lib/i18n";
 import type { Category, Tour } from "@/lib/tours";
@@ -24,6 +24,16 @@ export default function TourListingClient({
   const [search, setSearch] = useState(initialQuery);
   const [sortBy, setSortBy] = useState<"default" | "price-asc" | "price-desc" | "duration">("default");
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get("q");
+      if (q) {
+        setSearch(q);
+      }
+    }
+  }, []);
+
   const categoryTabs = [
     { id: "all", label: locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլորը" : "All Tours" },
     { id: "popular", label: locale === "ru" ? "⭐ Популярные" : locale === "hy" ? "⭐ Հանրաճանաչ" : "⭐ Popular" },
@@ -45,19 +55,32 @@ export default function TourListingClient({
           }
         }
 
-        // Search query filter (title, destinations, description)
+        // Search query filter (title, destinations, description across languages)
         if (search.trim()) {
           const q = search.toLowerCase();
           const title = (tour.title[locale] || "").toLowerCase();
+          const titleRu = (tour.title.ru || "").toLowerCase();
+          const titleEn = (tour.title.en || "").toLowerCase();
           const desc = (tour.description[locale] || "").toLowerCase();
+          const descRu = (tour.description.ru || "").toLowerCase();
           const stops = (tour.destinations[locale] || []).join(" ").toLowerCase();
-          if (!title.includes(q) && !desc.includes(q) && !stops.includes(q)) {
+          const stopsRu = (tour.destinations.ru || []).join(" ").toLowerCase();
+          if (
+            !title.includes(q) &&
+            !titleRu.includes(q) &&
+            !titleEn.includes(q) &&
+            !desc.includes(q) &&
+            !descRu.includes(q) &&
+            !stops.includes(q) &&
+            !stopsRu.includes(q)
+          ) {
             return false;
           }
         }
 
         return true;
       })
+
       .sort((a, b) => {
         if (sortBy === "price-asc") {
           return (a.priceFromAmd || 0) - (b.priceFromAmd || 0);

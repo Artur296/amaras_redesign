@@ -25,6 +25,27 @@ export function WhatToSeeSection({ locale, initialAttractions }: Props) {
     }
   }, [initialAttractions]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const checkHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash) {
+        const found = allAttractions.find((a) => a.id === hash);
+        if (found) {
+          setSelectedAttraction(found);
+          const el = document.getElementById(hash);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }
+      }
+    };
+    checkHash();
+    window.addEventListener("hashchange", checkHash);
+    return () => window.removeEventListener("hashchange", checkHash);
+  }, [allAttractions]);
+
+
   const categories: { id: "all" | RegionCategory; label: Record<Locale, string>; count: number }[] = [
     {
       id: "all",
@@ -191,9 +212,11 @@ export function WhatToSeeSection({ locale, initialAttractions }: Props) {
           return (
             <FadeIn key={attraction.id} delay={Math.min(i * 0.05, 0.4)} className="h-full">
               <div
+                id={attraction.id}
                 onClick={() => setSelectedAttraction(attraction)}
-                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#EAE9E0] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer"
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[#EAE9E0] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer scroll-mt-24"
               >
+
                 {/* Image & Badges */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-black/5">
                   <Image

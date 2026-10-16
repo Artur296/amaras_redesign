@@ -7,18 +7,49 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { locales, type Dict, type Locale } from "@/lib/i18n";
 import { useLinks, useSite } from "@/components/SiteProvider";
-import { InstagramIcon, TelegramIcon, WhatsAppIcon } from "@/components/icons";
+import { SearchIcon, InstagramIcon, TelegramIcon, WhatsAppIcon } from "@/components/icons";
+import SearchModal from "@/components/SearchModal";
+import type { Tour } from "@/lib/tours";
+import type { Attraction } from "@/lib/attractions";
 
 const localeLabels: Record<Locale, string> = { ru: "RU", hy: "HY", en: "EN" };
 
-export default function Header({ locale, dict }: { locale: Locale; dict: Dict }) {
+export default function Header({
+  locale,
+  dict,
+  tours = [],
+  attractions = [],
+}: {
+  locale: Locale;
+  dict: Dict;
+  tours?: Tour[];
+  attractions?: Attraction[];
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const links = useLinks();
   const { logo } = useSite();
 
   const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
+
+  // Global shortcut: Cmd+K / Ctrl+K / / to open search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        (e.key === "k" && (e.metaKey || e.ctrlKey)) ||
+        (e.key === "/" &&
+          document.activeElement?.tagName !== "INPUT" &&
+          document.activeElement?.tagName !== "TEXTAREA")
+      ) {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +59,7 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   const restPath = pathname.replace(/^\/(ru|hy|en)(?=\/|$)/, "");
   const nav = [
@@ -107,6 +139,29 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
 
         {/* Right Actions */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          {/* Search Button (Лупа) */}
+          <button
+            type="button"
+            onClick={() => setIsSearchOpen(true)}
+            aria-label={
+              locale === "ru"
+                ? "Поиск туров и мест (⌘K / Ctrl+K)"
+                : locale === "hy"
+                ? "Որոնել տուրեր (⌘K)"
+                : "Search tours and sights (⌘K)"
+            }
+            title={
+              locale === "ru"
+                ? "Поиск по турам (⌘K / Ctrl+K)"
+                : locale === "hy"
+                ? "Որոնել տուրեր (⌘K)"
+                : "Search tours (⌘K)"
+            }
+            className="group relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-white/20 bg-black/25 text-white/90 shadow-lg backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-[#C7FF32] hover:bg-white/10 hover:text-[#C7FF32] active:scale-95"
+          >
+            <SearchIcon className="h-4 w-4 sm:h-4.5 sm:w-4.5 transition-transform duration-200 group-hover:scale-110" />
+          </button>
+
           {/* Language Switcher */}
           <div className="flex items-center rounded-full border border-white/20 bg-black/25 p-1 backdrop-blur-md shadow-lg" role="group" aria-label="Language">
             {locales.map((l) => (
@@ -152,7 +207,33 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
               className="overflow-hidden border-t border-[#454343] bg-[#242323] lg:hidden"
               aria-label="Mobile"
             >
-              <ul className="flex flex-col gap-1.5 px-6 py-5">
+              {/* Quick Search inside Drawer */}
+              <div className="px-6 pt-4 pb-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    setIsSearchOpen(true);
+                  }}
+                  className="flex w-full items-center justify-between gap-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white/70 hover:border-[#C7FF32] hover:text-white transition-all"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <SearchIcon className="h-4 w-4 text-[#C7FF32]" />
+                    <span>
+                      {locale === "ru"
+                        ? "Поиск: Гарни, Севан, Татев..."
+                        : locale === "hy"
+                        ? "Որոնում․ Գառնի, Սևան..."
+                        : "Search: Garni, Sevan..."}
+                    </span>
+                  </span>
+                  <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] font-bold text-white/80">
+                    ⌘K
+                  </span>
+                </button>
+              </div>
+
+              <ul className="flex flex-col gap-1.5 px-6 py-4">
                 {nav.map((item) => {
                   const isActive = isItemActive(item.href);
                   return (
@@ -203,6 +284,16 @@ export default function Header({ locale, dict }: { locale: Locale; dict: Dict })
           )}
         </AnimatePresence>
       </MotionConfig>
+
+      {/* Global Search Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        locale={locale}
+        tours={tours}
+        attractions={attractions}
+      />
     </header>
   );
 }
+

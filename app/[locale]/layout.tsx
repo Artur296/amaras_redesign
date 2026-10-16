@@ -154,7 +154,7 @@ export default async function LocaleLayout({
 }: Props & { children: React.ReactNode }) {
   const { locale } = await params;
   if (!locales.includes(locale as Locale)) notFound();
-  const { dicts, site } = await getContent();
+  const { dicts, site, tours, attractions } = await getContent();
   const dict = dicts[locale as Locale];
 
   return (
@@ -174,7 +174,12 @@ export default async function LocaleLayout({
       <body className="font-sans overflow-x-hidden min-h-screen relative" suppressHydrationWarning>
         <JeepPreloader />
         <SiteProvider site={site}>
-          <Header locale={locale as Locale} dict={dict} />
+          <Header
+            locale={locale as Locale}
+            dict={dict}
+            tours={tours}
+            attractions={attractions}
+          />
           <main className="overflow-x-hidden">{children}</main>
           <Footer locale={locale as Locale} dict={dict} site={site} />
           <ContactFab label={dict.hero.ctaWrite} />
@@ -182,4 +187,5 @@ export default async function LocaleLayout({
       </body>
     </html>
   );
+
 }
