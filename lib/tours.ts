@@ -118,6 +118,9 @@ export type Tour = {
   // leaves these empty simply shows the panel without them.
   meetTime?: string; // gathering time at the meeting point, e.g. "09:50"
   tickets?: Record<Locale, string[]>; // entrance fees paid on site
+  groupSize?: Record<Locale, string>; // group capacity, e.g. { ru: "до 4–6 человек", hy: "մինչև 4–6 մարդ", en: "up to 4–6 people" }
+  whatToBring?: Record<Locale, string[]>; // checklist of items to bring
+  dressCode?: Record<Locale, string>; // clothing & footwear advice
   // A tour that needs more than the shared text — its own inclusions, weather
   // caveats, packing list — carries the whole panel here instead, and the
   // shared sections are not used for it.
@@ -828,5 +831,100 @@ export function getTourCode(tour: Tour): string {
     "jeep-mount-khustup": "307",
   };
   return slugCodeMap[tour.slug] || (isPackageTour(tour) ? "200" : "100");
+}
+
+export function getTourGroupSize(tour: Tour, locale: Locale): string {
+  if (tour.groupSize?.[locale]) return tour.groupSize[locale];
+  if (tour.groupSize?.ru) return tour.groupSize.ru;
+  if (isPackageTour(tour)) {
+    return locale === "ru" ? "от 1 до 16 чел." : locale === "hy" ? "1-ից 16 մարդ" : "1 to 16 people";
+  }
+  if (tour.categories.includes("jeep")) {
+    return locale === "ru" ? "до 4–6 чел. (джип)" : locale === "hy" ? "մինչև 4–6 մարդ (ջիպ)" : "up to 4–6 people (4x4)";
+  }
+  if (tour.categories.includes("individual")) {
+    return locale === "ru" ? "1–4 чел. (индивидуально)" : locale === "hy" ? "1–4 մարդ (անհատական)" : "1–4 people (private)";
+  }
+  return locale === "ru" ? "до 15–18 чел." : locale === "hy" ? "մինչև 15–18 մարդ" : "up to 15–18 people";
+}
+
+export function getTourWhatToBring(tour: Tour, locale: Locale): string[] {
+  if (tour.whatToBring?.[locale]?.length) return tour.whatToBring[locale];
+  if (tour.whatToBring?.ru?.length) return tour.whatToBring.ru;
+
+  if (tour.categories.includes("jeep")) {
+    return locale === "ru"
+      ? [
+          "Паспорт или удостоверение личности",
+          "Удобный рюкзак и бутылка питьевой воды",
+          "Солнцезащитные очки и крем от солнца",
+          "Ветровка / тёплая кофта (в горах ветрено)",
+          "Наличные драмы для личных расходов",
+          "Powerbank для зарядки телефона",
+        ]
+      : locale === "hy"
+      ? [
+          "Անձնագիր կամ անձը հաստատող փաստաթուղթ",
+          "Հարմարավետ ուսապարկ և խմելու ջուր",
+          "Արևային ակնոց և արևապաշտպան քսուք",
+          "Տաք հագուստ / բաճկոն (լեռներում քամոտ է)",
+          "Կանխիկ դրամ անձնական ծախսերի համար",
+          "Լիցքավորիչ / Powerbank",
+        ]
+      : [
+          "Passport or valid ID",
+          "Comfortable daypack & drinking water",
+          "Sunglasses & sun protection cream",
+          "Windbreaker / warm jacket for mountains",
+          "Cash in AMD for local expenses",
+          "Power bank for mobile devices",
+        ];
+  }
+
+  return locale === "ru"
+    ? [
+        "Паспорт или удостоверение личности",
+        "Удобная обувь для прогулок",
+        "Бутылка питьевой воды",
+        "Солнцезащитные очки и головной убор",
+        "Наличные драмы для покупки сувениров и обеда",
+        "Зарядное устройство или powerbank",
+      ]
+    : locale === "hy"
+    ? [
+        "Անձնագիր կամ անձը հաստատող փաստաթուղթ",
+        "Հարմարավետ կոշիկներ քայլելու համար",
+        "Խմելու ջուր",
+        "Արևային ակնոց և գլխարկ",
+        "Կանխիկ դրամ հուշանվերների և ճաշի համար",
+        "Լիցքավորիչ / Powerbank",
+      ]
+    : [
+        "Passport or photo ID",
+        "Comfortable walking shoes",
+        "Bottle of drinking water",
+        "Sunglasses & sun hat",
+        "Cash in AMD for lunch & souvenirs",
+        "Mobile phone charger or power bank",
+      ];
+}
+
+export function getTourDressCode(tour: Tour, locale: Locale): string {
+  if (tour.dressCode?.[locale]) return tour.dressCode[locale];
+  if (tour.dressCode?.ru) return tour.dressCode.ru;
+
+  if (tour.categories.includes("jeep")) {
+    return locale === "ru"
+      ? "Удобная спортивная или треккинговая одежда и обувь с нескользящей подошвой. В горах погода переменчива — обязательно возьмите ветровку или теплую кофту."
+      : locale === "hy"
+      ? "Հարմարավետ սպորտային կամ լեռնային հագուստ և սպորտային կոշիկներ։ Լեռներում եղանակը փոփոխական է՝ անպայման վերցրեք տաք բաճկոն։"
+      : "Comfortable athletic or hiking clothing and trail sneakers. Mountain weather is changeable, so a warm windbreaker is essential.";
+  }
+
+  return locale === "ru"
+    ? "Удобная повседневная или спортивная одежда и комфортная обувь на плоской подошве для пеших прогулок. Для посещения действующих монастырей рекомендуется одежда, закрывающая плечи и колени, женщинам — платок на голову."
+    : locale === "hy"
+    ? "Հարմարավետ առօրյա կամ սպորտային հագուստ և հարմարավետ կոշիկներ։ Գործող վանքեր այցելելիս խորհուրդ է տրվում ուսերն ու ծնկները ծածկող հագուստ, կանանց համար՝ գլխաշոր։"
+    : "Comfortable casual or sportswear and walking shoes with good support. When visiting active churches and monasteries, modest attire covering shoulders and knees is recommended (a headscarf for women).";
 }
 
