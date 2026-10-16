@@ -1,4 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="7.78 -11.74 151.3 151.3">
-  <rect fill="#586eff" x="69.47" y="4.9" width="23.66" height="23.66" transform="translate(11.98 62.39) rotate(-45)"/>
-  <path fill="#c7ff32" d="M122.92,100.65v21.61c-3.23.41-6.49.63-9.75.66-.6.01-1.2.01-1.8,0-38-.39-75.7-26.11-77.11-77.29h21.58c1.11,42.06,36.27,60.41,67.08,55.02Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <style>
+    .bg { fill: #242323; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: transparent; }
+    }
+  </style>
+  <circle class="bg" cx="256" cy="256" r="256"/>
+  <g transform="translate(100, 100) scale(2.54)">
+    <rect fill="#586eff" x="69.47" y="4.9" width="23.66" height="23.66" transform="translate(11.98 62.39) rotate(-45)"/>
+    <path fill="#c7ff32" d="M122.92,100.65v21.61c-3.23.41-6.49.63-9.75.66-.6.01-1.2.01-1.8,0-38-.39-75.7-26.11-77.11-77.29h21.58c1.11,42.06,36.27,60.41,67.08,55.02Z"/>
+  </g>
 </svg>

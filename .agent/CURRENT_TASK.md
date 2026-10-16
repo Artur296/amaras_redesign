@@ -1,17 +1,18 @@
 # Current Task
 
 ## What We're Building
-- Comprehensive "Что посмотреть в Армении" (What to See in Armenia) interactive guide with 18 top historical, cultural, and natural attractions.
-- Region filtering tabs (Near Yerevan, Sevan & Dilijan, South Armenia, North & Lori), driving distance and travel time indicators, highlights, and full historical stories provided by Manuel AMARAS.
-- Replaced previous "Заметки путешественника / Вдохновение для поездки" block on the homepage.
-- Interactive modal with detailed background and direct WhatsApp inquiry booking CTA.
+- Comprehensive site-wide quality audit and optimization:
+  1. Reviews stability: in-memory global caching across warm invocations, zero-delay revalidation, newest-first sorting, eliminated touch snap-scroll jitter ("колбасило") on mobile.
+  2. Tour capacity & packing checklist: group size badge on cards, detail page packing & clothing recommendations with admin editing support across RU, HY, EN.
+  3. Search & catalog: tour code search across numeric codes (#101, #102, #201...), titles, destinations, and packages.
+  4. SEO & sitemap: added `/what-to-see` and `/guests` routes to `sitemap.ts`, fixed footer link.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-12 — Created `content/attractions.json`, `lib/attractions.ts`, and `components/WhatToSeeSection.tsx` with all 18 sights (Khor Virap, Garni, Geghard, Symphony of Stones, Lake Sevan, Noravank, Bird's Cave Areni-1, Tatev, Khndzoresk, Haghartsin, Goshavank, Haghpat, Akhtala, Sanahin, Odzun, Horomayr, Kobayr, Lori Berd). Integrated into `app/[locale]/page.tsx` replacing travel articles. Successfully verified in browser and passed `npm run build`.
+2026-10-16 — Full site audit performed, TypeScript & build passed without errors (86 static routes). Fixed review syncing and layout jitter, linked sitemap routes, synchronized both `origin/main` and `redesign/main` remotes.
 
 ## Next Steps
-1. Push changes to origin and redesign remotes.
-2. Review client feedback on attraction photos or descriptions.
+1. Monitor live reviews and user feedback in production.
+2. Review analytics and visitor conversions.
