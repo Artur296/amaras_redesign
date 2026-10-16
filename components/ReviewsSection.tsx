@@ -41,29 +41,13 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
         if (res.ok) {
           const data = await res.json();
           if (data && Array.isArray(data.reviews) && active) {
-            setReviews((prev) => {
-              const map = new Map<string, Review>();
-              // Fresh approved reviews from server
-              data.reviews
-                .filter((r: Review) => r.approved === true)
-                .forEach((r: Review) => {
-                  map.set(r.id, r);
-                });
-              // Initial reviews passed from SSR (only approved)
-              prev
-                .filter((r) => r.approved === true)
-                .forEach((r) => {
-                  if (!map.has(r.id)) map.set(r.id, r);
-                });
-
-              const list = Array.from(map.values());
-              list.sort((a, b) => {
-                const tA = a.createdAt ? new Date(a.createdAt).getTime() : new Date(a.date || 0).getTime();
-                const tB = b.createdAt ? new Date(b.createdAt).getTime() : new Date(b.date || 0).getTime();
-                return tB - tA;
-              });
-              return list;
+            const list = data.reviews.filter((r: Review) => r.approved === true);
+            list.sort((a: Review, b: Review) => {
+              const tA = a.createdAt ? new Date(a.createdAt).getTime() : new Date(a.date || 0).getTime();
+              const tB = b.createdAt ? new Date(b.createdAt).getTime() : new Date(b.date || 0).getTime();
+              return tB - tA;
             });
+            setReviews(list);
           }
         }
       } catch {}

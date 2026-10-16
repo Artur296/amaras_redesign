@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { NextRequest, NextResponse } from "next/server";
-import { getContent } from "@/lib/content";
+import { getContent, setRuntimeOverrides } from "@/lib/content";
 import { commitFiles, githubConfig } from "@/lib/github";
 import type { Review } from "@/lib/reviews";
 
@@ -10,21 +10,8 @@ export const revalidate = 0;
 
 export async function GET() {
   try {
-    let allReviews: Review[] = [];
-    try {
-      const p = path.join(process.cwd(), "content", "reviews.json");
-      if (fs.existsSync(p)) {
-        const raw = fs.readFileSync(p, "utf8");
-        allReviews = JSON.parse(raw);
-      }
-    } catch {}
-
-    if (!allReviews.length) {
-      const { reviews } = await getContent();
-      allReviews = reviews || [];
-    }
-
-    const approvedReviews = (allReviews || []).filter((r) => r.approved === true);
+    const { reviews } = await getContent();
+    const approvedReviews = (reviews || []).filter((r) => r.approved === true);
 
     // Sort newest first
     approvedReviews.sort((a, b) => {
@@ -83,25 +70,17 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    // Load existing reviews
-    let existingReviews: Review[] = [];
-    try {
-      const p = path.join(process.cwd(), "content", "reviews.json");
-      if (fs.existsSync(p)) {
-        const raw = fs.readFileSync(p, "utf8");
-        existingReviews = JSON.parse(raw);
-      }
-    } catch {}
-
-    if (!existingReviews.length) {
-      const content = await getContent();
-      existingReviews = content.reviews || [];
-    }
+    // Load existing reviews via authoritative content engine
+    const content = await getContent();
+    const existingReviews: Review[] = content.reviews || [];
 
     const allReviews: Review[] = [
       newReview,
       ...existingReviews.filter((r) => r.id !== newReview.id),
     ];
+
+    // Update in-memory overrides for zero-latency sync in current process
+    setRuntimeOverrides({ reviews: allReviews });
 
     // 1. Try local write
     try {
