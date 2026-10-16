@@ -169,6 +169,7 @@ export default function GuestsGallery({ guests, reviews, locale, guides }: Props
 
   // Filtered reviews
   const filteredReviews = reviews.filter((r) => {
+    if (r.approved !== true) return false;
     if (selectedGuide !== "all" && r.guideName !== selectedGuide) return false;
     return true;
   });

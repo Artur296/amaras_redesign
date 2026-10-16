@@ -1,20 +1,12 @@
 import fs from "fs";
 import path from "path";
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
 import { getContent } from "@/lib/content";
 import { commitFiles, githubConfig } from "@/lib/github";
 import type { Review } from "@/lib/reviews";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-
-// Persistent memory buffer across warm invocations in serverless / node runtime
-const globalReviewsCache = ((globalThis as any).__amarasReviewsCache ||
-  ((globalThis as any).__amarasReviewsCache = new Map<string, Review>())) as Map<
-  string,
-  Review
->;
 
 export async function GET() {
   try {
@@ -32,28 +24,17 @@ export async function GET() {
       allReviews = reviews || [];
     }
 
-    // Merge in any reviews stored in the runtime cache
-    const map = new Map<string, Review>();
-    for (const [id, r] of globalReviewsCache.entries()) {
-      map.set(id, r);
-    }
-    for (const r of allReviews) {
-      if (!map.has(r.id)) {
-        map.set(r.id, r);
-      }
-    }
-
-    const merged = Array.from(map.values()).filter((r) => r.approved !== false);
+    const approvedReviews = (allReviews || []).filter((r) => r.approved === true);
 
     // Sort newest first
-    merged.sort((a, b) => {
+    approvedReviews.sort((a, b) => {
       const tA = a.createdAt ? new Date(a.createdAt).getTime() : new Date(a.date || 0).getTime();
       const tB = b.createdAt ? new Date(b.createdAt).getTime() : new Date(b.date || 0).getTime();
       return tB - tA;
     });
 
     return NextResponse.json(
-      { reviews: merged },
+      { reviews: approvedReviews },
       {
         headers: {
           "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
@@ -98,12 +79,9 @@ export async function POST(request: NextRequest) {
       guideName: guideName.slice(0, 80),
       text: text.slice(0, 1200),
       date: new Date().toISOString().split("T")[0],
-      approved: true, // Immediately approved and published!
+      approved: false, // Requires admin approval in /admin before appearing on the site
       createdAt: new Date().toISOString(),
     };
-
-    // Store in global in-memory buffer immediately for zero-delay visibility
-    globalReviewsCache.set(newReview.id, newReview);
 
     // Load existing reviews
     let existingReviews: Review[] = [];
@@ -133,20 +111,16 @@ export async function POST(request: NextRequest) {
       console.warn("Local reviews.json write skipped (read-only):", fsErr);
     }
 
-    // 2. Revalidate cached pages immediately
-    try {
-      revalidatePath("/", "layout");
-      revalidatePath("/ru");
-      revalidatePath("/hy");
-      revalidatePath("/en");
-    } catch (e) {
-      console.warn("Reviews revalidatePath error:", e);
-    }
-
-    // 3. Try GitHub commit if configured
+    // 2. Try GitHub commit so admin panel on Vercel sees the new pending review
     const cfg = githubConfig();
     if (cfg) {
       try {
+        const fullContent = await getContent();
+        const updatedBundle = {
+          ...fullContent,
+          reviews: allReviews,
+        };
+
         await commitFiles(
           cfg,
           [
@@ -154,8 +128,12 @@ export async function POST(request: NextRequest) {
               path: "content/reviews.json",
               content: `${JSON.stringify(allReviews, null, 2)}\n`,
             },
+            {
+              path: "content/bundle.json",
+              content: `${JSON.stringify(updatedBundle, null, 2)}\n`,
+            },
           ],
-          `reviews: new review from ${newReview.author}`
+          `reviews: new review from ${newReview.author} (pending moderation)`
         );
       } catch (ghErr) {
         console.warn("GitHub commit for new review failed:", ghErr);
@@ -164,8 +142,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       ok: true,
-      review: newReview,
-      message: "Спасибо за ваш отзыв! Он успешно опубликован на сайте.",
+      pending: true,
+      message: "Спасибо за ваш отзыв! Он успешно отправлен на проверку и появится на сайте после одобрения администратором.",
     });
   } catch (error) {
     console.error("Failed to submit review:", error);

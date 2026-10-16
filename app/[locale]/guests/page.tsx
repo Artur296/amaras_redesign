@@ -100,7 +100,7 @@ export default async function GuestsPage({ params }: Props) {
       <main className="mx-auto max-w-[1240px] px-4 sm:px-6">
         <GuestsGallery
           guests={guests}
-          reviews={reviews}
+          reviews={(reviews || []).filter((r) => r.approved === true)}
           guides={guides}
           locale={locale}
         />

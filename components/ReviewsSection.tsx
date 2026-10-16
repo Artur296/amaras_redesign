@@ -16,7 +16,9 @@ type Props = {
 
 export default function ReviewsSection({ initialReviews, locale, guides }: Props) {
   const guideList = guides && guides.length ? guides : defaultGuides;
-  const [reviews, setReviews] = useState<Review[]>(initialReviews);
+  const [reviews, setReviews] = useState<Review[]>(() =>
+    (initialReviews || []).filter((r) => r.approved === true)
+  );
   const [modalOpen, setModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -24,18 +26,14 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  // Sync latest reviews from API and client storage with stable sorting
+  // Sync latest approved reviews from API
   useEffect(() => {
     let active = true;
 
     async function syncReviews() {
-      let localReviews: Review[] = [];
+      // Clean up legacy local storage if present
       try {
-        const stored = localStorage.getItem("amaras_recent_reviews");
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed)) localReviews = parsed;
-        }
+        localStorage.removeItem("amaras_recent_reviews");
       } catch {}
 
       try {
@@ -45,16 +43,18 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
           if (data && Array.isArray(data.reviews) && active) {
             setReviews((prev) => {
               const map = new Map<string, Review>();
-              // User's local reviews take priority for their own browser
-              localReviews.forEach((r) => map.set(r.id, r));
               // Fresh approved reviews from server
-              data.reviews.forEach((r: Review) => {
-                if (!map.has(r.id)) map.set(r.id, r);
-              });
-              // Initial reviews passed from SSR
-              prev.forEach((r) => {
-                if (!map.has(r.id)) map.set(r.id, r);
-              });
+              data.reviews
+                .filter((r: Review) => r.approved === true)
+                .forEach((r: Review) => {
+                  map.set(r.id, r);
+                });
+              // Initial reviews passed from SSR (only approved)
+              prev
+                .filter((r) => r.approved === true)
+                .forEach((r) => {
+                  if (!map.has(r.id)) map.set(r.id, r);
+                });
 
               const list = Array.from(map.values());
               list.sort((a, b) => {
@@ -64,28 +64,9 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
               });
               return list;
             });
-            return;
           }
         }
       } catch {}
-
-      // Fallback if network is offline but local reviews exist
-      if (localReviews.length > 0 && active) {
-        setReviews((prev) => {
-          const map = new Map<string, Review>();
-          localReviews.forEach((r) => map.set(r.id, r));
-          prev.forEach((r) => {
-            if (!map.has(r.id)) map.set(r.id, r);
-          });
-          const list = Array.from(map.values());
-          list.sort((a, b) => {
-            const tA = a.createdAt ? new Date(a.createdAt).getTime() : new Date(a.date || 0).getTime();
-            const tB = b.createdAt ? new Date(b.createdAt).getTime() : new Date(b.date || 0).getTime();
-            return tB - tA;
-          });
-          return list;
-        });
-      }
     }
 
     syncReviews();
@@ -136,7 +117,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       justNow: "Только что",
       modalTitle: "Оставить отзыв о поездке",
       modalSub:
-        "Поделитесь вашими впечатлениями! Отзыв сразу появится на сайте.",
+        "Поделитесь вашими впечатлениями! Отзыв появится на сайте после проверки администратором.",
       nameLabel: "Ваше имя и фамилия *",
       namePlaceholder: "Например: Анна Смирнова",
       cityLabel: "Ваш город или страна",
@@ -155,7 +136,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       submitting: "Отправка...",
       successTitle: "Спасибо за ваш отзыв!",
       successMsg:
-        "Ваш отзыв опубликован и уже доступен на сайте! Благодарим за доверие к AMARAS.",
+        "Ваш отзыв успешно отправлен на проверку и появится на сайте после одобрения администратором. Благодарим за доверие к AMARAS!",
       close: "Понятно",
       swipeHint: "← Листайте отзывы →",
       reviewsCount: "отзывов гостей",
@@ -170,7 +151,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       justNow: "Հենց նոր",
       modalTitle: "Գրել կարծիք ճամփորդության մասին",
       modalSub:
-        "Կիսվեք ձեր տպավորություններով։ Կարծիքն անմիջապես կհրապարակվի կայքում։",
+        "Կիսվեք ձեր տպավորություններով։ Կարծիքը կհրապարակվի կայքում ադմինիստրատորի հաստատումից հետո։",
       nameLabel: "Ձեր անունը *",
       namePlaceholder: "Օրինակ՝ Արմեն Կ.",
       cityLabel: "Ձեր քաղաքը կամ երկիրը",
@@ -189,7 +170,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       submitting: "Ուղարկվում է...",
       successTitle: "Շնորհակալությո՛ւն կարծիքի համար",
       successMsg:
-        "Ձեր կարծիքը հրապարակված է և արդեն հասանելի է կայքում։ Շնորհակալություն AMARAS-ին վստահելու համար։",
+        "Ձեր կարծիքն ուղարկվել է ստուգման և կհրապարակվի ադմինիստրատորի հաստատումից հետո։ Շնորհակալություն AMARAS-ին վստահելու համար:",
       close: "Փակել",
       swipeHint: "← Թերթեք կարծիքները →",
       reviewsCount: "հյուրերի կարծիք",
@@ -204,7 +185,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       justNow: "Just now",
       modalTitle: "Leave a Review",
       modalSub:
-        "Share your experience! Your review will immediately appear on the site.",
+        "Share your experience! Your review will appear on the site once approved by an admin.",
       nameLabel: "Your Name *",
       namePlaceholder: "e.g. John Doe",
       cityLabel: "Your City or Country",
@@ -223,7 +204,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       submitting: "Submitting...",
       successTitle: "Thank you for your review!",
       successMsg:
-        "Your review is published and now live on the site! Thank you for choosing AMARAS.",
+        "Your review has been submitted for moderation and will appear on the site after admin approval. Thank you for choosing AMARAS!",
       close: "Got it",
       swipeHint: "← Swipe reviews →",
       reviewsCount: "traveler reviews",
@@ -256,38 +237,6 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
         throw new Error(data.error || "Failed to submit review");
       }
 
-      const createdReview: Review = data.review || {
-        id: `rev-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-        author: author.trim(),
-        location: location.trim(),
-        tourTitle: tourTitle.trim(),
-        guideName: guideName.trim(),
-        rating,
-        text: text.trim(),
-        date: new Date().toISOString().split("T")[0],
-        approved: true,
-        createdAt: new Date().toISOString(),
-      };
-
-      // 1. Immediately prepend to local state so user sees it right away
-      setReviews((prev) => [
-        createdReview,
-        ...prev.filter((r) => r.id !== createdReview.id),
-      ]);
-
-      // 2. Persist in localStorage so it remains visible even if user reloads
-      try {
-        const stored = localStorage.getItem("amaras_recent_reviews");
-        const list: Review[] = stored ? JSON.parse(stored) : [];
-        localStorage.setItem(
-          "amaras_recent_reviews",
-          JSON.stringify([
-            createdReview,
-            ...list.filter((r) => r.id !== createdReview.id),
-          ].slice(0, 10))
-        );
-      } catch {}
-
       setSuccess(true);
       // Reset form fields
       setAuthor("");
@@ -296,13 +245,6 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       setGuideName("");
       setRating(5);
       setText("");
-
-      // Smooth scroll carousel to beginning to showcase the new review
-      setTimeout(() => {
-        if (sliderRef.current) {
-          sliderRef.current.scrollTo({ left: 0, behavior: "smooth" });
-        }
-      }, 300);
     } catch (err: any) {
       setErrorMsg(err.message || "Error submitting review");
     } finally {

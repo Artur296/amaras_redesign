@@ -1,18 +1,18 @@
 # Current Task
 
 ## What We're Building
-- Comprehensive site-wide quality audit and optimization:
-  1. Reviews stability: in-memory global caching across warm invocations, zero-delay revalidation, newest-first sorting, eliminated touch snap-scroll jitter ("колбасило") on mobile.
-  2. Tour capacity & packing checklist: group size badge on cards, detail page packing & clothing recommendations with admin editing support across RU, HY, EN.
-  3. Search & catalog: tour code search across numeric codes (#101, #102, #201...), titles, destinations, and packages.
-  4. SEO & sitemap: added `/what-to-see` and `/guests` routes to `sitemap.ts`, fixed footer link.
+- Review Moderation Workflow:
+  1. Reviews submitted by visitors (`ReviewsSection` & `GuestsGallery`) are saved with `approved: false`.
+  2. Public website (home carousel, guests gallery, `/api/reviews`) strictly filters and displays only reviews where `approved === true`.
+  3. Client optimistic prepend and local storage caching removed to ensure unapproved reviews never show up prematurely.
+  4. Submitted reviews enter admin moderation in `/admin` with amber badge count; only when an admin clicks "✓ Одобрить" and publishes changes do they become publicly visible.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-16 — Full site audit performed, TypeScript & build passed without errors (86 static routes). Fixed review syncing and layout jitter, linked sitemap routes, synchronized both `origin/main` and `redesign/main` remotes.
+2026-10-16 — Implemented review moderation. Updated `app/api/reviews/route.ts`, `components/ReviewsSection.tsx`, `components/GuestsGallery.tsx`, `app/[locale]/page.tsx`, and `app/[locale]/guests/page.tsx`. Verified build passes with 86 static routes.
 
 ## Next Steps
-1. Monitor live reviews and user feedback in production.
-2. Review analytics and visitor conversions.
+1. Push to both `origin/main` and `redesign/main`.
+2. Confirm moderation workflow in `/admin`.

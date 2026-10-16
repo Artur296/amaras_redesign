@@ -36,7 +36,7 @@ export default async function HomePage({ params }: Props) {
   const categories = publicCategories(allCategories);
   const dict = dicts[locale];
   const links = buildLinks(site);
-  const approvedReviews = (reviews || []).filter((r) => r.approved !== false);
+  const approvedReviews = (reviews || []).filter((r) => r.approved === true);
 
   const jsonLd = {
     "@context": "https://schema.org",
