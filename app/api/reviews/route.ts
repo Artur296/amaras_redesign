@@ -5,11 +5,34 @@ import { getContent } from "@/lib/content";
 import { commitFiles, githubConfig } from "@/lib/github";
 import type { Review } from "@/lib/reviews";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   try {
-    const { reviews } = await getContent();
-    const approved = (reviews || []).filter((r) => r.approved !== false);
-    return NextResponse.json({ reviews: approved });
+    let allReviews: Review[] = [];
+    try {
+      const p = path.join(process.cwd(), "content", "reviews.json");
+      if (fs.existsSync(p)) {
+        const raw = fs.readFileSync(p, "utf8");
+        allReviews = JSON.parse(raw);
+      }
+    } catch {}
+
+    if (!allReviews.length) {
+      const { reviews } = await getContent();
+      allReviews = reviews || [];
+    }
+
+    const approved = (allReviews || []).filter((r) => r.approved !== false);
+    return NextResponse.json(
+      { reviews: approved },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        },
+      }
+    );
   } catch (error) {
     return NextResponse.json({ error: "Failed to load reviews" }, { status: 500 });
   }
@@ -48,13 +71,29 @@ export async function POST(request: NextRequest) {
       guideName: guideName.slice(0, 80),
       text: text.slice(0, 1200),
       date: new Date().toISOString().split("T")[0],
-      approved: false, // Awaiting admin approval
+      approved: true, // Immediately approved and published!
       createdAt: new Date().toISOString(),
     };
 
     // Load existing reviews
-    const content = await getContent();
-    const allReviews: Review[] = [newReview, ...(content.reviews || [])];
+    let existingReviews: Review[] = [];
+    try {
+      const p = path.join(process.cwd(), "content", "reviews.json");
+      if (fs.existsSync(p)) {
+        const raw = fs.readFileSync(p, "utf8");
+        existingReviews = JSON.parse(raw);
+      }
+    } catch {}
+
+    if (!existingReviews.length) {
+      const content = await getContent();
+      existingReviews = content.reviews || [];
+    }
+
+    const allReviews: Review[] = [
+      newReview,
+      ...existingReviews.filter((r) => r.id !== newReview.id),
+    ];
 
     // 1. Try local write
     try {
@@ -76,7 +115,7 @@ export async function POST(request: NextRequest) {
               content: `${JSON.stringify(allReviews, null, 2)}\n`,
             },
           ],
-          `reviews: new pending review from ${newReview.author}`
+          `reviews: new review from ${newReview.author}`
         );
       } catch (ghErr) {
         console.warn("GitHub commit for new review failed:", ghErr);
@@ -85,8 +124,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       ok: true,
-      message:
-        "Спасибо за ваш отзыв! Он появится на сайте сразу после проверки администратором.",
+      review: newReview,
+      message: "Спасибо за ваш отзыв! Он успешно опубликован на сайте.",
     });
   } catch (error) {
     console.error("Failed to submit review:", error);
