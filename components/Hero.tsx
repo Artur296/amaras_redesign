@@ -99,7 +99,7 @@ export default function Hero({
               videoLoaded ? "opacity-100" : "opacity-0"
             }`}
           >
-            <source src="/video.mp4?v=2" type="video/mp4" />
+            <source src="/video.mp4?v=3" type="video/mp4" />
           </video>
         </div>
 
