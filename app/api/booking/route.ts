@@ -247,3 +247,69 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+export async function GET(request: NextRequest) {
+  const token = process.env.TELEGRAM_BOT_TOKEN?.trim() || "";
+  const rawChatIds = process.env.TELEGRAM_CHAT_ID?.trim() || "";
+  const chatIds = rawChatIds.split(/[,;\s]+/).map((s) => s.trim()).filter(Boolean);
+
+  const url = new URL(request.url);
+  const sendTest = url.searchParams.get("test") === "1";
+
+  if (!token) {
+    return NextResponse.json({
+      status: "error",
+      message: "TELEGRAM_BOT_TOKEN не обнаружен на сервере Vercel. Добавьте его в Settings -> Environment Variables и выполните Redeploy.",
+      botTokenConfigured: false,
+      chatIdsCount: chatIds.length,
+    });
+  }
+
+  if (chatIds.length === 0) {
+    return NextResponse.json({
+      status: "error",
+      message: "TELEGRAM_CHAT_ID не обнаружен на сервере Vercel. Добавьте его в Settings -> Environment Variables и выполните Redeploy.",
+      botTokenConfigured: true,
+      botTokenPrefix: token.slice(0, 10) + "...",
+      chatIdsCount: 0,
+    });
+  }
+
+  if (sendTest) {
+    const results = [];
+    for (const chatId of chatIds) {
+      try {
+        const tgRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: `🔔 <b>Тест подключения Telegram бота AMARAS</b>\n\nСервер Vercel успешно подключен к Telegram API!\nВремя: ${new Date().toISOString()}`,
+            parse_mode: "HTML",
+          }),
+        });
+        const tgData = await tgRes.json();
+        results.push({ chatId, ok: tgData.ok, description: tgData.description });
+      } catch (err: any) {
+        results.push({ chatId, ok: false, error: err.message });
+      }
+    }
+
+    return NextResponse.json({
+      status: "test_completed",
+      botTokenConfigured: true,
+      botTokenPrefix: token.slice(0, 10) + "...",
+      chatIds,
+      dispatchResults: results,
+    });
+  }
+
+  return NextResponse.json({
+    status: "ready",
+    botTokenConfigured: true,
+    botTokenPrefix: token.slice(0, 10) + "...",
+    chatIdsCount: chatIds.length,
+    chatIds,
+    hint: "Добавьте ?test=1 к URL этой страницы, чтобы отправить тестовое уведомление в Telegram",
+  });
+}
