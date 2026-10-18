@@ -454,7 +454,7 @@ export default function GuestsGallery({ guests, reviews, locale, guides }: Props
                     </div>
 
                     {/* Review Content */}
-                    <p className="text-xs sm:text-sm text-white/80 leading-relaxed italic">
+                    <p className="text-xs sm:text-sm text-white/80 leading-relaxed italic break-words whitespace-pre-line">
                       "{getReviewText(rev.text, locale)}"
                     </p>
                   </div>

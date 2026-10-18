@@ -378,8 +378,8 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                     </div>
                   )}
 
-                  {/* Review Text: Legible font on mobile */}
-                  <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#FCFCF7]/95 font-normal break-words line-clamp-6">
+                  {/* Review Text: Full review display without truncation */}
+                  <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#FCFCF7]/95 font-normal break-words whitespace-pre-line">
                     “{reviewContent}”
                   </p>
                 </div>
