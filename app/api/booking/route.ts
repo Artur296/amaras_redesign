@@ -153,9 +153,10 @@ export async function POST(request: NextRequest) {
 
     // 7. Dispatch to Telegram Bot API
     const botToken = process.env.TELEGRAM_BOT_TOKEN?.trim();
-    const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
+    const rawChatIds = process.env.TELEGRAM_CHAT_ID?.trim() || "";
+    const chatIds = rawChatIds.split(/[,;\s]+/).map((s) => s.trim()).filter(Boolean);
 
-    if (!botToken || !chatId) {
+    if (!botToken || chatIds.length === 0) {
       console.warn(
         `[AMARAS BOOKING] Telegram credentials missing. Booking #${bookingId} logged. Name: ${name}, Phone: ${phone}`
       );
@@ -167,62 +168,71 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      if (hasReceipt && receiptFile) {
-        // Send with document or photo
-        const tgFormData = new FormData();
-        tgFormData.append("chat_id", chatId);
-        // Caption limit is 1024 chars in Telegram
-        const caption = telegramMessage.length > 1024 ? telegramMessage.slice(0, 1020) + "..." : telegramMessage;
-        tgFormData.append("caption", caption);
-        tgFormData.append("parse_mode", "HTML");
+      const caption =
+        telegramMessage.length > 1024
+          ? telegramMessage.slice(0, 1020) + "..."
+          : telegramMessage;
 
-        const endpoint = isPdfReceipt
-          ? `https://api.telegram.org/bot${botToken}/sendDocument`
-          : `https://api.telegram.org/bot${botToken}/sendPhoto`;
+      const fileBuffer = hasReceipt && receiptFile ? await receiptFile.arrayBuffer() : null;
+      const fieldName = isPdfReceipt ? "document" : "photo";
+      const endpoint = isPdfReceipt
+        ? `https://api.telegram.org/bot${botToken}/sendDocument`
+        : `https://api.telegram.org/bot${botToken}/sendPhoto`;
 
-        const fieldName = isPdfReceipt ? "document" : "photo";
-        tgFormData.append(fieldName, receiptFile, receiptFile.name);
+      for (const targetChatId of chatIds) {
+        try {
+          if (fileBuffer && receiptFile) {
+            const tgFormData = new FormData();
+            tgFormData.append("chat_id", targetChatId);
+            tgFormData.append("caption", caption);
+            tgFormData.append("parse_mode", "HTML");
+            const blob = new Blob([fileBuffer], {
+              type: receiptFile.type || "application/octet-stream",
+            });
+            tgFormData.append(fieldName, blob, receiptFile.name);
 
-        const tgRes = await fetch(endpoint, {
-          method: "POST",
-          body: tgFormData,
-        });
+            const tgRes = await fetch(endpoint, {
+              method: "POST",
+              body: tgFormData,
+            });
 
-        if (!tgRes.ok) {
-          const errData = await tgRes.json().catch(() => ({}));
-          console.error("[AMARAS BOOKING] Telegram media send error:", errData);
-          // Fallback: send text only if media failed
-          await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              chat_id: chatId,
-              text: telegramMessage + `\n\n⚠️ <i>(Не удалось загрузить файл чека ${receiptFile.name})</i>`,
-              parse_mode: "HTML",
-            }),
-          });
-        }
-      } else {
-        // Send text message only
-        const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: telegramMessage,
-            parse_mode: "HTML",
-          }),
-        });
+            if (!tgRes.ok) {
+              const errData = await tgRes.json().catch(() => ({}));
+              console.error(`[AMARAS BOOKING] Media send error for ${targetChatId}:`, errData);
+              // Fallback to text message
+              await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  chat_id: targetChatId,
+                  text: `${telegramMessage}\n\n⚠️ <i>(Не удалось прикрепить файл ${receiptFile.name})</i>`,
+                  parse_mode: "HTML",
+                }),
+              });
+            }
+          } else {
+            // Text message only
+            const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                chat_id: targetChatId,
+                text: telegramMessage,
+                parse_mode: "HTML",
+              }),
+            });
 
-        if (!tgRes.ok) {
-          const errData = await tgRes.json().catch(() => ({}));
-          console.error("[AMARAS BOOKING] Telegram text send error:", errData);
+            if (!tgRes.ok) {
+              const errData = await tgRes.json().catch(() => ({}));
+              console.error(`[AMARAS BOOKING] Text send error for ${targetChatId}:`, errData);
+            }
+          }
+        } catch (perChatErr) {
+          console.error(`[AMARAS BOOKING] Error dispatching to ${targetChatId}:`, perChatErr);
         }
       }
     } catch (tgError) {
       console.error("[AMARAS BOOKING] Telegram request failed:", tgError);
-      // We still return success to the customer so they are not panicked,
-      // because the booking is backed up in the database / log.
     }
 
     return NextResponse.json({

@@ -1,17 +1,18 @@
 # Current Task
 
 ## What We're Building
-- FAQ limit and "Show more" button:
-  - Display first 3 questions by default across any selected category or all questions.
-  - Added modern interactive "Показать больше" / "Show more" button with remaining count badge (e.g. `Показать больше (+24)`) and animated arrow.
-  - Allows collapsing back to 3 questions with "Свернуть" / "Show less".
-  - Auto-resets to 3 questions when switching categories for a clean reading experience.
+- Telegram Booking Bot integration:
+  - Connected bot token and configured simultaneous dispatch to both the group (`-1004326622875`) and the founder chat (`1320156373`).
+  - Updated booking API endpoint (`/api/booking`) to support multi-chat dispatch with buffer reuse for payment receipt files (images and PDFs).
+  - Sent real test verification to group and founder with `ok: true`.
+  - Documented `.env.example` and local `.env.local`.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-18 — Implemented 3-question limit and expandable 'Show more' button in FAQ section, verified build (86/86 pages), and pushed to both remotes.
+2026-10-18 — Configured and tested Telegram booking bot notification pipeline, verified build (86/86 pages), and pushed to both remotes.
+
 
 
 
