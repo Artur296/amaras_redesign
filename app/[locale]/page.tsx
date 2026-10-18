@@ -8,7 +8,6 @@ import JeepExpeditionWidget from "@/components/JeepExpeditionWidget";
 import ReviewsSection from "@/components/ReviewsSection";
 import SpecialOffersSection from "@/components/SpecialOffersSection";
 import FaqSection from "@/components/FaqSection";
-import TopToursSection from "@/components/TopToursSection";
 import FeaturedBannerSection from "@/components/FeaturedBannerSection";
 import TrendBentoGrid from "@/components/TrendBentoGrid";
 import LuxuryResortCard from "@/components/LuxuryResortCard";
@@ -180,9 +179,6 @@ export default async function HomePage({ params }: Props) {
 
       {/* 1.2 COMPACT 1-TOUR-PER-CATEGORY SHOWCASE (Space-efficient express selector) */}
       <CompactCategoryTours tours={tours} categories={categories} locale={locale} />
-
-      {/* 1.3 Signature TOP TOURS 3-Column Showcase */}
-      <TopToursSection locale={locale} images={site.homepageImages} />
 
       {/* 1.4 Luxury Resort & Spa Showcase (Screenshot 1 bottom) */}
       <LuxuryResortCard locale={locale} images={site.homepageImages} />
