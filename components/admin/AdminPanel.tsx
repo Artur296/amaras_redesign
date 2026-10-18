@@ -13,8 +13,10 @@ import {
 import {
   defaultHomepageImages,
   defaultBentoExtreme,
+  defaultPaymentCard,
   type HomepageImages,
   type BentoExtremeConfig,
+  type PaymentCardConfig,
   type SiteInfo,
 } from "@/lib/site";
 import type { Content, ContentKey } from "@/lib/content";
@@ -40,7 +42,7 @@ const sectionNames: Record<ContentKey, string> = {
   tours: "Tours",
   categories: "Categories",
   i18n: "Texts",
-  site: "Contacts",
+  site: "Контакты & Реквизиты",
   hero: "Images",
   reviews: "Reviews",
   offers: "Спецпредложения",
@@ -236,6 +238,8 @@ export default function AdminPanel() {
                     ? "Гиды"
                     : t === "Attractions"
                     ? "Что посмотреть"
+                    : t === "Contacts"
+                    ? "Контакты & Реквизиты"
                     : t}
                 </span>
                 {pendingCount > 0 && (
@@ -2420,28 +2424,244 @@ function ContactsTab({
   onChange: (site: SiteInfo) => void;
   onSave: () => void;
 }) {
+  const [instLocale, setInstLocale] = useState<Locale>("ru");
+  const [copiedPreview, setCopiedPreview] = useState(false);
+
+  const paymentCard: PaymentCardConfig = site.paymentCard || defaultPaymentCard;
+
+  const updateCard = (patch: Partial<PaymentCardConfig>) => {
+    onChange({
+      ...site,
+      paymentCard: {
+        ...paymentCard,
+        ...patch,
+      },
+    });
+  };
+
   type ContactKey = "name" | "phone" | "whatsapp" | "telegram" | "instagram" | "email";
   const fields: { key: ContactKey; label: string; hint?: string }[] = [
-    { key: "name", label: "Company name" },
-    { key: "phone", label: "Phone" },
-    { key: "whatsapp", label: "WhatsApp number", hint: "digits only, e.g. 37499250525" },
-    { key: "telegram", label: "Telegram username", hint: "without @" },
-    { key: "instagram", label: "Instagram username", hint: "without @" },
-    { key: "email", label: "Email" },
+    { key: "name", label: "Название компании (Company name)" },
+    { key: "phone", label: "Контактный телефон (Phone)" },
+    { key: "whatsapp", label: "Номер WhatsApp", hint: "только цифры, например: 37499250525" },
+    { key: "telegram", label: "Telegram username", hint: "без знака @" },
+    { key: "instagram", label: "Instagram username", hint: "без знака @" },
+    { key: "email", label: "Email компании" },
   ];
+
   return (
-    <section>
-      <h2 className="text-xl font-extrabold">Contacts & social links</h2>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
-        {fields.map((f) => (
-          <Field key={f.key} label={f.hint ? `${f.label} (${f.hint})` : f.label}>
-            <TextInput
-              value={site[f.key]}
-              onChange={(v) => onChange({ ...site, [f.key]: v })}
-            />
-          </Field>
-        ))}
+    <section className="space-y-8">
+      {/* 1. Main Contacts */}
+      <div className="rounded-2xl border border-black/10 bg-white p-5 sm:p-6 shadow-sm">
+        <div className="border-b border-black/5 pb-3">
+          <h2 className="text-lg font-extrabold text-ink">
+            Основные контакты и социальные сети
+          </h2>
+          <p className="text-xs text-muted">
+            Используются в шапке, подвале и для прямых кнопок связи (WhatsApp, Telegram, Телефон, Email).
+          </p>
+        </div>
+
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {fields.map((f) => (
+            <Field key={f.key} label={f.hint ? `${f.label} (${f.hint})` : f.label}>
+              <TextInput
+                value={site[f.key]}
+                onChange={(v) => onChange({ ...site, [f.key]: v })}
+              />
+            </Field>
+          ))}
+        </div>
       </div>
+
+      {/* 2. Bank Payment Card Requisites */}
+      <div className="rounded-2xl border-2 border-[#C7FF32]/60 bg-white p-5 sm:p-6 shadow-sm space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/5 pb-4">
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#C7FF32] text-lg font-black text-[#312F2F] shadow-sm">
+              💳
+            </span>
+            <div>
+              <h3 className="text-base font-extrabold text-ink flex items-center gap-2">
+                Реквизиты банковской карты для оплаты
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[10px] font-black uppercase tracking-wider ${
+                    paymentCard.enabled !== false
+                      ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
+                      : "bg-gray-100 text-gray-600 border border-gray-300"
+                  }`}
+                >
+                  {paymentCard.enabled !== false ? "Включено" : "Выключено"}
+                </span>
+              </h3>
+              <p className="text-xs text-muted">
+                Эти данные отображаются клиенту в окне оформления бронирования перед загрузкой чека об оплате.
+              </p>
+            </div>
+          </div>
+
+          <label className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-ink cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={paymentCard.enabled !== false}
+              onChange={(e) => updateCard({ enabled: e.target.checked })}
+              className="h-4 w-4 rounded accent-primary cursor-pointer"
+            />
+            <span>Показывать реквизиты карты клиентам</span>
+          </label>
+        </div>
+
+        {paymentCard.enabled !== false ? (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Editor fields */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Field label="Номер банковской карты">
+                  <TextInput
+                    value={paymentCard.cardNumber}
+                    onChange={(v) => updateCard({ cardNumber: v })}
+                    placeholder="2410 0000 0000 0000"
+                  />
+                </Field>
+
+                <Field label="Банк (Ameriabank, Idram, Сбер и т.д.)">
+                  <TextInput
+                    value={paymentCard.bankName}
+                    onChange={(v) => updateCard({ bankName: v })}
+                    placeholder="Ameriabank / Idram"
+                  />
+                </Field>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Field label="Имя получателя / Владелец карты (ФИО)">
+                  <TextInput
+                    value={paymentCard.cardHolder}
+                    onChange={(v) => updateCard({ cardHolder: v })}
+                    placeholder="AMARAS TOURS LLC"
+                  />
+                </Field>
+
+                <Field label="Номер для перевода по телефону (Idram/Telcell)">
+                  <TextInput
+                    value={paymentCard.phonePay}
+                    onChange={(v) => updateCard({ phonePay: v })}
+                    placeholder="+374 99 250 525"
+                  />
+                </Field>
+              </div>
+
+              {/* Multilingual instructions */}
+              <div className="space-y-2 border-t border-black/5 pt-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-bold text-ink">
+                    Инструкция клиенту перед оплатой
+                  </label>
+                  <LocaleTabs active={instLocale} onChange={setInstLocale} />
+                </div>
+                <TextInput
+                  value={paymentCard.instruction?.[instLocale] || ""}
+                  onChange={(v) =>
+                    updateCard({
+                      instruction: {
+                        ...paymentCard.instruction,
+                        [instLocale]: v,
+                      },
+                    })
+                  }
+                  placeholder="Переведите сумму на указанную карту или по номеру телефона..."
+                />
+              </div>
+            </div>
+
+            {/* Live Card Preview */}
+            <div className="lg:col-span-5 flex flex-col justify-start">
+              <span className="block text-xs font-bold text-muted mb-2">
+                Превью (как блок выглядит для клиента в форме бронирования):
+              </span>
+              <div className="rounded-2xl border border-[#C7FF32]/40 bg-gradient-to-br from-[#1c1d22] to-[#121215] p-4 text-white shadow-lg space-y-3 relative overflow-hidden">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#C7FF32] text-xs font-black text-[#312F2F]">
+                      💳
+                    </span>
+                    <span className="text-xs font-extrabold text-white">
+                      Реквизиты для оплаты
+                    </span>
+                  </div>
+                  {paymentCard.bankName && (
+                    <span className="rounded-full bg-[#C7FF32]/15 border border-[#C7FF32]/35 px-2.5 py-0.5 text-[10px] font-black text-[#C7FF32] truncate">
+                      {paymentCard.bankName}
+                    </span>
+                  )}
+                </div>
+
+                <div className="rounded-xl border border-white/10 bg-black/50 p-2.5 flex items-center justify-between gap-2">
+                  <div>
+                    <span className="block text-[9px] uppercase font-bold text-white/50 tracking-wider">
+                      Номер карты для перевода:
+                    </span>
+                    <span className="font-mono text-sm sm:text-base font-black tracking-wider text-white">
+                      {paymentCard.cardNumber || "•••• •••• •••• ••••"}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (paymentCard.cardNumber) {
+                        navigator.clipboard?.writeText(paymentCard.cardNumber.replace(/\s+/g, ""));
+                        setCopiedPreview(true);
+                        setTimeout(() => setCopiedPreview(false), 2000);
+                      }
+                    }}
+                    className={`rounded-lg px-2.5 py-1 text-[11px] font-black transition-all ${
+                      copiedPreview
+                        ? "bg-[#C7FF32] text-[#312F2F]"
+                        : "bg-white/10 text-white hover:bg-[#C7FF32] hover:text-[#312F2F]"
+                    }`}
+                  >
+                    {copiedPreview ? "Скопировано! ✓" : "Скопировать"}
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 text-[11px]">
+                  {paymentCard.cardHolder && (
+                    <div className="rounded-lg bg-white/5 p-2 border border-white/5">
+                      <span className="text-white/50 block text-[9px] uppercase font-bold">
+                        Получатель:
+                      </span>
+                      <span className="font-bold text-white/90 truncate block">
+                        {paymentCard.cardHolder}
+                      </span>
+                    </div>
+                  )}
+                  {paymentCard.phonePay && (
+                    <div className="rounded-lg bg-white/5 p-2 border border-white/5">
+                      <span className="text-white/50 block text-[9px] uppercase font-bold">
+                        Idram / Telcell:
+                      </span>
+                      <span className="font-mono font-bold text-[#C7FF32] truncate block">
+                        {paymentCard.phonePay}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {paymentCard.instruction?.[instLocale] && (
+                  <p className="text-[10px] text-white/70 leading-relaxed italic border-t border-white/10 pt-2">
+                    ℹ️ {paymentCard.instruction[instLocale]}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-xl border border-dashed border-black/15 bg-black/5 p-6 text-center text-sm text-muted">
+            Отображение карты в форме бронирования отключено. Клиенты увидят только поле прикрепления чека.
+          </div>
+        )}
+      </div>
+
       <SaveBar onSave={onSave} label="Опубликовать изменения сразу" />
     </section>
   );

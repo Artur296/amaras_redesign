@@ -56,5 +56,17 @@
       "Рафтинг"
     ],
     "link": "/tours/jeep"
+  },
+  "paymentCard": {
+    "enabled": true,
+    "cardNumber": "2410 0000 0000 0000",
+    "bankName": "Ameriabank / Любой банк",
+    "cardHolder": "AMARAS TOURS LLC",
+    "phonePay": "+374 99 250 525",
+    "instruction": {
+      "ru": "Переведите сумму на указанную карту или по номеру телефона (Idram / Telcell). После оплаты прикрепите чек или скриншот ниже.",
+      "hy": "Փոխանցեք գումարը նշված քարտին կամ հեռախոսահամարով (Idram / Telcell): Վճարումից հետո կցեք անդորրագիրը ներքևում:",
+      "en": "Transfer the amount to the card or via phone number (Idram / Telcell). After payment, please attach the receipt or screenshot below."
+    }
   }
 }

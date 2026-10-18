@@ -75,6 +75,28 @@ export const defaultBentoExtreme: BentoExtremeConfig = {
   link: "/tours/jeep",
 };
 
+export interface PaymentCardConfig {
+  enabled: boolean;
+  cardNumber: string;
+  bankName: string;
+  cardHolder: string;
+  phonePay: string;
+  instruction: Record<"ru" | "hy" | "en", string>;
+}
+
+export const defaultPaymentCard: PaymentCardConfig = {
+  enabled: true,
+  cardNumber: "2410 0000 0000 0000",
+  bankName: "Ameriabank / Любой банк",
+  cardHolder: "AMARAS TOURS LLC",
+  phonePay: "+374 99 250 525",
+  instruction: {
+    ru: "Переведите сумму на указанную карту или по номеру телефона (Idram / Telcell). После оплаты прикрепите чек или скриншот ниже.",
+    hy: "Փոխանցեք գումարը նշված քարտին կամ հեռախոսահամարով (Idram / Telcell): Վճարումից հետո կցեք անդորրագիրը ներքևում:",
+    en: "Transfer the amount to the card or via phone number (Idram / Telcell). After payment, please attach the receipt or screenshot below.",
+  },
+};
+
 export const site = {
   name: "Amaras Tour",
   url: "https://amarastour.com",
@@ -91,6 +113,8 @@ export const site = {
   homepageImages: defaultHomepageImages,
   // Configurable Extreme & Adventure card settings; editable in /admin.
   bentoExtreme: defaultBentoExtreme,
+  // Bank payment card requisites for booking; editable in /admin.
+  paymentCard: defaultPaymentCard,
 };
 
 export type SiteInfo = typeof site;

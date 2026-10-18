@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
-import { useLinks } from "@/components/SiteProvider";
+import { useLinks, useSite } from "@/components/SiteProvider";
+import { defaultPaymentCard } from "@/lib/site";
 import { TelegramIcon, WhatsAppIcon } from "@/components/icons";
 
 export type BookingModalProps = {
@@ -32,6 +33,12 @@ const I18N = {
     emailPlaceholder: "example@mail.com",
     wishesLabel: "Пожелания (отель, трансфер, особое меню)",
     wishesPlaceholder: "Укажите адрес отеля или любые пожелания...",
+    paymentCardBadge: "Реквизиты для оплаты",
+    cardNumberLabel: "Номер карты для перевода:",
+    cardHolderLabel: "Получатель:",
+    phonePayLabel: "По номеру телефона (Idram / Telcell):",
+    copyBtn: "Скопировать",
+    copiedBtn: "Скопировано! ✓",
     receiptLabel: "Чек оплаты (скриншот или PDF)",
     receiptHint: "Прикрепите скриншот перевода или квитанцию в формате JPG, PNG или PDF (до 10 МБ)",
     receiptUploadBtn: "Загрузить чек оплаты",
@@ -62,6 +69,12 @@ const I18N = {
     emailPlaceholder: "example@mail.com",
     wishesLabel: "Լրացուցիչ ցանկություններ (հյուրանոց, տրանսֆեր)",
     wishesPlaceholder: "Նշեք հյուրանոցի հասցեն կամ նախասիրությունները...",
+    paymentCardBadge: "Վճարման տվյալներ",
+    cardNumberLabel: "Քարտի համարը փոխանցման համար՝",
+    cardHolderLabel: "Ստացող՝",
+    phonePayLabel: "Հեռախոսահամարով (Idram / Telcell)՝",
+    copyBtn: "Պատճենել",
+    copiedBtn: "Պատճենվա՛ծ է ✓",
     receiptLabel: "Վճարման անդորրագիր (սքրինշոթ կամ PDF)",
     receiptHint: "Կցեք փոխանցման սքրինշոթը կամ անդորրագիրը JPG, PNG կամ PDF ձևաչափով (մինչև 10 ՄԲ)",
     receiptUploadBtn: "Կցել անդորրագիրը",
@@ -92,6 +105,12 @@ const I18N = {
     emailPlaceholder: "example@mail.com",
     wishesLabel: "Special Requests (hotel pickup, dietary)",
     wishesPlaceholder: "Mention hotel address or any specific wishes...",
+    paymentCardBadge: "Payment Details",
+    cardNumberLabel: "Card number for transfer:",
+    cardHolderLabel: "Cardholder:",
+    phonePayLabel: "Via phone number (Idram / Telcell):",
+    copyBtn: "Copy",
+    copiedBtn: "Copied! ✓",
     receiptLabel: "Payment Receipt (Screenshot or PDF)",
     receiptHint: "Attach transfer receipt or screenshot in JPG, PNG, or PDF format (up to 10 MB)",
     receiptUploadBtn: "Upload Receipt",
@@ -116,6 +135,11 @@ export default function BookingModal({
 }: BookingModalProps) {
   const t = I18N[locale] || I18N.ru;
   const links = useLinks();
+  const site = useSite();
+  const paymentCard = site?.paymentCard || defaultPaymentCard;
+
+  const [copiedCard, setCopiedCard] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
 
   const [title, setTitle] = useState(tourTitle);
   const [date, setDate] = useState(defaultDate);
@@ -180,6 +204,24 @@ export default function BookingModal({
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+  };
+
+  const handleCopyCard = (cardNum: string) => {
+    const clean = cardNum.replace(/\s+/g, "");
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(clean);
+    }
+    setCopiedCard(true);
+    setTimeout(() => setCopiedCard(false), 2500);
+  };
+
+  const handleCopyPhone = (phoneNum: string) => {
+    const clean = phoneNum.replace(/[^\d+]/g, "");
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(clean);
+    }
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2500);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -486,7 +528,108 @@ export default function BookingModal({
                 </div>
               </div>
 
-              {/* 5. Payment Check Attachment (PDF or Image) */}
+              {/* 5. Payment Card Details for Transfer */}
+              {paymentCard?.enabled !== false && paymentCard?.cardNumber && (
+                <div className="rounded-2xl border border-[#C7FF32]/40 bg-gradient-to-br from-[#1c1d22] to-[#121215] p-3.5 sm:p-4 shadow-xl shadow-black/50 space-y-3 relative overflow-hidden">
+                  <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#C7FF32]/10 rounded-full blur-2xl pointer-events-none" />
+
+                  {/* Header with badge & bank */}
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#C7FF32] text-xs font-black text-[#312F2F] shrink-0">
+                        💳
+                      </span>
+                      <span className="text-xs sm:text-sm font-extrabold text-white tracking-wide">
+                        {t.paymentCardBadge}
+                      </span>
+                    </div>
+                    {paymentCard.bankName && (
+                      <span className="rounded-full bg-[#C7FF32]/15 border border-[#C7FF32]/35 px-2.5 py-0.5 text-[10px] sm:text-[11px] font-black text-[#C7FF32] truncate max-w-[180px]">
+                        {paymentCard.bankName}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Card Number & Copy Button */}
+                  <div className="rounded-xl border border-white/10 bg-black/50 p-2.5 sm:p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="min-w-0">
+                      <span className="block text-[10px] uppercase font-bold text-white/50 tracking-wider">
+                        {t.cardNumberLabel}
+                      </span>
+                      <span className="font-mono text-base sm:text-lg font-black tracking-wider text-white select-all break-all">
+                        {paymentCard.cardNumber}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleCopyCard(paymentCard.cardNumber)}
+                      className={`self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-black transition-all active:scale-95 cursor-pointer shrink-0 ${
+                        copiedCard
+                          ? "bg-[#C7FF32] text-[#312F2F] shadow-[0_0_12px_rgba(199,255,50,0.4)]"
+                          : "bg-white/10 hover:bg-[#C7FF32] hover:text-[#312F2F] text-white"
+                      }`}
+                    >
+                      {copiedCard ? (
+                        <>
+                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{t.copiedBtn}</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-3.5 h-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          </svg>
+                          <span>{t.copyBtn}</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Card Holder & Phone Payment */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    {paymentCard.cardHolder && (
+                      <div className="rounded-lg bg-white/5 px-2.5 py-1.5 border border-white/5">
+                        <span className="text-white/50 block text-[10px] uppercase font-bold">
+                          {t.cardHolderLabel}
+                        </span>
+                        <span className="font-bold text-white/90 truncate block">
+                          {paymentCard.cardHolder}
+                        </span>
+                      </div>
+                    )}
+                    {paymentCard.phonePay && (
+                      <div className="rounded-lg bg-white/5 px-2.5 py-1.5 border border-white/5 flex items-center justify-between gap-1">
+                        <div className="min-w-0">
+                          <span className="text-white/50 block text-[10px] uppercase font-bold">
+                            {t.phonePayLabel}
+                          </span>
+                          <span className="font-mono font-bold text-[#C7FF32] text-xs truncate block">
+                            {paymentCard.phonePay}
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleCopyPhone(paymentCard.phonePay)}
+                          className="shrink-0 text-[10px] font-bold text-white/80 hover:text-white px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 transition-colors"
+                        >
+                          {copiedPhone ? "✓" : t.copyBtn}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Instruction */}
+                  {paymentCard.instruction?.[locale] && (
+                    <p className="text-[11px] text-white/70 leading-relaxed italic border-t border-white/10 pt-2">
+                      ℹ️ {paymentCard.instruction[locale]}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {/* 6. Payment Check Attachment (PDF or Image) */}
               <div className="rounded-2xl border border-white/15 bg-black/20 p-4">
                 <div className="flex items-center justify-between">
                   <label className="text-xs sm:text-sm font-bold text-[#C7FF32] flex items-center gap-1.5">
