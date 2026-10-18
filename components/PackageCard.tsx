@@ -155,6 +155,7 @@ export default function PackageCard({
         <div className="mt-5 flex flex-col gap-2.5">
           <BookButton
             label={dict.tours.book}
+            tourTitle={tour.title[locale]}
             message={`${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`}
             variant="accent"
             size="md"

@@ -168,6 +168,7 @@ export default function TourCard({
                   ? (locale === "ru" ? "Уточнить" : locale === "hy" ? "Ճշտել" : "Inquire")
                   : dict.tours.book
               }
+              tourTitle={tour.title[locale]}
               message={
                 tour.bookingDisabled
                   ? (locale === "ru"

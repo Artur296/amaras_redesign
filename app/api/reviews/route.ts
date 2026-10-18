@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getContent, setRuntimeOverrides } from "@/lib/content";
 import { commitFiles, githubConfig } from "@/lib/github";
 import type { Review } from "@/lib/reviews";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -35,6 +36,15 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = getClientIp(request);
+    const rateCheck = checkRateLimit(`review-${ip}`, 5, 5 * 60 * 1000);
+    if (!rateCheck.success) {
+      return NextResponse.json(
+        { error: "Слишком много запросов. Пожалуйста, повторите попытку через несколько минут." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json().catch(() => ({}));
     const author = typeof body.author === "string" ? body.author.trim() : "";
     const text = typeof body.text === "string" ? body.text.trim() : "";

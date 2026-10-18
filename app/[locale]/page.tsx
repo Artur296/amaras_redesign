@@ -16,6 +16,7 @@ import HeritageBanner from "@/components/HeritageBanner";
 import AdvantagesGrid from "@/components/AdvantagesGrid";
 import NoFinePrintCards from "@/components/NoFinePrintCards";
 import AboutCompanySection from "@/components/AboutCompanySection";
+import CompactCategoryTours from "@/components/CompactCategoryTours";
 
 import { faqs } from "@/lib/faqs";
 import { CalendarIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
@@ -31,7 +32,7 @@ export const revalidate = 300;
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   if (!locales.includes(locale as Locale)) notFound();
-  const { dicts, categories: allCategories, site, hero, reviews, offers, guides } = await getContent();
+  const { dicts, categories: allCategories, site, hero, reviews, offers, guides, tours } = await getContent();
 
   const categories = publicCategories(allCategories);
   const dict = dicts[locale];
@@ -176,6 +177,9 @@ export default async function HomePage({ params }: Props) {
 
       {/* 1.1 "Внутренний туризм — это тренд" Bento Grid (Screenshot 1) */}
       <TrendBentoGrid locale={locale} images={site.homepageImages} />
+
+      {/* 1.2 COMPACT 1-TOUR-PER-CATEGORY SHOWCASE (Space-efficient express selector) */}
+      <CompactCategoryTours tours={tours} categories={categories} locale={locale} />
 
       {/* 1.3 Signature TOP TOURS 3-Column Showcase */}
       <TopToursSection locale={locale} images={site.homepageImages} />

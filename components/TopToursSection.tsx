@@ -246,6 +246,7 @@ export default function TopToursSection({
                     </Link>
                     <BookButton
                       label={locale === "ru" ? "Забронировать" : locale === "hy" ? "Ամրագրել" : "Book Now"}
+                      tourTitle={currentTour.title}
                       message={`Здравствуйте! Хочу забронировать тур [Код: ${currentTour.code}] ${currentTour.title}`}
                       variant="accent"
                       size="md"

@@ -85,6 +85,34 @@ html {
   }
 }
 
+/* Mobile typography scale & touch optimization */
+@media (max-width: 640px) {
+  /* Prevent iOS Safari auto-zoom on input focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Boost minimum readable font size for descriptions and cards on phones */
+  body {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* Safe tap targets */
+  button, a {
+    min-height: 40px;
+  }
+
+  .text-xs {
+    font-size: 0.8125rem !important; /* Elevate 12px to 13px */
+    line-height: 1.25rem !important;
+  }
+
+  .text-\[11px\], .text-\[10px\] {
+    font-size: 0.75rem !important; /* Elevate 10-11px to 12px */
+  }
+}
+
 /* Hide Next.js dev indicator portal (bottom left "N" icon) */
 nextjs-portal,
 [data-nextjs-toast],

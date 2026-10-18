@@ -481,6 +481,7 @@ export default function TourDetail({
                         ? "Ճշտել հասանելի օրերը"
                         : "Check Available Dates"
                     }
+                    tourTitle={tour.title[locale]}
                     message={
                       locale === "ru"
                         ? `Здравствуйте! Хочу уточнить доступные даты для тура [Код: ${code}] ${tour.title[locale]}`
@@ -496,6 +497,7 @@ export default function TourDetail({
                 <div className="pt-2">
                   <BookButton
                     label={dict.tours.book}
+                    tourTitle={tour.title[locale]}
                     message={`${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`}
                     variant="primary"
                     size="lg"
@@ -627,6 +629,7 @@ export default function TourDetail({
                   : "Check Dates"
                 : dict.tours.book
             }
+            tourTitle={tour.title[locale]}
             message={
               tour.bookingDisabled
                 ? locale === "ru"
