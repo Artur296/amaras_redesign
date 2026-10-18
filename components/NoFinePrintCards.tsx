@@ -13,9 +13,9 @@ export default function NoFinePrintCards({
   bannerImage?: string;
 }) {
   return (
-    <section className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12 py-10 sm:py-20 lg:py-28">
+    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-16">
       {/* Header */}
-      <div className="mb-6 sm:mb-12">
+      <div className="mb-4 sm:mb-8">
         <span className="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#586EFF]">
           {locale === "ru"
             ? "ПОЧЕМУ ВЫБИРАЮТ AMARAS TOUR?"
@@ -38,7 +38,7 @@ export default function NoFinePrintCards({
             </>
           )}
         </h2>
-        <p className="mt-3 max-w-3xl text-sm sm:text-base text-neutral-600 leading-relaxed font-medium">
+        <p className="mt-2 max-w-3xl text-sm sm:text-base text-neutral-600 leading-relaxed font-medium">
           {locale === "ru"
             ? "Мы создаём путешествия, в которых продумана каждая деталь, чтобы вы открывали Армению с комфортом, удовольствием и яркими впечатлениями."
             : locale === "hy"
@@ -47,15 +47,15 @@ export default function NoFinePrintCards({
         </p>
       </div>
 
-      {/* 4 Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      {/* 4 Cards: Swipeable Reel on mobile, 4-Col Grid on desktop */}
+      <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 overflow-x-auto pb-3 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none snap-x snap-mandatory">
         {/* Card 1: Более 10 лет опыта (Electric Blue #586EFF) */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-[#586EFF] p-5 sm:p-7 text-white shadow-xl min-h-[220px]"
+          className="relative shrink-0 w-[82vw] max-w-[300px] snap-center sm:w-auto sm:shrink sm:max-w-none flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-[#586EFF] p-5 sm:p-7 text-white shadow-xl min-h-[220px]"
         >
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -91,7 +91,7 @@ export default function NoFinePrintCards({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-[#0E1A63] p-5 sm:p-7 text-white shadow-xl min-h-[220px]"
+          className="relative shrink-0 w-[82vw] max-w-[300px] snap-center sm:w-auto sm:shrink sm:max-w-none flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-[#0E1A63] p-5 sm:p-7 text-white shadow-xl min-h-[220px]"
         >
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -127,7 +127,7 @@ export default function NoFinePrintCards({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-[#C7FF32] p-5 sm:p-7 text-[#161616] shadow-xl min-h-[220px]"
+          className="relative shrink-0 w-[82vw] max-w-[300px] snap-center sm:w-auto sm:shrink sm:max-w-none flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-[#C7FF32] p-5 sm:p-7 text-[#161616] shadow-xl min-h-[220px]"
         >
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -163,7 +163,7 @@ export default function NoFinePrintCards({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-neutral-100 border border-neutral-200/90 p-5 sm:p-7 text-[#1E1E1E] shadow-xl min-h-[220px]"
+          className="relative shrink-0 w-[82vw] max-w-[300px] snap-center sm:w-auto sm:shrink sm:max-w-none flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-[2rem] bg-neutral-100 border border-neutral-200/90 p-5 sm:p-7 text-[#1E1E1E] shadow-xl min-h-[220px]"
         >
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -200,7 +200,7 @@ export default function NoFinePrintCards({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.35 }}
-        className="mt-6 sm:mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl sm:rounded-3xl border border-neutral-200/80 bg-gradient-to-r from-neutral-50 via-white to-neutral-50 p-5 sm:p-7 shadow-sm"
+        className="mt-4 sm:mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl sm:rounded-3xl border border-neutral-200/80 bg-gradient-to-r from-neutral-50 via-white to-neutral-50 p-4 sm:p-7 shadow-sm"
       >
         <div className="flex items-center gap-3 sm:gap-4 text-center sm:text-left">
           <span className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl bg-[#586EFF]/10 text-[#586EFF]">
@@ -239,7 +239,7 @@ export default function NoFinePrintCards({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mt-6 sm:mt-12 relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] min-h-[240px] sm:min-h-[440px] shadow-2xl group"
+        className="mt-4 sm:mt-8 relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] min-h-[210px] sm:min-h-[400px] shadow-2xl group"
       >
         <Image
           src={bannerImage || "/images/noravank.jpg"}

@@ -212,7 +212,7 @@ export default async function HomePage({ params }: Props) {
       <AboutCompanySection locale={locale} />
 
       {/* 2. TRAVEL FORMATS (Landing Page Showcase) */}
-      <section className="mx-auto max-w-[1360px] px-4 sm:px-6 py-12 sm:py-20 lg:py-32">
+      <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-16">
         <FadeIn>
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
             <div>
@@ -248,7 +248,7 @@ export default async function HomePage({ params }: Props) {
         </FadeIn>
 
         {/* Large Format Cards Grid (3 columns on desktop, horizontal swipe carousel on mobile) */}
-        <div className="mt-8 sm:mt-14 flex gap-4 overflow-x-auto pb-4 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 scrollbar-none snap-x snap-mandatory">
+        <div className="mt-6 sm:mt-12 flex gap-4 overflow-x-auto pb-4 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 scrollbar-none snap-x snap-mandatory">
           {categories.map((cat, i) => (
             <div key={cat.id} className="shrink-0 w-[82vw] max-w-[320px] snap-center sm:w-auto sm:shrink sm:max-w-none h-full">
               <FadeIn delay={i * 0.08} className="h-full">
@@ -279,14 +279,14 @@ export default async function HomePage({ params }: Props) {
                   </span>
                 </div>
 
-                <div className="flex flex-1 flex-col p-7 sm:p-8">
+                <div className="flex flex-1 flex-col p-5 sm:p-8">
                   <h3 className="text-2xl sm:text-3xl font-black text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
                     {cat.title[locale]}
                   </h3>
-                  <p className="mt-3 line-clamp-3 flex-1 text-base leading-relaxed text-[#555351]">
+                  <p className="mt-2.5 line-clamp-3 flex-1 text-sm sm:text-base leading-relaxed text-[#555351]">
                     {cat.desc[locale]}
                   </p>
-                  <div className="mt-6 flex items-center gap-2 text-sm sm:text-base font-bold uppercase tracking-wider text-[#586EFF]">
+                  <div className="mt-5 sm:mt-6 flex items-center gap-2 text-sm sm:text-base font-bold uppercase tracking-wider text-[#586EFF]">
                     <span>
                       {locale === "ru"
                         ? "Выбрать направление"
@@ -308,15 +308,15 @@ export default async function HomePage({ params }: Props) {
       <SpecialOffersSection offers={offers} locale={locale} dict={dict} />
 
       {/* 3.5 4x4 OFF-ROAD ARMENIA EXPEDITION WIDGET WITH INTERACTIVE JEEP CAR ANIMATION */}
-      <section className="mx-auto max-w-[1360px] px-4 sm:px-6 py-10 sm:py-20 lg:py-28">
+      <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-16">
         <FadeIn>
           <JeepExpeditionWidget locale={locale} />
         </FadeIn>
       </section>
 
       {/* 4. DESTINATIONS BENTO GALLERY (TripMate "Popular Cities" pattern) */}
-      <section className="bg-[#312F2F] py-12 sm:py-20 lg:py-32 text-[#FCFCF7]">
-        <div className="mx-auto max-w-[1360px] px-4 sm:px-6">
+      <section className="bg-[#312F2F] py-6 sm:py-10 lg:py-16 text-[#FCFCF7]">
+        <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
               <div>
@@ -337,7 +337,7 @@ export default async function HomePage({ params }: Props) {
           </FadeIn>
 
           {/* Bento Grid: swipeable carousel on mobile, bento grid on desktop */}
-          <div className="mt-8 sm:mt-14 flex gap-4 overflow-x-auto pb-4 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-4 scrollbar-none snap-x snap-mandatory">
+          <div className="mt-6 sm:mt-12 flex gap-4 overflow-x-auto pb-4 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-4 scrollbar-none snap-x snap-mandatory">
             {destinations.map((dest, i) => (
               <div
                 key={dest.name}
@@ -377,14 +377,10 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-
-
-
-
       {/* 9. FINAL CALL TO ACTION */}
-      <section className="mx-auto max-w-[1360px] px-4 sm:px-6 py-14 sm:py-24 lg:py-32">
+      <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-8 sm:py-14 lg:py-20">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] bg-[#586EFF] px-5 sm:px-14 py-12 sm:py-20 text-center text-white shadow-2xl">
+          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] bg-[#586EFF] px-5 sm:px-14 py-8 sm:py-16 text-center text-white shadow-2xl">
             {/* Background design elements */}
             <div className="absolute -left-12 -top-12 h-64 w-64 rounded-full bg-white/10 blur-2xl pointer-events-none" />
             <div className="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-[#C7FF32]/20 blur-2xl pointer-events-none" />

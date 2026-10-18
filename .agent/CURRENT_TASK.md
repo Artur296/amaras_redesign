@@ -1,18 +1,18 @@
 # Current Task
 
 ## What We're Building
-- Mobile typography scale, contrast, and touch target optimization for elderly and mobile visitors:
-  - `app/globals.css`: Increased mobile base body font size to 16.5px, upgraded muted text contrast to #4a4846, and set legible mobile minimum text sizes without breaking the compact single-line header.
-  - `components/CompactCategoryTours.tsx`: Enlarged tour title, duration, category badges, price text, and button sizes.
-  - `components/TourCard.tsx` & `components/PackageCard.tsx`: Enlarged tour tags, itinerary chips, inclusions, price indicators, and book buttons.
-  - `components/ReviewsSection.tsx`: Enhanced review text to 16-18px with high contrast, increased author name, location, and verified badges.
-  - `components/FaqSection.tsx`: Enlarged question headings to 18-24px, answer descriptions to 16-18px, category pills, and full-width contact buttons.
-  - `components/TourDetail.tsx`: Enlarged about description, checklist items, itinerary timeline steps, and bottom floating bar booking button.
-  - `components/TourInfo.tsx`: Enlarged useful information headings and paragraph text.
-  - `components/BookingModal.tsx`: Enlarged form labels, increased guest stepper buttons (`+` and `-`) to 44px (11x11), enhanced payment card number and copy buttons.
+- Homepage vertical flow compacting and mobile optimization:
+  - Reduced excessive section padding across homepage and subpages from `py-12 sm:py-20 lg:py-32` to `py-6 sm:py-10 lg:py-16`.
+  - Converted tall vertical stacks into horizontal swipe reels on mobile (`snap-x snap-mandatory`):
+    - `components/TrendBentoGrid.tsx`: Bottom 3 cards (Premium hotels, Excursion tours, Extreme 4x4) swipeable on mobile, saving ~380px vertical height.
+    - `components/NoFinePrintCards.tsx`: 4 benefit cards swipeable on mobile, saving ~680px vertical height.
+  - Streamlined `components/AdvantagesGrid.tsx` and `components/AboutCompanySection.tsx` spacing.
+- Unified page boundaries and gutters across all pages:
+  - Standardized all subpage containers (`app/[locale]/tours/page.tsx`, `tours/[category]/page.tsx`, `tour-packages/page.tsx`, `about/page.tsx`, `contacts/page.tsx`, `what-to-see/page.tsx`, `guests/page.tsx`, `components/Header.tsx`, `components/Footer.tsx`, `components/TourDetail.tsx`) to `mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8`.
+  - Eliminates gutter misalignment and ensures consistent 16px mobile edge spacing without content touching screen borders.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-18 — Successfully upgraded mobile typography and touch targets across all components, verified production build (86/86 pages statically generated), and pushed to both remotes (origin and redesign).
+2026-10-18 — Successfully compacted homepage vertical scroll height, converted mobile column stacks into smooth horizontal reels, unified page boundary margins across all 86 pages, verified build (0 errors), and pushed to both remotes.

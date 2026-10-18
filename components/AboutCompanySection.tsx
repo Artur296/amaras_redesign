@@ -72,15 +72,15 @@ export default function AboutCompanySection({ locale }: { locale: Locale }) {
   return (
     <MotionConfig reducedMotion="user">
       <section
-        className="relative overflow-hidden bg-[#1E1E1E] py-10 sm:py-20 lg:py-28 text-[#FCFCF7]"
+        className="relative overflow-hidden bg-[#1E1E1E] py-6 sm:py-10 lg:py-16 text-[#FCFCF7]"
         id="about-company"
       >
         {/* Ambient atmospheric glows */}
         <div className="pointer-events-none absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full bg-[#C7FF32]/8 blur-[150px]" />
         <div className="pointer-events-none absolute -right-32 bottom-1/4 h-[420px] w-[420px] rounded-full bg-[#586EFF]/12 blur-[160px]" />
 
-        <div className="relative z-10 mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="relative z-10 mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* LEFT COLUMN: Editorial Story & Services */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -98,7 +98,7 @@ export default function AboutCompanySection({ locale }: { locale: Locale }) {
               </div>
 
               {/* Section Heading */}
-              <h2 className="mt-4 sm:mt-5 font-serif text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#FCFCF7] leading-[1.12]">
+              <h2 className="mt-3 sm:mt-4 font-serif text-2xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#FCFCF7] leading-[1.15]">
                 {content.title}
               </h2>
 

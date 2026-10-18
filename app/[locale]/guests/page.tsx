@@ -64,7 +64,7 @@ export default async function GuestsPage({ params }: Props) {
 
       {/* Editorial Header & Breadcrumb */}
       <div className="border-b border-[#FCFCF7]/10 bg-[#242323]">
-        <div className="mx-auto max-w-[1240px] px-5 py-8 sm:px-8 lg:px-12 md:py-12">
+        <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
           {/* Breadcrumbs */}
           <nav
             aria-label="Breadcrumb"
@@ -97,7 +97,7 @@ export default async function GuestsPage({ params }: Props) {
       </div>
 
       {/* Main Interactive Gallery & Reviews */}
-      <main className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
+      <main className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
         <GuestsGallery
           guests={guests}
           reviews={(reviews || []).filter((r) => r.approved === true)}

@@ -51,7 +51,7 @@ export default async function CategoryPage({ params }: Props) {
   );
 
   return (
-    <div className="mx-auto max-w-[1240px] px-6 py-12 md:py-16">
+    <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
       {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"

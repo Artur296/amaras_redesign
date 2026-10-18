@@ -118,7 +118,7 @@ export default async function ContactsPage({ params }: Props) {
 
       {/* Editorial Header */}
       <div className="border-b border-[#FCFCF7]/10 bg-[#312F2F]">
-        <div className="mx-auto max-w-[1240px] px-5 py-8 sm:px-8 lg:px-12 md:py-12">
+        <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
           {/* Breadcrumbs */}
           <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs font-medium text-[#FCFCF7]/50">
             <Link href={`/${locale}`} className="transition-colors hover:text-[#C7FF32]">
@@ -142,7 +142,7 @@ export default async function ContactsPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1240px] px-5 py-12 sm:px-8 lg:px-12 md:py-16">
+      <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         {/* Main Grid: Contact Channels (left) + Meeting Point & Hours (right) */}
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Contact Channels Cards */}

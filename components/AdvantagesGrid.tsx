@@ -82,9 +82,9 @@ export default function AdvantagesGrid({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <section className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12 py-10 sm:py-20 lg:py-28">
-      <div className="mb-6 sm:mb-14">
-        <h2 className="font-serif text-2xl sm:text-5xl font-normal tracking-tight text-[#312F2F]">
+    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-16">
+      <div className="mb-4 sm:mb-8">
+        <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#312F2F]">
           {locale === "ru"
             ? "Наши преимущества"
             : locale === "hy"

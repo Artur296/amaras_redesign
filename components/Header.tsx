@@ -98,7 +98,7 @@ export default function Header({
           : "sticky top-0 bg-[#312F2F]/95 backdrop-blur-md border-b border-[#454343]"
       }`}
     >
-      <div className="mx-auto flex h-16 sm:h-20 max-w-[1360px] items-center justify-between gap-1.5 sm:gap-4 px-4 sm:px-6 lg:px-12">
+      <div className="mx-auto flex h-16 sm:h-20 max-w-[1360px] items-center justify-between gap-1.5 sm:gap-4 px-4 sm:px-6 lg:px-8">
         {/* Brand identity - Official AMARAS Logo */}
         <Link
           href={`/${locale}`}

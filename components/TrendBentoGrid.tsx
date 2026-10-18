@@ -44,10 +44,10 @@ export default function TrendBentoGrid({
     : `/${locale}${rawLink.startsWith("/") ? rawLink : `/${rawLink}`}`;
 
   return (
-    <section className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12 py-8 sm:py-16 lg:py-24">
+    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-6 sm:py-10 lg:py-16">
       {/* Title */}
-      <div className="mb-6 sm:mb-12">
-        <h2 className="font-serif text-2xl sm:text-5xl font-normal tracking-tight text-[#312F2F]">
+      <div className="mb-4 sm:mb-8">
+        <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#312F2F]">
           {locale === "ru"
             ? "Туры по Армении — это тренд"
             : locale === "hy"
@@ -66,7 +66,7 @@ export default function TrendBentoGrid({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative overflow-hidden rounded-[2rem] min-h-[220px] sm:min-h-[285px] lg:min-h-[295px] shadow-lg group flex-1"
+            className="relative overflow-hidden rounded-[2rem] min-h-[200px] sm:min-h-[285px] lg:min-h-[295px] shadow-lg group flex-1"
           >
             <Image
               src={img1}
@@ -112,7 +112,7 @@ export default function TrendBentoGrid({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative overflow-hidden rounded-[2rem] min-h-[220px] sm:min-h-[285px] lg:min-h-[295px] shadow-lg group flex-1"
+            className="relative overflow-hidden rounded-[2rem] min-h-[200px] sm:min-h-[285px] lg:min-h-[295px] shadow-lg group flex-1"
           >
             <Image
               src={imgGuests}
@@ -163,7 +163,7 @@ export default function TrendBentoGrid({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="relative overflow-hidden rounded-[2rem] min-h-[220px] sm:min-h-[285px] lg:min-h-[295px] shadow-lg group cursor-pointer"
+            className="relative overflow-hidden rounded-[2rem] min-h-[200px] sm:min-h-[285px] lg:min-h-[295px] shadow-lg group cursor-pointer"
           >
             <Link href={`/${locale}/what-to-see`} className="absolute inset-0 z-10" aria-label="Что посмотреть в Армении" />
             <Image
@@ -206,15 +206,15 @@ export default function TrendBentoGrid({
             </div>
           </motion.div>
 
-          {/* Bottom Row: 3 Cards side-by-side (Премиум-отели + Экскурсионные туры + ЭКСТРИМ 4x4) */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 flex-1">
+          {/* Bottom Row: 3 Cards side-by-side on desktop, swipe reel on mobile */}
+          <div className="flex sm:grid sm:grid-cols-3 gap-3 sm:gap-4 overflow-x-auto pb-2 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none snap-x snap-mandatory flex-1">
             {/* Card 4: Премиум-отели */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group"
+              className="relative shrink-0 w-[78vw] max-w-[280px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group"
             >
               <Image
                 src={img3}
@@ -258,7 +258,7 @@ export default function TrendBentoGrid({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group"
+              className="relative shrink-0 w-[78vw] max-w-[280px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group"
             >
               <Image
                 src={img4}
@@ -302,7 +302,7 @@ export default function TrendBentoGrid({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group border border-[#C7FF32]/25 flex flex-col justify-between"
+              className="relative shrink-0 w-[78vw] max-w-[280px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group border border-[#C7FF32]/25 flex flex-col justify-between"
             >
               <Image
                 src={imgExtreme}

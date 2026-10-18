@@ -39,8 +39,8 @@ export default function Footer({
   ];
 
   return (
-    <footer className="mt-16 sm:mt-24 border-t border-[#454343] bg-[#242323] text-[#FCFCF7]">
-      <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12 py-12 sm:py-16">
+    <footer className="mt-12 sm:mt-20 border-t border-[#454343] bg-[#242323] text-[#FCFCF7]">
+      <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <div className="grid gap-8 sm:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {/* Column 1: Brand matching logo */}
           <div className="space-y-4">

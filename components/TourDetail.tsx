@@ -68,7 +68,7 @@ export default function TourDetail({
   ]);
 
   return (
-    <div className="mx-auto max-w-[1240px] px-4 sm:px-6 pt-4 pb-28 sm:py-8 md:py-16">
+    <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 pt-4 pb-28 sm:py-8 md:py-16">
       {/* Schema.org Structured Data for SEO Rich Snippets */}
       <script
         type="application/ld+json"

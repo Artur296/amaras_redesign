@@ -14,8 +14,8 @@ export default function HeroStats({
   return (
     <MotionConfig reducedMotion="user">
       <section className="relative z-20 border-b border-[#454343] bg-[#312F2F] text-[#FCFCF7] shadow-xl">
-        <div className="mx-auto flex max-w-[1360px] flex-col items-center justify-between gap-6 px-4 py-6 sm:px-6 sm:py-7 sm:flex-row">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-12 w-full sm:w-auto">
+        <div className="mx-auto flex max-w-[1360px] flex-col items-center justify-between gap-4 sm:gap-6 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 sm:flex-row">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-12 w-full sm:w-auto">
             <dl className="grid w-full grid-cols-3 gap-3 sm:w-auto sm:gap-12 text-center sm:text-left">
               {dict.stats.map((stat) => (
                 <div key={stat.label}>
