@@ -23,6 +23,8 @@ const SECTION_I18N = {
     btnWhatsapp: "Написать в WhatsApp",
     btnTelegram: "Написать в Telegram",
     btnChooseTour: "Выбрать экскурсию",
+    showMore: "Показать больше",
+    showLess: "Свернуть",
   },
   hy: {
     badge: "ՀԱՃԱԽ ՏՐՎՈՂ ՀԱՐՑԵՐ",
@@ -36,6 +38,8 @@ const SECTION_I18N = {
     btnWhatsapp: "Գրել WhatsApp-ում",
     btnTelegram: "Գրել Telegram-ում",
     btnChooseTour: "Ընտրել էքսկուրսիան",
+    showMore: "Ցուցադրել ավելին",
+    showLess: "Ծալել",
   },
   en: {
     badge: "FREQUENTLY ASKED QUESTIONS",
@@ -49,12 +53,15 @@ const SECTION_I18N = {
     btnWhatsapp: "Chat on WhatsApp",
     btnTelegram: "Chat on Telegram",
     btnChooseTour: "Explore Tours",
+    showMore: "Show more",
+    showLess: "Show less",
   },
 };
 
 export default function FaqSection({ locale }: { locale: Locale }) {
   const [openId, setOpenId] = useState<number | null>(1);
   const [selectedCategory, setSelectedCategory] = useState<FaqCategoryKey | "all">("all");
+  const [showAll, setShowAll] = useState(false);
   const links = useLinks();
 
   const t = SECTION_I18N[locale] || SECTION_I18N.ru;
@@ -67,6 +74,10 @@ export default function FaqSection({ locale }: { locale: Locale }) {
     selectedCategory === "all"
       ? faqs
       : faqs.filter((f) => f.categoryKey === selectedCategory);
+
+  const displayedFaqs = showAll ? filteredFaqs : filteredFaqs.slice(0, 3);
+  const hasMore = filteredFaqs.length > 3;
+  const remainingCount = filteredFaqs.length - 3;
 
   return (
     <section className="bg-white py-12 sm:py-20 lg:py-24 border-b border-[#EAE9E0]" id="faq">
@@ -88,7 +99,10 @@ export default function FaqSection({ locale }: { locale: Locale }) {
         <div className="mt-8 sm:mt-10 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none snap-x touch-pan-x">
           <button
             type="button"
-            onClick={() => setSelectedCategory("all")}
+            onClick={() => {
+              setSelectedCategory("all");
+              setShowAll(false);
+            }}
             className={`shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
               selectedCategory === "all"
                 ? "bg-[#312F2F] text-[#C7FF32] shadow-md scale-102"
@@ -105,7 +119,10 @@ export default function FaqSection({ locale }: { locale: Locale }) {
               <button
                 key={cat.key}
                 type="button"
-                onClick={() => setSelectedCategory(cat.key)}
+                onClick={() => {
+                  setSelectedCategory(cat.key);
+                  setShowAll(false);
+                }}
                 className={`shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   active
                     ? "bg-[#312F2F] text-[#C7FF32] shadow-md scale-102"
@@ -120,7 +137,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
 
         {/* Accordion Questions List */}
         <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4">
-          {filteredFaqs.map((faq) => {
+          {displayedFaqs.map((faq) => {
             const isOpen = openId === faq.id;
             const q = faq.question[locale] || faq.question.ru;
             const a = faq.answer[locale] || faq.answer.ru;
@@ -170,6 +187,30 @@ export default function FaqSection({ locale }: { locale: Locale }) {
             );
           })}
         </div>
+
+        {/* Show More / Show Less Button */}
+        {hasMore && (
+          <div className="mt-8 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center gap-2 rounded-full border-2 border-[#586EFF] bg-white px-7 py-3 text-xs sm:text-sm font-black uppercase tracking-wider text-[#586EFF] hover:bg-[#586EFF] hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95 cursor-pointer"
+            >
+              <span>
+                {showAll
+                  ? t.showLess
+                  : `${t.showMore} (+${remainingCount})`}
+              </span>
+              <span
+                className={`inline-block text-base transition-transform duration-200 ${
+                  showAll ? "rotate-180" : ""
+                }`}
+              >
+                ↓
+              </span>
+            </button>
+          </div>
+        )}
 
         {/* Closing Contact CTA Block */}
         <div className="mt-12 sm:mt-16 rounded-[2rem] border border-[#EAE9E0] bg-[#312F2F] p-6 sm:p-10 text-center text-white shadow-xl relative overflow-hidden">

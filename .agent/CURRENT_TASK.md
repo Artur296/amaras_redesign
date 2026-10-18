@@ -1,21 +1,17 @@
 # Current Task
 
 ## What We're Building
-- Payment card requisites in booking modal and admin panel:
-  - Added dedicated Payment Card block to `BookingModal` right above the receipt upload section:
-    - Card number with 1-click copy button (with checkmark confirmation feedback).
-    - Bank name badge, cardholder name, phone transfer number (Idram / Telcell) with copy button.
-    - Multilingual helper note (RU / HY / EN).
-  - Admin panel integration under "Контакты & Реквизиты":
-    - Full editing of card number, bank name, cardholder, phone transfer number, and instructions.
-    - Toggle to enable/disable card display in the booking form.
-    - Live interactive preview of the card in the admin panel.
-  - Linked to `site.json` and `lib/site.ts` with zero-downtime instant sync.
+- FAQ limit and "Show more" button:
+  - Display first 3 questions by default across any selected category or all questions.
+  - Added modern interactive "Показать больше" / "Show more" button with remaining count badge (e.g. `Показать больше (+24)`) and animated arrow.
+  - Allows collapsing back to 3 questions with "Свернуть" / "Show less".
+  - Auto-resets to 3 questions when switching categories for a clean reading experience.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-18 — Added editable bank payment card requisites to booking modal and admin panel, verified clean build (86/86 pages), and pushed to both remotes.
+2026-10-18 — Implemented 3-question limit and expandable 'Show more' button in FAQ section, verified build (86/86 pages), and pushed to both remotes.
+
 
 
