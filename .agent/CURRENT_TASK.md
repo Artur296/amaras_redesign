@@ -1,17 +1,17 @@
 # Current Task
 
 ## What We're Building
-- Telegram Booking Bot integration:
-  - Connected bot token and configured simultaneous dispatch to both the group (`-1004326622875`) and the founder chat (`1320156373`).
-  - Updated booking API endpoint (`/api/booking`) to support multi-chat dispatch with buffer reuse for payment receipt files (images and PDFs).
-  - Sent real test verification to group and founder with `ok: true`.
-  - Documented `.env.example` and local `.env.local`.
+- Mobile header & navigation layout:
+  - Scaled down logo height and max width on mobile (`max-w-[120px] h-5.5`) so it never occupies excessive horizontal space.
+  - Set `shrink-0` on hamburger button, search button, and language switcher so the hamburger button (3 полоски) is permanently visible and never pushed off-screen.
+  - Re-styled 3 horizontal lines with crisp SVG stroke and semi-transparent pill container for maximum visibility on all screen sizes.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-18 — Configured and tested Telegram booking bot notification pipeline, verified build (86/86 pages), and pushed to both remotes.
+2026-10-18 — Scaled down mobile logo and restored 3-bar hamburger menu button on mobile header, verified build (86/86 pages), and pushed to both remotes.
+
 
 
 
