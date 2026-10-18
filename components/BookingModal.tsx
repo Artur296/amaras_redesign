@@ -394,14 +394,14 @@ export default function BookingModal({
 
               {/* 1. Tour Title */}
               <div>
-                <label className="block text-xs sm:text-sm font-bold text-white/90 mb-1">
+                <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
                   {t.tourLabel}
                 </label>
                 <input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm sm:text-base text-white placeholder-white/40 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white placeholder-white/40 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
                   required
                 />
               </div>
@@ -409,7 +409,7 @@ export default function BookingModal({
               {/* 2. Date + Adults & Children */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-bold text-white/90 mb-1">
+                  <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
                     {t.dateLabel}
                   </label>
                   <input
@@ -417,31 +417,31 @@ export default function BookingModal({
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     min={new Date().toISOString().split("T")[0]}
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm sm:text-base text-white focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
+                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
                   />
                 </div>
 
                 {/* Guest Steppers */}
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2.5">
                   <div>
-                    <label className="block text-[11px] sm:text-xs font-bold text-white/90 mb-1 truncate">
+                    <label className="block text-xs sm:text-sm font-bold text-white mb-1.5 truncate">
                       {t.adultsLabel}
                     </label>
-                    <div className="flex items-center rounded-xl border border-white/15 bg-white/5 px-2 py-1.5">
+                    <div className="flex items-center rounded-xl border border-white/15 bg-white/5 p-1">
                       <button
                         type="button"
                         onClick={() => setAdults((prev) => Math.max(1, prev - 1))}
-                        className="h-8 w-8 rounded-lg bg-white/10 text-white text-base font-bold hover:bg-white/20 transition-colors flex items-center justify-center cursor-pointer"
+                        className="h-11 w-11 rounded-lg bg-white/10 text-white text-lg font-black hover:bg-white/20 transition-colors flex items-center justify-center cursor-pointer active:scale-95"
                       >
                         -
                       </button>
-                      <span className="flex-1 text-center font-bold text-sm sm:text-base text-white">
+                      <span className="flex-1 text-center font-black text-base sm:text-lg text-white">
                         {adults}
                       </span>
                       <button
                         type="button"
                         onClick={() => setAdults((prev) => prev + 1)}
-                        className="h-8 w-8 rounded-lg bg-[#C7FF32] text-[#312F2F] text-base font-bold hover:bg-[#b8f226] transition-colors flex items-center justify-center cursor-pointer"
+                        className="h-11 w-11 rounded-lg bg-[#C7FF32] text-[#312F2F] text-lg font-black hover:bg-[#b8f226] transition-colors flex items-center justify-center cursor-pointer active:scale-95"
                       >
                         +
                       </button>
@@ -449,24 +449,24 @@ export default function BookingModal({
                   </div>
 
                   <div>
-                    <label className="block text-[11px] sm:text-xs font-bold text-white/90 mb-1 truncate">
+                    <label className="block text-xs sm:text-sm font-bold text-white mb-1.5 truncate">
                       {t.childrenLabel}
                     </label>
-                    <div className="flex items-center rounded-xl border border-white/15 bg-white/5 px-2 py-1.5">
+                    <div className="flex items-center rounded-xl border border-white/15 bg-white/5 p-1">
                       <button
                         type="button"
                         onClick={() => setChildren((prev) => Math.max(0, prev - 1))}
-                        className="h-8 w-8 rounded-lg bg-white/10 text-white text-base font-bold hover:bg-white/20 transition-colors flex items-center justify-center cursor-pointer"
+                        className="h-11 w-11 rounded-lg bg-white/10 text-white text-lg font-black hover:bg-white/20 transition-colors flex items-center justify-center cursor-pointer active:scale-95"
                       >
                         -
                       </button>
-                      <span className="flex-1 text-center font-bold text-sm sm:text-base text-white">
+                      <span className="flex-1 text-center font-black text-base sm:text-lg text-white">
                         {children}
                       </span>
                       <button
                         type="button"
                         onClick={() => setChildren((prev) => prev + 1)}
-                        className="h-8 w-8 rounded-lg bg-white/10 text-white text-base font-bold hover:bg-white/20 transition-colors flex items-center justify-center cursor-pointer"
+                        className="h-11 w-11 rounded-lg bg-[#C7FF32] text-[#312F2F] text-lg font-black hover:bg-[#b8f226] transition-colors flex items-center justify-center cursor-pointer active:scale-95"
                       >
                         +
                       </button>
@@ -478,7 +478,7 @@ export default function BookingModal({
               {/* 3. Contact Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-bold text-white/90 mb-1">
+                  <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
                     {t.nameLabel}
                   </label>
                   <input
@@ -486,13 +486,13 @@ export default function BookingModal({
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t.namePlaceholder}
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm sm:text-base text-white placeholder-white/30 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
+                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white placeholder-white/30 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs sm:text-sm font-bold text-white/90 mb-1">
+                  <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
                     {t.phoneLabel}
                   </label>
                   <input
@@ -500,7 +500,7 @@ export default function BookingModal({
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder={t.phonePlaceholder}
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm sm:text-base text-white placeholder-white/30 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
+                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white placeholder-white/30 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
                     required
                   />
                 </div>
@@ -509,7 +509,7 @@ export default function BookingModal({
               {/* 4. Email & Wishes */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-bold text-white/90 mb-1">
+                  <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
                     {t.emailLabel}
                   </label>
                   <input
@@ -517,12 +517,12 @@ export default function BookingModal({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t.emailPlaceholder}
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm sm:text-base text-white placeholder-white/30 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
+                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white placeholder-white/30 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs sm:text-sm font-bold text-white/90 mb-1">
+                  <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
                     {t.wishesLabel}
                   </label>
                   <input
@@ -530,47 +530,47 @@ export default function BookingModal({
                     value={wishes}
                     onChange={(e) => setWishes(e.target.value)}
                     placeholder={t.wishesPlaceholder}
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm sm:text-base text-white placeholder-white/30 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
+                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white placeholder-white/30 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               {/* 5. Payment Card Details for Transfer */}
               {paymentCard?.enabled !== false && paymentCard?.cardNumber && (
-                <div className="rounded-2xl border border-[#C7FF32]/40 bg-gradient-to-br from-[#1c1d22] to-[#121215] p-3.5 sm:p-4 shadow-xl shadow-black/50 space-y-3 relative overflow-hidden">
+                <div className="rounded-2xl border border-[#C7FF32]/40 bg-gradient-to-br from-[#1c1d22] to-[#121215] p-4 sm:p-5 shadow-xl shadow-black/50 space-y-3.5 relative overflow-hidden">
                   <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#C7FF32]/10 rounded-full blur-2xl pointer-events-none" />
 
                   {/* Header with badge & bank */}
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#C7FF32] text-xs font-black text-[#312F2F] shrink-0">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#C7FF32] text-sm font-black text-[#312F2F] shrink-0">
                         💳
                       </span>
-                      <span className="text-xs sm:text-sm font-extrabold text-white tracking-wide">
+                      <span className="text-sm sm:text-base font-black text-white tracking-wide">
                         {t.paymentCardBadge}
                       </span>
                     </div>
                     {paymentCard.bankName && (
-                      <span className="rounded-full bg-[#C7FF32]/15 border border-[#C7FF32]/35 px-2.5 py-0.5 text-[10px] sm:text-[11px] font-black text-[#C7FF32] truncate max-w-[180px]">
+                      <span className="rounded-full bg-[#C7FF32]/15 border border-[#C7FF32]/35 px-3 py-1 text-xs font-black text-[#C7FF32] truncate max-w-[200px]">
                         {paymentCard.bankName}
                       </span>
                     )}
                   </div>
 
                   {/* Card Number & Copy Button */}
-                  <div className="rounded-xl border border-white/10 bg-black/50 p-2.5 sm:p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="rounded-xl border border-white/15 bg-black/60 p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div className="min-w-0">
-                      <span className="block text-[10px] uppercase font-bold text-white/50 tracking-wider">
+                      <span className="block text-xs uppercase font-bold text-white/70 tracking-wider">
                         {t.cardNumberLabel}
                       </span>
-                      <span className="font-mono text-base sm:text-lg font-black tracking-wider text-white select-all break-all">
+                      <span className="font-mono text-lg sm:text-2xl font-black tracking-wider text-[#C7FF32] select-all break-all mt-0.5 block">
                         {paymentCard.cardNumber}
                       </span>
                     </div>
                     <button
                       type="button"
                       onClick={() => handleCopyCard(paymentCard.cardNumber)}
-                      className={`self-start sm:self-auto inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-black transition-all active:scale-95 cursor-pointer shrink-0 ${
+                      className={`self-start sm:self-auto inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-black transition-all active:scale-95 cursor-pointer shrink-0 ${
                         copiedCard
                           ? "bg-[#C7FF32] text-[#312F2F] shadow-[0_0_12px_rgba(199,255,50,0.4)]"
                           : "bg-white/10 hover:bg-[#C7FF32] hover:text-[#312F2F] text-white"
@@ -578,14 +578,14 @@ export default function BookingModal({
                     >
                       {copiedCard ? (
                         <>
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                           </svg>
                           <span>{t.copiedBtn}</span>
                         </>
                       ) : (
                         <>
-                          <svg className="w-3.5 h-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-4 h-4 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                           </svg>
                           <span>{t.copyBtn}</span>
@@ -607,19 +607,19 @@ export default function BookingModal({
                       </div>
                     )}
                     {paymentCard.phonePay && (
-                      <div className="rounded-lg bg-white/5 px-2.5 py-1.5 border border-white/5 flex items-center justify-between gap-1">
+                      <div className="rounded-lg bg-white/5 px-3 py-2 border border-white/5 flex items-center justify-between gap-2">
                         <div className="min-w-0">
-                          <span className="text-white/50 block text-[10px] uppercase font-bold">
+                          <span className="text-white/60 block text-[11px] uppercase font-bold">
                             {t.phonePayLabel}
                           </span>
-                          <span className="font-mono font-bold text-[#C7FF32] text-xs truncate block">
+                          <span className="font-mono font-bold text-[#C7FF32] text-sm truncate block mt-0.5">
                             {paymentCard.phonePay}
                           </span>
                         </div>
                         <button
                           type="button"
                           onClick={() => handleCopyPhone(paymentCard.phonePay)}
-                          className="shrink-0 text-[10px] font-bold text-white/80 hover:text-white px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 transition-colors"
+                          className="shrink-0 text-xs font-bold text-white/90 hover:text-white px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 transition-colors"
                         >
                           {copiedPhone ? "✓" : t.copyBtn}
                         </button>
@@ -629,7 +629,7 @@ export default function BookingModal({
 
                   {/* Instruction */}
                   {paymentCard.instruction?.[locale] && (
-                    <p className="text-[11px] text-white/70 leading-relaxed italic border-t border-white/10 pt-2">
+                    <p className="text-xs text-white/80 leading-relaxed italic border-t border-white/10 pt-2.5">
                       ℹ️ {paymentCard.instruction[locale]}
                     </p>
                   )}
@@ -637,16 +637,16 @@ export default function BookingModal({
               )}
 
               {/* 6. Payment Check Attachment (PDF or Image) */}
-              <div className="rounded-2xl border border-white/15 bg-black/20 p-4">
+              <div className="rounded-2xl border border-white/15 bg-black/20 p-4 sm:p-5">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs sm:text-sm font-bold text-[#C7FF32] flex items-center gap-1.5">
-                    <span>🧾</span>
+                  <label className="text-sm sm:text-base font-bold text-[#C7FF32] flex items-center gap-2">
+                    <span className="text-lg">🧾</span>
                     <span>{t.receiptLabel}</span>
                   </label>
-                  <span className="text-[11px] text-white/50">JPG, PNG, PDF (макс. 10MB)</span>
+                  <span className="text-xs text-white/60 font-medium">JPG, PNG, PDF (макс. 10MB)</span>
                 </div>
 
-                <p className="mt-1 text-xs text-white/60 leading-relaxed">
+                <p className="mt-1.5 text-xs sm:text-sm text-white/70 leading-relaxed">
                   {t.receiptHint}
                 </p>
 
@@ -659,24 +659,24 @@ export default function BookingModal({
                 />
 
                 {receiptFile ? (
-                  <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-[#C7FF32]/40 bg-[#C7FF32]/10 p-3">
+                  <div className="mt-3.5 flex items-center justify-between gap-3 rounded-xl border border-[#C7FF32]/40 bg-[#C7FF32]/10 p-3 sm:p-4">
                     <div className="flex items-center gap-3 overflow-hidden">
                       {previewUrl ? (
                         <img
                           src={previewUrl}
                           alt="Receipt Preview"
-                          className="h-12 w-12 rounded-lg object-cover border border-white/20 shrink-0"
+                          className="h-14 w-14 rounded-lg object-cover border border-white/20 shrink-0"
                         />
                       ) : (
-                        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-red-500/20 text-red-300 font-black text-xs shrink-0 border border-red-500/30">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-red-500/20 text-red-300 font-black text-sm shrink-0 border border-red-500/30">
                           PDF
                         </div>
                       )}
                       <div className="overflow-hidden">
-                        <p className="text-xs sm:text-sm font-bold text-white truncate">
+                        <p className="text-sm sm:text-base font-bold text-white truncate">
                           {receiptFile.name}
                         </p>
-                        <p className="text-[11px] text-white/70">
+                        <p className="text-xs text-white/80">
                           {(receiptFile.size / 1024 / 1024).toFixed(2)} MB
                         </p>
                       </div>
@@ -686,14 +686,14 @@ export default function BookingModal({
                       <button
                         type="button"
                         onClick={() => fileInputRef.current?.click()}
-                        className="rounded-lg bg-white/10 px-2.5 py-1 text-xs font-semibold text-white hover:bg-white/20 transition-colors"
+                        className="rounded-lg bg-white/10 px-3 py-1.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-colors"
                       >
                         {t.receiptChangeBtn}
                       </button>
                       <button
                         type="button"
                         onClick={removeFile}
-                        className="rounded-lg bg-red-500/20 px-2.5 py-1 text-xs font-semibold text-red-300 hover:bg-red-500/30 transition-colors"
+                        className="rounded-lg bg-red-500/20 px-3 py-1.5 text-xs sm:text-sm font-semibold text-red-300 hover:bg-red-500/30 transition-colors"
                       >
                         ✕
                       </button>
@@ -703,7 +703,7 @@ export default function BookingModal({
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-white/25 bg-white/5 py-3.5 text-xs sm:text-sm font-bold text-white hover:border-[#C7FF32] hover:bg-[#C7FF32]/5 transition-all cursor-pointer"
+                    className="mt-3.5 flex w-full items-center justify-center gap-2.5 rounded-xl border-2 border-dashed border-white/25 bg-white/5 py-4 text-sm sm:text-base font-bold text-white hover:border-[#C7FF32] hover:bg-[#C7FF32]/5 transition-all cursor-pointer"
                   >
                     <svg className="w-5 h-5 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
@@ -715,7 +715,7 @@ export default function BookingModal({
 
               {/* Error message if any */}
               {errorMsg && (
-                <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-3 text-xs sm:text-sm text-red-300">
+                <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-3.5 text-sm text-red-300 font-medium">
                   {errorMsg}
                 </div>
               )}
@@ -724,7 +724,7 @@ export default function BookingModal({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-full bg-[#C7FF32] py-4 text-sm sm:text-base font-black uppercase tracking-wider text-[#312F2F] shadow-lg shadow-[#C7FF32]/25 transition-all hover:bg-[#b8f226] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
+                className="w-full rounded-full bg-[#C7FF32] py-4 text-base sm:text-lg font-black uppercase tracking-wider text-[#312F2F] shadow-lg shadow-[#C7FF32]/25 transition-all hover:bg-[#b8f226] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>
@@ -740,7 +740,7 @@ export default function BookingModal({
               </button>
 
               {/* Messengers bar */}
-              <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-white/60">
+              <div className="pt-2.5 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-white/70">
                 <span>{t.directContact}</span>
                 <div className="flex items-center gap-2">
                   <a

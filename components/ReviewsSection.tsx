@@ -350,12 +350,12 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                           ★
                         </span>
                       ))}
-                      <span className="ml-1.5 text-xs sm:text-sm font-bold text-white/90">
+                      <span className="ml-1.5 text-sm sm:text-base font-bold text-white/90">
                         {rev.rating}.0
                       </span>
                     </div>
 
-                    <span className="flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-[#C7FF32] border border-white/10">
+                    <span className="flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1 text-xs sm:text-sm font-bold text-[#C7FF32] border border-white/10">
                       <span>✓</span>
                       <span>{texts.verified}</span>
                     </span>
@@ -365,12 +365,12 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                   {(rev.tourTitle || rev.guideName) && (
                     <div className="mt-4 flex flex-wrap items-center gap-2">
                       {rev.tourTitle && (
-                        <span className="inline-block rounded-lg bg-white/5 px-3 py-1 text-xs sm:text-sm font-semibold text-[#586EFF] max-w-full truncate border border-white/5">
+                        <span className="inline-block rounded-lg bg-white/5 px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#586EFF] max-w-full truncate border border-white/5">
                           {rev.tourTitle}
                         </span>
                       )}
                       {rev.guideName && (
-                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-[#C7FF32]/10 border border-[#C7FF32]/30 px-3 py-1 text-xs sm:text-sm font-bold text-[#C7FF32]">
+                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-[#C7FF32]/10 border border-[#C7FF32]/30 px-3 py-1.5 text-xs sm:text-sm font-bold text-[#C7FF32]">
                           <span className="text-white/60 font-normal">{texts.guideBadge}:</span>
                           <span>{rev.guideName}</span>
                         </span>
@@ -378,8 +378,8 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                     </div>
                   )}
 
-                  {/* Review Text: Full review display without truncation */}
-                  <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#FCFCF7]/95 font-normal break-words whitespace-pre-line">
+                  {/* Review Text: Full review display with large high-contrast readable font */}
+                  <p className="mt-4 text-base sm:text-lg leading-relaxed text-white font-normal break-words whitespace-pre-line">
                     “{reviewContent}”
                   </p>
                 </div>
@@ -387,15 +387,15 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                 {/* Author Info */}
                 <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#586EFF] font-black text-sm sm:text-base text-white shadow-md">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#586EFF] font-black text-base text-white shadow-md">
                       {rev.author ? rev.author.charAt(0).toUpperCase() : "G"}
                     </div>
                     <div className="min-w-0">
-                      <span className="block text-sm sm:text-base font-bold text-white truncate">
+                      <span className="block text-base sm:text-lg font-bold text-white truncate">
                         {rev.author}
                       </span>
                       {rev.location && (
-                        <span className="block text-xs sm:text-sm text-white/65 truncate">
+                        <span className="block text-xs sm:text-sm text-white/80 font-medium truncate">
                           {rev.location}
                         </span>
                       )}
@@ -403,7 +403,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                   </div>
 
                   {rev.date && (
-                    <span className="text-xs sm:text-sm font-medium text-white/40 shrink-0 ml-2">
+                    <span className="text-xs sm:text-sm font-medium text-white/60 shrink-0 ml-2">
                       {rev.date}
                     </span>
                   )}
@@ -414,9 +414,9 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
         </div>
 
         {/* Carousel swipe guidance indicator */}
-        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12 mt-4 flex items-center justify-between text-xs sm:text-sm text-[#FCFCF7]/60">
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12 mt-4 flex items-center justify-between text-sm sm:text-base text-[#FCFCF7]/75">
           <span>{texts.swipeHint}</span>
-          <span className="font-semibold text-white/80">{reviews.length} {texts.reviewsCount}</span>
+          <span className="font-bold text-white">{reviews.length} {texts.reviewsCount}</span>
         </div>
       </div>
 

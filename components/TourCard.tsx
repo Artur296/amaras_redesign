@@ -84,19 +84,19 @@ export default function TourCard({
         </div>
 
         {/* Bottom Tag on image (Duration, Group & Rating) */}
-        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-bold text-white">
+        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs sm:text-sm font-bold text-white">
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 sm:px-3 py-1 backdrop-blur-md">
+            <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1 backdrop-blur-md">
               <svg className="w-3.5 h-3.5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span>{durationText}</span>
             </span>
-            <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 backdrop-blur-md text-[11px] text-white/90">
+            <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 backdrop-blur-md text-xs text-white/90">
               <span>👥</span> {groupSize}
             </span>
           </div>
-          <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[#C7FF32] backdrop-blur-md">
+          <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[#C7FF32] backdrop-blur-md font-bold">
             <span>★</span> 5.0
           </span>
         </div>
@@ -104,18 +104,18 @@ export default function TourCard({
 
       {/* Content */}
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <h3 className="text-xl sm:text-xl font-black leading-snug text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
+        <h3 className="text-xl sm:text-2xl font-black leading-snug text-[#312F2F] transition-colors group-hover:text-[#586EFF]">
           <Link href={href} className="line-clamp-2">
             {tour.title[locale]}
           </Link>
         </h3>
 
-        <p className="mt-2.5 line-clamp-2 flex-1 text-sm sm:text-[15px] leading-relaxed text-[#4A4846]">
+        <p className="mt-2.5 line-clamp-2 flex-1 text-sm sm:text-base leading-relaxed text-[#4A4846]">
           {tour.description[locale]}
         </p>
 
         {/* Key Tour Specs / Inclusions */}
-        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[#EAE9E0] pt-3 text-xs sm:text-[13px] font-medium text-[#555351]">
+        <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-[#EAE9E0] pt-3 text-xs sm:text-sm font-semibold text-[#403e3c]">
           <span className="flex items-center gap-1.5">
             <svg className="w-4 h-4 text-[#586EFF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 17H5a2 2 0 01-2-2V7a2 2 0 012-2h10a2 2 0 012 2v2m-6 8h4m2 0a2 2 0 104 0 2 2 0 00-4 0zm-10 0a2 2 0 104 0 2 2 0 00-4 0zm14-5h-4m4 0l-2-4h-3" />
@@ -135,7 +135,7 @@ export default function TourCard({
           <div>
             {hasPrice(tour) ? (
               <>
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-[#6B6967]">
+                <span className="block text-xs font-bold uppercase tracking-wider text-[#4a4846]">
                   {dict.tours.from}
                 </span>
                 <div className="mt-0.5 flex items-baseline gap-2">
@@ -144,17 +144,17 @@ export default function TourCard({
                       {formatPrice(tour.priceOldAmd)}
                     </s>
                   )}
-                  <span className="text-xl font-black text-[#312F2F]">
+                  <span className="text-xl sm:text-2xl font-black text-[#2b2929]">
                     {formatPrice(tour.priceFromAmd)}
                   </span>
                 </div>
               </>
             ) : (
               <div>
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-[#6B6967]">
+                <span className="block text-xs font-bold uppercase tracking-wider text-[#4a4846]">
                   {locale === "ru" ? "Формат" : locale === "hy" ? "Ձևաչափ" : "Format"}
                 </span>
-                <span className="mt-0.5 block text-base font-black text-[#586EFF]">
+                <span className="mt-0.5 block text-lg font-black text-[#586EFF]">
                   {dict.tours.onRequest}
                 </span>
               </div>
@@ -179,7 +179,8 @@ export default function TourCard({
                   : `${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`
               }
               variant={tour.bookingDisabled ? "dark" : "primary"}
-              size="sm"
+              size="md"
+              className="px-4 py-2.5 text-sm font-bold"
             />
 
           </div>

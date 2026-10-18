@@ -123,7 +123,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
             <h2 className="mt-1.5 font-serif text-2xl sm:text-4xl lg:text-5xl font-normal text-white tracking-tight">
               {t.title}
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-white/75 max-w-xl">
+            <p className="mt-1.5 text-sm sm:text-base text-white/85 max-w-xl font-medium leading-relaxed">
               {t.subtitle}
             </p>
           </div>
@@ -134,7 +134,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
               type="button"
               onClick={scrollLeft}
               aria-label={t.prev}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] transition-all cursor-pointer active:scale-95"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] transition-all cursor-pointer active:scale-95"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -144,7 +144,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
               type="button"
               onClick={scrollRight}
               aria-label={t.next}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] transition-all cursor-pointer active:scale-95"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] transition-all cursor-pointer active:scale-95"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -154,11 +154,11 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
         </div>
 
         {/* Category Pills Switcher */}
-        <div className="mt-5 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x touch-pan-x">
+        <div className="mt-5 flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none snap-x touch-pan-x">
           <button
             type="button"
             onClick={() => setSelectedCat("all")}
-            className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`shrink-0 rounded-full px-4 py-2 text-sm sm:text-base font-bold transition-all cursor-pointer ${
               selectedCat === "all"
                 ? "bg-[#C7FF32] text-[#312F2F] shadow-sm"
                 : "border border-white/15 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white"
@@ -174,7 +174,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
                 key={cat.id}
                 type="button"
                 onClick={() => setSelectedCat(cat.id)}
-                className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                className={`shrink-0 rounded-full px-4 py-2 text-sm sm:text-base font-bold transition-all cursor-pointer ${
                   active
                     ? "bg-[#C7FF32] text-[#312F2F] shadow-sm"
                     : "border border-white/15 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white"
@@ -220,7 +220,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
                     className="object-cover transition-transform duration-500 group-hover:scale-108"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <span className="absolute bottom-2 left-2 rounded-md bg-[#312F2F]/90 px-2 py-0.5 text-[11px] sm:text-xs font-black text-[#C7FF32] backdrop-blur-xs">
+                  <span className="absolute bottom-2 left-2 rounded-md bg-[#312F2F]/90 px-2.5 py-1 text-xs sm:text-sm font-black text-[#C7FF32] backdrop-blur-xs">
                     {category.title[locale]}
                   </span>
                 </div>
@@ -228,25 +228,25 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
                 {/* Right: Content & Full Action Buttons */}
                 <div className="flex flex-1 flex-col justify-between mt-3 sm:mt-0 sm:pl-4 overflow-hidden">
                   <div>
-                    <div className="flex items-center justify-between gap-1 text-xs text-white/60">
+                    <div className="flex items-center justify-between gap-1 text-sm text-white/80">
                       {duration ? (
-                        <span className="inline-flex items-center gap-1 font-semibold text-white/80">
+                        <span className="inline-flex items-center gap-1 font-bold text-white/90">
                           ⏱ {duration}
                         </span>
                       ) : (
                         <span />
                       )}
-                      <span className="text-[#C7FF32] font-bold">★ 5.0</span>
+                      <span className="text-[#C7FF32] font-black">★ 5.0</span>
                     </div>
 
                     <Link
                       href={`/${locale}/tours/${tour.slug}`}
-                      className="mt-1.5 block font-bold text-base sm:text-lg text-white hover:text-[#C7FF32] transition-colors line-clamp-1"
+                      className="mt-1.5 block font-bold text-lg sm:text-xl text-white hover:text-[#C7FF32] transition-colors line-clamp-1"
                     >
                       {tourTitle}
                     </Link>
 
-                    <p className="mt-1 text-xs sm:text-sm text-white/70 line-clamp-2 leading-relaxed">
+                    <p className="mt-1.5 text-sm sm:text-base text-white/80 line-clamp-2 leading-relaxed">
                       {tourDesc}
                     </p>
                   </div>
@@ -254,10 +254,10 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
                   {/* Price & Action Buttons */}
                   <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between gap-2">
                     <div>
-                      <span className="text-[10px] text-white/50 block leading-none">
+                      <span className="text-xs uppercase font-bold text-white/70 block leading-none">
                         {t.from}
                       </span>
-                      <span className="text-base sm:text-lg font-black text-[#C7FF32]">
+                      <span className="text-lg sm:text-xl font-black text-[#C7FF32]">
                         {price}
                       </span>
                     </div>
@@ -265,7 +265,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
                     <div className="flex items-center gap-2 shrink-0">
                       <Link
                         href={`/${locale}/tours/${tour.slug}`}
-                        className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:text-sm font-bold text-white hover:bg-white/20 transition-colors whitespace-nowrap"
+                        className="rounded-full bg-white/10 px-3.5 py-2 text-sm sm:text-base font-bold text-white hover:bg-white/20 transition-colors whitespace-nowrap"
                       >
                         {t.details}
                       </Link>
@@ -274,8 +274,8 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
                           label={t.book}
                           tourTitle={tourTitle}
                           variant="accent"
-                          size="sm"
-                          className="whitespace-nowrap"
+                          size="md"
+                          className="whitespace-nowrap px-4 py-2 text-sm font-black"
                         />
                       </div>
                     </div>

@@ -85,27 +85,27 @@ function Section({
 }) {
   return (
     <section>
-      <h3 className="text-sm font-extrabold uppercase tracking-wide text-deep">
+      <h3 className="text-base sm:text-lg font-extrabold uppercase tracking-wide text-deep">
         {section.heading}
       </h3>
-      <div className="mt-2.5 space-y-2.5 text-sm leading-relaxed text-muted">
+      <div className="mt-2.5 space-y-3 text-base leading-relaxed text-[#3a3836]">
         {section.paragraphs.map((paragraph, i) => (
           <p key={i}>{paragraph}</p>
         ))}
 
         {/* The tour's own lines sit with the list, above the closing note. */}
         {(section.items.length > 0 || extra.length > 0) && (
-          <ul className="space-y-2">
+          <ul className="space-y-2.5">
             {[...section.items, ...extra].map((item, i) => (
               <li key={i} className="flex items-start gap-2.5">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-accent" />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
         )}
 
-        {section.note && <p className="font-semibold text-deep">{section.note}</p>}
+        {section.note && <p className="font-bold text-deep">{section.note}</p>}
       </div>
     </section>
   );

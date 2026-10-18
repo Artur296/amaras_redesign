@@ -20,9 +20,9 @@
   --color-blue-dark: #3f55e0;
   --color-lime: #c7ff32;
 
-  --color-ink: #312f2f;
-  --color-ink-muted: #6b6967;
-  --color-muted: #6b6967;
+  --color-ink: #2b2929;
+  --color-ink-muted: #4a4846;
+  --color-muted: #4a4846;
   --color-surface: #ffffff;
   --color-surface-warm: #f7f7f0;
   --color-bg: #fcfcf7;
@@ -85,31 +85,48 @@ html {
   }
 }
 
-/* Mobile typography scale & touch optimization */
+/* Mobile typography scale & high legibility for elderly & small screens */
 @media (max-width: 640px) {
   /* Prevent iOS Safari auto-zoom on input focus */
   input, select, textarea {
     font-size: 16px !important;
   }
 
-  /* Boost minimum readable font size for descriptions and cards on phones */
+  /* Large, crisp base font size for easy reading */
   body {
-    font-size: 15px;
-    line-height: 1.55;
+    font-size: 16.5px;
+    line-height: 1.62;
   }
 
-  /* Safe tap targets for primary interactive buttons (exempt compact inline pills & header) */
+  /* Boost small text classes to comfortable reading sizes */
+  .text-xs {
+    font-size: 0.875rem !important; /* 14px */
+    line-height: 1.35rem !important;
+  }
+
+  .text-sm {
+    font-size: 0.965rem !important; /* ~15.5px */
+    line-height: 1.48rem !important;
+  }
+
+  .text-\[11px\], .text-\[10px\] {
+    font-size: 0.8125rem !important; /* 13px */
+    line-height: 1.25rem !important;
+  }
+
+  /* Preserve compact navbar header elements so they fit perfectly in 1 row */
   header button, header a {
     min-height: unset;
   }
 
-  .text-xs {
-    font-size: 0.8125rem !important; /* Elevate 12px to 13px */
-    line-height: 1.25rem !important;
+  header .text-\[10px\] {
+    font-size: 10px !important;
+    line-height: 14px !important;
   }
 
-  .text-\[11px\], .text-\[10px\] {
-    font-size: 0.75rem !important; /* Elevate 10-11px to 12px */
+  header .text-xs {
+    font-size: 11px !important;
+    line-height: 16px !important;
   }
 }
 

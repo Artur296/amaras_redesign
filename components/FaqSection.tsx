@@ -90,20 +90,20 @@ export default function FaqSection({ locale }: { locale: Locale }) {
           <h2 className="mt-3 font-serif text-2xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#312F2F]">
             {t.title}
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-[#6B6967] leading-relaxed">
+          <p className="mt-3 text-base sm:text-lg text-[#3a3836] font-medium leading-relaxed">
             {t.subtitle}
           </p>
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="mt-8 sm:mt-10 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none snap-x touch-pan-x">
+        <div className="mt-8 sm:mt-10 flex items-center justify-start sm:justify-center gap-2.5 overflow-x-auto pb-3 pt-1 scrollbar-none snap-x touch-pan-x">
           <button
             type="button"
             onClick={() => {
               setSelectedCategory("all");
               setShowAll(false);
             }}
-            className={`shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`shrink-0 rounded-full px-4 sm:px-5 py-2.5 text-sm sm:text-base font-bold transition-all cursor-pointer ${
               selectedCategory === "all"
                 ? "bg-[#312F2F] text-[#C7FF32] shadow-md scale-102"
                 : "border border-[#EAE9E0] bg-[#FCFCF7] text-[#6B6967] hover:border-black/30 hover:text-[#312F2F]"
@@ -123,7 +123,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
                   setSelectedCategory(cat.key);
                   setShowAll(false);
                 }}
-                className={`shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                className={`shrink-0 rounded-full px-4 sm:px-5 py-2.5 text-sm sm:text-base font-bold transition-all cursor-pointer ${
                   active
                     ? "bg-[#312F2F] text-[#C7FF32] shadow-md scale-102"
                     : "border border-[#EAE9E0] bg-[#FCFCF7] text-[#6B6967] hover:border-black/30 hover:text-[#312F2F]"
@@ -159,16 +159,16 @@ export default function FaqSection({ locale }: { locale: Locale }) {
                   className="flex w-full items-start sm:items-center justify-between gap-3 sm:gap-4 p-4 sm:p-6 text-left cursor-pointer"
                 >
                   <div className="flex-1 pr-1">
-                    <span className="block text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#586EFF] mb-1">
+                    <span className="block text-xs sm:text-sm font-black uppercase tracking-wider text-[#586EFF] mb-1">
                       {catTitle} • #{faq.id}
                     </span>
-                    <span className="font-heading text-base sm:text-xl tracking-wide uppercase text-[#312F2F] leading-snug">
+                    <span className="font-heading text-lg sm:text-xl md:text-2xl tracking-wide uppercase text-[#201f1f] leading-snug">
                       {q}
                     </span>
                   </div>
 
                   <span
-                    className={`flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full border text-sm sm:text-base font-bold transition-transform duration-200 mt-1 sm:mt-0 ${
+                    className={`flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full border text-base font-bold transition-transform duration-200 mt-1 sm:mt-0 ${
                       isOpen
                         ? "rotate-180 border-[#586EFF] bg-[#586EFF] text-white shadow-sm"
                         : "border-[#EAE9E0] bg-white text-[#312F2F]"
@@ -179,7 +179,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 pb-5 pt-2 sm:px-6 sm:pb-6 sm:pt-3 text-sm sm:text-base leading-relaxed text-[#555351] border-t border-[#EAE9E0]/70 whitespace-pre-line break-words bg-white">
+                  <div className="px-4 pb-5 pt-2 sm:px-6 sm:pb-6 sm:pt-3 text-base sm:text-lg leading-relaxed text-[#2b2929] border-t border-[#EAE9E0]/70 whitespace-pre-line break-words bg-white">
                     {a}
                   </div>
                 )}
@@ -194,7 +194,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
             <button
               type="button"
               onClick={() => setShowAll(!showAll)}
-              className="inline-flex items-center gap-2 rounded-full border-2 border-[#586EFF] bg-white px-7 py-3 text-xs sm:text-sm font-black uppercase tracking-wider text-[#586EFF] hover:bg-[#586EFF] hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95 cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-[#586EFF] bg-white px-8 py-3.5 text-sm sm:text-base font-black uppercase tracking-wider text-[#586EFF] hover:bg-[#586EFF] hover:text-white transition-all shadow-sm hover:shadow-md active:scale-95 cursor-pointer"
             >
               <span>
                 {showAll
@@ -215,13 +215,13 @@ export default function FaqSection({ locale }: { locale: Locale }) {
         {/* Closing Contact CTA Block */}
         <div className="mt-12 sm:mt-16 rounded-[2rem] border border-[#EAE9E0] bg-[#312F2F] p-6 sm:p-10 text-center text-white shadow-xl relative overflow-hidden">
           <div className="relative z-10 max-w-2xl mx-auto">
-            <span className="inline-block rounded-full bg-[#C7FF32]/20 border border-[#C7FF32]/35 px-3 py-1 text-xs font-black uppercase tracking-wider text-[#C7FF32] mb-3">
+            <span className="inline-block rounded-full bg-[#C7FF32]/20 border border-[#C7FF32]/35 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#C7FF32] mb-3">
               AMARAS 24/7 SUPPORT
             </span>
             <h3 className="font-serif text-2xl sm:text-4xl font-normal tracking-tight text-white">
               {t.ctaTitle}
             </h3>
-            <p className="mt-2.5 text-xs sm:text-base text-white/80 leading-relaxed">
+            <p className="mt-2.5 text-sm sm:text-lg text-white/90 leading-relaxed font-normal">
               {t.ctaSubtitle}
             </p>
 
@@ -231,7 +231,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
                 href={links.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-4 text-sm sm:text-base font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
               >
                 <WhatsAppIcon className="w-5 h-5" />
                 <span>{t.btnWhatsapp}</span>
@@ -241,7 +241,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
                 href={links.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#229ED9] px-6 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#229ED9] px-6 py-4 text-sm sm:text-base font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
               >
                 <TelegramIcon className="w-5 h-5" />
                 <span>{t.btnTelegram}</span>
@@ -249,7 +249,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
 
               <Link
                 href={`/${locale}/tours`}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#C7FF32] px-6 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-[#312F2F] shadow-lg transition-transform hover:bg-[#b8f226] hover:scale-105 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#C7FF32] px-6 py-4 text-sm sm:text-base font-black uppercase tracking-wider text-[#312F2F] shadow-lg transition-transform hover:bg-[#b8f226] hover:scale-105 active:scale-95"
               >
                 <span>{t.btnChooseTour}</span>
                 <span className="font-black">→</span>

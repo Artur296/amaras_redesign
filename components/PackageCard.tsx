@@ -85,14 +85,14 @@ export default function PackageCard({
         {/* Day-by-Day Indicators */}
         {days.length > 0 && (
           <div className="mt-4 flex items-center gap-2.5">
-            <span className="text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#C7FF32]">
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#C7FF32]">
               {dict.pkg.program}:
             </span>
             <span className="flex flex-wrap items-center gap-1.5">
               {days.map((day) => (
                 <span
                   key={day}
-                  className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-[11px] font-black text-[#FCFCF7]"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-xs font-black text-[#FCFCF7]"
                   title={`${dict.tour.day} ${day}`}
                 >
                   {day}
@@ -104,16 +104,16 @@ export default function PackageCard({
 
         {/* Inclusions pill box */}
         <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
-          <p className="text-[11px] font-black uppercase tracking-wider text-[#C7FF32]">
+          <p className="text-xs font-black uppercase tracking-wider text-[#C7FF32]">
             {dict.pkg.includesTitle}
           </p>
-          <ul className="mt-2.5 grid grid-cols-2 gap-x-3 gap-y-2">
+          <ul className="mt-2.5 grid grid-cols-2 gap-x-3 gap-y-2.5">
             {includes.map(({ icon: Icon, label }) => (
               <li
                 key={label}
-                className="flex items-start gap-2 text-xs sm:text-[13px] font-medium text-[#FCFCF7] leading-snug"
+                className="flex items-start gap-2 text-xs sm:text-sm font-medium text-[#FCFCF7] leading-snug"
               >
-                <Icon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#C7FF32]" />
+                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-[#C7FF32]" />
                 <span className="line-clamp-1">{label}</span>
               </li>
             ))}
@@ -133,7 +133,7 @@ export default function PackageCard({
                     {formatPrice(tour.priceOldAmd)}
                   </s>
                 )}
-                <span className="text-2xl font-black text-[#C7FF32]">
+                <span className="text-2xl sm:text-3xl font-black text-[#C7FF32]">
                   {formatPrice(tour.priceFromAmd)}
                 </span>
               </div>
@@ -159,11 +159,12 @@ export default function PackageCard({
             message={`${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`}
             variant="accent"
             size="md"
+            className="py-3 text-sm sm:text-base font-black uppercase tracking-wider"
           />
 
           <Link
             href={href}
-            className="flex w-full items-center justify-center rounded-full border border-white/20 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#FCFCF7] transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"
+            className="flex w-full items-center justify-center rounded-full border border-white/20 px-4 py-3 text-sm font-bold uppercase tracking-wider text-[#FCFCF7] transition-all hover:border-[#C7FF32] hover:text-[#C7FF32]"
           >
             {dict.pkg.viewProgram} →
           </Link>
