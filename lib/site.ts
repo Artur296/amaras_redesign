@@ -45,6 +45,36 @@ export const defaultHomepageImages = {
 
 export type HomepageImages = typeof defaultHomepageImages;
 
+export interface BentoExtremeConfig {
+  badge: string;
+  title: Record<"ru" | "hy" | "en", string>;
+  subtitle: Record<"ru" | "hy" | "en", string>;
+  activities: string[];
+  link: string;
+}
+
+export const defaultBentoExtreme: BentoExtremeConfig = {
+  badge: "4×4",
+  title: {
+    ru: "Экстрим",
+    hy: "Էքսթրիմ",
+    en: "Extreme",
+  },
+  subtitle: {
+    ru: "Зиплайн, парашют, 4×4 и перевалы",
+    hy: "Զիփլայն, պարաշյուտ, 4×4 և լեռնանցքներ",
+    en: "Zipline, skydiving, 4×4 & passes",
+  },
+  activities: [
+    "Зиплайн",
+    "Прыжок с парашютом",
+    "Джип-туры 4×4",
+    "Параплан",
+    "Рафтинг",
+  ],
+  link: "/tours/jeep",
+};
+
 export const site = {
   name: "Amaras Tour",
   url: "https://amarastour.com",
@@ -59,6 +89,8 @@ export const site = {
   logo: "/images/logo.png",
   // Configurable widget & section images across homepage; editable in /admin.
   homepageImages: defaultHomepageImages,
+  // Configurable Extreme & Adventure card settings; editable in /admin.
+  bentoExtreme: defaultBentoExtreme,
 };
 
 export type SiteInfo = typeof site;

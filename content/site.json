@@ -32,6 +32,29 @@
     "topTour3Right": "/images/azhdahak.jpg",
     "article1": "/images/1792095011523-azhdahak-crater-web.jpg",
     "article2": "/images/1792095024566-garni-symphony-stones-web.jpg",
-    "article3": "/images/noravank.jpg"
+    "article3": "/images/noravank.jpg",
+    "bentoCardExtreme": "/images/1792096571726-jeep-mountain-road-web.jpg",
+    "bentoCardGuests": "/images/hero-travellers.jpg"
+  },
+  "bentoExtreme": {
+    "badge": "4×4",
+    "title": {
+      "ru": "Экстрим",
+      "hy": "Էքսթրիմ",
+      "en": "Extreme"
+    },
+    "subtitle": {
+      "ru": "Зиплайн, парашют, 4×4 и перевалы",
+      "hy": "Զիփլայն, պարաշյուտ, 4×4 և լեռնանցքներ",
+      "en": "Zipline, skydiving, 4×4 & passes"
+    },
+    "activities": [
+      "Зиплайн",
+      "Прыжок с парашютом",
+      "Джип-туры 4×4",
+      "Параплан",
+      "Рафтинг"
+    ],
+    "link": "/tours/jeep"
   }
 }

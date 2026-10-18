@@ -10,7 +10,13 @@ import {
   type Category,
   type Tour,
 } from "@/lib/tours";
-import { defaultHomepageImages, type HomepageImages, type SiteInfo } from "@/lib/site";
+import {
+  defaultHomepageImages,
+  defaultBentoExtreme,
+  type HomepageImages,
+  type BentoExtremeConfig,
+  type SiteInfo,
+} from "@/lib/site";
 import type { Content, ContentKey } from "@/lib/content";
 import type { Review } from "@/lib/reviews";
 import type { SpecialOffer } from "@/lib/offers";
@@ -1453,6 +1459,14 @@ function ImagesTab({
     ...(site.homepageImages || {}),
   };
 
+  const bentoExtreme: BentoExtremeConfig = {
+    ...defaultBentoExtreme,
+    ...(site.bentoExtreme || {}),
+  };
+
+  const [bentoExtLocale, setBentoExtLocale] = useState<Locale>("ru");
+  const [newActivityInput, setNewActivityInput] = useState("");
+
   function updateHpImage(key: keyof HomepageImages, url: string) {
     onChangeSite({
       ...site,
@@ -1461,6 +1475,31 @@ function ImagesTab({
         [key]: url,
       },
     });
+  }
+
+  function updateBentoExtreme(patch: Partial<BentoExtremeConfig>) {
+    onChangeSite({
+      ...site,
+      bentoExtreme: {
+        ...bentoExtreme,
+        ...patch,
+      },
+    });
+  }
+
+  function addActivity(name?: string) {
+    const val = (name ?? newActivityInput).trim();
+    if (!val) return;
+    const current = Array.isArray(bentoExtreme.activities) ? bentoExtreme.activities : [];
+    if (!current.includes(val)) {
+      updateBentoExtreme({ activities: [...current, val] });
+    }
+    if (!name) setNewActivityInput("");
+  }
+
+  function removeActivity(index: number) {
+    const current = Array.isArray(bentoExtreme.activities) ? bentoExtreme.activities : [];
+    updateBentoExtreme({ activities: current.filter((_, i) => i !== index) });
   }
 
   function move(i: number, dir: -1 | 1) {
@@ -1642,7 +1681,7 @@ function ImagesTab({
           <div>
             <h3 className="text-lg font-extrabold text-ink">Трендовые направления (Бенто-сетка)</h3>
             <p className="mt-1 text-xs text-muted">
-              Блок «Туры по Армении — это тренд» с 4 карточками разного размера.
+              Блок «Туры по Армении — это тренд» с 6 карточками: Севан, Наши гости, Что посмотреть, Премиум-отели, Экскурсионные туры и Экстрим.
             </p>
           </div>
 
@@ -1656,7 +1695,15 @@ function ImagesTab({
             </div>
 
             <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
-              <span className="text-xs font-bold text-ink">Карточка 2 (Широкая вверху): Популярные направления / Хор Вирап</span>
+              <span className="text-xs font-bold text-ink">Карточка 2 (Вертикальная): Наши гости / Живые эмоции</span>
+              <ImagePicker
+                value={hpImages.bentoCardGuests}
+                onChange={(url) => updateHpImage("bentoCardGuests", url)}
+              />
+            </div>
+
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
+              <span className="text-xs font-bold text-ink">Карточка 3 (Широкая вверху): Что посмотреть в Армении</span>
               <ImagePicker
                 value={hpImages.bentoCard2}
                 onChange={(url) => updateHpImage("bentoCard2", url)}
@@ -1664,19 +1711,171 @@ function ImagesTab({
             </div>
 
             <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
-              <span className="text-xs font-bold text-ink">Карточка 3 (Слева внизу): Премиум-отели / Дилижан</span>
+              <span className="text-xs font-bold text-ink">Карточка 4 (Слева внизу): Премиум-отели / Дилижан</span>
               <ImagePicker
                 value={hpImages.bentoCard3}
                 onChange={(url) => updateHpImage("bentoCard3", url)}
               />
             </div>
 
-            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2">
-              <span className="text-xs font-bold text-ink">Карточка 4 (Справа внизу): Экскурсионные туры / Гарни</span>
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2 md:col-span-2">
+              <span className="text-xs font-bold text-ink">Карточка 5: Экскурсионные туры / Гарни</span>
               <ImagePicker
                 value={hpImages.bentoCard4}
                 onChange={(url) => updateHpImage("bentoCard4", url)}
               />
+            </div>
+
+            {/* Карточка 6: Экстрим & Приключения */}
+            <div className="md:col-span-2 rounded-2xl border-2 border-[#C7FF32]/60 bg-white p-5 shadow-sm space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-black/5 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#C7FF32] text-xs font-black text-[#312F2F]">
+                    4×4
+                  </span>
+                  <div>
+                    <h4 className="text-sm font-extrabold text-ink">
+                      Карточка 6: Экстрим & Приключения (Зиплайн, парашют, 4×4 и др.)
+                    </h4>
+                    <p className="text-xs text-muted">
+                      Редактируйте фото, бейдж, заголовок, описание и список активностей (зиплайн, парашют, джип-туры, рафтинг и т.д.).
+                    </p>
+                  </div>
+                </div>
+                <LocaleTabs active={bentoExtLocale} onChange={setBentoExtLocale} />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-3">
+                  <Field label="Фото обложки карточки Экстрим">
+                    <ImagePicker
+                      value={hpImages.bentoCardExtreme}
+                      onChange={(url) => updateHpImage("bentoCardExtreme", url)}
+                    />
+                  </Field>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <Field label="Бейдж на карточке (например: 4×4)">
+                      <TextInput
+                        value={bentoExtreme.badge}
+                        onChange={(v) => updateBentoExtreme({ badge: v })}
+                        placeholder="4×4"
+                      />
+                    </Field>
+                    <Field label="Ссылка при клике">
+                      <TextInput
+                        value={bentoExtreme.link}
+                        onChange={(v) => updateBentoExtreme({ link: v })}
+                        placeholder="/tours/jeep"
+                      />
+                    </Field>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <Field label={`Заголовок карточки (${localeNames[bentoExtLocale]})`}>
+                    <TextInput
+                      value={bentoExtreme.title[bentoExtLocale]}
+                      onChange={(v) =>
+                        updateBentoExtreme({
+                          title: { ...bentoExtreme.title, [bentoExtLocale]: v },
+                        })
+                      }
+                      placeholder="Экстрим"
+                    />
+                  </Field>
+
+                  <Field label={`Описание / подзаголовок (${localeNames[bentoExtLocale]})`}>
+                    <TextInput
+                      value={bentoExtreme.subtitle[bentoExtLocale]}
+                      onChange={(v) =>
+                        updateBentoExtreme({
+                          subtitle: { ...bentoExtreme.subtitle, [bentoExtLocale]: v },
+                        })
+                      }
+                      placeholder="Зиплайн, парашют, 4×4 и перевалы"
+                    />
+                  </Field>
+
+                  {/* Активности: Зиплайн, парашют, 4x4, параплан и др. */}
+                  <div>
+                    <span className="block text-xs font-bold text-ink mb-1.5">
+                      Список активностей (отображаются тегами на карточке):
+                    </span>
+
+                    {/* Active tags with delete cross */}
+                    <div className="flex flex-wrap gap-1.5 mb-2.5">
+                      {(bentoExtreme.activities || []).map((act, idx) => (
+                        <span
+                          key={idx}
+                          className="inline-flex items-center gap-1 rounded-full bg-[#312F2F] text-white px-2.5 py-1 text-xs font-semibold shadow-xs"
+                        >
+                          <span>{act}</span>
+                          <button
+                            type="button"
+                            onClick={() => removeActivity(idx)}
+                            className="text-[#C7FF32] hover:text-white ml-0.5 font-bold cursor-pointer"
+                            title="Удалить"
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Add custom activity input */}
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={newActivityInput}
+                        onChange={(e) => setNewActivityInput(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            addActivity();
+                          }
+                        }}
+                        placeholder="Например: Зиплайн, Парашют, Рафтинг..."
+                        className="flex-1 rounded-lg border border-black/10 bg-white px-3 py-1.5 text-xs outline-none focus:border-primary"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => addActivity()}
+                        className="rounded-lg bg-[#312F2F] text-white px-3 py-1.5 text-xs font-bold hover:bg-[#C7FF32] hover:text-[#312F2F] transition-colors cursor-pointer"
+                      >
+                        + Добавить
+                      </button>
+                    </div>
+
+                    {/* Fast presets */}
+                    <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                      <span className="text-[11px] text-muted mr-1">Быстро добавить:</span>
+                      {[
+                        "Зиплайн",
+                        "Прыжок с парашютом",
+                        "Джип-туры 4×4",
+                        "Параплан",
+                        "Рафтинг",
+                        "Квадроциклы",
+                        "Скалолазание",
+                      ].map((preset) => {
+                        const exists = (bentoExtreme.activities || []).includes(preset);
+                        if (exists) return null;
+                        return (
+                          <button
+                            key={preset}
+                            type="button"
+                            onClick={() => addActivity(preset)}
+                            className="rounded-md border border-black/10 bg-black/5 hover:bg-[#C7FF32] hover:border-[#C7FF32] hover:text-[#312F2F] px-2 py-0.5 text-[10px] font-semibold text-ink/80 transition-all cursor-pointer"
+                          >
+                            + {preset}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

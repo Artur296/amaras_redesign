@@ -4,14 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
-import type { HomepageImages } from "@/lib/site";
+import type { HomepageImages, BentoExtremeConfig } from "@/lib/site";
 
 export default function TrendBentoGrid({
   locale,
   images,
+  bentoExtreme,
 }: {
   locale: Locale;
   images?: Partial<HomepageImages>;
+  bentoExtreme?: Partial<BentoExtremeConfig>;
 }) {
   const img1 = images?.bentoCard1 || "/images/package-sevan.jpg";
   const img2 = images?.bentoCard2 || "/images/offer-khor-virap.jpg";
@@ -19,6 +21,27 @@ export default function TrendBentoGrid({
   const img4 = images?.bentoCard4 || "/images/package-garni-hd.jpg";
   const imgGuests = images?.bentoCardGuests || "/images/hero-travellers.jpg";
   const imgExtreme = images?.bentoCardExtreme || "/images/1792096571726-jeep-mountain-road-web.jpg";
+
+  const extremeBadge = bentoExtreme?.badge || "4×4";
+  const extremeTitle =
+    bentoExtreme?.title?.[locale] ||
+    bentoExtreme?.title?.ru ||
+    (locale === "ru" ? "Экстрим" : locale === "hy" ? "Էքսթրիմ" : "Extreme");
+  const extremeSubtitle =
+    bentoExtreme?.subtitle?.[locale] ||
+    bentoExtreme?.subtitle?.ru ||
+    (locale === "ru"
+      ? "Зиплайн, парашют, 4×4 и перевалы"
+      : locale === "hy"
+      ? "Զիփլայն, պարաշյուտ, 4×4 և լեռնանցքներ"
+      : "Zipline, skydiving, 4×4 & passes");
+  const extremeActivities = Array.isArray(bentoExtreme?.activities)
+    ? bentoExtreme.activities
+    : ["Зиплайн", "Прыжок с парашютом", "Джип-туры 4×4", "Параплан", "Рафтинг"];
+  const rawLink = bentoExtreme?.link || "/tours/jeep";
+  const extremeLink = rawLink.startsWith("http")
+    ? rawLink
+    : `/${locale}${rawLink.startsWith("/") ? rawLink : `/${rawLink}`}`;
 
   return (
     <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-8 sm:py-16 lg:py-24">
@@ -273,47 +296,58 @@ export default function TrendBentoGrid({
               </div>
             </motion.div>
 
-            {/* Card 6: ЭКСТРИМ 4×4 (Extreme & Jeep) */}
+            {/* Card 6: ЭКСТРИМ & ПРИКЛЮЧЕНИЯ (Zipline, Parachute, 4x4, etc.) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group border border-[#C7FF32]/25"
+              className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group border border-[#C7FF32]/25 flex flex-col justify-between"
             >
               <Image
                 src={imgExtreme}
-                alt="Экстрим и Джип-туры в Армении"
+                alt={extremeTitle}
                 fill
                 sizes="(max-width: 1024px) 50vw, 25vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/35" />
 
-              <div className="absolute top-3.5 inset-x-3.5 sm:top-5 sm:inset-x-5 text-white">
+              <div className="relative z-10 p-3.5 sm:p-5 text-white">
                 <span className="inline-block rounded-md bg-[#C7FF32] px-1.5 py-0.5 text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-[#312F2F] mb-1">
-                  4×4
+                  {extremeBadge}
                 </span>
                 <h4 className="font-serif text-base sm:text-xl lg:text-2xl font-medium leading-tight text-[#C7FF32]">
-                  {locale === "ru"
-                    ? "Экстрим"
-                    : locale === "hy"
-                    ? "Էքսթրիմ"
-                    : "Extreme 4×4"}
+                  {extremeTitle}
                 </h4>
-                <p className="mt-1 text-xs text-white/80 line-clamp-1">
-                  {locale === "ru"
-                    ? "Вулканы и перевалы"
-                    : locale === "hy"
-                    ? "Հրաբուխներ և լեռնանցքներ"
-                    : "Volcanoes & Off-road"}
+                <p className="mt-1 text-xs text-white/85 line-clamp-2 leading-snug">
+                  {extremeSubtitle}
                 </p>
+
+                {/* Extreme activity chips (Zipline, Parachute, 4x4, etc.) */}
+                {extremeActivities.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {extremeActivities.slice(0, 3).map((act, idx) => (
+                      <span
+                        key={idx}
+                        className="rounded-full bg-white/15 backdrop-blur-xs px-2 py-0.5 text-[9px] sm:text-[10px] font-medium text-white/90 border border-white/15"
+                      >
+                        {act}
+                      </span>
+                    ))}
+                    {extremeActivities.length > 3 && (
+                      <span className="rounded-full bg-[#C7FF32]/20 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold text-[#C7FF32]">
+                        +{extremeActivities.length - 3}
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
 
-              <div className="absolute bottom-3.5 left-3.5 sm:bottom-5 sm:left-5">
+              <div className="relative z-10 p-3.5 sm:p-5 pt-0">
                 <Link
-                  href={`/${locale}/tours/jeep`}
-                  className="inline-flex items-center justify-center rounded-full bg-[#C7FF32] px-3 sm:px-5 py-1.5 sm:py-2 text-xs font-black text-[#312F2F] shadow-md transition-all hover:bg-white hover:scale-105 active:scale-95"
+                  href={extremeLink}
+                  className="inline-flex items-center justify-center rounded-full bg-[#C7FF32] px-3.5 sm:px-5 py-1.5 sm:py-2 text-xs font-black text-[#312F2F] shadow-md transition-all hover:bg-white hover:scale-105 active:scale-95"
                 >
                   {locale === "ru" ? "Подробнее" : locale === "hy" ? "Մանրամասն" : "Explore"}
                 </Link>

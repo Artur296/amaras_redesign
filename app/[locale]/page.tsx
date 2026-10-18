@@ -175,7 +175,7 @@ export default async function HomePage({ params }: Props) {
       <Hero locale={locale} dict={dict} images={hero.images} cardImages={site.homepageImages} />
 
       {/* 1.1 "Внутренний туризм — это тренд" Bento Grid (Screenshot 1) */}
-      <TrendBentoGrid locale={locale} images={site.homepageImages} />
+      <TrendBentoGrid locale={locale} images={site.homepageImages} bentoExtreme={site.bentoExtreme} />
 
       {/* 1.2 COMPACT 1-TOUR-PER-CATEGORY SHOWCASE (Space-efficient express selector) */}
       <CompactCategoryTours tours={tours} categories={categories} locale={locale} />
