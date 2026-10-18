@@ -6,6 +6,8 @@ import { useState } from "react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
 import type { Dict, Locale } from "@/lib/i18n";
 import type { HomepageImages } from "@/lib/site";
+import { useLinks } from "@/components/SiteProvider";
+import { InstagramIcon, TelegramIcon, WhatsAppIcon } from "@/components/icons";
 
 export default function Hero({
   locale,
@@ -18,6 +20,7 @@ export default function Hero({
   images: string[];
   cardImages?: Partial<HomepageImages>;
 }) {
+  const links = useLinks();
   const destinations = [
     {
       id: "sevan",
@@ -148,12 +151,12 @@ export default function Hero({
                 {dict.hero.subtitle}
               </motion.p>
 
-              {/* Action Button */}
+              {/* Action Buttons: Tour Catalog CTA + Round Social Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.38, duration: 0.6 }}
-                className="mt-3.5 sm:mt-8 w-auto inline-flex self-start"
+                className="mt-3.5 sm:mt-8 flex items-center gap-2.5 sm:gap-3.5 flex-wrap"
               >
                 <Link
                   href={`/${locale}/tours`}
@@ -164,6 +167,45 @@ export default function Hero({
                   </span>
                   <span className="text-sm sm:text-base font-black transition-transform group-hover:translate-x-1">→</span>
                 </Link>
+
+                {/* Round Social Buttons (Instagram, WhatsApp, Telegram) */}
+                <div className="flex items-center gap-2 sm:gap-2.5">
+                  {/* Instagram */}
+                  <a
+                    href={links.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    title="Instagram"
+                    className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white shadow-[0_4px_16px_rgba(220,39,67,0.4)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_22px_rgba(220,39,67,0.7)] active:scale-95"
+                  >
+                    <InstagramIcon className="h-4 w-4 sm:h-6 sm:w-6" />
+                  </a>
+
+                  {/* WhatsApp */}
+                  <a
+                    href={links.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                    title="WhatsApp"
+                    className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_16px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_22px_rgba(37,211,102,0.7)] active:scale-95"
+                  >
+                    <WhatsAppIcon className="h-4 w-4 sm:h-6 sm:w-6" />
+                  </a>
+
+                  {/* Telegram */}
+                  <a
+                    href={links.telegram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Telegram"
+                    title="Telegram"
+                    className="flex h-10 w-10 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-full bg-[#229ED9] text-white shadow-[0_4px_16px_rgba(34,158,217,0.4)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_22px_rgba(34,158,217,0.7)] active:scale-95"
+                  >
+                    <TelegramIcon className="h-4 w-4 sm:h-6 sm:w-6" />
+                  </a>
+                </div>
               </motion.div>
             </div>
 
