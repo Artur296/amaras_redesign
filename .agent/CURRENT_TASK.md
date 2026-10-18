@@ -1,12 +1,12 @@
 # Current Task
 
 ## What We're Building
-- Removed the "ХИТЫ БРОНИРОВАНИЯ / TOP TOURS" 3-column section from the homepage (`app/[locale]/page.tsx`).
-- Previously added "Наши гости" and "Экстрим 4x4" to Bento Grid (`TrendBentoGrid.tsx`).
-- Implemented compact 1-tour-per-category express selector, full-width reviews slider, interactive Telegram booking modal with receipt attachment, mobile typography scaling, and security headers.
+- Fixed review truncation issue: removed `line-clamp-6` in `ReviewsSection.tsx` and added `whitespace-pre-line break-words` so that long reviews are displayed in their entirety without cutoffs or ellipses.
+- Updated `GuestsGallery.tsx` for consistent full text formatting.
+- Previously removed TopToursSection and added "Наши гости" + "Экстрим" to Bento Grid.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-18 — Removed TopToursSection from homepage. Production build verified (86 routes). Pushed to both `origin/main` and `redesign/main`.
+2026-10-18 — Removed review line clamping. Verified full review display and clean build. Pushed to both `origin/main` and `redesign/main`.
