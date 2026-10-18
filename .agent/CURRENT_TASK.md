@@ -1,16 +1,18 @@
 # Current Task
 
 ## What We're Building
-- Mobile header & navigation layout:
-  - Scaled down logo height and max width on mobile (`max-w-[120px] h-5.5`) so it never occupies excessive horizontal space.
-  - Set `shrink-0` on hamburger button, search button, and language switcher so the hamburger button (3 полоски) is permanently visible and never pushed off-screen.
-  - Re-styled 3 horizontal lines with crisp SVG stroke and semi-transparent pill container for maximum visibility on all screen sizes.
+- Mobile booking modal overlay fix:
+  - Fixed issue where clicking "Забронировать" from fixed/sticky floating elements (such as `TourDetail` mobile floating bar with `backdrop-blur`) trapped the modal inside the containing block at the bottom of the screen.
+  - Portaled `BookingModal` to `document.body` via `createPortal` with SSR-safe mount detection.
+  - Implemented high-end mobile bottom sheet layout: slides up from bottom (`rounded-t-[2rem]`, `max-h-[92dvh]`), completely visible, full scroll support, and centered on desktop.
+  - Set `z-[9999]` above all floating bars, widgets, and headers.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-18 — Scaled down mobile logo and restored 3-bar hamburger menu button on mobile header, verified build (86/86 pages), and pushed to both remotes.
+2026-10-18 — Fixed BookingModal trapping on mobile by portaling to document.body, verified build (86/86 pages), and pushed to both remotes.
+
 
 
 

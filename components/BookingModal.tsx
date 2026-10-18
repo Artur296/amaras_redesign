@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
 import { useLinks, useSite } from "@/components/SiteProvider";
@@ -138,8 +139,13 @@ export default function BookingModal({
   const site = useSite();
   const paymentCard = site?.paymentCard || defaultPaymentCard;
 
+  const [mounted, setMounted] = useState(false);
   const [copiedCard, setCopiedCard] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const [title, setTitle] = useState(tourTitle);
   const [date, setDate] = useState(defaultDate);
@@ -275,10 +281,11 @@ export default function BookingModal({
   };
 
   if (!isOpen) return null;
+  if (!mounted || typeof document === "undefined") return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto">
+      <div className="fixed inset-0 z-[9999] flex flex-col justify-end sm:justify-center sm:items-center p-0 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -286,16 +293,16 @@ export default function BookingModal({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
           onClick={resetAndClose}
-          className="fixed inset-0 bg-black/75 backdrop-blur-sm cursor-pointer"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm cursor-pointer z-0"
         />
 
-        {/* Modal Window */}
+        {/* Modal Window: App bottom sheet on mobile, centered modal on desktop */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 16 }}
-          transition={{ duration: 0.22, ease: "easeOut" }}
-          className="relative z-10 my-auto w-full max-w-[620px] max-h-[92vh] overflow-y-auto rounded-[2rem] border border-white/15 bg-[#242323] text-[#FCFCF7] shadow-2xl p-5 sm:p-8 overscroll-contain"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 40 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="relative z-10 w-full max-w-[620px] max-h-[92dvh] sm:max-h-[90vh] overflow-y-auto rounded-t-[2rem] sm:rounded-[2rem] border border-white/15 bg-[#242323] text-[#FCFCF7] shadow-2xl p-4 sm:p-8 overscroll-contain flex flex-col"
         >
           {/* Close button */}
           <button
@@ -761,6 +768,7 @@ export default function BookingModal({
           )}
         </motion.div>
       </div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
