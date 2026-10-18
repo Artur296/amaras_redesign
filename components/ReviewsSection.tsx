@@ -266,7 +266,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
   return (
     <section className="bg-[#312F2F] py-12 sm:py-20 text-[#FCFCF7] overflow-hidden w-full" id="reviews">
       {/* 1. Header Container (Constrained for neat layout) */}
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-[#C7FF32]/40 bg-[#C7FF32]/10 px-3.5 py-1 text-xs font-black uppercase tracking-[0.2em] text-[#C7FF32]">
@@ -319,7 +319,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
         </div>
       </div>
 
-      {/* 2. FULL-WIDTH SCREEN SLIDER (Edge-to-edge scrollable / swipeable track) */}
+      {/* 2. FULL-WIDTH SCREEN SLIDER (Edge-to-edge scrollable / swipeable track with safe padding) */}
       <div className="w-full mt-8 sm:mt-12 overflow-hidden">
         <div
           ref={sliderRef}
@@ -327,14 +327,14 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
           onMouseLeave={handleMouseLeaveOrUp}
           onMouseUp={handleMouseLeaveOrUp}
           onMouseMove={handleMouseMove}
-          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-4 sm:px-8 lg:px-12 xl:px-16 pb-6 pt-2 overscroll-x-contain touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden items-stretch cursor-grab active:cursor-grabbing select-none"
+          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-8 lg:px-12 xl:px-16 pb-6 pt-2 overscroll-x-contain touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden items-stretch cursor-grab active:cursor-grabbing select-none"
         >
           {reviews.map((rev) => {
             const reviewContent = getReviewText(rev.text, locale);
             return (
               <div
                 key={rev.id}
-                className="group relative flex w-[88vw] sm:w-[420px] md:w-[460px] lg:w-[480px] shrink-0 snap-start flex-col justify-between rounded-3xl border border-white/10 bg-[#242323] p-6 sm:p-8 shadow-xl transition-all duration-200 hover:border-[#C7FF32]/40 hover:bg-[#282727] min-h-[320px] sm:min-h-[340px]"
+                className="group relative flex w-[calc(100vw-56px)] max-w-[340px] sm:max-w-none sm:w-[420px] md:w-[460px] lg:w-[480px] shrink-0 snap-start flex-col justify-between rounded-3xl border border-white/10 bg-[#242323] p-5 sm:p-8 shadow-xl transition-all duration-200 hover:border-[#C7FF32]/40 hover:bg-[#282727] min-h-[320px] sm:min-h-[340px]"
               >
                 <div>
                   {/* Top Bar: Stars + Verified Badge */}
@@ -414,7 +414,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
         </div>
 
         {/* Carousel swipe guidance indicator */}
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-8 mt-4 flex items-center justify-between text-xs sm:text-sm text-[#FCFCF7]/60">
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12 mt-4 flex items-center justify-between text-xs sm:text-sm text-[#FCFCF7]/60">
           <span>{texts.swipeHint}</span>
           <span className="font-semibold text-white/80">{reviews.length} {texts.reviewsCount}</span>
         </div>

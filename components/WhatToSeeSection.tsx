@@ -149,7 +149,7 @@ export function WhatToSeeSection({ locale, initialAttractions }: Props) {
   };
 
   return (
-    <section id="what-to-see" className="mx-auto max-w-[1360px] px-4 sm:px-6 py-20 sm:py-28">
+    <section id="what-to-see" className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12 py-20 sm:py-28">
       {/* 1. Header with Badge & Title */}
       <FadeIn>
         <div className="flex flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">

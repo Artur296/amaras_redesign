@@ -44,7 +44,7 @@ export default function TrendBentoGrid({
     : `/${locale}${rawLink.startsWith("/") ? rawLink : `/${rawLink}`}`;
 
   return (
-    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-8 sm:py-16 lg:py-24">
+    <section className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12 py-8 sm:py-16 lg:py-24">
       {/* Title */}
       <div className="mb-6 sm:mb-12">
         <h2 className="font-serif text-2xl sm:text-5xl font-normal tracking-tight text-[#312F2F]">

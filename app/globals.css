@@ -98,9 +98,9 @@ html {
     line-height: 1.55;
   }
 
-  /* Safe tap targets */
-  button, a {
-    min-height: 40px;
+  /* Safe tap targets for primary interactive buttons (exempt compact inline pills & header) */
+  header button, header a {
+    min-height: unset;
   }
 
   .text-xs {

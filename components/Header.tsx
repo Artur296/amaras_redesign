@@ -98,21 +98,21 @@ export default function Header({
           : "sticky top-0 bg-[#312F2F]/95 backdrop-blur-md border-b border-[#454343]"
       }`}
     >
-      <div className="mx-auto flex h-16 sm:h-20 max-w-[1360px] items-center justify-between gap-3 sm:gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 sm:h-20 max-w-[1360px] items-center justify-between gap-2 sm:gap-4 px-5 sm:px-8 lg:px-12">
         {/* Brand identity - Official AMARAS Logo */}
         <Link
           href={`/${locale}`}
-          className="group flex items-center transition-transform hover:scale-[1.03]"
+          className="group flex items-center shrink-0 transition-transform hover:scale-[1.03]"
           aria-label="AMARAS Home"
         >
-          <div className="relative h-10 sm:h-12 flex items-center">
+          <div className="relative h-8 sm:h-11 flex items-center">
             <Image
               src="/images/amaras-logo.svg"
               alt="AMARAS Tour"
               width={260}
               height={44}
               priority
-              className="h-9 sm:h-10 md:h-11 w-auto object-contain transition-all duration-300 group-hover:brightness-110 drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+              className="h-7 sm:h-9 md:h-11 w-auto object-contain transition-all duration-300 group-hover:brightness-110 drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
             />
           </div>
         </Link>
@@ -138,7 +138,7 @@ export default function Header({
         </nav>
 
         {/* Right Actions */}
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           {/* Search Button (Лупа) */}
           <button
             type="button"
@@ -157,19 +157,19 @@ export default function Header({
                 ? "Որոնել տուրեր (⌘K)"
                 : "Search tours (⌘K)"
             }
-            className="group relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-white/20 bg-black/25 text-white/90 shadow-lg backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-[#C7FF32] hover:bg-white/10 hover:text-[#C7FF32] active:scale-95"
+            className="group relative flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-white/20 bg-black/25 text-white/90 shadow-lg backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-[#C7FF32] hover:bg-white/10 hover:text-[#C7FF32] active:scale-95"
           >
-            <SearchIcon className="h-4 w-4 sm:h-4.5 sm:w-4.5 transition-transform duration-200 group-hover:scale-110" />
+            <SearchIcon className="h-3.5 w-3.5 sm:h-4.5 sm:w-4.5 transition-transform duration-200 group-hover:scale-110" />
           </button>
 
           {/* Language Switcher */}
-          <div className="flex items-center rounded-full border border-white/20 bg-black/25 p-1 backdrop-blur-md shadow-lg" role="group" aria-label="Language">
+          <div className="flex items-center rounded-full border border-white/20 bg-black/25 p-0.5 sm:p-1 backdrop-blur-md shadow-lg" role="group" aria-label="Language">
             {locales.map((l) => (
               <Link
                 key={l}
                 href={`/${l}${restPath}`}
                 aria-current={l === locale ? "true" : undefined}
-                className={`rounded-full px-2.5 py-1 text-xs font-bold transition-all ${
+                className={`rounded-full px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold transition-all ${
                   l === locale
                     ? "bg-[#586EFF] text-white shadow-sm"
                     : "text-white/80 hover:text-white"
@@ -186,9 +186,9 @@ export default function Header({
             onClick={() => setOpen(!open)}
             aria-expanded={open}
             aria-label="Menu"
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-white/5 text-white transition-colors hover:border-[#C7FF32] lg:hidden"
+            className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-[#C7FF32] active:scale-95 lg:hidden"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-5 w-5" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true">
               {open ? <path d="m6 6 12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
             </svg>
           </button>

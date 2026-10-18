@@ -6,7 +6,7 @@ import type { Locale } from "@/lib/i18n";
 
 export default function HeritageBanner({ locale }: { locale: Locale }) {
   return (
-    <section className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <section className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12 py-16 sm:py-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

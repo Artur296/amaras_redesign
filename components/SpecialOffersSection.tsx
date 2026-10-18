@@ -139,7 +139,7 @@ export default function SpecialOffersSection({
         <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-[#C7FF32]/12 blur-[160px]" />
         <div className="pointer-events-none absolute -right-40 bottom-1/4 h-[500px] w-[500px] rounded-full bg-[#586EFF]/18 blur-[170px]" />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1360px] px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-12">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

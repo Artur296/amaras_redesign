@@ -112,7 +112,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
 
   return (
     <section className="bg-[#242323] py-8 sm:py-12 border-y border-white/10 text-[#FCFCF7]">
-      <div className="mx-auto max-w-[1360px] px-4 sm:px-6">
+      <div className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12">
         {/* Header & Controls: compact 1-row layout */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
@@ -154,7 +154,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
         </div>
 
         {/* Category Pills Switcher */}
-        <div className="mt-5 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x touch-pan-x -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="mt-5 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x touch-pan-x">
           <button
             type="button"
             onClick={() => setSelectedCat("all")}
@@ -189,7 +189,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
         {/* 2 Tours Per Screen Carousel Track */}
         <div
           ref={trackRef}
-          className="mt-4 flex gap-4 sm:gap-6 overflow-x-auto pb-3 pt-1 scroll-smooth snap-x snap-mandatory touch-pan-x -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none"
+          className="mt-4 flex gap-4 sm:gap-6 overflow-x-auto pb-3 pt-1 scroll-smooth snap-x snap-mandatory touch-pan-x scrollbar-none"
         >
           {displayedItems.map(({ category, tour }) => {
             if (!tour) return null;
@@ -208,7 +208,7 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
             return (
               <div
                 key={category.id + "-" + tour.slug}
-                className="compact-tour-card group relative flex w-[88vw] sm:w-[calc(50%-12px)] shrink-0 snap-start flex-col sm:flex-row overflow-hidden rounded-2xl border border-white/15 bg-[#1C1B1B] p-3.5 sm:p-4 shadow-md transition-all hover:border-[#C7FF32]/50 hover:bg-[#201F1F]"
+                className="compact-tour-card group relative flex w-[calc(100vw-56px)] sm:w-[calc(50%-12px)] shrink-0 snap-start flex-col sm:flex-row overflow-hidden rounded-2xl border border-white/15 bg-[#1C1B1B] p-3.5 sm:p-4 shadow-md transition-all hover:border-[#C7FF32]/50 hover:bg-[#201F1F]"
               >
                 {/* Left: Thumbnail */}
                 <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full sm:w-44 md:w-52 shrink-0 overflow-hidden rounded-xl bg-black/30">

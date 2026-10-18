@@ -65,7 +65,7 @@ export default async function WhatToSeePage({ params }: Props) {
 
       {/* Editorial Breadcrumbs Banner */}
       <div className="border-b border-black/5 bg-[#ECEAE0]/60">
-        <div className="mx-auto max-w-[1240px] px-4 py-4 sm:px-6">
+        <div className="mx-auto max-w-[1240px] px-5 py-4 sm:px-8 lg:px-12">
           <nav
             aria-label="Breadcrumb"
             className="flex items-center gap-2 text-xs font-medium text-neutral-500"

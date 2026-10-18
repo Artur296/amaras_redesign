@@ -70,7 +70,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
 
   return (
     <section className="bg-white py-12 sm:py-20 lg:py-24 border-b border-[#EAE9E0]" id="faq">
-      <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1100px] px-5 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-[#586EFF]/30 bg-[#586EFF]/10 px-4 py-1 text-xs font-black uppercase tracking-[0.2em] text-[#586EFF]">
@@ -85,7 +85,7 @@ export default function FaqSection({ locale }: { locale: Locale }) {
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="mt-8 sm:mt-10 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none snap-x touch-pan-x -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="mt-8 sm:mt-10 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 pt-1 scrollbar-none snap-x touch-pan-x">
           <button
             type="button"
             onClick={() => setSelectedCategory("all")}

@@ -108,7 +108,7 @@ export default function Hero({
         <div className="absolute inset-x-0 bottom-0 h-28 sm:h-48 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
 
         {/* Main Content Container: Left Editorial Text + Right Destination Cards Slider */}
-        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-8 lg:px-12">
+        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-10 lg:gap-12 items-center">
             {/* LEFT COLUMN: Bold Headline & Editorial Story */}
             <div className="lg:col-span-5 flex flex-col items-start justify-center text-left">
@@ -194,7 +194,7 @@ export default function Hero({
               </div>
 
               {/* Mobile Swipeable Destination Reel (< lg) - Compact low-profile height */}
-              <div className="lg:hidden mt-3 -mx-4 px-4 overflow-x-auto flex gap-2.5 pb-1 scrollbar-none snap-x snap-mandatory">
+              <div className="lg:hidden mt-3 overflow-x-auto flex gap-2.5 pb-1 scrollbar-none snap-x snap-mandatory">
                 {destinations.map((item) => (
                   <Link
                     key={`mobile-${item.id}`}
