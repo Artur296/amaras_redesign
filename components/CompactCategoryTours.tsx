@@ -63,12 +63,25 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
   // Filter public categories (excluding 'guests' which is not a tour category)
   const validCategories = categories.filter((c) => c.id !== "guests");
 
-  // Pick exactly 1 premier tour for each category
+  // Pick exactly 1 premier distinct tour for each category
+  const usedSlugs = new Set<string>();
   const categoryTours = validCategories.map((cat) => {
-    // Find first matching tour
     const match =
-      tours.find((tour) => Array.isArray(tour.categories) && tour.categories.includes(cat.id)) ||
+      tours.find(
+        (tour) =>
+          Array.isArray(tour.categories) &&
+          tour.categories.includes(cat.id) &&
+          !usedSlugs.has(tour.slug)
+      ) ||
+      tours.find(
+        (tour) => Array.isArray(tour.categories) && tour.categories.includes(cat.id)
+      ) ||
+      tours.find((tour) => !usedSlugs.has(tour.slug)) ||
       tours[0];
+
+    if (match) {
+      usedSlugs.add(match.slug);
+    }
 
     return {
       category: cat,
@@ -83,13 +96,17 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
 
   const scrollLeft = () => {
     if (trackRef.current) {
-      trackRef.current.scrollBy({ left: -340, behavior: "smooth" });
+      const card = trackRef.current.querySelector<HTMLElement>(".compact-tour-card");
+      const scrollStep = card ? card.offsetWidth + 24 : 560;
+      trackRef.current.scrollBy({ left: -scrollStep, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (trackRef.current) {
-      trackRef.current.scrollBy({ left: 340, behavior: "smooth" });
+      const card = trackRef.current.querySelector<HTMLElement>(".compact-tour-card");
+      const scrollStep = card ? card.offsetWidth + 24 : 560;
+      trackRef.current.scrollBy({ left: scrollStep, behavior: "smooth" });
     }
   };
 
@@ -169,10 +186,10 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
           })}
         </div>
 
-        {/* Compact Cards Track */}
+        {/* 2 Tours Per Screen Carousel Track */}
         <div
           ref={trackRef}
-          className="mt-4 flex gap-4 overflow-x-auto pb-3 pt-1 scroll-smooth snap-x snap-mandatory touch-pan-x -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none"
+          className="mt-4 flex gap-4 sm:gap-6 overflow-x-auto pb-3 pt-1 scroll-smooth snap-x snap-mandatory touch-pan-x -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none"
         >
           {displayedItems.map(({ category, tour }) => {
             if (!tour) return null;
@@ -191,27 +208,27 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
             return (
               <div
                 key={category.id + "-" + tour.slug}
-                className="group relative flex w-[86vw] sm:w-[380px] md:w-[420px] shrink-0 snap-start flex-row overflow-hidden rounded-2xl border border-white/15 bg-[#1C1B1B] p-3 shadow-md transition-all hover:border-[#C7FF32]/50 hover:bg-[#201F1F]"
+                className="compact-tour-card group relative flex w-[88vw] sm:w-[calc(50%-12px)] shrink-0 snap-start flex-col sm:flex-row overflow-hidden rounded-2xl border border-white/15 bg-[#1C1B1B] p-3.5 sm:p-4 shadow-md transition-all hover:border-[#C7FF32]/50 hover:bg-[#201F1F]"
               >
-                {/* Left: Compact Image Thumbnail */}
-                <div className="relative aspect-[4/3] w-32 sm:w-40 shrink-0 overflow-hidden rounded-xl bg-black/30">
+                {/* Left: Thumbnail */}
+                <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full sm:w-44 md:w-52 shrink-0 overflow-hidden rounded-xl bg-black/30">
                   <Image
                     src={tour.image || category.image}
                     alt={tourTitle}
                     fill
-                    sizes="(max-width: 640px) 130px, 160px"
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 220px, 260px"
                     className="object-cover transition-transform duration-500 group-hover:scale-108"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <span className="absolute bottom-1.5 left-1.5 rounded-md bg-[#312F2F]/90 px-1.5 py-0.5 text-[10px] sm:text-[11px] font-black text-[#C7FF32] backdrop-blur-xs">
+                  <span className="absolute bottom-2 left-2 rounded-md bg-[#312F2F]/90 px-2 py-0.5 text-[11px] sm:text-xs font-black text-[#C7FF32] backdrop-blur-xs">
                     {category.title[locale]}
                   </span>
                 </div>
 
-                {/* Right: Content & Quick CTA */}
-                <div className="flex flex-1 flex-col justify-between pl-3 sm:pl-3.5 overflow-hidden">
+                {/* Right: Content & Full Action Buttons */}
+                <div className="flex flex-1 flex-col justify-between mt-3 sm:mt-0 sm:pl-4 overflow-hidden">
                   <div>
-                    <div className="flex items-center justify-between gap-1 text-[11px] sm:text-xs text-white/60">
+                    <div className="flex items-center justify-between gap-1 text-xs text-white/60">
                       {duration ? (
                         <span className="inline-flex items-center gap-1 font-semibold text-white/80">
                           ⏱ {duration}
@@ -224,41 +241,41 @@ export default function CompactCategoryTours({ tours, categories, locale }: Prop
 
                     <Link
                       href={`/${locale}/tours/${tour.slug}`}
-                      className="mt-1 block font-bold text-sm sm:text-base text-white hover:text-[#C7FF32] transition-colors line-clamp-1"
+                      className="mt-1.5 block font-bold text-base sm:text-lg text-white hover:text-[#C7FF32] transition-colors line-clamp-1"
                     >
                       {tourTitle}
                     </Link>
 
-                    <p className="mt-0.5 text-[11px] sm:text-xs text-white/70 line-clamp-2 leading-snug">
+                    <p className="mt-1 text-xs sm:text-sm text-white/70 line-clamp-2 leading-relaxed">
                       {tourDesc}
                     </p>
                   </div>
 
                   {/* Price & Action Buttons */}
-                  <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between gap-2">
+                  <div className="mt-3 pt-3 border-t border-white/10 flex items-center justify-between gap-2">
                     <div>
                       <span className="text-[10px] text-white/50 block leading-none">
                         {t.from}
                       </span>
-                      <span className="text-sm sm:text-base font-black text-[#C7FF32]">
+                      <span className="text-base sm:text-lg font-black text-[#C7FF32]">
                         {price}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-2 shrink-0">
                       <Link
                         href={`/${locale}/tours/${tour.slug}`}
-                        className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] sm:text-xs font-bold text-white hover:bg-white/20 transition-colors"
+                        className="rounded-full bg-white/10 px-3 py-1.5 text-xs sm:text-sm font-bold text-white hover:bg-white/20 transition-colors whitespace-nowrap"
                       >
                         {t.details}
                       </Link>
-                      <div className="w-[100px] sm:w-[115px]">
+                      <div className="shrink-0">
                         <BookButton
                           label={t.book}
                           tourTitle={tourTitle}
                           variant="accent"
                           size="sm"
-                          className="w-full !px-2.5 !py-1 !text-[11px] sm:!text-xs"
+                          className="whitespace-nowrap"
                         />
                       </div>
                     </div>

@@ -66,9 +66,9 @@ export default function BookButton({
           onClick={() => setOpen(true)}
           aria-expanded={open}
           aria-haspopup="dialog"
-          className={`flex w-full items-center justify-center gap-2 rounded-full font-bold transition-all duration-200 active:scale-[0.98] cursor-pointer ${sizeClasses} ${variantClasses}`}
+          className={`flex w-full items-center justify-center gap-2 rounded-full font-bold whitespace-nowrap transition-all duration-200 active:scale-[0.98] cursor-pointer ${sizeClasses} ${variantClasses}`}
         >
-          <span>{label}</span>
+          <span className="whitespace-nowrap">{label}</span>
           <svg
             viewBox="0 0 20 20"
             fill="currentColor"
