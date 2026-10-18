@@ -1,19 +1,15 @@
 # Current Task
 
 ## What We're Building
-- Completely replaced FAQ with all 27 official questions and answers across 5 organized categories:
-  1. Бронирование и оплата (Questions 1–6)
-  2. Отмена и изменение планов (Questions 7–10)
-  3. Организация экскурсии (Questions 11–16)
-  4. Подготовка, комфорт и безопасность (Questions 17–23)
-  5. Индивидуальные путешествия (Questions 24–27)
-- Added category filter pills ("Все вопросы" + 5 categories) in `FaqSection.tsx`.
-- Preserved text formatting with `whitespace-pre-line break-words`.
-- Added closing CTA contact block: «Остались вопросы? Мы рядом!» with WhatsApp, Telegram, and "Выбрать экскурсию" buttons.
-- Updated dynamic JSON-LD Schema FAQ generator for rich SEO snippets.
+- Completely replaced FAQ with all 27 official questions and answers across 5 organized categories.
+- Fixed `CompactCategoryTours`:
+  - Exactly 2 tours per screen on desktop/tablet with smooth carousel scroll (`sm:w-[calc(50%-12px)]`).
+  - Fixed "Забронировать" button text truncation: removed artificial 100px width constraint and added `whitespace-nowrap`.
+  - Picked distinct unique tours for each category so cards aren't duplicated.
+- Added category filter pills and closing CTA block in FAQ.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-18 — Replaced old FAQs with full 27 official Q&A items, categorized navigation, closing contact block, and updated structured data. Tested build (0 errors) and pushed to both `origin/main` and `redesign/main`.
+2026-10-18 — Configured 2 tours per screen with carousel scroll in `CompactCategoryTours.tsx`, fixed "Забронировать" truncation with `whitespace-nowrap`, tested build, and pushed to both remotes.
