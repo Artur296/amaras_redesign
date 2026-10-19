@@ -61,14 +61,19 @@ export default function TourCard({
             <span className="rounded-full bg-black/85 px-2.5 py-0.5 text-xs font-black tracking-wider text-[#C7FF32] backdrop-blur-md border border-[#C7FF32]/40 font-mono shadow-sm">
               №{code}
             </span>
-            {tour.categories.map((category) => (
-              <span
-                key={category}
-                className="rounded-full bg-[#312F2F]/85 px-3 py-1 text-xs font-black uppercase tracking-wider text-[#FCFCF7] backdrop-blur-md"
-              >
-                {catTitle(category)}
-              </span>
-            ))}
+            {(() => {
+              const priority = ["jeep", "mini-group", "group", "individual", "popular", "offers"];
+              const primaryCat = priority.find((c) => tour.categories.includes(c)) || tour.categories[0];
+              if (!primaryCat) return null;
+              return (
+                <span
+                  key={primaryCat}
+                  className="rounded-full bg-[#312F2F]/85 px-3 py-1 text-xs font-black uppercase tracking-wider text-[#FCFCF7] backdrop-blur-md"
+                >
+                  {catTitle(primaryCat)}
+                </span>
+              );
+            })()}
           </div>
 
 

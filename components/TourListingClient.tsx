@@ -81,6 +81,7 @@ export default function TourListingClient({
   const categoryTabs = [
     { id: "all", label: locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours", icon: "🌍" },
     { id: "popular", label: locale === "ru" ? "Популярные туры" : locale === "hy" ? "Հանրաճանաչ տուրեր" : "Popular Tours", icon: "⭐" },
+    { id: "mini-group", label: locale === "ru" ? "Мини-группа" : locale === "hy" ? "Մինի խումբ" : "Mini-Group", icon: "🚐" },
     { id: "group", label: locale === "ru" ? "Групповые туры" : locale === "hy" ? "Խմբային տուրեր" : "Group Tours", icon: "👥" },
     { id: "individual", label: locale === "ru" ? "Индивидуальные туры" : locale === "hy" ? "Անհատական տուրեր" : "Private Tours", icon: "👤" },
     { id: "jeep", label: locale === "ru" ? "Джип-туры 4x4" : locale === "hy" ? "Ջիպ 4x4" : "4x4 Jeep Expeditions", icon: "🚙" },
@@ -116,9 +117,6 @@ export default function TourListingClient({
     if (catId === "popular") {
       return toursList.filter((t) => (t.featured ?? true) || t.categories.includes("popular")).length;
     }
-    if (catId === "individual") {
-      return toursList.filter((t) => t.categories.includes("individual") || t.categories.includes("group")).length;
-    }
     return toursList.filter((t) => t.categories.includes(catId)).length;
   }
 
@@ -130,9 +128,6 @@ export default function TourListingClient({
           if (selectedCategory === "popular") {
             const isPop = (tour.featured ?? true) || tour.categories.includes("popular");
             if (!isPop) return false;
-          } else if (selectedCategory === "individual") {
-            const isInd = tour.categories.includes("individual") || tour.categories.includes("group");
-            if (!isInd) return false;
           } else if (!tour.categories.includes(selectedCategory)) {
             return false;
           }
@@ -199,8 +194,6 @@ export default function TourListingClient({
               className={`inline-flex items-center gap-2 rounded-full px-4 sm:px-5 h-8 sm:h-9 text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all cursor-pointer select-none ${
                 isCategoryOpen
                   ? "bg-[#4558e8] text-white shadow-md ring-2 ring-[#586EFF]/30"
-                  : selectedCategory === "all"
-                  ? "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 hover:bg-[#485ee8]"
                   : "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 hover:bg-[#485ee8]"
               }`}
               aria-haspopup="true"
@@ -231,7 +224,7 @@ export default function TourListingClient({
                   setSelectedCategory("all");
                   setIsCategoryOpen(false);
                 }}
-                className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#FCFCF7] border border-[#EAE9E0] text-[#6B6967] hover:bg-[#EAE9E0] hover:text-[#312F2F] transition-all text-xs font-bold"
+                className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FCFCF7] border border-[#EAE9E0] text-[#6B6967] hover:bg-[#EAE9E0] hover:text-[#312F2F] transition-all text-xs font-bold cursor-pointer"
                 title={locale === "ru" ? "Сбросить на Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "Reset to All Tours"}
               >
                 ✕
@@ -241,7 +234,7 @@ export default function TourListingClient({
 
           {/* Dropdown Window ("сверху вниз") */}
           {isCategoryOpen && (
-            <div className="absolute left-0 top-full mt-2.5 z-50 w-72 sm:w-80 rounded-2xl bg-white border border-[#EAE9E0] p-2 shadow-2xl shadow-black/15 animate-in fade-in slide-in-from-top-2 duration-200">
+            <div className="absolute left-0 top-full mt-2 z-50 w-72 sm:w-80 max-w-[calc(100vw-32px)] rounded-2xl bg-white border border-[#EAE9E0] p-2 shadow-2xl shadow-black/20">
               <div className="px-3 py-1.5 flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-black/40 border-b border-[#F0EFEA] mb-1">
                 <span>{locale === "ru" ? "Категории туров" : locale === "hy" ? "Տուրերի կատեգորիաներ" : "Tour Categories"}</span>
                 <span className="text-[9px] text-[#586EFF] lowercase font-bold">{locale === "ru" ? "выберите категорию" : locale === "hy" ? "ընտրեք" : "select"}</span>

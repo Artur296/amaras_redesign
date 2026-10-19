@@ -16,7 +16,7 @@ type Props = {
 const I18N = {
   ru: {
     badge: "1 ТУР ИЗ КАЖДОЙ КАТЕГОРИИ",
-    title: "Армения в 6 форматах отдыха",
+    title: "Армения в 7 форматах отдыха",
     subtitle: "Компактная подборка лучших маршрутов: выберите идеальный формат за 10 секунд.",
     all: "Все форматы",
     details: "Подробнее",
@@ -29,7 +29,7 @@ const I18N = {
   },
   hy: {
     badge: "1 ՏՈՒՐ ԱՄԵՆ ԿԱՏԵԳՈՐԻԱՅԻՑ",
-    title: "Հայաստանը 6 ձևաչափով",
+    title: "Հայաստանը 7 ձևաչափով",
     subtitle: "Լավագույն երթուղիների կոմպակտ ընտրանի. ընտրեք ձեր ոճը 10 վայրկյանում։",
     all: "Բոլորը",
     details: "Մանրամասն",
@@ -42,7 +42,7 @@ const I18N = {
   },
   en: {
     badge: "1 TOUR FROM EACH CATEGORY",
-    title: "Armenia in 6 Travel Styles",
+    title: "Armenia in 7 Travel Styles",
     subtitle: "A compact curated showcase: discover your travel vibe in 10 seconds.",
     all: "All Styles",
     details: "Details",

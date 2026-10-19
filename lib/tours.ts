@@ -59,6 +59,17 @@ export const defaultCategories: Category[] = [
     },
   },
   {
+    id: "mini-group",
+    image: "/images/category-group.jpg",
+    imagePosition: "object-center",
+    title: { ru: "Мини-группа", hy: "Մինի խումբ", en: "Mini-Group" },
+    desc: {
+      ru: "Уютные путешествия в мини-группах до 6–8 человек: максимум внимания гида, комфорт и живое общение.",
+      hy: "Հարմարավետ ճամփորդություններ մինչև 6–8 հոգանոց մինի խմբերով՝ գիդի անհատական ուշադրություն և ազատություն։",
+      en: "Intimate journeys in small groups of 6–8 guests: personal guide attention, flexibility and comfort.",
+    },
+  },
+  {
     id: "jeep",
     image: "/images/jeep-tour.jpg",
     imagePosition: "object-center",
