@@ -47,6 +47,8 @@ const I18N = {
     receiptRemoveBtn: "Удалить",
     submitBtn: "Подтвердить и забронировать",
     submitting: "Отправка заявки...",
+    noPaymentBadge: "Без предоплаты",
+    noPaymentNotice: "После отправки заявки наш менеджер свяжется с вами для подтверждения свободных мест и деталей поездки.",
     directContact: "Или напишите нам напрямую:",
     successTitle: "Бронирование принято!",
     successSubtitle: "Спасибо за выбор AMARAS Tours. Мы проверили детали и свяжемся с вами для подтверждения.",
@@ -83,6 +85,8 @@ const I18N = {
     receiptRemoveBtn: "Ջնջել",
     submitBtn: "Հաստատել և ամրագրել",
     submitting: "Ուղարկվում է...",
+    noPaymentBadge: "Առանց կանխավճարի",
+    noPaymentNotice: "Հայտը ուղարկելուց հետո մեր մենեջերը կկապվի Ձեզ հետ՝ հաստատելու տեղերը և ուղևորության մանրամասները:",
     directContact: "Կամ գրեք մեզ անմիջապես՝",
     successTitle: "Ամրագրումն ընդունվա՛ծ է",
     successSubtitle: "Շնորհակալություն AMARAS Tours-ն ընտրելու համար։ Մենք շուտով կկապվենք ձեզ հետ։",
@@ -119,9 +123,11 @@ const I18N = {
     receiptRemoveBtn: "Remove",
     submitBtn: "Confirm & Book Tour",
     submitting: "Submitting...",
+    noPaymentBadge: "No Prepayment Required",
+    noPaymentNotice: "After submitting your request, our manager will contact you to confirm seat availability and trip details.",
     directContact: "Or contact us directly:",
     successTitle: "Booking Confirmed!",
-    successSubtitle: "Thank you for choosing AMARAS Tours. We will verify your receipt and contact you shortly.",
+    successSubtitle: "Thank you for choosing AMARAS Tours. We will review your request and contact you shortly.",
     successBookingCode: "Booking Ref",
     successClose: "Done",
   },
@@ -535,183 +541,199 @@ export default function BookingModal({
                 </div>
               </div>
 
-              {/* 5. Payment Card Details for Transfer */}
-              {paymentCard?.enabled !== false && paymentCard?.cardNumber && (
-                <div className="rounded-2xl border border-[#C7FF32]/40 bg-gradient-to-br from-[#1c1d22] to-[#121215] p-4 sm:p-5 shadow-xl shadow-black/50 space-y-3.5 relative overflow-hidden">
-                  <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#C7FF32]/10 rounded-full blur-2xl pointer-events-none" />
+              {/* 5 & 6. Payment Card Details & Receipt Upload (Only shown when payment card is enabled with card number) */}
+              {paymentCard?.enabled && paymentCard?.cardNumber ? (
+                <>
+                  <div className="rounded-2xl border border-[#C7FF32]/40 bg-gradient-to-br from-[#1c1d22] to-[#121215] p-4 sm:p-5 shadow-xl shadow-black/50 space-y-3.5 relative overflow-hidden">
+                    <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#C7FF32]/10 rounded-full blur-2xl pointer-events-none" />
 
-                  {/* Header with badge & bank */}
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#C7FF32] text-sm font-black text-[#312F2F] shrink-0">
-                        💳
-                      </span>
-                      <span className="text-sm sm:text-base font-black text-white tracking-wide">
-                        {t.paymentCardBadge}
-                      </span>
-                    </div>
-                    {paymentCard.bankName && (
-                      <span className="rounded-full bg-[#C7FF32]/15 border border-[#C7FF32]/35 px-3 py-1 text-xs font-black text-[#C7FF32] truncate max-w-[200px]">
-                        {paymentCard.bankName}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Card Number & Copy Button */}
-                  <div className="rounded-xl border border-white/15 bg-black/60 p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div className="min-w-0">
-                      <span className="block text-xs uppercase font-bold text-white/70 tracking-wider">
-                        {t.cardNumberLabel}
-                      </span>
-                      <span className="font-mono text-lg sm:text-2xl font-black tracking-wider text-[#C7FF32] select-all break-all mt-0.5 block">
-                        {paymentCard.cardNumber}
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => handleCopyCard(paymentCard.cardNumber)}
-                      className={`self-start sm:self-auto inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-black transition-all active:scale-95 cursor-pointer shrink-0 ${
-                        copiedCard
-                          ? "bg-[#C7FF32] text-[#312F2F] shadow-[0_0_12px_rgba(199,255,50,0.4)]"
-                          : "bg-white/10 hover:bg-[#C7FF32] hover:text-[#312F2F] text-white"
-                      }`}
-                    >
-                      {copiedCard ? (
-                        <>
-                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span>{t.copiedBtn}</span>
-                        </>
-                      ) : (
-                        <>
-                          <svg className="w-4 h-4 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                          </svg>
-                          <span>{t.copyBtn}</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-
-                  {/* Card Holder & Phone Payment */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                    {paymentCard.cardHolder && (
-                      <div className="rounded-lg bg-white/5 px-2.5 py-1.5 border border-white/5">
-                        <span className="text-white/50 block text-[10px] uppercase font-bold">
-                          {t.cardHolderLabel}
+                    {/* Header with badge & bank */}
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#C7FF32] text-sm font-black text-[#312F2F] shrink-0">
+                          💳
                         </span>
-                        <span className="font-bold text-white/90 truncate block">
-                          {paymentCard.cardHolder}
+                        <span className="text-sm sm:text-base font-black text-white tracking-wide">
+                          {t.paymentCardBadge}
                         </span>
                       </div>
-                    )}
-                    {paymentCard.phonePay && (
-                      <div className="rounded-lg bg-white/5 px-3 py-2 border border-white/5 flex items-center justify-between gap-2">
-                        <div className="min-w-0">
-                          <span className="text-white/60 block text-[11px] uppercase font-bold">
-                            {t.phonePayLabel}
+                      {paymentCard.bankName && (
+                        <span className="rounded-full bg-[#C7FF32]/15 border border-[#C7FF32]/35 px-3 py-1 text-xs font-black text-[#C7FF32] truncate max-w-[200px]">
+                          {paymentCard.bankName}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Card Number & Copy Button */}
+                    <div className="rounded-xl border border-white/15 bg-black/60 p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="min-w-0">
+                        <span className="block text-xs uppercase font-bold text-white/70 tracking-wider">
+                          {t.cardNumberLabel}
+                        </span>
+                        <span className="font-mono text-lg sm:text-2xl font-black tracking-wider text-[#C7FF32] select-all break-all mt-0.5 block">
+                          {paymentCard.cardNumber}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => handleCopyCard(paymentCard.cardNumber)}
+                        className={`self-start sm:self-auto inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-black transition-all active:scale-95 cursor-pointer shrink-0 ${
+                          copiedCard
+                            ? "bg-[#C7FF32] text-[#312F2F] shadow-[0_0_12px_rgba(199,255,50,0.4)]"
+                            : "bg-white/10 hover:bg-[#C7FF32] hover:text-[#312F2F] text-white"
+                        }`}
+                      >
+                        {copiedCard ? (
+                          <>
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>{t.copiedBtn}</span>
+                          </>
+                        ) : (
+                          <>
+                            <svg className="w-4 h-4 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <span>{t.copyBtn}</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Card Holder & Phone Payment */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                      {paymentCard.cardHolder && (
+                        <div className="rounded-lg bg-white/5 px-2.5 py-1.5 border border-white/5">
+                          <span className="text-white/50 block text-[10px] uppercase font-bold">
+                            {t.cardHolderLabel}
                           </span>
-                          <span className="font-mono font-bold text-[#C7FF32] text-sm truncate block mt-0.5">
-                            {paymentCard.phonePay}
+                          <span className="font-bold text-white/90 truncate block">
+                            {paymentCard.cardHolder}
                           </span>
                         </div>
-                        <button
-                          type="button"
-                          onClick={() => handleCopyPhone(paymentCard.phonePay)}
-                          className="shrink-0 text-xs font-bold text-white/90 hover:text-white px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 transition-colors"
-                        >
-                          {copiedPhone ? "✓" : t.copyBtn}
-                        </button>
-                      </div>
+                      )}
+                      {paymentCard.phonePay && (
+                        <div className="rounded-lg bg-white/5 px-3 py-2 border border-white/5 flex items-center justify-between gap-2">
+                          <div className="min-w-0">
+                            <span className="text-white/60 block text-[11px] uppercase font-bold">
+                              {t.phonePayLabel}
+                            </span>
+                            <span className="font-mono font-bold text-[#C7FF32] text-sm truncate block mt-0.5">
+                              {paymentCard.phonePay}
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleCopyPhone(paymentCard.phonePay)}
+                            className="shrink-0 text-xs font-bold text-white/90 hover:text-white px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 transition-colors"
+                          >
+                            {copiedPhone ? "✓" : t.copyBtn}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Instruction */}
+                    {paymentCard.instruction?.[locale] && (
+                      <p className="text-xs text-white/80 leading-relaxed italic border-t border-white/10 pt-2.5">
+                        ℹ️ {paymentCard.instruction[locale]}
+                      </p>
                     )}
                   </div>
 
-                  {/* Instruction */}
-                  {paymentCard.instruction?.[locale] && (
-                    <p className="text-xs text-white/80 leading-relaxed italic border-t border-white/10 pt-2.5">
-                      ℹ️ {paymentCard.instruction[locale]}
+                  {/* 6. Payment Check Attachment (PDF or Image) */}
+                  <div className="rounded-2xl border border-white/15 bg-black/20 p-4 sm:p-5">
+                    <div className="flex items-center justify-between">
+                      <label className="text-sm sm:text-base font-bold text-[#C7FF32] flex items-center gap-2">
+                        <span className="text-lg">🧾</span>
+                        <span>{t.receiptLabel}</span>
+                      </label>
+                      <span className="text-xs text-white/60 font-medium">JPG, PNG, PDF (макс. 10MB)</span>
+                    </div>
+
+                    <p className="mt-1.5 text-xs sm:text-sm text-white/70 leading-relaxed">
+                      {t.receiptHint}
                     </p>
-                  )}
-                </div>
-              )}
 
-              {/* 6. Payment Check Attachment (PDF or Image) */}
-              <div className="rounded-2xl border border-white/15 bg-black/20 p-4 sm:p-5">
-                <div className="flex items-center justify-between">
-                  <label className="text-sm sm:text-base font-bold text-[#C7FF32] flex items-center gap-2">
-                    <span className="text-lg">🧾</span>
-                    <span>{t.receiptLabel}</span>
-                  </label>
-                  <span className="text-xs text-white/60 font-medium">JPG, PNG, PDF (макс. 10MB)</span>
-                </div>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,application/pdf"
+                      onChange={handleFileChange}
+                      className="hidden"
+                    />
 
-                <p className="mt-1.5 text-xs sm:text-sm text-white/70 leading-relaxed">
-                  {t.receiptHint}
-                </p>
-
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp,application/pdf"
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-
-                {receiptFile ? (
-                  <div className="mt-3.5 flex items-center justify-between gap-3 rounded-xl border border-[#C7FF32]/40 bg-[#C7FF32]/10 p-3 sm:p-4">
-                    <div className="flex items-center gap-3 overflow-hidden">
-                      {previewUrl ? (
-                        <img
-                          src={previewUrl}
-                          alt="Receipt Preview"
-                          className="h-14 w-14 rounded-lg object-cover border border-white/20 shrink-0"
-                        />
-                      ) : (
-                        <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-red-500/20 text-red-300 font-black text-sm shrink-0 border border-red-500/30">
-                          PDF
+                    {receiptFile ? (
+                      <div className="mt-3.5 flex items-center justify-between gap-3 rounded-xl border border-[#C7FF32]/40 bg-[#C7FF32]/10 p-3 sm:p-4">
+                        <div className="flex items-center gap-3 overflow-hidden">
+                          {previewUrl ? (
+                            <img
+                              src={previewUrl}
+                              alt="Receipt Preview"
+                              className="h-14 w-14 rounded-lg object-cover border border-white/20 shrink-0"
+                            />
+                          ) : (
+                            <div className="flex h-14 w-14 items-center justify-center rounded-lg bg-red-500/20 text-red-300 font-black text-sm shrink-0 border border-red-500/30">
+                              PDF
+                            </div>
+                          )}
+                          <div className="overflow-hidden">
+                            <p className="text-sm sm:text-base font-bold text-white truncate">
+                              {receiptFile.name}
+                            </p>
+                            <p className="text-xs text-white/80">
+                              {(receiptFile.size / 1024 / 1024).toFixed(2)} MB
+                            </p>
+                          </div>
                         </div>
-                      )}
-                      <div className="overflow-hidden">
-                        <p className="text-sm sm:text-base font-bold text-white truncate">
-                          {receiptFile.name}
-                        </p>
-                        <p className="text-xs text-white/80">
-                          {(receiptFile.size / 1024 / 1024).toFixed(2)} MB
-                        </p>
-                      </div>
-                    </div>
 
-                    <div className="flex items-center gap-2 shrink-0">
+                        <div className="flex items-center gap-2 shrink-0">
+                          <button
+                            type="button"
+                            onClick={() => fileInputRef.current?.click()}
+                            className="rounded-lg bg-white/10 px-3 py-1.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+                          >
+                            {t.receiptChangeBtn}
+                          </button>
+                          <button
+                            type="button"
+                            onClick={removeFile}
+                            className="rounded-lg bg-red-500/20 px-3 py-1.5 text-xs sm:text-sm font-semibold text-red-300 hover:bg-red-500/30 transition-colors"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
                       <button
                         type="button"
                         onClick={() => fileInputRef.current?.click()}
-                        className="rounded-lg bg-white/10 px-3 py-1.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/20 transition-colors"
+                        className="mt-3.5 flex w-full items-center justify-center gap-2.5 rounded-xl border-2 border-dashed border-white/25 bg-white/5 py-4 text-sm sm:text-base font-bold text-white hover:border-[#C7FF32] hover:bg-[#C7FF32]/5 transition-all cursor-pointer"
                       >
-                        {t.receiptChangeBtn}
+                        <svg className="w-5 h-5 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                        </svg>
+                        <span>{t.receiptUploadBtn}</span>
                       </button>
-                      <button
-                        type="button"
-                        onClick={removeFile}
-                        className="rounded-lg bg-red-500/20 px-3 py-1.5 text-xs sm:text-sm font-semibold text-red-300 hover:bg-red-500/30 transition-colors"
-                      >
-                        ✕
-                      </button>
-                    </div>
+                    )}
                   </div>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="mt-3.5 flex w-full items-center justify-center gap-2.5 rounded-xl border-2 border-dashed border-white/25 bg-white/5 py-4 text-sm sm:text-base font-bold text-white hover:border-[#C7FF32] hover:bg-[#C7FF32]/5 transition-all cursor-pointer"
-                  >
-                    <svg className="w-5 h-5 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                    </svg>
-                    <span>{t.receiptUploadBtn}</span>
-                  </button>
-                )}
-              </div>
+                </>
+              ) : (
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-5 flex items-start gap-3.5">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-base shrink-0">
+                    ✨
+                  </span>
+                  <div className="space-y-1 min-w-0">
+                    <p className="text-sm sm:text-base font-bold text-white">
+                      {t.noPaymentBadge}
+                    </p>
+                    <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
+                      {t.noPaymentNotice}
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {/* Error message if any */}
               {errorMsg && (
