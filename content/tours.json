@@ -1088,7 +1088,8 @@
     },
     "categories": [
       "group",
-      "popular"
+      "popular",
+      "mini-group"
     ],
     "priceFromAmd": 10000,
     "departure": "10:00",
@@ -1145,9 +1146,8 @@
     },
     "categories": [
       "group",
-      "individual",
       "popular",
-      "offers"
+      "mini-group"
     ],
     "priceFromAmd": 15000,
     "departure": "10:00",
@@ -1205,8 +1205,8 @@
     },
     "categories": [
       "group",
-      "individual",
-      "popular"
+      "popular",
+      "mini-group"
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
@@ -1261,7 +1261,8 @@
     },
     "categories": [
       "group",
-      "individual"
+      "popular",
+      "mini-group"
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
@@ -1273,7 +1274,8 @@
       "/images/1790853467379-rz9uwjodasdjm-h5-b4wcqvd86qkqdxupy8utmv3wsugz-8smynk8nknff9wyapekbp3qmxwjxf-fhoia2cyqpugl5uwkpm8lvog0oatssupswwxfyqjpdbcmdla5wfa7hg6pbvjobjhxuaddu13fnk1t6o0e-tjf7gilo-cydxtmrssatnenkajqtzxevg.jpg"
     ],
     "code": "104",
-    "priceOldAmd": 18000
+    "priceOldAmd": 18000,
+    "featured": true
   },
   {
     "slug": "tsaghkadzor-sevan-dilijan",
@@ -1318,9 +1320,9 @@
     },
     "categories": [
       "group",
-      "individual",
       "popular",
-      "offers"
+      "offers",
+      "mini-group"
     ],
     "priceFromAmd": 15000,
     "departure": "09:00",
@@ -1439,7 +1441,8 @@
     },
     "categories": [
       "mini-group",
-      "group"
+      "group",
+      "popular"
     ],
     "priceFromAmd": 20000,
     "departure": "09:00",
@@ -1451,7 +1454,8 @@
       "/images/1790854105604-blh3c5qp01vjas4f6nyham3j43gz3prrf2y63kecluq6xsoqwb-lzayd8x7ci136n1tprenwqup-8-w-k0vtysx-skhbw5xswq-gved0bfilicufi-tp1brmrquyr0k-cxmxorjxgtgfc0kskresupbys7uxdlklamxqxib-p0oexvsweoxm4xfy-fjmotih.jpg"
     ],
     "code": "107",
-    "priceOldAmd": 24000
+    "priceOldAmd": 24000,
+    "featured": true
   },
   {
     "slug": "khor-virap-sevan-garni-geghard",
@@ -1502,7 +1506,8 @@
     },
     "categories": [
       "mini-group",
-      "group"
+      "group",
+      "popular"
     ],
     "priceFromAmd": 20000,
     "departure": "09:00",
@@ -1517,7 +1522,8 @@
       "/images/1790856873489-0glrh2ui-esmohoczyzs0alpy9cjd09gagrilt6juhml4a0zglfhsiegkbnwaj69ndca1nq21rd5alyjfbz8957xgxiuo-nwp8lnnms0b-eiawfjq33zkswrxgp42fjs5vpnlsezjpofriphzzunuk7vlebksb-femdyzse5c3iie4d-8lewr4qaltsay9yq.jpg"
     ],
     "code": "108",
-    "priceOldAmd": 24000
+    "priceOldAmd": 24000,
+    "featured": true
   },
   {
     "slug": "khor-virap-areni-jermuk",
@@ -1566,9 +1572,7 @@
     "categories": [
       "mini-group",
       "group",
-      "individual",
-      "popular",
-      "offers"
+      "popular"
     ],
     "priceFromAmd": 25000,
     "departure": "09:00",
@@ -1623,7 +1627,8 @@
     },
     "categories": [
       "mini-group",
-      "group"
+      "group",
+      "popular"
     ],
     "priceFromAmd": 25000,
     "departure": "09:00",
@@ -1635,7 +1640,8 @@
       "/images/1790857535355-rr1dw3mrtgaqyyjxrwirqdnwp4cvtz4kwx72uqf1q47vbm29ed9pstoojuy7z-8rzuzkles0liieqfiijwsjxa4iazih4gm9tzioeenb90xfdp2chjj2escvbepeq-dvdjwdi1n-pwa9ncflg5ipe7bspvfsefxbiwcg1dgphgp-sg3hwxe5gxbplkd0av0g.jpg"
     ],
     "code": "110",
-    "priceOldAmd": 29000
+    "priceOldAmd": 29000,
+    "featured": true
   },
   {
     "slug": "khor-virap-areni-noravank-shaki",
@@ -1676,7 +1682,9 @@
       ]
     },
     "categories": [
-      "group"
+      "group",
+      "popular",
+      "mini-group"
     ],
     "priceFromAmd": 25000,
     "departure": "07:30",
@@ -1688,7 +1696,8 @@
       "/images/1790857659098-c4arclvpxbsuxg5safzv5xqvah-fbrjbir-26ydcciurz7hb5h72tr03ds1v-kldqz3ge6wyupiclrcqp2wy6cvfooqhvlvg1qdtiziyb4l-d5votcx3blyz65hzrpbg8guzvxl5ot7l-gn-kjz6xnjchvy-v5zq0mexwsasqpwg30fqzccp1hoqqiw0z-l7.jpg"
     ],
     "code": "111",
-    "priceOldAmd": 29000
+    "priceOldAmd": 29000,
+    "featured": true
   },
   {
     "slug": "jeep-mount-dimats",
@@ -1890,7 +1899,9 @@
     },
     "categories": [
       "jeep",
-      "mini-group"
+      "mini-group",
+      "popular",
+      "group"
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
@@ -1901,7 +1912,8 @@
       "/images/1790860032751-mmhhehcllgyockcnwswugu8lgi68v7lexp-yeqhvpzw5ipwe9dvkjp-hwm5sjvo0uth83zf9hvhnfritd6c-egdu2xeeg9xdcxb6rh0d2wjnfebu0zxcljj2eg9vfjjq6ilg3qsdvnokyaph44pn2u1y5mk3h5wonrpjqrw26lg-kthre19jibsrqxdzi7bg.jpg"
     ],
     "code": "304",
-    "priceOldAmd": 35000
+    "priceOldAmd": 35000,
+    "featured": true
   },
   {
     "slug": "jeep-trchkan-waterfall",
@@ -1937,7 +1949,9 @@
     },
     "categories": [
       "jeep",
-      "mini-group"
+      "mini-group",
+      "popular",
+      "group"
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
@@ -1947,7 +1961,8 @@
       "/images/1790860111658-eokpqhsc0imvs50atwzodyk72yhvkh4--yxtdwef-ys8whl9s9lt4czoiysypgcxmijqtpjhvgbiesb5axu9apajrbn-0f19qd-dxibs9ohp3afxjvp-5qpzwastot-zpd-j2phhtf482lilb7o3zwirqufnbnxxdmlqe-vxlz7vigde1aptkjq7d25nkb7.jpg"
     ],
     "code": "305",
-    "priceOldAmd": 35000
+    "priceOldAmd": 35000,
+    "featured": true
   },
   {
     "slug": "jeep-mount-armaghan",
@@ -1986,7 +2001,9 @@
     },
     "categories": [
       "jeep",
-      "mini-group"
+      "mini-group",
+      "popular",
+      "group"
     ],
     "priceFromAmd": 30000,
     "departure": "08:00",
@@ -1997,7 +2014,8 @@
       "/images/1790866665503-1qb28lerf8wyq3ywqpvirrjpkshhletvgy39kqsyfkcuzpa5hpvrew1t8ogosrdp1rdzn1ybbhd9sd62tcinzlsl4gfyz19m8-7uhlm9mgwm5jt04rjqnxu5olvlmoo9oukcro0cfxvc5c0frzmaq4isfpdqvulmmkl4m9qdfvqgqz6c0cgdr39hzgko4q9b.jpg"
     ],
     "code": "306",
-    "priceOldAmd": 35000
+    "priceOldAmd": 35000,
+    "featured": true
   },
   {
     "slug": "jeep-mount-khustup",
@@ -2040,7 +2058,8 @@
     "categories": [
       "jeep",
       "mini-group",
-      "individual"
+      "popular",
+      "group"
     ],
     "priceFromAmd": 45000,
     "departure": "05:30",
@@ -2052,6 +2071,7 @@
       "/images/1790860923646-gtd5vgzhti73fcxscyemdyv0o1rivfdsa9gtuk5q7ctonzlowdsezpd4oxhg5zhrj0fmaotizdvekrlo9p2snzchkzhe3tzbiyr-9mbytl42vc40lzfbqpphe03zb9h8jub4tasboebrbikzgcistcisk6a1ytdisnlyzwdrihfovselt4dtbgqftdptcif0.jpg"
     ],
     "code": "307",
-    "priceOldAmd": 52000
+    "priceOldAmd": 52000,
+    "featured": true
   }
 ]
