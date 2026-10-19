@@ -146,5 +146,36 @@
     "date": "2026-09-09",
     "approved": true,
     "createdAt": "2026-09-09T20:17:00.000Z"
+  },
+  {
+    "id": "rev-10",
+    "author": "Диля",
+    "location": "Казань",
+    "rating": 5,
+    "tourTitle": "Экскурсионный тур и тёплый вечер в Ереване",
+    "guideName": "Григор",
+    "text": {
+      "ru": "Юля и Мано, спасибо вам большое за такую тёплую встречу, прям душевно! Вы правда очень приятные! И я желаю вам процветания и много новых клиентов. Всего самого наилучшего! Вы очень гармоничная пара 💕! Правда очень по-душевному! И Григор ваш — топчик! Очень приятный парень! Спасибо вам ❤️",
+      "hy": "Յուլիա և Մանո, անչափ շնորհակալ ենք նման ջերմ և սրտաբուխ ընդունելության համար: Դուք իսկապես հրաշալի եք: Մաղթում եմ ձեզ բարգավաճում և բազում նոր հյուրեր: Իսկ ձեր Գրիգորը պարզապես թոփ է, շատ հաճելի և բարի տղա: Շնորհակալություն ձեզ ❤️",
+      "en": "Julia and Mano, thank you so much for such a warm and heartfelt welcome! You are truly wonderful people! I wish you prosperity and many new travelers. Everything was so soulful! And your guide Grigor is top-tier — such a great guy! Thank you so much ❤️"
+    },
+    "date": "2026-10-15",
+    "approved": true,
+    "createdAt": "2026-10-15T21:43:00.000Z"
+  },
+  {
+    "id": "rev-11",
+    "author": "Татьяна",
+    "location": "Москва",
+    "rating": 5,
+    "tourTitle": "Озеро Севан",
+    "text": {
+      "ru": "Звучит классно! 💪 Я вам этого от всей души и желаю — идти по правильному плану!) Процветания вашей компании и прекрасной стране Армении 🇦🇲 🥰 Спасибо за заботу и отличную поездку на Севан!",
+      "hy": "Հիանալի է: Ես ձեզ սրտանց մաղթում եմ հաջողություն և բարգավաճում ձեր ընկերությանը և մեր գեղեցիկ Հայաստանին 🇦🇲 🥰 Շնորհակալություն հոգատարության և Սևանի հիասքանչ ուղևորության համար:",
+      "en": "Sounds wonderful! 💪 I wish you all the best from the bottom of my heart — prosperity to your company and to beautiful Armenia 🇦🇲 🥰 Thank you for your care and for the amazing trip to Sevan!"
+    },
+    "date": "2026-10-16",
+    "approved": true,
+    "createdAt": "2026-10-16T03:42:00.000Z"
   }
 ]
