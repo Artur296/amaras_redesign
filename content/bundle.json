@@ -4137,6 +4137,750 @@
         "en": "Perched high in the forested mountains of the Tavush province, far from bustling cities and standard tourist trails, stands Nor Varagavank — a medieval monastery whose heritage bridges two storied lands of historic Armenia: Vaspurakan around Lake Van and the mountain realm of Tavush.\n\nNor Varagavank literally translates to \"New Varaga\". Its ancient stones preserve memories of Armenian princes, master builders from Ani, reverent spiritual leaders, and the perilous centuries when precious sacred relics were evacuated to safe havens amidst invasions.\n\nToday, Nor Varagavank draws travelers through its majestic history, peerless stone masonry, rare polychrome mosaic entrance, and the sublime serenity of mountain seclusion.\n\nLocation and Surrounding Nature\n\nThe monastery is situated in the Tavush Province of northeastern Armenia, roughly 3.5 km southwest of Varagavan village. It crowns a forested slope amidst mountain gorges and emerald ridges. The landscape is breathtaking year-round: in spring, covered in lush greenery and alpine blossoms, and in autumn, cloaked in brilliant gold and crimson foliage.\n\nFoundation History (1193–1198)\n\nThe foundation of the monastery dates back to the late 12th century. Between 1193 and 1198, Prince David Kyurikian, belonging to the junior branch of the royal Bagratuni dynasty of the Tashir-Dzoraget Kingdom, founded this mountain cloister. Initially named Anapat (\"Hermitage\"), it offered monks an austere retreat for contemplation and prayer, soon blossoming into the primary cultural and spiritual hub of the Nor Berd principality.\n\nMystery of the Holy Cross of Varag\n\nTo understand why this Tavush monastery bears the name \"New Varaga\", one must look south to historic Vaspurakan and Mount Varag near Lake Van. According to Armenian Church tradition, Saint Rhipsime hid a sacred splinter of the True Cross upon Mount Varag in the early 4th century. Centuries later, in the 7th century, a miraculous vision led monk Totig to discover the lost relic, prompting the Armenian Apostolic Church to institute the unique Feast of the Holy Cross of Varag. The great Varagavank monastery was established there as its guardian sanctuary.\n\nIn the 13th century, facing imminent threats from foreign invasions, Abbot Ghukas of Varagavank undertook the perilous mission of relocating the Church's priceless treasures to northeastern Armenia. The relic of the True Cross was safely conveyed to the Anapat hermitage in Tavush. In commemoration of this arrival (often dated to 1237), the sanctuary was consecrated under the name Nor Varagavank (\"New Varagavank\"), symbolizing unbroken spiritual continuity and perseverance.\n\nAncient Anapat Church and Surb Astvatsatsin Cathedral\n\nThe earliest preserved sanctuary in the complex is the single-nave Anapat Church (1193–1198), notable for its unusual dual-altar layout and the adjoining ancestral vault of the Kyurikian princes.\n\nThe crowning jewel of the ensemble is the Church of the Holy Mother of God (Surb Astvatsatsin), constructed between 1224 and 1237 under Prince Vasak II Kyurikian and consecrated in 1240. Designed with a cross-in-square interior and two-story corner chapels beneath a tall cylindrical drum, it embodies the golden age of medieval Armenian architecture.\n\nUnrivaled Polychrome Stone Mosaic Portal\n\nThe southern portal of Surb Astvatsatsin is one of the most stunning masterpieces of 13th-century stonecraft in the Caucasus. Crafted by master Gazan of Ani, the grand entrance is adorned not with paint, but with intricately fitted tiles of natural stone in rich violet, azure, and cream hues. They form complex geometric stars, lozenges, and delicate bas-reliefs of fauna and flora resembling inlaid mosaic.\n\nMedieval Aqueduct and Princely Heritage\n\nNor Varagavank was also an advanced monastic community with engineered infrastructure. An inscription from 1253 records the construction of a mountain water pipeline engineered by master Shara. Adjacent to the church lie remnants of the spacious gavit (narthex) built by Abbot Hovhannes of Tuye, alongside elaborately carved khachkars, including a renowned 1620 khachkar by master Vardan.\n\nExperience Nor Varagavank with Amaras Tour\n\nNor Varagavank is an exceptional destination for travelers seeking deeper authenticity in Armenia — where centuries-old sacred relic history, princely legacy, and master stonecraft meet the pristine silence of Tavush's mountain forests.\n\nDiscover the hidden wonders of Tavush with Amaras Tour.\nTravel with comfort, with history, with soul.\nCome as a guest — leave as a friend!"
       },
       "tourQuery": "тавуш"
+    },
+    {
+      "id": "kirantsavank",
+      "name": {
+        "ru": "Киранцаванк",
+        "hy": "Կիրանցավանք",
+        "en": "Kirantsavank Monastery"
+      },
+      "tagline": {
+        "ru": "Монастырь красного кирпича и древних фресок — уникальный памятник XIII века в лесах Тавуша",
+        "hy": "Թրծած կարմիր աղյուսի և որմնանկարների վանք — XIII դարի եզակի հուշարձան Տավուշի անտառներում",
+        "en": "Red-Brick Cloister of Ancient Frescoes — Rare 13th-Century Architectural Gem in the Tavush Forests"
+      },
+      "regionCategory": "sevan_dilijan",
+      "region": {
+        "ru": "Тавушская область, 12 км к западу от села Киранц",
+        "hy": "Տավուշի մարզ, Կիրանց գյուղից 12 կմ արևմուտք",
+        "en": "Tavush Province, 12 km west of Kirants village"
+      },
+      "distance": {
+        "ru": "около 175 км от Еревана",
+        "hy": "մոտ 175 կմ Երևանից",
+        "en": "approx. 175 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 2 часа 40 минут",
+        "hy": "մոտ 2 ժամ 40 րոպե",
+        "en": "approx. 2 hours 40 minutes"
+      },
+      "image": "/images/attractions/kirantsavank.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Редчайшая для средневековой Армении архитектура из обожжённого красного кирпича",
+          "Купол храма, инкрустированный глазурованной керамической мозаикой XIII века",
+          "Сохранившиеся фрески Вознесения и евангелистов с грузинскими и греческими надписями",
+          "Монументальная каменная трапезная (17 × 9,5 м) — шедевр средневекового зодчества"
+        ],
+        "hy": [
+          "Միջնադարյան Հայաստանի համար բացառիկ թրծած կարմիր աղյուսով ճարտարապետություն",
+          "Տաճարի գմբեթ՝ զարդարված XIII դարի ջնարակապատ հախճասալիկների խճանկարով",
+          "Համբարձման և ավետարանիչների որմնանկարներ՝ վրացերեն ու հունարեն մակագրություններով",
+          "Մոնումենտալ քարաշեն սեղանատուն (17 × 9.5 մ)՝ աշխարհիկ ճարտարապետության կոթող"
+        ],
+        "en": [
+          "Rare medieval Armenian church architecture constructed primarily of fired red brick",
+          "Dome drum decorated with striking 13th-century glazed turquoise ceramic mosaics",
+          "Preserved fresco cycle of the Ascension and Evangelists with Georgian and Greek epigraphs",
+          "Monumental medieval stone refectory (17 × 9.5 m) with grand barrel vaulting"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Один из самых оригинальных монастырей Армении XIII века. Построен из красного кирпича халкидонитской общиной при князьях Закарянах. Знаменит бирюзовой керамической мозаикой на куполе, древними настенными фресками и сводчатой каменной трапезной.",
+        "hy": "XIII դարի ամենաինքնատիպ վանական համալիրներից մեկը: Կառուցվել է կարմիր աղյուսից Զաքարյան իշխանների օրոք: Հայտնի է գմբեթի ջնարակապատ խճանկարով, հնագույն որմնանկարներով և մեծ սեղանատնով:",
+        "en": "One of Armenia's most unique 13th-century monastic ensembles. Built of red brick during the Zakarian era, featuring turquoise glazed tiles on its dome drum, rare fresco cycles, and a grand vaulted refectory."
+      },
+      "fullStory": {
+        "ru": "Глубоко среди лесистых гор Тавуша, вдали от больших городов и оживлённых дорог, скрывается монастырь, совершенно не похожий на большинство средневековых святынь Армении.\n\nЕго стены сложены из красноватого кирпича, купол украшен необычными узорами, а внутри сохранились следы росписей, созданных около восьмисот лет назад.\n\nЭто Киранцаванк — монастырь Киранц, один из самых оригинальных архитектурных памятников Армении XIII века.\n\nЗдесь удивительным образом переплелись армянские и грузинские архитектурные традиции, история средневековых княжеских династий и искусство настенной живописи.\n\nСегодня Киранцаванк привлекает исследователей, историков и путешественников, желающих открыть малоизвестные страницы армянского культурного наследия.\n\nГде находится монастырь Киранц?\n\nКиранцаванк расположен в Тавушской области Армении, примерно в 12 километрах к западу от села Киранц, ранее известного как Геташен.\n\nМонастырь находится в живописной лесной долине, на левом берегу притока реки Воскепар.\n\nОкружающие горы покрыты густыми лесами, а сама местность отличается тишиной и уединённостью.\n\nИстория монастыря — XIII век\n\nКиранцаванк был построен в XIII веке, когда северо-восточная Армения находилась под сильным политическим и культурным влиянием княжеского рода Закарянов.\n\nЭтот период стал временем активного развития архитектуры, монастырского образования и художественных традиций.\n\nЕго архитектура связана с армянами-халкидонитами — христианскими общинами, придерживавшимися богословской традиции Халкидонского собора 451 года.\n\nТакие общины существовали в средневековой Армении и поддерживали тесные церковные и культурные связи с Грузией.\n\nИменно поэтому в Киранцаванке можно увидеть необычное сочетание армянских и грузинских художественных традиций.\n\nИсследователи предполагают, что основание монастыря могло быть связано с князем Авагом Закаряном, сыном Иване Закаряна.\n\nПочему монастырь называется Киранц?\n\nС происхождением названия связано любопытное народное предание.\n\nРассказывают, что строительством монастыря занимался ученик известного мастера по имени Акоп.\n\nКогда строительство завершилось, учитель пришёл посмотреть работу своего ученика.\n\nОсмотрев стены, он заметил, что при строительстве было использовано слишком много известкового раствора.\n\nПо преданию, мастер произнёс по-армянски: «Кирн анц э» — «Извести слишком много».\n\nСо временем эти слова якобы превратились в название «Киранц».\n\nПочему Киранцаванк построен из кирпича?\n\nБольшинство средневековых армянских монастырей построено из природного камня — туфа, базальта, известняка или песчаника.\n\nНо Киранцаванк выглядит иначе: значительная часть его сооружений сложена из обожжённого кирпича.\n\nКамень использовался преимущественно для фундаментов, отдельных архитектурных элементов и укрепления конструкций.\n\nКрасноватые кирпичные стены разделены светлыми полосами строительного раствора, благодаря чему фасады приобретают необычный декоративный ритм.\n\nГлавная церковь и керамическая мозаика купола\n\nЦентральное сооружение Киранцаванка — большая купольная церковь XIII века.\n\nОна имеет прямоугольную внешнюю форму, полукруглый алтарь в восточной части и двухэтажные помещения по сторонам алтаря.\n\nОсобенно интересен высокий восьмигранный барабан храма. Здесь использованы глазурованные керамические плитки в форме звёзд и ромбов.\n\nОни создают геометрические узоры, придавая куполу необыкновенную выразительность — редчайший пример глазурованной керамики в армянском средневековом зодчестве.\n\nУдивительные фрески Киранцаванка\n\nВ отличие от многих армянских храмов, где основным украшением служила резьба по камню, внутренние стены Киранцаванка были покрыты монументальной живописью по известковой штукатурке.\n\nРосписи включали сцену Вознесения, ветхозаветные композиции и изображения четырёх евангелистов.\n\nОсобый интерес представляют надписи, выполненные грузинскими и греческими буквами, датируемые 1230–1240-ми годами.\n\nМонастырский комплекс и каменная трапезная\n\nК главной церкви примыкают два меньших однонефных кирпичных храма с северной и южной сторон.\n\nПеред входами находились сводчатые галереи-притворы.\n\nВ западной части комплекса расположена просторная каменная трапезная (17 на 9,5 метра) со сводчатым перекрытием на мощных арках — выдающийся памятник средневековой гражданской архитектуры, стены которой также были расписаны фресками.\n\nКиранцаванк — место, где красный кирпич хранит память веков, а древние росписи раскрывают богатство средневековой духовной культуры Армении.\n\nОткройте для себя малоизвестные сокровища Тавуша вместе с Amaras Tour!",
+        "hy": "Տավուշի անտառապատ լեռների խորքում, աղմկոտ քաղաքներից հեռու, թաքնված է մի վանք, որը բոլորովին նման չէ Հայաստանի սովորական միջնադարյան կոթողներին: Նրա պատերը կառուցված են թրծած կարմիր աղյուսից, գմբեթը զարդարված է հազվագյուտ ջնարակապատ սալիկներով, իսկ ներսում պահպանվել են շուրջ ութհարյուր տարվա որմնանկարներ:\n\nՍա Կիրանցավանքն է՝ XIII դարի ինքնատիպ հայ քաղկեդոնական ճարտարապետական գլուխգործոցը, որտեղ միահյուսվել են հայկական և վրացական մշակութային ավանդույթները Զաքարյան իշխանների տիրապետության շրջանում:\n\nՀիմնական տաճարն առանձնանում է իր բարձր ութանիստ թմբուկով, որը զարդարված է աստղաձև ու շեղանկյունաձև փիրուզագույն ջնարակապատ հախճասալիկներով: Ներսում պահպանվել են Համբարձման և ավետարանիչների պատկերներով 1230-1240-ական թթ. որմնանկարներ՝ վրացերեն և հունարեն մակագրություններով: Համալիրում պահպանվել են նաև երկու փոքր եկեղեցիներ, կամարակապ գավիթներ և XIII դարի քարաշեն մեծ սեղանատունը:\n\nԲացահայտեք Տավուշի հրաշալիքները Amaras Tour-ի հետ: Եկեք որպես հյուր — հեռացեք որպես ընկեր:",
+        "en": "Tucked deep within the dense forests of Tavush, far from highway routes, lies Kirantsavank — an extraordinary 13th-century monastery unlike almost any other medieval sanctuary in Armenia.\n\nConstructed primarily of fired red brick with white lime mortar rather than traditional carved tufa, the monastery reflects the unique cultural era of Armenian Chalcedonian heritage under the noble Mkhargrdzeli-Zakarian princes.\n\nIts majestic central dome rests upon a tall octagonal drum adorned with radiant turquoise glazed ceramic stars and lozenges — a rare decorative technique in Armenian medieval church architecture. Inside, the walls preserve 1230s–1240s fresco cycles depicting the Ascension and the Evangelists, bearing Georgian and Greek inscriptions. The ensemble also includes two auxiliary brick churches, vaulted galleries, and a monumental 17-meter stone refectory.\n\nDiscover the hidden gems of Tavush with Amaras Tour! Come as a guest — leave as a friend!"
+      },
+      "tourQuery": "тавуш"
+    },
+    {
+      "id": "aghavnavank",
+      "name": {
+        "ru": "Агавнаванк",
+        "hy": "Աղավնավանք",
+        "en": "Aghavnavank Monastery"
+      },
+      "tagline": {
+        "ru": "Древний монастырь в сердце реликтовой тисовой рощи Ахнабад",
+        "hy": "Հնավուրց վանք Ախնաբադի կուսական կենու պուրակի խորքում",
+        "en": "Ancient Sanctuary in the Heart of the Primeval Akhnabad Yew Grove"
+      },
+      "regionCategory": "sevan_dilijan",
+      "region": {
+        "ru": "Тавушская область, Дилижанский национальный парк",
+        "hy": "Տավուշի մարզ, Դիլիջան ազգային պարկ",
+        "en": "Tavush Province, Dilijan National Park"
+      },
+      "distance": {
+        "ru": "около 125 км от Еревана",
+        "hy": "մոտ 125 կմ Երևանից",
+        "en": "approx. 125 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 1 час 55 минут",
+        "hy": "մոտ 1 ժամ 55 րոպե",
+        "en": "approx. 1 hour 55 minutes"
+      },
+      "image": "/images/attractions/aghavnavank.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Церковь Сурб Аствацацин XII–XIII веков из светлого камня с безупречными пропорциями",
+          "Окружающая реликтовая тисовая роща Ахнабад с деревьями возрастом более 300–400 лет",
+          "Живописная лесная тропа среди вековых буков, мхов и папоротников Дилижанского нацпарка",
+          "Уединённая монастырская атмосфера вдали от шумных туристических скоплений"
+        ],
+        "hy": [
+          "Բաց դեղնավուն հարթ քարերով կառուցված XII–XIII դդ. Սուրբ Աստվածածին գմբեթավոր եկեղեցի",
+          "Ախնաբադի 300–400 տարեկան հնագույն կենիների (Taxus baccata) եզակի արգելոցային պուրակ",
+          "Գեղատեսիլ անտառային արահետ Դիլիջանի ազգային պարկի հաճարենիների և մամուռների միջով",
+          "Լիակատար անդորր և մենություն՝ հեռու աղմկոտ քաղաքային եռուզեռից"
+        ],
+        "en": [
+          "12th–13th century Surb Astvatsatsin church of finely dressed pale stone",
+          "Primeval Akhnabad reserve with rare yew trees (Taxus baccata) aged over 300–400 years",
+          "Enchanting forest trekking trail through old-growth beech and moss-cloaked ravines",
+          "Total serenity and spiritual tranquility secluded within Dilijan National Park"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Очаровательный монастырь XII–XIII веков, спрятанный в заповедных лесах Дилижана. Расположен посреди реликтовой рощи вечнозелёных ягодных тисов Ахнабад, возраст которых достигает четырёхсот лет.",
+        "hy": "XII–XIII դարերի հմայիչ վանական համալիր Դիլիջանի արգելոցային անտառներում: Գտնվում է Ախնաբադի հնավուրց կենու պուրակում, որտեղ ծառերի տարիքը հասնում է չորս դարի:",
+        "en": "Charming 12th–13th century monastic hermitage nestled inside Dilijan National Park, surrounded by the primeval Akhnabad grove of evergreen yews up to four centuries old."
+      },
+      "fullStory": {
+        "ru": "Есть в Армении места, где природа и история настолько тесно переплелись, что кажется, будто древние камни выросли прямо из земли вместе с деревьями.\n\nОдно из таких мест — Агавнаванк, небольшой средневековый монастырь, спрятанный среди густых лесов Тавушской области в сердце редкой реликтовой тисовой рощи Ахнабад — природного сокровища Дилижанского национального парка.\n\nЗдесь нет многолюдных площадей. Путешественников встречают вековые деревья, лесные тропы, покрытые бархатистым мхом камни и тишина, нарушаемая лишь пением птиц и шелестом листвы.\n\nГде находится Агавнаванк?\n\nМонастырь расположен в Тавушской области, примерно в 2,5 километра к северо-востоку от села Агавнаванк, на правом берегу небольшого горного ручья в лесном массиве Ахнабад.\n\nПоследнюю часть пути путешественники проходят пешком по тенистой лесной тропе — именно эта прогулка делает поездку в Агавнаванк незабываемой.\n\nИстория монастыря — XI–XIII века\n\nТочная дата основания обители окутана тайной. По архитектурным особенностям и фрагментам эпиграфики исследователи датируют комплекс XII–XIII веками (с возможным основанием в XI веке).\n\nМонастырь также известен как Анапат Сурб Аствацацин (Пустынь Святой Богородицы). Название «Агавнаванк» переводится с армянского как «Голубиный монастырь» («агавни» — голубь, символ мира и Святого Духа).\n\nЦерковь Святой Богородицы\n\nГлавное сооружение — небольшая центрально-купольная церковь Сурб Аствацацин, сложенная из гладкотёсаных блоков желтовато-светлого камня. Скромная по размерам, она восхищает совершенством пропорций и гармонией с окружающим лесом.\n\nК югу от храма сохранились фундаменты жилых келий и хозяйственных построек монашеской общины.\n\nРеликтовая тисовая роща Ахнабад\n\nГлавное природное чудо Агавнаванка — окружающая его роща ягодного тиса (Taxus baccata). Это редчайшее вечнозелёное реликтовое хвойное дерево, растущее крайне медленно и живущее многие сотни лет.\n\nОтдельные исполинские тисы Ахнабада насчитывают возраст в 300–400 и более лет, создавая сказочную атмосферу первозданного дремучего леса.\n\nАгавнаванк — место, где вековые деревья охраняют древние стены, а природа бережно хранит тишину Средневековья.\n\nОткройте для себя скрытые сокровища Тавуша вместе с Amaras Tour!",
+        "hy": "Տավուշի անտառների խորքում՝ Դիլիջան ազգային պարկի Ախնաբադի հազվագյուտ կենու պուրակում, վեր է խոյանում Աղավնավանքը՝ միջնադարյան խաղաղ ու մենավոր վանական համալիրը:\n\nԱնվանումը ծագում է «աղավնի» բառից՝ խորհրդանշելով Սուրբ Հոգին և խաղաղությունը: Վանքը հայտնի է նաև Անապատ Սուրբ Աստվածածին անունով (XII–XIII դդ.): Եկեղեցին կառուցված է բաց դեղնավուն հարթ տաշած քարերից, իսկ հարավային կողմում պահպանվել են միաբանության կացարանների մնացորդները:\n\nՎանքի շուրջ տարածվում է կարմրափայտ (հատապտղային կենի՝ Taxus baccata) ունեցող հնագույն պուրակը, որի որոշ ծառերի տարիքը հասնում է 300–400 տարվա: Այստեղ բնությունն ու միջնադարյան քարերը միաձուլվել են բացառիկ ներդաշնակությամբ:\n\nՃամփորդեք հարմարավետությամբ և հոգով Amaras Tour-ի հետ:",
+        "en": "Deep in the forested heart of Dilijan National Park stands Aghavnavank, a peaceful 12th–13th century medieval monastery nestled inside the ancient Akhnabad yew grove.\n\nIts name translates to \"Monastery of the Doves\" (symbolizing peace and the Holy Spirit). Built from finely dressed pale yellowish limestone, the central Surb Astvatsatsin church harmonizes magically with the surrounding primeval forest.\n\nThe surrounding nature reserve is home to rare, centuries-old English yews (Taxus baccata), some over 300 to 400 years old. Walking the shaded forest path to Aghavnavank feels like stepping into a serene medieval fairytale.\n\nDiscover the enchanted corners of Tavush with Amaras Tour!"
+      },
+      "tourQuery": "дилижан"
+    },
+    {
+      "id": "yell-extreme-park",
+      "name": {
+        "ru": "Yell Extreme Park",
+        "hy": "Yell Extreme Park",
+        "en": "Yell Extreme Park"
+      },
+      "tagline": {
+        "ru": "Почувствуй свободу и адреналин над ущельями и горами Енокавана",
+        "hy": "Զգա ազատությունն ու ադրենալինը Ենոքավանի լեռների և կիրճերի վրա",
+        "en": "Feel Freedom and Pure Adrenaline Soaring Over Yenokavan Canyons"
+      },
+      "regionCategory": "sevan_dilijan",
+      "region": {
+        "ru": "Тавушская область, село Енокаван",
+        "hy": "Տավուշի մարզ, Ենոքավան գյուղ",
+        "en": "Tavush Province, Yenokavan village"
+      },
+      "distance": {
+        "ru": "около 140 км от Еревана",
+        "hy": "մոտ 140 կմ Երևանից",
+        "en": "approx. 140 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 2 часа 10 минут",
+        "hy": "մոտ 2 ժամ 10 րոպե",
+        "en": "approx. 2 hours 10 minutes"
+      },
+      "image": "/images/attractions/yell-extreme-park.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Скоростной зиплайн из 5 линий длиной до 750 метров со скоростью до 80 км/ч",
+          "Скальный маршрут Via Ferrata с подвесными мостами над пропастью ущелья Хачахпюр",
+          "Экстремальный горный Off-Road на мощном грузовике Yell Truck по видовым вершинам",
+          "Конные прогулки по альпийским лугам и близость к знаменитому ущелью Ластивер"
+        ],
+        "hy": [
+          "Արագընթաց զիփլայն 5 գծով (մինչև 750 մ երկարությամբ և մինչև 80 կմ/ժ արագությամբ)",
+          "Via Ferrata ժայռամագլցման արահետ և կախովի կամուրջներ Խաչաղբյուրի անդնդախոր կիրճում",
+          "Լեռնային արտաճանապարհային Off-Road տուրեր հզոր Yell Truck բեռնատարով",
+          "Ձիավարություն ալպիական մարգագետիններով և հարևանություն լեգենդար Լաստիվերի հետ"
+        ],
+        "en": [
+          "High-speed 5-line zipline course up to 750 meters long reaching 80 km/h speeds",
+          "Via Ferrata cliff-side iron pathway and suspension bridges above Khachaghbyur canyon",
+          "Rugged Off-Road 4x4 mountain safari in the custom Yell Truck across panoramic ridges",
+          "Horseback riding across alpine meadows and easy access to mystical Lastiver caves"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Главный центр приключенческого туризма Армении в горах Енокавана. Захватывающие зиплайны над каньоном Хачахпюр, скалолазная тропа Via Ferrata, внедорожные туры на грузовиках и конные прогулки среди фантастической природы Тавуша.",
+        "hy": "Հայաստանի առաջատար արկածային պարկը Ենոքավանի լեռներում: Զիփլայն թռիչքներ Խաչաղբյուրի կիրճի վրայով, Via Ferrata, արտաճանապարհային շրջագայություններ և ձիավարություն:",
+        "en": "Armenia's premier adventure and extreme sports park in Yenokavan. Multi-line canyon ziplines, Via Ferrata cliff iron trail, 4x4 off-road safaris, and horseback trekking amidst Tavush's stunning mountain landscapes."
+      },
+      "fullStory": {
+        "ru": "Представьте, что вы стоите на краю живописного ущелья. Под вами простираются густые леса, вдали возвышаются горы, а впереди — сотни метров свободного полёта.\n\nНесколько мгновений — и вы уже летите над зелёными склонами, ощущая ветер, скорость и настоящий восторг!\n\nДобро пожаловать в Yell Extreme Park — первый и самый знаменитый парк экстремальных приключений Армении, расположенный в селе Енокаван Тавушской области.\n\nЗиплайн над ущельем Хачахпюр\n\nГлавная гордость парка — система скоростных зиплайнов над головокружительным каньоном. Маршрут включает 5 линий различной длины (самая длинная — 750 метров), где скорость полёта достигает 80 км/ч на высоте сотен метров над верхушками деревьев!\n\nVia Ferrata — скальная железная тропа\n\nДля любителей скалолазания оборудован маршрут Via Ferrata по отвесным скалам с металлическими ступенями, тросами и надёжной страховкой — возможность почувствовать себя настоящим альпинистом без специальной подготовки.\n\nВнедорожный джип-тур и конные маршруты\n\nПарк предлагает динамичный Off-Road на мощном грузовике Yell Truck по горным перевалам Енокавана с панорамами на ущелье реки Хачахпюр и урочище Ластивер, а также спокойные конные прогулки по реликтовым альпийским лугам.\n\nYell Extreme Park — место, где заканчивается обычная экскурсия и начинается настоящее приключение!\n\nПочувствуйте драйв и красоту горной Армении вместе с Amaras Tour!",
+        "hy": "Զգացեք թռիչքի բերկրանքն ու իսկական ադրենալինը Տավուշի Ենոքավան գյուղում գտնվող Yell Extreme Park-ում՝ Հայաստանի առաջին և ամենահայտնի արկածային պարկում:\n\nՊարկի գլխավոր հպարտությունը Խաչաղբյուրի խոր կիրճի վրայով անցնող զիփլայնների համակարգն է (5 գիծ, որոնցից ամենաերկարը 750 մետր է, իսկ արագությունը հասնում է մինչև 80 կմ/ժ-ի):\n\nԱյստեղ գործում են նաև ուղղաձիգ ժայռերով անցնող Via Ferrata երթուղին, լեռնային արտաճանապարհային Off-Road տուրերը Yell Truck-ով, ինչպես նաև ձիավարության գեղատեսիլ արահետները: Պարկի հարևանությամբ գտնվում է նաև հանրահայտ Լաստիվերի կիրճը:\n\nԲացահայտեք ակտիվ Հայաստանը Amaras Tour-ի հետ:",
+        "en": "Soar over deep mountain gorges and feel pure exhilaration at Yell Extreme Park, Armenia’s premier adventure hub located in Yenokavan, Tavush Province.\n\nFounded in 2015, the park pioneered zipline adventures in Armenia. It features 5 distinct zipline runs spanning the breathtaking Khachaghbyur gorge, reaching speeds up to 80 km/h with lines up to 750 meters long.\n\nActivities also include Via Ferrata cliff-traverse climbing routes, rugged 4x4 Off-Road expeditions across scenic ridge viewpoints in custom Yell Trucks, and horseback trekking along panoramic forest trails near the famed Lastiver canyon.\n\nExperience the thrills and untamed beauty of Armenia with Amaras Tour!"
+      },
+      "tourQuery": "активный отдых"
+    },
+    {
+      "id": "lake-gosh",
+      "name": {
+        "ru": "Озеро Гош",
+        "hy": "Գոշ լիճ",
+        "en": "Lake Gosh"
+      },
+      "tagline": {
+        "ru": "Маленькое лесное чудо Дилижанского национального парка рядом с Гошаванком",
+        "hy": "Դիլիջանի ազգային պարկի անտառային հրաշքը Գոշավանքի հարևանությամբ",
+        "en": "Enchanting Woodland Jewel of Dilijan National Park Near Goshavank"
+      },
+      "regionCategory": "sevan_dilijan",
+      "region": {
+        "ru": "Тавушская область, село Гош, Дилижанский нацпарк",
+        "hy": "Տավուշի մարզ, Գոշ գյուղ, Դիլիջան ազգային պարկ",
+        "en": "Tavush Province, Gosh village, Dilijan National Park"
+      },
+      "distance": {
+        "ru": "около 125 км от Еревана",
+        "hy": "մոտ 125 կմ Երևանից",
+        "en": "approx. 125 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 2 часа",
+        "hy": "մոտ 2 ժամ",
+        "en": "approx. 2 hours"
+      },
+      "image": "/images/attractions/lake-gosh.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Живописное лесное озеро на высоте 1450 метров, окружённое вековыми буками и дубами",
+          "Названо в честь великого средневекового мыслителя и законодателя Мхитара Гоша",
+          "Уединённая тропа для пеших прогулок через нетронутые чащи Дилижанского нацпарка",
+          "Идеальное сочетание с экскурсией в прославленный монастырь Гошаванк XII века"
+        ],
+        "hy": [
+          "Գեղատեսիլ անտառային լիճ ծովի մակարդակից շուրջ 1450 մ բարձրության վրա",
+          "Անվանված է մեծանուն մտածող, առակագիր և իրավագետ Մխիթար Գոշի անունով",
+          "Հանգիստ արշավային անտառային արահետ Դիլիջանի կուսական բնության գրկում",
+          "Հիանալի համադրություն XII դարի հռչակավոր Գոշավանքի տաճարային համալիրի այցի հետ"
+        ],
+        "en": [
+          "Picturesque mountain woodland lake at 1,450 meters enclosed by old-growth beech and oak",
+          "Named after renowned 12th-century philosopher and legal scholar Mkhitar Gosh",
+          "Peaceful eco-trekking trail through pristine Dilijan National Park wilderness",
+          "Perfect pairing with a visit to the neighboring 12th-century Goshavank Monastery"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Уединённое горное озеро среди густых буковых лесов Дилижанского национального парка. Названо в честь средневекового законодателя Мхитара Гоша. Идеально для эко-прогулок и сочетается с посещением монастыря Гошаванк.",
+        "hy": "Լուռ ու կուսական անտառային լիճ Դիլիջանի ազգային պարկում՝ անվանված Մխիթար Գոշի պատվին: Իդեալական է էկո-արշավների և Գոշավանքի այցելության հետ համադրելու համար:",
+        "en": "Peaceful forest lake tucked deep inside Dilijan National Park, named after medieval scholar Mkhitar Gosh. A pristine ecotourism haven ideally paired with exploring Goshavank Monastery."
+      },
+      "fullStory": {
+        "ru": "Представьте тихое горное озеро, спрятанное среди густых лесов Дилижанского национального парка. В его зеркальной воде отражаются вековые буки и дубы, над поверхностью поднимается лёгкий утренний туман, а вокруг слышны лишь шелест листвы и пение птиц.\n\nОзеро Гош — одна из самых поэтичных природных жемчужин Тавуша. Расположенное на высоте около 1400–1500 метров над уровнем моря, озеро возникло в результате естественного горного оползня.\n\nИмя великого мыслителя Мхитара Гоша\n\nОзеро названо в честь расположенного по соседству села Гош и великого армянского мыслителя, баснописца и законодателя XII века Мхитара Гоша — автора знаменитого армянского «Судебника» и основателя монастыря Нор Гетик (Гошаванк).\n\nВсего в нескольких километрах от озера находится монастырь Гошаванк с шедевральным кружевным хачкаром мастера Погоса 1291 года. Это позволяет объединить глубокое культурное путешествие с уединённым отдыхом на природе.\n\nЛесная тропа и времена года\n\nДорога к озеру Гош из села проходит по живописной лесной тропе протяжённостью около 2–3 км через буковые и дубовые чащи.\n\nВесной здесь цветут первоцветы, летом вековые кроны дарят прохладу, а осенью Дилижанский лес превращается в феерию золотых, янтарных и багряных красок, отражающихся в зеркале озера.\n\nВ отличие от более оживлённого озера Парз, озеро Гош сохранило первозданную тишину и уединение дикой природы.\n\nОткройте для себя сокровенные уголки Дилижана вместе с Amaras Tour!",
+        "hy": "Դիլիջան ազգային պարկի անտառների խորքում թաքնված Գոշ լիճը Տավուշի ամենագեղատեսիլ բնական գոհարներից է: Այն գտնվում է ծովի մակարդակից շուրջ 1400–1500 մետր բարձրության վրա և ունի սողանքային ծագում:\n\nԼիճն իր անունը ստացել է XII դարի մեծանուն մտածող, առակագիր և իրավագետ Մխիթար Գոշի անունից, ով հիմնադրել է հարևանությամբ գտնվող հռչակավոր Գոշավանքի վանական համալիրը (Նոր Գետիկ)՝ Պողոս վարպետի 1291 թ. աննման ասեղնագործ խաչքարով:\n\nԳոշ գյուղից դեպի լիճ տանող անտառային արահետն անցնում է հաճարենու և կաղնու փարթամ պուրակներով: Հատկապես աշնանը լճի հայելանման մակերեսը ցոլացնում է Դիլիջանի անտառների ոսկեզօծ ու բոսոր գույները:\n\nՃանապարհորդեք Amaras Tour-ի հետ և բացահայտեք Հայաստանի բնության հրաշքները:",
+        "en": "Nestled within the tranquil old-growth forests of Dilijan National Park, Lake Gosh is a picturesque alpine woodland lake situated at roughly 1,400–1,500 meters altitude.\n\nFormed by ancient natural landslides, the lake takes its name from the revered 12th-century scholar, fable author, and lawmaker Mkhitar Gosh, creator of the medieval Armenian Law Code and founder of nearby Goshavank Monastery.\n\nThe 2–3 km woodland hiking trail from Gosh village winds through towering beech and hornbeam groves. While nearby Lake Parz offers bustling recreation, Lake Gosh remains an untouched, peaceful sanctuary whose mirror-like waters reflect spectacular golden and crimson hues every autumn.\n\nDiscover Dilijan's most peaceful forest landscapes with Amaras Tour!"
+      },
+      "tourQuery": "дилижан"
+    },
+    {
+      "id": "lake-kaputan",
+      "name": {
+        "ru": "Озеро Капутан",
+        "hy": "Կապուտան լիճ",
+        "en": "Lake Kaputan (Gogi)"
+      },
+      "tagline": {
+        "ru": "Небесная синева на высоте 3202 метра среди Зангезурских гор",
+        "hy": "Երկնային կապույտ ծովի մակարդակից 3202 մետր բարձրության վրա՝ Զանգեզուրի լեռներում",
+        "en": "Sky-Blue Glacial Gem at 3,202 Meters in the Zangezur Mountains"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Сюникская область, Зангезурский хребет, близ Каджарана",
+        "hy": "Սյունիքի մարզ, Զանգեզուրի լեռնաշղթա, Քաջարանի մոտ",
+        "en": "Syunik Province, Zangezur Range, near Kajaran"
+      },
+      "distance": {
+        "ru": "около 335 км от Еревана",
+        "hy": "մոտ 335 կմ Երևանից",
+        "en": "approx. 335 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 5 часов 30 минут",
+        "hy": "մոտ 5 ժամ 30 րոպե",
+        "en": "approx. 5 hours 30 minutes"
+      },
+      "image": "/images/attractions/lake-kaputan.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Одно из самых глубоких высокогорных озёр Армении (глубина до 22 метров на высоте 3202 м)",
+          "Официальный государственный памятник природы Республики Армения",
+          "Насыщенный бирюзово-сапфировый цвет воды ледникового происхождения",
+          "Фантастические панорамы альпийских хребтов Зангезура и цветущих высокогорных лугов"
+        ],
+        "hy": [
+          "Հայաստանի ամենախոր բարձրլեռնային լճերից մեկը (մինչև 22 մ խորություն 3202 մ բարձրության վրա)",
+          "ՀՀ բնության պաշտոնական պետական հուշարձան",
+          "Սառցադաշտային ծագման բյուրեղյա փիրուզագույն և մուգ կապույտ ջրեր",
+          "Զանգեզուրի ալպիական գագաթների և մարգագետինների շունչ կտրող տեսարաններ"
+        ],
+        "en": [
+          "One of Armenia's deepest alpine lakes (up to 22 meters deep at 3,202 m elevation)",
+          "Official protected Natural Monument of the Republic of Armenia",
+          "Striking turquoise and sapphire glacial meltwater of pristine clarity",
+          "Grand panoramic vistas over the rugged crests of the Zangezur range"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Памятник природы Армении на высоте 3202 метра в Зангезурских горах. Ледниковое озеро площадью 10 гектаров и глубиной до 22 метров с пронзительно-синей водой в окружении альпийских вершин.",
+        "hy": "ՀՀ բնության հուշարձան 3202 մ բարձրության վրա: Շուրջ 10 հա մակերեսով և 22 մ խորությամբ սառցադաշտային լիճ Զանգեզուրի ալպիական գագաթների գրկում:",
+        "en": "A designated natural monument at 3,202 meters elevation in Syunik. A 10-hectare glacial lake with depths reaching 22 meters, renowned for its brilliant azure hues."
+      },
+      "fullStory": {
+        "ru": "Высоко в Зангезурских горах, там, где исчезают леса и начинаются бескрайние альпийские просторы, скрывается одно из самых красивых высокогорных озёр Армении.\n\nВ окружении величественных вершин, каменистых склонов и горных лугов лежит озеро удивительного голубого цвета.\n\nЭто Капутан — одно из природных сокровищ Сюникской области.\n\nЗдесь нет привычных туристических набережных, ресторанов и гостиниц. Вместо этого путешественников встречают чистый горный воздух, величественная тишина и невероятные панорамы.\n\nКапутан — место для тех, кто хочет увидеть дикую, нетронутую природу Армении.\n\nГде находится озеро Капутан?\n\nОзеро расположено в Сюникской области Армении, в высокогорной части Зангезурского хребта, приблизительно в 8,3 километра к юго-западу от Каджарана.\n\nОно находится на высоте 3202 метра над уровнем моря.\n\nЭто территория суровых высокогорных ландшафтов, где даже летом погода может быстро меняться.\n\nВ ясную погоду поверхность озера отражает небо и окружающие вершины, создавая удивительную картину насыщенных синих и бирюзовых оттенков («капуйт» — синий).\n\nОзеро также известно под названием Гоги.\n\nПроисхождение и глубина\n\nКапутан относится к высокогорным озёрам ледникового происхождения. Древние ледники образовали глубокую чашу, которая после потепления наполнилась чистейшей талой водой.\n\nПлощадь водного зеркала составляет около 10 гектаров, объём воды — около 1,5 миллиона кубометров, а максимальная глубина достигает 22 метров — это одно из самых глубоких высокогорных озёр Армении!\n\nОзеро включено в государственный реестр памятников природы Республики Армения.\n\nОткройте для себя дикую красоту Зангезура вместе с Amaras Tour!",
+        "hy": "Զանգեզուրի լեռների բարձունքներում՝ ծովի մակարդակից 3202 մետր բարձրության վրա, գտնվում է Հայաստանի ամենագեղեցիկ բարձրլեռնային լճերից մեկը՝ Կապուտանը (Գոգի):\n\nԱնվանումը կապված է «կապույտ» բառի հետ՝ շնորհիվ պարզ եղանակին ջրի զարմանահրաշ փիրուզագույն և մուգ կապույտ երանգների: Լիճն ունի սառցադաշտային ծագում, ջրային հայելու մակերեսը կազմում է շուրջ 10 հեկտար, իսկ առավելագույն խորությունը հասնում է 22 մետրի:\n\nԿապուտան լիճը գրանցված է ՀՀ բնության պետական հուշարձանների ցանկում: Բացահայտեք Սյունիքի վայրի բնության չնաշխարհիկ գանձերը Amaras Tour-ի հետ:",
+        "en": "Perched high in the Zangezur Mountain Range at 3,202 meters elevation, Lake Kaputan (also known as Gogi) is one of the deepest and most spectacular glacial alpine lakes in Armenia.\n\nIts name derives from \"kapuyt\" (blue), reflecting its deep sapphire and turquoise tones under the high-altitude sun. Covering approximately 10 hectares with a remarkable depth of up to 22 meters, the lake is designated an official Natural Monument of Armenia.\n\nExperience the untamed alpine wilderness of Syunik with Amaras Tour!"
+      },
+      "tourQuery": "сюник"
+    },
+    {
+      "id": "lake-tsakhkari",
+      "name": {
+        "ru": "Озеро Цахкари (Цаккар)",
+        "hy": "Ծախքարի լիճ (Ծակքար)",
+        "en": "Lake Tsakhkari (Tsakkar)"
+      },
+      "tagline": {
+        "ru": "Небесное зеркало на гребне Зангезура на высоте 3272 метра",
+        "hy": "Երկնային հայելի Զանգեզուրի կատարին՝ 3272 մետր բարձրության վրա",
+        "en": "Celestial Mirror on the Zangezur Crest at 3,272 Meters Elevation"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Сюникская область, Зангезурский хребет, близ Каджарана",
+        "hy": "Սյունիքի մարզ, Զանգեզուրի լեռնաշղթա, Քաջարանի մոտ",
+        "en": "Syunik Province, Zangezur Range, near Kajaran"
+      },
+      "distance": {
+        "ru": "около 335 км от Еревана",
+        "hy": "մոտ 335 կմ Երևանից",
+        "en": "approx. 335 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 5 часов 30 минут",
+        "hy": "մոտ 5 ժամ 30 րոպե",
+        "en": "approx. 5 hours 30 minutes"
+      },
+      "image": "/images/attractions/lake-tsakhkari.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Высокогорное ледниковое озеро на отметке 3272 метра над уровнем моря",
+          "Расположено выше озера Капутан в царстве скал и вечных снежников",
+          "Кристальная лазурная вода, зеркально отражающая плывущие облака и горные пики",
+          "Нетронутый природный мир дикого Зангезура для настоящих ценителей треккинга"
+        ],
+        "hy": [
+          "Բարձրլեռնային սառցադաշտային լիճ ծովի մակարդակից 3272 մ բարձրության վրա",
+          "Տեղակայված է Կապուտանից էլ ավելի վեր՝ ժայռերի ու ձնաբծերի թագավորությունում",
+          "Բյուրեղյա լազուր ջուր, որը ցոլացնում է լողացող ամպերն ու լեռնագագաթները",
+          "Վայրի Զանգեզուրի անձեռնմխելի բնաշխարհ լեռնային արշավների սիրահարների համար"
+        ],
+        "en": [
+          "High-altitude glacial tarn situated at 3,272 meters above sea level",
+          "Perched above Lake Kaputan in a realm of crags and perennial summer snow",
+          "Pristine azure waters mirror-reflecting drifting clouds and alpine summits",
+          "Untouched wilderness of wild Syunik for dedicated mountain expedition trekkers"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Одно из самых высокогорных озёр Армении на высоте 3272 метра в Зангезурских горах. Расположено в ледниковом цирке выше озера Капутан, восхищает хрустальной лазурной водой и снежниками.",
+        "hy": "Հայաստանի ամենաբարձրադիր լճերից մեկը 3272 մ բարձրության վրա: Գտնվում է սառցադաշտային կրկեսում՝ Կապուտանից վեր, հիացնելով լազուր ջրերով:",
+        "en": "One of Armenia's highest glacial lakes at 3,272 meters on the Zangezur range. Resting above Lake Kaputan, it captivates visitors with crystal turquoise waters."
+      },
+      "fullStory": {
+        "ru": "На высоте более трёх тысяч метров, среди суровых горных вершин Южной Армении, скрывается небольшое озеро удивительной красоты. Здесь облака кажутся ближе, воздух прохладнее, а окружающие пейзажи напоминают другой мир.\n\nЭто Цахкари (официально Цаккар) — одно из высокогорных озёр Зангезурского хребта в Сюникской области, расположенное примерно в 8 км к юго-западу от Каджарана.\n\nВысота расположения составляет 3272 метра над уровнем моря, а площадь водного зеркала — около 3 гектаров.\n\nОзеро среди облаков\n\nЦахкари расположено даже выше соседнего озера Капутан (3202 м). Происхождение озера связано с древними ледниковыми процессами Зангезура.\n\nВ солнечную погоду кристально прозрачная вода переливается лазурными и бирюзовыми оттенками, отражая белоснежные снежники, которые на крутых склонах не тают даже в разгар лета.\n\nОзеро Цахкари — маленькое голубое зеркало, в котором отражается всё величие первозданных Зангезурских гор.\n\nОткрывайте природные сокровища Армении вместе с Amaras Tour!",
+        "hy": "Ծովի մակարդակից ավելի քան 3270 մետր բարձրության վրա՝ Զանգեզուրի լեռնաշղթայի կատարին, գտնվում է Ծախքարի (պաշտոնապես՝ Ծակքար) բարձրլեռնային չքնաղ լիճը:\n\nՇուրջ 3 հեկտար մակերեսով սառցադաշտային այս լիճը շրջապատված է խստաշունչ ժայռերով և ամռան տապին անգամ չհալչող ձնաբծերով: Պարզ օրերին լճի ջինջ ջրերը ցոլացնում են ամպերն ու երկնքի կապույտը:\n\nԲացահայտեք Հայաստանի բնության հրաշքները Amaras Tour-ի հետ:",
+        "en": "Lying at an altitude of 3,272 meters above sea level along the crest of the Zangezur range, Lake Tsakhkari (officially Tsakkar) is an ethereal glacial lake in Syunik Province.\n\nHigher than its sister lake Kaputan, Tsakhkari spans about 3 hectares of pristine turquoise waters surrounded by rocky talus slopes, summer snow patches, and sweeping alpine vistas.\n\nDiscover Armenia's most remote alpine treasures with Amaras Tour!"
+      },
+      "tourQuery": "сюник"
+    },
+    {
+      "id": "lake-gazanalich",
+      "name": {
+        "ru": "Газаналич",
+        "hy": "Գազանալիճ",
+        "en": "Lake Gazanalich"
+      },
+      "tagline": {
+        "ru": "Таинственное высокогорное озеро у подножия вершины Капутджух (3905 м)",
+        "hy": "Առեղծվածային բարձրլեռնային լիճ Կապուտջուղ գագաթի (3905 մ) ստորոտում",
+        "en": "Mystical High-Mountain Lake at the Foot of Mount Kaputjugh (3,905 m)"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Сюникская область, истоки реки Гехи, у горы Капутджух",
+        "hy": "Սյունիքի մարզ, Գեղի գետի ակունքներ, Կապուտջուղ լեռան մոտ",
+        "en": "Syunik Province, sources of Geghi river, near Mount Kaputjugh"
+      },
+      "distance": {
+        "ru": "около 340 км от Еревана",
+        "hy": "մոտ 340 կմ Երևանից",
+        "en": "approx. 340 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 5 часов 45 минут",
+        "hy": "մոտ 5 ժամ 45 րոպե",
+        "en": "approx. 5 hours 45 minutes"
+      },
+      "image": "/images/attractions/lake-gazanalich.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Расположено на высоте 3112 метров у истоков реки Гехи под вершиной Капутджух",
+          "Вид на гору Капутджух (3905 м) — высочайшую точку Зангезура и вторую в Армении",
+          "Ледяная чистейшая вода (+13 °C летом) в вулканическо-ледниковой котловине",
+          "Среда обитания редких безоаровых козлов и кавказских горных орлов"
+        ],
+        "hy": [
+          "Գտնվում է 3112 մ բարձրության վրա՝ Գեղի գետի ակունքներում՝ Կապուտջուղի տակ",
+          "Տեսարան դեպի Կապուտջուղ գագաթ (3905 մ)՝ Սյունիքի ամենաբարձր լեռը",
+          "Սառնորակ քաղցրահամ ջուր հնագույն հրաբխային-սառցադաշտային գոգավորությունում",
+          "Բեզոարյան այծերի և լեռնային արծիվների բնական ապրելավայր"
+        ],
+        "en": [
+          "Situated at 3,112 meters elevation at the Geghi river headwaters beneath Kaputjugh",
+          "Direct amphitheater view of Mount Kaputjugh (3,905 m), Armenia's 2nd-highest peak",
+          "Crystal clear, icy freshwater tarn cradled in an ancient volcanic-glacial cirque",
+          "Natural habitat of rare Bezoar ibex and Golden eagles of the southern Caucasus"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Высокогорное озеро на высоте 3112 метров у северного подножия Капутджуха (3905 м) — высочайшей вершины Зангезурского хребта. Живописный водоём у истоков реки Гехи в окружении альпийских скал.",
+        "hy": "Բարձրլեռնային լիճ 3112 մ բարձրության վրա՝ Զանգեզուրի ամենաբարձր գագաթ Կապուտջուղի (3905 մ) ստորոտում՝ Գեղի գետի ակունքների մոտ:",
+        "en": "Alpine lake at 3,112 meters altitude resting beneath Mount Kaputjugh (3,905 m), the highest peak of Zangezur. A pristine glacial tarn at the source of the Geghi river."
+      },
+      "fullStory": {
+        "ru": "Высоко в Зангезурских горах, у северного подножия высочайшей вершины Сюника — горы Капутджух (3905 м), среди суровых скал скрывается таинственное горное озеро Газаналич.\n\nОзеро расположено на высоте приблизительно 3112 метров над уровнем моря, примерно в 11 км к северо-западу от села Каджаранц, в районе истоков реки Гехи (бассейн реки Вохчи).\n\nВулканическое происхождение и ледяная вода\n\nПлощадь озера составляет около 1,8 гектара, глубина достигает 10 метров. Согласно геологическим исследованиям, Газаналич сформировался в древней котловине и питается талыми снегами Капутджуха. Температура чистейшей пресной воды даже в середине лета не превышает +13 °C.\n\nВеличественная вершина Капутджуха (второй по высоте горы Армении после Арагаца) создает грандиозный амфитеатр вокруг озера.\n\nГазаналич — маленькое сапфировое зеркало среди великих гор, хранящее первозданную тишину высокогорного Сюника.\n\nПутешествуйте по Армении вместе с Amaras Tour!",
+        "hy": "Սյունիքի ամենաբարձր գագաթի՝ Կապուտջուղ լեռան (3905 մ) հյուսիսային ստորոտում, 3112 մետր բարձրության վրա տարածվում է Գազանալիճ բարձրլեռնային առեղծվածային լիճը:\n\nԼիճը գտնվում է Գեղի գետի ակունքների շրջանում: Մակերեսը կազմում է շուրջ 1.8 հեկտար, իսկ առավելագույն խորությունը՝ մոտ 10 մետր: Ջուրը քաղցրահամ է ու սառնորակ: Կապուտջուղի վեհաշուք գագաթի արտացոլումը լճի մակերեսին անմոռանալի տեսարան է պարգևում:\n\nԲացահայտեք Սյունիքի լեռնաշխարհը Amaras Tour-ի հետ:",
+        "en": "Cradled at 3,112 meters elevation beneath the commanding pyramid peak of Mount Kaputjugh (3,905 m — Armenia's second-highest summit), Lake Gazanalich is an enchanting alpine tarn near the headwaters of the Geghi river.\n\nSpanning roughly 1.8 hectares with depths up to 10 meters, its cold, sapphire-toned waters reflect the sheer cliffs of the Zangezur crest, creating an unforgettable alpine amphitheater.\n\nExplore Armenia's untamed high-mountain landscapes with Amaras Tour!"
+      },
+      "tourQuery": "сюник"
+    },
+    {
+      "id": "lake-khurdjin",
+      "name": {
+        "ru": "Озеро Хурджин",
+        "hy": "Խուրջին լիճ",
+        "en": "Lake Khurdjin"
+      },
+      "tagline": {
+        "ru": "Одно из самых высокогорных озёр Армении на высоте 3577 метров",
+        "hy": "Հայաստանի ամենաբարձրադիր լճերից մեկը՝ 3577 մետր բարձրության վրա",
+        "en": "One of Armenia's Highest Alpine Lakes at an Altitude of 3,577 Meters"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Сюникская область, Мегринский хребет, к западу от села Личк",
+        "hy": "Սյունիքի մարզ, Մեղրու լեռնաշղթա, Լիճք գյուղից արևմուտք",
+        "en": "Syunik Province, Meghri Mountain Range, west of Lichk village"
+      },
+      "distance": {
+        "ru": "около 360 км от Еревана",
+        "hy": "մոտ 360 կմ Երևանից",
+        "en": "approx. 360 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 6 часов",
+        "hy": "մոտ 6 ժամ",
+        "en": "approx. 6 hours"
+      },
+      "image": "/images/attractions/lake-khurdjin.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Головокружительная высота 3577 метров — на 1600 метров выше озера Севан!",
+          "Двухчашевая форма водоёма, давшая имя «Хурджин» (восточная дорожная перемётная сума)",
+          "Суровые альпийские пики Мегринского хребта и вечные снежники у кромки облаков",
+          "Близость к высокогорному озеру Каптач (Сртнер), очертаниями напоминающему сердце"
+        ],
+        "hy": [
+          "3577 մետր գլխապտույտ բարձրություն՝ Սևանա լճից ավելի քան 1600 մետրով բարձր",
+          "Երկբաժին ձև, որից էլ առաջացել է «Խուրջին» անունը (ավանդական թամբապայուսակ)",
+          "Մեղրու լեռնաշղթայի խրոխտ գագաթներն ու հավերժական ձյուները ամպերի շեմին",
+          "Հարևանություն սրտաձև Կապտաչ (Սրտներ) գեղատեսիլ լճի հետ"
+        ],
+        "en": [
+          "Dizzying elevation of 3,577 meters — over 1,600 meters higher than Lake Sevan",
+          "Distinctive double-basin shape inspiring the name Khurdjin (traditional pack saddlebags)",
+          "Stark alpine peaks of the Meghri range with perennial snowdrifts touching the clouds",
+          "Located near heart-shaped alpine Lake Kaptach (Srtner)"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Одно из самых высокогорных озёр Армении на высоте 3577 метров на Мегринском хребте. Состоит из двух сообщающихся чаш в форме дорожной сумы (хурджина) в царстве вечных скал и снежников.",
+        "hy": "Հայաստանի ամենաբարձրադիր լճերից մեկը 3577 մ բարձրության վրա: Բաղկացած է խուրջին հիշեցնող երկու մասից՝ հավերժական ժայռերի ու ձյուների գրկում:",
+        "en": "One of Armenia's highest alpine lakes at 3,577 meters altitude on the Meghri range. Its dual-basin shape resembles traditional saddlebags amidst wild craggy summits."
+      },
+      "fullStory": {
+        "ru": "Высоко в горах Сюника, на территории Мегринского хребта, на головокружительной высоте 3577 метров над уровнем моря находится озеро Хурджин — одно из самых высокогорных озёр Армении (на 1600 метров выше озера Севан!).\n\nОзеро расположено в 9 км к западу от села Личк и в 600 метрах к югу от озера Каптач (Сртнер).\n\nОзеро-перемётная сума\n\nНазвание «Хурджин» связано с формой водоёма, состоящего из двух сообщающихся чаш, напоминающих традиционную восточную вьючную суму-хурджин. Площадь озера — около 1,2 гектара.\n\nЗдесь, на высоте более трёх с половиной километров, царит мир вечных камней, тонкого разреженного воздуха и пронзительно-синего неба. Снежники на окружающих перевалах часто не тают круглый год.\n\nХурджин — маленькое озеро на огромной высоте, где горы встречаются с облаками.\n\nОткрывайте неизведанные высоты Армении вместе с Amaras Tour!",
+        "hy": "Մեղրու լեռներում՝ ծովի մակարդակից 3577 մետր ապշեցուցիչ բարձրության վրա, գտնվում է Խուրջին լիճը՝ Հայաստանի ամենաբարձրադիր ջրավազաններից մեկը (Սևանա լճից ավելի քան 1600 մետր ավելի բարձր):\n\nԼիճը գտնվում է Լիճք գյուղից արևմուտք և բաղկացած է երկու մասից, որոնք հիշեցնում են ավանդական խուրջին: Մակերեսը շուրջ 1.2 հեկտար է: Այստեղ՝ ամպերի սահմանագծին, բնությունը պահպանում է իր բացարձակ կուսական վեհությունը:\n\nԲացահայտեք Հայաստանի անհասանելի բարձունքները Amaras Tour-ի հետ:",
+        "en": "Perched at an astonishing 3,577 meters above sea level on the Meghri Mountain Range, Lake Khurdjin is one of Armenia's highest natural water bodies — over 1,600 meters higher than Lake Sevan.\n\nSituated west of Lichk village and south of Lake Kaptach, its name reflects its twin-basin configuration resembling traditional saddlebags (khurdjin). Spanning 1.2 hectares, it represents the pinnacle of Armenia's rugged alpine majesty.\n\nReach unforgettable summits with Amaras Tour!"
+      },
+      "tourQuery": "сюник"
+    },
+    {
+      "id": "old-khot",
+      "name": {
+        "ru": "Старый Хот (Хин Хот)",
+        "hy": "Հին Խոտ (Խոտ գյուղատեղի)",
+        "en": "Old Khot (Hin Khot)"
+      },
+      "tagline": {
+        "ru": "Армянский Мачу-Пикчу: древний пещерный город на отвесных скалах Воротана",
+        "hy": "Հայկական Մաչու Պիկչու՝ ժայռափոր հնագույն գյուղատեղի Որոտանի անդնդախոր կիրճում",
+        "en": "The Armenian Machu Picchu: Ancient Cliffside Cave Village in Vorotan Gorge"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Сюникская область, Воротанское ущелье, близ села Хот",
+        "hy": "Սյունիքի մարզ, Որոտանի կիրճ, Խոտ գյուղի մոտ",
+        "en": "Syunik Province, Vorotan Gorge, near Khot village"
+      },
+      "distance": {
+        "ru": "около 240 км от Еревана",
+        "hy": "մոտ 240 կմ Երևանից",
+        "en": "approx. 240 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 3 часа 45 минут",
+        "hy": "մոտ 3 ժամ 45 րոպե",
+        "en": "approx. 3 hours 45 minutes"
+      },
+      "image": "/images/attractions/old-khot.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Уникальная террасная архитектура: крыша одного дома служила двором для соседа выше",
+          "Пещерные жилища, вырубленные в скалах ущелья реки Воротан на высоте 1500 метров",
+          "Историческая связь с Татевским монастырем с 1205 года (дар князя Дле)",
+          "Руины средневековых церквей, Красного монастыря XII века и старинные хачкары"
+        ],
+        "hy": [
+          "Բացառիկ կասկադային ճարտարապետություն՝ մեկի տանիքը որպես վերևի հարևանի բակ",
+          "Որոտանի կիրճի ուղղաձիգ ժայռերում փորված քարանձավային տներ 1500 մ բարձրության վրա",
+          "Պատմական կապ Տաթևի վանքի հետ 1205 թ.-ից (Դլեն իշխանի նվիրատվություն)",
+          "Միջնադարյան եկեղեցիների, XII դարի Կարմիր վանքի ավերակներ և արժեքավոր խաչքարեր"
+        ],
+        "en": [
+          "Unique multi-tiered stone architecture where each rooftop served as the terrace above",
+          "Rock-hewn cliff cave dwellings clinging to the vertical Vorotan canyon walls at 1,500 m",
+          "Historic ties to Tatev Monastery since 1205 AD (donated by Prince Dle)",
+          "Atmospheric ruins of 12th-century Red Monastery, Surb Astvatsatsin, and ancient khachkars"
+        ]
+      },
+      "shortDescription": {
+        "ru": "«Армянский Мачу-Пикчу» в Воротанском ущелье Сюника. Древнее многоярусное поселение на отвесных скалах с пещерными домами, жившими до 1970-х годов, и руинами средневековых храмов.",
+        "hy": "«Հայկական Մաչու Պիկչու» Որոտանի կիրճում: Բազմահարկ ժայռափոր և քարաշեն գյուղատեղի՝ միջնադարյան եկեղեցիների ավերակներով, որտեղ մարդիկ ապրել են մինչև 1970-ականները:",
+        "en": "The 'Armenian Machu Picchu' nestled in Syunik's Vorotan Gorge. A breathtaking multi-tiered abandoned cliffside village of cave dwellings and medieval church ruins inhabited until the 1970s."
+      },
+      "fullStory": {
+        "ru": "Представьте себе древнюю деревню, спрятанную среди отвесных скал Воротанского ущелья. Каменные дома стоят ярусами один над другим, узкие тропинки извиваются по крутому склону, а крыша одного дома служила двором для соседа выше. Здесь кажется, будто время остановилось.\n\nТак выглядит Старый Хот (Хин Хот) — одно из самых поразительных исторических мест Армении, расположенное на левом берегу реки Воротан на высоте 1500 метров над уровнем моря.\n\nАрмянский Мачу-Пикчу\n\nЗа каскадную террасную архитектуру на отвесных скалах Старый Хот часто называют «армянским Мачу-Пикчу». Десятки каменных построек буквально вырастают из скал ущелья, сливаясь с природным рельефом.\n\nДревняя история и Татевский монастырь\n\nХот — одно из древнейших поселений Сюника, где обнаружены следы дохристианских захоронений. В 1205 году сюникский князь Дле передал село Хот вместе с его плодородными садами Татевскому монастырю. На протяжении столетий поселение было тесно связано с экономической и духовной жизнью великой Татевской обители.\n\nПещерные дома и архитектурное чудо\n\nЖители виртуозно использовали природный рельеф: многие дома вырубались прямо в естественных скальных пещерах и укреплялись базальтовой кладкой. Многоярусная застройка позволяла максимально рационально использовать каждый клочок горного склона.\n\nЖители покинули Старый Хот в 1960–1970-х годах, переселившись на ровное плато выше ущелья в современное село Хот. Заброшенная деревня превратилась в музей под открытым небом, где сохранились руины церкви Сурб Аствацацин, Красного монастыря XII века, часовни Мргадзори Хач и древние кладбища с резными хачкарами.\n\nОткройте для себя тайны Воротанского каньона вместе с Amaras Tour!",
+        "hy": "Որոտանի անդնդախոր կիրճի ուղղաձիգ ժայռերի լանջին ծվարած Հին Խոտը (Խոտ գյուղատեղի) Հայաստանի ամենատպավորիչ պատմական վայրերից է: Իր յուրահատուկ կասկադային դիրքի և բնական ժայռերի մեջ կառուցված բազմահարկ քարե տների համար այն հաճախ անվանում են «Հայկական Մաչու Պիկչու»:\n\nՍյունիքի հնագույն բնակավայրերից է. 1205 թ. Դլեն իշխանը Խոտ գյուղն իր այգիներով նվիրաբերել է Տաթևի վանքին: Բնակիչները վարպետորեն օգտագործել են բնական քարանձավները՝ ստեղծելով ժայռափոր և քարաշեն ինքնատիպ կացարաններ, որտեղ մեկի տանիքը ծառայել է որպես մյուսի բակ: 1960–1970-ական թթ. բնակիչները տեղափոխվել են հարթավայրային նոր Խոտ գյուղ:\n\nԱյստեղ պահպանվել են Սուրբ Աստվածածին եկեղեցու, XII դարի Կարմիր վանքի, Մրգաձորի Խաչ մատուռի ավերակները և հնագույն գերեզմանոցների շքեղ խաչքարերը:\n\nԲացահայտեք Սյունիքի անկրկնելի գանձերը Amaras Tour-ի հետ:",
+        "en": "Perched dramatically on the steep vertical walls of the Vorotan River Gorge at 1,500 meters altitude, Old Khot (Hin Khot) is widely celebrated as the \"Armenian Machu Picchu\".\n\nCascading terraces of stone houses and cave dwellings were carved directly into natural rock crags, where the roof of one dwelling frequently formed the courtyard of the house above. Documented as early as 1205 when Prince Dle gifted the village and its orchards to Tatev Monastery, Khot thrived for centuries before its residents relocated to the upper plateau in the 1960s–1970s.\n\nToday, this atmospheric open-air ghost town features ruins of the 12th-century Red Monastery, Surb Astvatsatsin church, Mrgadzori Khach chapel, and exquisite medieval khachkars.\n\nExplore the dramatic wonders of Syunik with Amaras Tour!"
+      },
+      "tourQuery": "сюник"
+    },
+    {
+      "id": "vahanavank",
+      "name": {
+        "ru": "Ваанаванк",
+        "hy": "Վահանավանք",
+        "en": "Vahanavank Monastery"
+      },
+      "tagline": {
+        "ru": "Царский пантеон и духовная твердыня Сюникского царства X–XI веков",
+        "hy": "Սյունյաց թագավորության արքայական դամբարանադաշտը և հոգևոր կենտրոնը (X–XI դդ.)",
+        "en": "Royal Pantheon and Spiritual Stronghold of the Medieval Kingdom of Syunik"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Сюникская область, близ города Капан, гора Тигранасар",
+        "hy": "Սյունիքի մարզ, Կապան քաղաքի մոտ, Տիգրանասար լեռ",
+        "en": "Syunik Province, near Kapan, Mount Tigranasar"
+      },
+      "distance": {
+        "ru": "около 310 км от Еревана",
+        "hy": "մոտ 310 կմ Երևանից",
+        "en": "approx. 310 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 4 часа 45 минут",
+        "hy": "մոտ 4 ժամ 45 րոպե",
+        "en": "approx. 4 hours 45 minutes"
+      },
+      "image": "/images/attractions/vahanavank.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Собор Сурб Григор Лусаворич (911 г.) из тёсаного базальта, основанный князем Вааном",
+          "Царская усыпальница правителей Сюникского царства: царей Васака, Григора I и знати",
+          "Двухъярусная церковь Сурб Аствацацин (1086 г.), возведённая царицей Шахандухт II",
+          "Живописное расположение на лесистом склоне горы Тигранасар над рекой Вохчи"
+        ],
+        "hy": [
+          "911 թ. Սուրբ Գրիգոր Լուսավորիչ բազալտաշեն տաճար՝ հիմնադրված Վահան իշխանի կողմից",
+          "Սյունյաց թագավորների արքայական դամբարան (Վասակ արքա, Գրիգոր Ա և մեծատոհմիկներ)",
+          "Սյունյաց Շահանդուխտ Բ թագուհու կառուցած 1086 թ. երկհարկանի Սուրբ Աստվածածին եկեղեցի",
+          "Գեղատեսիլ դիրք Ողջի գետի հովտում՝ Տիգրանասար լեռան անտառապատ լանջին"
+        ],
+        "en": [
+          "St. Gregory the Illuminator Cathedral (911 AD) built of dressed basalt by Prince Vahan",
+          "Royal burial pantheon of the Kings of Syunik, including King Vasak and King Grigor I",
+          "Remarkable two-story Surb Astvatsatsin sepulcher church built in 1086 by Queen Shahandukht II",
+          "Scenic location on the forested slopes of Mount Tigranasar above the Voghji River"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Один из важнейших монастырей Сюника, основанный в 911 году. Служил царским пантеоном правителей Сюникского царства. Известен собором X века, двухъярусной церковью царицы Шахандухт (1086 г.) и царскими надгробиями.",
+        "hy": "Սյունիքի գլխավոր հոգևոր կենտրոններից մեկը՝ հիմնադրված 911 թ.: Ծառայել է որպես Սյունյաց արքաների դամբարանադաշտ: Հայտնի է Շահանդուխտ թագուհու երկհարկ եկեղեցով:",
+        "en": "Major 10th-century monastery and royal pantheon of the Kings of Syunik near Kapan. Renowned for its 911 AD basalt cathedral, 1086 two-tier royal chapel, and historic crypts."
+      },
+      "fullStory": {
+        "ru": "В глубине лесистых гор Южной Армении, на склоне горы Тигранасар над рекой Вохчи, возвышается монастырь Ваанаванк — царский пантеон и духовная твердыня средневекового Сюника.\n\nОбитель князей и царей — 911 год\n\nМонастырь основан в 911 году князем Вааном, сыном сюникского князя Дзагика. Главный собор — Сурб Григор Лусаворич (Святого Григория Просветителя), построенный из тёсаного базальта в форме купольного зала.\n\nВаанаванк стал главным усыпальницей сюникской царской династии: здесь похоронены цари Сюника Васак, Григор I, князья и духовные иерархи (включая Католикоса Ваана I Сюнеци).\n\nДвухъярусная церковь царицы Шахандухт — 1086 год\n\nВ 1086 году царица Сюника Шахандухт II вместе с сестрой Катой возвела уникальную двухъярусную церковь Сурб Аствацацин. Нижний ярус служил царской усыпальницей, а верхний — изящным храмом.\n\nКомплекс включает также монументальный гавит с арочной галереей, древнюю монастырскую семинарию, резные хачкары и царские надгробия X–XI веков.\n\nВаанаванк — это каменная летопись Сюникского царства, бережно сохранённая среди изумрудных гор Армении.\n\nОткройте царскую историю Сюника вместе с Amaras Tour!",
+        "hy": "Կապան քաղաքի մոտակայքում՝ Տիգրանասար լեռան անտառապատ լանջին՝ Ողջի գետի աջ ափին, գտնվում է Սյունյաց թագավորության հոգևոր կենտրոնն ու արքայական դամբարանադաշտը՝ Վահանավանքը:\n\nՀիմնադրվել է 911 թ. Սյունյաց Ձագիկ իշխանի որդի Վահան իշխանի կողմից: Գլխավոր տաճարը՝ Սուրբ Գրիգոր Լուսավորիչը, կառուցված է սրբատաշ բազալտից: Այստեղ են ամփոփված Սյունյաց Վասակ թագավորի, Գրիգոր Ա արքայի և այլ գահակալների շիրիմները:\n\n1086 թ. Սյունյաց Շահանդուխտ Բ թագուհին կառուցել է եզակի երկհարկանի Սուրբ Աստվածածին դամբարան-եկեղեցին: Համալիրն ընդգրկում է նաև մեծ սյունազարդ սրահ-գավիթը, վանական դպրոցը և արքայական հարուստ տապանաքարերը:\n\nՃանապարհորդեք Amaras Tour-ի հետ և բացահայտեք Սյունյաց արքաների փառահեղ ժառանգությունը:",
+        "en": "Nestled on the forested slopes of Mount Tigranasar above the Voghji River near Kapan, Vahanavank was the royal pantheon and spiritual jewel of the medieval Kingdom of Syunik.\n\nFounded in 911 AD by Prince Vahan, its primary church of St. Gregory the Illuminator is built of finely cut dark basalt. The monastery served as the dynastic burial vault for the kings of Syunik, including King Vasak and King Grigor I.\n\nIn 1086, Queen Shahandukht II erected the remarkable two-story Surb Astvatsatsin church, featuring a royal crypt below and an elegant sanctuary above. The ensemble also preserves an arched portico narthex, ancient seminary school, and engraved royal gravestones.\n\nDiscover the royal heritage of southern Armenia with Amaras Tour!"
+      },
+      "tourQuery": "сюник"
+    },
+    {
+      "id": "baghaberd-fortress",
+      "name": {
+        "ru": "Крепость Багаберд",
+        "hy": "Բաղաբերդ ամրոց",
+        "en": "Baghaberd Fortress"
+      },
+      "tagline": {
+        "ru": "Последняя столица и неприступная твердыня Сюникского царства над рекой Вохчи",
+        "hy": "Սյունյաց թագավորության վերջին մայրաքաղաքն ու անառիկ ամրոցը Ողջի գետի կիրճում",
+        "en": "Last Capital and Impregnable Citadel of the Medieval Kingdom of Syunik"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Сюникская область, между Капаном и Каджараном, устье реки Гехи",
+        "hy": "Սյունիքի մարզ, Կապանի և Քաջարանի միջև, Գեղի գետաբերան",
+        "en": "Syunik Province, between Kapan and Kajaran, confluence of Geghi river"
+      },
+      "distance": {
+        "ru": "около 325 км от Еревана",
+        "hy": "մոտ 325 կմ Երևանից",
+        "en": "approx. 325 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 5 часов 10 минут",
+        "hy": "մոտ 5 ժամ 10 րոպե",
+        "en": "approx. 5 hours 10 minutes"
+      },
+      "image": "/images/attractions/baghaberd.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Неприступная скальная цитадель IV–XII веков с трёхуровневой эшелонированной обороной",
+          "Последняя столица независимого Сюникского царства в 1103–1170 годах",
+          "Трагическое убежище библиотеки Татевского монастыря (более 10 000 рукописей)",
+          "Грандиозный вид на каньон слияния рек Вохчи и Гехи с головокружительной высоты 1438 м"
+        ],
+        "hy": [
+          "IV–XII դարերի անառիկ ժայռային միջնաբերդ՝ պաշտպանական եռաստիճան համակարգով",
+          "Սյունյաց անկախ թագավորության վերջին մայրաքաղաքը 1103–1170 թվականներին",
+          "Տաթևի վանքի ավելի քան 10,000 ձեռագիր մատյանների և գանձերի ողբերգական հանգրվանը",
+          "Շունչ կտրող տեսարան Ողջի և Գեղի գետերի կիրճին 1438 մետր բարձրությունից"
+        ],
+        "en": [
+          "Impregnable 4th–12th century mountain citadel with three tiered defensive perimeter walls",
+          "Final royal capital of the independent Kingdom of Syunik from 1103 to 1170 AD",
+          "Sanctuary that sheltered Tatev Monastery's library of over 10,000 illuminated manuscripts",
+          "Breathtaking eagle-eye panorama over the Voghji and Geghi river gorge from 1,438 meters"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Легендарная крепость IV–XII веков над ущельем реки Вохчи. Стала последней столицей Сюникского царства (1103–1170 гг.) и хранилищем более 10 000 рукописей Татевского монастыря.",
+        "hy": "IV–XII դարերի հզոր ամրոց Ողջի գետի կիրճում: 1103–1170 թթ. եղել է Սյունյաց թագավորության վերջին մայրաքաղաքն ու Տաթևի 10,000 ձեռագրերի գանձարանը:",
+        "en": "Legendary 4th–12th century mountain stronghold overlooking the Voghji River gorge. Final royal capital of the Syunik Kingdom (1103–1170 AD) and vault of over 10,000 Tatev manuscripts."
+      },
+      "fullStory": {
+        "ru": "Высоко над ущельем реки Вохчи, между городами Капан и Каджаран, на неприступном скалистом утёсе (1438 м) возвышаются циклопические стены древней крепости Багаберд — последнего оплота и столицы Сюникского царства.\n\nНеприступный страж Сюника\n\nОснование крепости уходит корнями в III–IV века (князь Багак из рода Сисака). В IV веке князь Андовк Сюни успешно оборонял крепость против персидского царя Шапура II. Трёхуровневая эшелонированная система стен и отвесные скалы делали крепость непреодолимой для штурма.\n\nПоследняя столица (1103–1170 гг.)\n\nПосле разрушения сельджуками прежней столицы Капана в 1103 году, правители Сюника перенесли царскую резиденцию в Багаберд. Крепость стала последней столицей независимого Сюникского государства.\n\nТрагедия десяти тысяч рукописей\n\nВ Багаберд были свезены княжеские сокровища и бесценная библиотека Татевского монастыря — свыше 10 000 иллюминированных средневековых рукописей! В 1170 году войска атабека Ильдегиза хитростью овладели крепостью. Багаберд был разграблен, книги сожжены, а Сюникское царство прекратило своё существование.\n\nСегодня руины мощных башен Багаберда над пропастью реки Вохчи остаются символом несокрушимого духа и мужества армянского народа.\n\nПрикоснитесь к легендарной истории вместе с Amaras Tour!",
+        "hy": "Ողջի և Գեղի գետերի միախառնման վայրում՝ անառիկ ժայռաբլրի վրա (1438 մ բարձրության վրա), վեր են խոյանում Բաղաբերդ ամրոցի հզոր պարիսպները՝ Սյունյաց թագավորության վերջին մայրաքաղաքն ու հզորագույն ռազմական պատվարը:\n\nԱմրոցը հիշատակվում է դեռևս IV դարից (Անդովկ իշխանի հերոսական պաշտպանությունը Շապուհ Բ-ի դեմ): 1103 թ. Կապան մայրաքաղաքի ավերումից հետո Բաղաբերդը դարձավ Սյունյաց թագավորության վերջին արքայանիստ մայրաքաղաքը:\n\nԱյստեղ էին պահվում Տաթևի վանքի և Սյունյաց իշխանների գանձերն ու ավելի քան 10,000 անգին ձեռագիր մատյանները: 1170 թ. Ելդկուզ աթաբեկի զորքերը նենգությամբ գրավեցին ամրոցը, հրկիզեցին հազարավոր մատյանները, ինչով էլ ավարտվեց Սյունյաց թագավորության պատմությունը:\n\nԲացահայտեք Բաղաբերդի հերոսական պատմությունը Amaras Tour-ի հետ:",
+        "en": "Perched atop a formidable triangular rock spur (1,438 m) above the confluence of the Voghji and Geghi rivers, Baghaberd Fortress was the impregnable last capital of the medieval Kingdom of Syunik.\n\nChronicles date its origins to the 4th century when Prince Andovk repelled the armies of Persian Shah Shapur II. After the fall of Kapan to Seljuk invaders in 1103, Baghaberd became the final royal seat of the Syunik monarchs.\n\nTragedy struck in 1170 when the fortress was captured by Atabeg Eldiguz, resulting in the destruction of over 10,000 priceless illuminated manuscripts evacuated from Tatev Monastery and ending the independent kingdom. Today, its colossal stone towers standing guard over the canyon evoke profound awe.\n\nExperience Armenia's epic history with Amaras Tour!"
+      },
+      "tourQuery": "сюник"
+    },
+    {
+      "id": "mount-khustup",
+      "name": {
+        "ru": "Гора Хуступ",
+        "hy": "Խուստուփ լեռ",
+        "en": "Mount Khustup"
+      },
+      "tagline": {
+        "ru": "Священная вершина Сюника (3201 м) — символ духа и вечный страж южной Армении",
+        "hy": "Սյունյաց սրբազան գագաթը (3201 մ)՝ ոգու խորհրդանիշն ու հարավային Հայաստանի պահապանը",
+        "en": "Sacred Summit of Syunik (3,201 m) — Symbol of Spirit and Guardian of Southern Armenia"
+      },
+      "regionCategory": "south",
+      "region": {
+        "ru": "Сюникская область, Хуступ-Катарский хребет, близ города Капан",
+        "hy": "Սյունիքի մարզ, Խուստուփ-Կատարի լեռնաշղթա, Կապան քաղաքի մոտ",
+        "en": "Syunik Province, Khustup-Katar Range, near Kapan"
+      },
+      "distance": {
+        "ru": "около 320 км от Еревана",
+        "hy": "մոտ 320 կմ Երևանից",
+        "en": "approx. 320 km from Yerevan"
+      },
+      "travelTime": {
+        "ru": "приблизительно 5 часов",
+        "hy": "մոտ 5 ժամ",
+        "en": "approx. 5 hours"
+      },
+      "image": "/images/attractions/mount-khustup.jpg",
+      "unesco": false,
+      "highlights": {
+        "ru": [
+          "Культовая скалистая вершина высотой 3201 метр, доминирующая над всей панорамой Капана",
+          "Священное место упокоения полководца и национального героя Армении Гарегина Нжде",
+          "Истоки реки Вачаган и смена природных поясов от густых дубрав до альпийских лугов",
+          "Захватывающий круговой обзор на 360° на Зангезурский хребет и вершину Арарата"
+        ],
+        "hy": [
+          "3201 մ բարձրությամբ պաշտամունքային ժայռոտ գագաթ, որը գերիշխում է Կապանի երկնքում",
+          "Հայոց ազգային հերոս, Սպարապետ Գարեգին Նժդեհի սրբազան մասունքների հանգրվանը",
+          "Վաչագան գետի ակունքներ և բնական գոտիների հերթափոխ՝ կաղնուտներից մինչև ալպիական մարգագետիններ",
+          "Շունչ կտրող 360° համայնապատկեր ամբողջ Զանգեզուրի, Արցախի և դեպի Մասիս լեռը"
+        ],
+        "en": [
+          "Iconic craggy 3,201-meter peak dominating the southern skyline above Kapan",
+          "Sacred resting site of Armenia's national hero and military commander Garegin Nzhdeh",
+          "Headwaters of the Vachagan River spanning old-growth oak forests to alpine tundra",
+          "Sweeping 360° panoramic vista over the Zangezur range, Artsakh, and distant Mount Ararat"
+        ]
+      },
+      "shortDescription": {
+        "ru": "Священная скалистая вершина Сюника (3201 м) над Капаном. Символ мужества, место упокоения национального героя Гарегина Нжде и один из самых впечатляющих маршрутов горного треккинга в Армении.",
+        "hy": "Սյունիքի սրբազան ժայռոտ գագաթը (3201 մ) Կապանի վրա: Ոգու խորհրդանիշ, Գարեգին Նժդեհի հանգրվանն ու Հայաստանի ամենատպավորիչ լեռնային արշավուղիներից մեկը:",
+        "en": "Sacred rocky peak of Syunik (3,201 m) towering above Kapan. A national symbol of resilience, resting site of military leader Garegin Nzhdeh, and Armenia's most thrilling alpine trek."
+      },
+      "fullStory": {
+        "ru": "Есть горы, которые восхищают своей высотой. Есть вершины, покоряющие красотой. А есть горы, которые становятся священным символом духа целого народа.\n\nГора Хуступ — именно такая святыня.\n\nЕё величественный скалистый пик высотой 3201 метр возвышается над городом Капан, словно вечный каменный страж южных рубежей Армении. Остроконечный зубчатый силуэт Хуступа виден за десятки километров.\n\nСвященная гора и истоки реки Вачаган\n\nВ древности Хуступ почитался как священная гора молитв и уединения. На его склонах берут начало кристальные источники, дающие жизнь реке Вачаган. Массив сложен древними вулканическими порфиритами и известняками, а климатические пояса сменяются от дубовых и грабовых лесов до субальпийских разнотравных лугов и скалистых осыпей.\n\nХуступ и Гарегин Нжде\n\nХуступ неразрывно связан с именем национального героя Армении Гарегина Нжде, руководившего обороной Зангезура в 1919–1921 годах. Согласно завещанию полководца, часть его праха в 1983 году была захоронена на склоне горы у родника Козни, превратив Хуступ в место общенационального поклонения.\n\nВосхождение на вершину (3201 м) дарит незабываемые панорамы на весь Зангезурский хребет, Карабахское нагорье и в ясную погоду — до снежной шапки горы Арарат.\n\nХуступ — священная вершина Сюника, где горы встречаются с небом.\n\nПокорите легендарный Хуступ вместе с гидами Amaras Tour!",
+        "hy": "Սյունիքի հպարտ խորհրդանիշն ու հավերժական պահապանը՝ Խուստուփ լեռը, վեր է խոյանում Կապան քաղաքի վրա՝ ծովի մակարդակից 3201 մետր բարձրության վրա:\n\nԼեռը հայտնի է իր ուղղաձիգ ժայռոտ գագաթով և ալպիական անկրկնելի լանդշաֆտներով: Այստեղից է սկիզբ առնում Վաչագան գետը: Խուստուփը հնուց ի վեր համարվել է սրբազան լեռ:\n\nԼեռը սերտորեն կապված է Սպարապետ Գարեգին Նժդեհի անվան հետ, ով 1919–1921 թթ. ղեկավարել է Զանգեզուրի ինքնապաշտպանությունը: Նրա կտակի համաձայն՝ 1983 թ. զորավարի աճյունի մի մասն ամփոփվել է Խուստուփի լանջին՝ Կոզնի աղբյուրի մոտ:\n\nԽուստուփի գագաթից բացվում է շունչ կտրող համայնապատկեր ամբողջ Զանգեզուրի, Արցախի լեռների և պարզ եղանակին՝ մինչև Արարատի ձյունափառ գագաթը:\n\nՆվաճեք լեգենդար Խուստուփը Amaras Tour-ի փորձառու լեռնային ուղեկցորդների հետ:",
+        "en": "Towering 3,201 meters above Kapan as the eternal sentinel of southern Armenia, Mount Khustup is a sacred peak and an enduring symbol of resilience and freedom.\n\nFeaturing dramatic rocky crags that command the Bargushat and Khustup-Katar ranges, the mountain gives birth to the Vachagan River. It ascends through lush oak forests into alpine meadows and sheer stone pinnacles.\n\nKhustup is forever enshrined in Armenian history through national hero Garegin Nzhdeh, who commanded the defense of Zangezur in 1919–1921. In fulfillment of his wishes, part of his remains was interred on Khustup's slopes near the Kozni spring in 1983.\n\nThe summit trek rewards mountaineers with staggering 360-degree vistas stretching across Syunik, the Artsakh highlands, and on crystal clear days, toward Mount Ararat.\n\nAscend legendary Mount Khustup with expert Amaras Tour guides!"
+      },
+      "tourQuery": "сюник"
     }
   ]
 }
