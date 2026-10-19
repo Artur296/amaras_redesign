@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import TourCard from "@/components/TourCard";
 import type { Dict, Locale } from "@/lib/i18n";
 import { getTourCode, isPackageTour, type Category, type Tour } from "@/lib/tours";
@@ -79,12 +79,48 @@ export default function TourListingClient({
   }, []);
 
   const categoryTabs = [
-    { id: "all", label: locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլորը" : "All Tours" },
-    { id: "popular", label: locale === "ru" ? "⭐ Популярные" : locale === "hy" ? "⭐ Հանրաճանաչ" : "⭐ Popular" },
-    { id: "group", label: locale === "ru" ? "Групповые" : locale === "hy" ? "Խմբային" : "Group Tours" },
-    { id: "individual", label: locale === "ru" ? "Индивидуальные" : locale === "hy" ? "Անհատական" : "Private Tours" },
-    { id: "jeep", label: locale === "ru" ? "Джип-туры 4x4" : locale === "hy" ? "Ջիպ 4x4" : "4x4 Jeep Expeditions" },
+    { id: "all", label: locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours", icon: "🌍" },
+    { id: "popular", label: locale === "ru" ? "Популярные туры" : locale === "hy" ? "Հանրաճանաչ տուրեր" : "Popular Tours", icon: "⭐" },
+    { id: "group", label: locale === "ru" ? "Групповые туры" : locale === "hy" ? "Խմբային տուրեր" : "Group Tours", icon: "👥" },
+    { id: "individual", label: locale === "ru" ? "Индивидуальные туры" : locale === "hy" ? "Անհատական տուրեր" : "Private Tours", icon: "👤" },
+    { id: "jeep", label: locale === "ru" ? "Джип-туры 4x4" : locale === "hy" ? "Ջիպ 4x4" : "4x4 Jeep Expeditions", icon: "🚙" },
+    { id: "offers", label: locale === "ru" ? "Спецпредложения" : locale === "hy" ? "Հատուկ առաջարկներ" : "Special Offers", icon: "🔥" },
   ];
+
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsCategoryOpen(false);
+      }
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsCategoryOpen(false);
+      }
+    }
+    if (isCategoryOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isCategoryOpen]);
+
+  function getCategoryCount(catId: string) {
+    if (catId === "all") return toursList.length;
+    if (catId === "popular") {
+      return toursList.filter((t) => (t.featured ?? true) || t.categories.includes("popular")).length;
+    }
+    if (catId === "individual") {
+      return toursList.filter((t) => t.categories.includes("individual") || t.categories.includes("group")).length;
+    }
+    return toursList.filter((t) => t.categories.includes(catId)).length;
+  }
 
   const filteredTours = useMemo(() => {
     return toursList
@@ -94,6 +130,9 @@ export default function TourListingClient({
           if (selectedCategory === "popular") {
             const isPop = (tour.featured ?? true) || tour.categories.includes("popular");
             if (!isPop) return false;
+          } else if (selectedCategory === "individual") {
+            const isInd = tour.categories.includes("individual") || tour.categories.includes("group");
+            if (!isInd) return false;
           } else if (!tour.categories.includes(selectedCategory)) {
             return false;
           }
@@ -149,24 +188,101 @@ export default function TourListingClient({
 
   return (
     <div className="mt-8 space-y-8">
-      {/* Control Bar: Search, Category Tabs & Sort */}
+      {/* Control Bar: Search, Category Dropdown & Sort */}
       <div className="flex flex-col gap-2.5 sm:gap-3 rounded-2xl sm:rounded-full border border-[#EAE9E0] bg-white p-2 sm:p-2.5 shadow-sm md:flex-row md:items-center md:justify-between">
-        {/* Category Pills - horizontal swipeable row */}
-        <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none py-0.5 min-w-0 flex-1 pr-1">
-          {categoryTabs.map((tab) => (
+        {/* Category Dropdown - "Все туры" button */}
+        <div className="relative shrink-0" ref={dropdownRef}>
+          <div className="flex items-center gap-1.5">
             <button
-              key={tab.id}
               type="button"
-              onClick={() => setSelectedCategory(tab.id)}
-              className={`shrink-0 rounded-full px-3 sm:px-3.5 py-1.5 text-[11px] sm:text-xs font-bold sm:font-black uppercase tracking-wider transition-all cursor-pointer ${
-                selectedCategory === tab.id
-                  ? "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25"
-                  : "bg-[#FCFCF7] text-[#312F2F] hover:bg-[#EAE9E0] border border-[#EAE9E0]"
+              onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+              className={`inline-flex items-center gap-2 rounded-full px-4 sm:px-5 h-8 sm:h-9 text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all cursor-pointer select-none ${
+                isCategoryOpen
+                  ? "bg-[#4558e8] text-white shadow-md ring-2 ring-[#586EFF]/30"
+                  : selectedCategory === "all"
+                  ? "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 hover:bg-[#485ee8]"
+                  : "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 hover:bg-[#485ee8]"
               }`}
+              aria-haspopup="true"
+              aria-expanded={isCategoryOpen}
             >
-              {tab.label}
+              <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" />
+              </svg>
+              <span>
+                {selectedCategory === "all"
+                  ? (locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours")
+                  : (categoryTabs.find((t) => t.id === selectedCategory)?.label || (locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours"))}
+              </span>
+              <svg
+                className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+              </svg>
             </button>
-          ))}
+
+            {selectedCategory !== "all" && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedCategory("all");
+                  setIsCategoryOpen(false);
+                }}
+                className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#FCFCF7] border border-[#EAE9E0] text-[#6B6967] hover:bg-[#EAE9E0] hover:text-[#312F2F] transition-all text-xs font-bold"
+                title={locale === "ru" ? "Сбросить на Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "Reset to All Tours"}
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          {/* Dropdown Window ("сверху вниз") */}
+          {isCategoryOpen && (
+            <div className="absolute left-0 top-full mt-2.5 z-50 w-72 sm:w-80 rounded-2xl bg-white border border-[#EAE9E0] p-2 shadow-2xl shadow-black/15 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="px-3 py-1.5 flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-black/40 border-b border-[#F0EFEA] mb-1">
+                <span>{locale === "ru" ? "Категории туров" : locale === "hy" ? "Տուրերի կատեգորիաներ" : "Tour Categories"}</span>
+                <span className="text-[9px] text-[#586EFF] lowercase font-bold">{locale === "ru" ? "выберите категорию" : locale === "hy" ? "ընտրեք" : "select"}</span>
+              </div>
+              <div className="space-y-1">
+                {categoryTabs.map((tab) => {
+                  const isSelected = selectedCategory === tab.id;
+                  const count = getCategoryCount(tab.id);
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => {
+                        setSelectedCategory(tab.id);
+                        setIsCategoryOpen(false);
+                      }}
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all text-left cursor-pointer ${
+                        isSelected
+                          ? "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 font-black"
+                          : "text-[#312F2F] hover:bg-[#F7F6F0] hover:text-[#586EFF]"
+                      }`}
+                    >
+                      <span className="flex items-center gap-2.5">
+                        <span className="text-base leading-none">{tab.icon}</span>
+                        <span>{tab.label}</span>
+                      </span>
+                      <span
+                        className={`text-[11px] font-black px-2 py-0.5 rounded-full ${
+                          isSelected
+                            ? "bg-white/20 text-white"
+                            : "bg-[#EAE9E0]/70 text-[#6B6967]"
+                        }`}
+                      >
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Search input and Sort dropdown - horizontal row */}

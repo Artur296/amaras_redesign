@@ -1085,7 +1085,8 @@
       },
       "categories": [
         "popular",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 10000,
       "departure": "10:00",
@@ -1142,7 +1143,8 @@
       "categories": [
         "popular",
         "group",
-        "offers"
+        "offers",
+        "individual"
       ],
       "priceFromAmd": 15000,
       "departure": "10:00",
@@ -1199,7 +1201,8 @@
       },
       "categories": [
         "popular",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 15000,
       "departure": "09:00",
@@ -1253,7 +1256,8 @@
       },
       "categories": [
         "popular",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 15000,
       "departure": "09:00",
@@ -1310,7 +1314,8 @@
       "categories": [
         "popular",
         "group",
-        "offers"
+        "offers",
+        "individual"
       ],
       "priceFromAmd": 15000,
       "departure": "09:00",
@@ -1370,7 +1375,8 @@
       },
       "categories": [
         "popular",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 20000,
       "departure": "09:00",
@@ -1425,7 +1431,8 @@
       },
       "categories": [
         "popular",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 20000,
       "departure": "09:00",
@@ -1487,7 +1494,8 @@
       },
       "categories": [
         "popular",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 20000,
       "departure": "09:00",
@@ -1550,7 +1558,8 @@
       "categories": [
         "popular",
         "group",
-        "offers"
+        "offers",
+        "individual"
       ],
       "priceFromAmd": 25000,
       "departure": "09:00",
@@ -1604,7 +1613,8 @@
       },
       "categories": [
         "popular",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 25000,
       "departure": "09:00",
@@ -1657,7 +1667,8 @@
       },
       "categories": [
         "popular",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 25000,
       "departure": "07:30",
@@ -1711,7 +1722,8 @@
       "categories": [
         "popular",
         "jeep",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 25000,
       "departure": "08:00",
@@ -1762,7 +1774,8 @@
       "categories": [
         "popular",
         "jeep",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 25000,
       "departure": "08:00",
@@ -1818,7 +1831,8 @@
       "categories": [
         "popular",
         "jeep",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 25000,
       "departure": "09:00",
@@ -1869,7 +1883,8 @@
       "categories": [
         "popular",
         "jeep",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 30000,
       "departure": "08:00",
@@ -1916,7 +1931,8 @@
       "categories": [
         "popular",
         "jeep",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 30000,
       "departure": "08:00",
@@ -1965,7 +1981,8 @@
       "categories": [
         "popular",
         "jeep",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 30000,
       "departure": "08:00",
@@ -2018,7 +2035,8 @@
       "categories": [
         "popular",
         "jeep",
-        "group"
+        "group",
+        "individual"
       ],
       "priceFromAmd": 45000,
       "departure": "05:30",
