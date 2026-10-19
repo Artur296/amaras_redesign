@@ -1,15 +1,13 @@
 # Current Task
 
 ## What We're Building
-- Site-wide alignment to 100% upfront payment policy (full payment in advance prior to departure):
-  - Updated [components/TourDetail.tsx](file:///c:/Users/amura/Desktop/amaras-tours/components/TourDetail.tsx) payment line from "На месте (без предоплаты)" to "100% предоплата (до поездки)" across all 3 languages (RU, HY, EN).
-  - Updated [components/BookingModal.tsx](file:///c:/Users/amura/Desktop/amaras-tours/components/BookingModal.tsx) booking banner and translations to state that full payment (100%) is made in advance prior to departure, and the manager will provide payment details once seat availability is confirmed.
-  - Cleaned up obsolete "no prepayment" / "առանց կանխավճարի" phrasing from meta descriptions in [lib/i18n.ts](file:///c:/Users/amura/Desktop/amaras-tours/lib/i18n.ts).
-  - Matches the established policy in [lib/faqs.ts](file:///c:/Users/amura/Desktop/amaras-tours/lib/faqs.ts) (FAQ #3: "Для бронирования экскурсий Amaras Tour предусмотрена 100% предварительная оплата").
-  - Verified with `npm run build` (86/86 static pages generated with 0 errors).
+- Removed redundant top category cards block from the tours catalog page ([app/[locale]/tours/page.tsx](file:///c:/Users/amura/Desktop/amaras-tours/app/[locale]/tours/page.tsx)):
+  - Removed the 6 static category cards grid ("Популярные туры", "Групповые туры", "Индивидуальные туры", "Джип & Экстрим", "Спецпредложения", "Гости") and intermediate divider.
+  - Streamlined the header so the interactive catalog ([TourListingClient.tsx](file:///c:/Users/amura/Desktop/amaras-tours/components/TourListingClient.tsx)) with live search, category tabs, and tour cards is immediately accessible without scrolling past duplicate links.
+  - Verified `npm run build` (86/86 pages generated cleanly).
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-19 — All payment terms across the site were updated to state 100% full prepayment in advance before departure. Fully built and synced with both remotes.
+2026-10-19 — Removed redundant 6-card category block from `/tours` page, moving the interactive tour directory directly to the top. Built and pushed to both remotes.
