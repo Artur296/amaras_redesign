@@ -1,14 +1,15 @@
 # Current Task
 
 ## What We're Building
-- Temporary removal of payment requisites (card number, Ameriabank, Idram/Telcell phone number, and receipt upload) from the booking modal:
-  - Turned off `paymentCard.enabled: false` and cleared placeholder values in [lib/site.ts](file:///c:/Users/amura/Desktop/amaras-tours/lib/site.ts) and [content/site.json](file:///c:/Users/amura/Desktop/amaras-tours/content/site.json).
-  - Updated [components/BookingModal.tsx](file:///c:/Users/amura/Desktop/amaras-tours/components/BookingModal.tsx) to only render payment card details and receipt attachment upload when `paymentCard?.enabled && paymentCard?.cardNumber`.
-  - Added a clean and reassuring notification banner in all 3 languages (RU, HY, EN) informing the guest that booking is without prepayment and a manager will contact them to confirm seat availability and details.
-  - Fully tested build (`npm run build`, 86/86 pages generated) and pushed to `origin/main` and `redesign/main`.
+- Site-wide alignment to 100% upfront payment policy (full payment in advance prior to departure):
+  - Updated [components/TourDetail.tsx](file:///c:/Users/amura/Desktop/amaras-tours/components/TourDetail.tsx) payment line from "На месте (без предоплаты)" to "100% предоплата (до поездки)" across all 3 languages (RU, HY, EN).
+  - Updated [components/BookingModal.tsx](file:///c:/Users/amura/Desktop/amaras-tours/components/BookingModal.tsx) booking banner and translations to state that full payment (100%) is made in advance prior to departure, and the manager will provide payment details once seat availability is confirmed.
+  - Cleaned up obsolete "no prepayment" / "առանց կանխավճարի" phrasing from meta descriptions in [lib/i18n.ts](file:///c:/Users/amura/Desktop/amaras-tours/lib/i18n.ts).
+  - Matches the established policy in [lib/faqs.ts](file:///c:/Users/amura/Desktop/amaras-tours/lib/faqs.ts) (FAQ #3: "Для бронирования экскурсий Amaras Tour предусмотрена 100% предварительная оплата").
+  - Verified with `npm run build` (86/86 static pages generated with 0 errors).
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-19 — All payment methods and receipt uploads were cleanly disabled in the booking modal until real requisites are provided. Booking works smoothly as a reservation request without upfront payment.
+2026-10-19 — All payment terms across the site were updated to state 100% full prepayment in advance before departure. Fully built and synced with both remotes.

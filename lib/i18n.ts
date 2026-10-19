@@ -598,7 +598,7 @@ const hy: Dict = {
     home: {
       title: "Տուրեր Հայաստանում և Էքսկուրսիաներ Երևանից 2026 | Amaras Tour",
       description:
-        "Հեղինակային, անհատական և խմբային տուրեր Հայաստանում 10 000 ֏-ից՝ Սևան, Գառնի, Տաթև, Խոր Վիրապ, Ջիպ 4x4։ Տեղացի փորձառու գիդեր, առանց կանխավճարի։",
+        "Հեղինակային, անհատական և խմբային տուրեր Հայաստանում 10 000 ֏-ից՝ Սևան, Գառնի, Տաթև, Խոր Վիրապ, Ջիպ 4x4։ Տեղացի փորձառու գիդեր, երաշխավորված տեղեր։",
     },
     about: {
       title: "Մեր մասին",
@@ -737,7 +737,7 @@ const en: Dict = {
     home: {
       title: "Armenia Tours 2026 — Day Trips & Excursions from Yerevan | Amaras Tour",
       description:
-        "Top-rated Armenia tours, travel packages & day trips from Yerevan from 10,000 AMD. Lake Sevan, Garni, Tatev, Khor Virap, 4x4 Jeep safaris. Local guides, Mercedes fleet, no prepayment.",
+        "Top-rated Armenia tours, travel packages & day trips from Yerevan from 10,000 AMD. Lake Sevan, Garni, Tatev, Khor Virap, 4x4 Jeep safaris. Local guides, Mercedes fleet, guaranteed departures.",
     },
     about: {
       title: "About Us",

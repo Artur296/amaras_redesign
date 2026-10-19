@@ -47,8 +47,8 @@ const I18N = {
     receiptRemoveBtn: "Удалить",
     submitBtn: "Подтвердить и забронировать",
     submitting: "Отправка заявки...",
-    noPaymentBadge: "Без предоплаты",
-    noPaymentNotice: "После отправки заявки наш менеджер свяжется с вами для подтверждения свободных мест и деталей поездки.",
+    noPaymentBadge: "100% предоплата перед поездкой",
+    noPaymentNotice: "Оплата полной стоимости производится заранее (до выезда). После отправки заявки наш менеджер проверит наличие мест и предоставит удобный способ оплаты всей суммы.",
     directContact: "Или напишите нам напрямую:",
     successTitle: "Бронирование принято!",
     successSubtitle: "Спасибо за выбор AMARAS Tours. Мы проверили детали и свяжемся с вами для подтверждения.",
@@ -85,8 +85,8 @@ const I18N = {
     receiptRemoveBtn: "Ջնջել",
     submitBtn: "Հաստատել և ամրագրել",
     submitting: "Ուղարկվում է...",
-    noPaymentBadge: "Առանց կանխավճարի",
-    noPaymentNotice: "Հայտը ուղարկելուց հետո մեր մենեջերը կկապվի Ձեզ հետ՝ հաստատելու տեղերը և ուղևորության մանրամասները:",
+    noPaymentBadge: "100% կանխավճար ուղևորությունից առաջ",
+    noPaymentNotice: "Ամբողջ գումարի վճարումը կատարվում է նախապես (մինչև մեկնումը)։ Հայտը ուղարկելուց հետո մեր մենեջերը կհաստատի ազատ տեղերը և կտրամադրի ամբողջ գումարի վճարման հարմար եղանակը:",
     directContact: "Կամ գրեք մեզ անմիջապես՝",
     successTitle: "Ամրագրումն ընդունվա՛ծ է",
     successSubtitle: "Շնորհակալություն AMARAS Tours-ն ընտրելու համար։ Մենք շուտով կկապվենք ձեզ հետ։",
@@ -123,8 +123,8 @@ const I18N = {
     receiptRemoveBtn: "Remove",
     submitBtn: "Confirm & Book Tour",
     submitting: "Submitting...",
-    noPaymentBadge: "No Prepayment Required",
-    noPaymentNotice: "After submitting your request, our manager will contact you to confirm seat availability and trip details.",
+    noPaymentBadge: "100% Upfront Payment",
+    noPaymentNotice: "Full payment is required in advance prior to departure. After submitting your request, our manager will confirm seat availability and provide convenient details to complete the full payment.",
     directContact: "Or contact us directly:",
     successTitle: "Booking Confirmed!",
     successSubtitle: "Thank you for choosing AMARAS Tours. We will review your request and contact you shortly.",
@@ -722,7 +722,7 @@ export default function BookingModal({
               ) : (
                 <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-5 flex items-start gap-3.5">
                   <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-base shrink-0">
-                    ✨
+                    💳
                   </span>
                   <div className="space-y-1 min-w-0">
                     <p className="text-sm sm:text-base font-bold text-white">

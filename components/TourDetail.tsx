@@ -437,10 +437,10 @@ export default function TourDetail({
                   <span>{locale === "ru" ? "Оплата" : locale === "hy" ? "Վճարում" : "Payment"}</span>
                   <span className="font-bold text-[#2b2929]">
                     {locale === "ru"
-                      ? "На месте (без предоплаты)"
+                      ? "100% предоплата (до поездки)"
                       : locale === "hy"
-                      ? "Տեղում (առանց կանխավճարի)"
-                      : "On site (zero prepayment)"}
+                      ? "100% կանխավճար (մինչև ուղևորությունը)"
+                      : "100% advance payment (before trip)"}
                   </span>
                 </div>
               </div>
