@@ -1730,7 +1730,15 @@ function ImagesTab({
               />
             </div>
 
-            {/* Карточка 6: Экстрим & Приключения */}
+            <div className="rounded-2xl border border-black/5 bg-white p-4 shadow-sm space-y-2 md:col-span-2">
+              <span className="text-xs font-bold text-ink">Карточка: Гастротуры и виноделие (Арени)</span>
+              <ImagePicker
+                value={hpImages.bentoCardGastro}
+                onChange={(url) => updateHpImage("bentoCardGastro", url)}
+              />
+            </div>
+
+            {/* Карточка: Экстрим & Приключения */}
             <div className="md:col-span-2 rounded-2xl border-2 border-[#C7FF32]/60 bg-white p-5 shadow-sm space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-black/5 pb-3">
                 <div className="flex items-center gap-2">

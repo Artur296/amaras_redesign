@@ -19,6 +19,7 @@ export default function TrendBentoGrid({
   const img2 = images?.bentoCard2 || "/images/offer-khor-virap.jpg";
   const img3 = images?.bentoCard3 || "/images/package-dilijan.jpg";
   const img4 = images?.bentoCard4 || "/images/package-garni-hd.jpg";
+  const imgGastro = images?.bentoCardGastro || "/images/bento-gastro.jpg";
   const imgGuests = images?.bentoCardGuests || "/images/hero-travellers.jpg";
   const imgExtreme = images?.bentoCardExtreme || "/images/1792096571726-jeep-mountain-road-web.jpg";
 
@@ -206,21 +207,21 @@ export default function TrendBentoGrid({
             </div>
           </motion.div>
 
-          {/* Bottom Row: 3 Cards side-by-side on desktop, swipe reel on mobile */}
-          <div className="flex sm:grid sm:grid-cols-3 gap-3 sm:gap-4 overflow-x-auto pb-2 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none snap-x snap-mandatory flex-1">
+          {/* Bottom Row: 4 Cards (Премиум-отели, Гастротуры, Экскурсионные туры, Экстрим) */}
+          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 overflow-x-auto pb-2 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none snap-x snap-mandatory flex-1">
             {/* Card 4: Премиум-отели */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative shrink-0 w-[78vw] max-w-[280px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group"
+              className="relative shrink-0 w-[75vw] max-w-[270px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group"
             >
               <Image
                 src={img3}
                 alt="Премиум-отели Армении"
                 fill
-                sizes="(max-width: 1024px) 50vw, 25vw"
+                sizes="(max-width: 1024px) 50vw, 20vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30" />
@@ -252,19 +253,63 @@ export default function TrendBentoGrid({
               </div>
             </motion.div>
 
-            {/* Card 5: Экскурсионные туры */}
+            {/* Card 5: Гастротуры */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.25 }}
-              className="relative shrink-0 w-[78vw] max-w-[280px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group"
+              transition={{ duration: 0.5, delay: 0.23 }}
+              className="relative shrink-0 w-[75vw] max-w-[270px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group"
+            >
+              <Image
+                src={imgGastro}
+                alt="Гастротуры и виноделие Армении"
+                fill
+                sizes="(max-width: 1024px) 50vw, 20vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30" />
+
+              <div className="absolute top-3.5 inset-x-3.5 sm:top-5 sm:inset-x-5 text-white">
+                <h4 className="font-serif text-base sm:text-xl lg:text-2xl font-medium leading-tight">
+                  {locale === "ru"
+                    ? "Гастротуры"
+                    : locale === "hy"
+                    ? "Գաստրո տուրեր"
+                    : "Gastro Tours"}
+                </h4>
+                <p className="mt-1 text-xs text-white/80 line-clamp-1">
+                  {locale === "ru"
+                    ? "Винодельни и кухня"
+                    : locale === "hy"
+                    ? "Գինի և ավանդական խոհանոց"
+                    : "Wineries & cuisine"}
+                </p>
+              </div>
+
+              <div className="absolute bottom-3.5 left-3.5 sm:bottom-5 sm:left-5">
+                <Link
+                  href={`/${locale}/tours/popular/khor-virap-areni-noravank-birds-cave`}
+                  className="inline-flex items-center justify-center rounded-full bg-white px-3 sm:px-5 py-1.5 sm:py-2 text-xs font-bold text-[#161616] shadow-md transition-all hover:bg-[#C7FF32] hover:scale-105 active:scale-95"
+                >
+                  {locale === "ru" ? "Подробнее" : locale === "hy" ? "Մանրամասն" : "Learn more"}
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Card 6: Экскурсионные туры */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.26 }}
+              className="relative shrink-0 w-[75vw] max-w-[270px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group"
             >
               <Image
                 src={img4}
                 alt="Экскурсионные туры"
                 fill
-                sizes="(max-width: 1024px) 50vw, 25vw"
+                sizes="(max-width: 1024px) 50vw, 20vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30" />
@@ -296,19 +341,19 @@ export default function TrendBentoGrid({
               </div>
             </motion.div>
 
-            {/* Card 6: ЭКСТРИМ & ПРИКЛЮЧЕНИЯ (Zipline, Parachute, 4x4, etc.) */}
+            {/* Card 7: ЭКСТРИМ & ПРИКЛЮЧЕНИЯ (Zipline, Parachute, 4x4, etc.) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="relative shrink-0 w-[78vw] max-w-[280px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group border border-[#C7FF32]/25 flex flex-col justify-between"
+              className="relative shrink-0 w-[75vw] max-w-[270px] snap-center sm:w-auto sm:shrink sm:max-w-none overflow-hidden rounded-2xl sm:rounded-[2rem] min-h-[190px] sm:min-h-[270px] lg:min-h-[295px] shadow-lg group border border-[#C7FF32]/25 flex flex-col justify-between"
             >
               <Image
                 src={imgExtreme}
                 alt={extremeTitle}
                 fill
-                sizes="(max-width: 1024px) 50vw, 25vw"
+                sizes="(max-width: 1024px) 50vw, 20vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/35" />
@@ -324,10 +369,10 @@ export default function TrendBentoGrid({
                   {extremeSubtitle}
                 </p>
 
-                {/* Extreme activity chips (Zipline, Parachute, 4x4, etc.) */}
+                {/* Extreme activity chips */}
                 {extremeActivities.length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-1">
-                    {extremeActivities.slice(0, 3).map((act, idx) => (
+                    {extremeActivities.slice(0, 2).map((act, idx) => (
                       <span
                         key={idx}
                         className="rounded-full bg-white/15 backdrop-blur-xs px-2 py-0.5 text-[9px] sm:text-[10px] font-medium text-white/90 border border-white/15"
@@ -335,9 +380,9 @@ export default function TrendBentoGrid({
                         {act}
                       </span>
                     ))}
-                    {extremeActivities.length > 3 && (
+                    {extremeActivities.length > 2 && (
                       <span className="rounded-full bg-[#C7FF32]/20 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold text-[#C7FF32]">
-                        +{extremeActivities.length - 3}
+                        +{extremeActivities.length - 2}
                       </span>
                     )}
                   </div>

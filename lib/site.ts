@@ -10,11 +10,12 @@ export const defaultHomepageImages = {
   heroNoravank: "/images/package-noravank.jpg",
   heroAzhdahak: "/images/azhdahak.jpg",
 
-  // Bento Trend Grid (6 cards)
+  // Bento Trend Grid (7 cards)
   bentoCard1: "/images/package-sevan.jpg",
   bentoCard2: "/images/offer-khor-virap.jpg",
   bentoCard3: "/images/package-dilijan.jpg",
   bentoCard4: "/images/package-garni-hd.jpg",
+  bentoCardGastro: "/images/bento-gastro.jpg",
   bentoCardGuests: "/images/hero-travellers.jpg",
   bentoCardExtreme: "/images/1792096571726-jeep-mountain-road-web.jpg",
 
