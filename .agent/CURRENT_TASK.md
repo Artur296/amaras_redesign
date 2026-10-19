@@ -1,18 +1,14 @@
 # Current Task
 
 ## What We're Building
-- Homepage vertical flow compacting and mobile optimization:
-  - Reduced excessive section padding across homepage and subpages from `py-12 sm:py-20 lg:py-32` to `py-6 sm:py-10 lg:py-16`.
-  - Converted tall vertical stacks into horizontal swipe reels on mobile (`snap-x snap-mandatory`):
-    - `components/TrendBentoGrid.tsx`: Bottom 3 cards (Premium hotels, Excursion tours, Extreme 4x4) swipeable on mobile, saving ~380px vertical height.
-    - `components/NoFinePrintCards.tsx`: 4 benefit cards swipeable on mobile, saving ~680px vertical height.
-  - Streamlined `components/AdvantagesGrid.tsx` and `components/AboutCompanySection.tsx` spacing.
-- Unified page boundaries and gutters across all pages:
-  - Standardized all subpage containers (`app/[locale]/tours/page.tsx`, `tours/[category]/page.tsx`, `tour-packages/page.tsx`, `about/page.tsx`, `contacts/page.tsx`, `what-to-see/page.tsx`, `guests/page.tsx`, `components/Header.tsx`, `components/Footer.tsx`, `components/TourDetail.tsx`) to `mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8`.
-  - Eliminates gutter misalignment and ensures consistent 16px mobile edge spacing without content touching screen borders.
+- Temporary removal of payment requisites (card number, Ameriabank, Idram/Telcell phone number, and receipt upload) from the booking modal:
+  - Turned off `paymentCard.enabled: false` and cleared placeholder values in [lib/site.ts](file:///c:/Users/amura/Desktop/amaras-tours/lib/site.ts) and [content/site.json](file:///c:/Users/amura/Desktop/amaras-tours/content/site.json).
+  - Updated [components/BookingModal.tsx](file:///c:/Users/amura/Desktop/amaras-tours/components/BookingModal.tsx) to only render payment card details and receipt attachment upload when `paymentCard?.enabled && paymentCard?.cardNumber`.
+  - Added a clean and reassuring notification banner in all 3 languages (RU, HY, EN) informing the guest that booking is without prepayment and a manager will contact them to confirm seat availability and details.
+  - Fully tested build (`npm run build`, 86/86 pages generated) and pushed to `origin/main` and `redesign/main`.
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-18 — Successfully compacted homepage vertical scroll height, converted mobile column stacks into smooth horizontal reels, unified page boundary margins across all 86 pages, verified build (0 errors), and pushed to both remotes.
+2026-10-19 — All payment methods and receipt uploads were cleanly disabled in the booking modal until real requisites are provided. Booking works smoothly as a reservation request without upfront payment.
