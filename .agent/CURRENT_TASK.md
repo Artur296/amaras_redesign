@@ -1,13 +1,14 @@
 # Current Task
 
 ## What We're Building
-- Removed redundant top category cards block from the tours catalog page ([app/[locale]/tours/page.tsx](file:///c:/Users/amura/Desktop/amaras-tours/app/[locale]/tours/page.tsx)):
-  - Removed the 6 static category cards grid ("Популярные туры", "Групповые туры", "Индивидуальные туры", "Джип & Экстрим", "Спецпредложения", "Гости") and intermediate divider.
-  - Streamlined the header so the interactive catalog ([TourListingClient.tsx](file:///c:/Users/amura/Desktop/amaras-tours/components/TourListingClient.tsx)) with live search, category tabs, and tour cards is immediately accessible without scrolling past duplicate links.
+- Redesigned the tour filter toolbar ([components/TourListingClient.tsx](file:///c:/Users/amura/Desktop/amaras-tours/components/TourListingClient.tsx)) to be horizontal and low-profile in height:
+  - Transformed the container from a tall vertical block into a slim, single-row horizontal pill bar (`md:flex-row md:items-center md:justify-between`, `rounded-full` on tablet/desktop, compact padding `p-2 sm:p-2.5`).
+  - Placed category pills in a smooth horizontal scroll row (`overflow-x-auto whitespace-nowrap scrollbar-none`).
+  - Grouped search and sort side-by-side in a horizontal row on all screen sizes, with compact `h-8 sm:h-9` inputs, reducing total vertical height by over 50%.
   - Verified `npm run build` (86/86 pages generated cleanly).
 
 ## Status
 Done
 
 ## Last Session Summary
-2026-10-19 — Removed redundant 6-card category block from `/tours` page, moving the interactive tour directory directly to the top. Built and pushed to both remotes.
+2026-10-19 — Redesigned filter toolbar to be strictly horizontal and slim in height across all breakpoints. Built and pushed to both remotes.

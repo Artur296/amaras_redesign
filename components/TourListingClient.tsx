@@ -150,17 +150,17 @@ export default function TourListingClient({
   return (
     <div className="mt-8 space-y-8">
       {/* Control Bar: Search, Category Tabs & Sort */}
-      <div className="flex flex-col gap-3 sm:gap-4 rounded-2xl sm:rounded-3xl border border-[#EAE9E0] bg-white p-3 sm:p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between">
-        {/* Category Pills - swipeable on mobile */}
-        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto whitespace-nowrap scrollbar-none pb-1 sm:pb-0">
+      <div className="flex flex-col gap-2.5 sm:gap-3 rounded-2xl sm:rounded-full border border-[#EAE9E0] bg-white p-2 sm:p-2.5 shadow-sm md:flex-row md:items-center md:justify-between">
+        {/* Category Pills - horizontal swipeable row */}
+        <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none py-0.5 min-w-0 flex-1 pr-1">
           {categoryTabs.map((tab) => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setSelectedCategory(tab.id)}
-              className={`shrink-0 rounded-full px-3.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold sm:font-black uppercase tracking-wider transition-all cursor-pointer ${
+              className={`shrink-0 rounded-full px-3 sm:px-3.5 py-1.5 text-[11px] sm:text-xs font-bold sm:font-black uppercase tracking-wider transition-all cursor-pointer ${
                 selectedCategory === tab.id
-                  ? "bg-[#586EFF] text-white shadow-md shadow-[#586EFF]/25"
+                  ? "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25"
                   : "bg-[#FCFCF7] text-[#312F2F] hover:bg-[#EAE9E0] border border-[#EAE9E0]"
               }`}
             >
@@ -169,12 +169,12 @@ export default function TourListingClient({
           ))}
         </div>
 
-        {/* Search input and Sort dropdown */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        {/* Search input and Sort dropdown - horizontal row */}
+        <div className="flex items-center gap-2 shrink-0">
           {/* Search */}
-          <div className="relative flex-1 sm:w-64">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted">
-              <svg className="w-4 h-4 text-black/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="relative flex-1 sm:w-56 md:w-52 lg:w-64">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none">
+              <svg className="w-3.5 h-3.5 text-black/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </span>
@@ -184,19 +184,18 @@ export default function TourListingClient({
               onChange={(e) => setSearch(e.target.value)}
               placeholder={
                 locale === "ru"
-                  ? "Поиск по коду (102) или месту..."
+                  ? "Поиск по коду или месту..."
                   : locale === "hy"
-                  ? "Որոնել ըստ կոդի (102) կամ վայրի..."
-                  : "Search by code (102) or place..."
+                  ? "Որոնել ըստ կոդի կամ վայրի..."
+                  : "Search code or place..."
               }
-
-              className="w-full rounded-full border border-[#EAE9E0] bg-[#FCFCF7] py-2 pl-9 pr-4 text-xs font-semibold text-[#312F2F] placeholder-black/40 focus:border-[#586EFF] focus:outline-none"
+              className="w-full rounded-full border border-[#EAE9E0] bg-[#FCFCF7] h-8 sm:h-9 pl-8 pr-7 text-xs font-semibold text-[#312F2F] placeholder-black/40 focus:border-[#586EFF] focus:bg-white focus:outline-none transition-all"
             />
             {search && (
               <button
                 type="button"
                 onClick={() => setSearch("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-black"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-muted hover:text-black"
               >
                 ✕
               </button>
@@ -207,7 +206,7 @@ export default function TourListingClient({
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="rounded-full border border-[#EAE9E0] bg-[#FCFCF7] px-4 py-2 text-xs font-bold text-[#312F2F] focus:border-[#586EFF] focus:outline-none cursor-pointer"
+            className="rounded-full border border-[#EAE9E0] bg-[#FCFCF7] h-8 sm:h-9 px-3 text-xs font-bold text-[#312F2F] focus:border-[#586EFF] focus:bg-white focus:outline-none cursor-pointer shrink-0 transition-all"
           >
             <option value="default">{locale === "ru" ? "По умолчанию" : locale === "hy" ? "Ըստ լռելյայնի" : "Default order"}</option>
             <option value="price-asc">{locale === "ru" ? "Сначала недорогие" : locale === "hy" ? "Սկզբում մատչելի" : "Price: Low to High"}</option>
