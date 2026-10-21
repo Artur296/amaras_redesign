@@ -79,13 +79,13 @@ export default function TourListingClient({
   }, []);
 
   const categoryTabs = [
-    { id: "all", label: locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours", icon: "🌍" },
-    { id: "popular", label: locale === "ru" ? "Популярные туры" : locale === "hy" ? "Հանրաճանաչ տուրեր" : "Popular Tours", icon: "⭐" },
-    { id: "mini-group", label: locale === "ru" ? "Мини-группа" : locale === "hy" ? "Մինի խումբ" : "Mini-Group", icon: "🚐" },
-    { id: "group", label: locale === "ru" ? "Групповые туры" : locale === "hy" ? "Խմբային տուրեր" : "Group Tours", icon: "👥" },
-    { id: "individual", label: locale === "ru" ? "Индивидуальные туры" : locale === "hy" ? "Անհատական տուրեր" : "Private Tours", icon: "👤" },
-    { id: "jeep", label: locale === "ru" ? "Джип-туры 4x4" : locale === "hy" ? "Ջիպ 4x4" : "4x4 Jeep Expeditions", icon: "🚙" },
-    { id: "offers", label: locale === "ru" ? "Спецпредложения" : locale === "hy" ? "Հատուկ առաջարկներ" : "Special Offers", icon: "🔥" },
+    { id: "all", label: locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours" },
+    { id: "popular", label: locale === "ru" ? "Популярные туры" : locale === "hy" ? "Հանրաճանաչ տուրեր" : "Popular Tours" },
+    { id: "mini-group", label: locale === "ru" ? "Мини-группа" : locale === "hy" ? "Մինի խումբ" : "Mini-Group" },
+    { id: "group", label: locale === "ru" ? "Групповые туры" : locale === "hy" ? "Խմբային տուրեր" : "Group Tours" },
+    { id: "individual", label: locale === "ru" ? "Индивидуальные туры" : locale === "hy" ? "Անհատական տուրեր" : "Private Tours" },
+    { id: "jeep", label: locale === "ru" ? "Джип-туры 4x4" : locale === "hy" ? "Ջիպ 4x4" : "4x4 Jeep Expeditions" },
+    { id: "offers", label: locale === "ru" ? "Спецпредложения" : locale === "hy" ? "Հատուկ առաջարկներ" : "Special Offers" },
   ];
 
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -235,9 +235,9 @@ export default function TourListingClient({
           {/* Dropdown Window ("сверху вниз") */}
           {isCategoryOpen && (
             <div className="absolute left-0 top-full mt-2 z-50 w-72 sm:w-80 max-w-[calc(100vw-32px)] rounded-2xl bg-white border border-[#EAE9E0] p-2 shadow-2xl shadow-black/20">
-              <div className="px-3 py-1.5 flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-black/40 border-b border-[#F0EFEA] mb-1">
+              <div className="px-3.5 py-2 flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-black/40 border-b border-[#F0EFEA] mb-1">
                 <span>{locale === "ru" ? "Категории туров" : locale === "hy" ? "Տուրերի կատեգորիաներ" : "Tour Categories"}</span>
-                <span className="text-[9px] text-[#586EFF] lowercase font-bold">{locale === "ru" ? "выберите категорию" : locale === "hy" ? "ընտրեք" : "select"}</span>
+                <span className="text-[9px] text-[#586EFF] uppercase font-bold">{locale === "ru" ? "выберите категорию" : locale === "hy" ? "ընտրեք" : "select"}</span>
               </div>
               <div className="space-y-1">
                 {categoryTabs.map((tab) => {
@@ -251,16 +251,13 @@ export default function TourListingClient({
                         setSelectedCategory(tab.id);
                         setIsCategoryOpen(false);
                       }}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all text-left cursor-pointer ${
+                      className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-[13px] uppercase tracking-wider font-bold transition-all text-left cursor-pointer ${
                         isSelected
                           ? "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 font-black"
                           : "text-[#312F2F] hover:bg-[#F7F6F0] hover:text-[#586EFF]"
                       }`}
                     >
-                      <span className="flex items-center gap-2.5">
-                        <span className="text-base leading-none">{tab.icon}</span>
-                        <span>{tab.label}</span>
-                      </span>
+                      <span className="font-bold tracking-wider">{tab.label}</span>
                       <span
                         className={`text-[11px] font-black px-2 py-0.5 rounded-full ${
                           isSelected
