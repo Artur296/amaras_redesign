@@ -72,17 +72,51 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
     }
   }, [modalOpen]);
 
-  const scrollLeft = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -440, behavior: "smooth" });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const scrollToIndex = (index: number) => {
+    if (!sliderRef.current) return;
+    const clamped = Math.max(0, Math.min(index, reviews.length - 1));
+    const slideWidth = sliderRef.current.clientWidth;
+    sliderRef.current.scrollTo({
+      left: clamped * slideWidth,
+      behavior: "smooth",
+    });
+    setActiveIndex(clamped);
+  };
+
+  const scrollPrev = () => {
+    scrollToIndex(activeIndex - 1);
+  };
+
+  const scrollNext = () => {
+    scrollToIndex(activeIndex + 1);
+  };
+
+  const handleScroll = () => {
+    if (!sliderRef.current) return;
+    const slideWidth = sliderRef.current.clientWidth;
+    if (slideWidth > 0) {
+      const newIndex = Math.round(sliderRef.current.scrollLeft / slideWidth);
+      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < reviews.length) {
+        setActiveIndex(newIndex);
+      }
     }
   };
 
-  const scrollRight = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 440, behavior: "smooth" });
-    }
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      if (sliderRef.current) {
+        const slideWidth = sliderRef.current.clientWidth;
+        sliderRef.current.scrollTo({
+          left: activeIndex * slideWidth,
+          behavior: "auto",
+        });
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [activeIndex]);
 
   // Mouse drag scrolling handlers for desktop
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -93,14 +127,23 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
   };
 
   const handleMouseLeaveOrUp = () => {
-    isDraggingRef.current = false;
+    if (isDraggingRef.current && sliderRef.current) {
+      isDraggingRef.current = false;
+      const slideWidth = sliderRef.current.clientWidth;
+      if (slideWidth > 0) {
+        const target = Math.round(sliderRef.current.scrollLeft / slideWidth);
+        scrollToIndex(target);
+      }
+    } else {
+      isDraggingRef.current = false;
+    }
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDraggingRef.current || !sliderRef.current) return;
     e.preventDefault();
     const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startXRef.current) * 1.5;
+    const walk = (x - startXRef.current) * 1.3;
     sliderRef.current.scrollLeft = scrollLeftRef.current - walk;
   };
 
@@ -296,9 +339,14 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
             <div className="flex items-center justify-end gap-2">
               <button
                 type="button"
-                onClick={scrollLeft}
-                aria-label="Previous reviews"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] active:scale-95 cursor-pointer"
+                onClick={scrollPrev}
+                disabled={activeIndex === 0}
+                aria-label="Previous review"
+                className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all active:scale-95 cursor-pointer ${
+                  activeIndex === 0
+                    ? "opacity-30 cursor-not-allowed"
+                    : "hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F]"
+                }`}
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -306,9 +354,14 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
               </button>
               <button
                 type="button"
-                onClick={scrollRight}
-                aria-label="Next reviews"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F] active:scale-95 cursor-pointer"
+                onClick={scrollNext}
+                disabled={activeIndex === reviews.length - 1}
+                aria-label="Next review"
+                className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all active:scale-95 cursor-pointer ${
+                  activeIndex === reviews.length - 1
+                    ? "opacity-30 cursor-not-allowed"
+                    : "hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F]"
+                }`}
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -319,104 +372,236 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
         </div>
       </div>
 
-      {/* 2. FULL-WIDTH SCREEN SLIDER (Edge-to-edge scrollable / swipeable track with safe padding) */}
-      <div className="w-full mt-8 sm:mt-12 overflow-hidden">
-        <div
-          ref={sliderRef}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeaveOrUp}
-          onMouseUp={handleMouseLeaveOrUp}
-          onMouseMove={handleMouseMove}
-          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-8 lg:px-12 xl:px-16 pb-6 pt-2 overscroll-x-contain touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden items-stretch cursor-grab active:cursor-grabbing select-none"
-        >
-          {reviews.map((rev) => {
-            const reviewContent = getReviewText(rev.text, locale);
-            return (
-              <div
-                key={rev.id}
-                className="group relative flex w-[calc(100vw-56px)] max-w-[340px] sm:max-w-none sm:w-[420px] md:w-[460px] lg:w-[480px] shrink-0 snap-start flex-col justify-between rounded-3xl border border-white/10 bg-[#242323] p-5 sm:p-8 shadow-xl transition-all duration-200 hover:border-[#C7FF32]/40 hover:bg-[#282727] min-h-[320px] sm:min-h-[340px]"
-              >
-                <div>
-                  {/* Top Bar: Stars + Verified Badge */}
-                  <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-4">
-                    <div className="flex items-center gap-1.5 text-[#C7FF32]">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <span
-                          key={star}
-                          className={`text-lg sm:text-xl ${
-                            star <= rev.rating ? "opacity-100" : "opacity-30 text-white/40"
-                          }`}
-                        >
-                          ★
-                        </span>
-                      ))}
-                      <span className="ml-1.5 text-sm sm:text-base font-bold text-white/90">
-                        {rev.rating}.0
-                      </span>
+      {/* 2. FULL-WIDTH SINGLE REVIEW SLIDER */}
+      <div className="mx-auto max-w-[1400px] px-3 sm:px-8 lg:px-12 mt-6 sm:mt-10">
+        <div className="relative group/slider">
+          {/* Desktop Floating Prev / Next Buttons */}
+          <button
+            type="button"
+            onClick={scrollPrev}
+            disabled={activeIndex === 0}
+            aria-label="Previous review"
+            className={`hidden lg:flex absolute -left-5 xl:-left-7 top-1/2 -translate-y-1/2 z-20 h-13 w-13 items-center justify-center rounded-full border border-white/20 bg-[#242323]/95 backdrop-blur-md text-white shadow-2xl transition-all duration-200 active:scale-90 cursor-pointer ${
+              activeIndex === 0
+                ? "opacity-0 pointer-events-none"
+                : "opacity-80 hover:opacity-100 hover:scale-110 hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F]"
+            }`}
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            onClick={scrollNext}
+            disabled={activeIndex === reviews.length - 1}
+            aria-label="Next review"
+            className={`hidden lg:flex absolute -right-5 xl:-right-7 top-1/2 -translate-y-1/2 z-20 h-13 w-13 items-center justify-center rounded-full border border-white/20 bg-[#242323]/95 backdrop-blur-md text-white shadow-2xl transition-all duration-200 active:scale-90 cursor-pointer ${
+              activeIndex === reviews.length - 1
+                ? "opacity-0 pointer-events-none"
+                : "opacity-80 hover:opacity-100 hover:scale-110 hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F]"
+            }`}
+          >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Slider track (1 review per view, full width) */}
+          <div
+            ref={sliderRef}
+            onScroll={handleScroll}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeaveOrUp}
+            onMouseUp={handleMouseLeaveOrUp}
+            onMouseMove={handleMouseMove}
+            className="flex w-full overflow-x-auto snap-x snap-mandatory scroll-smooth overscroll-x-contain touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden items-stretch cursor-grab active:cursor-grabbing select-none py-2"
+          >
+            {reviews.map((rev, idx) => {
+              const reviewContent = getReviewText(rev.text, locale);
+              return (
+                <div
+                  key={rev.id || idx}
+                  className="w-full shrink-0 snap-center snap-always px-0.5 sm:px-1"
+                >
+                  <div className="relative overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] lg:rounded-[2.5rem] border border-white/10 bg-gradient-to-b from-[#252424] via-[#201F1F] to-[#1A1919] p-5 sm:p-8 lg:p-12 shadow-2xl transition-all duration-300 min-h-[300px] sm:min-h-[360px] flex flex-col justify-between">
+                    {/* Ambient glow accent in background */}
+                    <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#C7FF32]/5 blur-3xl pointer-events-none" />
+                    <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-[#586EFF]/5 blur-3xl pointer-events-none" />
+
+                    {/* Watermark Quote Mark */}
+                    <div className="absolute right-5 sm:right-10 bottom-6 sm:bottom-10 text-white/[0.03] pointer-events-none select-none font-serif text-[120px] sm:text-[180px] leading-none">
+                      ”
                     </div>
 
-                    <span className="flex items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-1 text-xs sm:text-sm font-bold text-[#C7FF32] border border-white/10">
-                      <span>✓</span>
-                      <span>{texts.verified}</span>
-                    </span>
+                    <div className="relative z-10">
+                      {/* Top Bar: Stars, Verified badge, Tour, Guide, and Date */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-b border-white/10 pb-4 sm:pb-5">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                          {/* Stars + Numeric rating */}
+                          <div className="flex items-center gap-1 text-[#C7FF32]">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                              <span
+                                key={star}
+                                className={`text-base sm:text-xl ${
+                                  star <= rev.rating ? "opacity-100" : "opacity-30 text-white/40"
+                                }`}
+                              >
+                                ★
+                              </span>
+                            ))}
+                            <span className="ml-1 text-sm sm:text-base font-bold text-white/95">
+                              {rev.rating}.0
+                            </span>
+                          </div>
+
+                          {/* Verified badge */}
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#C7FF32]/10 border border-[#C7FF32]/30 px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-bold text-[#C7FF32]">
+                            <span>✓</span>
+                            <span>{texts.verified}</span>
+                          </span>
+
+                          {/* Tour Visited pill */}
+                          {rev.tourTitle && (
+                            <span
+                              className="inline-flex items-center gap-1.5 rounded-full bg-[#586EFF]/15 border border-[#586EFF]/30 px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-semibold text-[#8C9EFF] max-w-[200px] xs:max-w-[280px] sm:max-w-md truncate"
+                              title={rev.tourTitle}
+                            >
+                              <svg className="w-3 h-3 shrink-0 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                              <span className="truncate">{rev.tourTitle}</span>
+                            </span>
+                          )}
+
+                          {/* Guide Name pill */}
+                          {rev.guideName && (
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-semibold text-white/90">
+                              <span className="text-white/60 font-normal">{texts.guideBadge}:</span>
+                              <span className="text-[#C7FF32] font-bold">{rev.guideName}</span>
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Top Right: Date & Counter */}
+                        <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 text-xs sm:text-sm text-white/60 font-medium">
+                          {rev.date && (
+                            <span className="inline-flex items-center gap-1.5">
+                              <svg className="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                              <span>{rev.date}</span>
+                            </span>
+                          )}
+                          <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-mono font-bold text-white/80">
+                            {idx + 1} / {reviews.length}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Middle: The Review Text */}
+                      <div className="my-5 sm:my-8">
+                        <p className="text-base sm:text-lg lg:text-xl font-normal leading-relaxed text-[#FCFCF7] break-words whitespace-pre-line tracking-normal">
+                          “{reviewContent}”
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Bottom: Author Info and Quick Navigation Controls */}
+                    <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/10 pt-4 sm:pt-6 mt-2">
+                      <div className="flex items-center gap-3.5 min-w-0">
+                        <div className="flex h-11 w-11 sm:h-13 sm:w-13 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#586EFF] to-[#3B4CCA] font-black text-base sm:text-lg text-white shadow-lg ring-2 ring-white/15">
+                          {rev.author ? rev.author.charAt(0).toUpperCase() : "G"}
+                        </div>
+                        <div className="min-w-0">
+                          <span className="block text-base sm:text-lg lg:text-xl font-bold text-white truncate">
+                            {rev.author}
+                          </span>
+                          {rev.location ? (
+                            <span className="flex items-center gap-1 text-xs sm:text-sm text-white/70 font-medium truncate mt-0.5">
+                              <svg className="w-3.5 h-3.5 text-[#C7FF32] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                              <span className="truncate">{rev.location}</span>
+                            </span>
+                          ) : (
+                            <span className="text-xs sm:text-sm text-white/50">{texts.verified}</span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Card Bottom-right Navigation Arrows */}
+                      <div className="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/5">
+                        <span className="text-xs sm:text-sm text-white/50 font-mono sm:hidden">
+                          {idx + 1} / {reviews.length}
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={scrollPrev}
+                            disabled={activeIndex === 0}
+                            aria-label="Previous review"
+                            className={`flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all active:scale-95 cursor-pointer ${
+                              activeIndex === 0
+                                ? "opacity-30 cursor-not-allowed"
+                                : "hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F]"
+                            }`}
+                          >
+                            <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                            </svg>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={scrollNext}
+                            disabled={activeIndex === reviews.length - 1}
+                            aria-label="Next review"
+                            className={`flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all active:scale-95 cursor-pointer ${
+                              activeIndex === reviews.length - 1
+                                ? "opacity-30 cursor-not-allowed"
+                                : "hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F]"
+                            }`}
+                          >
+                            <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-                  {/* Tour visited and Guide pills */}
-                  {(rev.tourTitle || rev.guideName) && (
-                    <div className="mt-4 flex flex-wrap items-center gap-2">
-                      {rev.tourTitle && (
-                        <span className="inline-block rounded-lg bg-white/5 px-3 py-1.5 text-xs sm:text-sm font-semibold text-[#586EFF] max-w-full truncate border border-white/5">
-                          {rev.tourTitle}
-                        </span>
-                      )}
-                      {rev.guideName && (
-                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-[#C7FF32]/10 border border-[#C7FF32]/30 px-3 py-1.5 text-xs sm:text-sm font-bold text-[#C7FF32]">
-                          <span className="text-white/60 font-normal">{texts.guideBadge}:</span>
-                          <span>{rev.guideName}</span>
-                        </span>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Review Text: Full review display with large high-contrast readable font */}
-                  <p className="mt-4 text-base sm:text-lg leading-relaxed text-white font-normal break-words whitespace-pre-line">
-                    “{reviewContent}”
-                  </p>
                 </div>
-
-                {/* Author Info */}
-                <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#586EFF] font-black text-base text-white shadow-md">
-                      {rev.author ? rev.author.charAt(0).toUpperCase() : "G"}
-                    </div>
-                    <div className="min-w-0">
-                      <span className="block text-base sm:text-lg font-bold text-white truncate">
-                        {rev.author}
-                      </span>
-                      {rev.location && (
-                        <span className="block text-xs sm:text-sm text-white/80 font-medium truncate">
-                          {rev.location}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {rev.date && (
-                    <span className="text-xs sm:text-sm font-medium text-white/60 shrink-0 ml-2">
-                      {rev.date}
-                    </span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
-        {/* Carousel swipe guidance indicator */}
-        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12 mt-4 flex items-center justify-between text-sm sm:text-base text-[#FCFCF7]/75">
-          <span>{texts.swipeHint}</span>
-          <span className="font-bold text-white">{reviews.length} {texts.reviewsCount}</span>
+        {/* Progress & Pagination Bar */}
+        <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-white/70">
+          <div className="flex items-center gap-2.5 w-full sm:w-auto">
+            <span className="font-mono font-bold text-[#C7FF32]">
+              {String(activeIndex + 1).padStart(2, "0")}
+            </span>
+            <div className="h-1.5 w-full sm:w-52 rounded-full bg-white/10 overflow-hidden">
+              <div
+                className="h-full bg-[#C7FF32] transition-all duration-300 rounded-full"
+                style={{ width: `${((activeIndex + 1) / Math.max(1, reviews.length)) * 100}%` }}
+              />
+            </div>
+            <span className="font-mono text-white/50">
+              {String(reviews.length).padStart(2, "0")}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
+            <span className="text-white/60">{texts.swipeHint}</span>
+            <span className="font-bold text-white shrink-0">
+              {reviews.length} {texts.reviewsCount}
+            </span>
+          </div>
         </div>
       </div>
 
