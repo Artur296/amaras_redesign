@@ -65,6 +65,7 @@ export default function Header({
   const nav = [
     { href: `/${locale}`, label: dict.nav.home },
     { href: `/${locale}/tours`, label: dict.nav.tours },
+    { href: `/${locale}/tours/individual`, label: locale === "ru" ? "Индивидуальные" : locale === "hy" ? "Անհատական" : "Private" },
     { href: `/${locale}/tours/offers`, label: locale === "ru" ? "Спецпредложения" : locale === "hy" ? "Հատուկ առաջարկներ" : "Offers" },
     { href: `/${locale}/what-to-see`, label: locale === "ru" ? "Что посмотреть" : locale === "hy" ? "Ինչ տեսնել" : "What to See" },
     { href: `/${locale}/tour-packages`, label: dict.nav.packages },
@@ -81,7 +82,8 @@ export default function Header({
     if (href === `/${locale}/tours`) {
       return (
         (pathname === href || pathname.startsWith(`${href}/`)) &&
-        !pathname.startsWith(`/${locale}/tours/offers`)
+        !pathname.startsWith(`/${locale}/tours/offers`) &&
+        !pathname.startsWith(`/${locale}/tours/individual`)
       );
     }
     return pathname === href || pathname.startsWith(`${href}/`);
@@ -119,14 +121,14 @@ export default function Header({
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-1.5 rounded-full border border-white/20 bg-black/25 px-3 py-1.5 backdrop-blur-md shadow-lg lg:flex" aria-label="Main">
+        <nav className="hidden items-center gap-1 xl:gap-1.5 rounded-full border border-white/20 bg-black/25 px-2.5 xl:px-3 py-1.5 backdrop-blur-md shadow-lg lg:flex" aria-label="Main">
           {nav.map((item) => {
             const isActive = isItemActive(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative rounded-full px-3.5 py-1.5 text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
+                className={`relative rounded-full px-2.5 xl:px-3.5 py-1.5 text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
                   isActive
                     ? "bg-[#C7FF32] font-bold text-[#312F2F] shadow-sm"
                     : "text-[#FCFCF7]/90 hover:text-[#C7FF32] hover:bg-white/10"

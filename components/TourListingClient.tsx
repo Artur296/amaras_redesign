@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState, useEffect, useRef } from "react";
 import TourCard from "@/components/TourCard";
 import type { Dict, Locale } from "@/lib/i18n";
@@ -366,6 +367,52 @@ export default function TourListingClient({
             {locale === "ru" ? "Сбросить фильтры" : locale === "hy" ? "Մաքրել ֆիլտրերը" : "Reset filters"}
           </button>
         )}
+      </div>
+
+      {/* Individual Builder Showcase Banner */}
+      <div className="relative overflow-hidden rounded-3xl border border-[#C7FF32]/30 bg-gradient-to-r from-[#242323] via-[#312F2F] to-[#242323] p-5 sm:p-7 text-[#FCFCF7] shadow-xl">
+        <div className="absolute right-0 top-0 -mt-10 -mr-10 h-48 w-48 rounded-full bg-[#C7FF32]/10 blur-3xl pointer-events-none" />
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
+          <div className="space-y-2 max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#C7FF32]/15 border border-[#C7FF32]/30 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#C7FF32]">
+              <span>✨</span>
+              <span>
+                {locale === "ru"
+                  ? "Новинка — Конструктор маршрутов"
+                  : locale === "hy"
+                  ? "Նորույթ — Երթուղիների կոնստրուկտոր"
+                  : "New — Custom Tour Builder"}
+              </span>
+            </div>
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
+              {locale === "ru"
+                ? "Хотите индивидуальную программу под свои даты и пожелания?"
+                : locale === "hy"
+                ? "Ցանկանու՞մ եք անհատական երթուղի՝ ձեր նախընտրած վայրերով"
+                : "Looking for a tailored private journey on your schedule?"}
+            </h3>
+            <p className="text-xs sm:text-sm text-[#FCFCF7]/75 leading-relaxed">
+              {locale === "ru"
+                ? "Соберите собственный тур в нашем интерактивном конструкторе: выберите автомобиль (седан, минивэн, джип), гида, любые локации и дополнительные услуги с мгновенным расчетом."
+                : locale === "hy"
+                ? "Հավաքեք ձեր երթուղին ինտերակտիվ կոնստրուկտորում՝ ընտրեք մեքենան, գիդը, ցանկացած տեսարժան վայրեր և հավելյալ ծառայություններ։"
+                : "Build your dream Armenia trip: select your preferred vehicle, private guide, bespoke stops, and extra services with live review."}
+            </p>
+          </div>
+          <Link
+            href={`/${locale}/tours/individual`}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#C7FF32] px-6 py-3.5 text-xs sm:text-sm font-black text-[#161616] hover:bg-[#b5f01e] hover:shadow-lg hover:shadow-[#C7FF32]/20 transition-all shrink-0"
+          >
+            <span>
+              {locale === "ru"
+                ? "Открыть конструктор туров"
+                : locale === "hy"
+                ? "Բացել կոնստրուկտորը"
+                : "Open Tour Builder"}
+            </span>
+            <span className="text-base font-bold">→</span>
+          </Link>
+        </div>
       </div>
 
       {/* Tours Grid */}

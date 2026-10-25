@@ -24,25 +24,61 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const formData = await request.formData();
+    let isJson = false;
+    let jsonBody: any = {};
+    let formData: FormData | null = null;
+    const contentType = request.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+      isJson = true;
+      jsonBody = await request.json().catch(() => ({}));
+    } else {
+      formData = await request.formData();
+    }
+
+    const getField = (key: string): string => {
+      if (isJson) return (jsonBody[key] != null ? String(jsonBody[key]) : "").trim();
+      return ((formData?.get(key) as string) || "").trim();
+    };
+
+    const getArray = (key: string): string[] => {
+      if (isJson) {
+        if (Array.isArray(jsonBody[key])) return jsonBody[key].map(String);
+        if (jsonBody[key]) return [String(jsonBody[key])];
+        return [];
+      }
+      const raw = formData?.get(key);
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw as string);
+        if (Array.isArray(parsed)) return parsed.map(String);
+      } catch {}
+      return String(raw).split("\n").map((s) => s.trim()).filter(Boolean);
+    };
 
     // 2. Anti-spam honeypot
-    const honeypot = formData.get("company_fax_hp") || formData.get("website_hp");
-    if (honeypot && typeof honeypot === "string" && honeypot.trim().length > 0) {
+    const honeypot = getField("company_fax_hp") || getField("website_hp");
+    if (honeypot && honeypot.length > 0) {
       // Pretend success to silent drop bot submission
       return NextResponse.json({ success: true });
     }
 
     // 3. Extract and sanitize input fields
-    const tourTitle = (formData.get("tourTitle") as string)?.trim() || "Индивидуальный запрос";
-    const name = (formData.get("name") as string)?.trim() || "";
-    const phone = (formData.get("phone") as string)?.trim() || "";
-    const email = (formData.get("email") as string)?.trim() || "";
-    const date = (formData.get("date") as string)?.trim() || "Дата не указана";
-    const adults = Math.max(1, parseInt((formData.get("adults") as string) || "1", 10));
-    const children = Math.max(0, parseInt((formData.get("children") as string) || "0", 10));
-    const wishes = (formData.get("wishes") as string)?.trim() || "";
-    const receiptFile = formData.get("receipt") as File | null;
+    const tourTitle = getField("tourTitle") || "Индивидуальный запрос";
+    const name = getField("name");
+    const phone = getField("phone");
+    const whatsapp = getField("whatsapp");
+    const telegram = getField("telegram");
+    const email = getField("email");
+    const date = getField("date") || "Дата не указана";
+    const adults = Math.max(1, parseInt(getField("adults") || "1", 10));
+    const children = Math.max(0, parseInt(getField("children") || "0", 10));
+    const wishes = getField("wishes");
+    const carCategory = getField("carCategory");
+    const tourFormat = getField("tourFormat");
+    const locations = getArray("locations");
+    const services = getArray("services");
+    const receiptFile = !isJson && formData ? (formData.get("receipt") as File | null) : null;
 
     if (!name || name.length < 2) {
       return NextResponse.json(
@@ -97,23 +133,52 @@ export async function POST(request: NextRequest) {
       minute: "2-digit",
     });
 
+    const isBuilder = locations.length > 0 || !!carCategory || !!tourFormat || services.length > 0;
+
     // 5. Construct Telegram HTML message
-    const telegramMessage = [
-      `⚡️ <b>НОВАЯ ЗАЯВКА НА БРОНИРОВАНИЕ #${bookingId}</b>`,
-      `━━━━━━━━━━━━━━━━━━━━━━`,
-      `🗺 <b>Тур:</b> ${escapeHtml(tourTitle)}`,
-      `📅 <b>Желаемая дата:</b> ${escapeHtml(date)}`,
-      `👥 <b>Гости:</b> ${adults} взр.${children > 0 ? ` + ${children} дет.` : ""}`,
-      `👤 <b>Заказчик:</b> ${escapeHtml(name)}`,
-      `📞 <b>Телефон / Мессенджер:</b> ${escapeHtml(phone)}`,
-      email ? `✉️ <b>Email:</b> ${escapeHtml(email)}` : null,
-      wishes ? `💬 <b>Пожелания / Детали:</b>\n${escapeHtml(wishes)}` : null,
-      `🧾 <b>Чек оплаты:</b> ${hasReceipt ? (isPdfReceipt ? "📎 PDF-документ прикреплён" : "📸 Скриншот чека прикреплён") : "Не прикреплён (уточнить)"}`,
-      `━━━━━━━━━━━━━━━━━━━━━━`,
-      `🕒 <i>${timeNow} (время по Еревану)</i>`,
-    ]
-      .filter(Boolean)
-      .join("\n");
+    const telegramMessage = isBuilder
+      ? [
+          `⚡️ <b>НОВАЯ ЗАЯВКА: ИНДИВИДУАЛЬНЫЙ КОНСТРУКТОР #${bookingId}</b>`,
+          `━━━━━━━━━━━━━━━━━━━━━━`,
+          `👤 <b>Заказчик:</b> ${escapeHtml(name)}`,
+          `📞 <b>Телефон:</b> ${escapeHtml(phone)}`,
+          whatsapp ? `💬 <b>WhatsApp:</b> ${escapeHtml(whatsapp)}` : null,
+          telegram ? `✈️ <b>Telegram:</b> ${escapeHtml(telegram)}` : null,
+          email ? `✉️ <b>Email:</b> ${escapeHtml(email)}` : null,
+          `📅 <b>Желаемая дата:</b> ${escapeHtml(date)}`,
+          `👥 <b>Гости:</b> ${adults} взр.${children > 0 ? ` + ${children} дет.` : ""}`,
+          tourFormat ? `🧭 <b>Формат:</b> ${escapeHtml(tourFormat)}` : null,
+          carCategory ? `🚗 <b>Автомобиль:</b> ${escapeHtml(carCategory)}` : null,
+          locations.length > 0
+            ? `\n🗺 <b>Маршрут (${locations.length} точек):</b>\n${locations.map((loc, i) => `${i + 1}. ${escapeHtml(loc)}`).join("\n")}`
+            : null,
+          services.length > 0
+            ? `\n✨ <b>Дополнительные услуги:</b>\n${services.map((s) => `• ${escapeHtml(s)}`).join("\n")}`
+            : null,
+          wishes ? `\n💬 <b>Пожелания / Заметки:</b>\n${escapeHtml(wishes)}` : null,
+          `━━━━━━━━━━━━━━━━━━━━━━`,
+          `🕒 <i>${timeNow} (время по Еревану)</i>`,
+        ]
+          .filter(Boolean)
+          .join("\n")
+      : [
+          `⚡️ <b>НОВАЯ ЗАЯВКА НА БРОНИРОВАНИЕ #${bookingId}</b>`,
+          `━━━━━━━━━━━━━━━━━━━━━━`,
+          `🗺 <b>Тур:</b> ${escapeHtml(tourTitle)}`,
+          `📅 <b>Желаемая дата:</b> ${escapeHtml(date)}`,
+          `👥 <b>Гости:</b> ${adults} взр.${children > 0 ? ` + ${children} дет.` : ""}`,
+          `👤 <b>Заказчик:</b> ${escapeHtml(name)}`,
+          `📞 <b>Телефон / Мессенджер:</b> ${escapeHtml(phone)}`,
+          whatsapp ? `💬 <b>WhatsApp:</b> ${escapeHtml(whatsapp)}` : null,
+          telegram ? `✈️ <b>Telegram:</b> ${escapeHtml(telegram)}` : null,
+          email ? `✉️ <b>Email:</b> ${escapeHtml(email)}` : null,
+          wishes ? `💬 <b>Пожелания / Детали:</b>\n${escapeHtml(wishes)}` : null,
+          `🧾 <b>Чек оплаты:</b> ${hasReceipt ? (isPdfReceipt ? "📎 PDF-документ прикреплён" : "📸 Скриншот чека прикреплён") : "Не прикреплён (уточнить)"}`,
+          `━━━━━━━━━━━━━━━━━━━━━━`,
+          `🕒 <i>${timeNow} (время по Еревану)</i>`,
+        ]
+          .filter(Boolean)
+          .join("\n");
 
     // 6. Save locally for backup (so no booking is ever lost)
     try {
@@ -126,13 +191,19 @@ export async function POST(request: NextRequest) {
         bookingId,
         createdAt: new Date().toISOString(),
         timeNow,
-        tourTitle,
+        tourTitle: isBuilder ? "Конструктор инд. тура" : tourTitle,
         name,
         phone,
+        whatsapp,
+        telegram,
         email,
         date,
         adults,
         children,
+        tourFormat,
+        carCategory,
+        locations,
+        services,
         wishes,
         hasReceipt,
         receiptFileName: hasReceipt && receiptFile ? receiptFile.name : null,
@@ -149,6 +220,35 @@ export async function POST(request: NextRequest) {
       fs.writeFileSync(backupFile, JSON.stringify(existing.slice(0, 500), null, 2), "utf-8");
     } catch (saveErr) {
       // Ignore if read-only filesystem on serverless
+    }
+
+    // 6.1 Record into Portal CRM (content/portal_clients.json)
+    try {
+      const { createPortalClient } = await import("@/lib/portal-db");
+      const routeSummary = locations.length > 0 ? `Маршрут: ${locations.join(" -> ")}` : "";
+      const extrasSummary = services.length > 0 ? `Доп: ${services.join(", ")}` : "";
+      const autoSummary = carCategory ? `Авто: ${carCategory}` : "";
+      const formatSummary = tourFormat ? `Формат: ${tourFormat}` : "";
+      const details = [formatSummary, autoSummary, routeSummary, extrasSummary, wishes].filter(Boolean).join(" | ");
+
+      await createPortalClient(
+        {
+          clientName: name,
+          phone1: phone,
+          phone2: whatsapp || telegram || "",
+          tourTitle: isBuilder ? "Конструктор инд. тура" : tourTitle,
+          tourDate: date,
+          guestsAdults: adults,
+          guestsChildren: children,
+          comments: details,
+        },
+        {
+          id: "online-system",
+          fullName: isBuilder ? "Конструктор сайта" : "Сайт (онлайн заявка)",
+        }
+      );
+    } catch (portalErr) {
+      // Non-blocking
     }
 
     // 7. Dispatch to Telegram Bot API

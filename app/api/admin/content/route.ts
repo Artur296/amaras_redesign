@@ -57,6 +57,12 @@ function purgeCaches() {
     { path: "/ru/fleet", type: "page" as const },
     { path: "/hy/fleet", type: "page" as const },
     { path: "/en/fleet", type: "page" as const },
+    { path: "/ru/tours/individual", type: "layout" as const },
+    { path: "/hy/tours/individual", type: "layout" as const },
+    { path: "/en/tours/individual", type: "layout" as const },
+    { path: "/ru/tours/individual", type: "page" as const },
+    { path: "/hy/tours/individual", type: "page" as const },
+    { path: "/en/tours/individual", type: "page" as const },
   ];
 
   for (const { path: p, type } of targets) {
