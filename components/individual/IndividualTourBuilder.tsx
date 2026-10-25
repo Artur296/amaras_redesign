@@ -6,7 +6,7 @@ import type { Locale } from "@/lib/i18n";
 import type { Attraction } from "@/lib/attractions";
 import type { Vehicle } from "@/lib/fleet";
 import type { SiteInfo } from "@/lib/site";
-import { WhatsAppIcon, TelegramIcon, RouteIcon, StarIcon, ShieldIcon } from "@/components/icons";
+import { WhatsAppIcon, TelegramIcon, InstagramIcon, RouteIcon, StarIcon, ShieldIcon } from "@/components/icons";
 
 type Props = {
   locale: Locale;
@@ -168,6 +168,7 @@ export default function IndividualTourBuilder({
   const [submitting, setSubmitting] = useState(false);
   const [submittedBookingId, setSubmittedBookingId] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
+  const [copiedNotice, setCopiedNotice] = useState<string | null>(null);
 
   const todayIso = new Date().toISOString().split("T")[0];
 
@@ -317,62 +318,125 @@ export default function IndividualTourBuilder({
     }
   }
 
-  // Pre-filled WhatsApp direct chat link
+  // Pre-filled Messenger links and text
   const cleanPhone = (site.phone || "").replace(/[^\d+]/g, "");
-  const whatsappSummaryText = encodeURIComponent(
-    `Здравствуйте, Amaras Tour! Хочу заказать индивидуальный тур:\n` +
-      `👤 Заказчик: ${name}\n` +
-      `📞 Телефон: ${phone}\n` +
-      `📅 Дата: ${date}\n` +
-      `👥 Гости: ${adults} взр. ${children ? `+ ${children} дет.` : ""}\n` +
-      `🧭 Формат: ${formatLabel}\n` +
-      `🚗 Автомобиль: ${carLabel}\n` +
-      `🗺 Маршрут:\n${selectedLocations.map((l, i) => `${i + 1}. ${l}`).join("\n")}\n` +
-      (servicesLabels.length ? `✨ Доп. услуги: ${servicesLabels.join(", ")}\n` : "") +
-      (wishes ? `💬 Пожелания: ${wishes}` : "")
-  );
-  const whatsappUrl = `https://wa.me/${cleanPhone}?text=${whatsappSummaryText}`;
+  const telegramUsername = (site.telegram || "amaras_tour_armenia").replace(/^@/, "");
+  const instagramUsername = (site.instagram || "amarastourarmenia").replace(/^@/, "");
+
+  const plainSummaryText =
+    `Здравствуйте, Amaras Tour! Хочу заказать индивидуальный тур (Заявка #${submittedBookingId || ""}):\n` +
+    `👤 Заказчик: ${name}\n` +
+    `📞 Телефон: ${phone}\n` +
+    (telegram.trim() ? `✈️ Telegram: ${telegram.trim()}\n` : "") +
+    (whatsapp.trim() ? `💬 WhatsApp: ${whatsapp.trim()}\n` : "") +
+    `📅 Дата: ${date}\n` +
+    `👥 Гости: ${adults} взр. ${children ? `+ ${children} дет.` : ""}\n` +
+    `🧭 Формат: ${formatLabel}\n` +
+    `🚗 Автомобиль: ${carLabel}\n` +
+    `🗺 Маршрут:\n${selectedLocations.map((l, i) => `${i + 1}. ${l}`).join("\n")}\n` +
+    (servicesLabels.length ? `✨ Доп. услуги: ${servicesLabels.join(", ")}\n` : "") +
+    (wishes.trim() ? `💬 Пожелания: ${wishes.trim()}\n` : "");
+
+  const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(plainSummaryText)}`;
+  const telegramUrl = `https://t.me/${telegramUsername}`;
+  const instagramUrl = `https://instagram.com/${instagramUsername}`;
+
+  function copyAndNotify(platformName: string) {
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(plainSummaryText).catch(() => {});
+      setCopiedNotice(
+        locale === "ru"
+          ? `Текст заявки скопирован! Открываем ${platformName} — вставьте его в диалог.`
+          : `Itinerary copied! Opening ${platformName} — paste it in the chat.`
+      );
+      setTimeout(() => setCopiedNotice(null), 5000);
+    }
+  }
 
   // Success Screen
   if (submittedBookingId) {
     return (
-      <div className="mx-auto max-w-[800px] px-4 py-16 text-center">
-        <div className="rounded-3xl border border-[#C7FF32]/30 bg-[#242323] p-8 sm:p-12 shadow-2xl">
+      <div className="mx-auto max-w-[860px] px-4 py-12 sm:py-16 text-center">
+        <div className="rounded-3xl border border-[#C7FF32]/30 bg-[#242323] p-6 sm:p-12 shadow-2xl">
           <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-[#C7FF32]/20 text-4xl mb-6">
             🎉
           </div>
           <span className="rounded-full bg-[#C7FF32]/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
             {locale === "ru" ? "Заявка успешно принята" : locale === "hy" ? "Հայտը հաջողությամբ ընդունված է" : "Request Received"}
           </span>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl font-bold text-[#FCFCF7]">
+          <h2 className="mt-4 font-serif text-2xl sm:text-4xl font-bold text-[#FCFCF7]">
             {locale === "ru"
               ? `Спасибо, ${name}! Номер заявки: ${submittedBookingId}`
               : `Thank you, ${name}! Request #${submittedBookingId}`}
           </h2>
-          <p className="mt-3 text-sm sm:text-base leading-relaxed text-[#FCFCF7]/80 max-w-xl mx-auto">
+          <p className="mt-3 text-xs sm:text-base leading-relaxed text-[#FCFCF7]/80 max-w-xl mx-auto">
             {locale === "ru"
               ? "Мы уже получили ваши пожелания по индивидуальному маршруту и автомобилю. Наш оператор свяжется с вами в течение 10–15 минут для согласования программы и деталей."
               : "We have received your custom tour itinerary. Our tour specialist will contact you within 10–15 minutes to confirm all details."}
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-6 py-4 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105"
-            >
-              <WhatsAppIcon className="h-5 w-5" />
-              <span>{locale === "ru" ? "Продублировать в WhatsApp" : "Message on WhatsApp"}</span>
-            </a>
+          {/* Duplication to Messengers */}
+          <div className="mt-8 rounded-2xl bg-[#1C1B1B]/80 border border-white/10 p-5 sm:p-6 text-left">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#C7FF32] text-center mb-4">
+              {locale === "ru"
+                ? "Хотите быстрый ответ прямо сейчас? Продублируйте заявку в удобный мессенджер:"
+                : locale === "hy"
+                ? "Ցանկանու՞մ եք ակնթարթային պատասխան․ կրկնօրինակեք հայտը ձեզ հարմար մեսենջերում՝"
+                : "Want an instant response? Duplicate your request to your preferred messenger:"}
+            </p>
 
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
+              {/* 1. WhatsApp */}
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#25D366] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+              >
+                <WhatsAppIcon className="h-5 w-5 shrink-0" />
+                <span className="truncate">{locale === "ru" ? "В WhatsApp" : "WhatsApp"}</span>
+              </a>
+
+              {/* 2. Telegram */}
+              <a
+                href={telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => copyAndNotify("Telegram")}
+                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#229ED9] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+              >
+                <TelegramIcon className="h-5 w-5 shrink-0" />
+                <span className="truncate">{locale === "ru" ? "В Telegram" : "Telegram"}</span>
+              </a>
+
+              {/* 3. Instagram */}
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => copyAndNotify("Instagram Direct")}
+                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+              >
+                <InstagramIcon className="h-5 w-5 shrink-0" />
+                <span className="truncate">{locale === "ru" ? "В Instagram" : "Instagram"}</span>
+              </a>
+            </div>
+
+            {copiedNotice && (
+              <div className="mt-4 p-2.5 rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-xs text-center font-bold text-[#C7FF32]">
+                📋 {copiedNotice}
+              </div>
+            )}
+          </div>
+
+          <div className="mt-8 flex justify-center">
             <button
               type="button"
               onClick={() => {
                 setSubmittedBookingId(null);
                 window.location.reload();
               }}
-              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/5 px-6 py-4 text-xs sm:text-sm font-bold text-[#FCFCF7] hover:bg-white/10"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 text-xs sm:text-sm font-bold text-[#FCFCF7] hover:bg-white/10 transition-colors"
             >
               <span>{locale === "ru" ? "Создать новый маршрут" : "Build Another Tour"}</span>
             </button>
