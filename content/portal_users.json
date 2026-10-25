@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "emp-1792922303969-mmrsh",
+    "username": "manorichi",
+    "fullName": "Manuel Manukyan",
+    "phone": "+37441252500",
+    "passwordHash": "7eb4475e457bc31fd98422e925bc7e65:f4a0be58f47bb72cf5f5f666266bacb5271d1d4cfa8481de74d610359b03ea78a7949a897bd26841d48362e4ce287ae874610d019eb40b302ec548c4a94bfa2c",
+    "role": "employee",
+    "status": "pending",
+    "createdAt": "2026-10-25T09:58:24.042Z"
+  }
+]
