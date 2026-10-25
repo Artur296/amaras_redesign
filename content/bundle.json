@@ -5873,5 +5873,53 @@
         "en": "Zorats Church — Where Armenian Knights Were Blessed for Battle\n\nNestled in the picturesque Yeghegis valley of Vayots Dzor, Zorats Church (Holy Mother of God) is one of the most remarkable ecclesiastical monuments in Armenia. Commissioned in 1303 by Prince Stepanos Tarsayich Orbelian, this church possesses a design found nowhere else in the country: it has no enclosed hall or roofed nave.\n\nInstead, an elevated outdoor apse rises high above a broad stone courtyard. This ingenious architecture was conceived specifically so cavalry warriors could ride up in armor, listen to holy liturgy, and receive blessings and holy sacraments while remaining mounted on their warhorses before departing for battle. The name Zorats itself translates to \"Warriors'\" or \"Troops'\".\n\nPerched directly below the formidable ramparts of Smbataberd fortress, Zorats Church echoes with the chivalric spirit of medieval Armenia.\n\nExplore Armenia's chivalric legends with Amaras Tour. Come as a guest, leave as a friend!"
       }
     }
+  ],
+  "fleet": [],
+  "fleet_categories": [
+    {
+      "id": "minivan",
+      "name": {
+        "ru": "Минивэн",
+        "hy": "Մինիվեն",
+        "en": "Minivan"
+      },
+      "order": 1
+    },
+    {
+      "id": "vip",
+      "name": {
+        "ru": "VIP / Бизнес",
+        "hy": "VIP / Բիզնես",
+        "en": "VIP / Business"
+      },
+      "order": 2
+    },
+    {
+      "id": "suv",
+      "name": {
+        "ru": "Внедорожник 4x4",
+        "hy": "Ամենագնաց 4x4",
+        "en": "Off-Road 4x4 SUV"
+      },
+      "order": 3
+    },
+    {
+      "id": "minibus",
+      "name": {
+        "ru": "Микроавтобус",
+        "hy": "Միկրոավտոբուս",
+        "en": "Minibus"
+      },
+      "order": 4
+    },
+    {
+      "id": "sedan",
+      "name": {
+        "ru": "Седан",
+        "hy": "Սեդան",
+        "en": "Sedan"
+      },
+      "order": 5
+    }
   ]
 }
