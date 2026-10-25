@@ -4,9 +4,9 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { useLinks } from "@/components/SiteProvider";
-import { TelegramIcon, WhatsAppIcon } from "@/components/icons";
+import { InstagramIcon, TelegramIcon, WhatsAppIcon } from "@/components/icons";
 
-// Floating contact button: expands into WhatsApp / Telegram links.
+// Floating contact button: expands into WhatsApp / Telegram / Instagram links.
 export default function ContactFab({ label }: { label: string }) {
   const [open, setOpen] = useState(false);
   const links = useLinks();
@@ -23,6 +23,7 @@ export default function ContactFab({ label }: { label: string }) {
   const options = [
     { href: links.whatsapp, label: "WhatsApp", icon: WhatsAppIcon, bg: "bg-[#25D366]" },
     { href: links.telegram, label: "Telegram", icon: TelegramIcon, bg: "bg-[#229ED9]" },
+    { href: links.instagram, label: "Instagram", icon: InstagramIcon, bg: "bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888]" },
   ];
 
   return (

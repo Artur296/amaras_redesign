@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
 import { useLinks, useSite } from "@/components/SiteProvider";
 import { defaultPaymentCard } from "@/lib/site";
-import { TelegramIcon, WhatsAppIcon } from "@/components/icons";
+import { TelegramIcon, WhatsAppIcon, InstagramIcon } from "@/components/icons";
 
 export type BookingModalProps = {
   isOpen: boolean;
@@ -349,7 +349,7 @@ export default function BookingModal({
                     href={links.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 text-sm font-bold text-white hover:bg-[#20ba59] transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-bold text-white hover:bg-[#20ba59] transition-all shadow-md active:scale-95"
                   >
                     <WhatsAppIcon className="w-5 h-5" />
                     <span>WhatsApp</span>
@@ -358,10 +358,19 @@ export default function BookingModal({
                     href={links.telegram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#229ED9] px-5 py-3 text-sm font-bold text-white hover:bg-[#1f8fc4] transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#229ED9] px-4 py-3 text-sm font-bold text-white hover:bg-[#1f8fc4] transition-all shadow-md active:scale-95"
                   >
                     <TelegramIcon className="w-5 h-5" />
                     <span>Telegram</span>
+                  </a>
+                  <a
+                    href={links.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] px-4 py-3 text-sm font-bold text-white hover:brightness-110 transition-all shadow-md active:scale-95"
+                  >
+                    <InstagramIcon className="w-5 h-5" />
+                    <span>Instagram</span>
                   </a>
                 </div>
               </div>
@@ -762,7 +771,7 @@ export default function BookingModal({
               </button>
 
               {/* Messengers bar */}
-              <div className="pt-2.5 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-white/70">
+              <div className="pt-2.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-white/70">
                 <span>{t.directContact}</span>
                 <div className="flex items-center gap-2">
                   <a
@@ -783,6 +792,16 @@ export default function BookingModal({
                   >
                     <TelegramIcon className="w-3.5 h-3.5" />
                     <span>Telegram</span>
+                  </a>
+                  <span>•</span>
+                  <a
+                    href={links.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[#E1306C] hover:underline font-bold"
+                  >
+                    <InstagramIcon className="w-3.5 h-3.5" />
+                    <span>Instagram</span>
                   </a>
                 </div>
               </div>

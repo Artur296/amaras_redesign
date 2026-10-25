@@ -5,7 +5,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { faqs, faqCategories, type FaqItem, type FaqCategoryKey } from "@/lib/faqs";
 import { useLinks } from "@/components/SiteProvider";
-import { WhatsAppIcon, TelegramIcon } from "@/components/icons";
+import { WhatsAppIcon, TelegramIcon, InstagramIcon } from "@/components/icons";
 
 export type { FaqItem };
 export { faqs };
@@ -22,6 +22,7 @@ const SECTION_I18N = {
       "Не нашли нужную информацию или хотите обсудить особенный маршрут? Напишите нашей команде — мы поможем выбрать экскурсию и ответим на ваши вопросы.",
     btnWhatsapp: "Написать в WhatsApp",
     btnTelegram: "Написать в Telegram",
+    btnInstagram: "Написать в Instagram",
     btnChooseTour: "Выбрать экскурсию",
     showMore: "Показать больше",
     showLess: "Свернуть",
@@ -37,6 +38,7 @@ const SECTION_I18N = {
       "Չգտա՞ք ձեզ անհրաժեշտ տեղեկությունը կամ ցանկանո՞ւմ եք կազմել առանձնահատուկ երթուղի: Գրեք մեզ՝ սիրով կօգնենք ընտրել լավագույն տուրը:",
     btnWhatsapp: "Գրել WhatsApp-ում",
     btnTelegram: "Գրել Telegram-ում",
+    btnInstagram: "Գրել Instagram-ում",
     btnChooseTour: "Ընտրել էքսկուրսիան",
     showMore: "Ցուցադրել ավելին",
     showLess: "Ծալել",
@@ -52,6 +54,7 @@ const SECTION_I18N = {
       "Didn't find what you were looking for or wish to discuss a bespoke custom itinerary? Get in touch — we're delighted to answer your questions and assist with bookings.",
     btnWhatsapp: "Chat on WhatsApp",
     btnTelegram: "Chat on Telegram",
+    btnInstagram: "Chat on Instagram",
     btnChooseTour: "Explore Tours",
     showMore: "Show more",
     showLess: "Show less",
@@ -225,8 +228,8 @@ export default function FaqSection({ locale }: { locale: Locale }) {
               {t.ctaSubtitle}
             </p>
 
-            {/* 3 Action Buttons */}
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+            {/* Action Buttons */}
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3">
               <a
                 href={links.whatsapp}
                 target="_blank"
@@ -245,6 +248,16 @@ export default function FaqSection({ locale }: { locale: Locale }) {
               >
                 <TelegramIcon className="w-5 h-5" />
                 <span>{t.btnTelegram}</span>
+              </a>
+
+              <a
+                href={links.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] px-6 py-4 text-sm sm:text-base font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+              >
+                <InstagramIcon className="w-5 h-5" />
+                <span>{t.btnInstagram}</span>
               </a>
 
               <Link

@@ -263,24 +263,33 @@ export default function Header({
                 <p className="text-xs font-bold uppercase tracking-wider text-[#C7FF32]">
                   {dict.hero.ctaWrite}
                 </p>
-                <div className="mt-3 flex gap-3">
+                <div className="mt-3 grid grid-cols-3 gap-2">
                   <a
                     href={links.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-2.5 text-sm font-bold text-white shadow"
+                    className="flex items-center justify-center gap-1.5 rounded-xl bg-[#25D366] px-2 py-2.5 text-xs font-bold text-white shadow transition-transform hover:scale-[1.02] active:scale-95"
                   >
-                    <WhatsAppIcon className="h-4 w-4" />
+                    <WhatsAppIcon className="h-4 w-4 shrink-0" />
                     <span>WhatsApp</span>
                   </a>
                   <a
                     href={links.telegram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#229ED9] px-4 py-2.5 text-sm font-bold text-white shadow"
+                    className="flex items-center justify-center gap-1.5 rounded-xl bg-[#229ED9] px-2 py-2.5 text-xs font-bold text-white shadow transition-transform hover:scale-[1.02] active:scale-95"
                   >
-                    <TelegramIcon className="h-4 w-4" />
+                    <TelegramIcon className="h-4 w-4 shrink-0" />
                     <span>Telegram</span>
+                  </a>
+                  <a
+                    href={links.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] px-2 py-2.5 text-xs font-bold text-white shadow transition-transform hover:scale-[1.02] active:scale-95"
+                  >
+                    <InstagramIcon className="h-4 w-4 shrink-0" />
+                    <span>Instagram</span>
                   </a>
                 </div>
               </div>
