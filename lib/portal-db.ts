@@ -70,7 +70,7 @@ async function readJsonFile<T>(filename: "portal_clients.json" | "portal_users.j
 
   // 2. Check /tmp filesystem
   try {
-    const tmpPath = path.join(getTmpDirPath(), filename);
+    const tmpPath = path.join(/*turbopackIgnore: true*/ getTmpDirPath(), filename);
     if (fsSync.existsSync(/*turbopackIgnore: true*/ tmpPath)) {
       const raw = await fs.readFile(/*turbopackIgnore: true*/ tmpPath, "utf-8");
       const parsed = JSON.parse(raw);
@@ -140,9 +140,9 @@ async function writeJsonFile<T>(filename: "portal_clients.json" | "portal_users.
   try {
     const tmpDir = getTmpDirPath();
     await fs.mkdir(tmpDir, { recursive: true });
-    await fs.writeFile(/*turbopackIgnore: true*/ path.join(tmpDir, filename), JSON.stringify(data, null, 2), "utf-8");
-  } catch (tmpErr) {
-    console.warn(`Failed writing to /tmp for ${filename}:`, tmpErr);
+    await fs.writeFile(path.join(/*turbopackIgnore: true*/ tmpDir, filename), JSON.stringify(data, null, 2), "utf-8");
+  } catch {
+    // Silently ignore temporary filesystem issues
   }
 
   // 3. Try writing to local project directory (allowed locally, safely ignored on Vercel EROFS)
@@ -168,8 +168,8 @@ async function writeJsonFile<T>(filename: "portal_clients.json" | "portal_users.
         ],
         `portal: update ${filename}`
       );
-    } catch (ghErr) {
-      console.warn(`GitHub sync error for ${filename}:`, ghErr);
+    } catch {
+      // Silently catch background sync issues
     }
   }
 }

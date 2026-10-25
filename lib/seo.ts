@@ -107,7 +107,7 @@ export function pageMetadata(
       type: "website",
       images: [
         {
-          url: "/images/og-amaras.jpg",
+          url: `${siteUrl}/images/og-amaras.jpg`,
           width: 1024,
           height: 682,
           alt: title,
@@ -118,7 +118,7 @@ export function pageMetadata(
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/og-amaras.jpg"],
+      images: [`${siteUrl}/images/og-amaras.jpg`],
     },
   };
 }

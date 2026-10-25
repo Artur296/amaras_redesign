@@ -121,14 +121,17 @@ export default function Header({
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-1 xl:gap-1.5 rounded-full border border-white/20 bg-black/25 px-2.5 xl:px-3 py-1.5 backdrop-blur-md shadow-lg lg:flex" aria-label="Main">
+        <nav
+          className="hidden items-center gap-0.5 xl:gap-1 2xl:gap-1.5 rounded-full border border-white/20 bg-black/35 px-2 xl:px-2.5 2xl:px-3 py-1 xl:py-1.5 backdrop-blur-md shadow-lg xl:flex shrink min-w-0"
+          aria-label="Main"
+        >
           {nav.map((item) => {
             const isActive = isItemActive(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative rounded-full px-2.5 xl:px-3.5 py-1.5 text-xs xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
+                className={`relative rounded-full px-2 xl:px-2.5 2xl:px-3.5 py-1 xl:py-1.5 text-[11px] xl:text-xs 2xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
                   isActive
                     ? "bg-[#C7FF32] font-bold text-[#312F2F] shadow-sm"
                     : "text-[#FCFCF7]/90 hover:text-[#C7FF32] hover:bg-white/10"
@@ -140,8 +143,8 @@ export default function Header({
           })}
         </nav>
 
-        {/* Right Actions */}
-        <div className="flex shrink-0 items-center gap-1 sm:gap-2.5">
+        {/* Right Actions: Search + Language Switcher + Mobile Menu Button */}
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5 z-10">
           {/* Search Button (Лупа) */}
           <button
             type="button"
@@ -160,19 +163,23 @@ export default function Header({
                 ? "Որոնել տուրեր (⌘K)"
                 : "Search tours (⌘K)"
             }
-            className="group relative flex h-7.5 w-7.5 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full border border-white/20 bg-black/25 text-white/90 shadow-lg backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-[#C7FF32] hover:bg-white/10 hover:text-[#C7FF32] active:scale-95"
+            className="group relative flex h-7.5 w-7.5 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white/90 shadow-lg backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-[#C7FF32] hover:bg-white/10 hover:text-[#C7FF32] active:scale-95"
           >
             <SearchIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform duration-200 group-hover:scale-110" />
           </button>
 
           {/* Language Switcher */}
-          <div className="flex shrink-0 items-center rounded-full border border-white/20 bg-black/25 p-0.5 backdrop-blur-md shadow-lg" role="group" aria-label="Language">
+          <div
+            className="flex shrink-0 items-center rounded-full border border-white/20 bg-black/35 p-0.5 backdrop-blur-md shadow-lg"
+            role="group"
+            aria-label="Language"
+          >
             {locales.map((l) => (
               <Link
                 key={l}
                 href={`/${l}${restPath}`}
                 aria-current={l === locale ? "true" : undefined}
-                className={`rounded-full px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold transition-all ${
+                className={`rounded-full px-1.5 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold transition-all text-center min-w-[26px] sm:min-w-[32px] ${
                   l === locale
                     ? "bg-[#586EFF] text-white shadow-sm"
                     : "text-white/80 hover:text-white"
@@ -189,7 +196,7 @@ export default function Header({
             onClick={() => setOpen(!open)}
             aria-expanded={open}
             aria-label="Меню"
-            className="flex h-7.5 w-7.5 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-all hover:border-[#C7FF32] hover:bg-white/20 active:scale-95 lg:hidden"
+            className="flex h-7.5 w-7.5 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-all hover:border-[#C7FF32] hover:bg-white/20 active:scale-95 xl:hidden cursor-pointer"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-4 w-4 sm:h-4.5 sm:w-4.5" aria-hidden="true">
               {open ? (
@@ -211,11 +218,11 @@ export default function Header({
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="overflow-hidden border-t border-[#454343] bg-[#242323] lg:hidden"
+              className="overflow-hidden border-t border-[#454343] bg-[#242323] xl:hidden shadow-2xl"
               aria-label="Mobile"
             >
               {/* Quick Search inside Drawer */}
-              <div className="px-6 pt-4 pb-1">
+              <div className="px-5 sm:px-6 pt-4 pb-2">
                 <button
                   type="button"
                   onClick={() => {
@@ -238,6 +245,28 @@ export default function Header({
                     ⌘K
                   </span>
                 </button>
+              </div>
+
+              {/* Mobile Drawer Language Switcher */}
+              <div className="px-5 sm:px-6 py-2">
+                <div className="grid grid-cols-3 gap-2 p-1 rounded-2xl bg-black/40 border border-white/10">
+                  {locales.map((l) => (
+                    <Link
+                      key={l}
+                      href={`/${l}${restPath}`}
+                      onClick={() => setOpen(false)}
+                      aria-current={l === locale ? "true" : undefined}
+                      className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-bold transition-all ${
+                        l === locale
+                          ? "bg-[#586EFF] text-white shadow-md"
+                          : "text-white/70 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      <span className="text-sm">{l === "ru" ? "🇷🇺" : l === "hy" ? "🇦🇲" : "🇬🇧"}</span>
+                      <span>{localeLabels[l]}</span>
+                    </Link>
+                  ))}
+                </div>
               </div>
 
               <ul className="flex flex-col gap-1.5 px-6 py-4">
