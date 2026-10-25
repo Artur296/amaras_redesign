@@ -10,16 +10,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const getPriority = (path: string): number => {
     if (path === "") return 1.0;
-    if (path === "/tours" || path === "/tour-packages") return 0.9;
-    if (path.startsWith("/tours/")) return 0.85;
-    if (path === "/about" || path === "/contacts") return 0.7;
+    if (path === "/tours" || path === "/tour-packages" || path === "/tours/individual") return 0.9;
+    if (path.startsWith("/tours/") || path === "/fleet" || path === "/what-to-see") return 0.85;
+    if (path === "/about" || path === "/contacts" || path === "/guests") return 0.75;
     return 0.8;
   };
 
   const getChangeFrequency = (
     path: string
   ): "daily" | "weekly" | "monthly" => {
-    if (path === "" || path === "/tours" || path === "/tour-packages")
+    if (path === "" || path === "/tours" || path === "/tour-packages" || path === "/tours/individual")
       return "daily";
     if (path === "/about" || path === "/contacts") return "monthly";
     return "weekly";
@@ -27,12 +27,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const paths = [
     "",
-    "/about",
     "/tours",
-    "/contacts",
+    "/tours/individual",
+    "/tours/offers",
     "/tour-packages",
+    "/fleet",
     "/what-to-see",
     "/guests",
+    "/about",
+    "/contacts",
     ...publicCategories(categories).map((c) => `/tours/${c.id}`),
     ...tours.map((t) => tourPath(t)),
   ];

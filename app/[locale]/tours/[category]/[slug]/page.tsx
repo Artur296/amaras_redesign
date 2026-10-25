@@ -10,6 +10,8 @@ import {
 } from "@/lib/tours";
 import { getContent } from "@/lib/content";
 
+import { getCanonicalSiteUrl } from "@/lib/site";
+
 type Props = { params: Promise<{ locale: Locale; category: string; slug: string }> };
 
 export const revalidate = 300;
@@ -25,10 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     tour.title[locale],
     tour.description[locale]
   );
+  const siteUrl = getCanonicalSiteUrl();
+  const imageUrl = tour.image.startsWith("http")
+    ? tour.image
+    : `${siteUrl}${tour.image.startsWith("/") ? "" : "/"}${tour.image}`;
   return {
     ...meta,
-    openGraph: { ...meta.openGraph, images: [tour.image] },
-    twitter: { ...meta.twitter, images: [tour.image] },
+    openGraph: { ...meta.openGraph, images: [imageUrl] },
+    twitter: { ...meta.twitter, images: [imageUrl] },
   };
 }
 

@@ -229,8 +229,8 @@ async function fetchLatestGitHubBundle(): Promise<Record<ContentKey, unknown> | 
         return liveBundleCache;
       }
     }
-  } catch (err) {
-    console.warn("Failed to fetch latest GitHub bundle:", err);
+  } catch {
+    // Silently fall back to cached bundle
   }
 
   return liveBundleCache;
@@ -278,8 +278,8 @@ export function setRuntimeOverrides(edits: Partial<Record<ContentKey, unknown>>)
         );
       }
     }
-  } catch (err) {
-    console.warn("Writing to /tmp/amaras_content warning:", err);
+  } catch {
+    // Silently catch /tmp write errors on restricted environments
   }
 
   // Also write to local project directory if writable (e.g. local dev)
