@@ -167,8 +167,29 @@ export default function BookingModal({
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [bookingResult, setBookingResult] = useState<{ id: string } | null>(null);
+  const [copiedNotice, setCopiedNotice] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  function copyTextToClipboard(text: string) {
+    if (typeof window === "undefined") return;
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).catch(() => {});
+    }
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      ta.style.top = "-9999px";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    } catch {}
+  }
 
   // Sync title whenever prop changes
   useEffect(() => {
@@ -320,70 +341,176 @@ export default function BookingModal({
             ✕
           </button>
 
-          {/* SUCCESS STATE */}
-          {bookingResult ? (
-            <div className="py-6 sm:py-8 text-center">
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#C7FF32]/20 border-2 border-[#C7FF32] text-[#C7FF32] text-4xl shadow-[0_0_30px_rgba(199,255,50,0.3)]">
-                ✓
-              </div>
+          {/* SUCCESS STATE - Full Messenger Duplication Window */}
+          {bookingResult ? (() => {
+            const cleanPhone = (site?.phone || "37499250525").replace(/[^\d+]/g, "");
+            const telegramUsername = (site?.telegram || "amaras_tour_armenia").replace(/^@/, "");
+            const instagramUsername = (site?.instagram || "amarastourarmenia").replace(/^@/, "");
 
-              <span className="mt-5 inline-block text-xs font-black uppercase tracking-[0.25em] text-[#C7FF32]">
-                {t.successBookingCode}: {bookingResult.id}
-              </span>
+            const bookingSummaryText =
+              `Здравствуйте, Amaras Tour! Хочу подтвердить бронирование тура (Заявка #${bookingResult.id}):\n` +
+              `📍 Тур: ${title}\n` +
+              `👤 Имя: ${name.trim() || "Гость"}\n` +
+              `📞 Телефон: ${phone.trim()}\n` +
+              (email.trim() ? `✉️ Email: ${email.trim()}\n` : "") +
+              (date ? `📅 Дата: ${date}\n` : "") +
+              `👥 Участники: ${adults} взр.${children ? ` + ${children} дет.` : ""}\n` +
+              (wishes.trim() ? `💬 Пожелания: ${wishes.trim()}\n` : "");
 
-              <h3 className="mt-2 text-2xl sm:text-4xl font-serif font-normal text-white">
-                {t.successTitle}
-              </h3>
+            const whatsappBookingUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(bookingSummaryText)}`;
+            const telegramBookingDirectUrl = `https://t.me/${telegramUsername}`;
+            const telegramBookingShareUrl = `https://t.me/share/url?url=${encodeURIComponent(`https://t.me/${telegramUsername}`)}&text=${encodeURIComponent(bookingSummaryText)}`;
+            const instagramBookingDirectUrl = `https://ig.me/m/${instagramUsername}`;
 
-              <p className="mt-3 text-sm sm:text-base leading-relaxed text-white/80 max-w-md mx-auto">
-                {t.successSubtitle}
-              </p>
+            const handleTelegramBookingClick = () => {
+              copyTextToClipboard(bookingSummaryText);
+              setCopiedNotice(
+                locale === "ru"
+                  ? "✅ Текст заявки скопирован в буфер! Открываем Telegram — вставьте его в чат (Ctrl+V или долгое нажатие → Вставить)."
+                  : locale === "hy"
+                  ? "✅ Հայտի տեքստը պատճենված է։ Բացում ենք Telegram — տեղադրեք (Paste) հաղորդագրության մեջ։"
+                  : "✅ Booking text copied! Opening Telegram — just paste it into the message field."
+              );
+            };
 
-              {/* Direct messengers in case they want instant confirmation */}
-              <div className="mt-8 rounded-2xl bg-white/5 border border-white/10 p-4 sm:p-5">
-                <p className="text-xs sm:text-sm font-semibold text-white/70 mb-3">
-                  {t.directContact}
+            const handleInstagramBookingClick = () => {
+              copyTextToClipboard(bookingSummaryText);
+              setCopiedNotice(
+                locale === "ru"
+                  ? "✅ Текст заявки скопирован в буфер! Открываем Instagram Direct — вставьте его в чат (нажмите «Вставить»)."
+                  : locale === "hy"
+                  ? "✅ Հայտի տեքստը պատճենված է։ Բացում ենք Instagram Direct — տեղադրեք (Paste) հաղորդագրության մեջ։"
+                  : "✅ Booking text copied! Opening Instagram Direct — paste it into the chat."
+              );
+            };
+
+            return (
+              <div className="py-4 sm:py-6 text-center">
+                <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-[#C7FF32]/20 text-4xl mb-4 shadow-[0_0_30px_rgba(199,255,50,0.25)]">
+                  🎉
+                </div>
+                <div>
+                  <span className="rounded-full bg-[#C7FF32]/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
+                    {locale === "ru" ? "Заявка успешно принята" : locale === "hy" ? "Հայտը հաջողությամբ ընդունված է" : "Request Received"}
+                  </span>
+                </div>
+
+                <h2 className="mt-4 font-serif text-2xl sm:text-3xl font-bold text-[#FCFCF7]">
+                  {locale === "ru"
+                    ? `Спасибо, ${name || "дорогой гость"}! Номер заявки: ${bookingResult.id}`
+                    : `Thank you, ${name || "guest"}! Request #${bookingResult.id}`}
+                </h2>
+
+                <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#FCFCF7]/80 max-w-md mx-auto">
+                  {locale === "ru"
+                    ? `Мы уже получили вашу заявку на тур «${title}». Наш оператор свяжется с вами в течение 10–15 минут для согласования программы и деталей.`
+                    : `We have received your booking request for "${title}". Our specialist will contact you within 10–15 minutes.`}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <a
-                    href={links.whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-bold text-white hover:bg-[#20ba59] transition-all shadow-md active:scale-95"
+
+                {/* Duplication to Messengers */}
+                <div className="mt-6 rounded-2xl bg-[#1C1B1B]/90 border border-white/10 p-4 sm:p-6 text-left">
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#C7FF32] text-center mb-4">
+                    {locale === "ru"
+                      ? "Хотите быстрый ответ прямо сейчас? Продублируйте заявку в удобный мессенджер:"
+                      : locale === "hy"
+                      ? "Ցանկանու՞մ եք ակնթարթային պատասխան․ կրկնօրինակեք հայտը ձեզ հարմար մեսենջերում՝"
+                      : "Want an instant response? Duplicate your request to your preferred messenger:"}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 w-full">
+                    {/* 1. WhatsApp */}
+                    <a
+                      href={whatsappBookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                    >
+                      <WhatsAppIcon className="h-5 w-5 shrink-0" />
+                      <span className="truncate">{locale === "ru" ? "В WhatsApp" : "WhatsApp"}</span>
+                    </a>
+
+                    {/* 2. Telegram */}
+                    <a
+                      href={telegramBookingDirectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={handleTelegramBookingClick}
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#229ED9] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                    >
+                      <TelegramIcon className="h-5 w-5 shrink-0" />
+                      <span className="truncate">{locale === "ru" ? "В Telegram" : "Telegram"}</span>
+                    </a>
+
+                    {/* 3. Instagram */}
+                    <a
+                      href={instagramBookingDirectUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={handleInstagramBookingClick}
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                    >
+                      <InstagramIcon className="h-5 w-5 shrink-0" />
+                      <span className="truncate">{locale === "ru" ? "В Instagram" : "Instagram"}</span>
+                    </a>
+                  </div>
+
+                  {copiedNotice && (
+                    <div className="mt-3.5 p-3 rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-xs sm:text-sm text-center font-bold text-[#C7FF32] flex items-center justify-center gap-2">
+                      <span>📋</span>
+                      <span>{copiedNotice}</span>
+                    </div>
+                  )}
+
+                  {/* Quick Telegram Share Alternative */}
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-white/60 px-1">
+                    <span>{locale === "ru" ? "Или отправить в Telegram с авто-текстом:" : "Or send in Telegram with auto-filled text:"}</span>
+                    <a
+                      href={telegramBookingShareUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#C7FF32] hover:underline font-bold inline-flex items-center gap-1"
+                    >
+                      <span>Telegram Share</span>
+                      <span>↗</span>
+                    </a>
+                  </div>
+
+                  {/* Manual text copy preview */}
+                  <div className="mt-3.5 rounded-xl bg-black/40 border border-white/10 p-3 text-left">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-white/50">
+                        {locale === "ru" ? "Текст заявки для отправки:" : "Booking Request Text:"}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          copyTextToClipboard(bookingSummaryText);
+                          setCopiedNotice(locale === "ru" ? "Текст заявки скопирован в буфер обмена!" : "Booking text copied to clipboard!");
+                        }}
+                        className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-2.5 py-1 text-xs font-bold text-[#C7FF32] hover:bg-white/20 active:scale-95 transition-all cursor-pointer"
+                      >
+                        <span>📋</span>
+                        <span>{locale === "ru" ? "Скопировать текст" : "Copy text"}</span>
+                      </button>
+                    </div>
+                    <pre className="text-[11px] text-white/80 whitespace-pre-wrap font-sans max-h-32 overflow-y-auto leading-relaxed scrollbar-thin">
+                      {bookingSummaryText}
+                    </pre>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={resetAndClose}
+                    className="w-full sm:w-auto min-w-[200px] rounded-full bg-[#C7FF32] px-8 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-[#312F2F] hover:bg-[#b8f226] transition-all cursor-pointer shadow-lg"
                   >
-                    <WhatsAppIcon className="w-5 h-5" />
-                    <span>WhatsApp</span>
-                  </a>
-                  <a
-                    href={links.telegram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#229ED9] px-4 py-3 text-sm font-bold text-white hover:bg-[#1f8fc4] transition-all shadow-md active:scale-95"
-                  >
-                    <TelegramIcon className="w-5 h-5" />
-                    <span>Telegram</span>
-                  </a>
-                  <a
-                    href={links.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] px-4 py-3 text-sm font-bold text-white hover:brightness-110 transition-all shadow-md active:scale-95"
-                  >
-                    <InstagramIcon className="w-5 h-5" />
-                    <span>Instagram</span>
-                  </a>
+                    {t.successClose}
+                  </button>
                 </div>
               </div>
-
-              <button
-                type="button"
-                onClick={resetAndClose}
-                className="mt-6 w-full rounded-full bg-[#C7FF32] py-3.5 text-sm sm:text-base font-black uppercase tracking-wider text-[#312F2F] hover:bg-[#b8f226] transition-all cursor-pointer"
-              >
-                {t.successClose}
-              </button>
-            </div>
-          ) : (
+            );
+          })() : (
             /* FORM STATE */
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>

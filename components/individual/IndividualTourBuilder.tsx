@@ -338,19 +338,50 @@ export default function IndividualTourBuilder({
     (wishes.trim() ? `💬 Пожелания: ${wishes.trim()}\n` : "");
 
   const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(plainSummaryText)}`;
-  const telegramUrl = `https://t.me/${telegramUsername}`;
-  const instagramUrl = `https://instagram.com/${instagramUsername}`;
+  const telegramDirectUrl = `https://t.me/${telegramUsername}`;
+  const telegramShareUrl = `https://t.me/share/url?url=${encodeURIComponent(`https://t.me/${telegramUsername}`)}&text=${encodeURIComponent(plainSummaryText)}`;
+  const instagramDirectUrl = `https://ig.me/m/${instagramUsername}`;
 
-  function copyAndNotify(platformName: string) {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText(plainSummaryText).catch(() => {});
-      setCopiedNotice(
-        locale === "ru"
-          ? `Текст заявки скопирован! Открываем ${platformName} — вставьте его в диалог.`
-          : `Itinerary copied! Opening ${platformName} — paste it in the chat.`
-      );
-      setTimeout(() => setCopiedNotice(null), 5000);
+  function copyTextToClipboard(text: string) {
+    if (typeof window === "undefined") return;
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).catch(() => {});
     }
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      ta.style.top = "-9999px";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    } catch {}
+  }
+
+  function handleTelegramClick() {
+    copyTextToClipboard(plainSummaryText);
+    setCopiedNotice(
+      locale === "ru"
+        ? "✅ Текст заявки скопирован в буфер! Открываем Telegram — вставьте его в чат (Ctrl+V или долгое нажатие → Вставить)."
+        : locale === "hy"
+        ? "✅ Հայտի տեքստը պատճենված է։ Բացում ենք Telegram — տեղադրեք (Paste) հաղորդագրության մեջ։"
+        : "✅ Itinerary copied! Opening Telegram — just paste it into the message field."
+    );
+  }
+
+  function handleInstagramClick() {
+    copyTextToClipboard(plainSummaryText);
+    setCopiedNotice(
+      locale === "ru"
+        ? "✅ Текст заявки скопирован в буфер! Открываем Instagram Direct — вставьте его в чат (нажмите «Вставить»)."
+        : locale === "hy"
+        ? "✅ Հայտի տեքստը պատճենված է։ Բացում ենք Instagram Direct — տեղադրեք (Paste) հաղորդագրության մեջ։"
+        : "✅ Itinerary copied! Opening Instagram Direct — paste it into the chat."
+    );
   }
 
   // Success Screen
@@ -391,7 +422,7 @@ export default function IndividualTourBuilder({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#25D366] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#25D366] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <WhatsAppIcon className="h-5 w-5 shrink-0" />
                 <span className="truncate">{locale === "ru" ? "В WhatsApp" : "WhatsApp"}</span>
@@ -399,11 +430,11 @@ export default function IndividualTourBuilder({
 
               {/* 2. Telegram */}
               <a
-                href={telegramUrl}
+                href={telegramDirectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => copyAndNotify("Telegram")}
-                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#229ED9] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+                onClick={handleTelegramClick}
+                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#229ED9] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <TelegramIcon className="h-5 w-5 shrink-0" />
                 <span className="truncate">{locale === "ru" ? "В Telegram" : "Telegram"}</span>
@@ -411,11 +442,11 @@ export default function IndividualTourBuilder({
 
               {/* 3. Instagram */}
               <a
-                href={instagramUrl}
+                href={instagramDirectUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => copyAndNotify("Instagram Direct")}
-                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95"
+                onClick={handleInstagramClick}
+                className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] px-4 py-3.5 text-xs sm:text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <InstagramIcon className="h-5 w-5 shrink-0" />
                 <span className="truncate">{locale === "ru" ? "В Instagram" : "Instagram"}</span>
@@ -423,10 +454,48 @@ export default function IndividualTourBuilder({
             </div>
 
             {copiedNotice && (
-              <div className="mt-4 p-2.5 rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-xs text-center font-bold text-[#C7FF32]">
-                📋 {copiedNotice}
+              <div className="mt-4 p-3 rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-xs sm:text-sm text-center font-bold text-[#C7FF32] flex items-center justify-center gap-2">
+                <span>📋</span>
+                <span>{copiedNotice}</span>
               </div>
             )}
+
+            {/* Quick Telegram Share Alternative */}
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-white/60 px-1">
+              <span>{locale === "ru" ? "Или отправить в Telegram с авто-текстом:" : "Or send in Telegram with auto-filled text:"}</span>
+              <a
+                href={telegramShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#C7FF32] hover:underline font-bold inline-flex items-center gap-1"
+              >
+                <span>Telegram Share</span>
+                <span>↗</span>
+              </a>
+            </div>
+
+            {/* Manual text copy preview */}
+            <div className="mt-4 rounded-xl bg-black/40 border border-white/10 p-3 text-left">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-white/50">
+                  {locale === "ru" ? "Текст заявки для отправки:" : "Booking Request Text:"}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    copyTextToClipboard(plainSummaryText);
+                    setCopiedNotice(locale === "ru" ? "Текст заявки скопирован в буфер обмена!" : "Itinerary copied to clipboard!");
+                  }}
+                  className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-2.5 py-1 text-xs font-bold text-[#C7FF32] hover:bg-white/20 active:scale-95 transition-all cursor-pointer"
+                >
+                  <span>📋</span>
+                  <span>{locale === "ru" ? "Скопировать текст" : "Copy text"}</span>
+                </button>
+              </div>
+              <pre className="text-[11px] sm:text-xs text-white/80 whitespace-pre-wrap font-sans max-h-36 overflow-y-auto leading-relaxed scrollbar-thin">
+                {plainSummaryText}
+              </pre>
+            </div>
           </div>
 
           <div className="mt-8 flex justify-center">
@@ -436,7 +505,7 @@ export default function IndividualTourBuilder({
                 setSubmittedBookingId(null);
                 window.location.reload();
               }}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 text-xs sm:text-sm font-bold text-[#FCFCF7] hover:bg-white/10 transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 text-xs sm:text-sm font-bold text-[#FCFCF7] hover:bg-white/10 transition-colors cursor-pointer"
             >
               <span>{locale === "ru" ? "Создать новый маршрут" : "Build Another Tour"}</span>
             </button>
