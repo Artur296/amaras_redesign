@@ -15,7 +15,6 @@ import HeritageBanner from "@/components/HeritageBanner";
 import AdvantagesGrid from "@/components/AdvantagesGrid";
 import NoFinePrintCards from "@/components/NoFinePrintCards";
 import AboutCompanySection from "@/components/AboutCompanySection";
-import CompactCategoryTours from "@/components/CompactCategoryTours";
 
 import { faqs } from "@/lib/faqs";
 import { CalendarIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
@@ -177,8 +176,6 @@ export default async function HomePage({ params }: Props) {
       {/* 1.1 "Внутренний туризм — это тренд" Bento Grid (Screenshot 1) */}
       <TrendBentoGrid locale={locale} images={site.homepageImages} bentoExtreme={site.bentoExtreme} />
 
-      {/* 1.2 COMPACT 1-TOUR-PER-CATEGORY SHOWCASE (Space-efficient express selector) */}
-      <CompactCategoryTours tours={tours} categories={categories} locale={locale} />
 
       {/* 1.4 Luxury Resort & Spa Showcase (Screenshot 1 bottom) */}
       <LuxuryResortCard locale={locale} images={site.homepageImages} />

@@ -56,9 +56,9 @@ export default function TourCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
         {/* Top Badges (Category & Discount) */}
-        <div className="absolute left-3 top-3 right-3 flex items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="rounded-full bg-black/85 px-2.5 py-0.5 text-xs font-black tracking-wider text-[#C7FF32] backdrop-blur-md border border-[#C7FF32]/40 font-mono shadow-sm">
+        <div className="absolute left-3 top-3 right-3 flex items-center justify-between gap-1.5 z-10">
+          <div className="flex flex-wrap items-center gap-1.5 min-w-0">
+            <span className="rounded-full bg-black/85 px-2 py-0.5 text-xs font-black tracking-wider text-[#C7FF32] backdrop-blur-md border border-[#C7FF32]/40 font-mono shadow-sm shrink-0">
               №{code}
             </span>
             {(() => {
@@ -68,7 +68,7 @@ export default function TourCard({
               return (
                 <span
                   key={primaryCat}
-                  className="rounded-full bg-[#312F2F]/85 px-3 py-1 text-xs font-black uppercase tracking-wider text-[#FCFCF7] backdrop-blur-md"
+                  className="rounded-full bg-[#312F2F]/85 px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-black uppercase tracking-wider text-[#FCFCF7] backdrop-blur-md shrink-0"
                 >
                   {catTitle(primaryCat)}
                 </span>
@@ -76,32 +76,31 @@ export default function TourCard({
             })()}
           </div>
 
-
           {tour.bookingDisabled ? (
-            <span className="rounded-full bg-amber-500 px-2.5 py-1 text-xs font-black text-white shadow-sm">
+            <span className="rounded-full bg-amber-500 px-2.5 py-0.5 sm:py-1 text-[11px] sm:text-xs font-black text-white shadow-sm shrink-0">
               {locale === "ru" ? "Даты уточняются" : locale === "hy" ? "Ճշտել օրերը" : "Dates pending"}
             </span>
           ) : discount !== null ? (
-            <span className="rounded-full bg-[#C7FF32] px-2.5 py-1 text-xs font-black text-[#312F2F] shadow-sm">
+            <span className="rounded-full bg-[#C7FF32] px-2.5 py-0.5 sm:py-1 text-[11px] sm:text-xs font-black text-[#312F2F] shadow-sm shrink-0">
               −{discount}%
             </span>
           ) : null}
         </div>
 
         {/* Bottom Tag on image (Duration, Group & Rating) */}
-        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs sm:text-sm font-bold text-white">
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1 backdrop-blur-md">
-              <svg className="w-3.5 h-3.5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-1.5 text-xs sm:text-sm font-bold text-white z-10">
+          <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+            <span className="flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 sm:px-3 py-1 backdrop-blur-md text-[11px] sm:text-xs">
+              <svg className="w-3.5 h-3.5 text-white/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span>{durationText}</span>
             </span>
-            <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 backdrop-blur-md text-xs text-white/90">
+            <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 backdrop-blur-md text-[11px] sm:text-xs text-white/90">
               <span>👥</span> {groupSize}
             </span>
           </div>
-          <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[#C7FF32] backdrop-blur-md font-bold">
+          <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[#C7FF32] backdrop-blur-md text-[11px] sm:text-xs font-bold shrink-0">
             <span>★</span> 5.0
           </span>
         </div>

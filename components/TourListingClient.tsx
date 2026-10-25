@@ -184,101 +184,118 @@ export default function TourListingClient({
   return (
     <div className="mt-8 space-y-8">
       {/* Control Bar: Search, Category Dropdown & Sort */}
-      <div className="flex flex-col gap-2.5 sm:gap-3 rounded-2xl sm:rounded-full border border-[#EAE9E0] bg-white p-2 sm:p-2.5 shadow-sm md:flex-row md:items-center md:justify-between">
-        {/* Category Dropdown - "Все туры" button */}
-        <div className="relative shrink-0" ref={dropdownRef}>
-          <div className="flex items-center gap-1.5">
-            <button
-              type="button"
-              onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-              className={`inline-flex items-center gap-2 rounded-full px-4 sm:px-5 h-8 sm:h-9 text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all cursor-pointer select-none ${
-                isCategoryOpen
-                  ? "bg-[#4558e8] text-white shadow-md ring-2 ring-[#586EFF]/30"
-                  : "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 hover:bg-[#485ee8]"
-              }`}
-              aria-haspopup="true"
-              aria-expanded={isCategoryOpen}
-            >
-              <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" />
-              </svg>
-              <span>
-                {selectedCategory === "all"
-                  ? (locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours")
-                  : (categoryTabs.find((t) => t.id === selectedCategory)?.label || (locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours"))}
-              </span>
-              <svg
-                className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""}`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {selectedCategory !== "all" && (
+      <div className="flex flex-col gap-2.5 sm:gap-3 rounded-2xl border border-[#EAE9E0] bg-white p-2.5 sm:p-3 shadow-sm md:flex-row md:items-center md:justify-between w-full max-w-full">
+        {/* Row 1 on mobile: Category Dropdown & Sort */}
+        <div className="flex items-center justify-between gap-2 w-full md:w-auto">
+          {/* Category Dropdown - "Все туры" button */}
+          <div className="relative shrink-0" ref={dropdownRef}>
+            <div className="flex items-center gap-1.5">
               <button
                 type="button"
-                onClick={() => {
-                  setSelectedCategory("all");
-                  setIsCategoryOpen(false);
-                }}
-                className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FCFCF7] border border-[#EAE9E0] text-[#6B6967] hover:bg-[#EAE9E0] hover:text-[#312F2F] transition-all text-xs font-bold cursor-pointer"
-                title={locale === "ru" ? "Сбросить на Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "Reset to All Tours"}
+                onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                className={`inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 sm:px-5 h-9 text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all cursor-pointer select-none ${
+                  isCategoryOpen
+                    ? "bg-[#4558e8] text-white shadow-md ring-2 ring-[#586EFF]/30"
+                    : "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 hover:bg-[#485ee8]"
+                }`}
+                aria-haspopup="true"
+                aria-expanded={isCategoryOpen}
               >
-                ✕
+                <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h7" />
+                </svg>
+                <span className="truncate max-w-[130px] sm:max-w-none">
+                  {selectedCategory === "all"
+                    ? (locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours")
+                    : (categoryTabs.find((t) => t.id === selectedCategory)?.label || (locale === "ru" ? "Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "All Tours"))}
+                </span>
+                <svg
+                  className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
+
+              {selectedCategory !== "all" && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedCategory("all");
+                    setIsCategoryOpen(false);
+                  }}
+                  className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#FCFCF7] border border-[#EAE9E0] text-[#6B6967] hover:bg-[#EAE9E0] hover:text-[#312F2F] transition-all text-xs font-bold cursor-pointer shrink-0"
+                  title={locale === "ru" ? "Сбросить на Все туры" : locale === "hy" ? "Բոլոր տուրերը" : "Reset to All Tours"}
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+            {/* Dropdown Window ("сверху вниз") */}
+            {isCategoryOpen && (
+              <div className="absolute left-0 top-full mt-2 z-50 w-72 sm:w-80 max-w-[calc(100vw-32px)] rounded-2xl bg-white border border-[#EAE9E0] p-2 shadow-2xl shadow-black/20">
+                <div className="px-3.5 py-2 flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-black/40 border-b border-[#F0EFEA] mb-1">
+                  <span>{locale === "ru" ? "Категории туров" : locale === "hy" ? "Տուրերի կատեգորիաներ" : "Tour Categories"}</span>
+                  <span className="text-[9px] text-[#586EFF] uppercase font-bold">{locale === "ru" ? "выберите категорию" : locale === "hy" ? "ընտրեք" : "select"}</span>
+                </div>
+                <div className="space-y-1">
+                  {categoryTabs.map((tab) => {
+                    const isSelected = selectedCategory === tab.id;
+                    const count = getCategoryCount(tab.id);
+                    return (
+                      <button
+                        key={tab.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedCategory(tab.id);
+                          setIsCategoryOpen(false);
+                        }}
+                        className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-[13px] uppercase tracking-wider font-bold transition-all text-left cursor-pointer ${
+                          isSelected
+                            ? "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 font-black"
+                            : "text-[#312F2F] hover:bg-[#F7F6F0] hover:text-[#586EFF]"
+                        }`}
+                      >
+                        <span className="font-bold tracking-wider">{tab.label}</span>
+                        <span
+                          className={`text-[11px] font-black px-2 py-0.5 rounded-full ${
+                            isSelected
+                              ? "bg-white/20 text-white"
+                              : "bg-[#EAE9E0]/70 text-[#6B6967]"
+                          }`}
+                        >
+                          {count}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             )}
           </div>
 
-          {/* Dropdown Window ("сверху вниз") */}
-          {isCategoryOpen && (
-            <div className="absolute left-0 top-full mt-2 z-50 w-72 sm:w-80 max-w-[calc(100vw-32px)] rounded-2xl bg-white border border-[#EAE9E0] p-2 shadow-2xl shadow-black/20">
-              <div className="px-3.5 py-2 flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-black/40 border-b border-[#F0EFEA] mb-1">
-                <span>{locale === "ru" ? "Категории туров" : locale === "hy" ? "Տուրերի կատեգորիաներ" : "Tour Categories"}</span>
-                <span className="text-[9px] text-[#586EFF] uppercase font-bold">{locale === "ru" ? "выберите категорию" : locale === "hy" ? "ընտրեք" : "select"}</span>
-              </div>
-              <div className="space-y-1">
-                {categoryTabs.map((tab) => {
-                  const isSelected = selectedCategory === tab.id;
-                  const count = getCategoryCount(tab.id);
-                  return (
-                    <button
-                      key={tab.id}
-                      type="button"
-                      onClick={() => {
-                        setSelectedCategory(tab.id);
-                        setIsCategoryOpen(false);
-                      }}
-                      className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-[13px] uppercase tracking-wider font-bold transition-all text-left cursor-pointer ${
-                        isSelected
-                          ? "bg-[#586EFF] text-white shadow-sm shadow-[#586EFF]/25 font-black"
-                          : "text-[#312F2F] hover:bg-[#F7F6F0] hover:text-[#586EFF]"
-                      }`}
-                    >
-                      <span className="font-bold tracking-wider">{tab.label}</span>
-                      <span
-                        className={`text-[11px] font-black px-2 py-0.5 rounded-full ${
-                          isSelected
-                            ? "bg-white/20 text-white"
-                            : "bg-[#EAE9E0]/70 text-[#6B6967]"
-                        }`}
-                      >
-                        {count}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
+          {/* Sort dropdown (on mobile, sits right next to category button) */}
+          <div className="md:hidden shrink-0">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as any)}
+              className="rounded-full border border-[#EAE9E0] bg-[#FCFCF7] h-9 px-3 text-xs font-bold text-[#312F2F] focus:border-[#586EFF] focus:bg-white focus:outline-none cursor-pointer transition-all"
+            >
+              <option value="default">{locale === "ru" ? "По умолчанию" : locale === "hy" ? "Ըստ լռելյայնի" : "Default"}</option>
+              <option value="price-asc">{locale === "ru" ? "Сначала дешевле" : locale === "hy" ? "Սկզբում մատչելի" : "Price: Low"}</option>
+              <option value="price-desc">{locale === "ru" ? "Сначала дороже" : locale === "hy" ? "Սկզբում թանկ" : "Price: High"}</option>
+              <option value="duration">{locale === "ru" ? "По длительности" : locale === "hy" ? "Ըստ տևողության" : "Duration"}</option>
+            </select>
+          </div>
         </div>
 
-        {/* Search input and Sort dropdown - horizontal row */}
-        <div className="flex items-center gap-2 shrink-0">
+        {/* Search input (full-width on mobile, auto-sized on desktop) + Sort (desktop) */}
+        <div className="flex items-center gap-2 w-full md:w-auto min-w-0">
           {/* Search */}
-          <div className="relative flex-1 sm:w-56 md:w-52 lg:w-64">
+          <div className="relative flex-1 min-w-0 md:w-56 lg:w-64">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none">
               <svg className="w-3.5 h-3.5 text-black/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -295,7 +312,7 @@ export default function TourListingClient({
                   ? "Որոնել ըստ կոդի կամ վայրի..."
                   : "Search code or place..."
               }
-              className="w-full rounded-full border border-[#EAE9E0] bg-[#FCFCF7] h-8 sm:h-9 pl-8 pr-7 text-xs font-semibold text-[#312F2F] placeholder-black/40 focus:border-[#586EFF] focus:bg-white focus:outline-none transition-all"
+              className="w-full min-w-0 rounded-full border border-[#EAE9E0] bg-[#FCFCF7] h-9 pl-8 pr-7 text-xs font-semibold text-[#312F2F] placeholder-black/40 focus:border-[#586EFF] focus:bg-white focus:outline-none transition-all"
             />
             {search && (
               <button
@@ -308,17 +325,19 @@ export default function TourListingClient({
             )}
           </div>
 
-          {/* Sort */}
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
-            className="rounded-full border border-[#EAE9E0] bg-[#FCFCF7] h-8 sm:h-9 px-3 text-xs font-bold text-[#312F2F] focus:border-[#586EFF] focus:bg-white focus:outline-none cursor-pointer shrink-0 transition-all"
-          >
-            <option value="default">{locale === "ru" ? "По умолчанию" : locale === "hy" ? "Ըստ լռելյայնի" : "Default order"}</option>
-            <option value="price-asc">{locale === "ru" ? "Сначала недорогие" : locale === "hy" ? "Սկզբում մատչելի" : "Price: Low to High"}</option>
-            <option value="price-desc">{locale === "ru" ? "Сначала премиум" : locale === "hy" ? "Սկզբում թանկ" : "Price: High to Low"}</option>
-            <option value="duration">{locale === "ru" ? "По длительности" : locale === "hy" ? "Ըստ տևողության" : "Longest duration"}</option>
-          </select>
+          {/* Sort (on desktop only) */}
+          <div className="hidden md:block shrink-0">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as any)}
+              className="rounded-full border border-[#EAE9E0] bg-[#FCFCF7] h-9 px-3 text-xs font-bold text-[#312F2F] focus:border-[#586EFF] focus:bg-white focus:outline-none cursor-pointer transition-all"
+            >
+              <option value="default">{locale === "ru" ? "По умолчанию" : locale === "hy" ? "Ըստ լռելյայնի" : "Default order"}</option>
+              <option value="price-asc">{locale === "ru" ? "Сначала недорогие" : locale === "hy" ? "Սկզբում մատչելի" : "Price: Low to High"}</option>
+              <option value="price-desc">{locale === "ru" ? "Сначала премиум" : locale === "hy" ? "Սկզբում թանկ" : "Price: High to Low"}</option>
+              <option value="duration">{locale === "ru" ? "По длительности" : locale === "hy" ? "Ըստ տևողության" : "Longest duration"}</option>
+            </select>
+          </div>
         </div>
       </div>
 

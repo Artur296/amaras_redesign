@@ -239,7 +239,7 @@ export default function NoFinePrintCards({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mt-4 sm:mt-8 relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] min-h-[210px] sm:min-h-[400px] shadow-2xl group"
+        className="mt-4 sm:mt-8 relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] min-h-[380px] sm:min-h-[420px] shadow-2xl group flex flex-col justify-end"
       >
         <Image
           src={bannerImage || "/images/noravank.jpg"}
@@ -248,10 +248,10 @@ export default function NoFinePrintCards({
           sizes="100vw"
           className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-black/90 via-black/60 to-black/30" />
 
-        {/* Top Right Filter Tags */}
-        <div className="absolute top-5 right-5 sm:top-8 sm:right-8 flex items-center gap-2 z-10">
+        {/* Top Right Filter Tags (desktop only to prevent covering text on mobile) */}
+        <div className="hidden sm:flex absolute top-6 right-6 sm:top-8 sm:right-8 items-center gap-2 z-10">
           <span className="rounded-full bg-black/50 backdrop-blur-md px-3 sm:px-3.5 py-1 text-[11px] sm:text-xs font-bold text-white/90 border border-white/20">
             {locale === "ru" ? "Горы и озера" : "Mountains & Lakes"}
           </span>
@@ -261,11 +261,19 @@ export default function NoFinePrintCards({
         </div>
 
         {/* Content on the left */}
-        <div className="absolute inset-0 p-6 sm:p-12 lg:p-16 flex flex-col justify-end max-w-2xl text-white">
-          <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-[#C7FF32]">
-            {locale === "ru" ? "АВТОРСКИЙ ТУРИЗМ" : locale === "hy" ? "ՀԵՂԻՆԱԿԱՅԻՆ ՏՈՒՐԵՐ" : "SIGNATURE ESCAPES"}
-          </span>
-          <h3 className="mt-2 font-sans text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+        <div className="relative z-10 p-6 sm:p-12 lg:p-16 flex flex-col justify-end max-w-2xl text-white">
+          <div className="flex flex-wrap items-center gap-2 mb-2 sm:mb-3">
+            <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-[#C7FF32]">
+              {locale === "ru" ? "АВТОРСКИЙ ТУРИЗМ" : locale === "hy" ? "ՀԵՂԻՆԱԿԱՅԻՆ ՏՈՒՐԵՐ" : "SIGNATURE ESCAPES"}
+            </span>
+            <span className="sm:hidden rounded-full bg-black/60 backdrop-blur-md px-2.5 py-0.5 text-[10px] font-bold text-white/90 border border-white/20">
+              {locale === "ru" ? "Горы и озера" : "Mountains & Lakes"}
+            </span>
+            <span className="sm:hidden rounded-full bg-[#586EFF] px-2.5 py-0.5 text-[10px] font-black text-white">
+              {locale === "ru" ? "Армения" : "Armenia"}
+            </span>
+          </div>
+          <h3 className="font-sans text-xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
             {locale === "ru"
               ? "Тёплое солнце, горы и легендарный сервис"
               : locale === "hy"
