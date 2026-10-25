@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
 import type { Review } from "@/lib/reviews";
@@ -23,12 +23,6 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const isDraggingRef = useRef(false);
-  const startXRef = useRef(0);
-  const scrollLeftRef = useRef(0);
-
   // Sync latest approved reviews from API
   useEffect(() => {
     let active = true;
@@ -71,80 +65,14 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       };
     }
   }, [modalOpen]);
-
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const scrollToIndex = (index: number) => {
-    if (!sliderRef.current) return;
-    const clamped = Math.max(0, Math.min(index, reviews.length - 1));
-    const slideWidth = sliderRef.current.clientWidth;
-    sliderRef.current.scrollTo({
-      left: clamped * slideWidth,
-      behavior: "smooth",
-    });
-    setActiveIndex(clamped);
-  };
-
   const scrollPrev = () => {
-    scrollToIndex(activeIndex - 1);
+    setActiveIndex((prev) => Math.max(0, prev - 1));
   };
 
   const scrollNext = () => {
-    scrollToIndex(activeIndex + 1);
-  };
-
-  const handleScroll = () => {
-    if (!sliderRef.current) return;
-    const slideWidth = sliderRef.current.clientWidth;
-    if (slideWidth > 0) {
-      const newIndex = Math.round(sliderRef.current.scrollLeft / slideWidth);
-      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < reviews.length) {
-        setActiveIndex(newIndex);
-      }
-    }
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (sliderRef.current) {
-        const slideWidth = sliderRef.current.clientWidth;
-        sliderRef.current.scrollTo({
-          left: activeIndex * slideWidth,
-          behavior: "auto",
-        });
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [activeIndex]);
-
-  // Mouse drag scrolling handlers for desktop
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!sliderRef.current) return;
-    isDraggingRef.current = true;
-    startXRef.current = e.pageX - sliderRef.current.offsetLeft;
-    scrollLeftRef.current = sliderRef.current.scrollLeft;
-  };
-
-  const handleMouseLeaveOrUp = () => {
-    if (isDraggingRef.current && sliderRef.current) {
-      isDraggingRef.current = false;
-      const slideWidth = sliderRef.current.clientWidth;
-      if (slideWidth > 0) {
-        const target = Math.round(sliderRef.current.scrollLeft / slideWidth);
-        scrollToIndex(target);
-      }
-    } else {
-      isDraggingRef.current = false;
-    }
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDraggingRef.current || !sliderRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startXRef.current) * 1.3;
-    sliderRef.current.scrollLeft = scrollLeftRef.current - walk;
+    setActiveIndex((prev) => Math.min(reviews.length - 1, prev + 1));
   };
 
   // Form state
@@ -187,7 +115,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       successMsg:
         "Ваш отзыв успешно отправлен на проверку и появится на сайте после одобрения администратором. Благодарим за доверие к AMARAS!",
       close: "Понятно",
-      swipeHint: "← Листайте отзывы вправо и влево →",
+      swipeHint: "Переключайте отзывы кнопками ← →",
       reviewsCount: "отзывов гостей",
     },
     hy: {
@@ -221,7 +149,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       successMsg:
         "Ձեր կարծիքն ուղարկվել է ստուգման և կհրապարակվի ադմինիստրատորի հաստատումից հետո։ Շնորհակալություն AMARAS-ին վստահելու համար:",
       close: "Փակել",
-      swipeHint: "← Թերթեք կարծիքները աջ և ձախ →",
+      swipeHint: "Թերթեք կարծիքները կոճակներով ← →",
       reviewsCount: "հյուրերի կարծիք",
     },
     en: {
@@ -255,7 +183,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       successMsg:
         "Your review has been submitted for moderation and will appear on the site after admin approval. Thank you for choosing AMARAS!",
       close: "Got it",
-      swipeHint: "← Swipe reviews left and right →",
+      swipeHint: "Navigate reviews with buttons ← →",
       reviewsCount: "traveler reviews",
     },
   }[locale];
@@ -408,23 +336,19 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
             </svg>
           </button>
 
-          {/* Slider track (1 review per view, full width) */}
-          <div
-            ref={sliderRef}
-            onScroll={handleScroll}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeaveOrUp}
-            onMouseUp={handleMouseLeaveOrUp}
-            onMouseMove={handleMouseMove}
-            className="flex w-full overflow-x-auto snap-x snap-mandatory scroll-smooth overscroll-x-contain touch-pan-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden items-stretch cursor-grab active:cursor-grabbing select-none py-2"
-          >
-            {reviews.map((rev, idx) => {
-              const reviewContent = getReviewText(rev.text, locale);
-              return (
-                <div
-                  key={rev.id || idx}
-                  className="w-full shrink-0 snap-center snap-always px-0.5 sm:px-1"
-                >
+          {/* Slider track (1 review per view, full width, only button navigation) */}
+          <div className="w-full overflow-hidden select-none py-2 touch-pan-y">
+            <div
+              className="flex w-full transition-transform duration-500 ease-out items-stretch"
+              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+            >
+              {reviews.map((rev, idx) => {
+                const reviewContent = getReviewText(rev.text, locale);
+                return (
+                  <div
+                    key={rev.id || idx}
+                    className="w-full shrink-0 px-0.5 sm:px-1"
+                  >
                   <div className="relative overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] lg:rounded-[2.5rem] border border-white/10 bg-gradient-to-b from-[#252424] via-[#201F1F] to-[#1A1919] p-5 sm:p-8 lg:p-12 shadow-2xl transition-all duration-300 min-h-[300px] sm:min-h-[360px] flex flex-col justify-between">
                     {/* Ambient glow accent in background */}
                     <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#C7FF32]/5 blur-3xl pointer-events-none" />
@@ -576,6 +500,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                 </div>
               );
             })}
+            </div>
           </div>
         </div>
 
