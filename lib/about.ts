@@ -23,8 +23,9 @@ export type AboutSection = {
   };
   heartfelt: {
     title: Record<Locale, string>;
-    quote: Record<Locale, string>;
+    paragraphs: Record<Locale, string[]>;
     signature: Record<Locale, string>;
+    motto: Record<Locale, string>;
   };
 };
 
@@ -219,15 +220,35 @@ export const aboutData: AboutSection = {
       hy: "Եվ մի փոքր էլ սրտից…",
       en: "A Word from the Heart…",
     },
-    quote: {
-      ru: "Мы не можем обещать, что во время путешествия всегда будет солнечно, что дороги будут свободными или что всё сложится идеально. Но мы обещаем сделать всё возможное, чтобы ваше путешествие стало особенным.",
-      hy: "Մենք չենք կարող խոստանալ, որ ճամփորդության ընթացքում միշտ արև կլինի, ճանապարհները կլինեն ազատ կամ ամեն ինչ կդասավորվի կատարյալ։ Բայց մենք խոստանում ենք անել ամեն ինչ, որպեսզի ձեր ճամփորդությունը դառնա առանձնահատուկ։",
-      en: "We cannot promise that every travel day will be bathed in sunshine, that the mountain roads will always be clear, or that everything will unfold effortlessly. But we promise to do everything possible to make your journey extraordinary.",
+    paragraphs: {
+      ru: [
+        "Мы не можем обещать, что во время путешествия всегда будет солнечно, что дороги будут свободными или что всё сложится идеально.",
+        "Но мы можем обещать, что будем относиться к вашему путешествию с той же ответственностью, с какой хотели бы, чтобы другие относились к нашему собственному отдыху.",
+        "Нам хочется, чтобы после поездки вы вспоминали не только горы, монастыри и красивые фотографии, но и людей, с которыми провели этот день.",
+        "И если, возвращаясь домой, вы увезёте с собой хотя бы частичку нашей любви к Армении, значит, мы не зря делаем свою работу.",
+      ],
+      hy: [
+        "Մենք չենք կարող խոստանալ, որ ճամփորդության ընթացքում միշտ արև կլինի, ճանապարհները կլինեն ազատ կամ ամեն ինչ կդասավորվի կատարյալ։",
+        "Բայց մենք կարող ենք խոստանալ, որ ձեր ճամփորդությանը կվերաբերվենք նույն պատասխանատվությամբ, ինչպես կցանկանայինք, որ ուրիշները վերաբերվեին մեր սեփական հանգստին։",
+        "Մենք ցանկանում ենք, որ ուղևորությունից հետո դուք հիշեք ոչ միայն սարերը, վանքերն ու գեղեցիկ լուսանկարները, այլև այն մարդկանց, ում հետ անցկացրել եք այդ օրը։",
+        "Եվ եթե, տուն վերադառնալով, ձեզ հետ տանեք մեր՝ Հայաստանի հանդեպ ունեցած սիրո գոնե մի մասնիկը, ուրեմն մենք իզուր չենք անում մեր գործը։",
+      ],
+      en: [
+        "We cannot promise that every travel day will be bathed in sunshine, that the mountain roads will always be clear, or that everything will unfold effortlessly.",
+        "But we can promise to treat your journey with the exact same care and responsibility we would hope for on our own holidays.",
+        "We want you to look back on your trip remembering not just the majestic mountains, ancient monasteries, and beautiful photos, but the people who shared this day with you.",
+        "And if, when returning home, you take with you even a small part of our love for Armenia, then our work has truly been worthwhile.",
+      ],
     },
     signature: {
-      ru: "Команда AMARAS TOUR",
-      hy: "AMARAS TOUR-ի թիմ",
-      en: "The AMARAS TOUR Team",
+      ru: "Amaras Tour",
+      hy: "Amaras Tour",
+      en: "Amaras Tour",
+    },
+    motto: {
+      ru: "Приезжайте как гости — уезжайте как друзья.",
+      hy: "Եկեք որպես հյուր — հեռացեք որպես ընկեր։",
+      en: "Come as guests — leave as friends.",
     },
   },
 };

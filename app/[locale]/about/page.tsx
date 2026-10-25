@@ -232,20 +232,33 @@ export default async function AboutPage({ params }: Props) {
 
         {/* Heartfelt Note Card ("И ещё немного от души…") */}
         <FadeIn delay={0.15}>
-          <div className="relative overflow-hidden rounded-3xl border border-[#C7FF32]/35 bg-gradient-to-r from-[#242323] via-[#312F2F] to-[#242323] p-8 sm:p-12 shadow-2xl">
-            <div className="absolute top-0 right-0 h-64 w-64 rounded-full bg-[#C7FF32]/10 blur-3xl pointer-events-none" />
+          <div className="relative overflow-hidden rounded-3xl border border-[#C7FF32]/35 bg-gradient-to-br from-[#242323] via-[#312F2F] to-[#1F1E1E] p-8 sm:p-14 shadow-2xl">
+            <div className="absolute top-0 right-0 h-80 w-80 rounded-full bg-[#C7FF32]/10 blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-[#586EFF]/10 blur-3xl pointer-events-none" />
+
             <div className="relative z-10 max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#C7FF32]/30 bg-[#C7FF32]/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#C7FF32]">
                 {aboutData.heartfelt.title[locale]}
               </div>
-              <blockquote className="mt-6 text-xl font-medium leading-relaxed text-[#FCFCF7] sm:text-2xl italic">
-                «{aboutData.heartfelt.quote[locale]}»
-              </blockquote>
-              <div className="mt-6 flex items-center gap-3">
-                <div className="h-0.5 w-10 bg-[#C7FF32]" />
-                <span className="text-sm font-bold uppercase tracking-wider text-[#C7FF32]">
-                  {aboutData.heartfelt.signature[locale]}
-                </span>
+
+              <div className="mt-6 space-y-4 text-base sm:text-xl font-medium leading-relaxed text-[#FCFCF7]/95">
+                {aboutData.heartfelt.paragraphs[locale].map((p, idx) => (
+                  <p key={idx} className="leading-relaxed">
+                    {p}
+                  </p>
+                ))}
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-0.5 w-8 bg-[#C7FF32]" />
+                  <span className="text-base sm:text-lg font-black uppercase tracking-wider text-white">
+                    {aboutData.heartfelt.signature[locale]}
+                  </span>
+                </div>
+                <div className="text-sm sm:text-base font-serif italic text-[#C7FF32] font-semibold">
+                  «{aboutData.heartfelt.motto[locale]}»
+                </div>
               </div>
             </div>
           </div>
