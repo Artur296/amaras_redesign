@@ -175,7 +175,7 @@ export default function PortalLoginPage() {
                 value={loginUsername}
                 onChange={(e) => setLoginUsername(e.target.value)}
                 placeholder="Логин сотрудника или admin"
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none focus:ring-1 focus:ring-[#C7FF32]"
+                className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-base sm:text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none focus:ring-1 focus:ring-[#C7FF32]"
                 autoComplete="username"
               />
             </div>
@@ -190,7 +190,7 @@ export default function PortalLoginPage() {
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none focus:ring-1 focus:ring-[#C7FF32]"
+                className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-base sm:text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none focus:ring-1 focus:ring-[#C7FF32]"
                 autoComplete="current-password"
               />
             </div>
@@ -244,7 +244,7 @@ export default function PortalLoginPage() {
                 value={regFullName}
                 onChange={(e) => setRegFullName(e.target.value)}
                 placeholder="Например: Армен Саргсян"
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-base sm:text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
               />
             </div>
 
@@ -258,7 +258,7 @@ export default function PortalLoginPage() {
                 value={regUsername}
                 onChange={(e) => setRegUsername(e.target.value.toLowerCase())}
                 placeholder="Только латинские буквы, например: armen"
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-base sm:text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
               />
             </div>
 
@@ -271,7 +271,7 @@ export default function PortalLoginPage() {
                 value={regPhone}
                 onChange={(e) => setRegPhone(e.target.value)}
                 placeholder="+374 ... или @username"
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-base sm:text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
               />
             </div>
 
@@ -285,7 +285,7 @@ export default function PortalLoginPage() {
                 value={regPassword}
                 onChange={(e) => setRegPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-base sm:text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
               />
             </div>
 
@@ -299,7 +299,7 @@ export default function PortalLoginPage() {
                 value={regPasswordConfirm}
                 onChange={(e) => setRegPasswordConfirm(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-base sm:text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
               />
             </div>
 
