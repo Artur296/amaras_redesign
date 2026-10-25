@@ -15,6 +15,7 @@ import HeritageBanner from "@/components/HeritageBanner";
 import AdvantagesGrid from "@/components/AdvantagesGrid";
 import NoFinePrintCards from "@/components/NoFinePrintCards";
 import AboutCompanySection from "@/components/AboutCompanySection";
+import FleetSection from "@/components/FleetSection";
 
 import { faqs } from "@/lib/faqs";
 import { CalendarIcon, RouteIcon, ShieldIcon, StarIcon } from "@/components/icons";
@@ -30,7 +31,7 @@ export const revalidate = 300;
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   if (!locales.includes(locale as Locale)) notFound();
-  const { dicts, categories: allCategories, site, hero, reviews, offers, guides, tours } = await getContent();
+  const { dicts, categories: allCategories, site, hero, reviews, offers, guides, tours, fleet = [] } = await getContent();
 
   const categories = publicCategories(allCategories);
   const dict = dicts[locale];
@@ -205,7 +206,10 @@ export default async function HomePage({ params }: Props) {
       {/* 1.11 Stats & Trust Strip */}
       <HeroStats locale={locale} dict={dict} />
 
-      {/* 1.12 About Amaras Tour Armenia Section */}
+      {/* 1.12 Fleet Showcase Section */}
+      <FleetSection locale={locale} fleet={fleet} />
+
+      {/* 1.13 About Amaras Tour Armenia Section */}
       <AboutCompanySection locale={locale} />
 
       {/* 2. TRAVEL FORMATS (Landing Page Showcase) */}

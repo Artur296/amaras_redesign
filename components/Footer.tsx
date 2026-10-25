@@ -26,6 +26,7 @@ export default function Footer({
     { href: `/${locale}/tours`, label: dict.nav.tours },
     { href: `/${locale}/what-to-see`, label: locale === "ru" ? "Что посмотреть в Армении" : locale === "hy" ? "Ինչ տեսնել Հայաստանում" : "What to See in Armenia" },
     { href: `/${locale}/tour-packages`, label: dict.nav.packages },
+    { href: `/${locale}/fleet`, label: locale === "ru" ? "Автопарк" : locale === "hy" ? "Ավտոպարկ" : "Fleet" },
     { href: `/${locale}/guests`, label: dict.nav.guests },
     { href: `/${locale}/about`, label: dict.nav.about },
     { href: `/${locale}/contacts`, label: dict.nav.contacts },

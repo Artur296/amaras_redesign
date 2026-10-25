@@ -25,6 +25,7 @@ import type { SpecialOffer } from "@/lib/offers";
 import type { GuestMedia } from "@/lib/guests";
 import type { Guide } from "@/lib/guides";
 import type { Attraction, RegionCategory } from "@/lib/attractions";
+import { defaultVehicles, type Vehicle, type VehicleCategory } from "@/lib/fleet";
 
 const localeNames: Record<Locale, string> = {
   ru: "Русский",
@@ -49,9 +50,10 @@ const sectionNames: Record<ContentKey, string> = {
   guests: "Гости",
   guides: "Гиды",
   attractions: "Что посмотреть",
+  fleet: "Автопарк",
 };
 
-const TABS = ["Tours", "Packages", "Attractions", "Offers", "Guests", "Guides", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
+const TABS = ["Tours", "Packages", "Attractions", "Fleet", "Offers", "Guests", "Guides", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
 type Tab = (typeof TABS)[number];
 
 // The stored keys, read off the editing state. Tabs edit different
@@ -68,6 +70,7 @@ function keyValues(content: Content): Record<ContentKey, unknown> {
     guests: content.guests || [],
     guides: content.guides || [],
     attractions: content.attractions || [],
+    fleet: content.fleet || [],
   };
 }
 
@@ -238,6 +241,8 @@ export default function AdminPanel() {
                     ? "Гиды"
                     : t === "Attractions"
                     ? "Что посмотреть"
+                    : t === "Fleet"
+                    ? "Автопарк"
                     : t === "Contacts"
                     ? "Контакты & Реквизиты"
                     : t}
@@ -309,6 +314,13 @@ export default function AdminPanel() {
           <AttractionsTab
             attractions={content.attractions || []}
             onChange={(attractions) => setContent({ ...content, attractions })}
+            onSave={publish}
+          />
+        )}
+        {tab === "Fleet" && (
+          <FleetTab
+            fleet={content.fleet || []}
+            onChange={(fleet) => setContent({ ...content, fleet })}
             onSave={publish}
           />
         )}
@@ -4215,6 +4227,398 @@ function AttractionsTab({
       </div>
 
       <SaveBar onSave={onSave} label="Опубликовать изменения мест на сайте" />
+    </div>
+  );
+}
+
+/* ---------- Fleet / Vehicles Tab ---------- */
+
+const vehicleCategories: { id: VehicleCategory; label: string }[] = [
+  { id: "minivan", label: "Минивэн (Minivan)" },
+  { id: "vip", label: "VIP / Бизнес (VIP / Business)" },
+  { id: "suv", label: "Внедорожник 4x4 (Off-Road 4x4 SUV)" },
+  { id: "minibus", label: "Микроавтобус (Minibus)" },
+  { id: "sedan", label: "Седан (Sedan)" },
+];
+
+function FleetTab({
+  fleet,
+  onChange,
+  onSave,
+}: {
+  fleet: Vehicle[];
+  onChange: (fleet: Vehicle[]) => void;
+  onSave: () => void;
+}) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [loc, setLoc] = useState<Locale>("ru");
+  const [search, setSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
+
+  function update(index: number, patch: Partial<Vehicle>) {
+    const next = [...fleet];
+    next[index] = { ...next[index], ...patch };
+    onChange(next);
+  }
+
+  function move(index: number, dir: -1 | 1) {
+    const target = index + dir;
+    if (target < 0 || target >= fleet.length) return;
+    const next = [...fleet];
+    const [moved] = next.splice(index, 1);
+    next.splice(target, 0, moved);
+    onChange(next);
+    setOpenIndex(target);
+  }
+
+  function addVehicle() {
+    const newId = `vehicle-${Date.now()}`;
+    const newCar: Vehicle = {
+      id: newId,
+      name: "Новый автомобиль",
+      category: "minivan",
+      categoryName: {
+        ru: "Минивэн",
+        hy: "Մինիվեն",
+        en: "Minivan",
+      },
+      passengers: 6,
+      luggage: 5,
+      image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80",
+      images: [],
+      description: {
+        ru: "Описание автомобиля и его преимуществ для поездок.",
+        hy: "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        en: "Vehicle description and highlights for comfortable touring.",
+      },
+      features: {
+        ru: ["Кондиционер / Климат-контроль", "Wi-Fi на борту", "Питьевая вода"],
+        hy: ["Կլիմատ-կոնտրոլ", "Wi-Fi սրահում", "Խմելու ջուր"],
+        en: ["Air Conditioning / Climate Control", "Onboard Wi-Fi", "Bottled Water"],
+      },
+      order: fleet.length + 1,
+    };
+    onChange([...fleet, newCar]);
+    setOpenIndex(fleet.length);
+  }
+
+  const filteredFleet = fleet.filter((v) => {
+    const matchesSearch = !search || v.name.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = categoryFilter === "all" || v.category === categoryFilter;
+    return matchesSearch && matchesCategory;
+  });
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-black text-ink">Автопарк компании (Fleet)</h2>
+          <p className="mt-1 text-sm text-muted">
+            Управляйте автомобилями для туров и трансферов: фото, категории, вместимость и удобства.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={addVehicle}
+          className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-xs sm:text-sm font-bold text-white transition-colors hover:bg-primary-dark cursor-pointer shadow-sm"
+        >
+          + Добавить автомобиль
+        </button>
+      </div>
+
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-y border-black/10 py-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setCategoryFilter("all")}
+            className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors ${
+              categoryFilter === "all"
+                ? "bg-primary text-white"
+                : "bg-white text-muted hover:text-ink border border-black/10"
+            }`}
+          >
+            Все ({fleet.length})
+          </button>
+          {vehicleCategories.map((cat) => {
+            const count = fleet.filter((v) => v.category === cat.id).length;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setCategoryFilter(cat.id)}
+                className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors ${
+                  categoryFilter === cat.id
+                    ? "bg-primary text-white"
+                    : "bg-white text-muted hover:text-ink border border-black/10"
+                }`}
+              >
+                {cat.label.split(" (")[0]} ({count})
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <input
+            type="text"
+            placeholder="Поиск по названию..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="rounded-full border border-black/15 bg-white px-3.5 py-1.5 text-xs font-medium text-ink focus:border-primary focus:outline-none"
+          />
+          <div className="flex rounded-full border border-black/15 bg-white p-0.5">
+            {locales.map((l) => (
+              <button
+                key={l}
+                type="button"
+                onClick={() => setLoc(l)}
+                className={`rounded-full px-2.5 py-1 text-xs font-bold transition-colors ${
+                  loc === l ? "bg-primary text-white" : "text-muted hover:text-ink"
+                }`}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        {filteredFleet.length === 0 && (
+          <div className="rounded-2xl border border-dashed border-black/15 p-8 text-center text-sm text-muted">
+            Автомобили не найдены.
+          </div>
+        )}
+
+        {filteredFleet.map((vehicle) => {
+          const actualIndex = fleet.findIndex((v) => v.id === vehicle.id);
+          const isOpen = openIndex === actualIndex;
+
+          return (
+            <div
+              key={vehicle.id}
+              className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm transition-shadow hover:shadow-md"
+            >
+              <div
+                className="flex items-center justify-between gap-3 p-4 cursor-pointer hover:bg-black/[0.02]"
+                onClick={() => setOpenIndex(isOpen ? null : actualIndex)}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="relative h-12 w-16 shrink-0 overflow-hidden rounded-lg bg-black/5 border border-black/10">
+                    {vehicle.image ? (
+                      <Image
+                        src={vehicle.image}
+                        alt={vehicle.name}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-xs text-muted">
+                        🚗
+                      </div>
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-extrabold text-ink truncate text-sm sm:text-base">
+                        {vehicle.name}
+                      </span>
+                      <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-black text-primary uppercase tracking-wider">
+                        {vehicle.categoryName?.[loc] || vehicle.category}
+                      </span>
+                      <span className="text-xs text-muted">
+                        👥 {vehicle.passengers} мест • 🧳 {vehicle.luggage} чемоданов
+                      </span>
+                    </div>
+                    <p className="mt-0.5 text-xs text-muted truncate max-w-xl">
+                      {vehicle.description?.[loc]}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    type="button"
+                    aria-label="Вверх"
+                    disabled={actualIndex === 0}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      move(actualIndex, -1);
+                    }}
+                    className="p-1 text-xs text-muted hover:text-ink disabled:opacity-20 cursor-pointer"
+                  >
+                    ▲
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Вниз"
+                    disabled={actualIndex === fleet.length - 1}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      move(actualIndex, 1);
+                    }}
+                    className="p-1 text-xs text-muted hover:text-ink disabled:opacity-20 cursor-pointer"
+                  >
+                    ▼
+                  </button>
+                  <span className="text-xs text-muted ml-1">
+                    {isOpen ? "▲ Свернуть" : "▼ Редактировать"}
+                  </span>
+                </div>
+              </div>
+
+              {isOpen && (
+                <div className="border-t border-black/10 p-4 sm:p-6 space-y-5 bg-[#FBFBFA]">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <Field label="Название модели">
+                      <TextInput
+                        value={vehicle.name}
+                        onChange={(v) => update(actualIndex, { name: v })}
+                        placeholder="Например: Toyota Alphard Luxury"
+                      />
+                    </Field>
+
+                    <Field label="Категория">
+                      <select
+                        value={vehicle.category}
+                        onChange={(e) => {
+                          const catId = e.target.value as VehicleCategory;
+                          const found = vehicleCategories.find((c) => c.id === catId);
+                          const defaultTitle = found?.label.split(" (")[0] || catId;
+                          update(actualIndex, {
+                            category: catId,
+                            categoryName: {
+                              ...vehicle.categoryName,
+                              [loc]: vehicle.categoryName?.[loc] || defaultTitle,
+                            },
+                          });
+                        }}
+                        className="w-full rounded-xl border border-black/15 bg-white px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
+                      >
+                        {vehicleCategories.map((c) => (
+                          <option key={c.id} value={c.id}>
+                            {c.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+
+                    <Field label={`Название категории (${localeNames[loc]})`}>
+                      <TextInput
+                        value={vehicle.categoryName?.[loc] ?? ""}
+                        onChange={(v) =>
+                          update(actualIndex, {
+                            categoryName: {
+                              ...vehicle.categoryName,
+                              [loc]: v,
+                            },
+                          })
+                        }
+                        placeholder="Например: Минивэн Люкс"
+                      />
+                    </Field>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <Field label="Количество мест для пассажиров">
+                      <input
+                        type="number"
+                        min={1}
+                        max={60}
+                        value={vehicle.passengers}
+                        onChange={(e) =>
+                          update(actualIndex, {
+                            passengers: parseInt(e.target.value, 10) || 1,
+                          })
+                        }
+                        className="w-full rounded-xl border border-black/15 bg-white px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
+                      />
+                    </Field>
+
+                    <Field label="Вместимость багажа (чемоданы)">
+                      <input
+                        type="number"
+                        min={0}
+                        max={60}
+                        value={vehicle.luggage}
+                        onChange={(e) =>
+                          update(actualIndex, {
+                            luggage: parseInt(e.target.value, 10) || 0,
+                          })
+                        }
+                        className="w-full rounded-xl border border-black/15 bg-white px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
+                      />
+                    </Field>
+
+                    <Field label="Идентификатор (id, латиница)">
+                      <TextInput
+                        value={vehicle.id}
+                        onChange={(v) =>
+                          update(actualIndex, {
+                            id: v.toLowerCase().replace(/[^a-z0-9-]+/g, "-"),
+                          })
+                        }
+                      />
+                    </Field>
+                  </div>
+
+                  <Field label="Основная фотография автомобиля">
+                    <ImagePicker
+                      value={vehicle.image}
+                      onChange={(url) => update(actualIndex, { image: url })}
+                    />
+                  </Field>
+
+                  <Field label={`Описание автомобиля (${localeNames[loc]})`}>
+                    <AutoTextarea
+                      value={vehicle.description?.[loc] ?? ""}
+                      onChange={(v) =>
+                        update(actualIndex, {
+                          description: {
+                            ...vehicle.description,
+                            [loc]: v,
+                          },
+                        })
+                      }
+                      placeholder="Подробное описание удобства, микроклимата и ходовых качеств..."
+                    />
+                  </Field>
+
+                  <Field
+                    label={`Оснащение и удобства (${localeNames[loc]}) — по одному пункту на строку`}
+                  >
+                    <AutoTextarea
+                      value={(vehicle.features?.[loc] ?? []).join("\n")}
+                      onChange={(v) =>
+                        update(actualIndex, {
+                          features: {
+                            ...vehicle.features,
+                            [loc]: v
+                              .split("\n")
+                              .map((s) => s.trim())
+                              .filter(Boolean),
+                          },
+                        })
+                      }
+                      placeholder="Климат-контроль&#10;Wi-Fi на борту&#10;USB-порты&#10;Бутилированная вода"
+                    />
+                  </Field>
+
+                  <div className="flex justify-end pt-2 border-t border-black/10">
+                    <DeleteButton
+                      label="Удалить автомобиль"
+                      onDelete={() => onChange(fleet.filter((_, j) => j !== actualIndex))}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <SaveBar onSave={onSave} label="Опубликовать изменения автопарка на сайте" />
     </div>
   );
 }

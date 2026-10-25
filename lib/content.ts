@@ -16,11 +16,13 @@ import offersOverride from "@/content/offers.json";
 import guestsOverride from "@/content/guests.json";
 import guidesOverride from "@/content/guides.json";
 import attractionsOverride from "@/content/attractions.json";
+import fleetOverride from "@/content/fleet.json";
 import type { Review } from "@/lib/reviews";
 import { defaultOffers, type SpecialOffer } from "@/lib/offers";
 import { defaultGuests, type GuestMedia } from "@/lib/guests";
 import { defaultGuides, type Guide } from "@/lib/guides";
 import { defaultAttractions, type Attraction } from "@/lib/attractions";
+import { defaultVehicles, type Vehicle } from "@/lib/fleet";
 import { githubConfig } from "@/lib/github";
 
 export type Content = {
@@ -34,6 +36,7 @@ export type Content = {
   guests: GuestMedia[];
   guides: Guide[];
   attractions: Attraction[];
+  fleet: Vehicle[];
 };
 
 export const CONTENT_KEYS = [
@@ -47,6 +50,7 @@ export const CONTENT_KEYS = [
   "guests",
   "guides",
   "attractions",
+  "fleet",
 ] as const;
 export type ContentKey = (typeof CONTENT_KEYS)[number];
 
@@ -68,6 +72,7 @@ const defaults: Content = {
   guests: (guestsOverride as GuestMedia[]) || defaultGuests,
   guides: (guidesOverride as Guide[]) || defaultGuides,
   attractions: (attractionsOverride as unknown as Attraction[]) || defaultAttractions,
+  fleet: (fleetOverride as Vehicle[]) || defaultVehicles,
 };
 
 // Overlay stored values on defaults so keys added in future code versions
@@ -138,6 +143,9 @@ function build(overrides: Record<ContentKey, unknown>): Content {
     attractions: Array.isArray(overrides.attractions)
       ? (overrides.attractions as Attraction[])
       : defaults.attractions,
+    fleet: Array.isArray(overrides.fleet)
+      ? (overrides.fleet as Vehicle[])
+      : defaults.fleet,
   };
 }
 
@@ -326,6 +334,7 @@ export function currentOverrides(): Record<ContentKey, unknown> {
     guests: readJsonFile("guests", "guests.json", guestsOverride),
     guides: readJsonFile("guides", "guides.json", guidesOverride),
     attractions: readJsonFile("attractions", "attractions.json", attractionsOverride),
+    fleet: readJsonFile("fleet", "fleet.json", fleetOverride),
   };
 }
 
