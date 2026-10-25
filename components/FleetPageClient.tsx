@@ -3,48 +3,41 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Locale } from "@/lib/i18n";
-import type { Vehicle, VehicleCategory } from "@/lib/fleet";
+import type { Vehicle, FleetCategory } from "@/lib/fleet";
+import { defaultFleetCategories } from "@/lib/fleet";
 import type { SiteInfo } from "@/lib/site";
 import FadeIn from "@/components/FadeIn";
 import BookingModal from "@/components/BookingModal";
 import { WhatsAppIcon, ShieldIcon, StarIcon, RouteIcon } from "@/components/icons";
+import { useMemo } from "react";
 
 type Props = {
   locale: Locale;
   fleet: Vehicle[];
+  categories?: FleetCategory[];
   site: SiteInfo;
 };
 
-export default function FleetPageClient({ locale, fleet = [], site }: Props) {
+export default function FleetPageClient({ locale, fleet = [], categories, site }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [bookingVehicle, setBookingVehicle] = useState<Vehicle | null>(null);
 
-  const categories: { id: string; label: Record<Locale, string> }[] = [
-    {
-      id: "all",
-      label: { ru: "Все автомобили", hy: "Բոլոր մեքենաները", en: "All Vehicles" },
-    },
-    {
-      id: "minivan",
-      label: { ru: "Минивэны", hy: "Մինիվեններ", en: "Minivans" },
-    },
-    {
-      id: "vip",
-      label: { ru: "VIP & Бизнес", hy: "VIP և Բիզնես", en: "VIP & Business" },
-    },
-    {
-      id: "suv",
-      label: { ru: "Внедорожники 4x4", hy: "Ամենագնացներ 4x4", en: "4x4 SUVs" },
-    },
-    {
-      id: "minibus",
-      label: { ru: "Микроавтобусы", hy: "Միկրոավտոբուսներ", en: "Minibuses" },
-    },
-    {
-      id: "sedan",
-      label: { ru: "Седаны Комфорт", hy: "Սեդաններ", en: "Comfort Sedans" },
-    },
-  ];
+  const categoryTabs = useMemo(() => {
+    const list: { id: string; label: Record<Locale, string> }[] = [
+      {
+        id: "all",
+        label: { ru: "Все автомобили", hy: "Բոլոր մեքենաները", en: "All Vehicles" },
+      },
+    ];
+    const source = categories && categories.length > 0 ? categories : defaultFleetCategories;
+    source.forEach((cat) => {
+      list.push({
+        id: cat.id,
+        label: cat.name,
+      });
+    });
+    return list;
+  }, [categories]);
 
   const filtered = selectedCategory === "all"
     ? fleet
@@ -115,7 +108,7 @@ export default function FleetPageClient({ locale, fleet = [], site }: Props) {
 
       {/* Filter Tabs */}
       <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-none mb-8">
-        {categories.map((cat) => (
+        {categoryTabs.map((cat) => (
           <button
             key={cat.id}
             type="button"

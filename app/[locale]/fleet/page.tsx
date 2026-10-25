@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function FleetPage({ params }: Props) {
   const { locale } = await params;
-  const { dicts, site, fleet = [] } = await getContent();
+  const { dicts, site, fleet = [], fleetCategories = [] } = await getContent();
   const dict = dicts[locale];
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -80,7 +80,7 @@ export default async function FleetPage({ params }: Props) {
         </div>
       </div>
 
-      <FleetPageClient locale={locale} fleet={fleet} site={site} />
+      <FleetPageClient locale={locale} fleet={fleet} categories={fleetCategories} site={site} />
     </div>
   );
 }

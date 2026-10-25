@@ -1,6 +1,60 @@
 import type { Locale } from "@/lib/i18n";
 
-export type VehicleCategory = "minivan" | "sedan" | "suv" | "minibus" | "vip";
+export type VehicleCategory = string;
+
+export type FleetCategory = {
+  id: string;
+  name: Record<Locale, string>;
+  order?: number;
+};
+
+export const defaultFleetCategories: FleetCategory[] = [
+  {
+    id: "minivan",
+    name: {
+      ru: "Минивэн",
+      hy: "Մինիվեն",
+      en: "Minivan",
+    },
+    order: 1,
+  },
+  {
+    id: "vip",
+    name: {
+      ru: "VIP / Бизнес",
+      hy: "VIP / Բիզնես",
+      en: "VIP / Business",
+    },
+    order: 2,
+  },
+  {
+    id: "suv",
+    name: {
+      ru: "Внедорожник 4x4",
+      hy: "Ամենագնաց 4x4",
+      en: "Off-Road 4x4 SUV",
+    },
+    order: 3,
+  },
+  {
+    id: "minibus",
+    name: {
+      ru: "Микроавтобус",
+      hy: "Միկրոավտոբուս",
+      en: "Minibus",
+    },
+    order: 4,
+  },
+  {
+    id: "sedan",
+    name: {
+      ru: "Седан",
+      hy: "Սեդան",
+      en: "Sedan",
+    },
+    order: 5,
+  },
+];
 
 export type Vehicle = {
   id: string;

@@ -25,7 +25,7 @@ import type { SpecialOffer } from "@/lib/offers";
 import type { GuestMedia } from "@/lib/guests";
 import type { Guide } from "@/lib/guides";
 import type { Attraction, RegionCategory } from "@/lib/attractions";
-import { defaultVehicles, type Vehicle, type VehicleCategory } from "@/lib/fleet";
+import { defaultVehicles, defaultFleetCategories, type Vehicle, type VehicleCategory, type FleetCategory } from "@/lib/fleet";
 
 const localeNames: Record<Locale, string> = {
   ru: "Русский",
@@ -51,6 +51,7 @@ const sectionNames: Record<ContentKey, string> = {
   guides: "Гиды",
   attractions: "Что посмотреть",
   fleet: "Автопарк",
+  fleet_categories: "Категории автопарка",
 };
 
 const TABS = ["Tours", "Packages", "Attractions", "Fleet", "Offers", "Guests", "Guides", "Images", "Categories", "Reviews", "Texts", "Contacts", "Password"] as const;
@@ -71,6 +72,7 @@ function keyValues(content: Content): Record<ContentKey, unknown> {
     guides: content.guides || [],
     attractions: content.attractions || [],
     fleet: content.fleet || [],
+    fleet_categories: content.fleetCategories || [],
   };
 }
 
@@ -320,7 +322,9 @@ export default function AdminPanel() {
         {tab === "Fleet" && (
           <FleetTab
             fleet={content.fleet || []}
+            categories={content.fleetCategories || []}
             onChange={(fleet) => setContent({ ...content, fleet })}
+            onCategoriesChange={(fleetCategories) => setContent({ ...content, fleetCategories })}
             onSave={publish}
           />
         )}
@@ -4233,27 +4237,33 @@ function AttractionsTab({
 
 /* ---------- Fleet / Vehicles Tab ---------- */
 
-const vehicleCategories: { id: VehicleCategory; label: string }[] = [
-  { id: "minivan", label: "Минивэн (Minivan)" },
-  { id: "vip", label: "VIP / Бизнес (VIP / Business)" },
-  { id: "suv", label: "Внедорожник 4x4 (Off-Road 4x4 SUV)" },
-  { id: "minibus", label: "Микроавтобус (Minibus)" },
-  { id: "sedan", label: "Седан (Sedan)" },
-];
-
 function FleetTab({
   fleet,
+  categories,
   onChange,
+  onCategoriesChange,
   onSave,
 }: {
   fleet: Vehicle[];
+  categories?: FleetCategory[];
   onChange: (fleet: Vehicle[]) => void;
+  onCategoriesChange?: (categories: FleetCategory[]) => void;
   onSave: () => void;
 }) {
+  const activeCategories: FleetCategory[] =
+    categories && categories.length > 0 ? categories : defaultFleetCategories;
+
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [loc, setLoc] = useState<Locale>("ru");
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [showCategoryManager, setShowCategoryManager] = useState(false);
+
+  // New category form state
+  const [newCatId, setNewCatId] = useState("");
+  const [newCatRu, setNewCatRu] = useState("");
+  const [newCatHy, setNewCatHy] = useState("");
+  const [newCatEn, setNewCatEn] = useState("");
 
   function update(index: number, patch: Partial<Vehicle>) {
     const next = [...fleet];
@@ -4273,17 +4283,18 @@ function FleetTab({
 
   function addVehicle() {
     const newId = `vehicle-${Date.now()}`;
+    const defaultCat = activeCategories[0] || { id: "minivan", name: { ru: "Минивэн", hy: "Մինիվեն", en: "Minivan" } };
     const newCar: Vehicle = {
       id: newId,
       name: "Новый автомобиль",
-      category: "minivan",
+      category: defaultCat.id,
       categoryName: {
-        ru: "Минивэн",
-        hy: "Մինիվեն",
-        en: "Minivan",
+        ru: defaultCat.name.ru || "Автомобиль",
+        hy: defaultCat.name.hy || "Ավտոմեքենա",
+        en: defaultCat.name.en || "Vehicle",
       },
-      passengers: 6,
-      luggage: 5,
+      passengers: 4,
+      luggage: 4,
       image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80",
       images: [],
       description: {
@@ -4302,6 +4313,79 @@ function FleetTab({
     setOpenIndex(fleet.length);
   }
 
+  function addCategory(e?: React.FormEvent) {
+    if (e) e.preventDefault();
+    const id = newCatId.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "");
+    const ru = newCatRu.trim();
+    if (!id) {
+      alert("Укажите идентификатор категории (ID латиницей, например: coupe, retro, van)");
+      return;
+    }
+    if (!ru) {
+      alert("Укажите название категории на русском языке");
+      return;
+    }
+    if (activeCategories.some((c) => c.id === id)) {
+      alert(`Категория с ID "${id}" уже существует!`);
+      return;
+    }
+    const newCat: FleetCategory = {
+      id,
+      name: {
+        ru,
+        hy: newCatHy.trim() || ru,
+        en: newCatEn.trim() || ru,
+      },
+      order: activeCategories.length + 1,
+    };
+    const next = [...activeCategories, newCat];
+    if (onCategoriesChange) {
+      onCategoriesChange(next);
+    }
+    setNewCatId("");
+    setNewCatRu("");
+    setNewCatHy("");
+    setNewCatEn("");
+  }
+
+  function updateCategory(catId: string, names: Partial<Record<Locale, string>>) {
+    const next = activeCategories.map((c) => {
+      if (c.id === catId) {
+        return {
+          ...c,
+          name: {
+            ...c.name,
+            ...names,
+          },
+        };
+      }
+      return c;
+    });
+    if (onCategoriesChange) {
+      onCategoriesChange(next);
+    }
+  }
+
+  function deleteCategory(catId: string, catName: string, carCount: number) {
+    if (activeCategories.length <= 1) {
+      alert("Нельзя удалить последнюю категорию!");
+      return;
+    }
+    const msg =
+      carCount > 0
+        ? `В категории «${catName}» есть ${carCount} автомобилей. Если вы удалите категорию, эти автомобили будут отвязаны от неё. Продолжить удаление?`
+        : `Удалить категорию «${catName}»?`;
+    if (!window.confirm(msg)) return;
+
+    const next = activeCategories.filter((c) => c.id !== catId);
+    if (onCategoriesChange) {
+      onCategoriesChange(next);
+    }
+    if (categoryFilter === catId) {
+      setCategoryFilter("all");
+    }
+  }
+
   const filteredFleet = fleet.filter((v) => {
     const matchesSearch = !search || v.name.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = categoryFilter === "all" || v.category === categoryFilter;
@@ -4317,21 +4401,195 @@ function FleetTab({
             Управляйте автомобилями для туров и трансферов: фото, категории, вместимость и удобства.
           </p>
         </div>
-        <button
-          type="button"
-          onClick={addVehicle}
-          className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-xs sm:text-sm font-bold text-white transition-colors hover:bg-primary-dark cursor-pointer shadow-sm"
-        >
-          + Добавить автомобиль
-        </button>
+        <div className="flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={() => setShowCategoryManager(!showCategoryManager)}
+            className={`shrink-0 rounded-full border px-4 py-2.5 text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-sm flex items-center gap-1.5 ${
+              showCategoryManager
+                ? "bg-primary text-white border-primary"
+                : "bg-white text-ink border-black/15 hover:border-primary hover:text-primary"
+            }`}
+          >
+            <span>⚙️ Категории ({activeCategories.length})</span>
+            <span className="text-xs">{showCategoryManager ? "▲" : "▼"}</span>
+          </button>
+          <button
+            type="button"
+            onClick={addVehicle}
+            className="shrink-0 rounded-full bg-primary px-5 py-2.5 text-xs sm:text-sm font-bold text-white transition-colors hover:bg-primary-dark cursor-pointer shadow-sm"
+          >
+            + Добавить автомобиль
+          </button>
+        </div>
       </div>
+
+      {/* Category Manager Drawer Area */}
+      {showCategoryManager && (
+        <div className="rounded-2xl border-2 border-primary/30 bg-primary/[0.03] p-5 sm:p-6 space-y-5 animate-fade-in">
+          <div className="flex items-center justify-between border-b border-black/10 pb-3">
+            <div>
+              <h3 className="text-base font-bold text-ink flex items-center gap-2">
+                <span>⚙️ Управление категориями автомобилей</span>
+                <span className="text-xs text-primary font-normal">
+                  ({activeCategories.length} категорий)
+                </span>
+              </h3>
+              <p className="text-xs text-muted">
+                Добавляйте новые категории машин, меняйте названия на трёх языках или удаляйте ненужные.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowCategoryManager(false)}
+              className="text-xs text-muted hover:text-ink font-bold px-2.5 py-1 rounded-lg hover:bg-black/5 transition-colors cursor-pointer"
+            >
+              Закрыть ✕
+            </button>
+          </div>
+
+          {/* List of existing categories */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {activeCategories.map((cat) => {
+              const carCount = fleet.filter((v) => v.category === cat.id).length;
+              return (
+                <div
+                  key={cat.id}
+                  className="rounded-xl border border-black/10 bg-white p-3.5 shadow-sm space-y-2.5"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="rounded bg-black/5 px-2 py-0.5 font-mono text-[11px] font-bold text-muted">
+                      ID: {cat.id}
+                    </span>
+                    <span className="text-[11px] font-semibold text-primary">
+                      {carCount} {carCount === 1 ? "автомобиль" : "авто"}
+                    </span>
+                  </div>
+
+                  <div className="space-y-1.5 text-xs">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-muted">RU:</span>
+                      <input
+                        type="text"
+                        value={cat.name.ru || ""}
+                        onChange={(e) => updateCategory(cat.id, { ru: e.target.value })}
+                        className="w-full mt-0.5 rounded-lg border border-black/15 px-2.5 py-1 text-xs text-ink focus:border-primary focus:outline-none"
+                        placeholder="Название RU"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-muted">HY:</span>
+                      <input
+                        type="text"
+                        value={cat.name.hy || ""}
+                        onChange={(e) => updateCategory(cat.id, { hy: e.target.value })}
+                        className="w-full mt-0.5 rounded-lg border border-black/15 px-2.5 py-1 text-xs text-ink focus:border-primary focus:outline-none"
+                        placeholder="Название HY"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-muted">EN:</span>
+                      <input
+                        type="text"
+                        value={cat.name.en || ""}
+                        onChange={(e) => updateCategory(cat.id, { en: e.target.value })}
+                        className="w-full mt-0.5 rounded-lg border border-black/15 px-2.5 py-1 text-xs text-ink focus:border-primary focus:outline-none"
+                        placeholder="Название EN"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="pt-1 flex justify-end">
+                    <button
+                      type="button"
+                      onClick={() => deleteCategory(cat.id, cat.name.ru || cat.id, carCount)}
+                      className="text-[11px] text-red-500 hover:text-red-700 font-bold flex items-center gap-1 cursor-pointer"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                      <span>Удалить категорию</span>
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Add Category Form */}
+          <div className="rounded-xl border border-dashed border-primary/40 bg-white p-4">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-ink mb-3">
+              + Добавить новую категорию машин
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 items-end">
+              <div>
+                <label className="block text-[10px] font-bold text-muted uppercase mb-1">
+                  ID (латиницей) *
+                </label>
+                <input
+                  type="text"
+                  value={newCatId}
+                  onChange={(e) => setNewCatId(e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, ""))}
+                  placeholder="coupe, retro, bus..."
+                  className="w-full rounded-lg border border-black/15 px-3 py-1.5 text-xs text-ink focus:border-primary focus:outline-none font-mono"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-bold text-muted uppercase mb-1">
+                  Название (RU) *
+                </label>
+                <input
+                  type="text"
+                  value={newCatRu}
+                  onChange={(e) => setNewCatRu(e.target.value)}
+                  placeholder="Купе / Кабриолет"
+                  className="w-full rounded-lg border border-black/15 px-3 py-1.5 text-xs text-ink focus:border-primary focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-[10px] font-bold text-muted uppercase mb-1">
+                  Название (HY)
+                </label>
+                <input
+                  type="text"
+                  value={newCatHy}
+                  onChange={(e) => setNewCatHy(e.target.value)}
+                  placeholder="Կուպե / Կաբրիոլետ"
+                  className="w-full rounded-lg border border-black/15 px-3 py-1.5 text-xs text-ink focus:border-primary focus:outline-none"
+                />
+              </div>
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <label className="block text-[10px] font-bold text-muted uppercase mb-1">
+                    Название (EN)
+                  </label>
+                  <input
+                    type="text"
+                    value={newCatEn}
+                    onChange={(e) => setNewCatEn(e.target.value)}
+                    placeholder="Coupe / Cabrio"
+                    className="w-full rounded-lg border border-black/15 px-3 py-1.5 text-xs text-ink focus:border-primary focus:outline-none"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={addCategory}
+                  className="shrink-0 self-end rounded-lg bg-primary px-4 py-2 text-xs font-bold text-white hover:bg-primary-dark transition-colors cursor-pointer"
+                >
+                  Добавить
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-y border-black/10 py-3">
         <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => setCategoryFilter("all")}
-            className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors ${
+            className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors cursor-pointer ${
               categoryFilter === "all"
                 ? "bg-primary text-white"
                 : "bg-white text-muted hover:text-ink border border-black/10"
@@ -4339,20 +4597,20 @@ function FleetTab({
           >
             Все ({fleet.length})
           </button>
-          {vehicleCategories.map((cat) => {
+          {activeCategories.map((cat) => {
             const count = fleet.filter((v) => v.category === cat.id).length;
             return (
               <button
                 key={cat.id}
                 type="button"
                 onClick={() => setCategoryFilter(cat.id)}
-                className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors ${
+                className={`rounded-full px-3 py-1.5 text-xs font-bold transition-colors cursor-pointer ${
                   categoryFilter === cat.id
                     ? "bg-primary text-white"
                     : "bg-white text-muted hover:text-ink border border-black/10"
                 }`}
               >
-                {cat.label.split(" (")[0]} ({count})
+                {cat.name[loc] || cat.name.ru || cat.id} ({count})
               </button>
             );
           })}
@@ -4483,22 +4741,24 @@ function FleetTab({
                       <select
                         value={vehicle.category}
                         onChange={(e) => {
-                          const catId = e.target.value as VehicleCategory;
-                          const found = vehicleCategories.find((c) => c.id === catId);
-                          const defaultTitle = found?.label.split(" (")[0] || catId;
+                          const catId = e.target.value;
+                          const found = activeCategories.find((c) => c.id === catId);
+                          const defaultTitle = found?.name?.[loc] || found?.name?.ru || catId;
                           update(actualIndex, {
                             category: catId,
                             categoryName: {
-                              ...vehicle.categoryName,
-                              [loc]: vehicle.categoryName?.[loc] || defaultTitle,
+                              ru: found?.name?.ru || catId,
+                              hy: found?.name?.hy || catId,
+                              en: found?.name?.en || catId,
+                              [loc]: defaultTitle,
                             },
                           });
                         }}
                         className="w-full rounded-xl border border-black/15 bg-white px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
                       >
-                        {vehicleCategories.map((c) => (
+                        {activeCategories.map((c) => (
                           <option key={c.id} value={c.id}>
-                            {c.label}
+                            {c.name.ru} / {c.name.en} ({c.id})
                           </option>
                         ))}
                       </select>

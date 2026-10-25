@@ -17,12 +17,13 @@ import guestsOverride from "@/content/guests.json";
 import guidesOverride from "@/content/guides.json";
 import attractionsOverride from "@/content/attractions.json";
 import fleetOverride from "@/content/fleet.json";
+import fleetCategoriesOverride from "@/content/fleet_categories.json";
 import type { Review } from "@/lib/reviews";
 import { defaultOffers, type SpecialOffer } from "@/lib/offers";
 import { defaultGuests, type GuestMedia } from "@/lib/guests";
 import { defaultGuides, type Guide } from "@/lib/guides";
 import { defaultAttractions, type Attraction } from "@/lib/attractions";
-import { defaultVehicles, type Vehicle } from "@/lib/fleet";
+import { defaultVehicles, defaultFleetCategories, type Vehicle, type FleetCategory } from "@/lib/fleet";
 import { githubConfig } from "@/lib/github";
 
 export type Content = {
@@ -37,6 +38,7 @@ export type Content = {
   guides: Guide[];
   attractions: Attraction[];
   fleet: Vehicle[];
+  fleetCategories: FleetCategory[];
 };
 
 export const CONTENT_KEYS = [
@@ -51,6 +53,7 @@ export const CONTENT_KEYS = [
   "guides",
   "attractions",
   "fleet",
+  "fleet_categories",
 ] as const;
 export type ContentKey = (typeof CONTENT_KEYS)[number];
 
@@ -73,6 +76,7 @@ const defaults: Content = {
   guides: (guidesOverride as Guide[]) || defaultGuides,
   attractions: (attractionsOverride as unknown as Attraction[]) || defaultAttractions,
   fleet: (fleetOverride as Vehicle[]) || defaultVehicles,
+  fleetCategories: (fleetCategoriesOverride as FleetCategory[]) || defaultFleetCategories,
 };
 
 // Overlay stored values on defaults so keys added in future code versions
@@ -146,6 +150,9 @@ function build(overrides: Record<ContentKey, unknown>): Content {
     fleet: Array.isArray(overrides.fleet)
       ? (overrides.fleet as Vehicle[])
       : defaults.fleet,
+    fleetCategories: Array.isArray(overrides.fleet_categories)
+      ? (overrides.fleet_categories as FleetCategory[])
+      : defaults.fleetCategories,
   };
 }
 
@@ -335,6 +342,7 @@ export function currentOverrides(): Record<ContentKey, unknown> {
     guides: readJsonFile("guides", "guides.json", guidesOverride),
     attractions: readJsonFile("attractions", "attractions.json", attractionsOverride),
     fleet: readJsonFile("fleet", "fleet.json", fleetOverride),
+    fleet_categories: readJsonFile("fleet_categories", "fleet_categories.json", fleetCategoriesOverride),
   };
 }
 
