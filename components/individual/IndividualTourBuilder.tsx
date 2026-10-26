@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useMemo } from "react";
 import type { Locale } from "@/lib/i18n";
 import type { Attraction } from "@/lib/attractions";
-import type { Vehicle } from "@/lib/fleet";
+import { defaultVehicles, type Vehicle } from "@/lib/fleet";
 import type { SiteInfo } from "@/lib/site";
 import { WhatsAppIcon, TelegramIcon, InstagramIcon, RouteIcon, StarIcon, ShieldIcon } from "@/components/icons";
 
@@ -15,53 +15,29 @@ type Props = {
   site: SiteInfo;
 };
 
-type CarOption = {
-  id: "standard" | "comfort" | "premium";
-  title: Record<Locale, string>;
-  subtitle: Record<Locale, string>;
-  seats: string;
-  image: string;
-  desc: Record<Locale, string>;
-};
+function formatPassengers(p: number, loc: Locale) {
+  if (loc === "ru") {
+    if (p === 1) return "1 пассажир";
+    if (p >= 2 && p <= 4) return `${p} пассажира`;
+    return `${p} пассажиров`;
+  }
+  if (loc === "hy") {
+    return `${p} ուղևոր`;
+  }
+  return `${p} passenger${p > 1 ? "s" : ""}`;
+}
 
-const CAR_OPTIONS: CarOption[] = [
-  {
-    id: "standard",
-    title: { ru: "Standard Седан", hy: "Standard Սեդան", en: "Standard Sedan" },
-    subtitle: { ru: "Toyota Camry / Comfort+", hy: "Toyota Camry / Կոմֆորտ", en: "Toyota Camry / Comfort+" },
-    seats: "1–3/4 пассажира",
-    image: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80",
-    desc: {
-      ru: "Мягкий тихий седан с климат-контролем. Идеально для пар, соло-путешественников и поездок по асфальтированным трассам.",
-      hy: "Հարմարավետ և անաղմուկ սեդան կլիմատ-կոնտրոլով։ Կատարյալ է զույգերի և անհատ ճանապարհորդների համար։",
-      en: "Smooth and quiet sedan with climate control. Ideal for couples, solo travelers, and classic paved routes.",
-    },
-  },
-  {
-    id: "comfort",
-    title: { ru: "Comfort Минивэн", hy: "Comfort Մինիվեն", en: "Comfort Minivan" },
-    subtitle: { ru: "Toyota Alphard / Mercedes V-Class", hy: "Toyota Alphard / Mercedes V-Class", en: "Toyota Alphard / Mercedes V-Class" },
-    seats: "5–7 пассажиров",
-    image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80",
-    desc: {
-      ru: "Просторный салон с капитанскими креслами, двухзонный кондиционер, большой багажник. Лучший выбор для семей и малых групп.",
-      hy: "Ընդարձակ սրահ հարմարավետ նստատեղերով, երկգոտի օդորակիչով և մեծ բեռնախցիկով ընտանիքների համար։",
-      en: "Spacious luxury cabin with captain chairs, dual-zone AC, and generous luggage capacity for families and groups.",
-    },
-  },
-  {
-    id: "premium",
-    title: { ru: "Premium 4x4 SUV", hy: "Premium 4x4 Ամենագնաց", en: "Premium 4x4 SUV" },
-    subtitle: { ru: "Toyota Land Cruiser Prado 4x4", hy: "Toyota Land Cruiser Prado 4x4", en: "Toyota Land Cruiser Prado 4x4" },
-    seats: "3–4 пассажира",
-    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
-    desc: {
-      ru: "Мощный рамный внедорожник с полным приводом для горных перевалов, каньонов, вулканических озер и труднодоступных крепостей.",
-      hy: "Հզոր լիաքարշ ամենագնաց լեռնային արշավների, կիրճերի և բարձրադիր տեսարժան վայրերի համար։",
-      en: "High-clearance full 4WD vehicle built for mountain trails, volcanic crater lakes, and remote monastic citadels.",
-    },
-  },
-];
+function formatLuggage(l: number, loc: Locale) {
+  if (loc === "ru") {
+    if (l === 1) return "1 чемодан";
+    if (l >= 2 && l <= 4) return `${l} чемодана`;
+    return `${l} чемоданов`;
+  }
+  if (loc === "hy") {
+    return `${l} ուղեբեռ`;
+  }
+  return `${l} bag${l > 1 ? "s" : ""}`;
+}
 
 const EXTRA_SERVICES = [
   {
@@ -146,8 +122,17 @@ export default function IndividualTourBuilder({
   const [withGuide, setWithGuide] = useState(true);
   const [withDriver, setWithDriver] = useState(true);
 
-  // Step 3: Car category
-  const [carCategory, setCarCategory] = useState<"standard" | "comfort" | "premium">("comfort");
+  // Fleet source and selection
+  const availableFleet: Vehicle[] = useMemo(() => {
+    return fleet && fleet.length > 0 ? fleet : defaultVehicles;
+  }, [fleet]);
+
+  // Step 3: Vehicle selection from fleet
+  const [selectedCarId, setSelectedCarId] = useState<string>(() => {
+    const list = fleet && fleet.length > 0 ? fleet : defaultVehicles;
+    const pref = list.find((v) => v.category === "minivan") || list[0];
+    return pref ? pref.id : "toyota-alphard-luxury";
+  });
 
   // Step 4: Locations
   const [selectedLocations, setSelectedLocations] = useState<string[]>([
@@ -236,10 +221,18 @@ export default function IndividualTourBuilder({
     return parts.length ? parts.join(" + ") : (locale === "ru" ? "По запросу" : "On request");
   }, [withGuide, withDriver, locale]);
 
+  const selectedVehicle = useMemo(() => {
+    return availableFleet.find((v) => v.id === selectedCarId) || availableFleet[0];
+  }, [availableFleet, selectedCarId]);
+
   const carLabel = useMemo(() => {
-    const car = CAR_OPTIONS.find((c) => c.id === carCategory);
-    return car ? `${car.title[locale]} (${car.subtitle[locale]})` : carCategory;
-  }, [carCategory, locale]);
+    if (!selectedVehicle) return "";
+    const catName =
+      selectedVehicle.categoryName?.[locale] ||
+      selectedVehicle.categoryName?.ru ||
+      selectedVehicle.category;
+    return `${selectedVehicle.name} (${catName})`;
+  }, [selectedVehicle, locale]);
 
   const servicesLabels = useMemo(() => {
     return selectedServices.map((id) => {
@@ -752,56 +745,100 @@ export default function IndividualTourBuilder({
                 </span>
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-[#FCFCF7]">
-                    {locale === "ru" ? "Выбор категории автомобиля" : locale === "hy" ? "Ավտոմեքենայի դասի ընտրություն" : "Vehicle Category Selection"}
+                    {locale === "ru" ? "Выбор автомобиля из автопарка" : locale === "hy" ? "Ավտոմեքենայի ընտրություն ավտոպարկից" : "Choose Vehicle from Fleet"}
                   </h3>
                   <p className="text-xs text-[#FCFCF7]/60">
-                    {locale === "ru" ? "Все автомобили оснащены климат-контролем и чистым салоном" : "All vehicles feature full AC and pristine interior"}
+                    {locale === "ru"
+                      ? "Все автомобили из нашего собственного проверенного автопарка с климат-контролем и опытными водителями"
+                      : locale === "hy"
+                      ? "Մեր ավտոպարկի մեքենաները՝ կլիմատ-կոնտրոլով և փորձառու վարորդներով"
+                      : "Vehicles from our private fleet with full AC, pristine interior, and experienced drivers"}
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {CAR_OPTIONS.map((car) => {
-                  const isSelected = carCategory === car.id;
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {availableFleet.map((vehicle) => {
+                  const isSelected = selectedVehicle?.id === vehicle.id;
+                  const catName =
+                    vehicle.categoryName?.[locale] ||
+                    vehicle.categoryName?.ru ||
+                    vehicle.category;
+                  const descText =
+                    vehicle.description?.[locale] ||
+                    vehicle.description?.ru ||
+                    "";
+                  const seatsText = formatPassengers(vehicle.passengers, locale);
+                  const luggageText = vehicle.luggage ? formatLuggage(vehicle.luggage, locale) : null;
+                  const imageSrc =
+                    vehicle.image ||
+                    vehicle.images?.[0] ||
+                    "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80";
+
                   return (
                     <div
-                      key={car.id}
-                      onClick={() => setCarCategory(car.id)}
-                      className={`cursor-pointer overflow-hidden rounded-2xl border transition-all ${
+                      key={vehicle.id}
+                      onClick={() => setSelectedCarId(vehicle.id)}
+                      className={`cursor-pointer overflow-hidden rounded-2xl border transition-all duration-200 flex flex-col ${
                         isSelected
-                          ? "border-[#C7FF32] ring-2 ring-[#C7FF32]/50 bg-[#1C1B1B] shadow-lg scale-[1.02]"
+                          ? "border-[#C7FF32] ring-2 ring-[#C7FF32]/50 bg-[#1C1B1B] shadow-xl scale-[1.01]"
                           : "border-white/15 bg-[#1C1B1B] hover:border-white/30 opacity-80 hover:opacity-100"
                       }`}
                     >
                       <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/40">
                         <Image
-                          src={car.image}
-                          alt={car.title[locale]}
+                          src={imageSrc}
+                          alt={vehicle.name}
                           fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover transition-transform duration-500 hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           unoptimized
                         />
-                        <span className="absolute top-2 left-2 rounded-full bg-black/70 backdrop-blur-md px-2 py-0.5 text-[10px] font-black text-[#C7FF32]">
-                          {car.seats}
-                        </span>
+                        <div className="absolute top-2 left-2 flex flex-wrap gap-1.5">
+                          <span className="rounded-full bg-black/75 backdrop-blur-md px-2.5 py-0.5 text-[11px] font-black text-[#C7FF32] border border-white/10">
+                            {seatsText}
+                          </span>
+                          {luggageText && (
+                            <span className="rounded-full bg-black/60 backdrop-blur-md px-2 py-0.5 text-[10px] font-medium text-[#FCFCF7]/90 hidden sm:inline-block">
+                              🧳 {luggageText}
+                            </span>
+                          )}
+                        </div>
                         {isSelected && (
-                          <span className="absolute top-2 right-2 rounded-full bg-[#C7FF32] px-2 py-0.5 text-[10px] font-black text-[#312F2F]">
-                            ✓ Выбрано
+                          <span className="absolute top-2 right-2 rounded-full bg-[#C7FF32] px-2.5 py-0.5 text-[10px] font-black text-[#312F2F] shadow-md flex items-center gap-1">
+                            <span>✓</span>
+                            <span>{locale === "ru" ? "Выбрано" : locale === "hy" ? "Ընտրված է" : "Selected"}</span>
                           </span>
                         )}
                       </div>
 
-                      <div className="p-4">
-                        <h4 className="font-bold text-[#FCFCF7] text-sm">
-                          {car.title[locale]}
-                        </h4>
-                        <p className="text-[11px] font-semibold text-[#C7FF32] mt-0.5">
-                          {car.subtitle[locale]}
-                        </p>
-                        <p className="mt-2 text-xs text-[#FCFCF7]/70 leading-relaxed line-clamp-3">
-                          {car.desc[locale]}
-                        </p>
+                      <div className="p-4 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h4 className="font-bold text-[#FCFCF7] text-sm sm:text-base leading-snug">
+                            {vehicle.name}
+                          </h4>
+                          <p className="text-[12px] font-semibold text-[#C7FF32] mt-0.5">
+                            {catName}
+                          </p>
+                          {descText && (
+                            <p className="mt-2 text-xs text-[#FCFCF7]/70 leading-relaxed line-clamp-3">
+                              {descText}
+                            </p>
+                          )}
+                        </div>
+
+                        {vehicle.features?.[locale]?.length > 0 && (
+                          <div className="mt-3 pt-3 border-t border-white/5 flex flex-wrap gap-1">
+                            {vehicle.features[locale].slice(0, 2).map((feat, fi) => (
+                              <span
+                                key={fi}
+                                className="inline-block rounded-md bg-white/5 px-2 py-0.5 text-[10px] text-[#FCFCF7]/70 truncate max-w-full"
+                              >
+                                • {feat}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
@@ -1127,7 +1164,16 @@ export default function IndividualTourBuilder({
                 {/* Car */}
                 <div className="flex items-start justify-between gap-3">
                   <span className="text-[#FCFCF7]/60 shrink-0">{locale === "ru" ? "Автомобиль:" : "Vehicle:"}</span>
-                  <span className="font-bold text-[#FCFCF7] text-right">{carLabel}</span>
+                  <div className="text-right">
+                    <span className="font-bold text-[#FCFCF7] block text-xs sm:text-sm">
+                      {selectedVehicle?.name || carLabel}
+                    </span>
+                    {selectedVehicle && (
+                      <span className="text-[10px] text-[#C7FF32] font-semibold block">
+                        {selectedVehicle.categoryName?.[locale] || selectedVehicle.categoryName?.ru} • {formatPassengers(selectedVehicle.passengers, locale)}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Route Itinerary */}

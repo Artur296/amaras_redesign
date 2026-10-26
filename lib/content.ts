@@ -75,8 +75,12 @@ const defaults: Content = {
   guests: (guestsOverride as GuestMedia[]) || defaultGuests,
   guides: (guidesOverride as Guide[]) || defaultGuides,
   attractions: (attractionsOverride as unknown as Attraction[]) || defaultAttractions,
-  fleet: (fleetOverride as Vehicle[]) || defaultVehicles,
-  fleetCategories: (fleetCategoriesOverride as FleetCategory[]) || defaultFleetCategories,
+  fleet: (Array.isArray(fleetOverride) && fleetOverride.length > 0
+    ? (fleetOverride as Vehicle[])
+    : defaultVehicles),
+  fleetCategories: (Array.isArray(fleetCategoriesOverride) && fleetCategoriesOverride.length > 0
+    ? (fleetCategoriesOverride as FleetCategory[])
+    : defaultFleetCategories),
 };
 
 // Overlay stored values on defaults so keys added in future code versions
@@ -122,6 +126,14 @@ function usableCategories(value: unknown): Category[] | null {
   return ok.length ? ok : null;
 }
 
+function usableFleet(value: unknown): Vehicle[] | null {
+  if (!Array.isArray(value)) return null;
+  const ok = value.filter(
+    (v) => v && typeof v.id === "string" && typeof v.name === "string"
+  ) as Vehicle[];
+  return ok.length ? ok : null;
+}
+
 function build(overrides: Record<ContentKey, unknown>): Content {
   const heroImages = (overrides.hero as Content["hero"] | null)?.images?.filter(
     Boolean
@@ -147,10 +159,8 @@ function build(overrides: Record<ContentKey, unknown>): Content {
     attractions: Array.isArray(overrides.attractions)
       ? (overrides.attractions as Attraction[])
       : defaults.attractions,
-    fleet: Array.isArray(overrides.fleet)
-      ? (overrides.fleet as Vehicle[])
-      : defaults.fleet,
-    fleetCategories: Array.isArray(overrides.fleet_categories)
+    fleet: usableFleet(overrides.fleet) ?? defaults.fleet,
+    fleetCategories: Array.isArray(overrides.fleet_categories) && overrides.fleet_categories.length > 0
       ? (overrides.fleet_categories as FleetCategory[])
       : defaults.fleetCategories,
   };
