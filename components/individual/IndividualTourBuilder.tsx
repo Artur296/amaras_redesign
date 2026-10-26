@@ -167,10 +167,13 @@ export default function IndividualTourBuilder({
   ];
 
   const filteredAttractions = useMemo(() => {
+    const q = locationSearch.toLowerCase().trim();
     return attractions.filter((a) => {
       const matchRegion = activeRegion === "all" || a.regionCategory === activeRegion;
-      const title = a.name[locale] || a.name.ru;
-      const matchSearch = !locationSearch || title.toLowerCase().includes(locationSearch.toLowerCase());
+      const title = (a.name[locale] || a.name.ru || "").toLowerCase();
+      const reg = (a.region?.[locale] || a.region?.ru || "").toLowerCase();
+      const tag = (a.tagline?.[locale] || a.tagline?.ru || "").toLowerCase();
+      const matchSearch = !q || title.includes(q) || reg.includes(q) || tag.includes(q);
       return matchRegion && matchSearch;
     });
   }, [attractions, activeRegion, locationSearch, locale]);

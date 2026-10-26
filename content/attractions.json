@@ -2520,7 +2520,7 @@
     "name": {
       "ru": "Водопад «Волосы русалки» (Джермук)",
       "hy": "«Ջրահարսի վարսեր» ջրվեժ (Ջերմուկ)",
-      "en": "Jermuk Waterfall (\"Mermaid's Hair\")"
+      "en": "Mermaid's Hair Waterfall (Jermuk)"
     },
     "tagline": {
       "ru": "Легенда о вечной любви — серебристый 68-метровый каскад ущелья Арпы",
@@ -3002,5 +3002,501 @@
       "hy": "Զորաց եկեղեցի — հայոց զորքերի օրհնության տաճարը Եղեգիսում\n\nՎայոց ձորի գեղատեսիլ Եղեգիս գյուղում է գտնվում հայ միջնադարյան ճարտարապետության ամենայուրօրինակ կոթողներից մեկը՝ Զորաց եկեղեցին (Սուրբ Աստվածածին), որը կառուցվել է 1303 թվականին իշխան Ստեփանոս Տարսայիճ Օրբելյանի կողմից:\n\nԵկեղեցու բացառիկությունն այն է, որ այն չունի փակ աղոթասրահ. խորանը բարձր է և բացվում է դեպի ընդարձակ հրապարակ: Սա արվել է նրա համար, որպեսզի պատերազմ մեկնող հայ հեծյալ զինվորները հենց ձիերի վրա նստած ստանային քահանայի օրհնությունն ու հաղորդությունը: «Զորաց» անվանումը ծագում է հենց «զորք» բառից:\n\nԵկեղեցու մոտակայքում վեր են խոյանում Սմբատաբերդ հզոր ամրոցը և Ցաղաց Քար վանքը:\n\nAmaras Tour-ը հրավիրում է ձեզ բացահայտելու ասպետական Հայաստանի փառապանծ անցյալը: Ճամփորդեք հարմարավետությամբ, պատմությամբ և հոգով: Եկեք որպես հյուր — հեռացեք որպես բարեկամ:",
       "en": "Zorats Church — Where Armenian Knights Were Blessed for Battle\n\nNestled in the picturesque Yeghegis valley of Vayots Dzor, Zorats Church (Holy Mother of God) is one of the most remarkable ecclesiastical monuments in Armenia. Commissioned in 1303 by Prince Stepanos Tarsayich Orbelian, this church possesses a design found nowhere else in the country: it has no enclosed hall or roofed nave.\n\nInstead, an elevated outdoor apse rises high above a broad stone courtyard. This ingenious architecture was conceived specifically so cavalry warriors could ride up in armor, listen to holy liturgy, and receive blessings and holy sacraments while remaining mounted on their warhorses before departing for battle. The name Zorats itself translates to \"Warriors'\" or \"Troops'\".\n\nPerched directly below the formidable ramparts of Smbataberd fortress, Zorats Church echoes with the chivalric spirit of medieval Armenia.\n\nExplore Armenia's chivalric legends with Amaras Tour. Come as a guest, leave as a friend!"
     }
+  },
+  {
+    "id": "shaki-waterfall",
+    "name": {
+      "ru": "Водопад Шаки",
+      "hy": "Շաքիի ջրվեժ",
+      "en": "Shaki Waterfall"
+    },
+    "tagline": {
+      "ru": "Один из самых мощных и живописных водопадов Армении",
+      "hy": "Հայաստանի ամենահզոր և գեղատեսիլ ջրվեժներից մեկը",
+      "en": "One of Armenia's Most Majestic and Powerful Waterfalls"
+    },
+    "regionCategory": "south",
+    "region": {
+      "ru": "Сюникская область (Сисиан)",
+      "hy": "Սյունիքի մարզ (Սիսիան)",
+      "en": "Syunik Province (Sisian)"
+    },
+    "distance": {
+      "ru": "200 км от Еревана",
+      "hy": "200 կմ Երևանից",
+      "en": "200 km from Yerevan"
+    },
+    "travelTime": {
+      "ru": "~3.5 часа",
+      "hy": "~3.5 ժամ",
+      "en": "~3.5 hours"
+    },
+    "image": "/images/attractions/shaki-waterfall.jpg",
+    "unesco": false,
+    "highlights": {
+      "ru": [
+        "18-метровый каскад чистейшей родниковой воды, низвергающийся в базальтовое ущелье",
+        "Красивейший природный амфитеатр из вулканических лавовых колонн",
+        "Трогательная древняя легенда о свободолюбивой красавице Шаке",
+        "Идеальное сочетание с турами в Татев, Караундж (Зорац-Карер) и Нораванк"
+      ],
+      "hy": [
+        "18 մետր բարձրությունից բազալտե կիրճ թափվող հզոր և զուլալ ջրվեժ",
+        "Հրաբխային սյուներով շրջապատված բնական չնաշխարհիկ ամֆիթատրոն",
+        "Հինավուրց հուզիչ լեգենդ ազատասեր գեղեցկուհի Շաքեի մասին",
+        "Կատարյալ համադրություն Տաթևի, Զորաց Քարերի և Նորավանքի տուրերի հետ"
+      ],
+      "en": [
+        "Thunderous 18-meter cascade plunging into a volcanic basalt gorge",
+        "Picturesque natural amphitheater framed by ancient lava formations",
+        "Poetic folk legend of the proud and beautiful Maiden Shake",
+        "Seamlessly combined with visits to Tatev, Karahunj, and Noravank"
+      ]
+    },
+    "shortDescription": {
+      "ru": "Один из красивейших водопадов Кавказа высотой 18 метров, скрытый в ущелье реки Шаки близ Сисиана. Мощные белые потоки воды низвергаются с базальтовых уступов среди реликтовых скал.",
+      "hy": "Կովկասի ամենագեղատեսիլ 18-մետրանոց ջրվեժներից մեկը՝ թաքնված Սիսիանի մոտակայքում գտնվող Շաքի գետի կիրճում։ Հզոր սպիտակափրփուր շիթերը թափվում են բազալտե ապառաժներից։",
+      "en": "One of the Caucasus' most picturesque waterfalls, tumbling 18 meters over basalt ledges into a lush gorge near Sisian. A symphony of roaring spring water and volcanic grandeur."
+    },
+    "fullStory": {
+      "ru": "Водопад Шаки — жемчужина южной Армении\n\nВ живописном ущелье реки Воротан, недалеко от города Сисиан в Сюникской области, скрыто одно из самых восхитительных природных чудес Армении — водопад Шаки. Здесь кристально чистая родниковая вода с грохотом низвергается с высоты 18 метров, рассыпаясь миллионами сверкающих брызг на фоне отвесных базальтовых колонн.\n\nВ отличие от многих речных водопадов, Шаки питается мощнейшими подземными глубинными источниками, благодаря чему вода здесь всегда ледяная, прозрачная и удивительно вкусная.\n\nЛегенда о прекрасной Шаке\n\nНазвание водопада овеяно старинным преданием. Во времена нашествий вражеский полководец был пленен неземной красотой армянской девушки по имени Шаке и приказал доставить ее в свой шатер. Не желая покориться неволе, гордая девушка бросилась в бездну с высокой скалы. В тот же миг складки ее белоснежного платья обратились в пенящийся водопад, скрывший ее от захватчиков навсегда.\n\nВодопад Шаки очаровывает в любое время года: весной он гремит с первозданной силой, а летом дарит живительную прохладу путешественникам, направляющимся к канатной дороге «Крылья Татева» и мегалитам Караунджа.",
+      "hy": "Շաքիի ջրվեժ — Սյունիքի բնության զմրուխտյա հրաշքը\n\nՍիսիան քաղաքից ոչ հեռու՝ Որոտան գետի հեքիաթային կիրճում, գտնվում է Հայաստանի ամենագեղեցիկ բնական հուշարձաններից մեկը՝ Շաքիի ջրվեժը։ 18 մետր բարձրությունից գահավիժող զուլալ աղբյուրների ջրերը ստեղծում են հիասքանչ տեսարան բազալտե հրաբխային ժայռերի ֆոնին։\n\nԱվանդությունը պատմում է չքնաղ հայուհի Շաքեի մասին, ով չկամենալով գերի ընկնել թշնամու զորավարին՝ նետվում է ժայռից։ Նրա ճերմակ զգեստը վերածվում է փրփրառատ ջրվեժի, որը հավերժացնում է նրա անմահ գեղեցկությունն ու ազատատենչ ոգին։\n\nAmaras Tour-ը սիրով ձեզ կուղեկցի այս հիասքանչ վայր՝ լիարժեք հարմարավետությամբ և ջերմ մթնոլորտով։",
+      "en": "Shaki Waterfall — The Jewel of Southern Armenia\n\nTucked inside a dramatic volcanic canyon near Sisian in Syunik Province, Shaki Waterfall is one of Armenia's most mesmerizing natural wonders. Fed by icy subterranean springs, a powerful curtain of crystal water plunges 18 meters over dark basalt cliffs.\n\nAccording to an ancient legend, a foreign conqueror captured ninety beautiful Armenian maidens. Among them was the radiant Shake. Defiant and unwilling to surrender her dignity, she threw herself from the towering cliff. As she leaped, the folds of her white silk dress transformed into a shimmering veil of cascading water, hiding her forever.\n\nShaki is an unmissable highlight when traveling through southern Armenia towards Tatev Monastery and Karahunj."
+    },
+    "tourQuery": "shaki"
+  },
+  {
+    "id": "shaghot-waterfall",
+    "name": {
+      "ru": "Водопад Шагот",
+      "hy": "Շաղոտի ջրվեժ",
+      "en": "Shaghot Waterfall"
+    },
+    "tagline": {
+      "ru": "Скрытая жемчужина в диком базальтовом каньоне Сюника",
+      "hy": "Թաքնված գոհար Սյունիքի բազալտե կիրճում",
+      "en": "A Hidden Gem in the Basalt Canyons of Syunik"
+    },
+    "regionCategory": "south",
+    "region": {
+      "ru": "Сюникская область (Шагат / Сисиан)",
+      "hy": "Սյունիքի մարզ (Շաղատ / Սիսիան)",
+      "en": "Syunik Province (Shaghat / Sisian)"
+    },
+    "distance": {
+      "ru": "215 км от Еревана",
+      "hy": "215 կմ Երևանից",
+      "en": "215 km from Yerevan"
+    },
+    "travelTime": {
+      "ru": "~3.5-4 часа",
+      "hy": "~3.5-4 ժամ",
+      "en": "~3.5-4 hours"
+    },
+    "image": "/images/attractions/shaghot-waterfall.jpg",
+    "unesco": false,
+    "highlights": {
+      "ru": [
+        "Малоизвестный уединенный водопад вдали от массовых туристических толп",
+        "Потрясающая нетронутая природа и чистейший горный воздух Сюника",
+        "Живописные скальные тропы вдоль притока реки Воротан",
+        "Отличное место для любителей экотуризма и пеших походов"
+      ],
+      "hy": [
+        "Քիչ հայտնի մեկուսի ջրվեժ՝ զերծ զբոսաշրջային աղմուկից",
+        "Սյունիքի անաղարտ բնություն և բյուրեղյա մաքուր լեռնային օդ",
+        "Գեղատեսիլ ժայռոտ արահետներ Որոտանի վտակի երկայնքով",
+        "Կատարյալ վայր էկոտուրիզմի և արշավների սիրահարների համար"
+      ],
+      "en": [
+        "A secluded, off-the-beaten-path waterfall free from crowds",
+        "Untouched mountain wilderness and pristine alpine atmosphere",
+        "Scenic hiking trails along the pristine Vorotan tributary",
+        "A dream destination for photographers and eco-hikers"
+      ]
+    },
+    "shortDescription": {
+      "ru": "Таинственный и живописный водопад близ села Шагат в Сюнике. Расположен в узком скалистом ущелье, где шум падающей воды нарушает первозданную тишину диких кавказских гор.",
+      "hy": "Խորհրդավոր և չնաշխարհիկ ջրվեժ Սյունիքի Շաղատ գյուղի մերձակայքում՝ նեղ ժայռոտ կիրճում, որտեղ ջրի ձայնը խախտում է վայրի լեռների կուսական լռությունը։",
+      "en": "An atmospheric and secluded waterfall near Shaghat village in Syunik. Hidden within a narrow rocky ravine, its untouched cascade offers pure wilderness and tranquility."
+    },
+    "fullStory": {
+      "ru": "Водопад Шагот — нетронутая красота Сюникских гор\n\nЕсли вы хотите увидеть уголок Армении, где природа сохранилась в своем первозданном величии, отправляйтесь к водопаду Шагот в Сюникской области. Расположенный неподалеку от старинного села Шагат и реки Воротан, этот водопад скрыт от обычных экскурсионных маршрутов.\n\nВодный поток срывается со скалистых уступов в природную каменную чашу, окруженную дикими цветами и реликтовым кустарником. Сюда приходят те, кто ищет умиротворения, чистого воздуха и подлинной гармонии с горами.\n\nПутешествие к Шаготу — это настоящее приключение в сердце Сюника, открывающее Армению с неожиданной, дикой стороны.",
+      "hy": "Շաղոտի ջրվեժ — Սյունյաց աշխարհի անարատ հմայքը\n\nԵթե ցանկանում եք բացահայտել Հայաստանի այն անկյունները, որոնք պահպանել են իրենց կուսական վեհությունը, ապա Շաղոտի ջրվեժը կատարյալ ընտրություն է։ Գտնվելով Սյունիքի հնամենի Շաղատ գյուղի մոտակայքում՝ այն թաքնված է ավանդական տուրիստական ուղիներից:\n\nՍառնորակ ջրվեժը գահավիժում է ժայռապատ ապառաժներից՝ ստեղծելով բնական զմրուխտյա ավազան:\n\nAmaras Tour-ի հետ ձեր ճանապարհորդությունը դեպի Շաղոտ կդառնա անմոռանալի էկո-արշավ:",
+      "en": "Shaghot Waterfall — Pristine Wilderness of Syunik\n\nFor travelers seeking untouched nature beyond standard routes, Shaghot Waterfall near the historic village of Shaghat in Syunik is a captivating discovery. Enclosed by craggy cliffs and wild mountain flora, the cascade plunges into a tranquil natural basin.\n\nVisiting Shaghot is a genuine adventure off the beaten path, offering solitude, crisp mountain air, and the raw beauty of southern Armenia."
+    },
+    "tourQuery": "shaghot"
+  },
+  {
+    "id": "trchkan-waterfall",
+    "name": {
+      "ru": "Водопад Трчкан",
+      "hy": "Թռչկան ջրվեժ",
+      "en": "Trchkan Waterfall"
+    },
+    "tagline": {
+      "ru": "Самый высокий отвесный водопад Армении на реке Чичхан",
+      "hy": "Հայաստանի ամենաբարձրահասակ գահավիժող ջрվեժը Չիչխան գետի վրա",
+      "en": "Armenia's Tallest Sheer Waterfall on the Chichkhan River"
+    },
+    "regionCategory": "north_lori",
+    "region": {
+      "ru": "Лорийская / Ширакская область (р. Чичхан)",
+      "hy": "Լոռու / Շիրակի մարզ (Չիչխան գետ)",
+      "en": "Lori / Shirak Province (Chichkhan River)"
+    },
+    "distance": {
+      "ru": "145 км от Еревана",
+      "hy": "145 կմ Երևանից",
+      "en": "145 km from Yerevan"
+    },
+    "travelTime": {
+      "ru": "~2.5 часа",
+      "hy": "~2.5 ժամ",
+      "en": "~2.5 hours"
+    },
+    "image": "/images/attractions/trchkan-waterfall.jpg",
+    "unesco": false,
+    "highlights": {
+      "ru": [
+        "Грандиозный 23-метровый вертикальный водопад — рекордсмен Армении",
+        "Культовая локация для захватывающих джип-туров на внедорожниках 4x4",
+        "Полноводная горная река Чичхан, богатая ручьевой форелью (кармрахайт)",
+        "Памятник природы национального значения и символ экологического движения"
+      ],
+      "hy": [
+        "23 մետր բարձրությամբ ուղղահայաց գահավիժող ջրվեժ՝ Հայաստանի ռեկորդակիրը",
+        "Ջիփ-տուրերի և ամենագնացներով արշավների ամենասիրված վայրերից մեկը",
+        "Չիչխան լեռնային գետը՝ հարուստ կարմրախայտով",
+        "Համապետական նշանակության բնության հուշարձան"
+      ],
+      "en": [
+        "Armenia's tallest vertical waterfall with a thrilling 23-meter sheer plunge",
+        "Top bucket-list destination for rugged 4x4 off-road jeep expeditions",
+        "Rushing Chichkhan mountain river renowned for indigenous trout",
+        "Protected natural monument and icon of environmental conservation"
+      ]
+    },
+    "shortDescription": {
+      "ru": "Самый высокий вертикальный водопад в Армении (23 м), расположенный на границе Лори и Ширака на бурной реке Чичхан. Популярное направление для джип-туров и пикников в окружении живописных скал.",
+      "hy": "Հայաստանի ամենաբարձրահասակ ուղղահայաց ջրվեժը (23 մ)՝ Լոռու և Շիրակի սահմանին։ Հիանալի վայր արտաճանապարհային տուրերի, պիկնիկների և անմոռանալի լուսանկարների համար։",
+      "en": "Armenia's tallest sheer vertical waterfall (23 meters), located on the roaring Chichkhan River between Lori and Shirak. A thrilling highlight for 4x4 off-road tours and alpine explorers."
+    },
+    "fullStory": {
+      "ru": "Водопад Трчкан — мощь армянских гор\n\nНа границе Лорийской и Ширакской областей, среди лесистых склонов Базумского хребта, гремит величавый Трчкан — самый высокий отвесный водопад Армении. С высоты 23 метров гигантская масса вспененной воды реки Чичхан с оглушительным ревом обрушивается в каменный котел.\n\nНазвание водопада происходит от армянского слова «трчел» (прыгать, летать). Местные жители рассказывают, что во время нереста форель выпрыгивала прямо из бурлящего потока на несколько метров ввысь, преодолевая пороги.\n\nПоездка к Трчкану на внедорожниках 4x4 — один из самых популярных и захватывающих маршрутов Amaras Tour. Пересечение бродов, крутые горные серпантины и внезапно открывающийся вид на ревущий исполин оставляют неизгладимое впечатление у каждого путешественника.",
+      "hy": "Թռչկան ջրվեժ — Լոռվա հպարտությունը\n\nԲազումի լեռնաշղթայի անտառապատ լանջերին՝ Չիչխան գետի հոսանքով, վեր է խոյանում հզոր Թռչկանը՝ Հայաստանի ամենաբարձրահասակ ուղղաձիգ ջրվեժը (23 մետր)։ Նրա անունը կապված է լեռնային կարմրախայտի հետ, որը ձվադրման ժամանակ թռչում էր ջրի հոսանքին հակառակ:\n\nԹռչկան ուղևորությունը 4x4 ամենագնացներով Amaras Tour-ի ամենասիրված արկածային տուրերից է։ Լեռնային գետերի անցումները և վայրի բնությունը կպարգևեն ձեզ իսկական ադրենալին և անմոռանալի հիշողություններ։",
+      "en": "Trchkan Waterfall — The Untamed Giant of Lori\n\nStraddling the borders of Lori and Shirak provinces amidst the forested slopes of the Bazum range, Trchkan is Armenia's highest sheer vertical waterfall. Plunging 23 meters with thunderous majesty into a deep rock amphitheater, the Chichkhan River creates a spectacle of raw power.\n\nIts name derives from the Armenian word \"trchel\" (to leap), referencing the native river trout leaping meters upward through the cascading foam during spawning season.\n\nAmaras Tour's private 4x4 jeep expeditions to Trchkan deliver one of the most exhilarating off-road adventures in the country."
+    },
+    "tourQuery": "trchkan"
+  },
+  {
+    "id": "lastiver-waterfalls",
+    "name": {
+      "ru": "Водопады Ластивера",
+      "hy": "Լաստիվերի ջրվեժներ",
+      "en": "Lastiver Waterfalls"
+    },
+    "tagline": {
+      "ru": "Сказочные каскады в диком лесном ущелье Хачахпюр",
+      "hy": "Հեքիաթային ջրվեժների կասկադ Խաչաղբյուրի անտառապատ կիրճում",
+      "en": "Fairy-Tale Cascades Hidden in Tavush's Enchanted Gorge"
+    },
+    "regionCategory": "sevan_dilijan",
+    "region": {
+      "ru": "Тавушская область (Енокаван / Иджеван)",
+      "hy": "Տավուշի մարզ (Ենոքավան / Իջևան)",
+      "en": "Tavush Province (Yenokavan / Ijevan)"
+    },
+    "distance": {
+      "ru": "140 км от Еревана",
+      "hy": "140 կմ Երևանից",
+      "en": "140 km from Yerevan"
+    },
+    "travelTime": {
+      "ru": "~2.5 часа",
+      "hy": "~2.5 ժամ",
+      "en": "~2.5 hours"
+    },
+    "image": "/images/attractions/lastiver-waterfalls.jpg",
+    "unesco": false,
+    "highlights": {
+      "ru": [
+        "Многоступенчатые каскады водопадов с природными джакузи и чашами для купания",
+        "Пещеры отшельников со средневековыми языческими и христианскими барельефами",
+        "Знаменитые деревянные домики на деревьях и подвесные тропы над каньоном",
+        "Главная мекка активного отдыха, хайкинга и зиплайна в Армении (Yell Extreme Park)"
+      ],
+      "hy": [
+        "Բազմաստիճան ջրվեժների կասկադ բնական լողավազաններով",
+        "Միջնադարյան խորհրդավոր քարանձավներ՝ հնագույն բարձրաքանդակներով",
+        "Հայտնի փայտե տնակներ ծառերի վրա և կախովի արահետներ",
+        "Հայաստանի ակտիվ հանգստի, արշավների և զիփլայնի գլխավոր կենտրոնը"
+      ],
+      "en": [
+        "Multi-tiered cascading waterfalls with natural emerald swimming basins",
+        "Mystical medieval hermit caves with ancient carved relief artwork",
+        "Iconic fairytale wooden treehouses perched along the forested gorge",
+        "Armenia's adventure capital for hiking and ziplining at Yell Extreme Park"
+      ]
+    },
+    "shortDescription": {
+      "ru": "Живописная череда водопадов и речных порогов в глубоком ущелье реки Хачахпюр близ Енокавана. Сказочное место с пещерами отшельников, домиками на деревьях и нетронутой лесной природой Тавуша.",
+      "hy": "Հեքիաթային ջրվեժների շարք Ենոքավանի մոտ գտնվող Խաչաղբյուրի խոր ձորում։ Անտառային դրախտ՝ ճգնավորների քարանձավներով, ծառերի վրա տնակներով և մաքուր բնությամբ։",
+      "en": "A spellbinding series of waterfalls and rapids nestled in the deep forested canyon of the Khachaghbyur River near Yenokavan. Famous for hermits' caves and treehouses."
+    },
+    "fullStory": {
+      "ru": "Водопады Ластивера — сказка тавушских лесов\n\nНеподалеку от села Енокаван в Тавушской области находится одно из самых атмосферных мест Армении — ущелье Ластивер. Здесь, среди реликтового дубово-букового леса, река Хачахпюр образует каскад живописных водопадов, струящихся по заросшим мхом скалам в изумрудные заводи.\n\nНазвание «Ластивер» переводится как «вверх по плотам»: во время монголо-татарских нашествий в XIII–XIV веках местные жители строили деревянные настилы на отвесных скалах, укрываясь в труднодоступных пещерах. Внутри пещер до сих пор сохранились загадочные дохристианские и средневековые барельефы.\n\nСегодня Ластивер — любимое место путешественников: шум водопадов, купание в чистейшей реке, уютные деревянные домики на деревьях и пьянящий хвойный воздух дарят незабываемый отдых для души.",
+      "hy": "Լաստիվերի ջրվեժներ — Տավուշի կախարդական անտառները\n\nՏավուշի մարզի Ենոքավան գյուղի մոտ գտնվող Լաստիվեր անապատը Հայաստանի ամենախորհրդավոր և սիրված վայրերից է։ Անտառապատ կիրճում Խաչաղբյուր գետն իր հոսանքով ստեղծում է զարմանահրաշ ջրվեժների շղթա:\n\nՄիջնադարում բնակիչները մոնղոլական արշավանքներից պատսպարվել են անմատչելի քարանձավներում՝ բարձրանալով լաստերի օգնությամբ, որտեղից էլ առաջացել է «Լաստիվեր» անունը:\n\nAmaras Tour-ը կազմակերպում է հիանալի էքսկուրսիաներ դեպի Լաստիվեր՝ ապահովելով ձեր հարմարավետությունն ու ապահովությունը:",
+      "en": "Lastiver Waterfalls — The Enchanted Forest of Tavush\n\nHidden within the emerald wilderness of Tavush Province near Yenokavan, Lastiver is a sanctuary of nature and legend. The Khachaghbyur River meanders through a precipitous gorge, tumbling over mossy tiers of waterfalls into crystal natural pools.\n\nThe name Lastiver (\"up on rafts\") recalls the medieval villagers who escaped 13th-century invaders by hauling log rafts up sheer rock faces to reach cliffside caves, where enigmatic carvings still adorn the stone walls.\n\nToday, Lastiver blends natural splendor with eco-adventure, featuring treehouses, forest trails, and natural swimming spots."
+    },
+    "tourQuery": "lastiver"
+  },
+  {
+    "id": "gegharot-waterfall",
+    "name": {
+      "ru": "Водопад Гегарот",
+      "hy": "Գեղարոտի ջրվեժ",
+      "en": "Gegharot Waterfall"
+    },
+    "tagline": {
+      "ru": "Высокогорный каскад на высоте 3000 м на склонах Арагаца",
+      "hy": "Բարձրլեռնային հիասքանչ ջրվեժ Արագած լեռան լանջին (3000 մ)",
+      "en": "Majestic Alpine Waterfall on the Slopes of Mount Aragats (3,000 m)"
+    },
+    "regionCategory": "near_yerevan",
+    "region": {
+      "ru": "Арагацотнская область (склоны Арагаца)",
+      "hy": "Արագածոտնի մարզ (Արագածի լանջեր)",
+      "en": "Aragatsotn Province (Mt. Aragats slopes)"
+    },
+    "distance": {
+      "ru": "65 км от Еревана",
+      "hy": "65 կմ Երևանից",
+      "en": "65 km from Yerevan"
+    },
+    "travelTime": {
+      "ru": "~1.5 часа",
+      "hy": "~1.5 ժամ",
+      "en": "~1.5 hours"
+    },
+    "image": "/images/attractions/gegharot-waterfall.jpg",
+    "unesco": false,
+    "highlights": {
+      "ru": [
+        "Уникальный альпийский водопад на высоте 3000 метров над уровнем моря",
+        "Мощный 17-метровый поток, низвергающийся из ледников Арагаца",
+        "Альпийские луга с ковром из горных маков, колокольчиков и незабудок",
+        "Зимой и поздней осенью превращается в грандиозный застывший ледопад"
+      ],
+      "hy": [
+        "Եզակի բարձրլեռնային ջրվեժ՝ ծովի մակարդակից շուրջ 3000 մետր բարձրության վրա",
+        "Արագածի սառցադաշտերից սնվող 17 մետրանոց հզոր ջրվեժ",
+        "Բազմերանգ ալպիական մարգագետիններ և լեռնային ծաղիկների գորգ",
+        "Ձմռանը վերածվում է հեքիաթային սառցե քանդակի"
+      ],
+      "en": [
+        "Unique alpine waterfall located at 3,000 meters above sea level",
+        "Powerful 17-meter cascade fed by the high glaciers of Mount Aragats",
+        "Vibrant subalpine meadows carpeted with wild mountain wildflowers",
+        "Freezes into a breathtaking monumental ice sculpture in late autumn and winter"
+      ]
+    },
+    "shortDescription": {
+      "ru": "Грандиозный 17-метровый водопад на склонах потухшего вулкана Арагац на высоте 3000 метров. Питается талыми водами вечных снегов и окружен цветущими альпийскими лугами.",
+      "hy": "17-մետրանոց բարձրլեռնային ջրվեժ Արագած լեռան լանջին՝ ծովի մակարդակից 3000 մ բարձրության վրա։ Սնվում է հավերժական ձյուներից և շրջապատված է ալպիական ծաղկունքով։",
+      "en": "A spectacular 17-meter alpine waterfall plunging from the slopes of volcanic Mount Aragats at an elevation of 3,000 meters. Fed by melting glaciers and alpine springs."
+    },
+    "fullStory": {
+      "ru": "Водопад Гегарот — дыхание ледников Арагаца\n\nНа восточном склоне высочайшей горы Армении — четырехглавого вулкана Арагац — на высоте около 3000 метров находится водопад Гегарот. Это один из самых высокогорных и впечатляющих водопадов страны.\n\nПоток реки Гегарот (приток реки Касах) срывается с 17-метрового отвесного скального обрыва, рождая облако серебристой водяной пыли. Летом берега вокруг водопада усыпаны яркими коврами альпийских цветов, а воздух звенит горной свежестью.\n\nЗимой Гегарот замерзает, превращаясь в фантастическую стену из гигантских сосулек и ледяных кристаллов, привлекающую любителей ледолазания и необычных фотосессий.\n\nПоездка к Гегароту на джипах с Amaras Tour — это незабываемый подъем к облакам и панорамный вид на Араратскую долину.",
+      "hy": "Գեղարոտի ջրվեժ — Արագածի սառցադաշտերի զարթոնքը\n\nՀայաստանի ամենաբարձր լեռան՝ Արագածի արևելյան լանջին, ծովի մակարդակից մոտ 3000 մետր բարձրության վրա գտնվում է Գեղարոտի հիասքանչ ջրվեժը։ 17 մետր բարձրությունից թափվող սառնորակ ջուրը Քասախ գետի վտակն է:\n\nԱմռանը ջրվեժի շրջակայքը զարդարվում է ալպյան ծաղիկների վառ գույներով, իսկ ձմռանը ջրվեժն ամբողջությամբ սառչում է՝ առաջացնելով ապշեցուցիչ սառցե կախազարդեր:\n\nAmaras Tour-ի ամենագնացներով դուք կվայելեք այս բարձրլեռնային հրաշքը՝ շնչելով լեռների անարատ օդը:",
+      "en": "Gegharot Waterfall — Glacier Spirit of Mount Aragats\n\nPerched high on the eastern slopes of Mount Aragats at approximately 3,000 meters altitude, Gegharot is one of Armenia's most dramatic alpine waterfalls. Sourced from the glacial melting snows of Armenia's highest mountain, the 17-meter cascade crashes over dark volcanic basalt.\n\nDuring summer, the surrounding slopes bloom with wild alpine poppies and forget-me-nots, while in freezing months the entire waterfall solidifies into a cathedral of shimmering blue ice.\n\nAmaras Tour offers private 4x4 off-road journeys to Gegharot, pairing the visit with Amberd Fortress and Lake Kari."
+    },
+    "tourQuery": "gegharot"
+  },
+  {
+    "id": "lichk-waterfalls",
+    "name": {
+      "ru": "Водопады Личка",
+      "hy": "Լիճքի ջրվեժներ",
+      "en": "Lichk Waterfalls"
+    },
+    "tagline": {
+      "ru": "Каскад изумрудных водопадов и природных бассейнов в Мегри",
+      "hy": "Զմրուխտյա ջրվեժների կասկադ և բնական լողավազաններ Մեղրիում",
+      "en": "Emerald Cascades and Natural Rock Pools in Southern Syunik"
+    },
+    "regionCategory": "south",
+    "region": {
+      "ru": "Сюникская область (Мегри / Личк)",
+      "hy": "Սյունիքի մարզ (Մեղրի / Լիճք)",
+      "en": "Syunik Province (Meghri / Lichk)"
+    },
+    "distance": {
+      "ru": "360 км от Еревана",
+      "hy": "360 կմ Երևանից",
+      "en": "360 km from Yerevan"
+    },
+    "travelTime": {
+      "ru": "~5.5-6 часов",
+      "hy": "~5.5-6 ժամ",
+      "en": "~5.5-6 hours"
+    },
+    "image": "/images/attractions/lichk-waterfalls.jpg",
+    "unesco": false,
+    "highlights": {
+      "ru": [
+        "Серия из более чем 10 каскадных водопадов вдоль реки Зварагет",
+        "Изумрудные природные купели, идеально подходящие для купания в летний зной",
+        "Уникальный субтропический микроклимат Мегринского хребта и густые леса",
+        "Один из самых живописных и нетронутых эко-маршрутов крайнего юга Армении"
+      ],
+      "hy": [
+        "Ավելի քան 10 ջրվեժների հիասքանչ կասկադ Զվարագետի երկայնքով",
+        "Զմրուխտյա բնական ավազաններ՝ իդեալական ամառային լողի համար",
+        "Մեղրու եզակի մերձարևադարձային կլիմա և հարուստ բուսականություն",
+        "Հարավային Հայաստանի ամենագեղեցիկ էկո-արշավային երթուղիներից մեկը"
+      ],
+      "en": [
+        "A pristine series of over 10 cascading waterfalls along the Zvaraget River",
+        "Emerald natural rock pools ideal for refreshing swims in summer warmth",
+        "Unique lush subtropical-influenced microclimate of the Meghri mountains",
+        "One of southern Armenia's most untouched and photogenic eco-trails"
+      ]
+    },
+    "shortDescription": {
+      "ru": "Удивительный каскад из множества водопадов и чистейших лагунных чаш в южном Сюнике близ села Личк. Оазис пышной зелени, скал и прохлады в субтропическом Мегринском регионе.",
+      "hy": "Հրաշագեղ ջրվեժների և բյուրեղյա լագունաների կասկադ Սյունիքի հարավում՝ Լիճք գյուղի մոտ։ Կանաչության, ժայռերի և զովության իսկական օազիս Մեղրու տարածաշրջանում։",
+      "en": "A fairytale cascade of multiple waterfalls and crystalline emerald swimming basins in far southern Syunik near Lichk. A lush oasis of shade and cool waters in the Meghri mountains."
+    },
+    "fullStory": {
+      "ru": "Водопады Личка — затерянный рай на юге Армении\n\nНа самом юге Армении, в Мегринском регионе Сюникской области, расположено село Личк, славящееся своими невероятными водопадами. Реки Зварагет и Мегри, пробивая путь сквозь гранитные скалы, образуют здесь целую лестницу живописнейших каскадов.\n\nКаждый водопад Личка уникален: один низвергается с высоты широким шелковистым полотном, другой с ревом прорывается сквозь узкую расщелину в глубокую естественную ванну с кристально чистой водой бирюзового оттенка.\n\nЗдешняя природа поражает буйством зелени, гранатовыми и инжирными садами поблизости и приятным горным воздухом. Для тех, кто путешествует по югу Армении к границе с Ираном, водопады Личка станут незабываемым открытием.",
+      "hy": "Լիճքի ջրվեժներ — Մեղրու թաքնված դրախտը\n\nՀայաստանի հարավային դարպասում՝ Մեղրու տարածաշրջանի Լիճք գյուղում, գտնվում է բնության անկրկնելի մի հրաշք։ Զվարագետ գետի հոսանքով ձևավորվել է բազմաթիվ հիասքանչ ջրվեժների և զմրուխտյա բնական ավազանների մի ամբողջ շարք:\n\nԱյստեղ կարելի է լողալ բյուրեղյա մաքուր լեռնային ջրերում, վայելել հարավային հարուստ բուսականությունն ու լսել ջրվեժների հանգստացնող խոխոջը:\n\nAmaras Tour-ը կազմակերպում է բացառիկ տուրեր դեպի Մեղրի և Լիճքի ջրվեժներ՝ բացահայտելով Սյունիքի հարավային կախարդանքը:",
+      "en": "Lichk Waterfalls — The Secret Paradise of Southern Armenia\n\nIn the extreme south of Armenia, near the subtropical mountain town of Meghri, lies the enchanting village of Lichk. Carving through ancient granite, the Zvaraget and Meghri rivers form a staircase of more than ten natural cascades.\n\nEach waterfall empties into a smooth, natural rock basin of mesmerizing turquoise clarity, offering ideal refreshing pools amid summer heat. Surrounded by wild ferns, walnut trees, and granite cliffs, Lichk represents the pinnacle of Armenia's southern wild beauty."
+    },
+    "tourQuery": "lichk"
+  },
+  {
+    "id": "herher-waterfall",
+    "name": {
+      "ru": "Водопад Гер-Гер (Караваз)",
+      "hy": "Հերհերի ջրվեժ (Քարավազ)",
+      "en": "Herher Waterfall (Karavaz)"
+    },
+    "tagline": {
+      "ru": "Мощный каскад в базальтовом каньоне Вайоц Дзора",
+      "hy": "Հզոր գահավիժող ջրվեժ Վայոց ձորի բազալտե կիրճում",
+      "en": "Dramatic Powerful Cascade in Vayots Dzor's Basalt Canyon"
+    },
+    "regionCategory": "south",
+    "region": {
+      "ru": "Вайоцдзорская область (Гергер)",
+      "hy": "Վայոց ձորի մարզ (Հերհեր)",
+      "en": "Vayots Dzor Province (Herher)"
+    },
+    "distance": {
+      "ru": "155 км от Еревана",
+      "hy": "155 կմ Երևանից",
+      "en": "155 km from Yerevan"
+    },
+    "travelTime": {
+      "ru": "~2.5 часа",
+      "hy": "~2.5 ժամ",
+      "en": "~2.5 hours"
+    },
+    "image": "/images/attractions/herher-waterfall.jpg",
+    "unesco": false,
+    "highlights": {
+      "ru": [
+        "Впечатляющий водопад в узкой теснине, окруженный базальтовыми столбами",
+        "Глубокая чаша с прозрачной прохладной водой у подножия скалы",
+        "Древняя часовня Сурб Сион (VIII–XIII вв.) и пещерные кельи неподалеку",
+        "Живописные скалистые пейзажи и водохранилище Гер-Гер"
+      ],
+      "hy": [
+        "Հզոր ջրվեժ բազալտե սյուներով շրջապատված նեղ կիրճում",
+        "Բյուրեղյա զով ջրով բնական լճակ ժայռի ստորոտում",
+        "Հնամենի Սուրբ Սիոն մենաստանը (VIII–XIII դդ.) հարևանությամբ",
+        "Հերհերի գեղատեսիլ ջրամբարը և լեռնային համայնապատկերները"
+      ],
+      "en": [
+        "Dramatic cascade plunging through a narrow amphitheater of basalt pillars",
+        "Deep emerald pool of crisp spring water at the base of the cliffs",
+        "Historic 8th-century Saint Sion hermitage and cave cells nearby",
+        "Panoramic views of Herher reservoir and volcanic canyons"
+      ]
+    },
+    "shortDescription": {
+      "ru": "Красивый водопад в базальтовой расщелине реки Гергер в Вайоц Дзоре. Скрыт среди скал и старинных памятников, низвергается мощной струей в глубокую чашу с чистой бирюзовой водой.",
+      "hy": "Գեղատեսիլ ջրվեժ Վայոց ձորի Հերհեր գետի բազալտե կիրճում։ Թափվում է հզոր շիթով դեպի խորը ժայռափոր ավազան՝ շրջապատված վայրի ապառաժներով։",
+      "en": "A scenic waterfall nestled within a basalt crevice on the Herher River in Vayots Dzor. Plunges with force into a natural turquoise swimming bowl beneath volcanic cliffs."
+    },
+    "fullStory": {
+      "ru": "Водопад Гер-Гер — тайное сокровище Вайоц Дзора\n\nВ Вайоцдзорской области, в ущелье реки Гергер к северу от Вайка, находится один из самых впечатляющих и уединенных водопадов региона — водопад Гер-Гер (местные жители также называют его Караваз).\n\nВодный поток вырывается из узкой расщелины между высокими базальтовыми колоннами и обрушивается с высоты в глубокое естественное озеро с поразительно чистой прохладной водой. Шум падающей воды эхом разносится по каньону, создавая атмосферу уединения и дикой мощи природы.\n\nПоблизости находятся древний монастырь Сурб Сион (VIII–XIII века), старинные хачкары и водохранилище Гер-Гер, что делает поездку сюда насыщенной и историей, и потрясающими пейзажами.",
+      "hy": "Հերհերի ջրվեժ (Քարավազ) — Վայոց ձորի գաղտնի գանձը\n\nՎայոց ձորի մարզի Հերհեր գյուղի մոտակայքում՝ բազալտե ժայռերի գրկում, թաքնված է Քարավազի կամ Հերհերի ջրվեժը։ Ջրի հզոր հոսքը գահավիժում է նեղ կիրճից՝ լցվելով բնական զուլալ լճակի մեջ:\n\nՇրջակայքում են գտնվում պատմական Սուրբ Սիոն վանական համալիրը, քարանձավային կացարանները և Հերհերի ջրամբարը, ինչը ճամփորդությունն այստեղ դարձնում է չափազանց հետաքրքիր:\n\nAmaras Tour-ը կապահովի հարմարավետ և բովանդակալից տուր այս չբացահայտված գեղեցկությանը:",
+      "en": "Herher Waterfall (Karavaz) — Hidden Marvel of Vayots Dzor\n\nCarved into the volcanic canyon of the Herher River north of Vayk, Herher Waterfall (also known locally as Karavaz) is a mesmerizing sight. The river funnels through a narrow opening between sheer basalt columns, plunging into an amphitheater pool of clear mountain water.\n\nThe echo of roaring water reverberates throughout the basalt canyon, while nearby treasures like the ancient 8th-century Saint Sion Monastery and medieval khachkars make Herher an extraordinary destination."
+    },
+    "tourQuery": "herher"
+  },
+  {
+    "id": "kasakh-waterfall",
+    "name": {
+      "ru": "Водопад Касах (Сагмосаванк)",
+      "hy": "Քասախի ջրվեժ (Սաղմոսավանք)",
+      "en": "Kasakh Waterfall (Saghmosavank)"
+    },
+    "tagline": {
+      "ru": "Грандиозный 70-метровый водопад в каньоне напротив Сагмосаванка",
+      "hy": "70 մետրանոց վեհաշուք ջրվեժ Քասախի կիրճում՝ Սաղմոսավանքի դիմաց",
+      "en": "Grand 70m Waterfall in the Kasakh Gorge Facing Saghmosavank"
+    },
+    "regionCategory": "near_yerevan",
+    "region": {
+      "ru": "Арагацотнская область (Оганаван / Сагмосаванк)",
+      "hy": "Արագածոտնի մարզ (Օհանավան / Սաղմոսավանք)",
+      "en": "Aragatsotn Province (Ohanavan / Saghmosavank)"
+    },
+    "distance": {
+      "ru": "35 км от Еревана",
+      "hy": "35 կմ Երևանից",
+      "en": "35 km from Yerevan"
+    },
+    "travelTime": {
+      "ru": "~40 минут",
+      "hy": "~40 րոպե",
+      "en": "~40 minutes"
+    },
+    "image": "/images/attractions/kasakh-waterfall.jpg",
+    "unesco": false,
+    "highlights": {
+      "ru": [
+        "Грандиозный 70-метровый каскад — один из высочайших по общему перепаду в Армении",
+        "Фантастический вид на глубокий базальтовый каньон реки Касах",
+        "Расположен прямо напротив знаменитых монастырей Сагмосаванк и Ованаванк (XIII в.)",
+        "Всего 35 минут езды от центра Еревана — идеальная локация для комфортного тура"
+      ],
+      "hy": [
+        "70 մետրանոց վիթխարի ջրվեժ՝ Հայաստանի ամենաբարձրահասակներից մեկը",
+        "Քասախ գետի խորը բազալտե կիրճի շունչ կտրող տեսարան",
+        "Գտնվում է միջնադարյան Սաղմոսավանք և Հովհաննավանք վանքերի հարևանությամբ",
+        "Ընդամենը 35 րոպե Երևանից՝ իդեալական մեկօրյա հարմարավետ տուրի համար"
+      ],
+      "en": [
+        "Monumental 70-meter drop — among the tallest overall cascades in Armenia",
+        "Breathtaking panoramas of the sheer volcanic Kasakh River canyon",
+        "Located directly opposite the 13th-century Saghmosavank and Hovhannavank monasteries",
+        "Only 35 minutes from central Yerevan — an easy and rewarding day trip"
+      ]
+    },
+    "shortDescription": {
+      "ru": "Впечатляющий 70-метровый водопад в головокружительном ущелье реки Касах близ Оганавана. Открывается прямо со смотровых площадок у средневековых монастырей Сагмосаванк и Ованаванк.",
+      "hy": "70 մետր բարձրությամբ տպավորիչ ջրվեժ Քասախի գլխապտույտ կիրճում՝ Օհանավանի մոտ։ Բացվում է Սաղմոսավանք և Հովհաննավանք վանքերի դիտահարթակներից։",
+      "en": "An imposing 70-meter waterfall plunging into the sheer chasm of the Kasakh River gorge near Ohanavan. Viewed directly across from the medieval cliffside Saghmosavank monastery."
+    },
+    "fullStory": {
+      "ru": "Водопад Касах — величие каньона и древних обителей\n\nВсего в получасе езды от Еревана, в Арагацотнской области, река Касах прорезает вулканическое плато, образуя колоссальный базальтовый каньон глубиной до двухсот метров. Именно здесь с высокого обрыва обрушивается 70-метровый Касахский водопад.\n\nГлавная уникальность этого места — в потрясающей гармонии природы и архитектуры. На самом краю обрыва напротив водопада высятся жемчужины средневекового армянского зодчества XIII века — монастыри Сагмосаванк («Монастырь псалмов») и Ованаванк. Вид на ревущий водопад на дне бездны и парящие над пропастью купола храмов на фоне горы Арарат и Арагац производит ошеломляющее впечатление.\n\nКасахский водопад — одна из самых любимых локаций гостей Amaras Tour благодаря близости к Еревану и незабываемым панорамам.",
+      "hy": "Քասախի ջրվեժ — կիրճի և դարավոր վանքերի ներդաշնակությունը\n\nԵրևանից ընդամենը կես ժամվա հեռավորության վրա Քասախ գետը կտրում է հրաբխային սարահարթը՝ առաջացնելով մինչև 200 մետր խորությամբ հոյակապ կիրճ, որտեղից էլ գահավիժում է 70-մետրանոց Քասախի ջրվեժը:\n\nԱյս վայրի առանձնահատկությունը բնության և ճարտարապետության կատարյալ միաձուլումն է։ Կիրճի եզրին են գտնվում XIII դարի հայկական ճարտարապետության գլուխգործոցները՝ Սաղմոսավանքն ու Հովհաննավանքը:\n\nAmaras Tour-ի հետ դուք կվայելեք այս անհավանական տեսարանները՝ հարմարավետ մեքենայով և պրոֆեսիոնալ գիդով:",
+      "en": "Kasakh Waterfall — Where Ancient Sanctuaries Meet the Abyss\n\nJust 35 minutes northwest of Yerevan, the Kasakh River slices through the volcanic plateau, forming a monumental 200-meter-deep basalt canyon. From the opposing cliffside, the Kasakh Waterfall plunges an astounding 70 meters into the chasm.\n\nWhat makes this setting unforgettable is its pairing with 13th-century masterpieces of Armenian monastic architecture: Saghmosavank (\"Monastery of Psalms\") and Hovhannavank, perched boldly on the very precipice. The view across the chasm, taking in the roaring cascade, medieval stone domes, and Mount Ararat on the horizon, is simply magnificent.\n\nAmaras Tour includes Kasakh Waterfall in our top private day excursions from Yerevan."
+    },
+    "tourQuery": "kasakh"
   }
 ]
