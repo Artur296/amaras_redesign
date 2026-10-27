@@ -7813,11 +7813,11 @@
     {
       "id": "vehicle-1793119121637",
       "name": "Mercedes-Maybach GLS",
-      "category": "minibuses",
+      "category": "luxurycars",
       "categoryName": {
-        "ru": "Микроавтобусы",
-        "hy": "Միկրոավտոբուսներ",
-        "en": "Minibuses"
+        "ru": "Автомобили класса люкс",
+        "hy": "Լյուքս դասի ավտոմեքենաներ",
+        "en": "Luxury Cars"
       },
       "passengers": 4,
       "luggage": 4,
