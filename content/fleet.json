@@ -18,7 +18,11 @@
       "en": "Vehicle description and highlights for comfortable touring."
     },
     "features": {
-      "ru": [],
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
       "hy": [
         "Կլիմատ-կոնտրոլ",
         "Wi-Fi սրահում",
