@@ -7032,6 +7032,191 @@
         ]
       },
       "order": 18
+    },
+    {
+      "id": "vehicle-1793117822037",
+      "name": "Toyota Camry",
+      "category": "comfortclass",
+      "categoryName": {
+        "ru": "Комфорт-класс",
+        "hy": "Կոմֆորտ դաս",
+        "en": "Comfort Class"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793117846839-clipboard-1793117844882.png",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 19
+    },
+    {
+      "id": "vehicle-1793117861057",
+      "name": "Nissan Sentra",
+      "category": "comfortclass",
+      "categoryName": {
+        "ru": "Комфорт-класс",
+        "hy": "Կոմֆորտ դաս",
+        "en": "Comfort Class"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793117896049-clipboard-1793117894946.png",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 20
+    },
+    {
+      "id": "vehicle-1793117900637",
+      "name": "Nissan Rogue",
+      "category": "comfortclass",
+      "categoryName": {
+        "ru": "Комфорт-класс",
+        "hy": "Կոմֆորտ դաս",
+        "en": "Comfort Class"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793117985453-clipboard-1793117984247.jpg",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 21
+    },
+    {
+      "id": "vehicle-1793118014786",
+      "name": "BYD",
+      "category": "comfortclass",
+      "categoryName": {
+        "ru": "Комфорт-класс",
+        "hy": "Կոմֆորտ դաս",
+        "en": "Comfort Class"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793118099900-clipboard-1793118097938.png",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 22
+    },
+    {
+      "id": "vehicle-1793118130960",
+      "name": "Hongqi",
+      "category": "comfortclass",
+      "categoryName": {
+        "ru": "Комфорт-класс",
+        "hy": "Կոմֆորտ դաս",
+        "en": "Comfort Class"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793118180077-clipboard-1793118178720.jpg",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 23
     }
   ],
   "fleet_categories": [
