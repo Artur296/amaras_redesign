@@ -31,5 +31,338 @@
       ]
     },
     "order": 1
+  },
+  {
+    "id": "vehicle-1793116561001",
+    "name": "Mercedes-Benz Sprinter — 15",
+    "category": "minibuses",
+    "categoryName": {
+      "ru": "Микроавтобусы",
+      "hy": "Միկրոավտոբուսներ",
+      "en": "Minibuses"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793116666503-clipboard-1793116665461.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 2
+  },
+  {
+    "id": "vehicle-1793116676073",
+    "name": "Mercedes-Benz Sprinter — 19",
+    "category": "minibuses",
+    "categoryName": {
+      "ru": "Микроавтобусы",
+      "hy": "Միկրոավտոբուսներ",
+      "en": "Minibuses"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793116739946-clipboard-1793116738640.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 3
+  },
+  {
+    "id": "vehicle-1793116748603",
+    "name": "Toyota Alphard",
+    "category": "minivans",
+    "categoryName": {
+      "ru": "Минивэны",
+      "hy": "Մինիվեններ",
+      "en": "Minivans"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793116799863-clipboard-1793116798621.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 4
+  },
+  {
+    "id": "vehicle-1793116815055",
+    "name": "Toyota Sienna",
+    "category": "minivans",
+    "categoryName": {
+      "ru": "Минивэны",
+      "hy": "Մինիվեններ",
+      "en": "Minivans"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793116833599-clipboard-1793116832398.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 5
+  },
+  {
+    "id": "vehicle-1793116847533",
+    "name": "Nissan Elgrand",
+    "category": "minivans",
+    "categoryName": {
+      "ru": "Минивэны",
+      "hy": "Մինիվեններ",
+      "en": "Minivans"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793116907946-clipboard-1793116906588.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 6
+  },
+  {
+    "id": "vehicle-1793116918033",
+    "name": "Honda Odyssey",
+    "category": "minivans",
+    "categoryName": {
+      "ru": "Минивэны",
+      "hy": "Մինիվեններ",
+      "en": "Minivans"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793116978611-clipboard-1793116977190.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 7
+  },
+  {
+    "id": "vehicle-1793116984016",
+    "name": "BAW M7",
+    "category": "minivans",
+    "categoryName": {
+      "ru": "Минивэны",
+      "hy": "Մինիվեններ",
+      "en": "Minivans"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117052634-clipboard-1793117051249.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 8
+  },
+  {
+    "id": "vehicle-1793117060547",
+    "name": "BAW M8",
+    "category": "minivans",
+    "categoryName": {
+      "ru": "Минивэны",
+      "hy": "Մինիվեններ",
+      "en": "Minivans"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117090196-clipboard-1793117088967.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 9
+  },
+  {
+    "id": "vehicle-1793117097183",
+    "name": "Mercedes-Benz S-Class W222",
+    "category": "premiumcars",
+    "categoryName": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117140655-clipboard-1793117139304.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 10
   }
 ]
