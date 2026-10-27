@@ -190,3 +190,12 @@ nextjs-portal,
   animation: mountainMove 12s linear infinite;
 }
 
+/* Hide scrollbars completely while keeping scrollable functionality */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
