@@ -6372,60 +6372,102 @@
   ],
   "fleet": [
     {
-      "id": "toyota-camry-comfort",
-      "name": "Toyota Camry Comfort+",
-      "category": "sedan",
+      "id": "vehicle-1793116264584",
+      "name": "Mercedes-Benz V-Class",
+      "category": "minibuses",
       "categoryName": {
-        "ru": "Комфорт Седан",
-        "hy": "Կոմֆորտ Սեդան",
-        "en": "Comfort Sedan"
+        "ru": "Микроавтобусы",
+        "hy": "Միկրոավտոբուսներ",
+        "en": "Minibuses"
       },
-      "passengers": 4,
-      "luggage": 3,
-      "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80",
-      "images": [
-        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80"
-      ],
+      "passengers": 9,
+      "luggage": 0,
+      "image": "/images/1793116403460-clipboard-1793116401637.jpg",
+      "images": [],
       "description": {
-        "ru": "Классический седан повышенной комфортности для пар и индивидуальных путешественников. Тихий ход, современный климат-контроль и мягкая подвеска для неутомительных экскурсий по достопримечательностям Армении.",
-        "hy": "Հարմարավետ դասական սեդան զույգերի և անհատ ճանապարհորդների համար։ Անաղմուկ ընթացք, ժամանակակից կլիմատ-կոնտրոլ և փափուկ կախոց։",
-        "en": "Classic comfort-plus sedan for couples and solo explorers. Quiet ride, gentle suspension, and modern dual-zone AC for relaxing personal excursions across Armenia."
+        "ru": "",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
       },
       "features": {
-        "ru": [
-          "Мягкая энергоёмкая подвеска",
-          "Климат-контроль с очисткой воздуха",
-          "Wi-Fi и зарядные устройства",
-          "Идеально для 1-3 пассажиров",
-          "Чистый ухоженный салон без запахов"
-        ],
+        "ru": [],
         "hy": [
-          "Փափուկ և հարմարավետ ընթացք",
-          "Կլիմատ-կոնտրոլ օդի մաքրմամբ",
-          "Wi-Fi և լիցքավորիչներ",
-          "Հարմար է 1-3 ուղևորի համար",
-          "Մաքուր և խնամված սրահ"
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
         ],
         "en": [
-          "Pliant, smooth-riding suspension",
-          "Automatic dual-zone climate control",
-          "Wi-Fi hotspot & charging cables",
-          "Optimal for 1-3 travelers",
-          "Spotless non-smoking cabin"
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
         ]
       },
-      "order": 5
+      "order": 1
     }
   ],
   "fleet_categories": [
     {
-      "id": "sedan",
+      "id": "minibuses",
       "name": {
-        "ru": "Седан",
-        "hy": "Սեդան",
-        "en": "Sedan"
+        "ru": "Микроавтобусы",
+        "hy": "Միկրոավտոբուսներ",
+        "en": "Minibuses"
+      },
+      "order": 2
+    },
+    {
+      "id": "minivans",
+      "name": {
+        "ru": "Минивэны",
+        "hy": "Մինիվեններ",
+        "en": "Minivans"
+      },
+      "order": 2
+    },
+    {
+      "id": "premiumcars",
+      "name": {
+        "ru": "Автомобили премиум-класса",
+        "hy": "Պրեմիում դասի ավտոմեքենաներ",
+        "en": "Premium Cars"
+      },
+      "order": 3
+    },
+    {
+      "id": "comfortclass",
+      "name": {
+        "ru": "Комфорт-класс",
+        "hy": "Կոմֆորտ դաս",
+        "en": "Comfort Class"
+      },
+      "order": 4
+    },
+    {
+      "id": "suvs44vehicles",
+      "name": {
+        "ru": "Внедорожники и автомобили 4×4",
+        "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+        "en": "SUVs & 4×4 Vehicles"
       },
       "order": 5
+    },
+    {
+      "id": "convertibles",
+      "name": {
+        "ru": "Кабриолеты",
+        "hy": "Кабриолеты",
+        "en": "Convertibles"
+      },
+      "order": 6
+    },
+    {
+      "id": "luxurycars",
+      "name": {
+        "ru": "Автомобили класса люкс",
+        "hy": "Լյուքս դասի ավտոմեքենաներ",
+        "en": "Luxury Cars"
+      },
+      "order": 7
     }
   ]
 }
