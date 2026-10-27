@@ -7624,6 +7624,228 @@
         ]
       },
       "order": 34
+    },
+    {
+      "id": "vehicle-1793118882137",
+      "name": "Rolls-Royce Phantom",
+      "category": "luxurycars",
+      "categoryName": {
+        "ru": "Автомобили класса люкс",
+        "hy": "Լյուքս դասի ավտոմեքենաներ",
+        "en": "Luxury Cars"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793118933465-clipboard-1793118932088.jpg",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 35
+    },
+    {
+      "id": "vehicle-1793118947336",
+      "name": "Rolls-Royce Cullinan",
+      "category": "luxurycars",
+      "categoryName": {
+        "ru": "Автомобили класса люкс",
+        "hy": "Լյուքս դասի ավտոմեքենաներ",
+        "en": "Luxury Cars"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793118969311-clipboard-1793118965976.jpg",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 36
+    },
+    {
+      "id": "vehicle-1793118975462",
+      "name": "Mercedes-Maybach",
+      "category": "luxurycars",
+      "categoryName": {
+        "ru": "Автомобили класса люкс",
+        "hy": "Լյուքս դասի ավտոմեքենաներ",
+        "en": "Luxury Cars"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793119003231-clipboard-1793119002270.jpg",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 37
+    },
+    {
+      "id": "vehicle-1793119053854",
+      "name": "Mercedes-Benz V-Class Maybach — 4",
+      "category": "luxurycars",
+      "categoryName": {
+        "ru": "Автомобили класса люкс",
+        "hy": "Լյուքս դասի ավտոմեքենաներ",
+        "en": "Luxury Cars"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793119060986-clipboard-1793119059398.png",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 38
+    },
+    {
+      "id": "vehicle-1793119077590",
+      "name": "Mercedes-Benz Sprinter Maybach — 8",
+      "category": "luxurycars",
+      "categoryName": {
+        "ru": "Автомобили класса люкс",
+        "hy": "Լյուքս դասի ավտոմեքենաներ",
+        "en": "Luxury Cars"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793119111622-clipboard-1793119109962.png",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 39
+    },
+    {
+      "id": "vehicle-1793119121637",
+      "name": "Mercedes-Maybach GLS",
+      "category": "minibuses",
+      "categoryName": {
+        "ru": "Микроавтобусы",
+        "hy": "Միկրոավտոբուսներ",
+        "en": "Minibuses"
+      },
+      "passengers": 4,
+      "luggage": 4,
+      "image": "/images/1793119158119-clipboard-1793119156587.png",
+      "images": [],
+      "description": {
+        "ru": "Описание автомобиля и его преимуществ для поездок.",
+        "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+        "en": "Vehicle description and highlights for comfortable touring."
+      },
+      "features": {
+        "ru": [
+          "Кондиционер / Климат-контроль",
+          "Wi-Fi на борту",
+          "Питьевая вода"
+        ],
+        "hy": [
+          "Կլիմատ-կոնտրոլ",
+          "Wi-Fi սրահում",
+          "Խմելու ջուր"
+        ],
+        "en": [
+          "Air Conditioning / Climate Control",
+          "Onboard Wi-Fi",
+          "Bottled Water"
+        ]
+      },
+      "order": 40
     }
   ],
   "fleet_categories": [
