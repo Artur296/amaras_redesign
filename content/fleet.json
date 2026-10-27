@@ -364,5 +364,301 @@
       ]
     },
     "order": 10
+  },
+  {
+    "id": "vehicle-1793117323274",
+    "name": "Mercedes-Benz S-Class W223",
+    "category": "premiumcars",
+    "categoryName": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117400910-clipboard-1793117399899.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 11
+  },
+  {
+    "id": "vehicle-1793117417054",
+    "name": "BMW 7 Series",
+    "category": "premiumcars",
+    "categoryName": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117450177-clipboard-1793117448774.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 12
+  },
+  {
+    "id": "vehicle-1793117470349",
+    "name": "BMW X5",
+    "category": "premiumcars",
+    "categoryName": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117500286-clipboard-1793117498025.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 13
+  },
+  {
+    "id": "vehicle-1793117509785",
+    "name": "BMW X6",
+    "category": "premiumcars",
+    "categoryName": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117545395-clipboard-1793117542845.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 14
+  },
+  {
+    "id": "vehicle-1793117552229",
+    "name": "LiXiang L7 Ultra",
+    "category": "premiumcars",
+    "categoryName": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117580496-clipboard-1793117579376.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 15
+  },
+  {
+    "id": "vehicle-1793117591910",
+    "name": "Tesla Model 3",
+    "category": "premiumcars",
+    "categoryName": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117633859-clipboard-1793117632168.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 16
+  },
+  {
+    "id": "vehicle-1793117641467",
+    "name": "Tesla Model S",
+    "category": "premiumcars",
+    "categoryName": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117663110-clipboard-1793117660425.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 17
+  },
+  {
+    "id": "vehicle-1793117670385",
+    "name": "Tesla Model Y",
+    "category": "premiumcars",
+    "categoryName": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793117711204-clipboard-1793117709753.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 18
   }
 ]
