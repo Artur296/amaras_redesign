@@ -65,86 +65,95 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       };
     }
   }, [modalOpen]);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isMouseDownRef = useRef(false);
-  const dragStartXRef = useRef(0);
-  const dragScrollLeftRef = useRef(0);
-  const hasDraggedRef = useRef(false);
+  const [slideState, setSlideState] = useState({ index: 0, direction: 1 });
+  const { index: activeIndex, direction } = slideState;
 
-  const scrollToIndex = (index: number) => {
-    if (!scrollRef.current) return;
-    const target = Math.max(0, Math.min(index, reviews.length - 1));
-    const cardWidth = scrollRef.current.clientWidth;
-    scrollRef.current.scrollTo({
-      left: target * cardWidth,
-      behavior: "smooth",
-    });
-    setActiveIndex(target);
+  const scrollNext = () => {
+    if (activeIndex < reviews.length - 1) {
+      setSlideState({ index: activeIndex + 1, direction: 1 });
+    }
   };
 
   const scrollPrev = () => {
     if (activeIndex > 0) {
-      scrollToIndex(activeIndex - 1);
+      setSlideState({ index: activeIndex - 1, direction: -1 });
     }
   };
 
-  const scrollNext = () => {
-    if (activeIndex < reviews.length - 1) {
-      scrollToIndex(activeIndex + 1);
+  // Touch swipe support (finger flick) without blocking vertical scrolling
+  const touchStartXRef = useRef(0);
+  const touchStartYRef = useRef(0);
+  const touchDeltaXRef = useRef(0);
+  const touchDeltaYRef = useRef(0);
+  const isTouchingRef = useRef(false);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLElement).closest("button, a, input, textarea")) return;
+    if (e.touches.length === 1) {
+      isTouchingRef.current = true;
+      touchStartXRef.current = e.touches[0].clientX;
+      touchStartYRef.current = e.touches[0].clientY;
+      touchDeltaXRef.current = 0;
+      touchDeltaYRef.current = 0;
     }
   };
 
-  const handleScroll = () => {
-    if (!scrollRef.current) return;
-    const { scrollLeft, clientWidth } = scrollRef.current;
-    if (clientWidth > 0) {
-      const idx = Math.round(scrollLeft / clientWidth);
-      if (idx >= 0 && idx < reviews.length && idx !== activeIndex) {
-        setActiveIndex(idx);
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isTouchingRef.current) return;
+    if (e.touches.length === 1) {
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+      const dx = currentX - touchStartXRef.current;
+      const dy = currentY - touchStartYRef.current;
+      touchDeltaXRef.current = dx;
+      touchDeltaYRef.current = dy;
+
+      // If predominantly vertical scroll, cancel swipe detection so page scrolls naturally
+      if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 15) {
+        isTouchingRef.current = false;
       }
     }
   };
 
-  useEffect(() => {
-    const onResize = () => {
-      if (!scrollRef.current) return;
-      const width = scrollRef.current.clientWidth;
-      scrollRef.current.scrollTo({
-        left: activeIndex * width,
-        behavior: "auto",
-      });
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [activeIndex]);
+  const handleTouchEnd = () => {
+    if (!isTouchingRef.current) return;
+    isTouchingRef.current = false;
+    const dx = touchDeltaXRef.current;
+    const dy = touchDeltaYRef.current;
+
+    // Trigger on deliberate horizontal swipe (35px+)
+    if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) {
+        scrollNext();
+      } else {
+        scrollPrev();
+      }
+    }
+  };
+
+  // Mouse drag support for desktop
+  const isMouseDownRef = useRef(false);
+  const mouseStartXRef = useRef(0);
+  const mouseStartYRef = useRef(0);
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.button !== 0) return;
     if ((e.target as HTMLElement).closest("button, a, input, textarea")) return;
     isMouseDownRef.current = true;
-    hasDraggedRef.current = false;
-    dragStartXRef.current = e.pageX;
-    dragScrollLeftRef.current = scrollRef.current?.scrollLeft || 0;
+    mouseStartXRef.current = e.clientX;
+    mouseStartYRef.current = e.clientY;
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isMouseDownRef.current || !scrollRef.current) return;
-    const dx = e.pageX - dragStartXRef.current;
-    if (Math.abs(dx) > 6) {
-      hasDraggedRef.current = true;
-      scrollRef.current.scrollLeft = dragScrollLeftRef.current - dx;
-    }
-  };
-
-  const handleMouseUp = () => {
+  const handleMouseUp = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isMouseDownRef.current) return;
     isMouseDownRef.current = false;
-    if (hasDraggedRef.current && scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      if (clientWidth > 0) {
-        const target = Math.round(scrollLeft / clientWidth);
-        scrollToIndex(target);
+    const dx = e.clientX - mouseStartXRef.current;
+    const dy = e.clientY - mouseStartYRef.current;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) {
+        scrollNext();
+      } else {
+        scrollPrev();
       }
     }
   };
@@ -410,31 +419,49 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
             </svg>
           </button>
 
-          {/* Scrollable / Swipeable Reviews Track */}
+          {/* Dynamic-height card that perfectly wraps any review length + touch swipe */}
           <div
-            ref={scrollRef}
-            onScroll={handleScroll}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
-            className="flex w-full overflow-x-auto snap-x snap-mandatory scrollbar-none touch-pan-y py-1 sm:py-2 select-none cursor-grab active:cursor-grabbing"
-            style={{
-              scrollSnapType: "x mandatory",
-              WebkitOverflowScrolling: "touch",
-              touchAction: "pan-y",
-              overscrollBehaviorX: "contain",
-            }}
+            className="w-full select-none cursor-grab active:cursor-grabbing touch-pan-y"
+            style={{ touchAction: "pan-y" }}
           >
-            {reviews.map((rev, idx) => {
-              const reviewContent = getReviewText(rev.text, locale);
-
-              return (
-                <div
-                  key={rev.id || idx}
-                  className="w-full shrink-0 min-w-full snap-center px-0.5 sm:px-1"
+            <AnimatePresence mode="wait" custom={direction} initial={false}>
+              {reviews[activeIndex] && (
+                <motion.div
+                  key={reviews[activeIndex].id || activeIndex}
+                  custom={direction}
+                  variants={{
+                    enter: (dir: number) => ({
+                      x: dir > 0 ? 40 : -40,
+                      opacity: 0,
+                    }),
+                    center: {
+                      x: 0,
+                      opacity: 1,
+                      transition: {
+                        x: { type: "spring", stiffness: 320, damping: 30 },
+                        opacity: { duration: 0.18 },
+                      },
+                    },
+                    exit: (dir: number) => ({
+                      x: dir > 0 ? -40 : 40,
+                      opacity: 0,
+                      transition: {
+                        x: { type: "spring", stiffness: 320, damping: 30 },
+                        opacity: { duration: 0.14 },
+                      },
+                    }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="w-full"
                 >
-                  <div className="relative overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] lg:rounded-[2.5rem] border border-white/10 bg-gradient-to-b from-[#252424] via-[#201F1F] to-[#1A1919] p-5 sm:p-8 lg:p-12 shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                  <div className="relative overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] lg:rounded-[2.5rem] border border-white/10 bg-gradient-to-b from-[#252424] via-[#201F1F] to-[#1A1919] p-5 sm:p-8 lg:p-12 shadow-2xl transition-all duration-300 flex flex-col">
                     {/* Ambient glow accent in background */}
                     <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#C7FF32]/5 blur-3xl pointer-events-none" />
                     <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-[#586EFF]/5 blur-3xl pointer-events-none" />
@@ -454,14 +481,14 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                               <span
                                 key={star}
                                 className={`text-base sm:text-xl ${
-                                  star <= rev.rating ? "opacity-100" : "opacity-30 text-white/40"
+                                  star <= reviews[activeIndex].rating ? "opacity-100" : "opacity-30 text-white/40"
                                 }`}
                               >
                                 ★
                               </span>
                             ))}
                             <span className="ml-1 text-sm sm:text-base font-bold text-white/95">
-                              {rev.rating}.0
+                              {reviews[activeIndex].rating}.0
                             </span>
                           </div>
 
@@ -472,48 +499,48 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                           </span>
 
                           {/* Tour Visited pill */}
-                          {rev.tourTitle && (
+                          {reviews[activeIndex].tourTitle && (
                             <span
                               className="inline-flex items-center gap-1.5 rounded-full bg-[#586EFF]/15 border border-[#586EFF]/30 px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-semibold text-[#8C9EFF] max-w-[200px] xs:max-w-[280px] sm:max-w-md truncate"
-                              title={rev.tourTitle}
+                              title={reviews[activeIndex].tourTitle}
                             >
                               <svg className="w-3 h-3 shrink-0 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                               </svg>
-                              <span className="truncate">{rev.tourTitle}</span>
+                              <span className="truncate">{reviews[activeIndex].tourTitle}</span>
                             </span>
                           )}
 
                           {/* Guide Name pill */}
-                          {rev.guideName && (
+                          {reviews[activeIndex].guideName && (
                             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-semibold text-white/90">
                               <span className="text-white/60 font-normal">{texts.guideBadge}:</span>
-                              <span className="text-[#C7FF32] font-bold">{rev.guideName}</span>
+                              <span className="text-[#C7FF32] font-bold">{reviews[activeIndex].guideName}</span>
                             </span>
                           )}
                         </div>
 
                         {/* Top Right: Date & Counter */}
                         <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 text-xs sm:text-sm text-white/60 font-medium">
-                          {rev.date && (
+                          {reviews[activeIndex].date && (
                             <span className="inline-flex items-center gap-1.5">
                               <svg className="w-3.5 h-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                               </svg>
-                              <span>{rev.date}</span>
+                              <span>{reviews[activeIndex].date}</span>
                             </span>
                           )}
                           <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-mono font-bold text-white/80">
-                            {idx + 1} / {reviews.length}
+                            {activeIndex + 1} / {reviews.length}
                           </span>
                         </div>
                       </div>
 
-                      {/* Middle: The Review Text */}
+                      {/* Middle: The Review Text (Natural height, no artificial empty spaces) */}
                       <div className="my-4 sm:my-6">
                         <p className="text-base sm:text-lg lg:text-xl font-normal leading-relaxed text-[#FCFCF7] break-words whitespace-pre-line tracking-normal">
-                          “{reviewContent}”
+                          “{getReviewText(reviews[activeIndex].text, locale)}”
                         </p>
                       </div>
                     </div>
@@ -522,19 +549,19 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                     <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/10 pt-4 sm:pt-6 mt-2">
                       <div className="flex items-center gap-3.5 min-w-0">
                         <div className="flex h-11 w-11 sm:h-13 sm:w-13 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#586EFF] to-[#3B4CCA] font-black text-base sm:text-lg text-white shadow-lg ring-2 ring-white/15">
-                          {rev.author ? rev.author.charAt(0).toUpperCase() : "G"}
+                          {reviews[activeIndex].author ? reviews[activeIndex].author.charAt(0).toUpperCase() : "G"}
                         </div>
                         <div className="min-w-0">
                           <span className="block text-base sm:text-lg lg:text-xl font-bold text-white truncate">
-                            {rev.author}
+                            {reviews[activeIndex].author}
                           </span>
-                          {rev.location ? (
+                          {reviews[activeIndex].location ? (
                             <span className="flex items-center gap-1 text-xs sm:text-sm text-white/70 font-medium truncate mt-0.5">
                               <svg className="w-3.5 h-3.5 text-[#C7FF32] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                               </svg>
-                              <span className="truncate">{rev.location}</span>
+                              <span className="truncate">{reviews[activeIndex].location}</span>
                             </span>
                           ) : (
                             <span className="text-xs sm:text-sm text-white/50">{texts.verified}</span>
@@ -545,16 +572,16 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                       {/* Card Bottom-right Navigation Arrows */}
                       <div className="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/5">
                         <span className="text-xs sm:text-sm text-white/50 font-mono sm:hidden">
-                          {idx + 1} / {reviews.length}
+                          {activeIndex + 1} / {reviews.length}
                         </span>
                         <div className="flex items-center gap-2">
                           <button
                             type="button"
                             onClick={scrollPrev}
-                            disabled={idx === 0}
+                            disabled={activeIndex === 0}
                             aria-label="Previous review"
                             className={`flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all active:scale-95 cursor-pointer ${
-                              idx === 0
+                              activeIndex === 0
                                 ? "opacity-30 cursor-not-allowed"
                                 : "hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F]"
                             }`}
@@ -566,10 +593,10 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                           <button
                             type="button"
                             onClick={scrollNext}
-                            disabled={idx === reviews.length - 1}
+                            disabled={activeIndex === reviews.length - 1}
                             aria-label="Next review"
                             className={`flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all active:scale-95 cursor-pointer ${
-                              idx === reviews.length - 1
+                              activeIndex === reviews.length - 1
                                 ? "opacity-30 cursor-not-allowed"
                                 : "hover:border-[#C7FF32] hover:bg-[#C7FF32] hover:text-[#312F2F]"
                             }`}
@@ -582,9 +609,9 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
