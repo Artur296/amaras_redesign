@@ -845,5 +845,412 @@
       ]
     },
     "order": 23
+  },
+  {
+    "id": "vehicle-1793118250365",
+    "name": "Toyota 4Runner",
+    "category": "suvs44vehicles",
+    "categoryName": {
+      "ru": "Внедорожники и автомобили 4×4",
+      "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+      "en": "SUVs & 4×4 Vehicles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118280827-clipboard-1793118279453.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 24
+  },
+  {
+    "id": "vehicle-1793118298402",
+    "name": "Mitsubishi Pajero",
+    "category": "suvs44vehicles",
+    "categoryName": {
+      "ru": "Внедорожники и автомобили 4×4",
+      "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+      "en": "SUVs & 4×4 Vehicles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118324658-clipboard-1793118323132.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 25
+  },
+  {
+    "id": "vehicle-1793118332353",
+    "name": "Lexus LX 570",
+    "category": "suvs44vehicles",
+    "categoryName": {
+      "ru": "Внедорожники и автомобили 4×4",
+      "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+      "en": "SUVs & 4×4 Vehicles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118360673-clipboard-1793118358922.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 26
+  },
+  {
+    "id": "vehicle-1793118371360",
+    "name": "Lexus LX 470",
+    "category": "suvs44vehicles",
+    "categoryName": {
+      "ru": "Внедорожники и автомобили 4×4",
+      "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+      "en": "SUVs & 4×4 Vehicles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118448217-clipboard-1793118446712.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 27
+  },
+  {
+    "id": "vehicle-1793118456825",
+    "name": "Toyota Land Cruiser Prado",
+    "category": "suvs44vehicles",
+    "categoryName": {
+      "ru": "Внедорожники и автомобили 4×4",
+      "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+      "en": "SUVs & 4×4 Vehicles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118497484-clipboard-1793118496118.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 28
+  },
+  {
+    "id": "vehicle-1793118507093",
+    "name": "Dodge Durango",
+    "category": "suvs44vehicles",
+    "categoryName": {
+      "ru": "Внедорожники и автомобили 4×4",
+      "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+      "en": "SUVs & 4×4 Vehicles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118588752-clipboard-1793118587521.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 29
+  },
+  {
+    "id": "vehicle-1793118597957",
+    "name": "Mercedes-Benz G-Class",
+    "category": "suvs44vehicles",
+    "categoryName": {
+      "ru": "Внедорожники и автомобили 4×4",
+      "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+      "en": "SUVs & 4×4 Vehicles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118635339-clipboard-1793118633610.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 30
+  },
+  {
+    "id": "vehicle-1793118640223",
+    "name": "Mercedes-Benz GLE",
+    "category": "suvs44vehicles",
+    "categoryName": {
+      "ru": "Внедорожники и автомобили 4×4",
+      "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+      "en": "SUVs & 4×4 Vehicles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118673269-clipboard-1793118671647.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 31
+  },
+  {
+    "id": "vehicle-1793118678737",
+    "name": "BMW M8",
+    "category": "convertibles",
+    "categoryName": {
+      "ru": "Кабриолеты",
+      "hy": "Кабриолеты",
+      "en": "Convertibles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118713107-clipboard-1793118712198.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 32
+  },
+  {
+    "id": "vehicle-1793118721561",
+    "name": "Ford Mustang",
+    "category": "convertibles",
+    "categoryName": {
+      "ru": "Кабриолеты",
+      "hy": "Кабриолеты",
+      "en": "Convertibles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118773137-clipboard-1793118771722.jpg",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 33
+  },
+  {
+    "id": "vehicle-1793118785287",
+    "name": "Chevrolet Camaro",
+    "category": "convertibles",
+    "categoryName": {
+      "ru": "Кабриолеты",
+      "hy": "Кабриолеты",
+      "en": "Convertibles"
+    },
+    "passengers": 4,
+    "luggage": 4,
+    "image": "/images/1793118820399-clipboard-1793118818944.png",
+    "images": [],
+    "description": {
+      "ru": "Описание автомобиля и его преимуществ для поездок.",
+      "hy": "Ավտոմեքենայի նկարագրություն և առավելություններ։",
+      "en": "Vehicle description and highlights for comfortable touring."
+    },
+    "features": {
+      "ru": [
+        "Кондиционер / Климат-контроль",
+        "Wi-Fi на борту",
+        "Питьевая вода"
+      ],
+      "hy": [
+        "Կլիմատ-կոնտրոլ",
+        "Wi-Fi սրահում",
+        "Խմելու ջուր"
+      ],
+      "en": [
+        "Air Conditioning / Climate Control",
+        "Onboard Wi-Fi",
+        "Bottled Water"
+      ]
+    },
+    "order": 34
   }
 ]
