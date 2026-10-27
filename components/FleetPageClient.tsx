@@ -156,14 +156,6 @@ export default function FleetPageClient({ locale, fleet = [], categories, site }
                   {car.categoryName?.[locale] || car.category}
                 </span>
 
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white text-xs font-bold">
-                  <span className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md rounded-full px-3 py-1.5 border border-white/10">
-                    👥 {car.passengers} {locale === "ru" ? "пассажирских мест" : locale === "hy" ? "նստատեղ" : "passenger seats"}
-                  </span>
-                  <span className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md rounded-full px-3 py-1.5 border border-white/10">
-                    🧳 {car.luggage} {locale === "ru" ? "чемоданов" : locale === "hy" ? "ճամպրուկ" : "luggage capacity"}
-                  </span>
-                </div>
               </div>
 
               <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
@@ -171,24 +163,6 @@ export default function FleetPageClient({ locale, fleet = [], categories, site }
                   <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#FCFCF7]">
                     {car.name}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#FCFCF7]/75">
-                    {car.description?.[locale]}
-                  </p>
-
-                  {/* Feature checklist */}
-                  <div className="mt-6 border-t border-white/10 pt-5">
-                    <h5 className="text-xs font-black uppercase tracking-wider text-[#C7FF32] mb-3">
-                      {locale === "ru" ? "Оснащение и удобства салона" : locale === "hy" ? "Հարմարավետություն" : "Cabin Equipment & Amenities"}
-                    </h5>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#FCFCF7]/85">
-                      {(car.features?.[locale] || []).map((feat, idx) => (
-                        <li key={idx} className="flex items-center gap-2">
-                          <span className="text-[#C7FF32] font-black">✓</span>
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
                 </div>
 
                 {/* CTAs */}

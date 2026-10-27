@@ -61,12 +61,12 @@ export type Vehicle = {
   name: string;
   category: VehicleCategory;
   categoryName: Record<Locale, string>;
-  passengers: number;
-  luggage: number;
+  passengers?: number;
+  luggage?: number;
   image: string;
   images?: string[];
-  description: Record<Locale, string>;
-  features: Record<Locale, string[]>;
+  description?: Record<Locale, string>;
+  features?: Record<Locale, string[]>;
   order?: number;
 };
 

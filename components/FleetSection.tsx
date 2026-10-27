@@ -126,35 +126,12 @@ export default function FleetSection({ locale, fleet = [] }: Props) {
                     {car.categoryName?.[locale] || car.category}
                   </span>
 
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-bold drop-shadow">
-                    <span className="flex items-center gap-1.5 bg-black/50 backdrop-blur-md rounded-full px-2.5 py-1">
-                      👥 {car.passengers} {locale === "ru" ? "мест" : locale === "hy" ? "նստատեղ" : "seats"}
-                    </span>
-                    <span className="flex items-center gap-1.5 bg-black/50 backdrop-blur-md rounded-full px-2.5 py-1">
-                      🧳 {car.luggage} {locale === "ru" ? "чемоданов" : locale === "hy" ? "ճամպրուկ" : "bags"}
-                    </span>
-                  </div>
                 </div>
 
                 <div className="p-5 sm:p-6">
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#312F2F]">
                     {car.name}
                   </h3>
-                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#555351] line-clamp-3">
-                    {car.description?.[locale]}
-                  </p>
-
-                  {/* Highlights / Features */}
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {(car.features?.[locale] || []).slice(0, 3).map((feat, idx) => (
-                      <span
-                        key={idx}
-                        className="rounded-lg bg-[#F5F5F0] px-2.5 py-1 text-[11px] font-semibold text-[#444240]"
-                      >
-                        ✓ {feat}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </div>
 

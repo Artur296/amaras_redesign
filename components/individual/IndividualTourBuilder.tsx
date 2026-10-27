@@ -15,30 +15,6 @@ type Props = {
   site: SiteInfo;
 };
 
-function formatPassengers(p: number, loc: Locale) {
-  if (loc === "ru") {
-    if (p === 1) return "1 пассажир";
-    if (p >= 2 && p <= 4) return `${p} пассажира`;
-    return `${p} пассажиров`;
-  }
-  if (loc === "hy") {
-    return `${p} ուղևոր`;
-  }
-  return `${p} passenger${p > 1 ? "s" : ""}`;
-}
-
-function formatLuggage(l: number, loc: Locale) {
-  if (loc === "ru") {
-    if (l === 1) return "1 чемодан";
-    if (l >= 2 && l <= 4) return `${l} чемодана`;
-    return `${l} чемоданов`;
-  }
-  if (loc === "hy") {
-    return `${l} ուղեբեռ`;
-  }
-  return `${l} bag${l > 1 ? "s" : ""}`;
-}
-
 const EXTRA_SERVICES = [
   {
     id: "photographer",
@@ -767,12 +743,6 @@ export default function IndividualTourBuilder({
                     vehicle.categoryName?.[locale] ||
                     vehicle.categoryName?.ru ||
                     vehicle.category;
-                  const descText =
-                    vehicle.description?.[locale] ||
-                    vehicle.description?.ru ||
-                    "";
-                  const seatsText = formatPassengers(vehicle.passengers, locale);
-                  const luggageText = vehicle.luggage ? formatLuggage(vehicle.luggage, locale) : null;
                   const imageSrc =
                     vehicle.image ||
                     vehicle.images?.[0] ||
@@ -797,16 +767,6 @@ export default function IndividualTourBuilder({
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           unoptimized
                         />
-                        <div className="absolute top-2 left-2 flex flex-wrap gap-1.5">
-                          <span className="rounded-full bg-black/75 backdrop-blur-md px-2.5 py-0.5 text-[11px] font-black text-[#C7FF32] border border-white/10">
-                            {seatsText}
-                          </span>
-                          {luggageText && (
-                            <span className="rounded-full bg-black/60 backdrop-blur-md px-2 py-0.5 text-[10px] font-medium text-[#FCFCF7]/90 hidden sm:inline-block">
-                              🧳 {luggageText}
-                            </span>
-                          )}
-                        </div>
                         {isSelected && (
                           <span className="absolute top-2 right-2 rounded-full bg-[#C7FF32] px-2.5 py-0.5 text-[10px] font-black text-[#312F2F] shadow-md flex items-center gap-1">
                             <span>✓</span>
@@ -823,25 +783,7 @@ export default function IndividualTourBuilder({
                           <p className="text-[12px] font-semibold text-[#C7FF32] mt-0.5">
                             {catName}
                           </p>
-                          {descText && (
-                            <p className="mt-2 text-xs text-[#FCFCF7]/70 leading-relaxed line-clamp-3">
-                              {descText}
-                            </p>
-                          )}
                         </div>
-
-                        {vehicle.features?.[locale]?.length > 0 && (
-                          <div className="mt-3 pt-3 border-t border-white/5 flex flex-wrap gap-1">
-                            {vehicle.features[locale].slice(0, 2).map((feat, fi) => (
-                              <span
-                                key={fi}
-                                className="inline-block rounded-md bg-white/5 px-2 py-0.5 text-[10px] text-[#FCFCF7]/70 truncate max-w-full"
-                              >
-                                • {feat}
-                              </span>
-                            ))}
-                          </div>
-                        )}
                       </div>
                     </div>
                   );
@@ -1173,7 +1115,7 @@ export default function IndividualTourBuilder({
                     </span>
                     {selectedVehicle && (
                       <span className="text-[10px] text-[#C7FF32] font-semibold block">
-                        {selectedVehicle.categoryName?.[locale] || selectedVehicle.categoryName?.ru} • {formatPassengers(selectedVehicle.passengers, locale)}
+                        {selectedVehicle.categoryName?.[locale] || selectedVehicle.categoryName?.ru}
                       </span>
                     )}
                   </div>

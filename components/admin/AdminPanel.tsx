@@ -4293,20 +4293,8 @@ function FleetTab({
         hy: defaultCat.name.hy || "Ավտոմեքենա",
         en: defaultCat.name.en || "Vehicle",
       },
-      passengers: 4,
-      luggage: 4,
       image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80",
       images: [],
-      description: {
-        ru: "Описание автомобиля и его преимуществ для поездок.",
-        hy: "Ավտոմեքենայի նկարագրություն և առավելություններ։",
-        en: "Vehicle description and highlights for comfortable touring.",
-      },
-      features: {
-        ru: ["Кондиционер / Климат-контроль", "Wi-Fi на борту", "Питьевая вода"],
-        hy: ["Կլիմատ-կոնտրոլ", "Wi-Fi սրահում", "Խմելու ջուր"],
-        en: ["Air Conditioning / Climate Control", "Onboard Wi-Fi", "Bottled Water"],
-      },
       order: fleet.length + 1,
     };
     onChange([...fleet, newCar]);
@@ -4685,13 +4673,7 @@ function FleetTab({
                       <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-black text-primary uppercase tracking-wider">
                         {vehicle.categoryName?.[loc] || vehicle.category}
                       </span>
-                      <span className="text-xs text-muted">
-                        👥 {vehicle.passengers} мест • 🧳 {vehicle.luggage} чемоданов
-                      </span>
                     </div>
-                    <p className="mt-0.5 text-xs text-muted truncate max-w-xl">
-                      {vehicle.description?.[loc]}
-                    </p>
                   </div>
                 </div>
 
@@ -4780,88 +4762,21 @@ function FleetTab({
                     </Field>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <Field label="Количество мест для пассажиров">
-                      <input
-                        type="number"
-                        min={1}
-                        max={60}
-                        value={vehicle.passengers}
-                        onChange={(e) =>
-                          update(actualIndex, {
-                            passengers: parseInt(e.target.value, 10) || 1,
-                          })
-                        }
-                        className="w-full rounded-xl border border-black/15 bg-white px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
-                      />
-                    </Field>
-
-                    <Field label="Вместимость багажа (чемоданы)">
-                      <input
-                        type="number"
-                        min={0}
-                        max={60}
-                        value={vehicle.luggage}
-                        onChange={(e) =>
-                          update(actualIndex, {
-                            luggage: parseInt(e.target.value, 10) || 0,
-                          })
-                        }
-                        className="w-full rounded-xl border border-black/15 bg-white px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
-                      />
-                    </Field>
-
-                    <Field label="Идентификатор (id, латиница)">
-                      <TextInput
-                        value={vehicle.id}
-                        onChange={(v) =>
-                          update(actualIndex, {
-                            id: v.toLowerCase().replace(/[^a-z0-9-]+/g, "-"),
-                          })
-                        }
-                      />
-                    </Field>
-                  </div>
+                  <Field label="Идентификатор (id, латиница)">
+                    <TextInput
+                      value={vehicle.id}
+                      onChange={(v) =>
+                        update(actualIndex, {
+                          id: v.toLowerCase().replace(/[^a-z0-9-]+/g, "-"),
+                        })
+                      }
+                    />
+                  </Field>
 
                   <Field label="Основная фотография автомобиля">
                     <ImagePicker
                       value={vehicle.image}
                       onChange={(url) => update(actualIndex, { image: url })}
-                    />
-                  </Field>
-
-                  <Field label={`Описание автомобиля (${localeNames[loc]})`}>
-                    <AutoTextarea
-                      value={vehicle.description?.[loc] ?? ""}
-                      onChange={(v) =>
-                        update(actualIndex, {
-                          description: {
-                            ...vehicle.description,
-                            [loc]: v,
-                          },
-                        })
-                      }
-                      placeholder="Подробное описание удобства, микроклимата и ходовых качеств..."
-                    />
-                  </Field>
-
-                  <Field
-                    label={`Оснащение и удобства (${localeNames[loc]}) — по одному пункту на строку`}
-                  >
-                    <AutoTextarea
-                      value={(vehicle.features?.[loc] ?? []).join("\n")}
-                      onChange={(v) =>
-                        update(actualIndex, {
-                          features: {
-                            ...vehicle.features,
-                            [loc]: v
-                              .split("\n")
-                              .map((s) => s.trim())
-                              .filter(Boolean),
-                          },
-                        })
-                      }
-                      placeholder="Климат-контроль&#10;Wi-Fi на борту&#10;USB-порты&#10;Бутилированная вода"
                     />
                   </Field>
 
