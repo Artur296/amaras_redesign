@@ -1,11 +1,65 @@
 [
   {
-    "id": "sedan",
+    "id": "minibuses",
     "name": {
-      "ru": "Седан",
-      "hy": "Սեդան",
-      "en": "Sedan"
+      "ru": "Микроавтобусы",
+      "hy": "Միկրոավտոբուսներ",
+      "en": "Minibuses"
+    },
+    "order": 2
+  },
+  {
+    "id": "minivans",
+    "name": {
+      "ru": "Минивэны",
+      "hy": "Մինիվեններ",
+      "en": "Minivans"
+    },
+    "order": 2
+  },
+  {
+    "id": "premiumcars",
+    "name": {
+      "ru": "Автомобили премиум-класса",
+      "hy": "Պրեմիում դասի ավտոմեքենաներ",
+      "en": "Premium Cars"
+    },
+    "order": 3
+  },
+  {
+    "id": "comfortclass",
+    "name": {
+      "ru": "Комфорт-класс",
+      "hy": "Կոմֆորտ դաս",
+      "en": "Comfort Class"
+    },
+    "order": 4
+  },
+  {
+    "id": "suvs44vehicles",
+    "name": {
+      "ru": "Внедорожники и автомобили 4×4",
+      "hy": "Ամենագնացներ և 4×4 ավտոմեքենաներ",
+      "en": "SUVs & 4×4 Vehicles"
     },
     "order": 5
+  },
+  {
+    "id": "convertibles",
+    "name": {
+      "ru": "Кабриолеты",
+      "hy": "Кабриолеты",
+      "en": "Convertibles"
+    },
+    "order": 6
+  },
+  {
+    "id": "luxurycars",
+    "name": {
+      "ru": "Автомобили класса люкс",
+      "hy": "Լյուքս դասի ավտոմեքենաներ",
+      "en": "Luxury Cars"
+    },
+    "order": 7
   }
 ]
