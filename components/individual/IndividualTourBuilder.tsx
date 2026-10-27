@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useMemo } from "react";
 import type { Locale } from "@/lib/i18n";
 import type { Attraction } from "@/lib/attractions";
-import { defaultVehicles, type Vehicle } from "@/lib/fleet";
+import { defaultVehicles, defaultFleetCategories, type Vehicle, type FleetCategory } from "@/lib/fleet";
 import type { SiteInfo } from "@/lib/site";
 import { WhatsAppIcon, TelegramIcon, InstagramIcon, RouteIcon, StarIcon, ShieldIcon } from "@/components/icons";
 
@@ -12,6 +12,7 @@ type Props = {
   locale: Locale;
   attractions: Attraction[];
   fleet: Vehicle[];
+  categories?: FleetCategory[];
   site: SiteInfo;
 };
 
@@ -82,6 +83,7 @@ export default function IndividualTourBuilder({
   locale,
   attractions = [],
   fleet = [],
+  categories = [],
   site,
 }: Props) {
   // Step 1: Customer details
@@ -103,7 +105,51 @@ export default function IndividualTourBuilder({
     return fleet && fleet.length > 0 ? fleet : defaultVehicles;
   }, [fleet]);
 
-  // Step 3: Vehicle selection from fleet
+  // Step 3: Vehicle category filter & selection from fleet
+  const [fleetCategory, setFleetCategory] = useState<string>("all");
+
+  const fleetCategoryTabs = useMemo(() => {
+    const sourceCats: FleetCategory[] =
+      categories && categories.length > 0 ? categories : defaultFleetCategories;
+
+    const tabs: { id: string; label: Record<Locale, string>; count: number }[] = [
+      {
+        id: "all",
+        label: { ru: "Все автомобили", hy: "Բոլոր մեքենաները", en: "All Vehicles" },
+        count: availableFleet.length,
+      },
+    ];
+
+    sourceCats.forEach((cat) => {
+      const count = availableFleet.filter((v) => v.category === cat.id).length;
+      if (count > 0) {
+        tabs.push({
+          id: cat.id,
+          label: cat.name,
+          count,
+        });
+      }
+    });
+
+    availableFleet.forEach((v) => {
+      if (v.category && !tabs.some((t) => t.id === v.category)) {
+        const count = availableFleet.filter((item) => item.category === v.category).length;
+        tabs.push({
+          id: v.category,
+          label: v.categoryName || { ru: v.category, hy: v.category, en: v.category },
+          count,
+        });
+      }
+    });
+
+    return tabs;
+  }, [availableFleet, categories]);
+
+  const displayedFleet = useMemo(() => {
+    if (fleetCategory === "all") return availableFleet;
+    return availableFleet.filter((v) => v.category === fleetCategory);
+  }, [availableFleet, fleetCategory]);
+
   const [selectedCarId, setSelectedCarId] = useState<string>(() => {
     const list = fleet && fleet.length > 0 ? fleet : defaultVehicles;
     const pref = list.find((v) => v.category === "minivan") || list[0];
@@ -736,8 +782,38 @@ export default function IndividualTourBuilder({
                 </div>
               </div>
 
+              {/* Category Filter Tabs */}
+              <div className="flex gap-2 overflow-x-auto pb-3 scrollbar-none mb-6">
+                {fleetCategoryTabs.map((cat) => {
+                  const isActive = fleetCategory === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => setFleetCategory(cat.id)}
+                      className={`shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                        isActive
+                          ? "bg-[#C7FF32] text-[#312F2F] shadow-lg scale-105"
+                          : "bg-[#1C1B1B] text-[#FCFCF7]/80 hover:text-white hover:bg-white/10 border border-white/10"
+                      }`}
+                    >
+                      {cat.label[locale] || cat.label.ru} ({cat.count})
+                    </button>
+                  );
+                })}
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {availableFleet.map((vehicle) => {
+                {displayedFleet.length === 0 && (
+                  <div className="col-span-full py-12 text-center text-xs text-[#FCFCF7]/50 rounded-2xl border border-dashed border-white/15 bg-[#1C1B1B]/40">
+                    {locale === "ru"
+                      ? "В этой категории пока нет автомобилей"
+                      : locale === "hy"
+                      ? "Այս բաժնում մեքենաներ չկան"
+                      : "No vehicles found in this category"}
+                  </div>
+                )}
+                {displayedFleet.map((vehicle) => {
                   const isSelected = selectedVehicle?.id === vehicle.id;
                   const catName =
                     vehicle.categoryName?.[locale] ||

@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function IndividualTourPage({ params }: Props) {
   const { locale } = await params;
-  const { dicts, tours = [], categories = [], attractions = [], fleet = [], site } = await getContent();
+  const { dicts, tours = [], categories = [], attractions = [], fleet = [], fleetCategories = [], site } = await getContent();
   const dict = dicts[locale];
 
   // Preset individual tours from catalog
@@ -101,6 +101,7 @@ export default async function IndividualTourPage({ params }: Props) {
         locale={locale}
         attractions={attractions}
         fleet={fleet}
+        categories={fleetCategories}
         site={site}
       />
 
