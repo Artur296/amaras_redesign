@@ -6,6 +6,7 @@ import PackageIncludes from "@/components/PackageIncludes";
 import TourInfo from "@/components/TourInfo";
 import TourGallery from "@/components/TourGallery";
 import CopyCodeBadge from "@/components/CopyCodeBadge";
+import TourBookingSection from "@/components/TourBookingSection";
 import { CalendarIcon, PhoneIcon } from "@/components/icons";
 import type { Dict, Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
@@ -355,213 +356,19 @@ export default function TourDetail({
 
         {/* Right Sticky Column: Route stops & Booking Card */}
         <div className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-6">
-          {/* Main Booking Card */}
+          {/* Interactive Calculator & Booking Section */}
           <FadeIn delay={0.15}>
-            <div className="rounded-3xl border border-[#EAE9E0] bg-white p-7 shadow-xl">
-              {/* Pricing Box */}
-              <div className="border-b border-[#EAE9E0] pb-6">
-                {hasPrice(tour) ? (
-                  <>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#4a4846]">
-                      {dict.tours.from}
-                    </span>
-                    <div className="mt-1 flex items-baseline gap-3">
-                      {tour.priceOldAmd && (
-                        <s className="text-xs sm:text-sm font-bold text-[#6B6967]/70">
-                          {formatPrice(tour.priceOldAmd)}
-                        </s>
-                      )}
-                      <span className="text-3xl sm:text-4xl font-black text-[#2b2929]">
-                        {formatPrice(tour.priceFromAmd)}
-                      </span>
-                      {isPackage && (
-                        <span className="text-xs sm:text-sm font-bold text-[#4a4846]">
-                          / {dict.pkg.perPerson}
-                        </span>
-                      )}
-                    </div>
-                    {discount !== null && (
-                      <span className="mt-2 inline-block rounded-full bg-[#C7FF32] px-3.5 py-1 text-xs sm:text-sm font-black text-[#312F2F]">
-                        {locale === "ru"
-                          ? `Экономия ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}`
-                          : locale === "hy"
-                          ? `Խնայողություն ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}`
-                          : `Save ${formatPrice(tour.priceOldAmd! - tour.priceFromAmd)}`}
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#4a4846]">
-                      {locale === "ru" ? "Стоимость тура" : locale === "hy" ? "Արժեքը" : "Tour Pricing"}
-                    </span>
-                    <div className="mt-1">
-                      <span className="text-2xl sm:text-3xl font-black text-[#586EFF]">
-                        {dict.tours.onRequest}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-[#4a4846]">
-                      {locale === "ru"
-                        ? "Индивидуальный расчет под ваши даты, количество гостей и класс авто."
-                        : locale === "hy"
-                        ? "Անհատական հաշվարկ՝ ըստ ձեր ամսաթվերի, հյուրերի քանակի և ավտոմեքենայի դասի։"
-                        : "Custom quote tailored to your dates, group size, and car class."}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Key Highlights list */}
-              <div className="py-5 space-y-3 text-sm font-semibold text-[#4a4846]">
-                <div className="flex items-center justify-between">
-                  <span>{dict.tour.duration}</span>
-                  <span className="font-bold text-[#2b2929]">{duration}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span>{locale === "ru" ? "Группа" : locale === "hy" ? "Խումբ" : "Group size"}</span>
-                  <span className="font-bold text-[#2b2929]">{groupSize}</span>
-                </div>
-                {tour.departure && (
-                  <div className="flex items-center justify-between">
-                    <span>{dict.tour.departure}</span>
-                    <span className="font-bold text-[#2b2929]">{tour.departure}</span>
-                  </div>
-                )}
-                {tour.meetTime && (
-                  <div className="flex items-center justify-between">
-                    <span>{dict.info?.meetLabel ?? "Сбор"}</span>
-                    <span className="font-bold text-[#586EFF]">{tour.meetTime}</span>
-                  </div>
-                )}
-                <div className="flex items-center justify-between">
-                  <span>{locale === "ru" ? "Оплата" : locale === "hy" ? "Վճարում" : "Payment"}</span>
-                  <span className="font-bold text-[#2b2929]">
-                    {locale === "ru"
-                      ? "100% предоплата (до поездки)"
-                      : locale === "hy"
-                      ? "100% կանխավճար (մինչև ուղևորությունը)"
-                      : "100% advance payment (before trip)"}
-                  </span>
-                </div>
-              </div>
-
-              {/* CTA Booking Button / Notice */}
-              {tour.bookingDisabled ? (
-                <div className="pt-2 space-y-3">
-                  <div className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-amber-900 shadow-sm">
-                    <div className="flex items-start gap-2.5">
-                      <svg className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                      </svg>
-                      <div>
-                        <span className="block text-xs font-black uppercase tracking-wider text-amber-950">
-                          {locale === "ru"
-                            ? "Бронирование временно приостановлено"
-                            : locale === "hy"
-                            ? "Ամրագրումը ժամանակավորապես դադարեցված է"
-                            : "Booking Temporarily Paused"}
-                        </span>
-                        <p className="mt-1 text-xs leading-relaxed text-amber-900 font-medium">
-                          {tour.bookingNotice?.[locale] ||
-                            (locale === "ru"
-                              ? "На текущие даты запись закрыта. Уточняйте ближайшие свободные места у координатора."
-                              : locale === "hy"
-                              ? "Ընթացիկ ամսաթվերին տեղերը սպառված են։ Ճշտեք առաջիկա ազատ օրերը կոորդինատորից։"
-                              : "Currently fully booked. Please contact our coordinator for upcoming dates.")}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <BookButton
-                    label={
-                      locale === "ru"
-                        ? "Узнать о доступных датах"
-                        : locale === "hy"
-                        ? "Ճշտել հասանելի օրերը"
-                        : "Check Available Dates"
-                    }
-                    tourTitle={tour.title[locale]}
-                    message={
-                      locale === "ru"
-                        ? `Здравствуйте! Хочу уточнить доступные даты для тура [Код: ${code}] ${tour.title[locale]}`
-                        : locale === "hy"
-                        ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը [Կոդ՝ ${code}] ${tour.title[locale]} տուրի համար`
-                        : `Hello! I would like to check available dates for [Code: ${code}] ${tour.title[locale]}`
-                    }
-                    variant="primary"
-                    size="lg"
-                  />
-                </div>
-              ) : (
-                <div className="pt-2">
-                  <BookButton
-                    label={dict.tours.book}
-                    tourTitle={tour.title[locale]}
-                    message={`${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`}
-                    variant="primary"
-                    size="lg"
-                  />
-                </div>
-              )}
-
-              {/* Tour Code Callout for Phone / Chat Orders */}
-              <div className="mt-3.5 flex items-center justify-between rounded-xl bg-[#F6F5EE] border border-[#EAE9E0] px-3.5 py-2.5 text-xs">
-                <span className="text-[#6B6967] font-semibold">
-                  {locale === "ru" ? "Код тура оператору:" : locale === "hy" ? "Տուրի կոդը օպերատորին․" : "Tour code for operator:"}
-                </span>
-                <span className="font-mono font-black text-[#312F2F] text-sm bg-white px-2 py-0.5 rounded border border-black/10">
-                  #{code}
-                </span>
-              </div>
-
-
-              {/* Direct Telephone */}
-              <div className="mt-4 text-center">
-                <a
-                  href={`tel:${phone.replace(/\s+/g, "")}`}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#6B6967] hover:text-[#586EFF]"
-                >
-                  <PhoneIcon className="h-3.5 w-3.5" />
-                  <span>
-                    {locale === "ru"
-                      ? "Или позвоните нам:"
-                      : locale === "hy"
-                      ? "Կամ զանգահարեք մեզ՝"
-                      : "Or call directly:"}{" "}
-                    {phone}
-                  </span>
-                </a>
-              </div>
-
-              {/* Trust Badges */}
-              <div className="mt-6 border-t border-[#EAE9E0] pt-4 space-y-2 text-[11px] text-[#6B6967]">
-                <p className="flex items-center gap-2">
-                  <span className="text-[#586EFF]">✓</span>{" "}
-                  {locale === "ru"
-                    ? "Моментальное подтверждение в чате"
-                    : locale === "hy"
-                    ? "Ակնթարթային հաստատում չաթում"
-                    : "Instant chat confirmation"}
-                </p>
-                <p className="flex items-center gap-2">
-                  <span className="text-[#586EFF]">✓</span>{" "}
-                  {locale === "ru"
-                    ? "Современные комфортабельные авто"
-                    : locale === "hy"
-                    ? "Ժամանակակից հարմարավետ մեքենաներ"
-                    : "Premium modern transport"}
-                </p>
-                <p className="flex items-center gap-2">
-                  <span className="text-[#586EFF]">✓</span>{" "}
-                  {locale === "ru"
-                    ? "Бесплатная отмена за 24 часа"
-                    : locale === "hy"
-                    ? "Անվճար չեղարկում 24 ժամ առաջ"
-                    : "Free 24h cancellation"}
-                </p>
-              </div>
-            </div>
+            <TourBookingSection
+              tour={tour}
+              locale={locale}
+              dict={dict}
+              phone={phone}
+              code={code}
+              duration={duration}
+              groupSize={groupSize}
+              discount={discount}
+              isPackage={isPackage}
+            />
           </FadeIn>
 
           {/* Route Stops Card */}
@@ -619,30 +426,19 @@ export default function TourDetail({
         </div>
 
         <div className="shrink-0">
-          <BookButton
-            label={
-              tour.bookingDisabled
-                ? locale === "ru"
-                  ? "Узнать даты"
-                  : locale === "hy"
-                  ? "Ճշտել օրերը"
-                  : "Check Dates"
-                : dict.tours.book
-            }
-            tourTitle={tour.title[locale]}
-            message={
-              tour.bookingDisabled
-                ? locale === "ru"
-                  ? `Здравствуйте! Хочу уточнить доступные даты для тура [Код: ${code}] ${tour.title[locale]}`
-                  : locale === "hy"
-                  ? `Բարև ձեզ, ցանկանում եմ ճշտել հասանելի օրերը [Կոդ՝ ${code}] ${tour.title[locale]} տուրի համար`
-                  : `Hello! I would like to check available dates for [Code: ${code}] ${tour.title[locale]}`
-                : `${dict.tours.bookMessage} [Код: ${code}] ${tour.title[locale]}`
-            }
-            variant="primary"
-            size="md"
-            className="px-6 py-3 text-sm sm:text-base font-black shadow-md rounded-full"
-          />
+          <a
+            href="#tour-price-calculator"
+            className="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 text-xs sm:text-sm font-black bg-[#C7FF32] text-[#312F2F] hover:bg-[#b8f520] active:scale-95 transition-all shadow-md rounded-full"
+          >
+            <span>
+              {tour.bookingDisabled
+                ? (locale === "ru" ? "Узнать даты" : locale === "hy" ? "Ճշտել օրերը" : "Check Dates")
+                : (locale === "ru" ? "Параметры и расчет" : locale === "hy" ? "Հաշվարկ և ամրագրում" : "Calculate & Book")}
+            </span>
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>

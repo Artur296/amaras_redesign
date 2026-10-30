@@ -73,11 +73,15 @@ export async function POST(request: NextRequest) {
     const date = getField("date") || "Дата не указана";
     const adults = Math.max(1, parseInt(getField("adults") || "1", 10));
     const children = Math.max(0, parseInt(getField("children") || "0", 10));
+    const infants = Math.max(0, parseInt(getField("infants") || "0", 10));
+    const priceAMD = getField("priceAMD");
+    const guideLanguage = getField("guideLanguage");
     const wishes = getField("wishes");
     const carCategory = getField("carCategory");
     const tourFormat = getField("tourFormat");
     const locations = getArray("locations");
     const services = getArray("services");
+    const priceBreakdown = getArray("priceBreakdown");
     const receiptFile = !isJson && formData ? (formData.get("receipt") as File | null) : null;
 
     if (!name || name.length < 2) {
@@ -166,14 +170,20 @@ export async function POST(request: NextRequest) {
           `━━━━━━━━━━━━━━━━━━━━━━`,
           `🗺 <b>Тур:</b> ${escapeHtml(tourTitle)}`,
           `📅 <b>Желаемая дата:</b> ${escapeHtml(date)}`,
-          `👥 <b>Гости:</b> ${adults} взр.${children > 0 ? ` + ${children} дет.` : ""}`,
+          `👥 <b>Гости:</b> ${adults} взр.${children > 0 ? ` + ${children} дет.` : ""}${infants > 0 ? ` + ${infants} млад.` : ""}`,
+          carCategory ? `🚗 <b>Транспорт:</b> ${escapeHtml(carCategory)}` : null,
+          guideLanguage ? `🗣 <b>Язык гида:</b> ${escapeHtml(guideLanguage)}` : null,
+          services.length > 0
+            ? `✨ <b>Дополнительные услуги:</b>\n${services.map((s) => `• ${escapeHtml(s)}`).join("\n")}`
+            : null,
+          priceAMD ? `💰 <b>Итоговая стоимость (расчёт):</b> ${escapeHtml(priceAMD)} AMD` : null,
           `👤 <b>Заказчик:</b> ${escapeHtml(name)}`,
           `📞 <b>Телефон / Мессенджер:</b> ${escapeHtml(phone)}`,
           whatsapp ? `💬 <b>WhatsApp:</b> ${escapeHtml(whatsapp)}` : null,
           telegram ? `✈️ <b>Telegram:</b> ${escapeHtml(telegram)}` : null,
           email ? `✉️ <b>Email:</b> ${escapeHtml(email)}` : null,
           wishes ? `💬 <b>Пожелания / Детали:</b>\n${escapeHtml(wishes)}` : null,
-          `🧾 <b>Чек оплаты:</b> ${hasReceipt ? (isPdfReceipt ? "📎 PDF-документ прикреплён" : "📸 Скриншот чека прикреплён") : "Не прикреплён (уточнить)"}`,
+          `🧾 <b>Чек оплаты:</b> ${hasReceipt ? (isPdfReceipt ? "📎 PDF-документ прикреплён" : "📸 Скриншот чека прикреплён") : "Не прикреплён (онлайн-заявка)"}`,
           `━━━━━━━━━━━━━━━━━━━━━━`,
           `🕒 <i>${timeNow} (время по Еревану)</i>`,
         ]
@@ -200,10 +210,14 @@ export async function POST(request: NextRequest) {
         date,
         adults,
         children,
+        infants,
+        priceAMD,
+        guideLanguage,
         tourFormat,
         carCategory,
         locations,
         services,
+        priceBreakdown,
         wishes,
         hasReceipt,
         receiptFileName: hasReceipt && receiptFile ? receiptFile.name : null,
@@ -228,8 +242,10 @@ export async function POST(request: NextRequest) {
       const routeSummary = locations.length > 0 ? `Маршрут: ${locations.join(" -> ")}` : "";
       const extrasSummary = services.length > 0 ? `Доп: ${services.join(", ")}` : "";
       const autoSummary = carCategory ? `Авто: ${carCategory}` : "";
+      const guideSummary = guideLanguage ? `Гид: ${guideLanguage}` : "";
+      const priceSummary = priceAMD ? `Сумма: ${priceAMD} AMD` : "";
       const formatSummary = tourFormat ? `Формат: ${tourFormat}` : "";
-      const details = [formatSummary, autoSummary, routeSummary, extrasSummary, wishes].filter(Boolean).join(" | ");
+      const details = [priceSummary, autoSummary, guideSummary, formatSummary, routeSummary, extrasSummary, wishes].filter(Boolean).join(" | ");
 
       await createPortalClient(
         {

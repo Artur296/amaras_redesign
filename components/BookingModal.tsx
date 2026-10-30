@@ -8,12 +8,16 @@ import { useLinks, useSite } from "@/components/SiteProvider";
 import { defaultPaymentCard } from "@/lib/site";
 import { TelegramIcon, WhatsAppIcon, InstagramIcon } from "@/components/icons";
 
+import { formatPrice } from "@/lib/tours";
+import type { CalculatedBookingData } from "@/components/TourPriceCalculator";
+
 export type BookingModalProps = {
   isOpen: boolean;
   onClose: () => void;
   locale: Locale;
   tourTitle?: string;
   defaultDate?: string;
+  calculatedData?: CalculatedBookingData | null;
 };
 
 const I18N = {
@@ -139,6 +143,7 @@ export default function BookingModal({
   locale = "ru",
   tourTitle = "Индивидуальный тур",
   defaultDate = "",
+  calculatedData = null,
 }: BookingModalProps) {
   const t = I18N[locale] || I18N.ru;
   const links = useLinks();
@@ -153,10 +158,10 @@ export default function BookingModal({
     setMounted(true);
   }, []);
 
-  const [title, setTitle] = useState(tourTitle);
-  const [date, setDate] = useState(defaultDate);
-  const [adults, setAdults] = useState(2);
-  const [children, setChildren] = useState(0);
+  const [title, setTitle] = useState(calculatedData?.tourTitle || tourTitle);
+  const [date, setDate] = useState(calculatedData?.date || defaultDate);
+  const [adults, setAdults] = useState(calculatedData?.adults || 2);
+  const [children, setChildren] = useState(calculatedData?.children || 0);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -191,10 +196,17 @@ export default function BookingModal({
     } catch {}
   }
 
-  // Sync title whenever prop changes
+  // Sync state whenever props change
   useEffect(() => {
-    if (tourTitle) setTitle(tourTitle);
-  }, [tourTitle]);
+    if (calculatedData) {
+      if (calculatedData.tourTitle) setTitle(calculatedData.tourTitle);
+      if (calculatedData.date) setDate(calculatedData.date);
+      if (calculatedData.adults) setAdults(calculatedData.adults);
+      if (typeof calculatedData.children === "number") setChildren(calculatedData.children);
+    } else if (tourTitle) {
+      setTitle(tourTitle);
+    }
+  }, [calculatedData, tourTitle]);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -278,6 +290,15 @@ export default function BookingModal({
       fd.append("children", children.toString());
       fd.append("wishes", wishes);
 
+      if (calculatedData) {
+        fd.append("priceAMD", calculatedData.totalPrice.toString());
+        fd.append("carCategory", calculatedData.transportName);
+        fd.append("guideLanguage", calculatedData.guideLanguage);
+        fd.append("infants", calculatedData.infants.toString());
+        fd.append("services", JSON.stringify(calculatedData.selectedServices.map((s) => s.name)));
+        fd.append("priceBreakdown", JSON.stringify(calculatedData.breakdown));
+      }
+
       if (receiptFile) {
         fd.append("receipt", receiptFile);
       }
@@ -349,12 +370,16 @@ export default function BookingModal({
 
             const bookingSummaryText =
               `Здравствуйте, Amaras Tour! Хочу подтвердить бронирование тура (Заявка #${bookingResult.id}):\n` +
-              `📍 Тур: ${title}\n` +
+              `📍 Тур: ${title}${calculatedData?.tourCode ? ` [Код #${calculatedData.tourCode}]` : ""}\n` +
               `👤 Имя: ${name.trim() || "Гость"}\n` +
               `📞 Телефон: ${phone.trim()}\n` +
               (email.trim() ? `✉️ Email: ${email.trim()}\n` : "") +
-              (date ? `📅 Дата: ${date}\n` : "") +
-              `👥 Участники: ${adults} взр.${children ? ` + ${children} дет.` : ""}\n` +
+              (date ? `📅 Дата: ${date}${calculatedData?.departureTime ? ` (${calculatedData.departureTime})` : ""}\n` : "") +
+              `👥 Участники: ${adults} взр.${children ? ` + ${children} дет.` : ""}${calculatedData?.infants ? ` + ${calculatedData.infants} млад.` : ""}\n` +
+              (calculatedData?.transportName ? `🚗 Транспорт: ${calculatedData.transportName}\n` : "") +
+              (calculatedData?.guideLanguage ? `🗣 Язык гида: ${calculatedData.guideLanguage}\n` : "") +
+              (calculatedData?.selectedServices && calculatedData.selectedServices.length > 0 ? `✨ Доп. услуги: ${calculatedData.selectedServices.map(s => s.name).join(", ")}\n` : "") +
+              (calculatedData?.totalPrice ? `💰 Итоговая стоимость: ${formatPrice(calculatedData.totalPrice)}\n` : "") +
               (wishes.trim() ? `💬 Пожелания: ${wishes.trim()}\n` : "");
 
             const whatsappBookingUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(bookingSummaryText)}`;
@@ -534,88 +559,159 @@ export default function BookingModal({
                 autoComplete="off"
               />
 
-              {/* 1. Tour Title */}
-              <div>
-                <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
-                  {t.tourLabel}
-                </label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white placeholder-white/40 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
-                  required
-                />
-              </div>
-
-              {/* 2. Date + Adults & Children */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <div>
-                  <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
-                    {t.dateLabel}
-                  </label>
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    min={new Date().toISOString().split("T")[0]}
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
-                  />
-                </div>
-
-                {/* Guest Steppers */}
-                <div className="grid grid-cols-2 gap-2.5">
-                  <div>
-                    <label className="block text-xs sm:text-sm font-bold text-white mb-1.5 truncate">
-                      {t.adultsLabel}
-                    </label>
-                    <div className="flex items-center rounded-xl border border-white/15 bg-white/5 p-1">
-                      <button
-                        type="button"
-                        onClick={() => setAdults((prev) => Math.max(1, prev - 1))}
-                        className="h-11 w-11 rounded-lg bg-white/10 text-white text-lg font-black hover:bg-white/20 transition-colors flex items-center justify-center cursor-pointer active:scale-95"
-                      >
-                        -
-                      </button>
-                      <span className="flex-1 text-center font-black text-base sm:text-lg text-white">
-                        {adults}
+              {/* 1. If opened from TourPriceCalculator, show the rich Booking Summary card */}
+              {calculatedData ? (
+                <div className="rounded-2xl border border-[#C7FF32]/40 bg-[#18181A] p-4 sm:p-5 shadow-2xl space-y-3">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
+                      <span>📋</span>
+                      <span>{locale === "ru" ? "Сводка бронирования" : locale === "hy" ? "Ամրագրման տվյալներ" : "Booking Summary"}</span>
+                    </span>
+                    {calculatedData.tourCode && (
+                      <span className="rounded-md bg-white/10 px-2 py-0.5 text-xs font-mono font-bold text-white/80">
+                        #{calculatedData.tourCode}
                       </span>
-                      <button
-                        type="button"
-                        onClick={() => setAdults((prev) => prev + 1)}
-                        className="h-11 w-11 rounded-lg bg-[#C7FF32] text-[#312F2F] text-lg font-black hover:bg-[#b8f226] transition-colors flex items-center justify-center cursor-pointer active:scale-95"
-                      >
-                        +
-                      </button>
-                    </div>
+                    )}
                   </div>
 
-                  <div>
-                    <label className="block text-xs sm:text-sm font-bold text-white mb-1.5 truncate">
-                      {t.childrenLabel}
-                    </label>
-                    <div className="flex items-center rounded-xl border border-white/15 bg-white/5 p-1">
-                      <button
-                        type="button"
-                        onClick={() => setChildren((prev) => Math.max(0, prev - 1))}
-                        className="h-11 w-11 rounded-lg bg-white/10 text-white text-lg font-black hover:bg-white/20 transition-colors flex items-center justify-center cursor-pointer active:scale-95"
-                      >
-                        -
-                      </button>
-                      <span className="flex-1 text-center font-black text-base sm:text-lg text-white">
-                        {children}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => setChildren((prev) => prev + 1)}
-                        className="h-11 w-11 rounded-lg bg-[#C7FF32] text-[#312F2F] text-lg font-black hover:bg-[#b8f226] transition-colors flex items-center justify-center cursor-pointer active:scale-95"
-                      >
-                        +
-                      </button>
+                  <div className="space-y-2 text-xs sm:text-sm">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="text-white/60 shrink-0">{locale === "ru" ? "Экскурсия:" : locale === "hy" ? "Տուր:" : "Tour:"}</span>
+                      <span className="font-bold text-white text-right leading-snug">{calculatedData.tourTitle}</span>
                     </div>
+
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-white/60">{locale === "ru" ? "Дата поездки:" : locale === "hy" ? "Ամսաթիվ:" : "Date:"}</span>
+                      <span className="font-bold text-white">
+                        {calculatedData.date}
+                        {calculatedData.departureTime ? ` (${calculatedData.departureTime})` : ""}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-white/60">{locale === "ru" ? "Участники:" : locale === "hy" ? "Մասնակիցներ:" : "Participants:"}</span>
+                      <span className="font-bold text-white">
+                        {calculatedData.adults} взр.
+                        {calculatedData.children > 0 ? ` + ${calculatedData.children} дет.` : ""}
+                        {calculatedData.infants > 0 ? ` + ${calculatedData.infants} млад.` : ""}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-white/60">{locale === "ru" ? "Транспорт:" : locale === "hy" ? "Տրանսպորտ:" : "Transport:"}</span>
+                      <span className="font-bold text-white">{calculatedData.transportName}</span>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-white/60">{locale === "ru" ? "Язык гида:" : locale === "hy" ? "Գիդի լեզու:" : "Guide:"}</span>
+                      <span className="font-bold text-white">{calculatedData.guideLanguage}</span>
+                    </div>
+
+                    {calculatedData.selectedServices.length > 0 && (
+                      <div className="flex items-start justify-between gap-2">
+                        <span className="text-white/60 shrink-0">{locale === "ru" ? "Доп. услуги:" : locale === "hy" ? "Լրացուցիչ:" : "Services:"}</span>
+                        <span className="font-bold text-[#C7FF32] text-right">
+                          {calculatedData.selectedServices.map((s) => s.name).join(", ")}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-xs uppercase font-bold text-white/70">
+                      {locale === "ru" ? "Итоговая стоимость:" : locale === "hy" ? "Ընդհանուր արժեքը:" : "Total Price:"}
+                    </span>
+                    <span className="text-xl sm:text-2xl font-black text-[#C7FF32] tracking-tight">
+                      {formatPrice(calculatedData.totalPrice)}
+                    </span>
                   </div>
                 </div>
-              </div>
+              ) : (
+                <>
+                  {/* 1. Tour Title */}
+                  <div>
+                    <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
+                      {t.tourLabel}
+                    </label>
+                    <input
+                      type="text"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white placeholder-white/40 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
+                      required
+                    />
+                  </div>
+
+                  {/* 2. Date + Adults & Children */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div>
+                      <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
+                        {t.dateLabel}
+                      </label>
+                      <input
+                        type="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        min={new Date().toISOString().split("T")[0]}
+                        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    {/* Guest Steppers */}
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <div>
+                        <label className="block text-xs sm:text-sm font-bold text-white mb-1.5 truncate">
+                          {t.adultsLabel}
+                        </label>
+                        <div className="flex items-center rounded-xl border border-white/15 bg-white/5 p-1">
+                          <button
+                            type="button"
+                            onClick={() => setAdults((prev) => Math.max(1, prev - 1))}
+                            className="h-11 w-11 rounded-lg bg-white/10 text-white text-lg font-black hover:bg-white/20 transition-colors flex items-center justify-center cursor-pointer active:scale-95"
+                          >
+                            -
+                          </button>
+                          <span className="flex-1 text-center font-black text-base sm:text-lg text-white">
+                            {adults}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setAdults((prev) => prev + 1)}
+                            className="h-11 w-11 rounded-lg bg-[#C7FF32] text-[#312F2F] text-lg font-black hover:bg-[#b8f226] transition-colors flex items-center justify-center cursor-pointer active:scale-95"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs sm:text-sm font-bold text-white mb-1.5 truncate">
+                          {t.childrenLabel}
+                        </label>
+                        <div className="flex items-center rounded-xl border border-white/15 bg-white/5 p-1">
+                          <button
+                            type="button"
+                            onClick={() => setChildren((prev) => Math.max(0, prev - 1))}
+                            className="h-11 w-11 rounded-lg bg-white/10 text-white text-lg font-black hover:bg-white/20 transition-colors flex items-center justify-center cursor-pointer active:scale-95"
+                          >
+                            -
+                          </button>
+                          <span className="flex-1 text-center font-black text-base sm:text-lg text-white">
+                            {children}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setChildren((prev) => prev + 1)}
+                            className="h-11 w-11 rounded-lg bg-[#C7FF32] text-[#312F2F] text-lg font-black hover:bg-[#b8f226] transition-colors flex items-center justify-center cursor-pointer active:scale-95"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
 
               {/* 3. Contact Info */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -677,8 +773,8 @@ export default function BookingModal({
                 </div>
               </div>
 
-              {/* 5 & 6. Payment Card Details & Receipt Upload (Only shown when payment card is enabled with card number) */}
-              {paymentCard?.enabled && paymentCard?.cardNumber ? (
+              {/* 5 & 6. Payment Card Details & Receipt Upload (Only shown when not from calculator and payment card is enabled with card number) */}
+              {!calculatedData && paymentCard?.enabled && paymentCard?.cardNumber ? (
                 <>
                   <div className="rounded-2xl border border-[#C7FF32]/40 bg-gradient-to-br from-[#1c1d22] to-[#121215] p-4 sm:p-5 shadow-xl shadow-black/50 space-y-3.5 relative overflow-hidden">
                     <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#C7FF32]/10 rounded-full blur-2xl pointer-events-none" />
@@ -862,10 +958,22 @@ export default function BookingModal({
                   </span>
                   <div className="space-y-1 min-w-0">
                     <p className="text-sm sm:text-base font-bold text-white">
-                      {t.noPaymentBadge}
+                      {calculatedData
+                        ? (locale === "ru"
+                            ? "Бронирование без онлайн-оплаты"
+                            : locale === "hy"
+                            ? "Ամրագրում առանց առցանց վճարման"
+                            : "Booking Without Upfront Payment")
+                        : t.noPaymentBadge}
                     </p>
                     <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
-                      {t.noPaymentNotice}
+                      {calculatedData
+                        ? (locale === "ru"
+                            ? "Заявка поступит напрямую администратору. Мы проверим наличие мест, свяжемся с вами в течение 10–15 минут и согласуем удобный формат оплаты."
+                            : locale === "hy"
+                            ? "Հայտը կստանա կոորդինատորը։ Մենք կհաստատենք տեղերը և կկապվենք ձեզ հետ 10–15 րոպեում՝ վճարման հարմար եղանակը համաձայնեցնելու համար։"
+                            : "Your request goes directly to our coordinator. We verify availability within 10–15 minutes and coordinate convenient payment.")
+                        : t.noPaymentNotice}
                     </p>
                   </div>
                 </div>
@@ -893,7 +1001,15 @@ export default function BookingModal({
                     <span>{t.submitting}</span>
                   </>
                 ) : (
-                  <span>{t.submitBtn} →</span>
+                  <span>
+                    {calculatedData
+                      ? (locale === "ru"
+                          ? "Забронировать тур"
+                          : locale === "hy"
+                          ? "Ամրագրել տուրը"
+                          : "Book This Tour")
+                      : t.submitBtn} →
+                  </span>
                 )}
               </button>
 
