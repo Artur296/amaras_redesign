@@ -142,50 +142,54 @@ export async function POST(request: NextRequest) {
     // 5. Construct Telegram HTML message
     const telegramMessage = isBuilder
       ? [
-          `⚡️ <b>НОВАЯ ЗАЯВКА: ИНДИВИДУАЛЬНЫЙ КОНСТРУКТОР #${bookingId}</b>`,
+          `<b>[ЗАЯВКА: ИНДИВИДУАЛЬНЫЙ КОНСТРУКТОР #${bookingId}]</b>`,
           `━━━━━━━━━━━━━━━━━━━━━━`,
-          `👤 <b>Заказчик:</b> ${escapeHtml(name)}`,
-          `📞 <b>Телефон:</b> ${escapeHtml(phone)}`,
-          whatsapp ? `💬 <b>WhatsApp:</b> ${escapeHtml(whatsapp)}` : null,
-          telegram ? `✈️ <b>Telegram:</b> ${escapeHtml(telegram)}` : null,
-          email ? `✉️ <b>Email:</b> ${escapeHtml(email)}` : null,
-          `📅 <b>Желаемая дата:</b> ${escapeHtml(date)}`,
-          `👥 <b>Гости:</b> ${adults} взр.${children > 0 ? ` + ${children} дет.` : ""}`,
-          tourFormat ? `🧭 <b>Формат:</b> ${escapeHtml(tourFormat)}` : null,
-          carCategory ? `🚗 <b>Автомобиль:</b> ${escapeHtml(carCategory)}` : null,
+          `• <b>Заказчик:</b> ${escapeHtml(name)}`,
+          `• <b>Телефон:</b> ${escapeHtml(phone)}`,
+          whatsapp ? `• <b>WhatsApp:</b> ${escapeHtml(whatsapp)}` : null,
+          telegram ? `• <b>Telegram:</b> ${escapeHtml(telegram)}` : null,
+          email ? `• <b>Email:</b> ${escapeHtml(email)}` : null,
+          `• <b>Желаемая дата:</b> ${escapeHtml(date)}`,
+          `• <b>Гости:</b> ${adults} взр.${children > 0 ? ` + ${children} дет.` : ""}`,
+          tourFormat ? `• <b>Формат:</b> ${escapeHtml(tourFormat)}` : null,
+          carCategory ? `• <b>Автомобиль:</b> ${escapeHtml(carCategory)}` : null,
           locations.length > 0
-            ? `\n🗺 <b>Маршрут (${locations.length} точек):</b>\n${locations.map((loc, i) => `${i + 1}. ${escapeHtml(loc)}`).join("\n")}`
+            ? `\n• <b>Маршрут (${locations.length} точек):</b>\n${locations.map((loc, i) => `${i + 1}. ${escapeHtml(loc)}`).join("\n")}`
             : null,
           services.length > 0
-            ? `\n✨ <b>Дополнительные услуги:</b>\n${services.map((s) => `• ${escapeHtml(s)}`).join("\n")}`
+            ? `\n• <b>Дополнительные услуги:</b>\n${services.map((s) => `- ${escapeHtml(s)}`).join("\n")}`
             : null,
-          wishes ? `\n💬 <b>Пожелания / Заметки:</b>\n${escapeHtml(wishes)}` : null,
+          priceAMD ? `\n• <b>Расчетная стоимость:</b> ${escapeHtml(priceAMD)} AMD` : null,
+          priceBreakdown.length > 0
+            ? `\n• <b>Детализация расчёта:</b>\n${priceBreakdown.map((b) => `- ${escapeHtml(b)}`).join("\n")}`
+            : null,
+          wishes ? `\n• <b>Пожелания / Заметки:</b>\n${escapeHtml(wishes)}` : null,
           `━━━━━━━━━━━━━━━━━━━━━━`,
-          `🕒 <i>${timeNow} (время по Еревану)</i>`,
+          `<i>${timeNow} (время по Еревану)</i>`,
         ]
           .filter(Boolean)
           .join("\n")
       : [
-          `⚡️ <b>НОВАЯ ЗАЯВКА НА БРОНИРОВАНИЕ #${bookingId}</b>`,
+          `<b>[НОВАЯ ЗАЯВКА НА БРОНИРОВАНИЕ #${bookingId}]</b>`,
           `━━━━━━━━━━━━━━━━━━━━━━`,
-          `🗺 <b>Тур:</b> ${escapeHtml(tourTitle)}`,
-          `📅 <b>Желаемая дата:</b> ${escapeHtml(date)}`,
-          `👥 <b>Гости:</b> ${adults} взр.${children > 0 ? ` + ${children} дет.` : ""}${infants > 0 ? ` + ${infants} млад.` : ""}`,
-          carCategory ? `🚗 <b>Транспорт:</b> ${escapeHtml(carCategory)}` : null,
-          guideLanguage ? `🗣 <b>Язык гида:</b> ${escapeHtml(guideLanguage)}` : null,
+          `• <b>Тур:</b> ${escapeHtml(tourTitle)}`,
+          `• <b>Желаемая дата:</b> ${escapeHtml(date)}`,
+          `• <b>Гости:</b> ${adults} взр.${children > 0 ? ` + ${children} дет.` : ""}${infants > 0 ? ` + ${infants} млад.` : ""}`,
+          carCategory ? `• <b>Транспорт:</b> ${escapeHtml(carCategory)}` : null,
+          guideLanguage ? `• <b>Язык гида:</b> ${escapeHtml(guideLanguage)}` : null,
           services.length > 0
-            ? `✨ <b>Дополнительные услуги:</b>\n${services.map((s) => `• ${escapeHtml(s)}`).join("\n")}`
+            ? `• <b>Дополнительные услуги:</b>\n${services.map((s) => `- ${escapeHtml(s)}`).join("\n")}`
             : null,
-          priceAMD ? `💰 <b>Итоговая стоимость (расчёт):</b> ${escapeHtml(priceAMD)} AMD` : null,
-          `👤 <b>Заказчик:</b> ${escapeHtml(name)}`,
-          `📞 <b>Телефон / Мессенджер:</b> ${escapeHtml(phone)}`,
-          whatsapp ? `💬 <b>WhatsApp:</b> ${escapeHtml(whatsapp)}` : null,
-          telegram ? `✈️ <b>Telegram:</b> ${escapeHtml(telegram)}` : null,
-          email ? `✉️ <b>Email:</b> ${escapeHtml(email)}` : null,
-          wishes ? `💬 <b>Пожелания / Детали:</b>\n${escapeHtml(wishes)}` : null,
-          `🧾 <b>Чек оплаты:</b> ${hasReceipt ? (isPdfReceipt ? "📎 PDF-документ прикреплён" : "📸 Скриншот чека прикреплён") : "Не прикреплён (онлайн-заявка)"}`,
+          priceAMD ? `• <b>Итоговая стоимость (расчёт):</b> ${escapeHtml(priceAMD)} AMD` : null,
+          `• <b>Заказчик:</b> ${escapeHtml(name)}`,
+          `• <b>Телефон / Мессенджер:</b> ${escapeHtml(phone)}`,
+          whatsapp ? `• <b>WhatsApp:</b> ${escapeHtml(whatsapp)}` : null,
+          telegram ? `• <b>Telegram:</b> ${escapeHtml(telegram)}` : null,
+          email ? `• <b>Email:</b> ${escapeHtml(email)}` : null,
+          wishes ? `• <b>Пожелания / Детали:</b>\n${escapeHtml(wishes)}` : null,
+          `• <b>Чек оплаты:</b> ${hasReceipt ? (isPdfReceipt ? "PDF-документ прикреплён" : "Скриншот чека прикреплён") : "Не прикреплён (онлайн-заявка)"}`,
           `━━━━━━━━━━━━━━━━━━━━━━`,
-          `🕒 <i>${timeNow} (время по Еревану)</i>`,
+          `<i>${timeNow} (время по Еревану)</i>`,
         ]
           .filter(Boolean)
           .join("\n");
@@ -321,7 +325,7 @@ export async function POST(request: NextRequest) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                   chat_id: targetChatId,
-                  text: `${telegramMessage}\n\n⚠️ <i>(Не удалось прикрепить файл ${receiptFile.name})</i>`,
+                  text: `${telegramMessage}\n\n<i>(Внимание: не удалось прикрепить файл ${receiptFile.name})</i>`,
                   parse_mode: "HTML",
                 }),
               });
@@ -400,7 +404,7 @@ export async function GET(request: NextRequest) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             chat_id: chatId,
-            text: `🔔 <b>Тест подключения Telegram бота AMARAS</b>\n\nСервер Vercel успешно подключен к Telegram API!\nВремя: ${new Date().toISOString()}`,
+            text: `<b>Тест подключения Telegram бота AMARAS</b>\n\nСервер Vercel успешно подключен к Telegram API!\nВремя: ${new Date().toISOString()}`,
             parse_mode: "HTML",
           }),
         });

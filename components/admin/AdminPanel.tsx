@@ -665,7 +665,7 @@ function ImagePicker({ value, onChange }: { value: string; onChange: (url: strin
           />
         ) : (
           <span className="flex h-14 w-20 flex-col items-center justify-center rounded-lg border border-dashed border-black/20 text-[11px] text-muted transition-colors group-hover:border-primary group-hover:text-primary">
-            <span>📷</span>
+            
             <span>no image</span>
           </span>
         )}
@@ -689,7 +689,7 @@ function ImagePicker({ value, onChange }: { value: string; onChange: (url: strin
           title="Вставить картинку из буфера обмена (Ctrl+V)"
           className="rounded-full border border-black/15 bg-white px-3.5 py-2 text-xs font-bold text-[#312F2F] hover:border-primary hover:text-primary hover:bg-primary/5 disabled:opacity-50 transition-all flex items-center gap-1.5"
         >
-          <span>📋</span>
+          
           <span>{busy ? "..." : "Paste"}</span>
         </button>
 
@@ -893,12 +893,12 @@ function ToursTab({
                   <span className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                     {tour.bookingDisabled && (
                       <span className="rounded-full bg-red-100 px-2.5 py-0.5 text-[11px] font-bold text-red-700">
-                        ⛔ Бронь закрыта
+                        Бронь закрыта
                       </span>
                     )}
                     {(tour.featured ?? true) && (
                       <span className="rounded-full bg-accent/20 px-2 py-0.5 text-[11px] font-bold text-accent-dark">
-                        ⭐ популярный
+                        популярный
                       </span>
                     )}
                     {tour.categories?.includes("individual") && (
@@ -922,7 +922,7 @@ function ToursTab({
                       />
                       {tour.categories?.includes("individual") && (
                         <p className="mt-1 text-[11px] font-semibold text-purple-700">
-                          🔒 Для индивидуальных туров цена на сайте не показывается (По запросу)
+                          Для индивидуальных туров цена на сайте не показывается (По запросу)
                         </p>
                       )}
                     </Field>
@@ -1150,7 +1150,7 @@ function ToursTab({
 
                         {tour.categories.includes("individual") && (
                           <p className="flex items-center gap-1.5 text-purple-700 bg-purple-50 px-2.5 py-1 rounded-lg font-medium">
-                            <span>✨</span>
+                            
                             <span>Выбрана категория «Индивидуальный»: на сайте фиксированная цена будет скрыта и тур отобразится «По запросу».</span>
                           </p>
                         )}
@@ -1180,7 +1180,7 @@ function ToursTab({
                           }}
                           className="h-4 w-4 rounded border-red-300 text-red-600 focus:ring-red-500"
                         />
-                        <span>⛔ Приостановить / отменить бронирование этого тура</span>
+                        <span>Приостановить / отменить бронирование этого тура</span>
                       </label>
                       {tour.bookingDisabled && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-red-200/80 px-2.5 py-0.5 text-xs font-bold text-red-900">
@@ -1531,14 +1531,14 @@ function ImagesTab({
   }
 
   const sections = [
-    { id: "hero", label: "Слайдер шапки", icon: "🖼️" },
-    { id: "quick", label: "Карточки первого экрана", icon: "⚡" },
-    { id: "bento", label: "Бенто-сетка", icon: "📐" },
-    { id: "tours", label: "Топ-туры", icon: "⭐" },
-    { id: "resorts", label: "Курорты и СПА", icon: "🏨" },
-    { id: "banners", label: "Панорамные баннеры", icon: "🌄" },
-    { id: "articles", label: "Статьи и гид", icon: "📖" },
-    { id: "branding", label: "О нас и логотип", icon: "ℹ️" },
+    { id: "hero", label: "Слайдер шапки", icon: "" },
+    { id: "quick", label: "Карточки первого экрана", icon: "" },
+    { id: "bento", label: "Бенто-сетка", icon: "" },
+    { id: "tours", label: "Топ-туры", icon: "" },
+    { id: "resorts", label: "Курорты и СПА", icon: "" },
+    { id: "banners", label: "Панорамные баннеры", icon: "" },
+    { id: "articles", label: "Статьи и гид", icon: "" },
+    { id: "branding", label: "О нас и логотип", icon: "" },
   ] as const;
 
   return (
@@ -2503,7 +2503,7 @@ function ContactsTab({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-black/5 pb-4">
           <div className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#C7FF32] text-lg font-black text-[#312F2F] shadow-sm">
-              💳
+              
             </span>
             <div>
               <h3 className="text-base font-extrabold text-ink flex items-center gap-2">
@@ -2607,7 +2607,7 @@ function ContactsTab({
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#C7FF32] text-xs font-black text-[#312F2F]">
-                      💳
+                      
                     </span>
                     <span className="text-xs font-extrabold text-white">
                       Реквизиты для оплаты
@@ -2644,7 +2644,7 @@ function ContactsTab({
                         : "bg-white/10 text-white hover:bg-[#C7FF32] hover:text-[#312F2F]"
                     }`}
                   >
-                    {copiedPreview ? "Скопировано! ✓" : "Скопировать"}
+                    {copiedPreview ? "Скопировано!" : "Скопировать"}
                   </button>
                 </div>
 
@@ -2791,7 +2791,7 @@ function PasswordTab() {
               onClick={copy}
               className="rounded-full border border-black/15 px-4 py-2 text-xs font-bold hover:border-primary hover:text-primary"
             >
-              {copied ? "Copied ✓" : "Copy"}
+              {copied ? "Copied!" : "Copy"}
             </button>
             <span className="text-xs text-muted">
               Then redeploy. The hash wins over ADMIN_PASSWORD, so you can
@@ -4399,7 +4399,7 @@ function FleetTab({
                 : "bg-white text-ink border-black/15 hover:border-primary hover:text-primary"
             }`}
           >
-            <span>⚙️ Категории ({activeCategories.length})</span>
+            <span>Категории ({activeCategories.length})</span>
             <span className="text-xs">{showCategoryManager ? "▲" : "▼"}</span>
           </button>
           <button
@@ -4418,7 +4418,7 @@ function FleetTab({
           <div className="flex items-center justify-between border-b border-black/10 pb-3">
             <div>
               <h3 className="text-base font-bold text-ink flex items-center gap-2">
-                <span>⚙️ Управление категориями автомобилей</span>
+                <span>Управление категориями автомобилей</span>
                 <span className="text-xs text-primary font-normal">
                   ({activeCategories.length} категорий)
                 </span>
@@ -4661,7 +4661,7 @@ function FleetTab({
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center text-xs text-muted">
-                        🚗
+                        
                       </div>
                     )}
                   </div>

@@ -213,8 +213,10 @@ export default function TourDetail({
           <FadeIn delay={0.12}>
             <div className="rounded-2xl sm:rounded-3xl border border-[#EAE9E0] bg-white p-5 sm:p-8 shadow-sm">
               <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#C7FF32]/25 text-2xl">
-                  🎒
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#C7FF32]/25 text-[#312F2F]">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                  </svg>
                 </span>
                 <div>
                   <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#312F2F]">
@@ -239,8 +241,10 @@ export default function TourDetail({
                 <div className="sm:col-span-2 rounded-2xl border border-[#EAE9E0] bg-[#FCFCF7] p-4 sm:p-5">
                   <div className="flex items-center justify-between gap-3 flex-wrap">
                     <div className="flex items-center gap-3">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#586EFF]/10 text-[#586EFF] text-2xl">
-                        👥
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#586EFF]/10 text-[#586EFF]">
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
                       </span>
                       <div>
                         <span className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#4a4846]">
@@ -261,7 +265,11 @@ export default function TourDetail({
                 <div className="rounded-2xl border border-[#EAE9E0] bg-[#FCFCF7] p-5 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 pb-3 border-b border-[#EAE9E0]">
-                      <span className="text-lg">🎒</span>
+                      <span className="text-[#586EFF]">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                        </svg>
+                      </span>
                       <h3 className="text-sm sm:text-base font-black uppercase tracking-wider text-[#312F2F]">
                         {locale === "ru" ? "Что взять с собой" : locale === "hy" ? "Ի՞նչ վերցնել հետը" : "What to bring"}
                       </h3>
@@ -270,7 +278,9 @@ export default function TourDetail({
                       {whatToBring.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2.5 text-sm sm:text-base text-[#2b2929] leading-snug">
                           <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#C7FF32]/60 text-[#312F2F] text-xs font-black">
-                            ✓
+                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
                           </span>
                           <span>{item}</span>
                         </li>
@@ -283,7 +293,11 @@ export default function TourDetail({
                 <div className="rounded-2xl border border-[#EAE9E0] bg-[#FCFCF7] p-5 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 pb-3 border-b border-[#EAE9E0]">
-                      <span className="text-lg">👟</span>
+                      <span className="text-[#586EFF]">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </span>
                       <h3 className="text-sm sm:text-base font-black uppercase tracking-wider text-[#312F2F]">
                         {locale === "ru" ? "Что одеть / Обувь" : locale === "hy" ? "Ի՞նչ հագնել / Կոշիկ" : "Dress code & Footwear"}
                       </h3>
@@ -292,8 +306,12 @@ export default function TourDetail({
                       {dressCode}
                     </p>
                   </div>
-                  <div className="mt-4 pt-3 border-t border-[#EAE9E0] text-xs sm:text-sm text-[#4a4846] flex items-center gap-1.5 font-medium">
-                    <span>💡</span>
+                  <div className="mt-4 pt-3 border-t border-[#EAE9E0] text-xs sm:text-sm text-[#4a4846] flex items-center gap-2 font-medium">
+                    <span className="text-amber-500">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    </span>
                     <span>
                       {locale === "ru"
                         ? "В горах погода прохладнее на 5–10°C, чем в Ереване"

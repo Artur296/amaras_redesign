@@ -50,7 +50,11 @@ export default function FleetPageClient({ locale, fleet = [], categories, site }
       {/* 4 Trust & Guarantee Badges */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 sm:mb-14">
         <div className="rounded-2xl border border-white/10 bg-[#242323] p-5 shadow-sm">
-          <div className="text-2xl mb-2">🛡️</div>
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#586EFF]/15 text-[#586EFF] mb-3">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
           <h4 className="font-bold text-[#FCFCF7] text-sm sm:text-base">
             {locale === "ru" ? "100% Техосмотр" : locale === "hy" ? "100% Տեխզննում" : "100% Inspected"}
           </h4>
@@ -64,7 +68,11 @@ export default function FleetPageClient({ locale, fleet = [], categories, site }
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-[#242323] p-5 shadow-sm">
-          <div className="text-2xl mb-2">🏔️</div>
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#C7FF32]/15 text-[#C7FF32] mb-3">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            </svg>
+          </div>
           <h4 className="font-bold text-[#FCFCF7] text-sm sm:text-base">
             {locale === "ru" ? "Опытные горные водители" : locale === "hy" ? "Փորձառու վարորդներ" : "Mountain Certified Chauffeurs"}
           </h4>
@@ -78,7 +86,11 @@ export default function FleetPageClient({ locale, fleet = [], categories, site }
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-[#242323] p-5 shadow-sm">
-          <div className="text-2xl mb-2">❄️</div>
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#586EFF]/15 text-[#586EFF] mb-3">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
           <h4 className="font-bold text-[#FCFCF7] text-sm sm:text-base">
             {locale === "ru" ? "Идеальный микроклимат" : locale === "hy" ? "Իդեալական կլիմա" : "Climate & Wi-Fi"}
           </h4>
@@ -92,7 +104,11 @@ export default function FleetPageClient({ locale, fleet = [], categories, site }
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-[#242323] p-5 shadow-sm">
-          <div className="text-2xl mb-2">👶</div>
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#C7FF32]/15 text-[#C7FF32] mb-3">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
           <h4 className="font-bold text-[#FCFCF7] text-sm sm:text-base">
             {locale === "ru" ? "Детские кресла бесплатно" : locale === "hy" ? "Մանկական նստատեղ" : "Free Child Seats"}
           </h4>
@@ -187,7 +203,7 @@ export default function FleetPageClient({ locale, fleet = [], categories, site }
                     href={`tel:${cleanPhone}`}
                     className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/5 px-5 py-3.5 text-xs sm:text-sm font-bold text-[#FCFCF7] transition-all hover:bg-white/10 hover:border-white/40"
                   >
-                    <span>📞 {site.phone}</span>
+                    <span>{site.phone}</span>
                   </a>
                 </div>
               </div>

@@ -510,7 +510,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                   : "text-white/60 hover:text-white hover:bg-white/5"
               }`}
             >
-              <span>📊 Клиенты</span>
+              <span>Клиенты</span>
               <span className="rounded-full bg-black/20 px-1.5 py-0.2 text-[10px] font-mono">
                 {clients.length}
               </span>
@@ -525,7 +525,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                   : "text-white/60 hover:text-white hover:bg-white/5"
               }`}
             >
-              <span>👥 Сотрудники</span>
+              <span>Сотрудники</span>
               {pendingEmployeesCount > 0 ? (
                 <span className="rounded-full bg-red-500 text-white px-2 py-0.2 text-[10px] font-bold animate-pulse">
                   +{pendingEmployeesCount}
@@ -547,8 +547,10 @@ export default function PortalClientComponent({ sessionUser }: Props) {
             {/* Quick Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5">
               <div className="rounded-2xl border border-white/10 bg-[#1E1D1D] p-3 sm:p-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-[#C7FF32]/10 border border-[#C7FF32]/20 text-[#C7FF32] text-lg sm:text-xl font-bold shrink-0">
-                  📋
+                <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-[#C7FF32]/10 border border-[#C7FF32]/20 text-[#C7FF32] shrink-0">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
                 </div>
                 <div>
                   <div className="text-[10px] sm:text-xs uppercase tracking-wider text-white/50 font-bold">
@@ -561,8 +563,10 @@ export default function PortalClientComponent({ sessionUser }: Props) {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-[#1E1D1D] p-3 sm:p-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 text-lg sm:text-xl font-bold shrink-0">
-                  ⚡
+                <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 shrink-0">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
                 <div>
                   <div className="text-[10px] sm:text-xs uppercase tracking-wider text-white/50 font-bold">
@@ -575,8 +579,10 @@ export default function PortalClientComponent({ sessionUser }: Props) {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-[#1E1D1D] p-3 sm:p-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-[#586EFF]/10 border border-[#586EFF]/20 text-[#8C9EFF] text-lg sm:text-xl font-bold shrink-0">
-                  👥
+                <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-[#586EFF]/10 border border-[#586EFF]/20 text-[#8C9EFF] shrink-0">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
                 </div>
                 <div>
                   <div className="text-[10px] sm:text-xs uppercase tracking-wider text-white/50 font-bold">
@@ -589,8 +595,10 @@ export default function PortalClientComponent({ sessionUser }: Props) {
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-[#1E1D1D] p-3 sm:p-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-lg sm:text-xl font-bold shrink-0">
-                  🎯
+                <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
                 <div>
                   <div className="text-[10px] sm:text-xs uppercase tracking-wider text-white/50 font-bold">
@@ -609,8 +617,10 @@ export default function PortalClientComponent({ sessionUser }: Props) {
               <div className="flex flex-col sm:flex-row gap-2.5 sm:items-center justify-between">
                 {/* Search Bar */}
                 <div className="relative flex-1">
-                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40 text-sm">
-                    🔍
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
                   </span>
                   <input
                     type="text"
@@ -651,7 +661,9 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                     className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/5 px-3 py-2.5 text-xs font-bold text-white hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
                     title="Скачать таблицу в Excel (.csv)"
                   >
-                    <span>📥</span>
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
                     <span className="hidden sm:inline">Excel</span>
                   </a>
                 </div>
@@ -740,7 +752,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                       }`}
                       title="Режим карточек (удобно для телефонов)"
                     >
-                      <span>📱</span>
+                      
                       <span className="hidden sm:inline">Карточки</span>
                     </button>
                     <button
@@ -753,7 +765,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                       }`}
                       title="Режим таблицы (как в Excel)"
                     >
-                      <span>📊</span>
+                      
                       <span className="hidden sm:inline">Таблица</span>
                     </button>
                   </div>
@@ -769,7 +781,11 @@ export default function PortalClientComponent({ sessionUser }: Props) {
               </div>
             ) : filteredClients.length === 0 ? (
               <div className="rounded-2xl border border-white/10 bg-[#1E1D1D] p-10 text-center">
-                <div className="text-4xl mb-3">📋</div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 border border-white/10 mx-auto mb-3 text-white/40">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
                 <div className="text-base font-bold text-white">Клиенты не найдены</div>
                 <p className="text-xs text-white/50 mt-1 max-w-sm mx-auto">
                   {searchQuery
@@ -815,7 +831,9 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                           </div>
 
                           <div className="text-[11px] text-white/60 flex items-center gap-1 font-medium bg-white/5 px-2 py-0.5 rounded-full">
-                            <span>👤</span>
+                            <svg className="w-3.5 h-3.5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
                             <span className="truncate max-w-[120px]">{c.createdByUserName}</span>
                           </div>
                         </div>
@@ -838,12 +856,16 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                         {/* Tour / Destination & Date */}
                         <div className="mt-2.5 space-y-1.5">
                           <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#C7FF32]">
-                            <span className="text-sm">📍</span>
+                            <svg className="w-3.5 h-3.5 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            </svg>
                             <span className="truncate">{c.tourTitle}</span>
                           </div>
 
                           <div className="flex items-center gap-2 text-xs text-white/70">
-                            <span className="text-sm">📅</span>
+                            <svg className="w-3.5 h-3.5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
                             <span
                               className={`font-semibold px-2 py-0.5 rounded-md ${
                                 dateInfo.isToday
@@ -862,7 +884,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                         {/* Comments bubble */}
                         {c.comments && (
                           <div className="mt-3 rounded-xl bg-black/30 border border-white/5 p-2.5 text-xs text-white/80 leading-relaxed italic">
-                            💬 «{c.comments}»
+                            «{c.comments}»
                           </div>
                         )}
                       </div>
@@ -878,7 +900,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                               className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-white/10 hover:bg-white/15 px-3 py-2 text-xs font-bold text-white transition-all active:scale-95"
                               title={`Позвонить ${c.phone1}`}
                             >
-                              <span>📞</span>
+                              
                               <span className="font-mono truncate">{c.phone1}</span>
                             </a>
                           ) : (
@@ -896,7 +918,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                               className="inline-flex items-center justify-center gap-1 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white px-3 py-2 text-xs font-bold shadow-md shadow-[#25D366]/20 transition-all active:scale-95"
                               title="Написать в WhatsApp"
                             >
-                              <span>💬</span>
+                              
                               <span className="hidden sm:inline">WhatsApp</span>
                             </a>
                           )}
@@ -908,7 +930,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                             className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-white/60 hover:text-white text-xs cursor-pointer"
                             title="Скопировать номер"
                           >
-                            {copiedPhoneId === c.id ? "✓" : "📋"}
+                            {copiedPhoneId === c.id ? "OK" : "Копировать"}
                           </button>
                         </div>
 
@@ -920,7 +942,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                                 href={tel2}
                                 className="flex-1 inline-flex items-center gap-1.5 rounded-xl bg-white/5 hover:bg-white/10 px-2.5 py-1.5 text-white/80 font-mono truncate"
                               >
-                                <span>📞2:</span>
+                                <span>Тел 2:</span>
                                 <span className="truncate">{c.phone2}</span>
                               </a>
                             ) : (
@@ -937,7 +959,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                                 className="inline-flex items-center gap-1 rounded-xl bg-[#229ED9]/20 border border-[#229ED9]/40 hover:bg-[#229ED9]/30 text-[#60c3f5] px-2.5 py-1.5 font-bold"
                                 title="Написать в Telegram"
                               >
-                                <span>✈️</span>
+                                
                                 <span>Telegram</span>
                               </a>
                             )}
@@ -952,7 +974,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                               onClick={() => openEditModal(c)}
                               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 hover:text-[#C7FF32] text-xs font-semibold cursor-pointer transition-colors"
                             >
-                              <span>✏️</span>
+                              
                               <span>Изменить</span>
                             </button>
                             <button
@@ -960,7 +982,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                               onClick={() => handleDeleteClient(c)}
                               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-300 text-xs font-semibold cursor-pointer transition-colors"
                             >
-                              <span>🗑️</span>
+                              
                               <span>Удалить</span>
                             </button>
                           </div>
@@ -1029,7 +1051,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                                     className="inline-flex items-center gap-1.5 text-[#25D366] hover:underline font-mono font-medium"
                                     title="Написать в WhatsApp"
                                   >
-                                    <span>💬</span>
+                                    
                                     <span>{c.phone1}</span>
                                   </a>
                                 ) : (
@@ -1041,7 +1063,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                                   className="text-white/40 hover:text-white text-[11px] p-0.5 cursor-pointer"
                                   title="Скопировать"
                                 >
-                                  {copiedPhoneId === c.id ? "✓" : "📋"}
+                                  {copiedPhoneId === c.id ? "OK" : "Копировать"}
                                 </button>
                               </div>
                             </td>
@@ -1056,7 +1078,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                                     className="inline-flex items-center gap-1.5 text-[#229ED9] hover:underline font-mono font-medium"
                                     title="Написать в Telegram"
                                   >
-                                    <span>✈️</span>
+                                    
                                     <span>{c.phone2}</span>
                                   </a>
                                 ) : (
@@ -1096,7 +1118,9 @@ export default function PortalClientComponent({ sessionUser }: Props) {
 
                             <td className="py-3 px-3.5 whitespace-nowrap text-xs text-white/70 font-medium">
                               <span className="inline-flex items-center gap-1">
-                                <span>👤</span>
+                                <svg className="w-3.5 h-3.5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
                                 <span>{c.createdByUserName}</span>
                               </span>
                             </td>
@@ -1110,7 +1134,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                                     className="p-1 rounded-md text-white/60 hover:text-[#C7FF32] hover:bg-white/10 transition-colors cursor-pointer"
                                     title="Редактировать запись"
                                   >
-                                    ✏️
+                                    Ред.
                                   </button>
                                   <button
                                     type="button"
@@ -1118,7 +1142,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                                     className="p-1 rounded-md text-white/60 hover:text-red-400 hover:bg-white/10 transition-colors cursor-pointer"
                                     title="Удалить клиента"
                                   >
-                                    🗑️
+                                    Удал.
                                   </button>
                                 </div>
                               </td>
@@ -1164,7 +1188,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                 onClick={fetchEmployees}
                 className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-bold text-white hover:bg-white/10 transition-all cursor-pointer"
               >
-                🔄 Обновить список
+                Обновить список
               </button>
             </div>
 
@@ -1190,17 +1214,17 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                       <div>
                         {emp.status === "pending" && (
                           <span className="rounded-full bg-yellow-500/15 border border-yellow-500/30 px-2.5 py-0.5 text-[10px] font-bold text-yellow-300">
-                            ⏳ Ожидает
+                            Ожидает
                           </span>
                         )}
                         {emp.status === "approved" && (
                           <span className="rounded-full bg-green-500/15 border border-green-500/30 px-2.5 py-0.5 text-[10px] font-bold text-green-300">
-                            ✓ Активен
+                            Активен
                           </span>
                         )}
                         {emp.status === "rejected" && (
                           <span className="rounded-full bg-red-500/15 border border-red-500/30 px-2.5 py-0.5 text-[10px] font-bold text-red-300">
-                            ✕ Блок
+                            Блок
                           </span>
                         )}
                       </div>
@@ -1230,7 +1254,7 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                         onClick={() => handleDeleteEmployee(emp)}
                         className="px-3 py-2 rounded-xl bg-red-600/20 border border-red-500/30 text-xs font-bold text-red-300 hover:bg-red-600/40 cursor-pointer"
                       >
-                        🗑️
+                        Удал.
                       </button>
                     </div>
                   </div>
@@ -1278,17 +1302,17 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                             <td className="py-3.5 px-4 text-center">
                               {emp.status === "pending" && (
                                 <span className="inline-flex items-center gap-1 rounded-full bg-yellow-500/15 border border-yellow-500/30 px-3 py-1 text-xs font-bold text-yellow-300">
-                                  ⏳ Ожидает
+                                  Ожидает
                                 </span>
                               )}
                               {emp.status === "approved" && (
                                 <span className="inline-flex items-center gap-1 rounded-full bg-green-500/15 border border-green-500/30 px-3 py-1 text-xs font-bold text-green-300">
-                                  ✓ Доступ разрешен
+                                  Доступ разрешен
                                 </span>
                               )}
                               {emp.status === "rejected" && (
                                 <span className="inline-flex items-center gap-1 rounded-full bg-red-500/15 border border-red-500/30 px-3 py-1 text-xs font-bold text-red-300">
-                                  ✕ Заблокирован
+                                  Заблокирован
                                 </span>
                               )}
                             </td>

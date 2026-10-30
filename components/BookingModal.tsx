@@ -43,7 +43,7 @@ const I18N = {
     cardHolderLabel: "Получатель:",
     phonePayLabel: "По номеру телефона (Idram / Telcell):",
     copyBtn: "Скопировать",
-    copiedBtn: "Скопировано! ✓",
+    copiedBtn: "Скопировано!",
     receiptLabel: "Чек оплаты (скриншот или PDF)",
     receiptHint: "Прикрепите скриншот перевода или квитанцию в формате JPG, PNG или PDF (до 10 МБ)",
     receiptUploadBtn: "Загрузить чек оплаты",
@@ -81,7 +81,7 @@ const I18N = {
     cardHolderLabel: "Ստացող՝",
     phonePayLabel: "Հեռախոսահամարով (Idram / Telcell)՝",
     copyBtn: "Պատճենել",
-    copiedBtn: "Պատճենվա՛ծ է ✓",
+    copiedBtn: "Պատճենվա՛ծ է",
     receiptLabel: "Վճարման անդորրագիր (սքրինշոթ կամ PDF)",
     receiptHint: "Կցեք փոխանցման սքրինշոթը կամ անդորրագիրը JPG, PNG կամ PDF ձևաչափով (մինչև 10 ՄԲ)",
     receiptUploadBtn: "Կցել անդորրագիրը",
@@ -119,7 +119,7 @@ const I18N = {
     cardHolderLabel: "Cardholder:",
     phonePayLabel: "Via phone number (Idram / Telcell):",
     copyBtn: "Copy",
-    copiedBtn: "Copied! ✓",
+    copiedBtn: "Copied!",
     receiptLabel: "Payment Receipt (Screenshot or PDF)",
     receiptHint: "Attach transfer receipt or screenshot in JPG, PNG, or PDF format (up to 10 MB)",
     receiptUploadBtn: "Upload Receipt",
@@ -415,17 +415,17 @@ export default function BookingModal({
 
             const bookingSummaryText =
               `Здравствуйте, Amaras Tour! Хочу подтвердить бронирование тура (Заявка #${bookingResult.id}):\n` +
-              `📍 Тур: ${title}${calculatedData?.tourCode ? ` [Код #${calculatedData.tourCode}]` : ""}\n` +
-              `👤 Имя: ${name.trim() || "Гость"}\n` +
-              `📞 Телефон: ${phone.trim()}\n` +
-              (email.trim() ? `✉️ Email: ${email.trim()}\n` : "") +
-              (date ? `📅 Дата: ${date}${calculatedData?.departureTime ? ` (${calculatedData.departureTime})` : ""}\n` : "") +
-              `👥 Участники: ${adults} взр.${children ? ` + ${children} дет.` : ""}${calculatedData?.infants ? ` + ${calculatedData.infants} млад.` : ""}\n` +
-              (calculatedData?.transportName ? `🚗 Транспорт: ${calculatedData.transportName}\n` : "") +
-              (calculatedData?.guideLanguage ? `🗣 Язык гида: ${calculatedData.guideLanguage}\n` : "") +
-              (calculatedData?.selectedServices && calculatedData.selectedServices.length > 0 ? `✨ Доп. услуги: ${calculatedData.selectedServices.map(s => s.name).join(", ")}\n` : "") +
-              (calculatedData?.totalPrice ? `💰 Итоговая стоимость: ${formatPrice(calculatedData.totalPrice)}\n` : "") +
-              (wishes.trim() ? `💬 Пожелания: ${wishes.trim()}\n` : "");
+              `• Тур: ${title}${calculatedData?.tourCode ? ` [Код #${calculatedData.tourCode}]` : ""}\n` +
+              `• Имя: ${name.trim() || "Гость"}\n` +
+              `• Телефон: ${phone.trim()}\n` +
+              (email.trim() ? `• Email: ${email.trim()}\n` : "") +
+              (date ? `• Дата: ${date}${calculatedData?.departureTime ? ` (${calculatedData.departureTime})` : ""}\n` : "") +
+              `• Участники: ${adults} взр.${children ? ` + ${children} дет.` : ""}${calculatedData?.infants ? ` + ${calculatedData.infants} млад.` : ""}\n` +
+              (calculatedData?.transportName ? `• Транспорт: ${calculatedData.transportName}\n` : "") +
+              (calculatedData?.guideLanguage ? `• Язык гида: ${calculatedData.guideLanguage}\n` : "") +
+              (calculatedData?.selectedServices && calculatedData.selectedServices.length > 0 ? `• Доп. услуги: ${calculatedData.selectedServices.map(s => s.name).join(", ")}\n` : "") +
+              (calculatedData?.totalPrice ? `• Итоговая стоимость: ${formatPrice(calculatedData.totalPrice)}\n` : "") +
+              (wishes.trim() ? `• Пожелания: ${wishes.trim()}\n` : "");
 
             const whatsappBookingUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(bookingSummaryText)}`;
             const telegramBookingDirectUrl = `https://t.me/${telegramUsername}`;
@@ -436,10 +436,10 @@ export default function BookingModal({
               copyTextToClipboard(bookingSummaryText);
               setCopiedNotice(
                 locale === "ru"
-                  ? "✅ Текст заявки скопирован в буфер! Открываем Telegram — вставьте его в чат (Ctrl+V или долгое нажатие → Вставить)."
+                  ? "Текст заявки скопирован в буфер! Открываем Telegram — вставьте его в чат (Ctrl+V или долгое нажатие → Вставить)."
                   : locale === "hy"
-                  ? "✅ Հայտի տեքստը պատճենված է։ Բացում ենք Telegram — տեղադրեք (Paste) հաղորդագրության մեջ։"
-                  : "✅ Booking text copied! Opening Telegram — just paste it into the message field."
+                  ? "Հայտի տեքստը պատճենված է։ Բացում ենք Telegram — տեղադրեք (Paste) հաղորդագրության մեջ։"
+                  : "Booking text copied! Opening Telegram — just paste it into the message field."
               );
             };
 
@@ -447,17 +447,19 @@ export default function BookingModal({
               copyTextToClipboard(bookingSummaryText);
               setCopiedNotice(
                 locale === "ru"
-                  ? "✅ Текст заявки скопирован в буфер! Открываем Instagram Direct — вставьте его в чат (нажмите «Вставить»)."
+                  ? "Текст заявки скопирован в буфер! Открываем Instagram Direct — вставьте его в чат (нажмите «Вставить»)."
                   : locale === "hy"
-                  ? "✅ Հայտի տեքստը պատճենված է։ Բացում ենք Instagram Direct — տեղադրեք (Paste) հաղորդագրության մեջ։"
-                  : "✅ Booking text copied! Opening Instagram Direct — paste it into the chat."
+                  ? "Հայտի տեքստը պատճենված է։ Բացում ենք Instagram Direct — տեղադրեք (Paste) հաղորդագրության մեջ։"
+                  : "Booking text copied! Opening Instagram Direct — paste it into the chat."
               );
             };
 
             return (
               <div className="py-4 sm:py-6 text-center">
-                <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-[#C7FF32]/20 text-4xl mb-4 shadow-[0_0_30px_rgba(199,255,50,0.25)]">
-                  🎉
+                <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-[#C7FF32]/20 text-[#C7FF32] mb-4 shadow-[0_0_30px_rgba(199,255,50,0.25)]">
+                  <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
                 <div>
                   <span className="rounded-full bg-[#C7FF32]/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
@@ -526,7 +528,9 @@ export default function BookingModal({
 
                   {copiedNotice && (
                     <div className="mt-3.5 p-3 rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-xs sm:text-sm text-center font-bold text-[#C7FF32] flex items-center justify-center gap-2">
-                      <span>📋</span>
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
                       <span>{copiedNotice}</span>
                     </div>
                   )}
@@ -559,7 +563,9 @@ export default function BookingModal({
                         }}
                         className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-2.5 py-1 text-xs font-bold text-[#C7FF32] hover:bg-white/20 active:scale-95 transition-all cursor-pointer"
                       >
-                        <span>📋</span>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
                         <span>{locale === "ru" ? "Скопировать текст" : "Copy text"}</span>
                       </button>
                     </div>
@@ -609,7 +615,9 @@ export default function BookingModal({
                 <div className="rounded-2xl border border-[#C7FF32]/40 bg-[#18181A] p-4 sm:p-5 shadow-2xl space-y-3">
                   <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
                     <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
-                      <span>📋</span>
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
                       <span>{locale === "ru" ? "Сводка бронирования" : locale === "hy" ? "Ամրագրման տվյալներ" : "Booking Summary"}</span>
                     </span>
                     {calculatedData.tourCode && (
@@ -898,8 +906,10 @@ export default function BookingModal({
                     {/* Header with badge & bank */}
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#C7FF32] text-sm font-black text-[#312F2F] shrink-0">
-                          💳
+                        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#C7FF32] text-[#312F2F] shrink-0">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                          </svg>
                         </span>
                         <span className="text-sm sm:text-base font-black text-white tracking-wide">
                           {t.paymentCardBadge}
@@ -976,7 +986,7 @@ export default function BookingModal({
                             onClick={() => handleCopyPhone(paymentCard.phonePay)}
                             className="shrink-0 text-xs font-bold text-white/90 hover:text-white px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 transition-colors"
                           >
-                            {copiedPhone ? "✓" : t.copyBtn}
+                            {copiedPhone ? (locale === "ru" ? "Скопировано!" : "Copied!") : t.copyBtn}
                           </button>
                         </div>
                       )}
@@ -985,7 +995,7 @@ export default function BookingModal({
                     {/* Instruction */}
                     {paymentCard.instruction?.[locale] && (
                       <p className="text-xs text-white/80 leading-relaxed italic border-t border-white/10 pt-2.5">
-                        ℹ️ {paymentCard.instruction[locale]}
+                        {paymentCard.instruction[locale]}
                       </p>
                     )}
                   </div>
@@ -994,7 +1004,9 @@ export default function BookingModal({
                   <div className="rounded-2xl border border-white/15 bg-black/20 p-4 sm:p-5">
                     <div className="flex items-center justify-between">
                       <label className="text-sm sm:text-base font-bold text-[#C7FF32] flex items-center gap-2">
-                        <span className="text-lg">🧾</span>
+                        <svg className="w-5 h-5 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
                         <span>{t.receiptLabel}</span>
                       </label>
                       <span className="text-xs text-white/60 font-medium">JPG, PNG, PDF (макс. 10MB)</span>
@@ -1069,8 +1081,10 @@ export default function BookingModal({
                 </>
               ) : (
                 <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-5 flex items-start gap-3.5">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-base shrink-0">
-                    💳
+                  <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-[#C7FF32] shrink-0">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
                   </span>
                   <div className="space-y-1 min-w-0">
                     <p className="text-sm sm:text-base font-bold text-white">

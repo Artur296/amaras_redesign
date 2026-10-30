@@ -375,7 +375,9 @@ export default function TourListingClient({
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div className="space-y-2 max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-[#C7FF32]/15 border border-[#C7FF32]/30 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#C7FF32]">
-              <span>✨</span>
+              <svg className="w-3.5 h-3.5 fill-[#C7FF32]" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+              </svg>
               <span>
                 {locale === "ru"
                   ? "Новинка — Конструктор маршрутов"

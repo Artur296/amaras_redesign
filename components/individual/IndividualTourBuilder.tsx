@@ -6,6 +6,7 @@ import type { Locale } from "@/lib/i18n";
 import type { Attraction } from "@/lib/attractions";
 import { defaultVehicles, defaultFleetCategories, type Vehicle, type FleetCategory } from "@/lib/fleet";
 import type { SiteInfo } from "@/lib/site";
+import { formatPrice } from "@/lib/tours";
 import { WhatsAppIcon, TelegramIcon, InstagramIcon, RouteIcon, StarIcon, ShieldIcon } from "@/components/icons";
 
 type Props = {
@@ -19,63 +20,75 @@ type Props = {
 const EXTRA_SERVICES = [
   {
     id: "photographer",
-    icon: "📸",
     title: { ru: "Профессиональный фотограф", hy: "Պրոֆեսիոնալ լուսանկարիչ", en: "Professional Photographer" },
     desc: {
       ru: "Съемка на лучших панорамных точках Армении и 50+ обработанных фото.",
       hy: "Նկարահանում լավագույն դիտակետերում և 50+ մշակված լուսանկարներ։",
       en: "High-end photography at iconic viewpoints with 50+ edited portraits.",
     },
+    fixedPrice: 35000,
+    pricePerAdult: 0,
+    pricePerChild: 0,
   },
   {
     id: "drone",
-    icon: "🚁",
     title: { ru: "Аэросъемка с квадрокоптера (дрон)", hy: "Անօդաչու թռչող սարք (դրոն)", en: "Drone 4K Aerial Videography" },
     desc: {
       ru: "Кинематографичные видео монастырей над ущельями и горных серпантинов.",
       hy: "Կինեմատոգրաֆիկ տեսանյութեր կիրճերի վրա վեր խոյացող վանքերից։",
       en: "Cinematic 4K aerial reels of mountain gorges and cliffside monasteries.",
     },
+    fixedPrice: 45000,
+    pricePerAdult: 0,
+    pricePerChild: 0,
   },
   {
     id: "costumes",
-    icon: "👗",
     title: { ru: "Подбор одежды / Тараз для фотосессии", hy: "Տարազ / Հագուստի ընտրություն", en: "Traditional Taraz & Dress Styling" },
     desc: {
       ru: "Армянский национальный костюм Тараз или стильные вечерние платья.",
       hy: "Ավանդական հայկական տարազ կամ նրբագեղ զգեստներ ֆոտոշարքի համար։",
       en: "Authentic Armenian historic Taraz garments or elegant styling attire.",
     },
+    fixedPrice: 15000,
+    pricePerAdult: 0,
+    pricePerChild: 0,
   },
   {
     id: "lunch",
-    icon: "🍽️",
     title: { ru: "Традиционный армянский обед / Гастро-тур", hy: "Ավանդական հայկական ճաշ", en: "Traditional Armenian Feast / Wine Tasting" },
     desc: {
       ru: "Шашлык в тондыре, свежевыпеченный лаваш, домашние сыры и дегустация вин Арени.",
       hy: "Թոնրի խորոված, տաք լավաշ, տնական պանիրներ և արենի գինու համտես։",
       en: "Tonir barbecue, fresh lavash baking, artisan cheeses, and Areni winery pairing.",
     },
+    fixedPrice: 0,
+    pricePerAdult: 8000,
+    pricePerChild: 4000,
   },
   {
     id: "tickets",
-    icon: "🎟️",
     title: { ru: "Входные билеты и канатные дороги", hy: "Մուտքի տոմսեր և ճոպանուղի", en: "All Entry Tickets & Cable Cars" },
     desc: {
       ru: "Крылья Татева, Гарни, Звартноц, музеи — без очередей и ожидания.",
       hy: "ՏաԹևեր ճոպանուղի, Գառնի, Զվարթնոց, թանգարաններ՝ առանց հերթերի։",
       en: "Wings of Tatev ropeway, Garni temple, Zvartnots, and museum priority passes.",
     },
+    fixedPrice: 0,
+    pricePerAdult: 5000,
+    pricePerChild: 2500,
   },
   {
     id: "overnight",
-    icon: "🏨",
     title: { ru: "Тур с ночевкой в горах / Бутик-отель", hy: "Գիշերակացով տուր / Բուտիկ հյուրանոց", en: "Overnight Mountain Lodge / Glamping" },
     desc: {
       ru: "Уютный отдых в Дилижане, Горисе или на берегу Севана при многодневном туре.",
       hy: "Հարմարավետ հանգիստ Դիլիջանում, Գորիսում կամ Սևանի ափին։",
       en: "Atmospheric boutique hotel or luxury glamping for multi-day itineraries.",
     },
+    fixedPrice: 25000,
+    pricePerAdult: 0,
+    pricePerChild: 0,
   },
 ];
 
@@ -259,6 +272,53 @@ export default function IndividualTourBuilder({
     return `${selectedVehicle.name} (${catName})`;
   }, [selectedVehicle, locale]);
 
+  // Automatic Price Calculation for Individual Tour
+  const vehicleDailyRate = useMemo(() => {
+    if (!selectedVehicle) return 35000;
+    const cat = selectedVehicle.category?.toLowerCase() || "";
+    if (cat.includes("minibus") || cat.includes("sprinter")) return 75000;
+    if (cat.includes("suv") || cat.includes("4x4") || cat.includes("crossover")) return 60000;
+    if (cat.includes("minivan") || cat.includes("alphard")) return 50000;
+    return 35000;
+  }, [selectedVehicle]);
+
+  const guideDailyRate = withGuide ? 15000 : 0;
+
+  const calculation = useMemo(() => {
+    const vCost = vehicleDailyRate;
+    const gCost = guideDailyRate;
+    let extrasCost = 0;
+    const breakdown: string[] = [];
+
+    const vName = selectedVehicle?.name || (locale === "ru" ? "Автомобиль" : "Vehicle");
+    breakdown.push(`${locale === "ru" ? "Автомобиль" : "Vehicle"} (${vName}): ${formatPrice(vCost)}`);
+
+    if (gCost > 0) {
+      breakdown.push(`${locale === "ru" ? "Персональный гид" : "Private Guide"}: ${formatPrice(gCost)}`);
+    }
+
+    selectedServices.forEach((sId) => {
+      const srv = EXTRA_SERVICES.find((x) => x.id === sId);
+      if (srv) {
+        const itemCost =
+          srv.fixedPrice +
+          (srv.pricePerAdult * adults) +
+          (srv.pricePerChild * children);
+        extrasCost += itemCost;
+        breakdown.push(`${srv.title[locale]}: ${formatPrice(itemCost)}`);
+      }
+    });
+
+    const total = vCost + gCost + extrasCost;
+    return {
+      vCost,
+      gCost,
+      extrasCost,
+      total,
+      breakdown,
+    };
+  }, [vehicleDailyRate, guideDailyRate, selectedServices, adults, children, selectedVehicle, locale]);
+
   const servicesLabels = useMemo(() => {
     return selectedServices.map((id) => {
       const s = EXTRA_SERVICES.find((x) => x.id === id);
@@ -313,6 +373,8 @@ export default function IndividualTourBuilder({
         locations: selectedLocations,
         services: servicesLabels,
         wishes: wishes.trim(),
+        priceAMD: calculation.total.toString(),
+        priceBreakdown: calculation.breakdown,
       };
 
       const res = await fetch("/api/booking", {
@@ -342,18 +404,19 @@ export default function IndividualTourBuilder({
   const instagramUsername = (site.instagram || "amarastourarmenia").replace(/^@/, "");
 
   const plainSummaryText =
-    `Здравствуйте, Amaras Tour! Хочу заказать индивидуальный тур (Заявка #${submittedBookingId || ""}):\n` +
-    `👤 Заказчик: ${name}\n` +
-    `📞 Телефон: ${phone}\n` +
-    (telegram.trim() ? `✈️ Telegram: ${telegram.trim()}\n` : "") +
-    (whatsapp.trim() ? `💬 WhatsApp: ${whatsapp.trim()}\n` : "") +
-    `📅 Дата: ${date}\n` +
-    `👥 Гости: ${adults} взр. ${children ? `+ ${children} дет.` : ""}\n` +
-    `🧭 Формат: ${formatLabel}\n` +
-    `🚗 Автомобиль: ${carLabel}\n` +
-    `🗺 Маршрут:\n${selectedLocations.map((l, i) => `${i + 1}. ${l}`).join("\n")}\n` +
-    (servicesLabels.length ? `✨ Доп. услуги: ${servicesLabels.join(", ")}\n` : "") +
-    (wishes.trim() ? `💬 Пожелания: ${wishes.trim()}\n` : "");
+    `Amaras Tour: Индивидуальный тур (Заявка #${submittedBookingId || ""})\n` +
+    `Заказчик: ${name}\n` +
+    `Телефон: ${phone}\n` +
+    (telegram.trim() ? `Telegram: ${telegram.trim()}\n` : "") +
+    (whatsapp.trim() ? `WhatsApp: ${whatsapp.trim()}\n` : "") +
+    `Дата: ${date}\n` +
+    `Гости: ${adults} взр. ${children ? `+ ${children} дет.` : ""}\n` +
+    `Формат: ${formatLabel}\n` +
+    `Автомобиль: ${carLabel}\n` +
+    `Маршрут:\n${selectedLocations.map((l, i) => `${i + 1}. ${l}`).join("\n")}\n` +
+    (servicesLabels.length ? `Доп. услуги: ${servicesLabels.join(", ")}\n` : "") +
+    (wishes.trim() ? `Пожелания: ${wishes.trim()}\n` : "") +
+    `Расчётная сумма: ${formatPrice(calculation.total)}\n`;
 
   const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(plainSummaryText)}`;
   const telegramDirectUrl = `https://t.me/${telegramUsername}`;
@@ -384,10 +447,10 @@ export default function IndividualTourBuilder({
     copyTextToClipboard(plainSummaryText);
     setCopiedNotice(
       locale === "ru"
-        ? "✅ Текст заявки скопирован в буфер! Открываем Telegram — вставьте его в чат (Ctrl+V или долгое нажатие → Вставить)."
+        ? "Текст заявки скопирован в буфер! Открываем Telegram — вставьте его в чат (Ctrl+V или долгое нажатие → Вставить)."
         : locale === "hy"
-        ? "✅ Հայտի տեքստը պատճենված է։ Բացում ենք Telegram — տեղադրեք (Paste) հաղորդագրության մեջ։"
-        : "✅ Itinerary copied! Opening Telegram — just paste it into the message field."
+        ? "Հայտի տեքստը պատճենված է։ Բացում ենք Telegram — տեղադրեք (Paste) հաղորդագրության մեջ։"
+        : "Itinerary copied! Opening Telegram — just paste it into the message field."
     );
   }
 
@@ -395,10 +458,10 @@ export default function IndividualTourBuilder({
     copyTextToClipboard(plainSummaryText);
     setCopiedNotice(
       locale === "ru"
-        ? "✅ Текст заявки скопирован в буфер! Открываем Instagram Direct — вставьте его в чат (нажмите «Вставить»)."
+        ? "Текст заявки скопирован в буфер! Открываем Instagram Direct — вставьте его в чат (нажмите «Вставить»)."
         : locale === "hy"
-        ? "✅ Հայտի տեքստը պատճենված է։ Բացում ենք Instagram Direct — տեղադրեք (Paste) հաղորդագրության մեջ։"
-        : "✅ Itinerary copied! Opening Instagram Direct — paste it into the chat."
+        ? "Հայտի տեքստը պատճենված է։ Բացում ենք Instagram Direct — տեղադրեք (Paste) հաղորդագրության մեջ։"
+        : "Itinerary copied! Opening Instagram Direct — paste it into the chat."
     );
   }
 
@@ -407,8 +470,10 @@ export default function IndividualTourBuilder({
     return (
       <div className="mx-auto max-w-[860px] px-4 py-12 sm:py-16 text-center">
         <div className="rounded-3xl border border-[#C7FF32]/30 bg-[#242323] p-6 sm:p-12 shadow-2xl">
-          <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-[#C7FF32]/20 text-4xl mb-6">
-            🎉
+          <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-[#C7FF32]/20 mb-6">
+            <svg className="w-10 h-10 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            </svg>
           </div>
           <span className="rounded-full bg-[#C7FF32]/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
             {locale === "ru" ? "Заявка успешно принята" : locale === "hy" ? "Հայտը հաջողությամբ ընդունված է" : "Request Received"}
@@ -473,7 +538,7 @@ export default function IndividualTourBuilder({
 
             {copiedNotice && (
               <div className="mt-4 p-3 rounded-xl bg-[#C7FF32]/15 border border-[#C7FF32]/30 text-xs sm:text-sm text-center font-bold text-[#C7FF32] flex items-center justify-center gap-2">
-                <span>📋</span>
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
                 <span>{copiedNotice}</span>
               </div>
             )}
@@ -506,7 +571,7 @@ export default function IndividualTourBuilder({
                   }}
                   className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-2.5 py-1 text-xs font-bold text-[#C7FF32] hover:bg-white/20 active:scale-95 transition-all cursor-pointer"
                 >
-                  <span>📋</span>
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
                   <span>{locale === "ru" ? "Скопировать текст" : "Copy text"}</span>
                 </button>
               </div>
@@ -709,7 +774,7 @@ export default function IndividualTourBuilder({
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-2xl">🎙️</span>
+                    <svg className="w-6 h-6 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
                     <span
                       className={`h-5 w-5 rounded-md border flex items-center justify-center text-xs font-black ${
                         withGuide
@@ -739,7 +804,7 @@ export default function IndividualTourBuilder({
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-2xl">🚗</span>
+                    <svg className="w-6 h-6 text-[#C7FF32]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h2m-6 0a1 1 0 001-1v-3" /></svg>
                     <span
                       className={`h-5 w-5 rounded-md border flex items-center justify-center text-xs font-black ${
                         withDriver
@@ -1090,7 +1155,7 @@ export default function IndividualTourBuilder({
                       }`}
                     >
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xl">{srv.icon}</span>
+                        <span className="text-xs font-bold text-[#C7FF32]">{srv.fixedPrice > 0 ? `+${formatPrice(srv.fixedPrice)}` : `+${formatPrice(srv.pricePerAdult)} / чел.`}</span>
                         <span
                           className={`h-5 w-5 rounded-md border flex items-center justify-center text-xs font-black ${
                             isChecked
@@ -1241,12 +1306,41 @@ export default function IndividualTourBuilder({
                     </p>
                   </div>
                 )}
+
+                {/* Automatic Price Calculation Box */}
+                <div className="border-t border-white/10 pt-4 mt-4">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <div>
+                      <span className="text-[10px] uppercase font-bold text-[#FCFCF7]/60 tracking-wider block">
+                        {locale === "ru" ? "Расчётная стоимость тура:" : locale === "hy" ? "Հաշվարկված արժեքը:" : "Estimated Tour Price:"}
+                      </span>
+                      <span className="text-2xl sm:text-3xl font-black text-[#C7FF32] tracking-tight">
+                        {formatPrice(calculation.total)}
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-[#FCFCF7]/60 font-medium text-right">
+                      {locale === "ru" ? "Без онлайн-оплаты" : "No upfront payment"}
+                    </span>
+                  </div>
+
+                  <div className="mt-3 space-y-1.5 text-[11px] text-[#FCFCF7]/75 bg-black/25 p-3 rounded-xl border border-white/5">
+                    {calculation.breakdown.map((line, idx) => {
+                      const parts = line.split(":");
+                      return (
+                        <div key={idx} className="flex items-center justify-between gap-2">
+                          <span className="truncate">{parts[0]}</span>
+                          <span className="font-bold text-[#FCFCF7] shrink-0">{parts[1]}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
 
               {/* Error feedback */}
               {errorMsg && (
                 <div className="mt-5 rounded-2xl bg-red-500/20 border border-red-500/40 p-3 text-xs text-red-200">
-                  ⚠️ {errorMsg}
+                  {errorMsg}
                 </div>
               )}
 

@@ -206,8 +206,10 @@ export default function PortalLoginPage() {
         ) : regSuccess ? (
           /* REGISTRATION SUCCESS NOTICE */
           <div className="py-4 text-center space-y-4">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#C7FF32]/20 border border-[#C7FF32]/40 text-2xl text-[#C7FF32]">
-              ✓
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#C7FF32]/20 border border-[#C7FF32]/40 text-[#C7FF32]">
+              <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              </svg>
             </div>
             <h3 className="text-lg font-bold text-white">Заявка отправлена на модерацию</h3>
             <p className="text-xs sm:text-sm text-white/80 leading-relaxed">

@@ -46,7 +46,7 @@ const TRANSPORT_OPTIONS = [
       hy: "Մինչև 3–4 հոգի • Ներառված է արժեքում",
       en: "Up to 3–4 guests • Included in base price",
     },
-    icon: "🚗",
+    icon: "standard",
     priceAmd: 0,
     maxPax: 4,
   },
@@ -62,7 +62,7 @@ const TRANSPORT_OPTIONS = [
       hy: "Մինչև 6–7 հոգի • Պրեմիում հարմարավետություն",
       en: "Up to 6–7 guests • Captain seats, supreme comfort",
     },
-    icon: "🚐",
+    icon: "minivan",
     priceAmd: 15000,
     maxPax: 7,
   },
@@ -78,7 +78,7 @@ const TRANSPORT_OPTIONS = [
       hy: "Մինչև 15–18 հոգի • Մեծ խմբերի համար",
       en: "Up to 15–18 guests • Ideal for large groups",
     },
-    icon: "🚌",
+    icon: "minibus",
     priceAmd: 25000,
     maxPax: 18,
   },
@@ -94,7 +94,7 @@ const TRANSPORT_OPTIONS = [
       hy: "Մինչև 4 հոգի • Լեռնային երթուղիների համար",
       en: "Up to 4 guests • 4WD capability for mountains",
     },
-    icon: "🚙",
+    icon: "suv",
     priceAmd: 20000,
     maxPax: 4,
   },
@@ -114,7 +114,6 @@ const EXTRA_SERVICES_CONFIG = [
       hy: "Թոնրի խորոված, պանիրներ, տաք լավաշ",
       en: "Tonir barbecue, fresh artisan cheeses and hot lavash",
     },
-    icon: "🍽️",
     pricePerPerson: 7000, // per adult and child
     fixedPrice: 0,
   },
@@ -130,7 +129,6 @@ const EXTRA_SERVICES_CONFIG = [
       hy: "Մուտք բոլոր վճարովի վայրեր առանց հերթի",
       en: "Fast-track passes to all paid route attractions",
     },
-    icon: "🎟️",
     pricePerPerson: 5000,
     fixedPrice: 0,
   },
@@ -146,7 +144,6 @@ const EXTRA_SERVICES_CONFIG = [
       hy: "Կվերցնենք անմիջապես հյուրանոցից և հետ կբերենք",
       en: "Direct pick-up from your hotel door and return",
     },
-    icon: "🏨",
     pricePerPerson: 0,
     fixedPrice: 5000,
   },
@@ -162,7 +159,6 @@ const EXTRA_SERVICES_CONFIG = [
       hy: "50+ մշակված պրոֆեսիոնալ լուսանկարներ",
       en: "50+ edited high-res photos at scenic landmarks",
     },
-    icon: "📸",
     pricePerPerson: 0,
     fixedPrice: 25000,
   },
@@ -178,17 +174,16 @@ const EXTRA_SERVICES_CONFIG = [
       hy: "Անվտանգություն երեխայի համար • Տրամադրվում է անվճար",
       en: "Certified safety seat • Provided free of charge",
     },
-    icon: "💺",
     pricePerPerson: 0,
     fixedPrice: 0,
   },
 ];
 
 const GUIDE_LANGUAGES = [
-  { id: "ru", label: "Русский", flag: "🇷🇺", price: 0 },
-  { id: "en", label: "English", flag: "🇬🇧", price: 0 },
-  { id: "hy", label: "Հայերեն", flag: "🇦🇲", price: 0 },
-  { id: "other", label: "Français / Deutsch", flag: "🌍", price: 10000 },
+  { id: "ru", label: "Русский", code: "RU", price: 0 },
+  { id: "en", label: "English", code: "EN", price: 0 },
+  { id: "hy", label: "Հայերեն", code: "HY", price: 0 },
+  { id: "other", label: "Français / Deutsch", code: "INT", price: 10000 },
 ];
 
 export default function TourPriceCalculator({
@@ -506,7 +501,7 @@ export default function TourPriceCalculator({
         {/* 1. TOUR DATE PICKER */}
         <div>
           <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#312F2F] mb-2">
-            📅 {t.dateLabel}
+            {t.dateLabel}
           </label>
           <div className="relative">
             <input
@@ -523,7 +518,7 @@ export default function TourPriceCalculator({
         <div className="rounded-2xl border border-[#EAE9E0] bg-[#FCFCF7] p-4 sm:p-5">
           <div className="flex items-center justify-between mb-3.5">
             <label className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#312F2F]">
-              👥 {t.participantsLabel}
+              {t.participantsLabel}
             </label>
             <span className="inline-flex items-center rounded-full bg-[#312F2F] px-2.5 py-0.5 text-xs font-black text-[#C7FF32]">
               {adults + children + infants} {t.guests}
@@ -646,7 +641,7 @@ export default function TourPriceCalculator({
         {isPackage && tour.priceTiers && tour.priceTiers.length > 0 && (
           <div>
             <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#312F2F] mb-2.5">
-              🏨 {t.hotelTierLabel}
+              {t.hotelTierLabel}
             </label>
             <div className="grid grid-cols-3 gap-2.5">
               {tour.priceTiers.map((tier) => {
@@ -662,8 +657,12 @@ export default function TourPriceCalculator({
                         : "border-[#EAE9E0] bg-[#FCFCF7] text-[#6B6967] hover:border-[#586EFF]/40 hover:bg-white"
                     }`}
                   >
-                    <div className="text-amber-500 text-sm font-black tracking-tight">
-                      {"★".repeat(tier.stars)}
+                    <div className="flex items-center justify-center gap-0.5 text-amber-500">
+                      {Array.from({ length: tier.stars }).map((_, i) => (
+                        <svg key={i} className="w-3.5 h-3.5 fill-amber-400" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                      ))}
                     </div>
                     <span className="mt-1 text-xs font-bold text-[#312F2F]">
                       {tier.stars} {t.stars}
@@ -681,7 +680,7 @@ export default function TourPriceCalculator({
         {/* 4. GUIDE LANGUAGE */}
         <div>
           <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#312F2F] mb-2.5">
-            🗣️ {t.guideLabel}
+            {t.guideLabel}
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {GUIDE_LANGUAGES.map((lang) => {
@@ -698,7 +697,7 @@ export default function TourPriceCalculator({
                   }`}
                 >
                   <span className="flex items-center gap-1.5">
-                    <span>{lang.flag}</span>
+                    <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-black/5 dark:bg-white/10 uppercase">{lang.code}</span>
                     <span>{lang.label}</span>
                   </span>
                   {lang.price > 0 && (
@@ -716,7 +715,7 @@ export default function TourPriceCalculator({
         <div>
           <div className="flex items-center justify-between mb-2.5">
             <label className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#312F2F]">
-              🚗 {t.transportLabel}
+              {t.transportLabel}
             </label>
             {totalPartySize > 4 && !isJeep && (
               <span className="text-[11px] font-bold text-[#586EFF] bg-[#586EFF]/10 px-2 py-0.5 rounded-full">
@@ -727,7 +726,12 @@ export default function TourPriceCalculator({
 
           {isJeep ? (
             <div className="rounded-2xl border border-[#C7FF32]/50 bg-[#C7FF32]/10 p-4 text-xs sm:text-sm text-[#312F2F] font-medium flex items-center gap-3">
-              <span className="text-2xl">🚙</span>
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#C7FF32]/30 text-[#312F2F]">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                </svg>
+              </div>
               <span>{t.jeepNotice}</span>
             </div>
           ) : (
@@ -751,11 +755,14 @@ export default function TourPriceCalculator({
                   >
                     <div className="flex items-center gap-3">
                       <div
-                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl ${
-                          isSelected ? "bg-[#586EFF] text-white" : "bg-white border border-[#EAE9E0]"
+                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+                          isSelected ? "bg-[#586EFF] text-white" : "bg-white border border-[#EAE9E0] text-[#312F2F]"
                         }`}
                       >
-                        {veh.icon}
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1" />
+                        </svg>
                       </div>
                       <div>
                         <div className="flex items-center gap-2 flex-wrap">
@@ -764,7 +771,7 @@ export default function TourPriceCalculator({
                           </span>
                           {isRecommend && (
                             <span className="rounded-full bg-[#C7FF32] px-2 py-0.5 text-[9px] font-black text-[#312F2F]">
-                              ★ РЕКОМЕНДУЕМ
+                              РЕКОМЕНДУЕМ
                             </span>
                           )}
                         </div>
@@ -795,7 +802,7 @@ export default function TourPriceCalculator({
         {/* 6. EXTRA SERVICES (Checkboxes) */}
         <div>
           <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#312F2F] mb-2.5">
-            ✨ {t.extrasLabel}
+            {t.extrasLabel}
           </label>
 
           <div className="space-y-2.5">
@@ -826,7 +833,7 @@ export default function TourPriceCalculator({
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-bold text-[#312F2F]">
-                          {extra.icon} {extra.title[locale]}
+                          {extra.title[locale]}
                         </span>
                       </div>
                       <span className="block text-xs text-[#6B6967]">

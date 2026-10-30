@@ -448,7 +448,7 @@ export default function Header({
                           : "text-white/70 hover:text-white hover:bg-white/5"
                       }`}
                     >
-                      <span className="text-sm">{l === "ru" ? "🇷🇺" : l === "hy" ? "🇦🇲" : "🇬🇧"}</span>
+                      <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-white/10 uppercase">{l}</span>
                       <span>{localeLabels[l]}</span>
                     </Link>
                   ))}
