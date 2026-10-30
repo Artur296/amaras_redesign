@@ -67,6 +67,7 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
   }, [modalOpen]);
   const [slideState, setSlideState] = useState({ index: 0, direction: 1 });
   const { index: activeIndex, direction } = slideState;
+  const [expandedReviews, setExpandedReviews] = useState<Record<string, boolean>>({});
 
   const scrollNext = () => {
     if (activeIndex < reviews.length - 1) {
@@ -200,6 +201,8 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       close: "Понятно",
       swipeHint: "Листайте отзывы свайпом или стрелками",
       reviewsCount: "отзывов гостей",
+      showFullText: "Показать весь текст...",
+      showLessText: "Свернуть",
     },
     hy: {
       badge: "5.0 • ՀՅՈՒՐԵՐԻ ԿԱՐԾԻՔՆԵՐԸ",
@@ -234,6 +237,8 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       close: "Փակել",
       swipeHint: "Թերթեք կարծիքները սահեցնելով կամ սլաքներով",
       reviewsCount: "հյուրերի կարծիք",
+      showFullText: "Կարդալ ամբողջը...",
+      showLessText: "Փակել",
     },
     en: {
       badge: "5.0 • TRAVELER REVIEWS",
@@ -268,6 +273,8 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
       close: "Got it",
       swipeHint: "Swipe or use arrows to browse reviews",
       reviewsCount: "traveler reviews",
+      showFullText: "Read full review...",
+      showLessText: "Show less",
     },
   }[locale];
 
@@ -537,12 +544,46 @@ export default function ReviewsSection({ initialReviews, locale, guides }: Props
                         </div>
                       </div>
 
-                      {/* Middle: The Review Text (Natural height, no artificial empty spaces) */}
-                      <div className="my-4 sm:my-6">
-                        <p className="text-base sm:text-lg lg:text-xl font-normal leading-relaxed text-[#FCFCF7] break-words whitespace-pre-line tracking-normal">
-                          “{getReviewText(reviews[activeIndex].text, locale)}”
-                        </p>
-                      </div>
+                      {/* Middle: The Review Text (Natural height, with "Show full text" if long) */}
+                      {(() => {
+                        const fullText = getReviewText(reviews[activeIndex].text, locale);
+                        const reviewId = reviews[activeIndex].id || String(activeIndex);
+                        const isExpanded = Boolean(expandedReviews[reviewId]);
+                        const CHAR_LIMIT = 280;
+                        const hasManyParagraphs = (fullText.match(/\n/g) || []).length >= 3;
+                        const isLongText = fullText.length > CHAR_LIMIT || hasManyParagraphs;
+
+                        let displayedText = fullText;
+                        if (isLongText && !isExpanded) {
+                          const truncated = fullText.slice(0, CHAR_LIMIT);
+                          const lastSpace = truncated.lastIndexOf(" ");
+                          displayedText = (lastSpace > 180 ? truncated.slice(0, lastSpace) : truncated).trimEnd() + "...";
+                        }
+
+                        return (
+                          <div className="my-4 sm:my-6">
+                            <p className="text-base sm:text-lg lg:text-xl font-normal leading-relaxed text-[#FCFCF7] break-words whitespace-pre-line tracking-normal">
+                              “{displayedText}”
+                            </p>
+                            {isLongText && (
+                              <button
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setExpandedReviews((prev) => ({
+                                    ...prev,
+                                    [reviewId]: !prev[reviewId],
+                                  }));
+                                }}
+                                className="mt-3 inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#C7FF32] hover:text-[#d8ff66] transition-colors cursor-pointer underline decoration-[#C7FF32]/40 underline-offset-4 hover:decoration-[#C7FF32]"
+                              >
+                                <span>{isExpanded ? texts.showLessText : texts.showFullText}</span>
+                                <span className="text-[10px]">{isExpanded ? "▲" : "▼"}</span>
+                              </button>
+                            )}
+                          </div>
+                        );
+                      })()}
                     </div>
 
                     {/* Bottom: Author Info and Quick Navigation Controls */}
