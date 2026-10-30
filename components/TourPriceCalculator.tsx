@@ -194,6 +194,7 @@ export default function TourPriceCalculator({
 }: Props) {
   const isPackage = isPackageTour(tour);
   const isJeep = tour.categories.includes("jeep");
+  const isIndividual = tour.categories.includes("individual");
 
   // Get tomorrow's date formatted as YYYY-MM-DD
   const tomorrowStr = useMemo(() => {
@@ -346,10 +347,10 @@ export default function TourPriceCalculator({
     const childrenCost = children * childRate;
     const infantsCost = 0; // free
 
-    // 4. Transport cost
+    // 4. Transport cost (selectable only in individual tours)
     let vehicleCost = 0;
-    const currentTransport = TRANSPORT_OPTIONS.find((v) => v.id === transportId);
-    if (!isJeep && currentTransport) {
+    const currentTransport = isIndividual ? TRANSPORT_OPTIONS.find((v) => v.id === transportId) : null;
+    if (isIndividual && !isJeep && currentTransport) {
       vehicleCost = currentTransport.priceAmd;
     }
 
@@ -397,9 +398,9 @@ export default function TourPriceCalculator({
     if (infants > 0) {
       breakdownLines.push(`${t.infantsItem} (${infants}): ${t.freeBadge}`);
     }
-    if (vehicleCost > 0 && currentTransport) {
+    if (isIndividual && vehicleCost > 0 && currentTransport) {
       breakdownLines.push(
-        `${t.transportItem} (${currentTransport.name[locale]}): ${formatPrice(vehicleCost)}`
+        `${t.transportItem} (${currentTransport.name[locale]}): +${formatPrice(vehicleCost)}`
       );
     }
     if (guideCost > 0 && currentLang) {
@@ -431,6 +432,7 @@ export default function TourPriceCalculator({
     tour,
     isPackage,
     isJeep,
+    isIndividual,
     selectedHotelStars,
     adults,
     children,
@@ -460,10 +462,12 @@ export default function TourPriceCalculator({
       infants,
       totalParticipants: adults + children + infants,
       guideLanguage: calculation.currentLang?.label || "Русский",
-      transportId,
-      transportName: isJeep
-        ? "Внедорожник 4x4 (Jeep Tour)"
-        : calculation.currentTransport?.name[locale] || "Стандартный",
+      transportId: isIndividual ? transportId : (isJeep ? "suv" : "standard"),
+      transportName: isIndividual
+        ? (calculation.currentTransport?.name[locale] || "")
+        : (isJeep
+            ? (locale === "ru" ? "Внедорожник 4x4 (включён)" : locale === "hy" ? "Ամենագնաց 4x4" : "4x4 SUV (included)")
+            : (locale === "ru" ? "Туристический транспорт (включён)" : locale === "hy" ? "Զբոսաշրջային տրանսպորտ" : "Tour Transport (included)")),
       transportPrice: calculation.vehicleCost,
       selectedServices: calculation.chosenExtras,
       hotelTier: isPackage ? selectedHotelStars : undefined,
@@ -711,93 +715,105 @@ export default function TourPriceCalculator({
           </div>
         </div>
 
-        {/* 5. VEHICLE TRANSPORT OPTIONS */}
-        <div>
-          <div className="flex items-center justify-between mb-2.5">
-            <label className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#312F2F]">
-              {t.transportLabel}
-            </label>
-            {totalPartySize > 4 && !isJeep && (
-              <span className="text-[11px] font-bold text-[#586EFF] bg-[#586EFF]/10 px-2 py-0.5 rounded-full">
-                {t.transportRecommend}
-              </span>
+        {/* 5. VEHICLE TRANSPORT OPTIONS - ONLY FOR INDIVIDUAL TOURS */}
+        {isIndividual ? (
+          <div>
+            <div className="flex items-center justify-between mb-2.5">
+              <label className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#312F2F]">
+                {t.transportLabel}
+              </label>
+              {totalPartySize > 4 && !isJeep && (
+                <span className="text-[11px] font-bold text-[#586EFF] bg-[#586EFF]/10 px-2 py-0.5 rounded-full">
+                  {t.transportRecommend}
+                </span>
+              )}
+            </div>
+
+            {isJeep ? (
+              <div className="rounded-2xl border border-[#C7FF32]/50 bg-[#C7FF32]/10 p-4 text-xs sm:text-sm text-[#312F2F] font-medium flex items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#C7FF32]/30 text-[#312F2F]">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                  </svg>
+                </div>
+                <span>{t.jeepNotice}</span>
+              </div>
+            ) : (
+              <div className="space-y-2.5">
+                {TRANSPORT_OPTIONS.map((veh) => {
+                  const isSelected = transportId === veh.id;
+                  const isRecommend =
+                    (totalPartySize <= 4 && veh.id === "standard") ||
+                    (totalPartySize > 4 && totalPartySize <= 7 && veh.id === "minivan") ||
+                    (totalPartySize > 7 && veh.id === "minibus");
+
+                  return (
+                    <div
+                      key={veh.id}
+                      onClick={() => setTransportId(veh.id)}
+                      className={`flex items-center justify-between rounded-2xl border p-3.5 transition-all cursor-pointer ${
+                        isSelected
+                          ? "border-[#586EFF] bg-[#586EFF]/5 ring-2 ring-[#586EFF]/20 shadow-xs"
+                          : "border-[#EAE9E0] bg-[#FCFCF7] hover:bg-white hover:border-[#586EFF]/30"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+                            isSelected ? "bg-[#586EFF] text-white" : "bg-white border border-[#EAE9E0] text-[#312F2F]"
+                          }`}
+                        >
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                          </svg>
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-sm font-bold text-[#312F2F]">
+                              {veh.name[locale]}
+                            </span>
+                            {isRecommend && (
+                              <span className="rounded-full bg-[#C7FF32] px-2 py-0.5 text-[9px] font-black text-[#312F2F]">
+                                РЕКОМЕНДУЕМ
+                              </span>
+                            )}
+                          </div>
+                          <span className="block text-xs text-[#6B6967]">
+                            {veh.desc[locale]}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="text-right shrink-0">
+                        {veh.priceAmd > 0 ? (
+                          <span className="text-xs sm:text-sm font-black text-[#586EFF]">
+                            +{formatPrice(veh.priceAmd)}
+                          </span>
+                        ) : (
+                          <span className="text-xs font-bold text-emerald-600">
+                            {t.guideFree}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             )}
           </div>
-
-          {isJeep ? (
-            <div className="rounded-2xl border border-[#C7FF32]/50 bg-[#C7FF32]/10 p-4 text-xs sm:text-sm text-[#312F2F] font-medium flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#C7FF32]/30 text-[#312F2F]">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
-                </svg>
-              </div>
-              <span>{t.jeepNotice}</span>
+        ) : isJeep ? (
+          <div className="rounded-2xl border border-[#C7FF32]/50 bg-[#C7FF32]/10 p-4 text-xs sm:text-sm text-[#312F2F] font-medium flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#C7FF32]/30 text-[#312F2F]">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+              </svg>
             </div>
-          ) : (
-            <div className="space-y-2.5">
-              {TRANSPORT_OPTIONS.map((veh) => {
-                const isSelected = transportId === veh.id;
-                const isRecommend =
-                  (totalPartySize <= 4 && veh.id === "standard") ||
-                  (totalPartySize > 4 && totalPartySize <= 7 && veh.id === "minivan") ||
-                  (totalPartySize > 7 && veh.id === "minibus");
-
-                return (
-                  <div
-                    key={veh.id}
-                    onClick={() => setTransportId(veh.id)}
-                    className={`flex items-center justify-between rounded-2xl border p-3.5 transition-all cursor-pointer ${
-                      isSelected
-                        ? "border-[#586EFF] bg-[#586EFF]/5 ring-2 ring-[#586EFF]/20 shadow-xs"
-                        : "border-[#EAE9E0] bg-[#FCFCF7] hover:bg-white hover:border-[#586EFF]/30"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
-                          isSelected ? "bg-[#586EFF] text-white" : "bg-white border border-[#EAE9E0] text-[#312F2F]"
-                        }`}
-                      >
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1" />
-                        </svg>
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-sm font-bold text-[#312F2F]">
-                            {veh.name[locale]}
-                          </span>
-                          {isRecommend && (
-                            <span className="rounded-full bg-[#C7FF32] px-2 py-0.5 text-[9px] font-black text-[#312F2F]">
-                              РЕКОМЕНДУЕМ
-                            </span>
-                          )}
-                        </div>
-                        <span className="block text-xs text-[#6B6967]">
-                          {veh.desc[locale]}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="text-right shrink-0">
-                      {veh.priceAmd > 0 ? (
-                        <span className="text-xs sm:text-sm font-black text-[#586EFF]">
-                          +{formatPrice(veh.priceAmd)}
-                        </span>
-                      ) : (
-                        <span className="text-xs font-bold text-emerald-600">
-                          {t.guideFree}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
+            <span>{t.jeepNotice}</span>
+          </div>
+        ) : null}
 
         {/* 6. EXTRA SERVICES (Checkboxes) */}
         <div>
