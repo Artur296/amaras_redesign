@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Locale } from "@/lib/i18n";
@@ -8,7 +8,7 @@ import { useLinks, useSite } from "@/components/SiteProvider";
 import { defaultPaymentCard } from "@/lib/site";
 import { TelegramIcon, WhatsAppIcon, InstagramIcon } from "@/components/icons";
 
-import { formatPrice } from "@/lib/tours";
+import { formatPrice, tours, type Tour } from "@/lib/tours";
 import type { CalculatedBookingData } from "@/components/TourPriceCalculator";
 
 export type BookingModalProps = {
@@ -219,6 +219,40 @@ export default function BookingModal({
     }
   }, [isOpen]);
 
+  // Match tour by title
+  const matchedTour = useMemo(() => {
+    if (!title) return null;
+    const clean = title.trim().toLowerCase();
+    return (
+      tours.find(
+        (t) =>
+          t.title[locale]?.toLowerCase() === clean ||
+          t.title.ru?.toLowerCase() === clean ||
+          t.title.en?.toLowerCase() === clean ||
+          t.title.hy?.toLowerCase() === clean ||
+          clean.includes(t.title[locale]?.toLowerCase() || "") ||
+          clean.includes(t.title.ru?.toLowerCase() || "")
+      ) || null
+    );
+  }, [title, locale]);
+
+  // Live auto-calculation for standard booking form
+  const liveCalculation = useMemo(() => {
+    if (!matchedTour || !matchedTour.priceFromAmd) return null;
+    const baseAdultRate = matchedTour.priceFromAmd;
+    const baseChildRate = Math.round(baseAdultRate * 0.5);
+    const adultsCost = adults * baseAdultRate;
+    const childrenCost = children * baseChildRate;
+    const total = adultsCost + childrenCost;
+    return {
+      baseAdultRate,
+      baseChildRate,
+      adultsCost,
+      childrenCost,
+      total,
+    };
+  }, [matchedTour, adults, children]);
+
   // Handle file selection
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -297,6 +331,17 @@ export default function BookingModal({
         fd.append("infants", calculatedData.infants.toString());
         fd.append("services", JSON.stringify(calculatedData.selectedServices.map((s) => s.name)));
         fd.append("priceBreakdown", JSON.stringify(calculatedData.breakdown));
+      } else if (liveCalculation) {
+        fd.append("priceAMD", liveCalculation.total.toString());
+        fd.append(
+          "priceBreakdown",
+          JSON.stringify([
+            `Взрослые (${adults} × ${formatPrice(liveCalculation.baseAdultRate)}): ${formatPrice(liveCalculation.adultsCost)}`,
+            children > 0
+              ? `Дети (${children} × ${formatPrice(liveCalculation.baseChildRate)}): ${formatPrice(liveCalculation.childrenCost)}`
+              : null,
+          ].filter(Boolean))
+        );
       }
 
       if (receiptFile) {
@@ -628,16 +673,42 @@ export default function BookingModal({
                 </div>
               ) : (
                 <>
-                  {/* 1. Tour Title */}
+                  {/* 1. Tour Title with Dropdown Selector */}
                   <div>
                     <label className="block text-sm sm:text-base font-bold text-white mb-1.5">
                       {t.tourLabel}
                     </label>
+                    <select
+                      value={matchedTour?.slug || "custom"}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        if (val === "custom") {
+                          setTitle("");
+                        } else {
+                          const found = tours.find((item) => item.slug === val);
+                          if (found) {
+                            setTitle(found.title[locale] || found.title.ru);
+                          }
+                        }
+                      }}
+                      className="w-full rounded-xl border border-white/15 bg-[#252528] px-4 py-3.5 text-sm sm:text-base text-white focus:border-[#C7FF32] focus:outline-none cursor-pointer"
+                    >
+                      <option value="custom" className="bg-[#1f1f22] text-white">
+                        {locale === "ru" ? "— Выберите экскурсию из списка или введите вручную —" : "— Select tour or enter custom —"}
+                      </option>
+                      {tours.map((tItem) => (
+                        <option key={tItem.slug} value={tItem.slug} className="bg-[#1f1f22] text-white">
+                          {tItem.title[locale] || tItem.title.ru} {tItem.priceFromAmd ? `(${formatPrice(tItem.priceFromAmd)})` : ""}
+                        </option>
+                      ))}
+                    </select>
+
                     <input
                       type="text"
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
-                      className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3.5 text-sm sm:text-base text-white placeholder-white/40 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
+                      placeholder={locale === "ru" ? "Название экскурсии или направление..." : "Tour title..."}
+                      className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:bg-white/10 focus:outline-none transition-colors"
                       required
                     />
                   </div>
@@ -710,6 +781,51 @@ export default function BookingModal({
                       </div>
                     </div>
                   </div>
+
+                  {/* Live Calculation Preview Card */}
+                  {liveCalculation && (
+                    <div className="rounded-2xl border border-[#C7FF32]/50 bg-gradient-to-br from-[#1c1d22] to-[#121215] p-4 sm:p-5 shadow-2xl relative overflow-hidden">
+                      <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#C7FF32]">
+                          <span className="h-2 w-2 rounded-full bg-[#C7FF32] animate-pulse" />
+                          <span>
+                            {locale === "ru"
+                              ? "Автоматический расчёт стоимости"
+                              : locale === "hy"
+                              ? "Արժեքի ավտոմատ հաշվարկ"
+                              : "Live Tour Price Calculation"}
+                          </span>
+                        </span>
+                        <span className="text-xs font-bold text-white/70">
+                          {formatPrice(liveCalculation.baseAdultRate)} {locale === "ru" ? "/ взр." : "/ adult"}
+                        </span>
+                      </div>
+
+                      <div className="mt-3 flex items-center justify-between flex-wrap gap-2">
+                        <div>
+                          <div className="text-xs sm:text-sm font-bold text-white">
+                            {adults} взр. ({formatPrice(liveCalculation.adultsCost)})
+                            {children > 0 ? ` + ${children} дет. (${formatPrice(liveCalculation.childrenCost)})` : ""}
+                          </div>
+                          <div className="text-[11px] text-white/50 mt-0.5">
+                            {locale === "ru"
+                              ? "Дети до 11 лет со скидкой 50% • Без скрытых комиссий"
+                              : locale === "hy"
+                              ? "Երեխաները մինչև 11 տարեկան՝ 50% զեղչով"
+                              : "50% discount for children up to 11 y.o."}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <span className="block text-2xl sm:text-3xl font-black text-[#C7FF32] tracking-tight">
+                            {formatPrice(liveCalculation.total)}
+                          </span>
+                          <span className="text-[10px] uppercase font-bold text-white/60 tracking-wider">
+                            {locale === "ru" ? "Итого к оплате" : locale === "hy" ? "Ընդհանուր արժեք" : "Total Price"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </>
               )}
 

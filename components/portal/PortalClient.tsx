@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { PortalSessionUser } from "@/lib/portal-auth";
 import type { PortalClient, PortalUser } from "@/lib/portal-db";
+import { tours, formatPrice } from "@/lib/tours";
 
 type Props = {
   sessionUser: PortalSessionUser;
@@ -67,6 +68,56 @@ export default function PortalClientComponent({ sessionUser }: Props) {
   const [editAdults, setEditAdults] = useState("1");
   const [editChildren, setEditChildren] = useState("0");
   const [editComments, setEditComments] = useState("");
+
+  // Matched tour and calculated price for "Добавить клиента"
+  const newMatchedTour = useMemo(() => {
+    if (!newTourTitle) return null;
+    const clean = newTourTitle.trim().toLowerCase();
+    return (
+      tours.find(
+        (t) =>
+          t.title.ru.toLowerCase() === clean ||
+          t.title.en.toLowerCase() === clean ||
+          t.title.hy.toLowerCase() === clean ||
+          clean.includes(t.title.ru.toLowerCase()) ||
+          t.slug === newTourTitle
+      ) || null
+    );
+  }, [newTourTitle]);
+
+  const newLiveTotal = useMemo(() => {
+    if (!newMatchedTour || !newMatchedTour.priceFromAmd) return null;
+    const adults = Math.max(1, parseInt(newAdults, 10) || 1);
+    const children = Math.max(0, parseInt(newChildren, 10) || 0);
+    const adultRate = newMatchedTour.priceFromAmd;
+    const childRate = Math.round(adultRate * 0.5);
+    return adults * adultRate + children * childRate;
+  }, [newMatchedTour, newAdults, newChildren]);
+
+  // Matched tour and calculated price for "Редактировать клиента"
+  const editMatchedTour = useMemo(() => {
+    if (!editTourTitle) return null;
+    const clean = editTourTitle.trim().toLowerCase();
+    return (
+      tours.find(
+        (t) =>
+          t.title.ru.toLowerCase() === clean ||
+          t.title.en.toLowerCase() === clean ||
+          t.title.hy.toLowerCase() === clean ||
+          clean.includes(t.title.ru.toLowerCase()) ||
+          t.slug === editTourTitle
+      ) || null
+    );
+  }, [editTourTitle]);
+
+  const editLiveTotal = useMemo(() => {
+    if (!editMatchedTour || !editMatchedTour.priceFromAmd) return null;
+    const adults = Math.max(1, parseInt(editAdults, 10) || 1);
+    const children = Math.max(0, parseInt(editChildren, 10) || 0);
+    const adultRate = editMatchedTour.priceFromAmd;
+    const childRate = Math.round(adultRate * 0.5);
+    return adults * adultRate + children * childRate;
+  }, [editMatchedTour, editAdults, editChildren]);
 
   // Fetch Clients
   async function fetchClients() {
@@ -138,7 +189,9 @@ export default function PortalClientComponent({ sessionUser }: Props) {
           tourDate: newTourDate,
           guestsAdults: Number(newAdults) || 1,
           guestsChildren: Number(newChildren) || 0,
-          comments: newComments,
+          comments: newLiveTotal
+            ? (newComments ? `${newComments} | Сумма: ${formatPrice(newLiveTotal)}` : `Сумма: ${formatPrice(newLiveTotal)}`)
+            : newComments,
         }),
       });
 
@@ -1367,13 +1420,37 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                   <label className="block text-xs font-bold uppercase tracking-wider text-white/70 mb-1">
                     Тур / Направление *
                   </label>
+                  <select
+                    value={newMatchedTour?.slug || "custom"}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val === "custom") {
+                        setNewTourTitle("");
+                      } else {
+                        const found = tours.find((t) => t.slug === val);
+                        if (found) {
+                          setNewTourTitle(found.title.ru);
+                        }
+                      }
+                    }}
+                    className="w-full rounded-xl border border-white/15 bg-[#252528] px-3.5 py-3 text-sm text-white focus:border-[#C7FF32] focus:outline-none cursor-pointer"
+                  >
+                    <option value="custom" className="bg-[#1f1f22] text-white">
+                      — Выберите тур из каталога или введите вручную —
+                    </option>
+                    {tours.map((t) => (
+                      <option key={t.slug} value={t.slug} className="bg-[#1f1f22] text-white">
+                        {t.title.ru} ({formatPrice(t.priceFromAmd)})
+                      </option>
+                    ))}
+                  </select>
                   <input
                     type="text"
                     required
                     value={newTourTitle}
                     onChange={(e) => setNewTourTitle(e.target.value)}
                     placeholder="Севан и Дилижан"
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-3 text-base sm:text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
+                    className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder-white/40 focus:border-[#C7FF32] focus:outline-none"
                   />
                 </div>
 
@@ -1419,6 +1496,30 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                   />
                 </div>
               </div>
+
+              {/* Live Price Calculation in Portal */}
+              {newLiveTotal !== null && (
+                <div className="rounded-xl border border-[#C7FF32]/40 bg-[#C7FF32]/10 p-3.5 text-white flex items-center justify-between">
+                  <div>
+                    <span className="text-xs font-black uppercase tracking-wider text-[#C7FF32] flex items-center gap-1.5">
+                      <span className="h-2 w-2 rounded-full bg-[#C7FF32] animate-pulse" />
+                      <span>Автоматический расчёт стоимости:</span>
+                    </span>
+                    <span className="text-xs text-white/75 block mt-0.5">
+                      {newAdults} взр. × {formatPrice(newMatchedTour!.priceFromAmd)}
+                      {Number(newChildren) > 0 ? ` + ${newChildren} дет. × ${formatPrice(Math.round(newMatchedTour!.priceFromAmd * 0.5))}` : ""}
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xl font-black text-[#C7FF32]">
+                      {formatPrice(newLiveTotal)}
+                    </span>
+                    <span className="block text-[10px] text-white/60 uppercase font-semibold">
+                      Итого за тур
+                    </span>
+                  </div>
+                </div>
+              )}
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-white/70 mb-1">
@@ -1524,12 +1625,36 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                   <label className="block text-xs font-bold uppercase tracking-wider text-white/70 mb-1">
                     Тур / Направление
                   </label>
+                  <select
+                    value={editMatchedTour?.slug || "custom"}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (val === "custom") {
+                        setEditTourTitle("");
+                      } else {
+                        const found = tours.find((t) => t.slug === val);
+                        if (found) {
+                          setEditTourTitle(found.title.ru);
+                        }
+                      }
+                    }}
+                    className="w-full rounded-xl border border-white/15 bg-[#252528] px-3.5 py-3 text-sm text-white focus:border-[#C7FF32] focus:outline-none cursor-pointer"
+                  >
+                    <option value="custom" className="bg-[#1f1f22] text-white">
+                      — Выберите тур из каталога или введите вручную —
+                    </option>
+                    {tours.map((t) => (
+                      <option key={t.slug} value={t.slug} className="bg-[#1f1f22] text-white">
+                        {t.title.ru} ({formatPrice(t.priceFromAmd)})
+                      </option>
+                    ))}
+                  </select>
                   <input
                     type="text"
                     required
                     value={editTourTitle}
                     onChange={(e) => setEditTourTitle(e.target.value)}
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-3 text-base sm:text-sm text-white focus:border-[#C7FF32] focus:outline-none"
+                    className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-3.5 py-2.5 text-sm text-white focus:border-[#C7FF32] focus:outline-none"
                   />
                 </div>
 
@@ -1575,6 +1700,30 @@ export default function PortalClientComponent({ sessionUser }: Props) {
                   />
                 </div>
               </div>
+
+              {/* Live Price Calculation in Edit Client Modal */}
+              {editLiveTotal !== null && (
+                <div className="rounded-xl border border-[#C7FF32]/40 bg-[#C7FF32]/10 p-3.5 text-white flex items-center justify-between">
+                  <div>
+                    <span className="text-xs font-black uppercase tracking-wider text-[#C7FF32] flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#C7FF32] animate-pulse" />
+                      <span>Автоматический расчёт стоимости:</span>
+                    </span>
+                    <span className="text-xs text-white/75 block mt-0.5">
+                      {editAdults} взр. × {formatPrice(editMatchedTour!.priceFromAmd)}
+                      {Number(editChildren) > 0 ? ` + ${editChildren} дет. × ${formatPrice(Math.round(editMatchedTour!.priceFromAmd * 0.5))}` : ""}
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xl font-black text-[#C7FF32]">
+                      {formatPrice(editLiveTotal)}
+                    </span>
+                    <span className="block text-[10px] text-white/60 uppercase font-semibold">
+                      Итого за тур
+                    </span>
+                  </div>
+                </div>
+              )}
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-white/70 mb-1">
