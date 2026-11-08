@@ -199,3 +199,9 @@ nextjs-portal,
   display: none;
 }
 
+/* Hide prices only on the individual tours page; leave all other pages unchanged. */
+.individual-tours-page form > div > div:first-child > div:nth-child(5) > div.grid > div > div:first-child > span:first-child,
+.individual-tours-page form > div > div:last-child > div > div.mt-6 > div.border-t.pt-4.mt-4,
+.individual-tours-page article > div > .mt-5.border-t.pt-4 {
+  display: none !important;
+}
