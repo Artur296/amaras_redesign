@@ -3,7 +3,7 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import TourCard from "@/components/TourCard";
 import IndividualTourBuilder from "@/components/individual/IndividualTourBuilder";
-import { locales, type Locale } from "@/lib/i18n";
+import { type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { getContent } from "@/lib/content";
 import { generateBreadcrumbSchema } from "@/lib/schema";
@@ -20,9 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     en: "Private Custom Tour Builder in Armenia — AMARAS TOUR",
   };
   const descriptions = {
-    ru: "Соберите свой персональный тур по Армении: выбор автомобиля (седан, минивэн, джип 4x4), гида, любых достопримечательностей и доп. услуг. Индивидуальный расчет и быстрая подача заявки.",
-    hy: "Ստեղծեք ձեր անհատական երթուղին Հայաստանում՝ մեքենայի, գիդի, տեսարժան վայրերի և լրացուցիչ ծառայությունների ընտրությամբ։",
-    en: "Design your custom private journey across Armenia: choose your preferred vehicle, guide, landmarks, and extra services with instant live preview.",
+    ru: "Соберите свой персональный тур по Армении: выберите автомобиль, гида, достопримечательности и дополнительные услуги.",
+    hy: "Ստեղծեք ձեր անհատական երթուղին Հայաստանում՝ ընտրելով մեքենան, գիդին, տեսարժան վայրերն ու լրացուցիչ ծառայությունները։",
+    en: "Design your custom private journey across Armenia: choose your preferred vehicle, guide, landmarks, and extra services.",
   };
 
   return pageMetadata(
@@ -37,9 +37,7 @@ export default async function IndividualTourPage({ params }: Props) {
   const { locale } = await params;
   const { dicts, tours = [], categories = [], attractions = [], fleet = [], fleetCategories = [], site } = await getContent();
   const dict = dicts[locale];
-
-  // Preset individual tours from catalog
-  const presetIndividualTours = tours.filter((t) => t.categories.includes("individual"));
+  const presetIndividualTours = tours.filter((tour) => tour.categories.includes("individual"));
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: dict.nav.home, url: `/${locale}` },
@@ -51,21 +49,20 @@ export default async function IndividualTourPage({ params }: Props) {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#312F2F] text-[#FCFCF7]">
+    <div className="individual-tours-page min-h-screen bg-[#312F2F] text-[#FCFCF7]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* Hero Header */}
       <div className="border-b border-[#FCFCF7]/10 bg-gradient-to-b from-[#242323] to-[#312F2F]">
         <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
           <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs font-medium text-[#FCFCF7]/50">
-            <Link href={`/${locale}`} className="transition-colors hover:text-[#C7FF32]">
+            <Link href={`/${locale}`} className="transition-colors hover:text-[#C7FF32]}>
               {dict.nav.home}
             </Link>
             <span>/</span>
-            <Link href={`/${locale}/tours`} className="transition-colors hover:text-[#C7FF32]">
+            <Link href={`/${locale}/tours`} className="transition-colors hover:text-[#C7FF32]}>
               {dict.nav.tours}
             </Link>
             <span>/</span>
@@ -87,7 +84,7 @@ export default async function IndividualTourPage({ params }: Props) {
             </h1>
             <p className="mt-4 text-sm sm:text-lg leading-relaxed text-[#FCFCF7]/75">
               {locale === "ru"
-                ? "Личный гид, персональный комфортабельный автомобиль, свободный темп без посторонних и программа, собранная исключительно под ваши мечты и интересы."
+                ? "Личный гид, персональный комфортабельный автомобиль, свободный темп без посторонних и программа, полностью адаптированная под ваши пожелания."
                 : locale === "hy"
                 ? "Անձնական գիդ, հարմարավետ ավտոմեքենա, ազատ տեմպ և երթուղի՝ հարմարեցված ձեր նախասիրություններին։"
                 : "A private guide, executive vehicle, unhurried pace, and a route tailored strictly to your personal preferences and bucket-list destinations."}
@@ -96,7 +93,6 @@ export default async function IndividualTourPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Main Interactive Builder */}
       <IndividualTourBuilder
         locale={locale}
         attractions={attractions}
@@ -105,7 +101,6 @@ export default async function IndividualTourPage({ params }: Props) {
         site={site}
       />
 
-      {/* Preset Individual Tours Showcase (Inspiration) */}
       {presetIndividualTours.length > 0 && (
         <section className="border-t border-white/10 bg-[#242323] py-14 sm:py-20 mt-12">
           <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8">
@@ -124,20 +119,21 @@ export default async function IndividualTourPage({ params }: Props) {
                   </h2>
                   <p className="mt-2 text-xs sm:text-sm text-[#FCFCF7]/70 max-w-2xl">
                     {locale === "ru"
-                      ? "Если вы предпочитаете проверенную классическую программу — выберите один из готовых маршрутов с фиксированным таймингом."
+                      ? "Если вы предпочитаете проверенную классическую программу — выберите один из готовых ма��шрутов."
                       : "Prefer a pre-designed classical journey? Pick one of our curated private routes."}
                   </p>
                 </div>
               </div>
 
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {presetIndividualTours.map((tour, i) => (
-                  <FadeIn key={tour.slug} delay={i * 0.05} className="h-full">
+                {presetIndividualTours.map((tour, index) => (
+                  <FadeIn key={tour.slug} delay={index * 0.05} className="h-full">
                     <TourCard
                       tour={tour}
                       locale={locale}
                       dict={dict}
                       categories={categories}
+                      hidePrice
                     />
                   </FadeIn>
                 ))}
