@@ -35,7 +35,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function IndividualTourPage({ params }: Props) {
   const { locale } = await params;
-  const { dicts, tours = [], categories = [], attractions = [], fleet = [], fleetCategories = [], site } = await getContent();
+  const {
+    dicts,
+    tours = [],
+    categories = [],
+    attractions = [],
+    fleet = [],
+    fleetCategories = [],
+    site,
+  } = await getContent();
   const dict = dicts[locale];
   const presetIndividualTours = tours.filter((tour) => tour.categories.includes("individual"));
 
@@ -58,11 +66,11 @@ export default async function IndividualTourPage({ params }: Props) {
       <div className="border-b border-[#FCFCF7]/10 bg-gradient-to-b from-[#242323] to-[#312F2F]">
         <div className="mx-auto max-w-[1360px] px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
           <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs font-medium text-[#FCFCF7]/50">
-            <Link href={`/${locale}`} className="transition-colors hover:text-[#C7FF32]}>
+            <Link href={`/${locale}`} className="transition-colors hover:text-[#C7FF32]">
               {dict.nav.home}
             </Link>
             <span>/</span>
-            <Link href={`/${locale}/tours`} className="transition-colors hover:text-[#C7FF32]}>
+            <Link href={`/${locale}/tours`} className="transition-colors hover:text-[#C7FF32]">
               {dict.nav.tours}
             </Link>
             <span>/</span>
@@ -119,7 +127,7 @@ export default async function IndividualTourPage({ params }: Props) {
                   </h2>
                   <p className="mt-2 text-xs sm:text-sm text-[#FCFCF7]/70 max-w-2xl">
                     {locale === "ru"
-                      ? "Если вы предпочитаете проверенную классическую программу — выберите один из готовых ма��шрутов."
+                      ? "Если вы предпочитаете проверенную классическую программу �� выберите один из готовых маршрутов."
                       : "Prefer a pre-designed classical journey? Pick one of our curated private routes."}
                   </p>
                 </div>
