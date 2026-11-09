@@ -1,5 +1,20 @@
 [
   {
+    "id": "client-1794207307143-isd86",
+    "clientNumber": 11,
+    "clientName": "Станислав Муравьев",
+    "phone1": "+79609920380",
+    "phone2": "",
+    "tourTitle": "Конструктор инд. тура",
+    "tourDate": "2026-11-12",
+    "guestsAdults": 1,
+    "guestsChildren": 0,
+    "comments": "Сумма: 15000 AMD | Авто: Туристический транспорт (включён) | Гид: Русский",
+    "createdByUserId": "online-system",
+    "createdByUserName": "Конструктор сайта",
+    "createdAt": "2026-11-09T06:55:07.143Z"
+  },
+  {
     "id": "client-1794167809885-mvhh7",
     "clientNumber": 10,
     "clientName": "Станислав Муравьев",
